@@ -4,11 +4,25 @@ This is the implementation of our ICSE 2025 paper.
 
 ### I. Introduction
 
-JVM模糊测试技术是保证实现质量的基石。在典型的模糊测试流程中，初始种子至关重要，因为它们是整个测试过程的基础。传统程序模糊测试的文献证实，测试效果在很大程度上受初始种子间冗余的影响，因此提出了一系列种子选择方法。与传统的模糊测试相比，JVM模糊测试有其独特的特点，包括代码规模庞大且复杂，程序的语法和语义特征都很丰富。然而，现有的初始种子选择方法是否适用于JVM模糊测试，以及利用程序特性是否可以提高测试效率，仍不清楚。为了解决这个问题，我们总共设计了10种初始种子选择方法，包括基于覆盖率的方法、基于预模糊的方法和基于程序特征的方法。然后，我们对三个JVM实现进行了实证研究，以广泛评估在两种最先进的模糊测试技术(JavaTailor和VECT)中初始种子选择方法的性能。从三个方面来检查性能:(i)使用广泛研究的初始种子的效果和效率，(ii)在实际环境中使用程序的效果，以及(iii)检测新bug的能力。实验结果表明，基于控制流图的程序特征提取方法不仅具有较低的时间开销(30s)，而且与完整的初始种子集方法相比，时间开销提升了142% ~ 269%。其次，实验结果表明，初始种子选择极大地提高了野生程序的质量，并通过检测新行为表现出互补的有效性。实验结果表明，在相同的测试周期下，初始种子选择能够发现更多的未知bug，从而提高了JVM模糊测试技术的性能。特别是，在检测到的25个bug中，有16个已经被开发人员确认或修复。首先研究了初始种子选择在JVM模糊测试中的作用，证实了其对模糊测试效果和效率的重要性。
+JVM fuzzing techniques serve as a cornerstone for guaranteeing the quality of implementations. In typical fuzzing workflows, initial seeds are crucial as they form the basis of the process. Literature in traditional program fuzzing has confirmed that effectiveness is largely impacted by redundancy among initial seeds, thereby proposing a series of seed selection methods. JVM fuzzing, compared to traditional ones, presents unique characteristics, including large-scale and intricate code, and programs with both syntactic and semantic features. However, it remains unclear whether the existing initial seed selection methods are suitable for JVM fuzzing and whether utilizing program features can enhance effectiveness. To address this, we devised a total of 10 initial seed selection methods, comprising coverage-based, prefuzz-based, and program-feature-based methods. We then conducted an empirical study on three JVM implementations to extensively evaluate the performance of the initial seed selection methods within two state-of-the-art fuzzing techniques (JavaTailor and VECT). Specifically, we examine performance from three aspects: (i) effectiveness and efficiency using widely studied initial seeds, (ii) effectiveness using the programs in the wild, and (iii) the ability to detect new bugs. 
+
+Evaluation results first show that the program-feature-based method that utilizes the control flow graph not only has a significantly lower time overhead (i.e., 30s), but also outperforms other methods, achieving 142% to 269% improvement compared to the full set of initial seeds. Second, results reveal that the initial seed selection greatly improves the quality of wild programs and exhibits complementary effectiveness by detecting new behaviors. Third, results demonstrate that given the same testing period, initial seed selection improves the JVM fuzzing techniques by detecting more unknown bugs. Particularly, 16 out of the 25 detected bugs have been confirmed or fixed by developers. This work takes the first look at initial seed selection in JVM fuzzing, confirming its importance in fuzzing effectiveness and efficiency.
+
+Table 1 shows the comparison results of each method in terms of unique inconsistencies in the differential testing. The FullSet and RandomSet in the first column represent the use of the entire set of initial seeds and the subset selected by random selection, serving as baselines for comparison. Results highlighted in bold indicate superior performance compared to the FullSet. The top three performing methods are shaded, with darker shades indicating better performance.
+
+<p align="center">Table 1: Comparison results of different methods in terms of the number of unique inconsistencies</p>
+
+![image-20240323154303781](https://ningmo.oss-cn-beijing.aliyuncs.com/img/image-20240323154303781.png)
 
 ### II. Preparation Work
 
+##### 1: Import as an maven project
 
+This is developed as an maven project, so you can directly load the project using IntelliJ IDEA workspace to build the environment.
+
+##### 2: Download Data
+
+Because the size of the data is large, we do not provide test subjects in this repo, so you need to download data from google drive.
 
 ### III. Getting Started
 
