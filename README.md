@@ -26,5 +26,5 @@ Because the size of the data is large, we do not provide test subjects in this r
 
 ### III. Getting Started
 
-
+We provide the source files and jar packages for the project. You can make changes in the source code, or just use the jar to execute the project directly. 
 
