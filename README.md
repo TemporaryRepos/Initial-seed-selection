@@ -24,6 +24,8 @@ This is developed as an maven project, so you can directly load the project usin
 
 Because the size of the data is large, we do not provide test subjects in this repo, so you need to download data from google drive.
 
+[data](https://drive.google.com/file/d/1umc60PjlMahpbImlMsVq3Sme463bUmUi/view?usp=sharing)
+
 ### III. Getting Started
 
 We provide the source files and jar packages for the project. You can make changes in the source code, or just use the jar to execute the project directly. 
