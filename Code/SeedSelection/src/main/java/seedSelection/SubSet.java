@@ -1,4 +1,4 @@
-package subSetAnalysis;
+package seedSelection;
 
 import java.util.ArrayList;
 import java.util.List;

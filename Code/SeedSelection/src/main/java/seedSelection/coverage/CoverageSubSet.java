@@ -1,6 +1,6 @@
-package subSetAnalysis.coverage;
+package seedSelection.coverage;
 
-import subSetAnalysis.SubSet;
+import seedSelection.SubSet;
 import utils.BitMap;
 import ilog.concert.IloException;
 

@@ -1,6 +1,6 @@
-package subSetAnalysis.programFeature;
+package seedSelection.programFeature;
 
-import subSetAnalysis.SubSet;
+import seedSelection.SubSet;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,48 +1,38 @@
-import subSetAnalysis.coverage.ILPSet;
-import subSetAnalysis.coverage.MinSet;
-import subSetAnalysis.coverage.PeachSet;
-import subSetAnalysis.programFeature.FPSSet;
-import subSetAnalysis.uniqueBug.HotSet;
+import seedSelection.coverage.MinSet;
+import seedSelection.coverage.PeachSet;
+import seedSelection.programFeature.FPSSet;
+import seedSelection.uniqueBug.HotSet;
 import utils.BitMap;
 import utils.DTPlatform;
-import utils.DiffLogAnalyzer;
 import ilog.concert.IloException;
-import org.junit.Test;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 /**
  * 生成 SubSet 使用的类
  */
-public class Main {
+public class SeedSelection {
     public static String covRootPath;
     public static String bugRootPath;
     public static String featureRootPath;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, IloException {
+        String projectListArg = args[0];
+        String budgetListArg = args[1];
+        String methodListArg = args[2];
         String rootPath = System.getProperty("user.dir")+DTPlatform.FILE_SEPARATOR+".."+DTPlatform.FILE_SEPARATOR+"..";
 
-        List<String> projectList = new ArrayList<>();
-        projectList.add("HotspotTests-Java");
-        projectList.add("Openj9Test-Test");
-        projectList.add("CollectProject");
+        List<String> projectList = splitString(projectListArg);
+        List<String> budgetList = splitString(budgetListArg);
+        List<String> methodList = splitString(methodListArg);
         for (String project : projectList) {
-
             String outPath = rootPath+DTPlatform.FILE_SEPARATOR+"Results"+DTPlatform.FILE_SEPARATOR+"subset"+DTPlatform.FILE_SEPARATOR+project;
             new File(outPath).mkdirs();
             List<Integer> budgets = new ArrayList<>();
-
-            budgets.add(5);
-            budgets.add(20);
-            budgets.add(35);
-            budgets.add(50);
-            budgets.add(65);
-            budgets.add(80);
-            budgets.add(95);
-
+            for (String budget : budgetList) {
+                budgets.add(Integer.parseInt(budget));
+            }
             int originSize = 0;
             File inputFile = new File(rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"benchmarks"+DTPlatform.FILE_SEPARATOR+project+DTPlatform.FILE_SEPARATOR+"testcases.txt");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
@@ -62,71 +52,47 @@ public class Main {
             long endTime = 0;
 
             bugRootPath = rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"bugInfo"+DTPlatform.FILE_SEPARATOR+project;
-            startTime = System.currentTimeMillis();
-            writeFile(PISS(originSize,maxBudget),originSize,budgets,outPath,"HotSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("HotSet Time:"+(endTime-startTime)/1000);
-
             featureRootPath = rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"featureInfo"+DTPlatform.FILE_SEPARATOR+project;
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("TF_IDF", originSize,maxBudget),originSize,budgets,outPath,"TF_IDF_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("TF_IDF Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("3gramCFG", originSize,maxBudget),originSize,budgets,outPath,"3gramCFG_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("3gramCFG Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("3gramAST", originSize,maxBudget),originSize,budgets,outPath,"3gramAST_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("3gramAST Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("CodeBERT", originSize,maxBudget),originSize,budgets,outPath,"CodeBERT_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("CodeBERT Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("CodeT5", originSize,maxBudget),originSize,budgets,outPath,"CodeT5_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("CodeT5 Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("PLBART", originSize,maxBudget),originSize,budgets,outPath,"PLBART_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("PLBART Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(FISS("InferCode", originSize,maxBudget),originSize,budgets,outPath,"InferCode_ARTSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("InferCode Time:"+(endTime-startTime)/1000);
-
-            covRootPath = rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"covInfo"+DTPlatform.FILE_SEPARATOR+project+DTPlatform.FILE_SEPARATOR+"lineBitMap";
-            startTime = System.currentTimeMillis();
-            writeFile(CISS_m(originSize,maxBudget),originSize,budgets,outPath,"line_MinSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("line_MinSet Time:"+(endTime-startTime)/1000);
-
-            startTime = System.currentTimeMillis();
-            writeFile(CISS_p(originSize,maxBudget),originSize,budgets,outPath,"line_PeachSet");
-            endTime = System.currentTimeMillis();
-            System.out.println("line_PeachSet Time:"+(endTime-startTime)/1000);
-
-//            covRootPath = rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"covInfo"+DTPlatform.FILE_SEPARATOR+project+DTPlatform.FILE_SEPARATOR+"branchBitMap";
-//            startTime = System.currentTimeMillis();
-//            writeFile(CISS_m(originSize,maxBudget),originSize,budgets,outPath,"branch_MinSet");
-//            endTime = System.currentTimeMillis();
-//            System.out.println("branch_MinSet Time:"+(endTime-startTime)/1000);
-//
-//            startTime = System.currentTimeMillis();
-//            writeFile(CISS_p(originSize,maxBudget),originSize,budgets,outPath,"branch_PeachSet");
-//            endTime = System.currentTimeMillis();
-//            System.out.println("branch_PeachSet Time:"+(endTime-startTime)/1000);
-
-
+            covRootPath = rootPath+DTPlatform.FILE_SEPARATOR+"Data"+DTPlatform.FILE_SEPARATOR+"covInfo"+DTPlatform.FILE_SEPARATOR+project+DTPlatform.FILE_SEPARATOR+"branchBitMap";
+            for (String method : methodList) {
+                startTime = System.currentTimeMillis();
+                if (method.equals("PISS")) {
+                    writeFile(PISS(originSize,maxBudget),originSize,budgets,outPath,"HotSet");
+                } else if (method.equals("FISSTFIDF")) {
+                    writeFile(FISS("TF_IDF", originSize,maxBudget),originSize,budgets,outPath,"FISSTFIDF");
+                } else if (method.equals("FISSCFG")) {
+                    writeFile(FISS("3gramCFG", originSize,maxBudget),originSize,budgets,outPath,"FISSCFG");
+                } else if (method.equals("FISSAST")) {
+                    writeFile(FISS("3gramAST", originSize,maxBudget),originSize,budgets,outPath,"FISSAST");
+                } else if (method.equals("FISSCodeBERT")) {
+                    writeFile(FISS("CodeBERT", originSize,maxBudget),originSize,budgets,outPath,"FISSCodeBERT");
+                } else if (method.equals("FISSCodeT5")) {
+                    writeFile(FISS("CodeT5", originSize,maxBudget),originSize,budgets,outPath,"FISSCodeT5");
+                } else if (method.equals("FISSPLBART")) {
+                    writeFile(FISS("PLBART", originSize,maxBudget),originSize,budgets,outPath,"FISSPLBART");
+                } else if (method.equals("FISSInferCode")) {
+                    writeFile(FISS("InferCode", originSize,maxBudget),originSize,budgets,outPath,"FISSInferCode");
+                } else if (method.equals("CISSM")) {
+                    writeFile(CISS_m(originSize,maxBudget),originSize,budgets,outPath,"CISSM");
+                } else if (method.equals("CISSP")) {
+                    writeFile(CISS_p(originSize,maxBudget),originSize,budgets,outPath,"CISSP");
+                }
+                endTime = System.currentTimeMillis();
+                System.out.println(method+" Time:"+(endTime-startTime)/1000);
+            }
         }
+    }
+
+    public static List<String> splitString(String input) {
+        List<String> result = new ArrayList<>();
+        if (input.startsWith("[") && input.endsWith("]")) {
+            String trimmedInput = input.substring(1, input.length() - 1);
+            String[] splitArray = trimmedInput.split(",");
+            for (String element : splitArray) {
+                result.add(element.trim());
+            }
+        }
+        return result;
     }
     public static List<String> PISS(double originSize, double maxBudget) throws IOException, ClassNotFoundException, IloException {
         BitMap allBitMap = null;
@@ -137,7 +103,10 @@ public class Main {
             if (skipClass(fileName)) {
                 continue;
             }
-            double exeTime = Long.parseLong(listFile.getName().split("@")[1].split("\\.")[0]);
+            double exeTime = 0;
+            if (listFile.getName().contains("@")){
+                exeTime = Long.parseLong(listFile.getName().split("@")[1].split("\\.")[0]);
+            }
             BitMap bitMap = new BitMap(listFile.getAbsolutePath(),fileName,exeTime);
             bitMapList.add(bitMap);
             if(allBitMap == null){
@@ -207,31 +176,6 @@ public class Main {
         System.out.println(subset.getAllBitMap().hitCount());
         System.out.println(subset.getSumTime());
 
-        return subset.getFileNameList();
-    }
-    public static List<String> genILPSet(double originSize, double maxBudget) throws IOException, ClassNotFoundException, IloException {
-        BitMap allBitMap = null;
-        List<BitMap> bitMapList = new ArrayList<>();
-        File file = new File(covRootPath);
-        for (File listFile : Objects.requireNonNull(file.listFiles())) {
-            String fileName = listFile.getName().split("@")[0];
-            if (skipClass(fileName)) {
-                continue;
-            }
-            double exeTime = Long.parseLong(listFile.getName().split("@")[1].split("\\.")[0]);
-            BitMap bitMap = new BitMap(listFile.getAbsolutePath(),fileName,exeTime);
-            bitMapList.add(bitMap);
-            if(allBitMap == null){
-                allBitMap = new BitMap(bitMap.getBits().size(),"allBitMap",0);
-            }
-            allBitMap = BitMap.add(allBitMap,bitMap,"allBitMap",0);
-        }
-        ILPSet subset = new ILPSet(bitMapList, maxBudget, originSize);
-        subset.reduce();
-        assert allBitMap != null;
-        System.out.println(allBitMap.hitCount());
-        System.out.println(subset.getAllBitMap().hitCount());
-        System.out.println(subset.getSumTime());
         return subset.getFileNameList();
     }
     public static List<String> FISS(String modelName, double originSize, double maxBudget) throws IOException, ClassNotFoundException, IloException {

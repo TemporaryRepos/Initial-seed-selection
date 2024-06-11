@@ -1,4 +1,4 @@
-package subSetAnalysis.programFeature;
+package seedSelection.programFeature;
 
 import java.util.Arrays;
 

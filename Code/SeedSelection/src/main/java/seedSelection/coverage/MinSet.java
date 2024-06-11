@@ -1,4 +1,4 @@
-package subSetAnalysis.coverage;
+package seedSelection.coverage;
 
 import utils.BitMap;
 

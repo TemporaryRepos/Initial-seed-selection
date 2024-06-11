@@ -14,19 +14,84 @@ Table 1 shows the comparison results of each method in terms of unique inconsist
 
 ![image-20240323154303781](https://ningmo.oss-cn-beijing.aliyuncs.com/img/image-20240323154303781.png)
 
-### II. Preparation Work
+### II. Project Structure
+
+```
+├── Code
+│   ├── dataProcessing  
+│   ├── seedSelection 
+│   ├── utils
+│   ├── pythonCode               // Preprocessing implemented in python
+│   ├── DataProcessing.java      // Preprocessing for three types of methods
+│   └── SeedSelection.java       // Entry for initial seed selection
+├── Data
+│   ├── benchmarks
+│   ├── covInfo
+│   |   └── ProjeactName
+│   │       └── info             // Coverage files folder, seed.info
+│   ├── bugInfo
+│   |   └── ProjeactName
+│   │       ├── testcases.txt    // All initial seeds
+│   │       └── difference.log   // Prefuzzing result
+│   └── featureInfo
+└── Result
+```
+
+
+
+### III. Getting Started
 
 ##### 1: Import as an maven project
 
 This is developed as an maven project, so you can directly load the project using IntelliJ IDEA workspace to build the environment.
 
-##### 2: Download Data
+##### 2: Data Collection
 
-Because the size of the data is large, we do not provide test subjects in this repo, so you need to download data from google drive.
+* **Collecting coverage for CISS**
 
-[data](https://drive.google.com/file/d/1umc60PjlMahpbImlMsVq3Sme463bUmUi/view?usp=sharing)
+You need to compile a JVM that can collect coverage (set compilation option --enable-native-coverage)
 
-### III. Getting Started
+Use this JVM to execute each seed program and collect coverage. We propose to use GCOV+LCOV to obtain coverage information.
 
-We provide the source files and jar packages for the project. You can make changes in the source code, or just use the jar to execute the project directly. 
+​	`lcov -b ./ -d ./ --rc lcov_branch_coverage=1 --gcov-tool /usr/bin/gcov -c -o seed.info`
 
+You can download the coverage information we collected directly.
+
+* **Prefuzz result for PISS**
+
+  Perform a 5-minute test on each seed program using VECT. The goal is to get the fuzzing result file `difference.log`.
+
+  You can download the fuzzing result we collected directly.
+
+##### 3. Data Processing
+
+Our data processing is implemented in two languages and can be used according to actual needs.
+
+The following four methods are implemented using Java code:
+
+* $CISS$
+* $PISS$
+* $FISS_{AST}$
+* $FISS_{CFG}$
+
+You can do data processing by calling the `Java DataProcessing projectname method`, where method can select `CISS`, `PISS`, `FISSAST`, and `FISSCFG`.
+
+The rest of the methods are implemented using python:
+
+* $FISS_{TF\_IDF}$
+* $FISS_{CodeBERT}$
+* $FISS_{CodeT5}$
+* $FISS_{InferCode}$
+* $FISS_{PLBART}$
+
+You can do data processing by calling the `python CodeBERTVector.py projectname`.
+
+##### 4. Seed Selection
+
+Similarly, you can make an initial seed selection using SeedSelection, which you can do by calling the following command:
+
+​	`java SeedSelection [projectList] [budgetList] [methodList]`
+
+For example:
+
+​	`java SeedSelection [HotspotTests-Java,Openj9Test-Test] [20,35,50] [CISSM,CISSP]`
