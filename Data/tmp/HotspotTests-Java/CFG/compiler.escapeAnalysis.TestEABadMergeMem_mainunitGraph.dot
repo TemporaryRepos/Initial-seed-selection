@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "r8 := @parameter0: java.lang.String[]"
+    "i3 = 0"
+    "goto [?= (branch)]"
+    "$r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"
+    "specialinvoke $r0.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()"
+    "r1 = $r0"
+    "$r2 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"
+    "specialinvoke $r2.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()"
+    "r3 = $r2"
+    "$i0 = i3 % 2"
+    "if $i0 != 0 goto $z0 = 0"
+    "$z0 = 1"
+    "goto [?= $i1 = i3 % 3]"
+    "$z0 = 0"
+    "$i1 = i3 % 3"
+    "if $i1 != 0 goto $z1 = 0"
+    "$z1 = 1"
+    "goto [?= i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)]"
+    "$z1 = 0"
+    "i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)"
+    "if i2 == 87 goto i3 = i3 + 1"
+    "$r4 = new java.lang.RuntimeException"
+    "$r5 = new java.lang.StringBuilder"
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result \")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"
+    "throw $r4"
+    "i3 = i3 + 1"
+    "if i3 < 20000 goto $r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"
+    "return"
+    "r8 := @parameter0: java.lang.String[]"->"i3 = 0";
+    "i3 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < 20000 goto $r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box";
+    "$r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"->"specialinvoke $r0.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()";
+    "specialinvoke $r0.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"$r2 = new compiler.escapeAnalysis.TestEABadMergeMem$Box";
+    "$r2 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"->"specialinvoke $r2.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()";
+    "specialinvoke $r2.<compiler.escapeAnalysis.TestEABadMergeMem$Box: void <init>()>()"->"r3 = $r2";
+    "r3 = $r2"->"$i0 = i3 % 2";
+    "$i0 = i3 % 2"->"if $i0 != 0 goto $z0 = 0";
+    "if $i0 != 0 goto $z0 = 0"->"$z0 = 1";
+    "if $i0 != 0 goto $z0 = 0"->"$z0 = 0";
+    "$z0 = 1"->"goto [?= $i1 = i3 % 3]";
+    "goto [?= $i1 = i3 % 3]"->"$i1 = i3 % 3";
+    "$z0 = 0"->"$i1 = i3 % 3";
+    "$i1 = i3 % 3"->"if $i1 != 0 goto $z1 = 0";
+    "if $i1 != 0 goto $z1 = 0"->"$z1 = 1";
+    "if $i1 != 0 goto $z1 = 0"->"$z1 = 0";
+    "$z1 = 1"->"goto [?= i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)]";
+    "goto [?= i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)]"->"i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)";
+    "$z1 = 0"->"i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)";
+    "i2 = staticinvoke <compiler.escapeAnalysis.TestEABadMergeMem: int test(compiler.escapeAnalysis.TestEABadMergeMem$Box,compiler.escapeAnalysis.TestEABadMergeMem$Box,int,int,int,boolean,boolean)>(r1, r3, 42, 43, 44, $z0, $z1)"->"if i2 == 87 goto i3 = i3 + 1";
+    "if i2 == 87 goto i3 = i3 + 1"->"$r4 = new java.lang.RuntimeException";
+    "if i2 == 87 goto i3 = i3 + 1"->"i3 = i3 + 1";
+    "$r4 = new java.lang.RuntimeException"->"$r5 = new java.lang.StringBuilder";
+    "$r5 = new java.lang.StringBuilder"->"specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result \")";
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result \")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)";
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"->"throw $r4";
+    "i3 = i3 + 1"->"if i3 < 20000 goto $r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box";
+    "if i3 < 20000 goto $r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"->"return";
+    "if i3 < 20000 goto $r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box"->"$r0 = new compiler.escapeAnalysis.TestEABadMergeMem$Box";
+}

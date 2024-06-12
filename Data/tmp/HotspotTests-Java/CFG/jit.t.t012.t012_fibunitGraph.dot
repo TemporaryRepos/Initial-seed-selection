@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "if i0 > 0 goto (branch)"
+    "i5 = 0"
+    "goto [?= return i5]"
+    "if i0 != 1 goto $i1 = i0 - 2"
+    "i5 = 1"
+    "$i1 = i0 - 2"
+    "$i2 = staticinvoke <jit.t.t012.t012: int fib(int)>($i1)"
+    "$i3 = i0 - 1"
+    "$i4 = staticinvoke <jit.t.t012.t012: int fib(int)>($i3)"
+    "i5 = $i2 + $i4"
+    "return i5"
+    "i0 := @parameter0: int"->"if i0 > 0 goto (branch)";
+    "if i0 > 0 goto (branch)"->"i5 = 0";
+    "if i0 > 0 goto (branch)"->"if i0 != 1 goto $i1 = i0 - 2";
+    "i5 = 0"->"goto [?= return i5]";
+    "goto [?= return i5]"->"return i5";
+    "if i0 != 1 goto $i1 = i0 - 2"->"i5 = 1";
+    "if i0 != 1 goto $i1 = i0 - 2"->"$i1 = i0 - 2";
+    "i5 = 1"->"goto [?= return i5]";
+    "goto [?= return i5]"->"return i5";
+    "$i1 = i0 - 2"->"$i2 = staticinvoke <jit.t.t012.t012: int fib(int)>($i1)";
+    "$i2 = staticinvoke <jit.t.t012.t012: int fib(int)>($i1)"->"$i3 = i0 - 1";
+    "$i3 = i0 - 1"->"$i4 = staticinvoke <jit.t.t012.t012: int fib(int)>($i3)";
+    "$i4 = staticinvoke <jit.t.t012.t012: int fib(int)>($i3)"->"i5 = $i2 + $i4";
+    "i5 = $i2 + $i4"->"return i5";
+}

@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.text.BreakIterator: java.text.BreakIterator getWordInstance()>()"
+    "virtualinvoke r0.<java.text.BreakIterator: void setText(java.lang.String)>(\"abc\")"
+    "$z0 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>(null)"
+    "if $z0 == 0 goto return"
+    "$r1 = new java.lang.RuntimeException"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"BreakIterator.equals(null) should return false.\")"
+    "throw $r1"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.text.BreakIterator: java.text.BreakIterator getWordInstance()>()";
+    "r0 = staticinvoke <java.text.BreakIterator: java.text.BreakIterator getWordInstance()>()"->"virtualinvoke r0.<java.text.BreakIterator: void setText(java.lang.String)>(\"abc\")";
+    "virtualinvoke r0.<java.text.BreakIterator: void setText(java.lang.String)>(\"abc\")"->"$z0 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>(null)";
+    "$z0 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>(null)"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r1 = new java.lang.RuntimeException";
+    "if $z0 == 0 goto return"->"return";
+    "$r1 = new java.lang.RuntimeException"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"BreakIterator.equals(null) should return false.\")";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"BreakIterator.equals(null) should return false.\")"->"throw $r1";
+}

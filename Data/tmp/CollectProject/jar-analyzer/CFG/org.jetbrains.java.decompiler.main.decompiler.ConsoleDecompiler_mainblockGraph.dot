@@ -1,0 +1,600 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 2 goto $r1 = new java.util.HashMap;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r25 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: java -jar fernflower.jar [-<option>=<value>]* [<source>]+ <destination>\nExample: java -jar fernflower.jar -dgs=true c:\\my\\source\\ c:\\my.jar d:\\decompiled\\\\");
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+specialinvoke $r1.<java.util.HashMap: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+z6 = 1;
+i8 = 0;
+"
+    "Block 3:
+[preds: 2 16 ] [succs: 4 17 ]
+$i1 = lengthof r0;
+$i2 = $i1 - 1;
+if i8 >= $i2 goto $z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 13 ]
+r26 = r0[i8];
+if z6 == 0 goto z6 = 0;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 13 ]
+$i5 = virtualinvoke r26.<java.lang.String: int length()>();
+if $i5 <= 5 goto z6 = 0;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 13 ]
+$c6 = virtualinvoke r26.<java.lang.String: char charAt(int)>(0);
+if $c6 != 45 goto z6 = 0;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 13 ]
+$c7 = virtualinvoke r26.<java.lang.String: char charAt(int)>(4);
+if $c7 != 61 goto z6 = 0;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r27 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(5);
+$r22 = \"true\";
+$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z4 == 0 goto $r23 = \"false\";
+"
+    "Block 9:
+[preds: 8 ] [succs: 12 ]
+r27 = \"1\";
+goto [?= $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4)];
+"
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$r23 = \"false\";
+$z5 = virtualinvoke $r23.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z5 == 0 goto $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+r27 = \"0\";
+"
+    "Block 12:
+[preds: 9 10 11 ] [succs: 16 ]
+$r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r28, r27);
+goto [?= i8 = i8 + 1];
+"
+    "Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+"
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+$r21 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(3);
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r6, $r21);
+goto [?= i8 = i8 + 1];
+"
+    "Block 15:
+[preds: 13 ] [succs: 16 ]
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+"
+    "Block 16:
+[preds: 12 14 15 ] [succs: 3 ]
+i8 = i8 + 1;
+goto [?= $i1 = lengthof r0];
+"
+    "Block 17:
+[preds: 3 ] [succs: 18 19 ]
+$z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+if $z0 == 0 goto $r7 = new java.io.File;
+"
+    "Block 18:
+[preds: 17 ] [succs: ]
+$r20 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(\"error: no sources given\");
+return;
+"
+    "Block 19:
+[preds: 17 ] [succs: 20 21 ]
+$r7 = new java.io.File;
+$i3 = lengthof r0;
+$i4 = $i3 - 1;
+$r8 = r0[$i4];
+specialinvoke $r7.<java.io.File: void <init>(java.lang.String)>($r8);
+r29 = $r7;
+$z1 = virtualinvoke r29.<java.io.File: boolean isDirectory()>();
+if $z1 != 0 goto $r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+"
+    "Block 20:
+[preds: 19 ] [succs: ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"error: destination \'\");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r29);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a directory\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19);
+return;
+"
+    "Block 21:
+[preds: 19 ] [succs: 22 ]
+$r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r9.<org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger: void <init>(java.io.PrintStream)>($r10);
+r30 = $r9;
+$r11 = new org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler;
+specialinvoke $r11.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void <init>(java.io.File,java.util.Map,org.jetbrains.java.decompiler.main.extern.IFernflowerLogger)>(r29, r2, r30);
+r31 = $r11;
+r32 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 22:
+[preds: 21 23 ] [succs: 23 24 ]
+$z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 23:
+[preds: 22 ] [succs: 22 ]
+$r13 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>();
+r33 = (java.io.File) $r13;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addLibrary(java.io.File)>(r33);
+goto [?= $z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 24:
+[preds: 22 ] [succs: 25 ]
+r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 25:
+[preds: 24 26 ] [succs: 26 27 ]
+$z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+"
+    "Block 26:
+[preds: 25 ] [succs: 25 ]
+$r12 = interfaceinvoke r34.<java.util.Iterator: java.lang.Object next()>();
+r35 = (java.io.File) $r12;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addSource(java.io.File)>(r35);
+goto [?= $z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 27:
+[preds: 25 ] [succs: ]
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 2 goto $r1 = new java.util.HashMap;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r25 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: java -jar fernflower.jar [-<option>=<value>]* [<source>]+ <destination>\nExample: java -jar fernflower.jar -dgs=true c:\\my\\source\\ c:\\my.jar d:\\decompiled\\\\");
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 2 goto $r1 = new java.util.HashMap;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+specialinvoke $r1.<java.util.HashMap: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+z6 = 1;
+i8 = 0;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+specialinvoke $r1.<java.util.HashMap: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+z6 = 1;
+i8 = 0;
+"->"Block 3:
+[preds: 2 16 ] [succs: 4 17 ]
+$i1 = lengthof r0;
+$i2 = $i1 - 1;
+if i8 >= $i2 goto $z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+";
+    "Block 3:
+[preds: 2 16 ] [succs: 4 17 ]
+$i1 = lengthof r0;
+$i2 = $i1 - 1;
+if i8 >= $i2 goto $z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 13 ]
+r26 = r0[i8];
+if z6 == 0 goto z6 = 0;
+";
+    "Block 3:
+[preds: 2 16 ] [succs: 4 17 ]
+$i1 = lengthof r0;
+$i2 = $i1 - 1;
+if i8 >= $i2 goto $z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+"->"Block 17:
+[preds: 3 ] [succs: 18 19 ]
+$z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+if $z0 == 0 goto $r7 = new java.io.File;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 13 ]
+r26 = r0[i8];
+if z6 == 0 goto z6 = 0;
+"->"Block 5:
+[preds: 4 ] [succs: 6 13 ]
+$i5 = virtualinvoke r26.<java.lang.String: int length()>();
+if $i5 <= 5 goto z6 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 13 ]
+r26 = r0[i8];
+if z6 == 0 goto z6 = 0;
+"->"Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 13 ]
+$i5 = virtualinvoke r26.<java.lang.String: int length()>();
+if $i5 <= 5 goto z6 = 0;
+"->"Block 6:
+[preds: 5 ] [succs: 7 13 ]
+$c6 = virtualinvoke r26.<java.lang.String: char charAt(int)>(0);
+if $c6 != 45 goto z6 = 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 13 ]
+$i5 = virtualinvoke r26.<java.lang.String: int length()>();
+if $i5 <= 5 goto z6 = 0;
+"->"Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 13 ]
+$c6 = virtualinvoke r26.<java.lang.String: char charAt(int)>(0);
+if $c6 != 45 goto z6 = 0;
+"->"Block 7:
+[preds: 6 ] [succs: 8 13 ]
+$c7 = virtualinvoke r26.<java.lang.String: char charAt(int)>(4);
+if $c7 != 61 goto z6 = 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 13 ]
+$c6 = virtualinvoke r26.<java.lang.String: char charAt(int)>(0);
+if $c6 != 45 goto z6 = 0;
+"->"Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 13 ]
+$c7 = virtualinvoke r26.<java.lang.String: char charAt(int)>(4);
+if $c7 != 61 goto z6 = 0;
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r27 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(5);
+$r22 = \"true\";
+$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z4 == 0 goto $r23 = \"false\";
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 13 ]
+$c7 = virtualinvoke r26.<java.lang.String: char charAt(int)>(4);
+if $c7 != 61 goto z6 = 0;
+"->"Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r27 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(5);
+$r22 = \"true\";
+$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z4 == 0 goto $r23 = \"false\";
+"->"Block 9:
+[preds: 8 ] [succs: 12 ]
+r27 = \"1\";
+goto [?= $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4)];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r27 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(5);
+$r22 = \"true\";
+$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z4 == 0 goto $r23 = \"false\";
+"->"Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$r23 = \"false\";
+$z5 = virtualinvoke $r23.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z5 == 0 goto $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+";
+    "Block 9:
+[preds: 8 ] [succs: 12 ]
+r27 = \"1\";
+goto [?= $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4)];
+"->"Block 12:
+[preds: 9 10 11 ] [succs: 16 ]
+$r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r28, r27);
+goto [?= i8 = i8 + 1];
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$r23 = \"false\";
+$z5 = virtualinvoke $r23.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z5 == 0 goto $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+"->"Block 11:
+[preds: 10 ] [succs: 12 ]
+r27 = \"0\";
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$r23 = \"false\";
+$z5 = virtualinvoke $r23.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r27);
+if $z5 == 0 goto $r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+"->"Block 12:
+[preds: 9 10 11 ] [succs: 16 ]
+$r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r28, r27);
+goto [?= i8 = i8 + 1];
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+r27 = \"0\";
+"->"Block 12:
+[preds: 9 10 11 ] [succs: 16 ]
+$r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r28, r27);
+goto [?= i8 = i8 + 1];
+";
+    "Block 12:
+[preds: 9 10 11 ] [succs: 16 ]
+$r28 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int,int)>(1, 4);
+interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r28, r27);
+goto [?= i8 = i8 + 1];
+"->"Block 16:
+[preds: 12 14 15 ] [succs: 3 ]
+i8 = i8 + 1;
+goto [?= $i1 = lengthof r0];
+";
+    "Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+"->"Block 14:
+[preds: 13 ] [succs: 16 ]
+$r21 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(3);
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r6, $r21);
+goto [?= i8 = i8 + 1];
+";
+    "Block 13:
+[preds: 4 5 6 7 ] [succs: 14 15 ]
+z6 = 0;
+$z7 = virtualinvoke r26.<java.lang.String: boolean startsWith(java.lang.String)>(\"-e=\");
+if $z7 == 0 goto staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+"->"Block 15:
+[preds: 13 ] [succs: 16 ]
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+";
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+$r21 = virtualinvoke r26.<java.lang.String: java.lang.String substring(int)>(3);
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r6, $r21);
+goto [?= i8 = i8 + 1];
+"->"Block 16:
+[preds: 12 14 15 ] [succs: 3 ]
+i8 = i8 + 1;
+goto [?= $i1 = lengthof r0];
+";
+    "Block 15:
+[preds: 13 ] [succs: 16 ]
+staticinvoke <org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addPath(java.util.List,java.lang.String)>(r4, r26);
+"->"Block 16:
+[preds: 12 14 15 ] [succs: 3 ]
+i8 = i8 + 1;
+goto [?= $i1 = lengthof r0];
+";
+    "Block 16:
+[preds: 12 14 15 ] [succs: 3 ]
+i8 = i8 + 1;
+goto [?= $i1 = lengthof r0];
+"->"Block 3:
+[preds: 2 16 ] [succs: 4 17 ]
+$i1 = lengthof r0;
+$i2 = $i1 - 1;
+if i8 >= $i2 goto $z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+";
+    "Block 17:
+[preds: 3 ] [succs: 18 19 ]
+$z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+if $z0 == 0 goto $r7 = new java.io.File;
+"->"Block 18:
+[preds: 17 ] [succs: ]
+$r20 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(\"error: no sources given\");
+return;
+";
+    "Block 17:
+[preds: 3 ] [succs: 18 19 ]
+$z0 = interfaceinvoke r4.<java.util.List: boolean isEmpty()>();
+if $z0 == 0 goto $r7 = new java.io.File;
+"->"Block 19:
+[preds: 17 ] [succs: 20 21 ]
+$r7 = new java.io.File;
+$i3 = lengthof r0;
+$i4 = $i3 - 1;
+$r8 = r0[$i4];
+specialinvoke $r7.<java.io.File: void <init>(java.lang.String)>($r8);
+r29 = $r7;
+$z1 = virtualinvoke r29.<java.io.File: boolean isDirectory()>();
+if $z1 != 0 goto $r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+";
+    "Block 19:
+[preds: 17 ] [succs: 20 21 ]
+$r7 = new java.io.File;
+$i3 = lengthof r0;
+$i4 = $i3 - 1;
+$r8 = r0[$i4];
+specialinvoke $r7.<java.io.File: void <init>(java.lang.String)>($r8);
+r29 = $r7;
+$z1 = virtualinvoke r29.<java.io.File: boolean isDirectory()>();
+if $z1 != 0 goto $r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+"->"Block 20:
+[preds: 19 ] [succs: ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"error: destination \'\");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r29);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a directory\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19);
+return;
+";
+    "Block 19:
+[preds: 17 ] [succs: 20 21 ]
+$r7 = new java.io.File;
+$i3 = lengthof r0;
+$i4 = $i3 - 1;
+$r8 = r0[$i4];
+specialinvoke $r7.<java.io.File: void <init>(java.lang.String)>($r8);
+r29 = $r7;
+$z1 = virtualinvoke r29.<java.io.File: boolean isDirectory()>();
+if $z1 != 0 goto $r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+"->"Block 21:
+[preds: 19 ] [succs: 22 ]
+$r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r9.<org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger: void <init>(java.io.PrintStream)>($r10);
+r30 = $r9;
+$r11 = new org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler;
+specialinvoke $r11.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void <init>(java.io.File,java.util.Map,org.jetbrains.java.decompiler.main.extern.IFernflowerLogger)>(r29, r2, r30);
+r31 = $r11;
+r32 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 21:
+[preds: 19 ] [succs: 22 ]
+$r9 = new org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r9.<org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger: void <init>(java.io.PrintStream)>($r10);
+r30 = $r9;
+$r11 = new org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler;
+specialinvoke $r11.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void <init>(java.io.File,java.util.Map,org.jetbrains.java.decompiler.main.extern.IFernflowerLogger)>(r29, r2, r30);
+r31 = $r11;
+r32 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 22:
+[preds: 21 23 ] [succs: 23 24 ]
+$z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 22:
+[preds: 21 23 ] [succs: 23 24 ]
+$z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 23:
+[preds: 22 ] [succs: 22 ]
+$r13 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>();
+r33 = (java.io.File) $r13;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addLibrary(java.io.File)>(r33);
+goto [?= $z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 22:
+[preds: 21 23 ] [succs: 23 24 ]
+$z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 24:
+[preds: 22 ] [succs: 25 ]
+r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 22 ]
+$r13 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>();
+r33 = (java.io.File) $r13;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addLibrary(java.io.File)>(r33);
+goto [?= $z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 22:
+[preds: 21 23 ] [succs: 23 24 ]
+$z2 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 24:
+[preds: 22 ] [succs: 25 ]
+r34 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 25:
+[preds: 24 26 ] [succs: 26 27 ]
+$z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+";
+    "Block 25:
+[preds: 24 26 ] [succs: 26 27 ]
+$z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+"->"Block 26:
+[preds: 25 ] [succs: 25 ]
+$r12 = interfaceinvoke r34.<java.util.Iterator: java.lang.Object next()>();
+r35 = (java.io.File) $r12;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addSource(java.io.File)>(r35);
+goto [?= $z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 25:
+[preds: 24 26 ] [succs: 26 27 ]
+$z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+"->"Block 27:
+[preds: 25 ] [succs: ]
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+return;
+";
+    "Block 26:
+[preds: 25 ] [succs: 25 ]
+$r12 = interfaceinvoke r34.<java.util.Iterator: java.lang.Object next()>();
+r35 = (java.io.File) $r12;
+virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void addSource(java.io.File)>(r35);
+goto [?= $z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 25:
+[preds: 24 26 ] [succs: 26 27 ]
+$z3 = interfaceinvoke r34.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto virtualinvoke r31.<org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler: void decompileContext()>();
+";
+}

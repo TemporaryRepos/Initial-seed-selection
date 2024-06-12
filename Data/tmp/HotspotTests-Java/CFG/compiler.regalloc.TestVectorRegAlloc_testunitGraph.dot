@@ -1,0 +1,63 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: double[]"
+    "r1 := @parameter1: double[]"
+    "z1 := @parameter2: boolean"
+    "d4 = 0.0"
+    "goto [?= $z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()]"
+    "i1 = 0"
+    "goto [?= $i0 = lengthof r0]"
+    "$d0 = r0[i1]"
+    "$d1 = $d0 + d4"
+    "r1[i1] = $d1"
+    "i1 = i1 + 1"
+    "$i0 = lengthof r0"
+    "if i1 < $i0 goto $d0 = r0[i1]"
+    "i2 = 0"
+    "goto [?= $i3 = lengthof r0]"
+    "if z1 == 0 goto d5 = 0.0"
+    "d5 = d4"
+    "goto [?= $d2 = r0[i2]]"
+    "d5 = 0.0"
+    "$d2 = r0[i2]"
+    "$d3 = $d2 + d5"
+    "r1[i2] = $d3"
+    "i2 = i2 + 1"
+    "$i3 = lengthof r0"
+    "if i2 < $i3 goto (branch)"
+    "d4 = d4 + 1.0"
+    "$z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()"
+    "if $z0 != 0 goto i1 = 0"
+    "return"
+    "r0 := @parameter0: double[]"->"r1 := @parameter1: double[]";
+    "r1 := @parameter1: double[]"->"z1 := @parameter2: boolean";
+    "z1 := @parameter2: boolean"->"d4 = 0.0";
+    "d4 = 0.0"->"goto [?= $z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()]";
+    "goto [?= $z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()]"->"$z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()";
+    "i1 = 0"->"goto [?= $i0 = lengthof r0]";
+    "goto [?= $i0 = lengthof r0]"->"$i0 = lengthof r0";
+    "$d0 = r0[i1]"->"$d1 = $d0 + d4";
+    "$d1 = $d0 + d4"->"r1[i1] = $d1";
+    "r1[i1] = $d1"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if i1 < $i0 goto $d0 = r0[i1]";
+    "if i1 < $i0 goto $d0 = r0[i1]"->"i2 = 0";
+    "if i1 < $i0 goto $d0 = r0[i1]"->"$d0 = r0[i1]";
+    "i2 = 0"->"goto [?= $i3 = lengthof r0]";
+    "goto [?= $i3 = lengthof r0]"->"$i3 = lengthof r0";
+    "if z1 == 0 goto d5 = 0.0"->"d5 = d4";
+    "if z1 == 0 goto d5 = 0.0"->"d5 = 0.0";
+    "d5 = d4"->"goto [?= $d2 = r0[i2]]";
+    "goto [?= $d2 = r0[i2]]"->"$d2 = r0[i2]";
+    "d5 = 0.0"->"$d2 = r0[i2]";
+    "$d2 = r0[i2]"->"$d3 = $d2 + d5";
+    "$d3 = $d2 + d5"->"r1[i2] = $d3";
+    "r1[i2] = $d3"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"$i3 = lengthof r0";
+    "$i3 = lengthof r0"->"if i2 < $i3 goto (branch)";
+    "if i2 < $i3 goto (branch)"->"d4 = d4 + 1.0";
+    "if i2 < $i3 goto (branch)"->"if z1 == 0 goto d5 = 0.0";
+    "d4 = d4 + 1.0"->"$z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()";
+    "$z0 = staticinvoke <compiler.regalloc.TestVectorRegAlloc: boolean test_helper()>()"->"if $z0 != 0 goto i1 = 0";
+    "if $z0 != 0 goto i1 = 0"->"return";
+    "if $z0 != 0 goto i1 = 0"->"i1 = 0";
+}

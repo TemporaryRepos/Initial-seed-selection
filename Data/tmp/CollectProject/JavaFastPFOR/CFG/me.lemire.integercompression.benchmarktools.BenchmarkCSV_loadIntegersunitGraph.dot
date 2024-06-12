@@ -1,0 +1,335 @@
+digraph "unitGraph" {
+    "r6 := @parameter0: java.lang.String"
+    "r0 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format"
+    "i12 = 0"
+    "$r1 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>"
+    "if r0 != $r1 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>"
+    "$r34 = new java.util.ArrayList"
+    "specialinvoke $r34.<java.util.ArrayList: void <init>()>()"
+    "r53 = $r34"
+    "$r35 = new java.io.BufferedReader"
+    "$r36 = new java.io.FileReader"
+    "specialinvoke $r36.<java.io.FileReader: void <init>(java.lang.String)>(r6)"
+    "specialinvoke $r35.<java.io.BufferedReader: void <init>(java.io.Reader)>($r36)"
+    "r54 = $r35"
+    "$r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r55 = $r37"
+    "if $r37 == null goto (branch)"
+    "r56 = virtualinvoke r55.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")"
+    "$i9 = lengthof r56"
+    "r57 = newarray (int)[$i9]"
+    "i13 = 0"
+    "$i10 = lengthof r56"
+    "if i13 >= $i10 goto virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"
+    "$r44 = r56[i13]"
+    "$r45 = virtualinvoke $r44.<java.lang.String: java.lang.String trim()>()"
+    "$i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"
+    "r57[i13] = $i11"
+    "goto [?= i13 = i13 + 1]"
+    "$r50 := @caughtexception"
+    "r51 = $r50"
+    "if i12 != 0 goto i12 = i12 + 1"
+    "$r52 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.Object)>(r51)"
+    "i12 = i12 + 1"
+    "i13 = i13 + 1"
+    "goto [?= $i10 = lengthof r56]"
+    "virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"
+    "goto [?= $r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "if i12 <= 0 goto virtualinvoke r54.<java.io.BufferedReader: void close()>()"
+    "$r39 = <java.lang.System: java.io.PrintStream out>"
+    "$r38 = new java.lang.StringBuilder"
+    "specialinvoke $r38.<java.lang.StringBuilder: void <init>()>()"
+    "$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r43)"
+    "virtualinvoke r54.<java.io.BufferedReader: void close()>()"
+    "return r53"
+    "$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>"
+    "if r0 != $r2 goto $r3 = new java.util.ArrayList"
+    "$r18 = new java.util.ArrayList"
+    "specialinvoke $r18.<java.util.ArrayList: void <init>()>()"
+    "r58 = $r18"
+    "$r19 = new java.io.BufferedReader"
+    "$r20 = new java.io.FileReader"
+    "specialinvoke $r20.<java.io.FileReader: void <init>(java.lang.String)>(r6)"
+    "specialinvoke $r19.<java.io.BufferedReader: void <init>(java.io.Reader)>($r20)"
+    "r59 = $r19"
+    "$r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r60 = $r21"
+    "if $r21 == null goto $i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()"
+    "r61 = virtualinvoke r60.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")"
+    "i14 = 0"
+    "$i7 = lengthof r61"
+    "if i14 >= $i7 goto (branch)"
+    "$r31 = r61[i14]"
+    "$r32 = virtualinvoke $r31.<java.lang.String: java.lang.String trim()>()"
+    "$i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r32)"
+    "$r33 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8)"
+    "virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>($r33)"
+    "goto [?= i14 = i14 + 1]"
+    "$r48 := @caughtexception"
+    "r62 = $r48"
+    "$r49 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.Object)>(r62)"
+    "i14 = i14 + 1"
+    "goto [?= $i7 = lengthof r61]"
+    "goto [?= $r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "$i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()"
+    "r63 = newarray (int)[$i4]"
+    "i15 = 0"
+    "$i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()"
+    "if i15 >= $i5 goto $r22 = new java.util.ArrayList"
+    "$r29 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(i15)"
+    "$r30 = (java.lang.Integer) $r29"
+    "$i6 = virtualinvoke $r30.<java.lang.Integer: int intValue()>()"
+    "r63[i15] = $i6"
+    "i15 = i15 + 1"
+    "goto [?= $i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()]"
+    "$r22 = new java.util.ArrayList"
+    "specialinvoke $r22.<java.util.ArrayList: void <init>()>()"
+    "r64 = $r22"
+    "virtualinvoke r64.<java.util.ArrayList: boolean add(java.lang.Object)>(r63)"
+    "if i12 <= 0 goto virtualinvoke r59.<java.io.BufferedReader: void close()>()"
+    "$r24 = <java.lang.System: java.io.PrintStream out>"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r28)"
+    "virtualinvoke r59.<java.io.BufferedReader: void close()>()"
+    "return r64"
+    "$r3 = new java.util.ArrayList"
+    "specialinvoke $r3.<java.util.ArrayList: void <init>()>()"
+    "r65 = $r3"
+    "$r4 = new java.io.BufferedReader"
+    "$r5 = new java.io.FileReader"
+    "specialinvoke $r5.<java.io.FileReader: void <init>(java.lang.String)>(r6)"
+    "specialinvoke $r4.<java.io.BufferedReader: void <init>(java.io.Reader)>($r5)"
+    "r66 = $r4"
+    "$r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r68 = $r67"
+    "if $r67 == null goto $i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"
+    "$r16 = virtualinvoke r68.<java.lang.String: java.lang.String trim()>()"
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16)"
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"
+    "virtualinvoke r65.<java.util.ArrayList: boolean add(java.lang.Object)>($r17)"
+    "goto [?= $r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "$r46 := @caughtexception"
+    "r69 = $r46"
+    "$r47 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r47.<java.io.PrintStream: void println(java.lang.Object)>(r69)"
+    "$i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"
+    "r70 = newarray (int)[$i0]"
+    "i16 = 0"
+    "$i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()"
+    "if i16 >= $i1 goto $r7 = new java.util.ArrayList"
+    "$r14 = virtualinvoke r65.<java.util.ArrayList: java.lang.Object get(int)>(i16)"
+    "$r15 = (java.lang.Integer) $r14"
+    "$i2 = virtualinvoke $r15.<java.lang.Integer: int intValue()>()"
+    "r70[i16] = $i2"
+    "i16 = i16 + 1"
+    "goto [?= $i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()]"
+    "$r7 = new java.util.ArrayList"
+    "specialinvoke $r7.<java.util.ArrayList: void <init>()>()"
+    "r71 = $r7"
+    "virtualinvoke r71.<java.util.ArrayList: boolean add(java.lang.Object)>(r70)"
+    "if i12 <= 0 goto virtualinvoke r66.<java.io.BufferedReader: void close()>()"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13)"
+    "virtualinvoke r66.<java.io.BufferedReader: void close()>()"
+    "return r71"
+    "r6 := @parameter0: java.lang.String"->"r0 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format";
+    "r0 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format"->"i12 = 0";
+    "i12 = 0"->"$r1 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>";
+    "$r1 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>"->"if r0 != $r1 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>";
+    "if r0 != $r1 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>"->"$r34 = new java.util.ArrayList";
+    "if r0 != $r1 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>"->"$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>";
+    "$r34 = new java.util.ArrayList"->"specialinvoke $r34.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r34.<java.util.ArrayList: void <init>()>()"->"r53 = $r34";
+    "r53 = $r34"->"$r35 = new java.io.BufferedReader";
+    "$r35 = new java.io.BufferedReader"->"$r36 = new java.io.FileReader";
+    "$r36 = new java.io.FileReader"->"specialinvoke $r36.<java.io.FileReader: void <init>(java.lang.String)>(r6)";
+    "specialinvoke $r36.<java.io.FileReader: void <init>(java.lang.String)>(r6)"->"specialinvoke $r35.<java.io.BufferedReader: void <init>(java.io.Reader)>($r36)";
+    "specialinvoke $r35.<java.io.BufferedReader: void <init>(java.io.Reader)>($r36)"->"r54 = $r35";
+    "r54 = $r35"->"$r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()"->"r55 = $r37";
+    "r55 = $r37"->"if $r37 == null goto (branch)";
+    "if $r37 == null goto (branch)"->"r56 = virtualinvoke r55.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")";
+    "if $r37 == null goto (branch)"->"if i12 <= 0 goto virtualinvoke r54.<java.io.BufferedReader: void close()>()";
+    "r56 = virtualinvoke r55.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")"->"$i9 = lengthof r56";
+    "$i9 = lengthof r56"->"r57 = newarray (int)[$i9]";
+    "r57 = newarray (int)[$i9]"->"i13 = 0";
+    "i13 = 0"->"$i10 = lengthof r56";
+    "$i10 = lengthof r56"->"if i13 >= $i10 goto virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)";
+    "if i13 >= $i10 goto virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"->"$r44 = r56[i13]";
+    "if i13 >= $i10 goto virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"->"virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)";
+    "if i13 >= $i10 goto virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"->"$r50 := @caughtexception";
+    "$r44 = r56[i13]"->"$r45 = virtualinvoke $r44.<java.lang.String: java.lang.String trim()>()";
+    "$r44 = r56[i13]"->"$r50 := @caughtexception";
+    "$r45 = virtualinvoke $r44.<java.lang.String: java.lang.String trim()>()"->"$i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)";
+    "$r45 = virtualinvoke $r44.<java.lang.String: java.lang.String trim()>()"->"$r50 := @caughtexception";
+    "$i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"->"r57[i13] = $i11";
+    "$i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"->"$r50 := @caughtexception";
+    "r57[i13] = $i11"->"goto [?= i13 = i13 + 1]";
+    "r57[i13] = $i11"->"$r50 := @caughtexception";
+    "goto [?= i13 = i13 + 1]"->"i13 = i13 + 1";
+    "$r50 := @caughtexception"->"r51 = $r50";
+    "r51 = $r50"->"if i12 != 0 goto i12 = i12 + 1";
+    "if i12 != 0 goto i12 = i12 + 1"->"$r52 = <java.lang.System: java.io.PrintStream err>";
+    "if i12 != 0 goto i12 = i12 + 1"->"i12 = i12 + 1";
+    "$r52 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.Object)>(r51)";
+    "virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.Object)>(r51)"->"i12 = i12 + 1";
+    "i12 = i12 + 1"->"i13 = i13 + 1";
+    "i13 = i13 + 1"->"goto [?= $i10 = lengthof r56]";
+    "goto [?= $i10 = lengthof r56]"->"$i10 = lengthof r56";
+    "virtualinvoke r53.<java.util.ArrayList: boolean add(java.lang.Object)>(r57)"->"goto [?= $r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "goto [?= $r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r37 = virtualinvoke r54.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "if i12 <= 0 goto virtualinvoke r54.<java.io.BufferedReader: void close()>()"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "if i12 <= 0 goto virtualinvoke r54.<java.io.BufferedReader: void close()>()"->"virtualinvoke r54.<java.io.BufferedReader: void close()>()";
+    "$r39 = <java.lang.System: java.io.PrintStream out>"->"$r38 = new java.lang.StringBuilder";
+    "$r38 = new java.lang.StringBuilder"->"specialinvoke $r38.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r38.<java.lang.StringBuilder: void <init>()>()"->"$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")";
+    "$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"->"$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"->"$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")";
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"->"$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r43)";
+    "virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r43)"->"virtualinvoke r54.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r54.<java.io.BufferedReader: void close()>()"->"return r53";
+    "$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>"->"if r0 != $r2 goto $r3 = new java.util.ArrayList";
+    "if r0 != $r2 goto $r3 = new java.util.ArrayList"->"$r18 = new java.util.ArrayList";
+    "if r0 != $r2 goto $r3 = new java.util.ArrayList"->"$r3 = new java.util.ArrayList";
+    "$r18 = new java.util.ArrayList"->"specialinvoke $r18.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r18.<java.util.ArrayList: void <init>()>()"->"r58 = $r18";
+    "r58 = $r18"->"$r19 = new java.io.BufferedReader";
+    "$r19 = new java.io.BufferedReader"->"$r20 = new java.io.FileReader";
+    "$r20 = new java.io.FileReader"->"specialinvoke $r20.<java.io.FileReader: void <init>(java.lang.String)>(r6)";
+    "specialinvoke $r20.<java.io.FileReader: void <init>(java.lang.String)>(r6)"->"specialinvoke $r19.<java.io.BufferedReader: void <init>(java.io.Reader)>($r20)";
+    "specialinvoke $r19.<java.io.BufferedReader: void <init>(java.io.Reader)>($r20)"->"r59 = $r19";
+    "r59 = $r19"->"$r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()"->"r60 = $r21";
+    "r60 = $r21"->"if $r21 == null goto $i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()";
+    "if $r21 == null goto $i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()"->"r61 = virtualinvoke r60.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")";
+    "if $r21 == null goto $i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()"->"$i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()";
+    "r61 = virtualinvoke r60.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"[,;;]\")"->"i14 = 0";
+    "i14 = 0"->"$i7 = lengthof r61";
+    "$i7 = lengthof r61"->"if i14 >= $i7 goto (branch)";
+    "if i14 >= $i7 goto (branch)"->"$r31 = r61[i14]";
+    "if i14 >= $i7 goto (branch)"->"goto [?= $r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "if i14 >= $i7 goto (branch)"->"$r48 := @caughtexception";
+    "$r31 = r61[i14]"->"$r32 = virtualinvoke $r31.<java.lang.String: java.lang.String trim()>()";
+    "$r31 = r61[i14]"->"$r48 := @caughtexception";
+    "$r32 = virtualinvoke $r31.<java.lang.String: java.lang.String trim()>()"->"$i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r32)";
+    "$r32 = virtualinvoke $r31.<java.lang.String: java.lang.String trim()>()"->"$r48 := @caughtexception";
+    "$i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r32)"->"$r33 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8)";
+    "$i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r32)"->"$r48 := @caughtexception";
+    "$r33 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8)"->"virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>($r33)";
+    "$r33 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8)"->"$r48 := @caughtexception";
+    "virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>($r33)"->"goto [?= i14 = i14 + 1]";
+    "virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>($r33)"->"$r48 := @caughtexception";
+    "goto [?= i14 = i14 + 1]"->"i14 = i14 + 1";
+    "$r48 := @caughtexception"->"r62 = $r48";
+    "r62 = $r48"->"if i12 != 0 goto i12 = i12 + 1";
+    "if i12 != 0 goto i12 = i12 + 1"->"$r49 = <java.lang.System: java.io.PrintStream err>";
+    "if i12 != 0 goto i12 = i12 + 1"->"i12 = i12 + 1";
+    "$r49 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.Object)>(r62)";
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.Object)>(r62)"->"i12 = i12 + 1";
+    "i12 = i12 + 1"->"i14 = i14 + 1";
+    "i14 = i14 + 1"->"goto [?= $i7 = lengthof r61]";
+    "goto [?= $i7 = lengthof r61]"->"$i7 = lengthof r61";
+    "goto [?= $r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r21 = virtualinvoke r59.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$i4 = virtualinvoke r58.<java.util.ArrayList: int size()>()"->"r63 = newarray (int)[$i4]";
+    "r63 = newarray (int)[$i4]"->"i15 = 0";
+    "i15 = 0"->"$i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()";
+    "$i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()"->"if i15 >= $i5 goto $r22 = new java.util.ArrayList";
+    "if i15 >= $i5 goto $r22 = new java.util.ArrayList"->"$r29 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(i15)";
+    "if i15 >= $i5 goto $r22 = new java.util.ArrayList"->"$r22 = new java.util.ArrayList";
+    "$r29 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(i15)"->"$r30 = (java.lang.Integer) $r29";
+    "$r30 = (java.lang.Integer) $r29"->"$i6 = virtualinvoke $r30.<java.lang.Integer: int intValue()>()";
+    "$i6 = virtualinvoke $r30.<java.lang.Integer: int intValue()>()"->"r63[i15] = $i6";
+    "r63[i15] = $i6"->"i15 = i15 + 1";
+    "i15 = i15 + 1"->"goto [?= $i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()]";
+    "goto [?= $i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()]"->"$i5 = virtualinvoke r58.<java.util.ArrayList: int size()>()";
+    "$r22 = new java.util.ArrayList"->"specialinvoke $r22.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r22.<java.util.ArrayList: void <init>()>()"->"r64 = $r22";
+    "r64 = $r22"->"virtualinvoke r64.<java.util.ArrayList: boolean add(java.lang.Object)>(r63)";
+    "virtualinvoke r64.<java.util.ArrayList: boolean add(java.lang.Object)>(r63)"->"if i12 <= 0 goto virtualinvoke r59.<java.io.BufferedReader: void close()>()";
+    "if i12 <= 0 goto virtualinvoke r59.<java.io.BufferedReader: void close()>()"->"$r24 = <java.lang.System: java.io.PrintStream out>";
+    "if i12 <= 0 goto virtualinvoke r59.<java.io.BufferedReader: void close()>()"->"virtualinvoke r59.<java.io.BufferedReader: void close()>()";
+    "$r24 = <java.lang.System: java.io.PrintStream out>"->"$r23 = new java.lang.StringBuilder";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")";
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r28)";
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"virtualinvoke r59.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r59.<java.io.BufferedReader: void close()>()"->"return r64";
+    "$r3 = new java.util.ArrayList"->"specialinvoke $r3.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r3.<java.util.ArrayList: void <init>()>()"->"r65 = $r3";
+    "r65 = $r3"->"$r4 = new java.io.BufferedReader";
+    "$r4 = new java.io.BufferedReader"->"$r5 = new java.io.FileReader";
+    "$r5 = new java.io.FileReader"->"specialinvoke $r5.<java.io.FileReader: void <init>(java.lang.String)>(r6)";
+    "specialinvoke $r5.<java.io.FileReader: void <init>(java.lang.String)>(r6)"->"specialinvoke $r4.<java.io.BufferedReader: void <init>(java.io.Reader)>($r5)";
+    "specialinvoke $r4.<java.io.BufferedReader: void <init>(java.io.Reader)>($r5)"->"r66 = $r4";
+    "r66 = $r4"->"$r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()"->"r68 = $r67";
+    "r68 = $r67"->"if $r67 == null goto $i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()";
+    "if $r67 == null goto $i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"->"$r16 = virtualinvoke r68.<java.lang.String: java.lang.String trim()>()";
+    "if $r67 == null goto $i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"->"$i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()";
+    "if $r67 == null goto $i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"->"$r46 := @caughtexception";
+    "$r16 = virtualinvoke r68.<java.lang.String: java.lang.String trim()>()"->"$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16)";
+    "$r16 = virtualinvoke r68.<java.lang.String: java.lang.String trim()>()"->"$r46 := @caughtexception";
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16)"->"$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)";
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16)"->"$r46 := @caughtexception";
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"virtualinvoke r65.<java.util.ArrayList: boolean add(java.lang.Object)>($r17)";
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"$r46 := @caughtexception";
+    "virtualinvoke r65.<java.util.ArrayList: boolean add(java.lang.Object)>($r17)"->"goto [?= $r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "virtualinvoke r65.<java.util.ArrayList: boolean add(java.lang.Object)>($r17)"->"$r46 := @caughtexception";
+    "goto [?= $r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r46 := @caughtexception"->"r69 = $r46";
+    "r69 = $r46"->"if i12 != 0 goto i12 = i12 + 1";
+    "if i12 != 0 goto i12 = i12 + 1"->"$r47 = <java.lang.System: java.io.PrintStream err>";
+    "if i12 != 0 goto i12 = i12 + 1"->"i12 = i12 + 1";
+    "$r47 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r47.<java.io.PrintStream: void println(java.lang.Object)>(r69)";
+    "virtualinvoke $r47.<java.io.PrintStream: void println(java.lang.Object)>(r69)"->"i12 = i12 + 1";
+    "i12 = i12 + 1"->"goto [?= $r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "goto [?= $r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r67 = virtualinvoke r66.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$i0 = virtualinvoke r65.<java.util.ArrayList: int size()>()"->"r70 = newarray (int)[$i0]";
+    "r70 = newarray (int)[$i0]"->"i16 = 0";
+    "i16 = 0"->"$i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()";
+    "$i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()"->"if i16 >= $i1 goto $r7 = new java.util.ArrayList";
+    "if i16 >= $i1 goto $r7 = new java.util.ArrayList"->"$r14 = virtualinvoke r65.<java.util.ArrayList: java.lang.Object get(int)>(i16)";
+    "if i16 >= $i1 goto $r7 = new java.util.ArrayList"->"$r7 = new java.util.ArrayList";
+    "$r14 = virtualinvoke r65.<java.util.ArrayList: java.lang.Object get(int)>(i16)"->"$r15 = (java.lang.Integer) $r14";
+    "$r15 = (java.lang.Integer) $r14"->"$i2 = virtualinvoke $r15.<java.lang.Integer: int intValue()>()";
+    "$i2 = virtualinvoke $r15.<java.lang.Integer: int intValue()>()"->"r70[i16] = $i2";
+    "r70[i16] = $i2"->"i16 = i16 + 1";
+    "i16 = i16 + 1"->"goto [?= $i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()]";
+    "goto [?= $i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()]"->"$i1 = virtualinvoke r65.<java.util.ArrayList: int size()>()";
+    "$r7 = new java.util.ArrayList"->"specialinvoke $r7.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r7.<java.util.ArrayList: void <init>()>()"->"r71 = $r7";
+    "r71 = $r7"->"virtualinvoke r71.<java.util.ArrayList: boolean add(java.lang.Object)>(r70)";
+    "virtualinvoke r71.<java.util.ArrayList: boolean add(java.lang.Object)>(r70)"->"if i12 <= 0 goto virtualinvoke r66.<java.io.BufferedReader: void close()>()";
+    "if i12 <= 0 goto virtualinvoke r66.<java.io.BufferedReader: void close()>()"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "if i12 <= 0 goto virtualinvoke r66.<java.io.BufferedReader: void close()>()"->"virtualinvoke r66.<java.io.BufferedReader: void close()>()";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed to parse \")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" entries\")"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13)";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13)"->"virtualinvoke r66.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r66.<java.io.BufferedReader: void close()>()"->"return r71";
+}

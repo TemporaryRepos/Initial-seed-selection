@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r18 := @this: com.sun.crypto.provider.KeyAgreement.DHKeyFactory;
+$r0 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Using SKIP Diffie-Hellman parameters\");
+$r19 = new javax.crypto.spec.DHParameterSpec;
+$r3 = <com.sun.crypto.provider.KeyAgreement.DHKeyFactory: java.math.BigInteger skip1024Modulus>;
+$r2 = <com.sun.crypto.provider.KeyAgreement.DHKeyFactory: java.math.BigInteger skip1024Base>;
+specialinvoke $r19.<javax.crypto.spec.DHParameterSpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r3, $r2);
+r4 = $r19;
+r5 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DH\");
+$r22 = (java.security.spec.AlgorithmParameterSpec) r4;
+virtualinvoke r5.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>($r22);
+r6 = virtualinvoke r5.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>();
+$r7 = virtualinvoke r6.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+r8 = interfaceinvoke $r7.<java.security.PublicKey: byte[] getEncoded()>();
+$r9 = virtualinvoke r6.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+r10 = interfaceinvoke $r9.<java.security.PrivateKey: byte[] getEncoded()>();
+r11 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String)>(\"DH\");
+$r20 = new java.security.spec.X509EncodedKeySpec;
+specialinvoke $r20.<java.security.spec.X509EncodedKeySpec: void <init>(byte[])>(r8);
+r13 = $r20;
+virtualinvoke r11.<java.security.KeyFactory: java.security.PublicKey generatePublic(java.security.spec.KeySpec)>(r13);
+$r21 = new java.security.spec.PKCS8EncodedKeySpec;
+specialinvoke $r21.<java.security.spec.PKCS8EncodedKeySpec: void <init>(byte[])>(r10);
+r16 = $r21;
+virtualinvoke r11.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r16);
+return;
+"
+}

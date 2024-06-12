@@ -1,0 +1,29 @@
+digraph "unitGraph" {
+    "i1 := @parameter0: int"
+    "if i1 >= 0 goto $i2 = i1"
+    "$i2 = neg i1"
+    "goto [?= i3 = $i2]"
+    "$i2 = i1"
+    "i3 = $i2"
+    "i4 = 0"
+    "if i3 == 0 goto return i4"
+    "$i0 = i3 % 10"
+    "i4 = i4 + $i0"
+    "i3 = i3 / 10"
+    "goto [?= (branch)]"
+    "return i4"
+    "i1 := @parameter0: int"->"if i1 >= 0 goto $i2 = i1";
+    "if i1 >= 0 goto $i2 = i1"->"$i2 = neg i1";
+    "if i1 >= 0 goto $i2 = i1"->"$i2 = i1";
+    "$i2 = neg i1"->"goto [?= i3 = $i2]";
+    "goto [?= i3 = $i2]"->"i3 = $i2";
+    "$i2 = i1"->"i3 = $i2";
+    "i3 = $i2"->"i4 = 0";
+    "i4 = 0"->"if i3 == 0 goto return i4";
+    "if i3 == 0 goto return i4"->"$i0 = i3 % 10";
+    "if i3 == 0 goto return i4"->"return i4";
+    "$i0 = i3 % 10"->"i4 = i4 + $i0";
+    "i4 = i4 + $i0"->"i3 = i3 / 10";
+    "i3 = i3 / 10"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 == 0 goto return i4";
+}

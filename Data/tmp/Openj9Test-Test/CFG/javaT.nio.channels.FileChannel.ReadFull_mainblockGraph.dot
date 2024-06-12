@@ -1,0 +1,125 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r8 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null);
+virtualinvoke r0.<java.io.File: void deleteOnExit()>();
+r1 = newarray (java.nio.ByteBuffer)[10];
+i2 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 10 goto $r2 = new java.io.FileInputStream;
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(10);
+r1[i2] = $r5;
+$r6 = r1[i2];
+virtualinvoke $r6.<java.nio.ByteBuffer: java.nio.Buffer position(int)>(10);
+i2 = i2 + 1;
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$r2 = new java.io.FileInputStream;
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.io.File)>(r0);
+r9 = $r2;
+r3 = virtualinvoke r9.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>();
+l0 = virtualinvoke r3.<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[])>(r1);
+$b1 = l0 cmp 0L;
+if $b1 == 0 goto virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: ]
+$r4 = new java.lang.RuntimeException;
+specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Nonzero return from read\");
+throw $r4;
+"
+    "Block 5:
+[preds: 3 ] [succs: ]
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+virtualinvoke r9.<java.io.FileInputStream: void close()>();
+virtualinvoke r0.<java.io.File: boolean delete()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r8 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null);
+virtualinvoke r0.<java.io.File: void deleteOnExit()>();
+r1 = newarray (java.nio.ByteBuffer)[10];
+i2 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 10 goto $r2 = new java.io.FileInputStream;
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 10 goto $r2 = new java.io.FileInputStream;
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(10);
+r1[i2] = $r5;
+$r6 = r1[i2];
+virtualinvoke $r6.<java.nio.ByteBuffer: java.nio.Buffer position(int)>(10);
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 10 goto $r2 = new java.io.FileInputStream;
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$r2 = new java.io.FileInputStream;
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.io.File)>(r0);
+r9 = $r2;
+r3 = virtualinvoke r9.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>();
+l0 = virtualinvoke r3.<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[])>(r1);
+$b1 = l0 cmp 0L;
+if $b1 == 0 goto virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(10);
+r1[i2] = $r5;
+$r6 = r1[i2];
+virtualinvoke $r6.<java.nio.ByteBuffer: java.nio.Buffer position(int)>(10);
+i2 = i2 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 10 goto $r2 = new java.io.FileInputStream;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$r2 = new java.io.FileInputStream;
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.io.File)>(r0);
+r9 = $r2;
+r3 = virtualinvoke r9.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>();
+l0 = virtualinvoke r3.<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[])>(r1);
+$b1 = l0 cmp 0L;
+if $b1 == 0 goto virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"->"Block 4:
+[preds: 3 ] [succs: ]
+$r4 = new java.lang.RuntimeException;
+specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Nonzero return from read\");
+throw $r4;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$r2 = new java.io.FileInputStream;
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.io.File)>(r0);
+r9 = $r2;
+r3 = virtualinvoke r9.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>();
+l0 = virtualinvoke r3.<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[])>(r1);
+$b1 = l0 cmp 0L;
+if $b1 == 0 goto virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"->"Block 5:
+[preds: 3 ] [succs: ]
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+virtualinvoke r9.<java.io.FileInputStream: void close()>();
+virtualinvoke r0.<java.io.File: boolean delete()>();
+return;
+";
+}

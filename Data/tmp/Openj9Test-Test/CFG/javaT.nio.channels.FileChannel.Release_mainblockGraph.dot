@@ -1,0 +1,125 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r8 := @parameter0: java.lang.String[];
+$r0 = new java.io.FileOutputStream;
+specialinvoke $r0.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"testFile.tmp\");
+r1 = $r0;
+$r2 = newarray (byte)[128];
+virtualinvoke r1.<java.io.FileOutputStream: void write(byte[])>($r2);
+r3 = virtualinvoke r1.<java.io.FileOutputStream: java.nio.channels.FileChannel getChannel()>();
+r4 = virtualinvoke r3.<java.nio.channels.FileChannel: java.nio.channels.FileLock lock()>();
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+virtualinvoke r4.<java.nio.channels.FileLock: void release()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+$r5 = new java.lang.RuntimeException;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected exception not thrown\");
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+throw $r5;
+"
+    "Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r8 := @parameter0: java.lang.String[];
+$r0 = new java.io.FileOutputStream;
+specialinvoke $r0.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"testFile.tmp\");
+r1 = $r0;
+$r2 = newarray (byte)[128];
+virtualinvoke r1.<java.io.FileOutputStream: void write(byte[])>($r2);
+r3 = virtualinvoke r1.<java.io.FileOutputStream: java.nio.channels.FileChannel getChannel()>();
+r4 = virtualinvoke r3.<java.nio.channels.FileChannel: java.nio.channels.FileLock lock()>();
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 5 ]
+virtualinvoke r4.<java.nio.channels.FileLock: void release()>();
+";
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r8 := @parameter0: java.lang.String[];
+$r0 = new java.io.FileOutputStream;
+specialinvoke $r0.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"testFile.tmp\");
+r1 = $r0;
+$r2 = newarray (byte)[128];
+virtualinvoke r1.<java.io.FileOutputStream: void write(byte[])>($r2);
+r3 = virtualinvoke r1.<java.io.FileOutputStream: java.nio.channels.FileChannel getChannel()>();
+r4 = virtualinvoke r3.<java.nio.channels.FileChannel: java.nio.channels.FileLock lock()>();
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+"->"Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+virtualinvoke r4.<java.nio.channels.FileLock: void release()>();
+"->"Block 2:
+[preds: 1 ] [succs: 3 5 ]
+$r5 = new java.lang.RuntimeException;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+virtualinvoke r4.<java.nio.channels.FileLock: void release()>();
+"->"Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+$r5 = new java.lang.RuntimeException;
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected exception not thrown\");
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+$r5 = new java.lang.RuntimeException;
+"->"Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected exception not thrown\");
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+throw $r5;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected exception not thrown\");
+"->"Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+throw $r5;
+"->"Block 5:
+[preds: 0 1 2 3 4 ] [succs: ]
+$r6 := @caughtexception;
+r7 = $r6;
+return;
+";
+}

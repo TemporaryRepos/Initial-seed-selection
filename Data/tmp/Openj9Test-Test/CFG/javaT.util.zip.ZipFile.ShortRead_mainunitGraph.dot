@@ -1,0 +1,479 @@
+digraph "unitGraph" {
+    "r31 := @parameter0: java.lang.String[]"
+    "$r0 = new java.io.File"
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(\"abc.zip\")"
+    "r1 = $r0"
+    "r2 = \"abc\""
+    "r3 = \"Data disponible\""
+    "$r4 = new java.io.FileOutputStream"
+    "specialinvoke $r4.<java.io.FileOutputStream: void <init>(java.io.File)>(r1)"
+    "r32 = $r4"
+    "r33 = null"
+    "$r5 = new java.util.zip.ZipOutputStream"
+    "specialinvoke $r5.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>(r32)"
+    "r34 = $r5"
+    "r35 = null"
+    "$r6 = new java.util.zip.ZipEntry"
+    "specialinvoke $r6.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"abc\")"
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r6)"
+    "$r7 = \"Data disponible\""
+    "$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ASCII\")"
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void write(byte[])>($r8)"
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"
+    "if r34 == null goto (branch)"
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"
+    "goto [?= (branch)]"
+    "$r30 := @caughtexception"
+    "r36 = $r30"
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"
+    "$r29 := @caughtexception"
+    "r37 = $r29"
+    "r35 = r37"
+    "throw r37"
+    "$r28 := @caughtexception"
+    "r38 = $r28"
+    "if r34 == null goto throw r38"
+    "goto [?= throw r38]"
+    "$r26 := @caughtexception"
+    "r27 = $r26"
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r27)"
+    "throw r38"
+    "if r32 == null goto $r41 = new java.util.zip.ZipFile"
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"
+    "goto [?= $r41 = new java.util.zip.ZipFile]"
+    "$r25 := @caughtexception"
+    "r39 = $r25"
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r39)"
+    "$r24 := @caughtexception"
+    "r40 = $r24"
+    "r33 = r40"
+    "throw r40"
+    "$r23 := @caughtexception"
+    "r22 = $r23"
+    "if r32 == null goto throw r22"
+    "goto [?= throw r22]"
+    "$r20 := @caughtexception"
+    "r21 = $r20"
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)"
+    "throw r22"
+    "$r41 = new java.util.zip.ZipFile"
+    "specialinvoke $r41.<java.util.zip.ZipFile: void <init>(java.io.File)>(r1)"
+    "r42 = $r41"
+    "r43 = null"
+    "r44 = virtualinvoke r42.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(\"abc\")"
+    "r45 = virtualinvoke r42.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r44)"
+    "$r46 = <java.lang.System: java.io.PrintStream out>"
+    "$r47 = newarray (java.lang.Object)[3]"
+    "$l1 = virtualinvoke r44.<java.util.zip.ZipEntry: long getSize()>()"
+    "$r48 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"
+    "$r47[0] = $r48"
+    "$l2 = virtualinvoke r44.<java.util.zip.ZipEntry: long getCompressedSize()>()"
+    "$r49 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"
+    "$r47[1] = $r49"
+    "$i3 = virtualinvoke r45.<java.io.InputStream: int available()>()"
+    "$r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"
+    "$r47[2] = $r50"
+    "virtualinvoke $r46.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"size=%d csize=%d available=%d%n\", $r47)"
+    "$r51 = \"Data disponible\""
+    "$i4 = virtualinvoke $r51.<java.lang.String: int length()>()"
+    "r52 = newarray (byte)[$i4]"
+    "i5 = virtualinvoke r45.<java.io.InputStream: int read(byte[])>(r52)"
+    "$r53 = new java.lang.String"
+    "specialinvoke $r53.<java.lang.String: void <init>(byte[],java.lang.String)>(r52, \"ASCII\")"
+    "$z2 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"Data disponible\")"
+    "if $z2 == 0 goto $r10 = new java.lang.Exception"
+    "$r11 = \"Data disponible\""
+    "$i0 = virtualinvoke $r11.<java.lang.String: int length()>()"
+    "if i5 == $i0 goto (branch)"
+    "$r10 = new java.lang.Exception"
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"short read?\")"
+    "throw $r10"
+    "if r42 == null goto virtualinvoke r1.<java.io.File: boolean delete()>()"
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"
+    "$r19 := @caughtexception"
+    "r54 = $r19"
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"
+    "$r18 := @caughtexception"
+    "r55 = $r18"
+    "r43 = r55"
+    "throw r55"
+    "$r17 := @caughtexception"
+    "r16 = $r17"
+    "if r42 == null goto throw r16"
+    "goto [?= throw r16]"
+    "$r14 := @caughtexception"
+    "r15 = $r14"
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r15)"
+    "throw r16"
+    "virtualinvoke r1.<java.io.File: boolean delete()>()"
+    "goto [?= return]"
+    "$r12 := @caughtexception"
+    "r13 = $r12"
+    "throw r13"
+    "return"
+    "r31 := @parameter0: java.lang.String[]"->"$r0 = new java.io.File";
+    "$r0 = new java.io.File"->"specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(\"abc.zip\")";
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(\"abc.zip\")"->"r1 = $r0";
+    "r1 = $r0"->"r2 = \"abc\"";
+    "r1 = $r0"->"$r12 := @caughtexception";
+    "r2 = \"abc\""->"r3 = \"Data disponible\"";
+    "r2 = \"abc\""->"$r12 := @caughtexception";
+    "r3 = \"Data disponible\""->"$r4 = new java.io.FileOutputStream";
+    "r3 = \"Data disponible\""->"$r12 := @caughtexception";
+    "$r4 = new java.io.FileOutputStream"->"specialinvoke $r4.<java.io.FileOutputStream: void <init>(java.io.File)>(r1)";
+    "$r4 = new java.io.FileOutputStream"->"$r12 := @caughtexception";
+    "specialinvoke $r4.<java.io.FileOutputStream: void <init>(java.io.File)>(r1)"->"r32 = $r4";
+    "specialinvoke $r4.<java.io.FileOutputStream: void <init>(java.io.File)>(r1)"->"$r12 := @caughtexception";
+    "r32 = $r4"->"r33 = null";
+    "r32 = $r4"->"$r12 := @caughtexception";
+    "r33 = null"->"$r24 := @caughtexception";
+    "r33 = null"->"$r12 := @caughtexception";
+    "r33 = null"->"$r23 := @caughtexception";
+    "r33 = null"->"$r5 = new java.util.zip.ZipOutputStream";
+    "$r5 = new java.util.zip.ZipOutputStream"->"$r24 := @caughtexception";
+    "$r5 = new java.util.zip.ZipOutputStream"->"$r23 := @caughtexception";
+    "$r5 = new java.util.zip.ZipOutputStream"->"specialinvoke $r5.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>(r32)";
+    "specialinvoke $r5.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>(r32)"->"$r24 := @caughtexception";
+    "specialinvoke $r5.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>(r32)"->"$r23 := @caughtexception";
+    "specialinvoke $r5.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>(r32)"->"r34 = $r5";
+    "r34 = $r5"->"$r24 := @caughtexception";
+    "r34 = $r5"->"$r23 := @caughtexception";
+    "r34 = $r5"->"r35 = null";
+    "r35 = null"->"$r29 := @caughtexception";
+    "r35 = null"->"$r24 := @caughtexception";
+    "r35 = null"->"$r28 := @caughtexception";
+    "r35 = null"->"$r23 := @caughtexception";
+    "r35 = null"->"$r6 = new java.util.zip.ZipEntry";
+    "$r6 = new java.util.zip.ZipEntry"->"$r29 := @caughtexception";
+    "$r6 = new java.util.zip.ZipEntry"->"$r28 := @caughtexception";
+    "$r6 = new java.util.zip.ZipEntry"->"specialinvoke $r6.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"abc\")";
+    "specialinvoke $r6.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"abc\")"->"$r29 := @caughtexception";
+    "specialinvoke $r6.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"abc\")"->"$r28 := @caughtexception";
+    "specialinvoke $r6.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"abc\")"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r6)";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r6)"->"$r29 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r6)"->"$r28 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r6)"->"$r7 = \"Data disponible\"";
+    "$r7 = \"Data disponible\""->"$r29 := @caughtexception";
+    "$r7 = \"Data disponible\""->"$r28 := @caughtexception";
+    "$r7 = \"Data disponible\""->"$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ASCII\")";
+    "$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ASCII\")"->"$r29 := @caughtexception";
+    "$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ASCII\")"->"$r28 := @caughtexception";
+    "$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ASCII\")"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void write(byte[])>($r8)";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void write(byte[])>($r8)"->"$r29 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void write(byte[])>($r8)"->"$r28 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void write(byte[])>($r8)"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"->"$r29 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void closeEntry()>()"->"if r34 == null goto (branch)";
+    "if r34 == null goto (branch)"->"$r24 := @caughtexception";
+    "if r34 == null goto (branch)"->"$r12 := @caughtexception";
+    "if r34 == null goto (branch)"->"$r23 := @caughtexception";
+    "if r34 == null goto (branch)"->"if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "if r34 == null goto (branch)"->"if r32 == null goto $r41 = new java.util.zip.ZipFile";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r30 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r30 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"$r12 := @caughtexception";
+    "goto [?= (branch)]"->"$r23 := @caughtexception";
+    "goto [?= (branch)]"->"if r32 == null goto $r41 = new java.util.zip.ZipFile";
+    "$r30 := @caughtexception"->"$r24 := @caughtexception";
+    "$r30 := @caughtexception"->"$r23 := @caughtexception";
+    "$r30 := @caughtexception"->"r36 = $r30";
+    "r36 = $r30"->"$r24 := @caughtexception";
+    "r36 = $r30"->"$r23 := @caughtexception";
+    "r36 = $r30"->"virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"->"$r24 := @caughtexception";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"->"$r23 := @caughtexception";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"$r12 := @caughtexception";
+    "goto [?= (branch)]"->"$r23 := @caughtexception";
+    "goto [?= (branch)]"->"if r32 == null goto $r41 = new java.util.zip.ZipFile";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"$r12 := @caughtexception";
+    "goto [?= (branch)]"->"$r23 := @caughtexception";
+    "goto [?= (branch)]"->"if r32 == null goto $r41 = new java.util.zip.ZipFile";
+    "$r29 := @caughtexception"->"r37 = $r29";
+    "$r29 := @caughtexception"->"$r28 := @caughtexception";
+    "r37 = $r29"->"r35 = r37";
+    "r37 = $r29"->"$r28 := @caughtexception";
+    "r35 = r37"->"throw r37";
+    "r35 = r37"->"$r28 := @caughtexception";
+    "throw r37"->"$r28 := @caughtexception";
+    "$r28 := @caughtexception"->"r38 = $r28";
+    "$r28 := @caughtexception"->"$r28 := @caughtexception";
+    "r38 = $r28"->"$r28 := @caughtexception";
+    "r38 = $r28"->"$r24 := @caughtexception";
+    "r38 = $r28"->"$r23 := @caughtexception";
+    "r38 = $r28"->"if r34 == null goto throw r38";
+    "if r34 == null goto throw r38"->"if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "if r34 == null goto throw r38"->"throw r38";
+    "if r34 == null goto throw r38"->"$r24 := @caughtexception";
+    "if r34 == null goto throw r38"->"$r23 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r26 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "if r35 == null goto virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r26 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"goto [?= throw r38]";
+    "goto [?= throw r38]"->"$r24 := @caughtexception";
+    "goto [?= throw r38]"->"$r23 := @caughtexception";
+    "goto [?= throw r38]"->"throw r38";
+    "$r26 := @caughtexception"->"$r24 := @caughtexception";
+    "$r26 := @caughtexception"->"$r23 := @caughtexception";
+    "$r26 := @caughtexception"->"r27 = $r26";
+    "r27 = $r26"->"$r24 := @caughtexception";
+    "r27 = $r26"->"$r23 := @caughtexception";
+    "r27 = $r26"->"virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r27)";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r27)"->"$r24 := @caughtexception";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r27)"->"$r23 := @caughtexception";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r27)"->"goto [?= throw r38]";
+    "goto [?= throw r38]"->"$r24 := @caughtexception";
+    "goto [?= throw r38]"->"$r23 := @caughtexception";
+    "goto [?= throw r38]"->"throw r38";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r34.<java.util.zip.ZipOutputStream: void close()>()"->"throw r38";
+    "throw r38"->"$r24 := @caughtexception";
+    "throw r38"->"$r23 := @caughtexception";
+    "if r32 == null goto $r41 = new java.util.zip.ZipFile"->"if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r32 == null goto $r41 = new java.util.zip.ZipFile"->"$r41 = new java.util.zip.ZipFile";
+    "if r32 == null goto $r41 = new java.util.zip.ZipFile"->"$r12 := @caughtexception";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r25 := @caughtexception";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r25 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"goto [?= $r41 = new java.util.zip.ZipFile]";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r41 = new java.util.zip.ZipFile";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r12 := @caughtexception";
+    "$r25 := @caughtexception"->"r39 = $r25";
+    "$r25 := @caughtexception"->"$r12 := @caughtexception";
+    "r39 = $r25"->"virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r39)";
+    "r39 = $r25"->"$r12 := @caughtexception";
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r39)"->"goto [?= $r41 = new java.util.zip.ZipFile]";
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r39)"->"$r12 := @caughtexception";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r41 = new java.util.zip.ZipFile";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"goto [?= $r41 = new java.util.zip.ZipFile]";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r41 = new java.util.zip.ZipFile";
+    "goto [?= $r41 = new java.util.zip.ZipFile]"->"$r12 := @caughtexception";
+    "$r24 := @caughtexception"->"r40 = $r24";
+    "$r24 := @caughtexception"->"$r23 := @caughtexception";
+    "r40 = $r24"->"r33 = r40";
+    "r40 = $r24"->"$r23 := @caughtexception";
+    "r33 = r40"->"throw r40";
+    "r33 = r40"->"$r23 := @caughtexception";
+    "throw r40"->"$r23 := @caughtexception";
+    "$r23 := @caughtexception"->"r22 = $r23";
+    "$r23 := @caughtexception"->"$r23 := @caughtexception";
+    "r22 = $r23"->"$r23 := @caughtexception";
+    "r22 = $r23"->"$r12 := @caughtexception";
+    "r22 = $r23"->"if r32 == null goto throw r22";
+    "if r32 == null goto throw r22"->"if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r32 == null goto throw r22"->"throw r22";
+    "if r32 == null goto throw r22"->"$r12 := @caughtexception";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r32.<java.io.FileOutputStream: void close()>()";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r20 := @caughtexception";
+    "if r33 == null goto virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r20 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"goto [?= throw r22]";
+    "goto [?= throw r22]"->"throw r22";
+    "goto [?= throw r22]"->"$r12 := @caughtexception";
+    "$r20 := @caughtexception"->"r21 = $r20";
+    "$r20 := @caughtexception"->"$r12 := @caughtexception";
+    "r21 = $r20"->"virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)";
+    "r21 = $r20"->"$r12 := @caughtexception";
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)"->"goto [?= throw r22]";
+    "virtualinvoke r33.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)"->"$r12 := @caughtexception";
+    "goto [?= throw r22]"->"throw r22";
+    "goto [?= throw r22]"->"$r12 := @caughtexception";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"throw r22";
+    "virtualinvoke r32.<java.io.FileOutputStream: void close()>()"->"$r12 := @caughtexception";
+    "throw r22"->"$r12 := @caughtexception";
+    "$r41 = new java.util.zip.ZipFile"->"specialinvoke $r41.<java.util.zip.ZipFile: void <init>(java.io.File)>(r1)";
+    "$r41 = new java.util.zip.ZipFile"->"$r12 := @caughtexception";
+    "specialinvoke $r41.<java.util.zip.ZipFile: void <init>(java.io.File)>(r1)"->"r42 = $r41";
+    "specialinvoke $r41.<java.util.zip.ZipFile: void <init>(java.io.File)>(r1)"->"$r12 := @caughtexception";
+    "r42 = $r41"->"r43 = null";
+    "r42 = $r41"->"$r12 := @caughtexception";
+    "r43 = null"->"$r18 := @caughtexception";
+    "r43 = null"->"$r12 := @caughtexception";
+    "r43 = null"->"$r17 := @caughtexception";
+    "r43 = null"->"r44 = virtualinvoke r42.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(\"abc\")";
+    "r44 = virtualinvoke r42.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(\"abc\")"->"$r18 := @caughtexception";
+    "r44 = virtualinvoke r42.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(\"abc\")"->"$r17 := @caughtexception";
+    "r44 = virtualinvoke r42.<java.util.zip.ZipFile: java.util.zip.ZipEntry getEntry(java.lang.String)>(\"abc\")"->"r45 = virtualinvoke r42.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r44)";
+    "r45 = virtualinvoke r42.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r44)"->"$r18 := @caughtexception";
+    "r45 = virtualinvoke r42.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r44)"->"$r17 := @caughtexception";
+    "r45 = virtualinvoke r42.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r44)"->"$r46 = <java.lang.System: java.io.PrintStream out>";
+    "$r46 = <java.lang.System: java.io.PrintStream out>"->"$r18 := @caughtexception";
+    "$r46 = <java.lang.System: java.io.PrintStream out>"->"$r17 := @caughtexception";
+    "$r46 = <java.lang.System: java.io.PrintStream out>"->"$r47 = newarray (java.lang.Object)[3]";
+    "$r47 = newarray (java.lang.Object)[3]"->"$r18 := @caughtexception";
+    "$r47 = newarray (java.lang.Object)[3]"->"$r17 := @caughtexception";
+    "$r47 = newarray (java.lang.Object)[3]"->"$l1 = virtualinvoke r44.<java.util.zip.ZipEntry: long getSize()>()";
+    "$l1 = virtualinvoke r44.<java.util.zip.ZipEntry: long getSize()>()"->"$r18 := @caughtexception";
+    "$l1 = virtualinvoke r44.<java.util.zip.ZipEntry: long getSize()>()"->"$r17 := @caughtexception";
+    "$l1 = virtualinvoke r44.<java.util.zip.ZipEntry: long getSize()>()"->"$r48 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)";
+    "$r48 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$r18 := @caughtexception";
+    "$r48 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$r17 := @caughtexception";
+    "$r48 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$r47[0] = $r48";
+    "$r47[0] = $r48"->"$r18 := @caughtexception";
+    "$r47[0] = $r48"->"$r17 := @caughtexception";
+    "$r47[0] = $r48"->"$l2 = virtualinvoke r44.<java.util.zip.ZipEntry: long getCompressedSize()>()";
+    "$l2 = virtualinvoke r44.<java.util.zip.ZipEntry: long getCompressedSize()>()"->"$r18 := @caughtexception";
+    "$l2 = virtualinvoke r44.<java.util.zip.ZipEntry: long getCompressedSize()>()"->"$r17 := @caughtexception";
+    "$l2 = virtualinvoke r44.<java.util.zip.ZipEntry: long getCompressedSize()>()"->"$r49 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)";
+    "$r49 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"$r18 := @caughtexception";
+    "$r49 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"$r17 := @caughtexception";
+    "$r49 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"$r47[1] = $r49";
+    "$r47[1] = $r49"->"$r18 := @caughtexception";
+    "$r47[1] = $r49"->"$r17 := @caughtexception";
+    "$r47[1] = $r49"->"$i3 = virtualinvoke r45.<java.io.InputStream: int available()>()";
+    "$i3 = virtualinvoke r45.<java.io.InputStream: int available()>()"->"$r18 := @caughtexception";
+    "$i3 = virtualinvoke r45.<java.io.InputStream: int available()>()"->"$r17 := @caughtexception";
+    "$i3 = virtualinvoke r45.<java.io.InputStream: int available()>()"->"$r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)";
+    "$r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"$r18 := @caughtexception";
+    "$r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"$r17 := @caughtexception";
+    "$r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"$r47[2] = $r50";
+    "$r47[2] = $r50"->"$r18 := @caughtexception";
+    "$r47[2] = $r50"->"$r17 := @caughtexception";
+    "$r47[2] = $r50"->"virtualinvoke $r46.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"size=%d csize=%d available=%d%n\", $r47)";
+    "virtualinvoke $r46.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"size=%d csize=%d available=%d%n\", $r47)"->"$r18 := @caughtexception";
+    "virtualinvoke $r46.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"size=%d csize=%d available=%d%n\", $r47)"->"$r17 := @caughtexception";
+    "virtualinvoke $r46.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"size=%d csize=%d available=%d%n\", $r47)"->"$r51 = \"Data disponible\"";
+    "$r51 = \"Data disponible\""->"$r18 := @caughtexception";
+    "$r51 = \"Data disponible\""->"$r17 := @caughtexception";
+    "$r51 = \"Data disponible\""->"$i4 = virtualinvoke $r51.<java.lang.String: int length()>()";
+    "$i4 = virtualinvoke $r51.<java.lang.String: int length()>()"->"$r18 := @caughtexception";
+    "$i4 = virtualinvoke $r51.<java.lang.String: int length()>()"->"$r17 := @caughtexception";
+    "$i4 = virtualinvoke $r51.<java.lang.String: int length()>()"->"r52 = newarray (byte)[$i4]";
+    "r52 = newarray (byte)[$i4]"->"$r18 := @caughtexception";
+    "r52 = newarray (byte)[$i4]"->"$r17 := @caughtexception";
+    "r52 = newarray (byte)[$i4]"->"i5 = virtualinvoke r45.<java.io.InputStream: int read(byte[])>(r52)";
+    "i5 = virtualinvoke r45.<java.io.InputStream: int read(byte[])>(r52)"->"$r18 := @caughtexception";
+    "i5 = virtualinvoke r45.<java.io.InputStream: int read(byte[])>(r52)"->"$r17 := @caughtexception";
+    "i5 = virtualinvoke r45.<java.io.InputStream: int read(byte[])>(r52)"->"$r53 = new java.lang.String";
+    "$r53 = new java.lang.String"->"$r18 := @caughtexception";
+    "$r53 = new java.lang.String"->"$r17 := @caughtexception";
+    "$r53 = new java.lang.String"->"specialinvoke $r53.<java.lang.String: void <init>(byte[],java.lang.String)>(r52, \"ASCII\")";
+    "specialinvoke $r53.<java.lang.String: void <init>(byte[],java.lang.String)>(r52, \"ASCII\")"->"$r18 := @caughtexception";
+    "specialinvoke $r53.<java.lang.String: void <init>(byte[],java.lang.String)>(r52, \"ASCII\")"->"$r17 := @caughtexception";
+    "specialinvoke $r53.<java.lang.String: void <init>(byte[],java.lang.String)>(r52, \"ASCII\")"->"$z2 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"Data disponible\")";
+    "$z2 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"Data disponible\")"->"$r18 := @caughtexception";
+    "$z2 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"Data disponible\")"->"$r17 := @caughtexception";
+    "$z2 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"Data disponible\")"->"if $z2 == 0 goto $r10 = new java.lang.Exception";
+    "if $z2 == 0 goto $r10 = new java.lang.Exception"->"$r11 = \"Data disponible\"";
+    "if $z2 == 0 goto $r10 = new java.lang.Exception"->"$r10 = new java.lang.Exception";
+    "if $z2 == 0 goto $r10 = new java.lang.Exception"->"$r18 := @caughtexception";
+    "if $z2 == 0 goto $r10 = new java.lang.Exception"->"$r17 := @caughtexception";
+    "$r11 = \"Data disponible\""->"$r18 := @caughtexception";
+    "$r11 = \"Data disponible\""->"$r17 := @caughtexception";
+    "$r11 = \"Data disponible\""->"$i0 = virtualinvoke $r11.<java.lang.String: int length()>()";
+    "$i0 = virtualinvoke $r11.<java.lang.String: int length()>()"->"$r18 := @caughtexception";
+    "$i0 = virtualinvoke $r11.<java.lang.String: int length()>()"->"$r17 := @caughtexception";
+    "$i0 = virtualinvoke $r11.<java.lang.String: int length()>()"->"if i5 == $i0 goto (branch)";
+    "if i5 == $i0 goto (branch)"->"$r18 := @caughtexception";
+    "if i5 == $i0 goto (branch)"->"$r12 := @caughtexception";
+    "if i5 == $i0 goto (branch)"->"$r17 := @caughtexception";
+    "if i5 == $i0 goto (branch)"->"$r10 = new java.lang.Exception";
+    "if i5 == $i0 goto (branch)"->"if r42 == null goto virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "$r10 = new java.lang.Exception"->"$r18 := @caughtexception";
+    "$r10 = new java.lang.Exception"->"$r17 := @caughtexception";
+    "$r10 = new java.lang.Exception"->"specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"short read?\")";
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"short read?\")"->"$r18 := @caughtexception";
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"short read?\")"->"$r17 := @caughtexception";
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"short read?\")"->"throw $r10";
+    "throw $r10"->"$r18 := @caughtexception";
+    "throw $r10"->"$r17 := @caughtexception";
+    "if r42 == null goto virtualinvoke r1.<java.io.File: boolean delete()>()"->"if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r42 == null goto virtualinvoke r1.<java.io.File: boolean delete()>()"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "if r42 == null goto virtualinvoke r1.<java.io.File: boolean delete()>()"->"$r12 := @caughtexception";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r19 := @caughtexception";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r19 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"$r12 := @caughtexception";
+    "$r19 := @caughtexception"->"r54 = $r19";
+    "$r19 := @caughtexception"->"$r12 := @caughtexception";
+    "r54 = $r19"->"virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)";
+    "r54 = $r19"->"$r12 := @caughtexception";
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"->"goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]";
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"->"$r12 := @caughtexception";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "goto [?= virtualinvoke r1.<java.io.File: boolean delete()>()]"->"$r12 := @caughtexception";
+    "$r18 := @caughtexception"->"r55 = $r18";
+    "$r18 := @caughtexception"->"$r17 := @caughtexception";
+    "r55 = $r18"->"r43 = r55";
+    "r55 = $r18"->"$r17 := @caughtexception";
+    "r43 = r55"->"throw r55";
+    "r43 = r55"->"$r17 := @caughtexception";
+    "throw r55"->"$r17 := @caughtexception";
+    "$r17 := @caughtexception"->"r16 = $r17";
+    "$r17 := @caughtexception"->"$r17 := @caughtexception";
+    "r16 = $r17"->"$r17 := @caughtexception";
+    "r16 = $r17"->"$r12 := @caughtexception";
+    "r16 = $r17"->"if r42 == null goto throw r16";
+    "if r42 == null goto throw r16"->"if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r42 == null goto throw r16"->"throw r16";
+    "if r42 == null goto throw r16"->"$r12 := @caughtexception";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"virtualinvoke r42.<java.util.zip.ZipFile: void close()>()";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r14 := @caughtexception";
+    "if r43 == null goto virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r14 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"goto [?= throw r16]";
+    "goto [?= throw r16]"->"throw r16";
+    "goto [?= throw r16]"->"$r12 := @caughtexception";
+    "$r14 := @caughtexception"->"r15 = $r14";
+    "$r14 := @caughtexception"->"$r12 := @caughtexception";
+    "r15 = $r14"->"virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r15)";
+    "r15 = $r14"->"$r12 := @caughtexception";
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r15)"->"goto [?= throw r16]";
+    "virtualinvoke r43.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r15)"->"$r12 := @caughtexception";
+    "goto [?= throw r16]"->"throw r16";
+    "goto [?= throw r16]"->"$r12 := @caughtexception";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"throw r16";
+    "virtualinvoke r42.<java.util.zip.ZipFile: void close()>()"->"$r12 := @caughtexception";
+    "throw r16"->"$r12 := @caughtexception";
+    "virtualinvoke r1.<java.io.File: boolean delete()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r12 := @caughtexception"->"r13 = $r12";
+    "$r12 := @caughtexception"->"$r12 := @caughtexception";
+    "r13 = $r12"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "r13 = $r12"->"$r12 := @caughtexception";
+    "virtualinvoke r1.<java.io.File: boolean delete()>()"->"throw r13";
+}

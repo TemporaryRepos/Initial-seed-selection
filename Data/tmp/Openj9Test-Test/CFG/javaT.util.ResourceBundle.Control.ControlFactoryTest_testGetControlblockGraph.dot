@@ -1,0 +1,457 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory;
+r5 := @parameter1: java.util.Locale;
+r1 := @parameter2: java.util.List;
+r19 := @parameter3: java.lang.String[];
+r2 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r1);
+r24 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.List getFormats(java.lang.String)>(\"any\");
+if r24 == r1 goto i0 = 0;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r22 = newarray (java.lang.Object)[3];
+$r23 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r22[0] = $r23;
+$r22[1] = r24;
+$r22[2] = r1;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: returns %s, expected %s.%n\", $r22);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+i0 = 0;
+"
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+if i0 >= 10 goto r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r25 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r19);
+r26 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r25);
+if r26 == r2 goto i0 = i0 + 1;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+$r20 = newarray (java.lang.Object)[3];
+$r21 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r20[0] = $r21;
+$r20[1] = r26;
+$r20[2] = r2;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: doesn\'t return the singleton: got %s, expected %s%n\", $r20);
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 3 ]
+i0 = i0 + 1;
+goto [?= (branch)];
+"
+    "Block 7:
+[preds: 3 ] [succs: 8 9 ]
+r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+$r3 = <java.util.Locale: java.util.Locale US>;
+$z0 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>($r3);
+if $z0 == 0 goto $r28 = <java.util.Locale: java.util.Locale US>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale JAPAN>;
+goto [?= r4 = $r28];
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale US>;
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 11 16 ]
+r4 = $r28;
+if r5 == null goto r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+r29 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+$z1 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>(r29);
+if $z1 != 0 goto r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r15 = newarray (java.lang.Object)[3];
+$r16 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r15[0] = $r16;
+$r17 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r29);
+$r15[1] = $r17;
+$r18 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r27);
+$r15[2] = $r18;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return default locale. got %s, expected %s%n\", $r15);
+"
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r30 == null goto (branch);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+$r12 = newarray (java.lang.Object)[2];
+$r13 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r12[0] = $r13;
+$r14 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r30);
+$r12[1] = $r14;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r12);
+"
+    "Block 15:
+[preds: 13 14 ] [succs: 20 ]
+goto [?= return];
+"
+    "Block 16:
+[preds: 10 ] [succs: 17 18 ]
+r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+if r31 == null goto r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r9 = newarray (java.lang.Object)[2];
+$r10 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r9[0] = $r10;
+$r11 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r31);
+$r9[1] = $r11;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r9);
+"
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r32 == null goto return;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 ]
+$r6 = newarray (java.lang.Object)[2];
+$r7 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r6[0] = $r7;
+$r8 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r32);
+$r6[1] = $r8;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r6);
+"
+    "Block 20:
+[preds: 15 18 19 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory;
+r5 := @parameter1: java.util.Locale;
+r1 := @parameter2: java.util.List;
+r19 := @parameter3: java.lang.String[];
+r2 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r1);
+r24 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.List getFormats(java.lang.String)>(\"any\");
+if r24 == r1 goto i0 = 0;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$r22 = newarray (java.lang.Object)[3];
+$r23 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r22[0] = $r23;
+$r22[1] = r24;
+$r22[2] = r1;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: returns %s, expected %s.%n\", $r22);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory;
+r5 := @parameter1: java.util.Locale;
+r1 := @parameter2: java.util.List;
+r19 := @parameter3: java.lang.String[];
+r2 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r1);
+r24 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.List getFormats(java.lang.String)>(\"any\");
+if r24 == r1 goto i0 = 0;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+i0 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r22 = newarray (java.lang.Object)[3];
+$r23 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r22[0] = $r23;
+$r22[1] = r24;
+$r22[2] = r1;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: returns %s, expected %s.%n\", $r22);
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+i0 = 0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+i0 = 0;
+"->"Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+if i0 >= 10 goto r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+";
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+if i0 >= 10 goto r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r25 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r19);
+r26 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r25);
+if r26 == r2 goto i0 = i0 + 1;
+";
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+if i0 >= 10 goto r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+"->"Block 7:
+[preds: 3 ] [succs: 8 9 ]
+r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+$r3 = <java.util.Locale: java.util.Locale US>;
+$z0 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>($r3);
+if $z0 == 0 goto $r28 = <java.util.Locale: java.util.Locale US>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r25 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r19);
+r26 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r25);
+if r26 == r2 goto i0 = i0 + 1;
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+$r20 = newarray (java.lang.Object)[3];
+$r21 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r20[0] = $r21;
+$r20[1] = r26;
+$r20[2] = r2;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: doesn\'t return the singleton: got %s, expected %s%n\", $r20);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r25 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r19);
+r26 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.util.ResourceBundle$Control getControl(java.util.List)>(r25);
+if r26 == r2 goto i0 = i0 + 1;
+"->"Block 6:
+[preds: 4 5 ] [succs: 3 ]
+i0 = i0 + 1;
+goto [?= (branch)];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+$r20 = newarray (java.lang.Object)[3];
+$r21 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r20[0] = $r21;
+$r20[1] = r26;
+$r20[2] = r2;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: doesn\'t return the singleton: got %s, expected %s%n\", $r20);
+"->"Block 6:
+[preds: 4 5 ] [succs: 3 ]
+i0 = i0 + 1;
+goto [?= (branch)];
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 3 ]
+i0 = i0 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+if i0 >= 10 goto r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+";
+    "Block 7:
+[preds: 3 ] [succs: 8 9 ]
+r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+$r3 = <java.util.Locale: java.util.Locale US>;
+$z0 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>($r3);
+if $z0 == 0 goto $r28 = <java.util.Locale: java.util.Locale US>;
+"->"Block 8:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale JAPAN>;
+goto [?= r4 = $r28];
+";
+    "Block 7:
+[preds: 3 ] [succs: 8 9 ]
+r27 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+$r3 = <java.util.Locale: java.util.Locale US>;
+$z0 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>($r3);
+if $z0 == 0 goto $r28 = <java.util.Locale: java.util.Locale US>;
+"->"Block 9:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale US>;
+";
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale JAPAN>;
+goto [?= r4 = $r28];
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 16 ]
+r4 = $r28;
+if r5 == null goto r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+$r28 = <java.util.Locale: java.util.Locale US>;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 16 ]
+r4 = $r28;
+if r5 == null goto r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 16 ]
+r4 = $r28;
+if r5 == null goto r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+r29 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+$z1 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>(r29);
+if $z1 != 0 goto r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 16 ]
+r4 = $r28;
+if r5 == null goto r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+"->"Block 16:
+[preds: 10 ] [succs: 17 18 ]
+r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+if r31 == null goto r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+r29 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+$z1 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>(r29);
+if $z1 != 0 goto r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+$r15 = newarray (java.lang.Object)[3];
+$r16 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r15[0] = $r16;
+$r17 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r29);
+$r15[1] = $r17;
+$r18 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r27);
+$r15[2] = $r18;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return default locale. got %s, expected %s%n\", $r15);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+r29 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+$z1 = virtualinvoke r27.<java.util.Locale: boolean equals(java.lang.Object)>(r29);
+if $z1 != 0 goto r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r30 == null goto (branch);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r15 = newarray (java.lang.Object)[3];
+$r16 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r15[0] = $r16;
+$r17 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r29);
+$r15[1] = $r17;
+$r18 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r27);
+$r15[2] = $r18;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return default locale. got %s, expected %s%n\", $r15);
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r30 == null goto (branch);
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r30 == null goto (branch);
+"->"Block 14:
+[preds: 13 ] [succs: 15 ]
+$r12 = newarray (java.lang.Object)[2];
+$r13 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r12[0] = $r13;
+$r14 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r30);
+$r12[1] = $r14;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r12);
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r30 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r30 == null goto (branch);
+"->"Block 15:
+[preds: 13 14 ] [succs: 20 ]
+goto [?= return];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+$r12 = newarray (java.lang.Object)[2];
+$r13 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r12[0] = $r13;
+$r14 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r30);
+$r12[1] = $r14;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r12);
+"->"Block 15:
+[preds: 13 14 ] [succs: 20 ]
+goto [?= return];
+";
+    "Block 15:
+[preds: 13 14 ] [succs: 20 ]
+goto [?= return];
+"->"Block 20:
+[preds: 15 18 19 ] [succs: ]
+return;
+";
+    "Block 16:
+[preds: 10 ] [succs: 17 18 ]
+r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+if r31 == null goto r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+$r9 = newarray (java.lang.Object)[2];
+$r10 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r9[0] = $r10;
+$r11 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r31);
+$r9[1] = $r11;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r9);
+";
+    "Block 16:
+[preds: 10 ] [succs: 17 18 ]
+r31 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r4);
+if r31 == null goto r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r32 == null goto return;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r9 = newarray (java.lang.Object)[2];
+$r10 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r9[0] = $r10;
+$r11 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r31);
+$r9[1] = $r11;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r9);
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r32 == null goto return;
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r32 == null goto return;
+"->"Block 19:
+[preds: 18 ] [succs: 20 ]
+$r6 = newarray (java.lang.Object)[2];
+$r7 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r6[0] = $r7;
+$r8 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r32);
+$r6[1] = $r8;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r6);
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+r32 = virtualinvoke r2.<java.util.ResourceBundle$Control: java.util.Locale getFallbackLocale(java.lang.String,java.util.Locale)>(\"any\", r27);
+if r32 == null goto return;
+"->"Block 20:
+[preds: 15 18 19 ] [succs: ]
+return;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 ]
+$r6 = newarray (java.lang.Object)[2];
+$r7 = interfaceinvoke r0.<javaT.util.ResourceBundle.Control.ControlFactoryTest$Factory: java.lang.String name()>();
+$r6[0] = $r7;
+$r8 = staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: java.lang.String toString(java.util.Locale)>(r32);
+$r6[1] = $r8;
+staticinvoke <javaT.util.ResourceBundle.Control.ControlFactoryTest: void error(java.lang.String,java.lang.Object[])>(\"%s: getFallbackLocale doesn\'t return null. got %s%n\", $r6);
+"->"Block 20:
+[preds: 15 18 19 ] [succs: ]
+return;
+";
+}

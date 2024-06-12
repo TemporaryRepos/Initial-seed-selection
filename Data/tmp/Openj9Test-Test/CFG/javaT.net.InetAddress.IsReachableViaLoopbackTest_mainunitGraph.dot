@@ -1,0 +1,155 @@
+digraph "unitGraph" {
+    "r27 := @parameter0: java.lang.String[]"
+    "r28 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"localhost\")"
+    "r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"bugs.openjdk.java.net\")"
+    "$z0 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(int)>(10000)"
+    "if $z0 != 0 goto r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"
+    "$r20 = new java.lang.RuntimeException"
+    "specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"
+    "throw $r20"
+    "r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"
+    "if r1 == null goto $r2 = <java.lang.System: java.io.PrintStream out>"
+    "$z1 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"
+    "if $z1 != 0 goto $r5 = <java.lang.System: java.io.PrintStream out>"
+    "$r19 = new java.lang.RuntimeException"
+    "specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"
+    "throw $r19"
+    "$r5 = <java.lang.System: java.io.PrintStream out>"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is reachable\")"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"
+    "$z2 = virtualinvoke r0.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"
+    "if $z2 == 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = new java.lang.RuntimeException"
+    "$r15 = new java.lang.StringBuilder"
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" is reachable\")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)"
+    "throw $r14"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is NOT reachable\")"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13)"
+    "goto [?= (branch)]"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"inf == null\")"
+    "goto [?= $r3 = <java.lang.System: java.io.PrintStream out>]"
+    "$r21 := @caughtexception"
+    "r29 = $r21"
+    "$r22 = new java.lang.RuntimeException"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception:\")"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r29)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)"
+    "throw $r22"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IsReachableViaLoopbackTest EXIT\")"
+    "return"
+    "r27 := @parameter0: java.lang.String[]"->"r28 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"localhost\")";
+    "r27 := @parameter0: java.lang.String[]"->"$r21 := @caughtexception";
+    "r28 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"localhost\")"->"r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"bugs.openjdk.java.net\")";
+    "r28 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"localhost\")"->"$r21 := @caughtexception";
+    "r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"bugs.openjdk.java.net\")"->"$z0 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(int)>(10000)";
+    "r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(\"bugs.openjdk.java.net\")"->"$r21 := @caughtexception";
+    "$z0 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(int)>(10000)"->"if $z0 != 0 goto r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)";
+    "$z0 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(int)>(10000)"->"$r21 := @caughtexception";
+    "if $z0 != 0 goto r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"->"$r20 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"->"r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)";
+    "if $z0 != 0 goto r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"->"$r21 := @caughtexception";
+    "$r20 = new java.lang.RuntimeException"->"specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")";
+    "$r20 = new java.lang.RuntimeException"->"$r21 := @caughtexception";
+    "specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"->"throw $r20";
+    "specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"->"$r21 := @caughtexception";
+    "throw $r20"->"$r21 := @caughtexception";
+    "r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"->"if r1 == null goto $r2 = <java.lang.System: java.io.PrintStream out>";
+    "r1 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByInetAddress(java.net.InetAddress)>(r28)"->"$r21 := @caughtexception";
+    "if r1 == null goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$z1 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)";
+    "if r1 == null goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "if r1 == null goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "$z1 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"->"if $z1 != 0 goto $r5 = <java.lang.System: java.io.PrintStream out>";
+    "$z1 = virtualinvoke r28.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"->"$r21 := @caughtexception";
+    "if $z1 != 0 goto $r5 = <java.lang.System: java.io.PrintStream out>"->"$r19 = new java.lang.RuntimeException";
+    "if $z1 != 0 goto $r5 = <java.lang.System: java.io.PrintStream out>"->"$r5 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 != 0 goto $r5 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "$r19 = new java.lang.RuntimeException"->"specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")";
+    "$r19 = new java.lang.RuntimeException"->"$r21 := @caughtexception";
+    "specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"->"throw $r19";
+    "specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Localhost should always be reachable\")"->"$r21 := @caughtexception";
+    "throw $r19"->"$r21 := @caughtexception";
+    "$r5 = <java.lang.System: java.io.PrintStream out>"->"$r4 = new java.lang.StringBuilder";
+    "$r5 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "$r4 = new java.lang.StringBuilder"->"$r21 := @caughtexception";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r21 := @caughtexception";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is reachable\")";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)"->"$r21 := @caughtexception";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is reachable\")"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is reachable\")"->"$r21 := @caughtexception";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r21 := @caughtexception";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"$z2 = virtualinvoke r0.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"$r21 := @caughtexception";
+    "$z2 = virtualinvoke r0.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"->"if $z2 == 0 goto $r10 = <java.lang.System: java.io.PrintStream out>";
+    "$z2 = virtualinvoke r0.<java.net.InetAddress: boolean isReachable(java.net.NetworkInterface,int,int)>(r1, 20, 10000)"->"$r21 := @caughtexception";
+    "if $z2 == 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r14 = new java.lang.RuntimeException";
+    "if $z2 == 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "if $z2 == 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "$r14 = new java.lang.RuntimeException"->"$r15 = new java.lang.StringBuilder";
+    "$r14 = new java.lang.RuntimeException"->"$r21 := @caughtexception";
+    "$r15 = new java.lang.StringBuilder"->"specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()";
+    "$r15 = new java.lang.StringBuilder"->"$r21 := @caughtexception";
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)";
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"->"$r21 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" is reachable\")";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"->"$r21 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" is reachable\")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" is reachable\")"->"$r21 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r21 := @caughtexception";
+    "specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)"->"throw $r14";
+    "specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)"->"$r21 := @caughtexception";
+    "throw $r14"->"$r21 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r9 = new java.lang.StringBuilder";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "$r9 = new java.lang.StringBuilder"->"$r21 := @caughtexception";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r21 := @caughtexception";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is NOT reachable\")";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r0)"->"$r21 := @caughtexception";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is NOT reachable\")"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  is NOT reachable\")"->"$r21 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13)";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r21 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13)"->"goto [?= (branch)]";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13)"->"$r21 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r3 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= (branch)]"->"$r21 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"inf == null\")";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r21 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"inf == null\")"->"goto [?= $r3 = <java.lang.System: java.io.PrintStream out>]";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"inf == null\")"->"$r21 := @caughtexception";
+    "goto [?= $r3 = <java.lang.System: java.io.PrintStream out>]"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "$r21 := @caughtexception"->"r29 = $r21";
+    "r29 = $r21"->"$r22 = new java.lang.RuntimeException";
+    "$r22 = new java.lang.RuntimeException"->"$r23 = new java.lang.StringBuilder";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception:\")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception:\")"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r29)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r29)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)";
+    "specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)"->"throw $r22";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IsReachableViaLoopbackTest EXIT\")";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IsReachableViaLoopbackTest EXIT\")"->"return";
+}

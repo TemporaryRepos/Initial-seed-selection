@@ -1,0 +1,298 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r28 := @parameter0: java.lang.String[];
+$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\");
+$z0 = virtualinvoke $r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\");
+if $z0 == 0 goto $r1 = \"true\";
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+$r1 = \"true\";
+$r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.net.preferIPv4Stack\");
+z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"0.0.0.0\");
+if z1 != 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z3 = staticinvoke <javaT.net.Inet4Address.PingThis: boolean hasIPv6()>();
+if $z3 == 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"::0\");
+"
+    "Block 5:
+[preds: 2 3 4 ] [succs: 6 ]
+r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 6:
+[preds: 5 10 ] [succs: 7 11 ]
+$z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto return;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.lang.String) $r6;
+r29 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(r7);
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The target ip is \");
+$r11 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+z2 = virtualinvoke r29.<java.net.InetAddress: boolean isReachable(int)>(3000);
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"the target is reachable: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z2);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+if z2 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>(\"Test passed \");
+goto [?= (branch)];
+"
+    "Block 9:
+[preds: 7 ] [succs: ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"Test failed \");
+$r20 = new java.lang.Exception;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"address \");
+$r23 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" can not be reachable!\");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>($r26);
+throw $r20;
+"
+    "Block 10:
+[preds: 8 ] [succs: 6 ]
+goto [?= $z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 11:
+[preds: 6 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r28 := @parameter0: java.lang.String[];
+$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\");
+$z0 = virtualinvoke $r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\");
+if $z0 == 0 goto $r1 = \"true\";
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r28 := @parameter0: java.lang.String[];
+$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\");
+$z0 = virtualinvoke $r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\");
+if $z0 == 0 goto $r1 = \"true\";
+"->"Block 2:
+[preds: 0 ] [succs: 3 5 ]
+$r1 = \"true\";
+$r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.net.preferIPv4Stack\");
+z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"0.0.0.0\");
+if z1 != 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+$r1 = \"true\";
+$r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.net.preferIPv4Stack\");
+z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"0.0.0.0\");
+if z1 != 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z3 = staticinvoke <javaT.net.Inet4Address.PingThis: boolean hasIPv6()>();
+if $z3 == 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+$r1 = \"true\";
+$r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.net.preferIPv4Stack\");
+z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+r4 = $r3;
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"0.0.0.0\");
+if z1 != 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 5:
+[preds: 2 3 4 ] [succs: 6 ]
+r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z3 = staticinvoke <javaT.net.Inet4Address.PingThis: boolean hasIPv6()>();
+if $z3 == 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"::0\");
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z3 = staticinvoke <javaT.net.Inet4Address.PingThis: boolean hasIPv6()>();
+if $z3 == 0 goto r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 5:
+[preds: 2 3 4 ] [succs: 6 ]
+r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+interfaceinvoke r4.<java.util.List: boolean add(java.lang.Object)>(\"::0\");
+"->"Block 5:
+[preds: 2 3 4 ] [succs: 6 ]
+r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 5:
+[preds: 2 3 4 ] [succs: 6 ]
+r5 = interfaceinvoke r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 6:
+[preds: 5 10 ] [succs: 7 11 ]
+$z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto return;
+";
+    "Block 6:
+[preds: 5 10 ] [succs: 7 11 ]
+$z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto return;
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.lang.String) $r6;
+r29 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(r7);
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The target ip is \");
+$r11 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+z2 = virtualinvoke r29.<java.net.InetAddress: boolean isReachable(int)>(3000);
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"the target is reachable: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z2);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+if z2 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 6:
+[preds: 5 10 ] [succs: 7 11 ]
+$z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto return;
+"->"Block 11:
+[preds: 6 ] [succs: ]
+return;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.lang.String) $r6;
+r29 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(r7);
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The target ip is \");
+$r11 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+z2 = virtualinvoke r29.<java.net.InetAddress: boolean isReachable(int)>(3000);
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"the target is reachable: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z2);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+if z2 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 8:
+[preds: 7 ] [succs: 10 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>(\"Test passed \");
+goto [?= (branch)];
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.lang.String) $r6;
+r29 = staticinvoke <java.net.InetAddress: java.net.InetAddress getByName(java.lang.String)>(r7);
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The target ip is \");
+$r11 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+z2 = virtualinvoke r29.<java.net.InetAddress: boolean isReachable(int)>(3000);
+$r15 = <java.lang.System: java.io.PrintStream out>;
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"the target is reachable: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z2);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+if z2 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 9:
+[preds: 7 ] [succs: ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"Test failed \");
+$r20 = new java.lang.Exception;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"address \");
+$r23 = virtualinvoke r29.<java.net.InetAddress: java.lang.String getHostAddress()>();
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" can not be reachable!\");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>($r26);
+throw $r20;
+";
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>(\"Test passed \");
+goto [?= (branch)];
+"->"Block 10:
+[preds: 8 ] [succs: 6 ]
+goto [?= $z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 10:
+[preds: 8 ] [succs: 6 ]
+goto [?= $z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 6:
+[preds: 5 10 ] [succs: 7 11 ]
+$z4 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto return;
+";
+}

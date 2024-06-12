@@ -1,0 +1,71 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: byte[]"
+    "$r0 = new java.util.zip.Deflater"
+    "specialinvoke $r0.<java.util.zip.Deflater: void <init>()>()"
+    "r1 = $r0"
+    "virtualinvoke r1.<java.util.zip.Deflater: void setInput(byte[])>(r2)"
+    "virtualinvoke r1.<java.util.zip.Deflater: void finish()>()"
+    "$r3 = new java.io.ByteArrayOutputStream"
+    "$i0 = lengthof r2"
+    "specialinvoke $r3.<java.io.ByteArrayOutputStream: void <init>(int)>($i0)"
+    "r4 = $r3"
+    "r5 = newarray (byte)[1024]"
+    "$z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()"
+    "if $z0 != 0 goto r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+    "i1 = virtualinvoke r1.<java.util.zip.Deflater: int deflate(byte[])>(r5)"
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r5, 0, i1)"
+    "goto [?= $z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()]"
+    "r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()"
+    "goto [?= virtualinvoke r1.<java.util.zip.Deflater: void end()>()]"
+    "$r9 := @caughtexception"
+    "virtualinvoke r1.<java.util.zip.Deflater: void end()>()"
+    "goto [?= return r10]"
+    "$r8 := @caughtexception"
+    "r7 = $r8"
+    "$r6 := @caughtexception"
+    "throw r7"
+    "return r10"
+    "r2 := @parameter0: byte[]"->"$r0 = new java.util.zip.Deflater";
+    "$r0 = new java.util.zip.Deflater"->"specialinvoke $r0.<java.util.zip.Deflater: void <init>()>()";
+    "specialinvoke $r0.<java.util.zip.Deflater: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"virtualinvoke r1.<java.util.zip.Deflater: void setInput(byte[])>(r2)";
+    "virtualinvoke r1.<java.util.zip.Deflater: void setInput(byte[])>(r2)"->"virtualinvoke r1.<java.util.zip.Deflater: void finish()>()";
+    "virtualinvoke r1.<java.util.zip.Deflater: void finish()>()"->"$r3 = new java.io.ByteArrayOutputStream";
+    "$r3 = new java.io.ByteArrayOutputStream"->"$i0 = lengthof r2";
+    "$i0 = lengthof r2"->"specialinvoke $r3.<java.io.ByteArrayOutputStream: void <init>(int)>($i0)";
+    "specialinvoke $r3.<java.io.ByteArrayOutputStream: void <init>(int)>($i0)"->"r4 = $r3";
+    "r4 = $r3"->"r5 = newarray (byte)[1024]";
+    "r5 = newarray (byte)[1024]"->"$z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()";
+    "r5 = newarray (byte)[1024]"->"$r8 := @caughtexception";
+    "$z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()"->"if $z0 != 0 goto r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()";
+    "$z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()"->"$r8 := @caughtexception";
+    "if $z0 != 0 goto r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"i1 = virtualinvoke r1.<java.util.zip.Deflater: int deflate(byte[])>(r5)";
+    "if $z0 != 0 goto r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()";
+    "if $z0 != 0 goto r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"$r8 := @caughtexception";
+    "i1 = virtualinvoke r1.<java.util.zip.Deflater: int deflate(byte[])>(r5)"->"virtualinvoke r4.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r5, 0, i1)";
+    "i1 = virtualinvoke r1.<java.util.zip.Deflater: int deflate(byte[])>(r5)"->"$r8 := @caughtexception";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r5, 0, i1)"->"goto [?= $z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()]";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r5, 0, i1)"->"$r8 := @caughtexception";
+    "goto [?= $z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()]"->"$z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()";
+    "goto [?= $z0 = virtualinvoke r1.<java.util.zip.Deflater: boolean finished()>()]"->"$r8 := @caughtexception";
+    "r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"$r9 := @caughtexception";
+    "r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"$r8 := @caughtexception";
+    "r10 = virtualinvoke r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()"->"goto [?= virtualinvoke r1.<java.util.zip.Deflater: void end()>()]";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()"->"$r9 := @caughtexception";
+    "goto [?= virtualinvoke r1.<java.util.zip.Deflater: void end()>()]"->"virtualinvoke r1.<java.util.zip.Deflater: void end()>()";
+    "$r9 := @caughtexception"->"virtualinvoke r1.<java.util.zip.Deflater: void end()>()";
+    "virtualinvoke r1.<java.util.zip.Deflater: void end()>()"->"goto [?= return r10]";
+    "goto [?= return r10]"->"return r10";
+    "$r8 := @caughtexception"->"r7 = $r8";
+    "$r8 := @caughtexception"->"$r8 := @caughtexception";
+    "r7 = $r8"->"$r6 := @caughtexception";
+    "r7 = $r8"->"$r8 := @caughtexception";
+    "r7 = $r8"->"virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()"->"goto [?= virtualinvoke r1.<java.util.zip.Deflater: void end()>()]";
+    "virtualinvoke r4.<java.io.ByteArrayOutputStream: void close()>()"->"$r6 := @caughtexception";
+    "goto [?= virtualinvoke r1.<java.util.zip.Deflater: void end()>()]"->"virtualinvoke r1.<java.util.zip.Deflater: void end()>()";
+    "$r6 := @caughtexception"->"virtualinvoke r1.<java.util.zip.Deflater: void end()>()";
+    "virtualinvoke r1.<java.util.zip.Deflater: void end()>()"->"throw r7";
+}

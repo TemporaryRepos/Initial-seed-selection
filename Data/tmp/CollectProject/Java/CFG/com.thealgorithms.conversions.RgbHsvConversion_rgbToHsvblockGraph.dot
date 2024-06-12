@@ -1,0 +1,426 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+if i0 < 0 goto $r0 = new java.lang.IllegalArgumentException;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= 255 goto (branch);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+$r0 = new java.lang.IllegalArgumentException;
+specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"red should be between 0 and 255\");
+throw $r0;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i1 < 0 goto $r1 = new java.lang.IllegalArgumentException;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+if i1 <= 255 goto (branch);
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = new java.lang.IllegalArgumentException;
+specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"green should be between 0 and 255\");
+throw $r1;
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if i2 < 0 goto $r2 = new java.lang.IllegalArgumentException;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+if i2 <= 255 goto $d0 = (double) i0;
+"
+    "Block 8:
+[preds: 6 7 ] [succs: ]
+$r2 = new java.lang.IllegalArgumentException;
+specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"blue should be between 0 and 255\");
+throw $r2;
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$d0 = (double) i0;
+d1 = $d0 / 255.0;
+$d2 = (double) i1;
+d3 = $d2 / 255.0;
+$d4 = (double) i2;
+d5 = $d4 / 255.0;
+$d6 = staticinvoke <java.lang.Math: double max(double,double)>(d1, d3);
+d7 = staticinvoke <java.lang.Math: double max(double,double)>($d6, d5);
+$d8 = staticinvoke <java.lang.Math: double min(double,double)>(d1, d3);
+$d9 = staticinvoke <java.lang.Math: double min(double,double)>($d8, d5);
+d10 = d7 - $d9;
+$b3 = d7 cmpl 0.0;
+if $b3 != 0 goto $d21 = d10 / d7;
+"
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+$d21 = 0.0;
+goto [?= d11 = $d21];
+"
+    "Block 11:
+[preds: 9 ] [succs: 12 ]
+$d21 = d10 / d7;
+"
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+d11 = $d21;
+$b4 = d10 cmpl 0.0;
+if $b4 != 0 goto $b5 = d7 cmpl d1;
+"
+    "Block 13:
+[preds: 12 ] [succs: 19 ]
+d22 = 0.0;
+goto [?= $d23 = d22 + 360.0];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$b5 = d7 cmpl d1;
+if $b5 != 0 goto $b6 = d7 cmpl d3;
+"
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$d18 = d3 - d5;
+$d19 = $d18 / d10;
+$d20 = 0.0 + $d19;
+d22 = 60.0 * $d20;
+goto [?= $d23 = d22 + 360.0];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$b6 = d7 cmpl d3;
+if $b6 != 0 goto $d12 = d1 - d3;
+"
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$d15 = d5 - d1;
+$d16 = $d15 / d10;
+$d17 = 2.0 + $d16;
+d22 = 60.0 * $d17;
+goto [?= $d23 = d22 + 360.0];
+"
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$d12 = d1 - d3;
+$d13 = $d12 / d10;
+$d14 = 4.0 + $d13;
+d22 = 60.0 * $d14;
+"
+    "Block 19:
+[preds: 13 15 17 18 ] [succs: ]
+$d23 = d22 + 360.0;
+d24 = $d23 % 360.0;
+$r3 = newarray (double)[3];
+$r3[0] = d24;
+$r3[1] = d11;
+$r3[2] = d7;
+return $r3;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+if i0 < 0 goto $r0 = new java.lang.IllegalArgumentException;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= 255 goto (branch);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+if i0 < 0 goto $r0 = new java.lang.IllegalArgumentException;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r0 = new java.lang.IllegalArgumentException;
+specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"red should be between 0 and 255\");
+throw $r0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= 255 goto (branch);
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r0 = new java.lang.IllegalArgumentException;
+specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"red should be between 0 and 255\");
+throw $r0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= 255 goto (branch);
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i1 < 0 goto $r1 = new java.lang.IllegalArgumentException;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i1 < 0 goto $r1 = new java.lang.IllegalArgumentException;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+if i1 <= 255 goto (branch);
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i1 < 0 goto $r1 = new java.lang.IllegalArgumentException;
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = new java.lang.IllegalArgumentException;
+specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"green should be between 0 and 255\");
+throw $r1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+if i1 <= 255 goto (branch);
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = new java.lang.IllegalArgumentException;
+specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"green should be between 0 and 255\");
+throw $r1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+if i1 <= 255 goto (branch);
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if i2 < 0 goto $r2 = new java.lang.IllegalArgumentException;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if i2 < 0 goto $r2 = new java.lang.IllegalArgumentException;
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+if i2 <= 255 goto $d0 = (double) i0;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if i2 < 0 goto $r2 = new java.lang.IllegalArgumentException;
+"->"Block 8:
+[preds: 6 7 ] [succs: ]
+$r2 = new java.lang.IllegalArgumentException;
+specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"blue should be between 0 and 255\");
+throw $r2;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+if i2 <= 255 goto $d0 = (double) i0;
+"->"Block 8:
+[preds: 6 7 ] [succs: ]
+$r2 = new java.lang.IllegalArgumentException;
+specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"blue should be between 0 and 255\");
+throw $r2;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+if i2 <= 255 goto $d0 = (double) i0;
+"->"Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$d0 = (double) i0;
+d1 = $d0 / 255.0;
+$d2 = (double) i1;
+d3 = $d2 / 255.0;
+$d4 = (double) i2;
+d5 = $d4 / 255.0;
+$d6 = staticinvoke <java.lang.Math: double max(double,double)>(d1, d3);
+d7 = staticinvoke <java.lang.Math: double max(double,double)>($d6, d5);
+$d8 = staticinvoke <java.lang.Math: double min(double,double)>(d1, d3);
+$d9 = staticinvoke <java.lang.Math: double min(double,double)>($d8, d5);
+d10 = d7 - $d9;
+$b3 = d7 cmpl 0.0;
+if $b3 != 0 goto $d21 = d10 / d7;
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$d0 = (double) i0;
+d1 = $d0 / 255.0;
+$d2 = (double) i1;
+d3 = $d2 / 255.0;
+$d4 = (double) i2;
+d5 = $d4 / 255.0;
+$d6 = staticinvoke <java.lang.Math: double max(double,double)>(d1, d3);
+d7 = staticinvoke <java.lang.Math: double max(double,double)>($d6, d5);
+$d8 = staticinvoke <java.lang.Math: double min(double,double)>(d1, d3);
+$d9 = staticinvoke <java.lang.Math: double min(double,double)>($d8, d5);
+d10 = d7 - $d9;
+$b3 = d7 cmpl 0.0;
+if $b3 != 0 goto $d21 = d10 / d7;
+"->"Block 10:
+[preds: 9 ] [succs: 12 ]
+$d21 = 0.0;
+goto [?= d11 = $d21];
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$d0 = (double) i0;
+d1 = $d0 / 255.0;
+$d2 = (double) i1;
+d3 = $d2 / 255.0;
+$d4 = (double) i2;
+d5 = $d4 / 255.0;
+$d6 = staticinvoke <java.lang.Math: double max(double,double)>(d1, d3);
+d7 = staticinvoke <java.lang.Math: double max(double,double)>($d6, d5);
+$d8 = staticinvoke <java.lang.Math: double min(double,double)>(d1, d3);
+$d9 = staticinvoke <java.lang.Math: double min(double,double)>($d8, d5);
+d10 = d7 - $d9;
+$b3 = d7 cmpl 0.0;
+if $b3 != 0 goto $d21 = d10 / d7;
+"->"Block 11:
+[preds: 9 ] [succs: 12 ]
+$d21 = d10 / d7;
+";
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+$d21 = 0.0;
+goto [?= d11 = $d21];
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+d11 = $d21;
+$b4 = d10 cmpl 0.0;
+if $b4 != 0 goto $b5 = d7 cmpl d1;
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 ]
+$d21 = d10 / d7;
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+d11 = $d21;
+$b4 = d10 cmpl 0.0;
+if $b4 != 0 goto $b5 = d7 cmpl d1;
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+d11 = $d21;
+$b4 = d10 cmpl 0.0;
+if $b4 != 0 goto $b5 = d7 cmpl d1;
+"->"Block 13:
+[preds: 12 ] [succs: 19 ]
+d22 = 0.0;
+goto [?= $d23 = d22 + 360.0];
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+d11 = $d21;
+$b4 = d10 cmpl 0.0;
+if $b4 != 0 goto $b5 = d7 cmpl d1;
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$b5 = d7 cmpl d1;
+if $b5 != 0 goto $b6 = d7 cmpl d3;
+";
+    "Block 13:
+[preds: 12 ] [succs: 19 ]
+d22 = 0.0;
+goto [?= $d23 = d22 + 360.0];
+"->"Block 19:
+[preds: 13 15 17 18 ] [succs: ]
+$d23 = d22 + 360.0;
+d24 = $d23 % 360.0;
+$r3 = newarray (double)[3];
+$r3[0] = d24;
+$r3[1] = d11;
+$r3[2] = d7;
+return $r3;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$b5 = d7 cmpl d1;
+if $b5 != 0 goto $b6 = d7 cmpl d3;
+"->"Block 15:
+[preds: 14 ] [succs: 19 ]
+$d18 = d3 - d5;
+$d19 = $d18 / d10;
+$d20 = 0.0 + $d19;
+d22 = 60.0 * $d20;
+goto [?= $d23 = d22 + 360.0];
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$b5 = d7 cmpl d1;
+if $b5 != 0 goto $b6 = d7 cmpl d3;
+"->"Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$b6 = d7 cmpl d3;
+if $b6 != 0 goto $d12 = d1 - d3;
+";
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$d18 = d3 - d5;
+$d19 = $d18 / d10;
+$d20 = 0.0 + $d19;
+d22 = 60.0 * $d20;
+goto [?= $d23 = d22 + 360.0];
+"->"Block 19:
+[preds: 13 15 17 18 ] [succs: ]
+$d23 = d22 + 360.0;
+d24 = $d23 % 360.0;
+$r3 = newarray (double)[3];
+$r3[0] = d24;
+$r3[1] = d11;
+$r3[2] = d7;
+return $r3;
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$b6 = d7 cmpl d3;
+if $b6 != 0 goto $d12 = d1 - d3;
+"->"Block 17:
+[preds: 16 ] [succs: 19 ]
+$d15 = d5 - d1;
+$d16 = $d15 / d10;
+$d17 = 2.0 + $d16;
+d22 = 60.0 * $d17;
+goto [?= $d23 = d22 + 360.0];
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$b6 = d7 cmpl d3;
+if $b6 != 0 goto $d12 = d1 - d3;
+"->"Block 18:
+[preds: 16 ] [succs: 19 ]
+$d12 = d1 - d3;
+$d13 = $d12 / d10;
+$d14 = 4.0 + $d13;
+d22 = 60.0 * $d14;
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$d15 = d5 - d1;
+$d16 = $d15 / d10;
+$d17 = 2.0 + $d16;
+d22 = 60.0 * $d17;
+goto [?= $d23 = d22 + 360.0];
+"->"Block 19:
+[preds: 13 15 17 18 ] [succs: ]
+$d23 = d22 + 360.0;
+d24 = $d23 % 360.0;
+$r3 = newarray (double)[3];
+$r3[0] = d24;
+$r3[1] = d11;
+$r3[2] = d7;
+return $r3;
+";
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$d12 = d1 - d3;
+$d13 = $d12 / d10;
+$d14 = 4.0 + $d13;
+d22 = 60.0 * $d14;
+"->"Block 19:
+[preds: 13 15 17 18 ] [succs: ]
+$d23 = d22 + 360.0;
+d24 = $d23 % 360.0;
+$r3 = newarray (double)[3];
+$r3[0] = d24;
+$r3[1] = d11;
+$r3[2] = d7;
+return $r3;
+";
+}

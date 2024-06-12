@@ -1,0 +1,44 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: int[]"
+    "i7 = 0"
+    "$i0 = lengthof r0"
+    "$i1 = $i0 - 1"
+    "if i7 >= $i1 goto return r0"
+    "i8 = i7 + 1"
+    "$i2 = lengthof r0"
+    "if i8 >= $i2 goto i7 = i7 + 1"
+    "$i4 = r0[i7]"
+    "$i3 = r0[i8]"
+    "if $i4 <= $i3 goto i8 = i8 + 1"
+    "i5 = r0[i7]"
+    "$i6 = r0[i8]"
+    "r0[i7] = $i6"
+    "r0[i8] = i5"
+    "i8 = i8 + 1"
+    "goto [?= $i2 = lengthof r0]"
+    "i7 = i7 + 1"
+    "goto [?= $i0 = lengthof r0]"
+    "return r0"
+    "r0 := @parameter0: int[]"->"i7 = 0";
+    "i7 = 0"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"$i1 = $i0 - 1";
+    "$i1 = $i0 - 1"->"if i7 >= $i1 goto return r0";
+    "if i7 >= $i1 goto return r0"->"i8 = i7 + 1";
+    "if i7 >= $i1 goto return r0"->"return r0";
+    "i8 = i7 + 1"->"$i2 = lengthof r0";
+    "$i2 = lengthof r0"->"if i8 >= $i2 goto i7 = i7 + 1";
+    "if i8 >= $i2 goto i7 = i7 + 1"->"$i4 = r0[i7]";
+    "if i8 >= $i2 goto i7 = i7 + 1"->"i7 = i7 + 1";
+    "$i4 = r0[i7]"->"$i3 = r0[i8]";
+    "$i3 = r0[i8]"->"if $i4 <= $i3 goto i8 = i8 + 1";
+    "if $i4 <= $i3 goto i8 = i8 + 1"->"i5 = r0[i7]";
+    "if $i4 <= $i3 goto i8 = i8 + 1"->"i8 = i8 + 1";
+    "i5 = r0[i7]"->"$i6 = r0[i8]";
+    "$i6 = r0[i8]"->"r0[i7] = $i6";
+    "r0[i7] = $i6"->"r0[i8] = i5";
+    "r0[i8] = i5"->"i8 = i8 + 1";
+    "i8 = i8 + 1"->"goto [?= $i2 = lengthof r0]";
+    "goto [?= $i2 = lengthof r0]"->"$i2 = lengthof r0";
+    "i7 = i7 + 1"->"goto [?= $i0 = lengthof r0]";
+    "goto [?= $i0 = lengthof r0]"->"$i0 = lengthof r0";
+}

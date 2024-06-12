@@ -1,0 +1,100 @@
+digraph "unitGraph" {
+    "r26 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"
+    "$z0 = virtualinvoke r0.<java.net.InetAddress: boolean isLoopbackAddress()>()"
+    "if $z0 == 0 goto $r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()"
+    "$r25 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"Local host name is resolved into a loopback address. Quit now!\")"
+    "return"
+    "$r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()"
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"host.name\", $r1)"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r3 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"test.src\", \".\")"
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/policy.file\")"
+    "r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"java.security.policy\", r6)"
+    "$r7 = new java.lang.SecurityManager"
+    "specialinvoke $r7.<java.lang.SecurityManager: void <init>()>()"
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r7)"
+    "r27 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"
+    "$r8 = new javax.security.auth.Subject"
+    "specialinvoke $r8.<javax.security.auth.Subject: void <init>()>()"
+    "r9 = $r8"
+    "$r10 = new javaT.net.InetAddress.MyPrincipal"
+    "specialinvoke $r10.<javaT.net.InetAddress.MyPrincipal: void <init>(java.lang.String)>(\"test\")"
+    "r11 = $r10"
+    "$r12 = virtualinvoke r9.<javax.security.auth.Subject: java.util.Set getPrincipals()>()"
+    "interfaceinvoke $r12.<java.util.Set: boolean add(java.lang.Object)>(r11)"
+    "$r13 = new javaT.net.InetAddress.MyAction"
+    "specialinvoke $r13.<javaT.net.InetAddress.MyAction: void <init>()>()"
+    "$r14 = staticinvoke <javax.security.auth.Subject: java.lang.Object doAsPrivileged(javax.security.auth.Subject,java.security.PrivilegedExceptionAction,java.security.AccessControlContext)>(r9, $r13, null)"
+    "r28 = (java.net.InetAddress) $r14"
+    "$z1 = virtualinvoke r27.<java.net.InetAddress: boolean equals(java.lang.Object)>(r28)"
+    "if $z1 == 0 goto return"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "$r15 = new java.lang.StringBuilder"
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"localHost1 = \")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r27)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)"
+    "$r20 = new java.lang.RuntimeException"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"InetAddress.getLocalHost() test  fails. localHost2 should be  the real address instead of  the loopback address.\")"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>($r24)"
+    "throw $r20"
+    "r26 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()";
+    "r0 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"$z0 = virtualinvoke r0.<java.net.InetAddress: boolean isLoopbackAddress()>()";
+    "$z0 = virtualinvoke r0.<java.net.InetAddress: boolean isLoopbackAddress()>()"->"if $z0 == 0 goto $r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()";
+    "if $z0 == 0 goto $r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()"->"$r25 = <java.lang.System: java.io.PrintStream err>";
+    "if $z0 == 0 goto $r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()"->"$r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()";
+    "$r25 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"Local host name is resolved into a loopback address. Quit now!\")";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"Local host name is resolved into a loopback address. Quit now!\")"->"return";
+    "$r1 = virtualinvoke r0.<java.net.InetAddress: java.lang.String getHostName()>()"->"staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"host.name\", $r1)";
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"host.name\", $r1)"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r3 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"test.src\", \".\")";
+    "$r3 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"test.src\", \".\")"->"$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)";
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/policy.file\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/policy.file\")"->"r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"java.security.policy\", r6)";
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"java.security.policy\", r6)"->"$r7 = new java.lang.SecurityManager";
+    "$r7 = new java.lang.SecurityManager"->"specialinvoke $r7.<java.lang.SecurityManager: void <init>()>()";
+    "specialinvoke $r7.<java.lang.SecurityManager: void <init>()>()"->"staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r7)";
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r7)"->"r27 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()";
+    "r27 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"$r8 = new javax.security.auth.Subject";
+    "$r8 = new javax.security.auth.Subject"->"specialinvoke $r8.<javax.security.auth.Subject: void <init>()>()";
+    "specialinvoke $r8.<javax.security.auth.Subject: void <init>()>()"->"r9 = $r8";
+    "r9 = $r8"->"$r10 = new javaT.net.InetAddress.MyPrincipal";
+    "$r10 = new javaT.net.InetAddress.MyPrincipal"->"specialinvoke $r10.<javaT.net.InetAddress.MyPrincipal: void <init>(java.lang.String)>(\"test\")";
+    "specialinvoke $r10.<javaT.net.InetAddress.MyPrincipal: void <init>(java.lang.String)>(\"test\")"->"r11 = $r10";
+    "r11 = $r10"->"$r12 = virtualinvoke r9.<javax.security.auth.Subject: java.util.Set getPrincipals()>()";
+    "$r12 = virtualinvoke r9.<javax.security.auth.Subject: java.util.Set getPrincipals()>()"->"interfaceinvoke $r12.<java.util.Set: boolean add(java.lang.Object)>(r11)";
+    "interfaceinvoke $r12.<java.util.Set: boolean add(java.lang.Object)>(r11)"->"$r13 = new javaT.net.InetAddress.MyAction";
+    "$r13 = new javaT.net.InetAddress.MyAction"->"specialinvoke $r13.<javaT.net.InetAddress.MyAction: void <init>()>()";
+    "specialinvoke $r13.<javaT.net.InetAddress.MyAction: void <init>()>()"->"$r14 = staticinvoke <javax.security.auth.Subject: java.lang.Object doAsPrivileged(javax.security.auth.Subject,java.security.PrivilegedExceptionAction,java.security.AccessControlContext)>(r9, $r13, null)";
+    "$r14 = staticinvoke <javax.security.auth.Subject: java.lang.Object doAsPrivileged(javax.security.auth.Subject,java.security.PrivilegedExceptionAction,java.security.AccessControlContext)>(r9, $r13, null)"->"r28 = (java.net.InetAddress) $r14";
+    "r28 = (java.net.InetAddress) $r14"->"$z1 = virtualinvoke r27.<java.net.InetAddress: boolean equals(java.lang.Object)>(r28)";
+    "$z1 = virtualinvoke r27.<java.net.InetAddress: boolean equals(java.lang.Object)>(r28)"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto return"->"return";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r15 = new java.lang.StringBuilder";
+    "$r15 = new java.lang.StringBuilder"->"specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"localHost1 = \")";
+    "$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"localHost1 = \")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r27)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r27)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)"->"$r20 = new java.lang.RuntimeException";
+    "$r20 = new java.lang.RuntimeException"->"$r21 = new java.lang.StringBuilder";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"InetAddress.getLocalHost() test  fails. localHost2 should be  the real address instead of  the loopback address.\")";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"InetAddress.getLocalHost() test  fails. localHost2 should be  the real address instead of  the loopback address.\")"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r28)"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>($r24)";
+    "specialinvoke $r20.<java.lang.RuntimeException: void <init>(java.lang.String)>($r24)"->"throw $r20";
+}

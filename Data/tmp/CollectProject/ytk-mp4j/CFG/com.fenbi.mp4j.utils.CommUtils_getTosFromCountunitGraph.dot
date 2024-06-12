@@ -1,0 +1,30 @@
+digraph "unitGraph" {
+    "i4 := @parameter0: int"
+    "r1 := @parameter1: int[]"
+    "i0 := @parameter2: int"
+    "r0 = newarray (int)[i0]"
+    "i5 = 0"
+    "if i5 >= i0 goto return r0"
+    "$i1 = r1[i5]"
+    "$i2 = i4 + $i1"
+    "r0[i5] = $i2"
+    "$i3 = r1[i5]"
+    "i4 = i4 + $i3"
+    "i5 = i5 + 1"
+    "goto [?= (branch)]"
+    "return r0"
+    "i4 := @parameter0: int"->"r1 := @parameter1: int[]";
+    "r1 := @parameter1: int[]"->"i0 := @parameter2: int";
+    "i0 := @parameter2: int"->"r0 = newarray (int)[i0]";
+    "r0 = newarray (int)[i0]"->"i5 = 0";
+    "i5 = 0"->"if i5 >= i0 goto return r0";
+    "if i5 >= i0 goto return r0"->"$i1 = r1[i5]";
+    "if i5 >= i0 goto return r0"->"return r0";
+    "$i1 = r1[i5]"->"$i2 = i4 + $i1";
+    "$i2 = i4 + $i1"->"r0[i5] = $i2";
+    "r0[i5] = $i2"->"$i3 = r1[i5]";
+    "$i3 = r1[i5]"->"i4 = i4 + $i3";
+    "i4 = i4 + $i3"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 >= i0 goto return r0";
+}

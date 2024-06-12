@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "i4 = 0"
+    "goto [?= $l2 = (long) i4]"
+    "staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()"
+    "i4 = i4 + 1"
+    "$l2 = (long) i4"
+    "$l1 = l0 / 2L"
+    "$b3 = $l2 cmp $l1"
+    "if $b3 < 0 goto staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()"
+    "return"
+    "l0 := @parameter0: long"->"i4 = 0";
+    "i4 = 0"->"goto [?= $l2 = (long) i4]";
+    "goto [?= $l2 = (long) i4]"->"$l2 = (long) i4";
+    "staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"$l2 = (long) i4";
+    "$l2 = (long) i4"->"$l1 = l0 / 2L";
+    "$l1 = l0 / 2L"->"$b3 = $l2 cmp $l1";
+    "$b3 = $l2 cmp $l1"->"if $b3 < 0 goto staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()";
+    "if $b3 < 0 goto staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()"->"return";
+    "if $b3 < 0 goto staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()"->"staticinvoke <TestGCOld: void oldGenSwapSubtrees()>()";
+}

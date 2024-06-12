@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "r7 := @parameter0: java.lang.String[]"
+    "$r0 = new javaT.lang.ClassLoader.TestClassLoader"
+    "specialinvoke $r0.<javaT.lang.ClassLoader.TestClassLoader: void <init>()>()"
+    "r1 = $r0"
+    "$r2 = new javaT.lang.ClassLoader.TestClassLoader"
+    "specialinvoke $r2.<javaT.lang.ClassLoader.TestClassLoader: void <init>(java.lang.ClassLoader)>(r1)"
+    "r3 = $r2"
+    "virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")"
+    "virtualinvoke r1.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")"
+    "$z0 = virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: boolean testPackageView(java.lang.String)>(\"foo\")"
+    "if $z0 != 0 goto return"
+    "$r6 = new java.lang.Exception"
+    "specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"Inconsistent packages view\")"
+    "throw $r6"
+    "return"
+    "r7 := @parameter0: java.lang.String[]"->"$r0 = new javaT.lang.ClassLoader.TestClassLoader";
+    "$r0 = new javaT.lang.ClassLoader.TestClassLoader"->"specialinvoke $r0.<javaT.lang.ClassLoader.TestClassLoader: void <init>()>()";
+    "specialinvoke $r0.<javaT.lang.ClassLoader.TestClassLoader: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"$r2 = new javaT.lang.ClassLoader.TestClassLoader";
+    "$r2 = new javaT.lang.ClassLoader.TestClassLoader"->"specialinvoke $r2.<javaT.lang.ClassLoader.TestClassLoader: void <init>(java.lang.ClassLoader)>(r1)";
+    "specialinvoke $r2.<javaT.lang.ClassLoader.TestClassLoader: void <init>(java.lang.ClassLoader)>(r1)"->"r3 = $r2";
+    "r3 = $r2"->"virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")";
+    "virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")"->"virtualinvoke r1.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")";
+    "virtualinvoke r1.<javaT.lang.ClassLoader.TestClassLoader: java.lang.Package defineEmptyPackage(java.lang.String)>(\"foo\")"->"$z0 = virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: boolean testPackageView(java.lang.String)>(\"foo\")";
+    "$z0 = virtualinvoke r3.<javaT.lang.ClassLoader.TestClassLoader: boolean testPackageView(java.lang.String)>(\"foo\")"->"if $z0 != 0 goto return";
+    "if $z0 != 0 goto return"->"$r6 = new java.lang.Exception";
+    "if $z0 != 0 goto return"->"return";
+    "$r6 = new java.lang.Exception"->"specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"Inconsistent packages view\")";
+    "specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"Inconsistent packages view\")"->"throw $r6";
+}

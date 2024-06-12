@@ -1,0 +1,64 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 := @parameter0: int[];
+i0 := @parameter1: int;
+z1 := @parameter2: boolean;
+r0 = newarray (int)[10];
+i1 = 0;
+goto [?= $z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>()];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = r0[0];
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>();
+if $z0 != 0 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+return i1;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 := @parameter0: int[];
+i0 := @parameter1: int;
+z1 := @parameter2: boolean;
+r0 = newarray (int)[10];
+i1 = 0;
+goto [?= $z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>()];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>();
+if $z0 != 0 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = r0[0];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>();
+if $z0 != 0 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>();
+if $z0 != 0 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+"->"Block 3:
+[preds: 2 ] [succs: ]
+return i1;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$z0 = staticinvoke <compiler.arraycopy.TestLoadBypassArrayCopy: boolean test_helper()>();
+if $z0 != 0 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = r0[0];
+";
+}

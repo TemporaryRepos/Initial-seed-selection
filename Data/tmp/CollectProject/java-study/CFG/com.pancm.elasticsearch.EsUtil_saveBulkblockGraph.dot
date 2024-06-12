@@ -1,0 +1,529 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.util.List;
+r1 := @parameter1: java.lang.String;
+r3 := @parameter2: java.lang.String;
+r7 := @parameter3: java.lang.String;
+if r0 == null goto return 1;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = interfaceinvoke r0.<java.util.List: int size()>();
+if $i0 != 0 goto (branch);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+return 1;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 7 ]
+if r1 == null goto return 0;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r2 = virtualinvoke r1.<java.lang.String: java.lang.String trim()>();
+$i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+if $i1 == 0 goto return 0;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if r3 == null goto return 0;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 8 26 ]
+$r4 = virtualinvoke r3.<java.lang.String: java.lang.String trim()>();
+$i2 = virtualinvoke $r4.<java.lang.String: int length()>();
+if $i2 != 0 goto $r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"
+    "Block 7:
+[preds: 3 4 5 6 ] [succs: ]
+return 0;
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 26 ]
+$r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 26 ]
+specialinvoke $r5.<org.elasticsearch.action.bulk.BulkRequest: void <init>()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 26 ]
+r6 = $r5;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 26 ]
+$r8 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_saveBulk_0__167: java.util.function.Consumer bootstrap$(java.lang.String,org.elasticsearch.action.bulk.BulkRequest,java.lang.String,java.lang.String)>(r7, r6, r1, r3);
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 26 ]
+interfaceinvoke r0.<java.util.List: void forEach(java.util.function.Consumer)>($r8);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 26 ]
+$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 26 ]
+$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 26 ]
+r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.bulk.BulkResponse bulk(org.elasticsearch.action.bulk.BulkRequest,org.elasticsearch.client.RequestOptions)>(r6, $r9);
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 26 ]
+$z0 = virtualinvoke r11.<org.elasticsearch.action.bulk.BulkResponse: boolean hasFailures()>();
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 22 26 ]
+if $z0 == 0 goto z5 = 1;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 26 ]
+z4 = 0;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z2 == 0 goto return z4;
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"
+    "Block 21:
+[preds: 19 20 ] [succs: ]
+return z4;
+"
+    "Block 22:
+[preds: 17 ] [succs: 23 26 ]
+z5 = 1;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 25 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto return z5;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"
+    "Block 25:
+[preds: 23 24 ] [succs: ]
+return z5;
+"
+    "Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+r13 = $r12;
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 30 ]
+$z3 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z3 == 0 goto throw r13;
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"
+    "Block 30:
+[preds: 28 29 ] [succs: ]
+throw r13;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.util.List;
+r1 := @parameter1: java.lang.String;
+r3 := @parameter2: java.lang.String;
+r7 := @parameter3: java.lang.String;
+if r0 == null goto return 1;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = interfaceinvoke r0.<java.util.List: int size()>();
+if $i0 != 0 goto (branch);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.util.List;
+r1 := @parameter1: java.lang.String;
+r3 := @parameter2: java.lang.String;
+r7 := @parameter3: java.lang.String;
+if r0 == null goto return 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return 1;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = interfaceinvoke r0.<java.util.List: int size()>();
+if $i0 != 0 goto (branch);
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return 1;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = interfaceinvoke r0.<java.util.List: int size()>();
+if $i0 != 0 goto (branch);
+"->"Block 3:
+[preds: 1 ] [succs: 4 7 ]
+if r1 == null goto return 0;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 7 ]
+if r1 == null goto return 0;
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r2 = virtualinvoke r1.<java.lang.String: java.lang.String trim()>();
+$i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+if $i1 == 0 goto return 0;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 7 ]
+if r1 == null goto return 0;
+"->"Block 7:
+[preds: 3 4 5 6 ] [succs: ]
+return 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r2 = virtualinvoke r1.<java.lang.String: java.lang.String trim()>();
+$i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+if $i1 == 0 goto return 0;
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if r3 == null goto return 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r2 = virtualinvoke r1.<java.lang.String: java.lang.String trim()>();
+$i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+if $i1 == 0 goto return 0;
+"->"Block 7:
+[preds: 3 4 5 6 ] [succs: ]
+return 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if r3 == null goto return 0;
+"->"Block 6:
+[preds: 5 ] [succs: 7 8 26 ]
+$r4 = virtualinvoke r3.<java.lang.String: java.lang.String trim()>();
+$i2 = virtualinvoke $r4.<java.lang.String: int length()>();
+if $i2 != 0 goto $r5 = new org.elasticsearch.action.bulk.BulkRequest;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if r3 == null goto return 0;
+"->"Block 7:
+[preds: 3 4 5 6 ] [succs: ]
+return 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 26 ]
+$r4 = virtualinvoke r3.<java.lang.String: java.lang.String trim()>();
+$i2 = virtualinvoke $r4.<java.lang.String: int length()>();
+if $i2 != 0 goto $r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"->"Block 7:
+[preds: 3 4 5 6 ] [succs: ]
+return 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 26 ]
+$r4 = virtualinvoke r3.<java.lang.String: java.lang.String trim()>();
+$i2 = virtualinvoke $r4.<java.lang.String: int length()>();
+if $i2 != 0 goto $r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"->"Block 8:
+[preds: 6 ] [succs: 9 26 ]
+$r5 = new org.elasticsearch.action.bulk.BulkRequest;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 26 ]
+$r4 = virtualinvoke r3.<java.lang.String: java.lang.String trim()>();
+$i2 = virtualinvoke $r4.<java.lang.String: int length()>();
+if $i2 != 0 goto $r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 26 ]
+$r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"->"Block 9:
+[preds: 8 ] [succs: 10 26 ]
+specialinvoke $r5.<org.elasticsearch.action.bulk.BulkRequest: void <init>()>();
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 26 ]
+$r5 = new org.elasticsearch.action.bulk.BulkRequest;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 26 ]
+specialinvoke $r5.<org.elasticsearch.action.bulk.BulkRequest: void <init>()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 26 ]
+r6 = $r5;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 26 ]
+specialinvoke $r5.<org.elasticsearch.action.bulk.BulkRequest: void <init>()>();
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 26 ]
+r6 = $r5;
+"->"Block 11:
+[preds: 10 ] [succs: 12 26 ]
+$r8 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_saveBulk_0__167: java.util.function.Consumer bootstrap$(java.lang.String,org.elasticsearch.action.bulk.BulkRequest,java.lang.String,java.lang.String)>(r7, r6, r1, r3);
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 26 ]
+r6 = $r5;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 26 ]
+$r8 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_saveBulk_0__167: java.util.function.Consumer bootstrap$(java.lang.String,org.elasticsearch.action.bulk.BulkRequest,java.lang.String,java.lang.String)>(r7, r6, r1, r3);
+"->"Block 12:
+[preds: 11 ] [succs: 13 26 ]
+interfaceinvoke r0.<java.util.List: void forEach(java.util.function.Consumer)>($r8);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 26 ]
+$r8 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_saveBulk_0__167: java.util.function.Consumer bootstrap$(java.lang.String,org.elasticsearch.action.bulk.BulkRequest,java.lang.String,java.lang.String)>(r7, r6, r1, r3);
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 26 ]
+interfaceinvoke r0.<java.util.List: void forEach(java.util.function.Consumer)>($r8);
+"->"Block 13:
+[preds: 12 ] [succs: 14 26 ]
+$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 26 ]
+interfaceinvoke r0.<java.util.List: void forEach(java.util.function.Consumer)>($r8);
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 26 ]
+$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 14:
+[preds: 13 ] [succs: 15 26 ]
+$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 26 ]
+$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 26 ]
+$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"->"Block 15:
+[preds: 14 ] [succs: 16 26 ]
+r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.bulk.BulkResponse bulk(org.elasticsearch.action.bulk.BulkRequest,org.elasticsearch.client.RequestOptions)>(r6, $r9);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 26 ]
+$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 26 ]
+r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.bulk.BulkResponse bulk(org.elasticsearch.action.bulk.BulkRequest,org.elasticsearch.client.RequestOptions)>(r6, $r9);
+"->"Block 16:
+[preds: 15 ] [succs: 17 26 ]
+$z0 = virtualinvoke r11.<org.elasticsearch.action.bulk.BulkResponse: boolean hasFailures()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 26 ]
+r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.bulk.BulkResponse bulk(org.elasticsearch.action.bulk.BulkRequest,org.elasticsearch.client.RequestOptions)>(r6, $r9);
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 26 ]
+$z0 = virtualinvoke r11.<org.elasticsearch.action.bulk.BulkResponse: boolean hasFailures()>();
+"->"Block 17:
+[preds: 16 ] [succs: 18 22 26 ]
+if $z0 == 0 goto z5 = 1;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 26 ]
+$z0 = virtualinvoke r11.<org.elasticsearch.action.bulk.BulkResponse: boolean hasFailures()>();
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 22 26 ]
+if $z0 == 0 goto z5 = 1;
+"->"Block 18:
+[preds: 17 ] [succs: 19 26 ]
+z4 = 0;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 22 26 ]
+if $z0 == 0 goto z5 = 1;
+"->"Block 22:
+[preds: 17 ] [succs: 23 26 ]
+z5 = 1;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 22 26 ]
+if $z0 == 0 goto z5 = 1;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 26 ]
+z4 = 0;
+"->"Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z2 == 0 goto return z4;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 26 ]
+z4 = 0;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z2 == 0 goto return z4;
+"->"Block 20:
+[preds: 19 ] [succs: 21 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z2 == 0 goto return z4;
+"->"Block 21:
+[preds: 19 20 ] [succs: ]
+return z4;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"->"Block 21:
+[preds: 19 20 ] [succs: ]
+return z4;
+";
+    "Block 22:
+[preds: 17 ] [succs: 23 26 ]
+z5 = 1;
+"->"Block 23:
+[preds: 22 ] [succs: 24 25 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto return z5;
+";
+    "Block 22:
+[preds: 17 ] [succs: 23 26 ]
+z5 = 1;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 25 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto return z5;
+"->"Block 24:
+[preds: 23 ] [succs: 25 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 25 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto return z5;
+"->"Block 25:
+[preds: 23 24 ] [succs: ]
+return z5;
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"->"Block 25:
+[preds: 23 24 ] [succs: ]
+return z5;
+";
+    "Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+"->"Block 27:
+[preds: 26 ] [succs: 28 26 ]
+r13 = $r12;
+";
+    "Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+r13 = $r12;
+"->"Block 28:
+[preds: 27 ] [succs: 29 30 ]
+$z3 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z3 == 0 goto throw r13;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+r13 = $r12;
+"->"Block 26:
+[preds: 6 8 9 10 11 12 13 14 15 16 17 18 22 26 27 ] [succs: 27 26 ]
+$r12 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 30 ]
+$z3 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z3 == 0 goto throw r13;
+"->"Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 30 ]
+$z3 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z3 == 0 goto throw r13;
+"->"Block 30:
+[preds: 28 29 ] [succs: ]
+throw r13;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"->"Block 30:
+[preds: 28 29 ] [succs: ]
+throw r13;
+";
+}

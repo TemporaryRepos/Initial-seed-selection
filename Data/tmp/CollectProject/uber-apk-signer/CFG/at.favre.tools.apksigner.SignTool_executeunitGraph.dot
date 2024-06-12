@@ -1,0 +1,1087 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: at.favre.tools.apksigner.ui.Arg"
+    "$r0 = new java.util.ArrayList"
+    "specialinvoke $r0.<java.util.ArrayList: void <init>()>()"
+    "r1 = $r0"
+    "r102 = null"
+    "r103 = null"
+    "i2 = 0"
+    "i3 = 0"
+    "r104 = null"
+    "$r2 = new at.favre.tools.apksigner.ui.FileArgParser"
+    "specialinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: void <init>()>()"
+    "$r4 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] apkFile>"
+    "r105 = virtualinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: java.util.List parseAndSortUniqueFilesNonRecursive(java.lang.String[],java.lang.String)>($r4, \"apk\")"
+    "$z0 = interfaceinvoke r105.<java.util.List: boolean isEmpty()>()"
+    "if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"
+    "$r97 = new java.lang.IllegalStateException"
+    "specialinvoke $r97.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"no apk files found in given paths\")"
+    "throw $r97"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"
+    "$r5 = staticinvoke <at.favre.tools.apksigner.ui.FileArgParser: java.util.List getDirSummary(java.util.List)>(r105)"
+    "r106 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"
+    "$r92 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"
+    "r107 = (java.lang.String) $r92"
+    "$r93 = new java.lang.StringBuilder"
+    "specialinvoke $r93.<java.lang.StringBuilder: void <init>()>()"
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r107)"
+    "$r96 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r96)"
+    "goto [?= $z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"
+    "$r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"
+    "if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "$r84 = new java.io.File"
+    "$r85 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"
+    "specialinvoke $r84.<java.io.File: void <init>(java.lang.String)>($r85)"
+    "r104 = $r84"
+    "$z16 = virtualinvoke r104.<java.io.File: boolean exists()>()"
+    "if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"
+    "virtualinvoke r104.<java.io.File: boolean mkdirs()>()"
+    "$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"
+    "if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException"
+    "$z18 = virtualinvoke r104.<java.io.File: boolean isDirectory()>()"
+    "if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "$r86 = new java.lang.IllegalArgumentException"
+    "$r87 = new java.lang.StringBuilder"
+    "specialinvoke $r87.<java.lang.StringBuilder: void <init>()>()"
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"if out directory is provided it must exist and be a path: \")"
+    "$r89 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"
+    "$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r89)"
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r86.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r91)"
+    "throw $r86"
+    "$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "$r82 = new at.favre.tools.apksigner.signing.ZipAlignExecutor"
+    "specialinvoke $r82.<at.favre.tools.apksigner.signing.ZipAlignExecutor: void <init>(at.favre.tools.apksigner.ui.Arg)>(r3)"
+    "r102 = $r82"
+    "$r83 = virtualinvoke r102.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r83)"
+    "$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"keystore:\")"
+    "$r73 = new at.favre.tools.apksigner.signing.SigningConfigGen"
+    "$r74 = r3.<at.favre.tools.apksigner.ui.Arg: java.util.List signArgsList>"
+    "$z14 = r3.<at.favre.tools.apksigner.ui.Arg: boolean ksIsDebug>"
+    "specialinvoke $r73.<at.favre.tools.apksigner.signing.SigningConfigGen: void <init>(java.util.List,boolean)>($r74, $z14)"
+    "r103 = $r73"
+    "$r75 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"
+    "r108 = interfaceinvoke $r75.<java.util.List: java.util.Iterator iterator()>()"
+    "$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()"
+    "if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"
+    "$r76 = interfaceinvoke r108.<java.util.Iterator: java.lang.Object next()>()"
+    "r109 = (at.favre.tools.apksigner.signing.SigningConfig) $r76"
+    "$r77 = new java.lang.StringBuilder"
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r79 = virtualinvoke r109.<at.favre.tools.apksigner.signing.SigningConfig: java.lang.String description()>()"
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"
+    "goto [?= $z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()]"
+    "$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"
+    "if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void processLineagePath(at.favre.tools.apksigner.ui.Arg)>(r3)"
+    "l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "i5 = 0"
+    "$r8 = new java.util.ArrayList"
+    "specialinvoke $r8.<java.util.ArrayList: void <init>()>()"
+    "r9 = $r8"
+    "r10 = interfaceinvoke r105.<java.util.List: java.util.Iterator iterator()>()"
+    "$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"
+    "if $z20 == 0 goto (branch)"
+    "$r22 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"
+    "r110 = (java.io.File) $r22"
+    "i5 = i5 + 1"
+    "r23 = r110"
+    "$r24 = new java.lang.StringBuilder"
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r26 = newarray (java.lang.Object)[1]"
+    "$r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5)"
+    "$r26[0] = $r27"
+    "$r28 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02d\", $r26)"
+    "$r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\". \")"
+    "$r31 = virtualinvoke r110.<java.io.File: java.lang.String getName()>()"
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31)"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r33)"
+    "$z5 = r3.<at.favre.tools.apksigner.ui.Arg: boolean dryRun>"
+    "if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\t- (skip)\")"
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"
+    "$z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "$r52 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"
+    "r111 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r52, 0, 1)"
+    "if r111 == null goto (branch)"
+    "$z12 = r3.<at.favre.tools.apksigner.ui.Arg: boolean allowResign>"
+    "if $z12 == 0 goto (branch)"
+    "$r53 = new java.lang.StringBuilder"
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tWARNING: already signed - will be resigned. Old certificate info: \")"
+    "$r55 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55)"
+    "$r57 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"
+    "$r60 = r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"
+    "r112 = interfaceinvoke $r60.<java.util.List: java.util.Iterator iterator()>()"
+    "$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()"
+    "if $z13 == 0 goto (branch)"
+    "$r61 = interfaceinvoke r112.<java.util.Iterator: java.lang.Object next()>()"
+    "r62 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r61"
+    "$r63 = new java.lang.StringBuilder"
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSubject: \")"
+    "$r65 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"
+    "$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r65)"
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r67)"
+    "$r68 = new java.lang.StringBuilder"
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"
+    "$r70 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70)"
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r72)"
+    "goto [?= $z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>]"
+    "if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>(\"\t- already signed SKIP\")"
+    "i3 = i3 + 1"
+    "$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"
+    "if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tSIGN\")"
+    "$r36 = new java.lang.StringBuilder"
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"
+    "$r38 = virtualinvoke r23.<java.io.File: java.lang.String getCanonicalPath()>()"
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"
+    "$r41 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41)"
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r44)"
+    "$r45 = new java.lang.StringBuilder"
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"
+    "$r47 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r23, \"SHA-256\")"
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r50)"
+    "r113 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File zipAlign(java.io.File,java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r104, r102, r3, r1)"
+    "if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"
+    "$r51 = new java.lang.IllegalStateException"
+    "specialinvoke $r51.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"could not execute zipalign\")"
+    "throw $r51"
+    "$z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"
+    "if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"
+    "$z10 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r113)"
+    "$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"
+    "r110 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File sign(java.io.File,java.io.File,java.util.List,at.favre.tools.apksigner.ui.Arg)>(r113, r104, $r114, r3)"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"
+    "$r115 = new java.lang.StringBuilder"
+    "specialinvoke $r115.<java.lang.StringBuilder: void <init>()>()"
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"
+    "$r117 = virtualinvoke r110.<java.io.File: java.lang.String getCanonicalPath()>()"
+    "$r118 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r117)"
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"
+    "$r120 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"
+    "$r121 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r120)"
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "$r123 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r123)"
+    "$r124 = new java.lang.StringBuilder"
+    "specialinvoke $r124.<java.lang.StringBuilder: void <init>()>()"
+    "$r125 = virtualinvoke $r124.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"
+    "$r126 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r110, \"SHA-256\")"
+    "$r127 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r126)"
+    "$r128 = virtualinvoke $r127.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"
+    "$r129 = virtualinvoke $r128.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r129)"
+    "$z22 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "if $z22 != 0 goto $z23 = 1"
+    "$z8 = staticinvoke <at.favre.tools.apksigner.SignTool: boolean verifyZipAlign(java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r102, r3, r1)"
+    "if $z8 == 0 goto $z23 = 0"
+    "$z23 = 1"
+    "goto [?= z24 = $z23]"
+    "$z23 = 0"
+    "z24 = $z23"
+    "$r34 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"
+    "$z7 = r3.<at.favre.tools.apksigner.ui.Arg: boolean verbose>"
+    "$r35 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r34, $z7, 0)"
+    "if $r35 == null goto $z25 = 0"
+    "$z25 = 1"
+    "goto [?= z26 = $z25]"
+    "$z25 = 0"
+    "z26 = $z25"
+    "if z24 == 0 goto i3 = i3 + 1"
+    "if z26 == 0 goto i3 = i3 + 1"
+    "i2 = i2 + 1"
+    "goto [?= (branch)]"
+    "if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"No apks found.\")"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"
+    "$r13 = <java.util.Locale: java.util.Locale US>"
+    "$r11 = newarray (java.lang.Object)[5]"
+    "$r12 = new java.util.Date"
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"
+    "$r14 = virtualinvoke $r12.<java.util.Date: java.lang.String toString()>()"
+    "$r11[0] = $r14"
+    "$r15 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.String jarVersion()>()"
+    "$r11[1] = $r15"
+    "$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2)"
+    "$r11[2] = $r16"
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3)"
+    "$r11[3] = $r17"
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l1 = $l0 - l4"
+    "$d0 = (double) $l1"
+    "$d1 = $d0 / 1000.0"
+    "$r18 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"
+    "$r11[4] = $r18"
+    "$r19 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($r13, \"\n[%s][v%s]\nSuccessfully processed %d APKs and %d errors in %.2f seconds.\", $r11)"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r19)"
+    "$z4 = r3.<at.favre.tools.apksigner.ui.Arg: boolean debug>"
+    "if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"
+    "$r21 = staticinvoke <at.favre.tools.apksigner.SignTool: java.lang.String getCommandHistory(java.util.List)>(r1)"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"
+    "goto [?= $r20 = new at.favre.tools.apksigner.SignTool$Result]"
+    "$r100 := @caughtexception"
+    "r130 = $r100"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logException(at.favre.tools.apksigner.ui.Arg,java.util.List,java.lang.Exception)>(r3, r1, r130)"
+    "$r101 = new at.favre.tools.apksigner.SignTool$Result"
+    "specialinvoke $r101.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(1, i2, i3)"
+    "r131 = $r101"
+    "return r131"
+    "$r98 := @caughtexception"
+    "r99 = $r98"
+    "throw r99"
+    "$r20 = new at.favre.tools.apksigner.SignTool$Result"
+    "specialinvoke $r20.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(0, i2, i3)"
+    "return $r20"
+    "r3 := @parameter0: at.favre.tools.apksigner.ui.Arg"->"$r0 = new java.util.ArrayList";
+    "$r0 = new java.util.ArrayList"->"specialinvoke $r0.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r0.<java.util.ArrayList: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"r102 = null";
+    "r102 = null"->"r103 = null";
+    "r103 = null"->"i2 = 0";
+    "i2 = 0"->"i3 = 0";
+    "i3 = 0"->"$r100 := @caughtexception";
+    "i3 = 0"->"$r98 := @caughtexception";
+    "i3 = 0"->"r104 = null";
+    "r104 = null"->"$r100 := @caughtexception";
+    "r104 = null"->"$r98 := @caughtexception";
+    "r104 = null"->"$r2 = new at.favre.tools.apksigner.ui.FileArgParser";
+    "$r2 = new at.favre.tools.apksigner.ui.FileArgParser"->"$r100 := @caughtexception";
+    "$r2 = new at.favre.tools.apksigner.ui.FileArgParser"->"$r98 := @caughtexception";
+    "$r2 = new at.favre.tools.apksigner.ui.FileArgParser"->"specialinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: void <init>()>()";
+    "specialinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: void <init>()>()"->"$r4 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] apkFile>";
+    "$r4 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] apkFile>"->"$r100 := @caughtexception";
+    "$r4 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] apkFile>"->"$r98 := @caughtexception";
+    "$r4 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] apkFile>"->"r105 = virtualinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: java.util.List parseAndSortUniqueFilesNonRecursive(java.lang.String[],java.lang.String)>($r4, \"apk\")";
+    "r105 = virtualinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: java.util.List parseAndSortUniqueFilesNonRecursive(java.lang.String[],java.lang.String)>($r4, \"apk\")"->"$r100 := @caughtexception";
+    "r105 = virtualinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: java.util.List parseAndSortUniqueFilesNonRecursive(java.lang.String[],java.lang.String)>($r4, \"apk\")"->"$r98 := @caughtexception";
+    "r105 = virtualinvoke $r2.<at.favre.tools.apksigner.ui.FileArgParser: java.util.List parseAndSortUniqueFilesNonRecursive(java.lang.String[],java.lang.String)>($r4, \"apk\")"->"$z0 = interfaceinvoke r105.<java.util.List: boolean isEmpty()>()";
+    "$z0 = interfaceinvoke r105.<java.util.List: boolean isEmpty()>()"->"$r100 := @caughtexception";
+    "$z0 = interfaceinvoke r105.<java.util.List: boolean isEmpty()>()"->"$r98 := @caughtexception";
+    "$z0 = interfaceinvoke r105.<java.util.List: boolean isEmpty()>()"->"if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")";
+    "if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r97 = new java.lang.IllegalStateException";
+    "if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")";
+    "if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r100 := @caughtexception";
+    "if $z0 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r98 := @caughtexception";
+    "$r97 = new java.lang.IllegalStateException"->"$r100 := @caughtexception";
+    "$r97 = new java.lang.IllegalStateException"->"$r98 := @caughtexception";
+    "$r97 = new java.lang.IllegalStateException"->"specialinvoke $r97.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"no apk files found in given paths\")";
+    "specialinvoke $r97.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"no apk files found in given paths\")"->"$r100 := @caughtexception";
+    "specialinvoke $r97.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"no apk files found in given paths\")"->"$r98 := @caughtexception";
+    "specialinvoke $r97.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"no apk files found in given paths\")"->"throw $r97";
+    "throw $r97"->"$r100 := @caughtexception";
+    "throw $r97"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"source:\")"->"$r5 = staticinvoke <at.favre.tools.apksigner.ui.FileArgParser: java.util.List getDirSummary(java.util.List)>(r105)";
+    "$r5 = staticinvoke <at.favre.tools.apksigner.ui.FileArgParser: java.util.List getDirSummary(java.util.List)>(r105)"->"$r100 := @caughtexception";
+    "$r5 = staticinvoke <at.favre.tools.apksigner.ui.FileArgParser: java.util.List getDirSummary(java.util.List)>(r105)"->"$r98 := @caughtexception";
+    "$r5 = staticinvoke <at.favre.tools.apksigner.ui.FileArgParser: java.util.List getDirSummary(java.util.List)>(r105)"->"r106 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>()";
+    "r106 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>()"->"$r100 := @caughtexception";
+    "r106 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>()"->"$r98 := @caughtexception";
+    "r106 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"->"$r100 := @caughtexception";
+    "$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"->"$r98 := @caughtexception";
+    "$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>";
+    "if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r92 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>";
+    "if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r100 := @caughtexception";
+    "if $z1 == 0 goto $r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r98 := @caughtexception";
+    "$r92 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"->"$r100 := @caughtexception";
+    "$r92 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"->"$r98 := @caughtexception";
+    "$r92 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"->"r107 = (java.lang.String) $r92";
+    "r107 = (java.lang.String) $r92"->"$r100 := @caughtexception";
+    "r107 = (java.lang.String) $r92"->"$r98 := @caughtexception";
+    "r107 = (java.lang.String) $r92"->"$r93 = new java.lang.StringBuilder";
+    "$r93 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r93 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r93 = new java.lang.StringBuilder"->"specialinvoke $r93.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r93.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r93.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r93.<java.lang.StringBuilder: void <init>()>()"->"$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r100 := @caughtexception";
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r98 := @caughtexception";
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r107)";
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r107)"->"$r100 := @caughtexception";
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r107)"->"$r98 := @caughtexception";
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r107)"->"$r96 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r96 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r96 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r96 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r96)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r96)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r96)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r96)"->"goto [?= $z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()";
+    "$r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r100 := @caughtexception";
+    "$r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r98 := @caughtexception";
+    "$r6 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r84 = new java.io.File";
+    "if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r100 := @caughtexception";
+    "if $r6 == null goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r98 := @caughtexception";
+    "$r84 = new java.io.File"->"$r100 := @caughtexception";
+    "$r84 = new java.io.File"->"$r98 := @caughtexception";
+    "$r84 = new java.io.File"->"$r85 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>";
+    "$r85 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r100 := @caughtexception";
+    "$r85 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r98 := @caughtexception";
+    "$r85 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"specialinvoke $r84.<java.io.File: void <init>(java.lang.String)>($r85)";
+    "specialinvoke $r84.<java.io.File: void <init>(java.lang.String)>($r85)"->"$r100 := @caughtexception";
+    "specialinvoke $r84.<java.io.File: void <init>(java.lang.String)>($r85)"->"$r98 := @caughtexception";
+    "specialinvoke $r84.<java.io.File: void <init>(java.lang.String)>($r85)"->"r104 = $r84";
+    "r104 = $r84"->"$r100 := @caughtexception";
+    "r104 = $r84"->"$r98 := @caughtexception";
+    "r104 = $r84"->"$z16 = virtualinvoke r104.<java.io.File: boolean exists()>()";
+    "$z16 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r100 := @caughtexception";
+    "$z16 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r98 := @caughtexception";
+    "$z16 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()";
+    "if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"virtualinvoke r104.<java.io.File: boolean mkdirs()>()";
+    "if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()";
+    "if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r100 := @caughtexception";
+    "if $z16 != 0 goto $z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r98 := @caughtexception";
+    "virtualinvoke r104.<java.io.File: boolean mkdirs()>()"->"$r100 := @caughtexception";
+    "virtualinvoke r104.<java.io.File: boolean mkdirs()>()"->"$r98 := @caughtexception";
+    "virtualinvoke r104.<java.io.File: boolean mkdirs()>()"->"$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()";
+    "$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r100 := @caughtexception";
+    "$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"$r98 := @caughtexception";
+    "$z17 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException";
+    "if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException"->"$z18 = virtualinvoke r104.<java.io.File: boolean isDirectory()>()";
+    "if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException"->"$r86 = new java.lang.IllegalArgumentException";
+    "if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException"->"$r100 := @caughtexception";
+    "if $z17 == 0 goto $r86 = new java.lang.IllegalArgumentException"->"$r98 := @caughtexception";
+    "$z18 = virtualinvoke r104.<java.io.File: boolean isDirectory()>()"->"$r100 := @caughtexception";
+    "$z18 = virtualinvoke r104.<java.io.File: boolean isDirectory()>()"->"$r98 := @caughtexception";
+    "$z18 = virtualinvoke r104.<java.io.File: boolean isDirectory()>()"->"if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r86 = new java.lang.IllegalArgumentException";
+    "if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r100 := @caughtexception";
+    "if $z18 != 0 goto $z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r98 := @caughtexception";
+    "$r86 = new java.lang.IllegalArgumentException"->"$r100 := @caughtexception";
+    "$r86 = new java.lang.IllegalArgumentException"->"$r98 := @caughtexception";
+    "$r86 = new java.lang.IllegalArgumentException"->"$r87 = new java.lang.StringBuilder";
+    "$r87 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r87 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r87 = new java.lang.StringBuilder"->"specialinvoke $r87.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r87.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r87.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r87.<java.lang.StringBuilder: void <init>()>()"->"$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"if out directory is provided it must exist and be a path: \")";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"if out directory is provided it must exist and be a path: \")"->"$r100 := @caughtexception";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"if out directory is provided it must exist and be a path: \")"->"$r98 := @caughtexception";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"if out directory is provided it must exist and be a path: \")"->"$r89 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>";
+    "$r89 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r100 := @caughtexception";
+    "$r89 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r98 := @caughtexception";
+    "$r89 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String out>"->"$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r89)";
+    "$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r89)"->"$r100 := @caughtexception";
+    "$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r89)"->"$r98 := @caughtexception";
+    "$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r89)"->"$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r86.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r91)";
+    "specialinvoke $r86.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r91)"->"$r100 := @caughtexception";
+    "specialinvoke $r86.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r91)"->"$r98 := @caughtexception";
+    "specialinvoke $r86.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r91)"->"throw $r86";
+    "throw $r86"->"$r100 := @caughtexception";
+    "throw $r86"->"$r98 := @caughtexception";
+    "$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r100 := @caughtexception";
+    "$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r98 := @caughtexception";
+    "$z2 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r82 = new at.favre.tools.apksigner.signing.ZipAlignExecutor";
+    "if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "if $z2 != 0 goto $z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "$r82 = new at.favre.tools.apksigner.signing.ZipAlignExecutor"->"$r100 := @caughtexception";
+    "$r82 = new at.favre.tools.apksigner.signing.ZipAlignExecutor"->"$r98 := @caughtexception";
+    "$r82 = new at.favre.tools.apksigner.signing.ZipAlignExecutor"->"specialinvoke $r82.<at.favre.tools.apksigner.signing.ZipAlignExecutor: void <init>(at.favre.tools.apksigner.ui.Arg)>(r3)";
+    "specialinvoke $r82.<at.favre.tools.apksigner.signing.ZipAlignExecutor: void <init>(at.favre.tools.apksigner.ui.Arg)>(r3)"->"$r100 := @caughtexception";
+    "specialinvoke $r82.<at.favre.tools.apksigner.signing.ZipAlignExecutor: void <init>(at.favre.tools.apksigner.ui.Arg)>(r3)"->"$r98 := @caughtexception";
+    "specialinvoke $r82.<at.favre.tools.apksigner.signing.ZipAlignExecutor: void <init>(at.favre.tools.apksigner.ui.Arg)>(r3)"->"r102 = $r82";
+    "r102 = $r82"->"$r100 := @caughtexception";
+    "r102 = $r82"->"$r98 := @caughtexception";
+    "r102 = $r82"->"$r83 = virtualinvoke r102.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String toString()>()";
+    "$r83 = virtualinvoke r102.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r83 = virtualinvoke r102.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r83 = virtualinvoke r102.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r83)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r83)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r83)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r83)"->"$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "$z3 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>";
+    "if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"keystore:\")";
+    "if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>";
+    "if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r100 := @caughtexception";
+    "if $z3 != 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"keystore:\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"keystore:\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"keystore:\")"->"$r73 = new at.favre.tools.apksigner.signing.SigningConfigGen";
+    "$r73 = new at.favre.tools.apksigner.signing.SigningConfigGen"->"$r100 := @caughtexception";
+    "$r73 = new at.favre.tools.apksigner.signing.SigningConfigGen"->"$r98 := @caughtexception";
+    "$r73 = new at.favre.tools.apksigner.signing.SigningConfigGen"->"$r74 = r3.<at.favre.tools.apksigner.ui.Arg: java.util.List signArgsList>";
+    "$r74 = r3.<at.favre.tools.apksigner.ui.Arg: java.util.List signArgsList>"->"$r100 := @caughtexception";
+    "$r74 = r3.<at.favre.tools.apksigner.ui.Arg: java.util.List signArgsList>"->"$r98 := @caughtexception";
+    "$r74 = r3.<at.favre.tools.apksigner.ui.Arg: java.util.List signArgsList>"->"$z14 = r3.<at.favre.tools.apksigner.ui.Arg: boolean ksIsDebug>";
+    "$z14 = r3.<at.favre.tools.apksigner.ui.Arg: boolean ksIsDebug>"->"$r100 := @caughtexception";
+    "$z14 = r3.<at.favre.tools.apksigner.ui.Arg: boolean ksIsDebug>"->"$r98 := @caughtexception";
+    "$z14 = r3.<at.favre.tools.apksigner.ui.Arg: boolean ksIsDebug>"->"specialinvoke $r73.<at.favre.tools.apksigner.signing.SigningConfigGen: void <init>(java.util.List,boolean)>($r74, $z14)";
+    "specialinvoke $r73.<at.favre.tools.apksigner.signing.SigningConfigGen: void <init>(java.util.List,boolean)>($r74, $z14)"->"$r100 := @caughtexception";
+    "specialinvoke $r73.<at.favre.tools.apksigner.signing.SigningConfigGen: void <init>(java.util.List,boolean)>($r74, $z14)"->"$r98 := @caughtexception";
+    "specialinvoke $r73.<at.favre.tools.apksigner.signing.SigningConfigGen: void <init>(java.util.List,boolean)>($r74, $z14)"->"r103 = $r73";
+    "r103 = $r73"->"$r100 := @caughtexception";
+    "r103 = $r73"->"$r98 := @caughtexception";
+    "r103 = $r73"->"$r75 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "$r75 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r100 := @caughtexception";
+    "$r75 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r98 := @caughtexception";
+    "$r75 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"r108 = interfaceinvoke $r75.<java.util.List: java.util.Iterator iterator()>()";
+    "r108 = interfaceinvoke $r75.<java.util.List: java.util.Iterator iterator()>()"->"$r100 := @caughtexception";
+    "r108 = interfaceinvoke $r75.<java.util.List: java.util.Iterator iterator()>()"->"$r98 := @caughtexception";
+    "r108 = interfaceinvoke $r75.<java.util.List: java.util.Iterator iterator()>()"->"$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()";
+    "$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()"->"$r100 := @caughtexception";
+    "$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()"->"$r98 := @caughtexception";
+    "$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()"->"if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>";
+    "if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r76 = interfaceinvoke r108.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>";
+    "if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r100 := @caughtexception";
+    "if $z15 == 0 goto $r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r98 := @caughtexception";
+    "$r76 = interfaceinvoke r108.<java.util.Iterator: java.lang.Object next()>()"->"$r100 := @caughtexception";
+    "$r76 = interfaceinvoke r108.<java.util.Iterator: java.lang.Object next()>()"->"$r98 := @caughtexception";
+    "$r76 = interfaceinvoke r108.<java.util.Iterator: java.lang.Object next()>()"->"r109 = (at.favre.tools.apksigner.signing.SigningConfig) $r76";
+    "r109 = (at.favre.tools.apksigner.signing.SigningConfig) $r76"->"$r100 := @caughtexception";
+    "r109 = (at.favre.tools.apksigner.signing.SigningConfig) $r76"->"$r98 := @caughtexception";
+    "r109 = (at.favre.tools.apksigner.signing.SigningConfig) $r76"->"$r77 = new java.lang.StringBuilder";
+    "$r77 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r77 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r77 = new java.lang.StringBuilder"->"specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r100 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r98 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r79 = virtualinvoke r109.<at.favre.tools.apksigner.signing.SigningConfig: java.lang.String description()>()";
+    "$r79 = virtualinvoke r109.<at.favre.tools.apksigner.signing.SigningConfig: java.lang.String description()>()"->"$r100 := @caughtexception";
+    "$r79 = virtualinvoke r109.<at.favre.tools.apksigner.signing.SigningConfig: java.lang.String description()>()"->"$r98 := @caughtexception";
+    "$r79 = virtualinvoke r109.<at.favre.tools.apksigner.signing.SigningConfig: java.lang.String description()>()"->"$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)";
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"->"$r100 := @caughtexception";
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"->"$r98 := @caughtexception";
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"->"$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"->"goto [?= $z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()]"->"$z15 = interfaceinvoke r108.<java.util.Iterator: boolean hasNext()>()";
+    "$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r100 := @caughtexception";
+    "$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"$r98 := @caughtexception";
+    "$r7 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String lineageFilePath>"->"if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void processLineagePath(at.favre.tools.apksigner.ui.Arg)>(r3)";
+    "if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r100 := @caughtexception";
+    "if $r7 == null goto l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void processLineagePath(at.favre.tools.apksigner.ui.Arg)>(r3)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void processLineagePath(at.favre.tools.apksigner.ui.Arg)>(r3)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void processLineagePath(at.favre.tools.apksigner.ui.Arg)>(r3)"->"l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r100 := @caughtexception";
+    "l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r98 := @caughtexception";
+    "l4 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"i5 = 0";
+    "i5 = 0"->"$r100 := @caughtexception";
+    "i5 = 0"->"$r98 := @caughtexception";
+    "i5 = 0"->"$r8 = new java.util.ArrayList";
+    "$r8 = new java.util.ArrayList"->"$r100 := @caughtexception";
+    "$r8 = new java.util.ArrayList"->"$r98 := @caughtexception";
+    "$r8 = new java.util.ArrayList"->"specialinvoke $r8.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r8.<java.util.ArrayList: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r8.<java.util.ArrayList: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r8.<java.util.ArrayList: void <init>()>()"->"r9 = $r8";
+    "r9 = $r8"->"$r100 := @caughtexception";
+    "r9 = $r8"->"$r98 := @caughtexception";
+    "r9 = $r8"->"r10 = interfaceinvoke r105.<java.util.List: java.util.Iterator iterator()>()";
+    "r10 = interfaceinvoke r105.<java.util.List: java.util.Iterator iterator()>()"->"$r100 := @caughtexception";
+    "r10 = interfaceinvoke r105.<java.util.List: java.util.Iterator iterator()>()"->"$r98 := @caughtexception";
+    "r10 = interfaceinvoke r105.<java.util.List: java.util.Iterator iterator()>()"->"$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"->"$r100 := @caughtexception";
+    "$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"->"$r98 := @caughtexception";
+    "$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"->"if $z20 == 0 goto (branch)";
+    "if $z20 == 0 goto (branch)"->"$r22 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z20 == 0 goto (branch)"->"if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)";
+    "if $z20 == 0 goto (branch)"->"$r100 := @caughtexception";
+    "if $z20 == 0 goto (branch)"->"$r98 := @caughtexception";
+    "$r22 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"->"$r100 := @caughtexception";
+    "$r22 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"->"$r98 := @caughtexception";
+    "$r22 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"->"r110 = (java.io.File) $r22";
+    "r110 = (java.io.File) $r22"->"$r100 := @caughtexception";
+    "r110 = (java.io.File) $r22"->"$r98 := @caughtexception";
+    "r110 = (java.io.File) $r22"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"$r100 := @caughtexception";
+    "i5 = i5 + 1"->"$r98 := @caughtexception";
+    "i5 = i5 + 1"->"r23 = r110";
+    "r23 = r110"->"$r100 := @caughtexception";
+    "r23 = r110"->"$r98 := @caughtexception";
+    "r23 = r110"->"$r24 = new java.lang.StringBuilder";
+    "$r24 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r100 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r98 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r26 = newarray (java.lang.Object)[1]";
+    "$r26 = newarray (java.lang.Object)[1]"->"$r100 := @caughtexception";
+    "$r26 = newarray (java.lang.Object)[1]"->"$r98 := @caughtexception";
+    "$r26 = newarray (java.lang.Object)[1]"->"$r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5)";
+    "$r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5)"->"$r100 := @caughtexception";
+    "$r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5)"->"$r98 := @caughtexception";
+    "$r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5)"->"$r26[0] = $r27";
+    "$r26[0] = $r27"->"$r100 := @caughtexception";
+    "$r26[0] = $r27"->"$r98 := @caughtexception";
+    "$r26[0] = $r27"->"$r28 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02d\", $r26)";
+    "$r28 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02d\", $r26)"->"$r100 := @caughtexception";
+    "$r28 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02d\", $r26)"->"$r98 := @caughtexception";
+    "$r28 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02d\", $r26)"->"$r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28)";
+    "$r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28)"->"$r100 := @caughtexception";
+    "$r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28)"->"$r98 := @caughtexception";
+    "$r29 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\". \")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\". \")"->"$r100 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\". \")"->"$r98 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\". \")"->"$r31 = virtualinvoke r110.<java.io.File: java.lang.String getName()>()";
+    "$r31 = virtualinvoke r110.<java.io.File: java.lang.String getName()>()"->"$r100 := @caughtexception";
+    "$r31 = virtualinvoke r110.<java.io.File: java.lang.String getName()>()"->"$r98 := @caughtexception";
+    "$r31 = virtualinvoke r110.<java.io.File: java.lang.String getName()>()"->"$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31)";
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31)"->"$r100 := @caughtexception";
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31)"->"$r98 := @caughtexception";
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31)"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r33)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r33)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r33)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r33)"->"$z5 = r3.<at.favre.tools.apksigner.ui.Arg: boolean dryRun>";
+    "$z5 = r3.<at.favre.tools.apksigner.ui.Arg: boolean dryRun>"->"$r100 := @caughtexception";
+    "$z5 = r3.<at.favre.tools.apksigner.ui.Arg: boolean dryRun>"->"$r98 := @caughtexception";
+    "$z5 = r3.<at.favre.tools.apksigner.ui.Arg: boolean dryRun>"->"if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\t- (skip)\")";
+    "if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "if $z5 == 0 goto $z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\t- (skip)\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\t- (skip)\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\t- (skip)\")"->"goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "$z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "$z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "$z6 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r52 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>";
+    "if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "if $z6 != 0 goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "$r52 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"$r100 := @caughtexception";
+    "$r52 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"$r98 := @caughtexception";
+    "$r52 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"r111 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r52, 0, 1)";
+    "r111 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r52, 0, 1)"->"$r100 := @caughtexception";
+    "r111 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r52, 0, 1)"->"$r98 := @caughtexception";
+    "r111 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r52, 0, 1)"->"if r111 == null goto (branch)";
+    "if r111 == null goto (branch)"->"$z12 = r3.<at.favre.tools.apksigner.ui.Arg: boolean allowResign>";
+    "if r111 == null goto (branch)"->"if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if r111 == null goto (branch)"->"$r100 := @caughtexception";
+    "if r111 == null goto (branch)"->"$r98 := @caughtexception";
+    "$z12 = r3.<at.favre.tools.apksigner.ui.Arg: boolean allowResign>"->"$r100 := @caughtexception";
+    "$z12 = r3.<at.favre.tools.apksigner.ui.Arg: boolean allowResign>"->"$r98 := @caughtexception";
+    "$z12 = r3.<at.favre.tools.apksigner.ui.Arg: boolean allowResign>"->"if $z12 == 0 goto (branch)";
+    "if $z12 == 0 goto (branch)"->"$r53 = new java.lang.StringBuilder";
+    "if $z12 == 0 goto (branch)"->"if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if $z12 == 0 goto (branch)"->"$r100 := @caughtexception";
+    "if $z12 == 0 goto (branch)"->"$r98 := @caughtexception";
+    "$r53 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r53 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r53 = new java.lang.StringBuilder"->"specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"->"$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tWARNING: already signed - will be resigned. Old certificate info: \")";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tWARNING: already signed - will be resigned. Old certificate info: \")"->"$r100 := @caughtexception";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tWARNING: already signed - will be resigned. Old certificate info: \")"->"$r98 := @caughtexception";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tWARNING: already signed - will be resigned. Old certificate info: \")"->"$r55 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()";
+    "$r55 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"->"$r100 := @caughtexception";
+    "$r55 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"->"$r98 := @caughtexception";
+    "$r55 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"->"$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55)";
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55)"->"$r100 := @caughtexception";
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55)"->"$r98 := @caughtexception";
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55)"->"$r57 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()";
+    "$r57 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"->"$r100 := @caughtexception";
+    "$r57 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"->"$r98 := @caughtexception";
+    "$r57 = virtualinvoke r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"->"$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)";
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"->"$r100 := @caughtexception";
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"->"$r98 := @caughtexception";
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"->"$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"->"$r60 = r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>";
+    "$r60 = r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r100 := @caughtexception";
+    "$r60 = r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r98 := @caughtexception";
+    "$r60 = r111.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"r112 = interfaceinvoke $r60.<java.util.List: java.util.Iterator iterator()>()";
+    "r112 = interfaceinvoke $r60.<java.util.List: java.util.Iterator iterator()>()"->"$r100 := @caughtexception";
+    "r112 = interfaceinvoke $r60.<java.util.List: java.util.Iterator iterator()>()"->"$r98 := @caughtexception";
+    "r112 = interfaceinvoke $r60.<java.util.List: java.util.Iterator iterator()>()"->"$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()";
+    "$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()"->"$r100 := @caughtexception";
+    "$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()"->"$r98 := @caughtexception";
+    "$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()"->"if $z13 == 0 goto (branch)";
+    "if $z13 == 0 goto (branch)"->"$r61 = interfaceinvoke r112.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z13 == 0 goto (branch)"->"goto [?= $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>]";
+    "if $z13 == 0 goto (branch)"->"$r100 := @caughtexception";
+    "if $z13 == 0 goto (branch)"->"$r98 := @caughtexception";
+    "$r61 = interfaceinvoke r112.<java.util.Iterator: java.lang.Object next()>()"->"$r100 := @caughtexception";
+    "$r61 = interfaceinvoke r112.<java.util.Iterator: java.lang.Object next()>()"->"$r98 := @caughtexception";
+    "$r61 = interfaceinvoke r112.<java.util.Iterator: java.lang.Object next()>()"->"r62 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r61";
+    "r62 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r61"->"$r100 := @caughtexception";
+    "r62 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r61"->"$r98 := @caughtexception";
+    "r62 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r61"->"$r63 = new java.lang.StringBuilder";
+    "$r63 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r63 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r63 = new java.lang.StringBuilder"->"specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSubject: \")";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSubject: \")"->"$r100 := @caughtexception";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSubject: \")"->"$r98 := @caughtexception";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSubject: \")"->"$r65 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>";
+    "$r65 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"->"$r100 := @caughtexception";
+    "$r65 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"->"$r98 := @caughtexception";
+    "$r65 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"->"$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r65)";
+    "$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r65)"->"$r100 := @caughtexception";
+    "$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r65)"->"$r98 := @caughtexception";
+    "$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r65)"->"$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r67)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r67)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r67)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r67)"->"$r68 = new java.lang.StringBuilder";
+    "$r68 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r68 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r68 = new java.lang.StringBuilder"->"specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"->"$r100 := @caughtexception";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"->"$r98 := @caughtexception";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"->"$r70 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>";
+    "$r70 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"->"$r100 := @caughtexception";
+    "$r70 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"->"$r98 := @caughtexception";
+    "$r70 = r62.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"->"$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70)";
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70)"->"$r100 := @caughtexception";
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70)"->"$r98 := @caughtexception";
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70)"->"$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r72)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r72)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r72)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r72)"->"goto [?= $z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()]"->"$z13 = interfaceinvoke r112.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>]"->"$r100 := @caughtexception";
+    "goto [?= $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>]"->"$r98 := @caughtexception";
+    "goto [?= $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>]"->"$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>(\"\t- already signed SKIP\")";
+    "if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>";
+    "if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "if r111 == null goto $z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>(\"\t- already signed SKIP\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>(\"\t- already signed SKIP\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>(\"\t- already signed SKIP\")"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"$r100 := @caughtexception";
+    "i3 = i3 + 1"->"$r98 := @caughtexception";
+    "i3 = i3 + 1"->"goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r100 := @caughtexception";
+    "$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"$r98 := @caughtexception";
+    "$z21 = r3.<at.favre.tools.apksigner.ui.Arg: boolean onlyVerify>"->"if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")";
+    "if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tSIGN\")";
+    "if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")";
+    "if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"$r100 := @caughtexception";
+    "if $z21 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tSIGN\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tSIGN\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tSIGN\")"->"$r36 = new java.lang.StringBuilder";
+    "$r36 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r36 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r36 = new java.lang.StringBuilder"->"specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r100 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r98 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r38 = virtualinvoke r23.<java.io.File: java.lang.String getCanonicalPath()>()";
+    "$r38 = virtualinvoke r23.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r100 := @caughtexception";
+    "$r38 = virtualinvoke r23.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r98 := @caughtexception";
+    "$r38 = virtualinvoke r23.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)";
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"->"$r100 := @caughtexception";
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"->"$r98 := @caughtexception";
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"->"$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r100 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r98 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r41 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)";
+    "$r41 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r100 := @caughtexception";
+    "$r41 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r98 := @caughtexception";
+    "$r41 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41)";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41)"->"$r100 := @caughtexception";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41)"->"$r98 := @caughtexception";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41)"->"$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r100 := @caughtexception";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r98 := @caughtexception";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r44)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r44)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r44)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r44)"->"$r45 = new java.lang.StringBuilder";
+    "$r45 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r45 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r45 = new java.lang.StringBuilder"->"specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r100 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r98 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r47 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r23, \"SHA-256\")";
+    "$r47 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r23, \"SHA-256\")"->"$r100 := @caughtexception";
+    "$r47 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r23, \"SHA-256\")"->"$r98 := @caughtexception";
+    "$r47 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r23, \"SHA-256\")"->"$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)";
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"->"$r100 := @caughtexception";
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"->"$r98 := @caughtexception";
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"->"$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r100 := @caughtexception";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r98 := @caughtexception";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r50)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r50)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r50)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r50)"->"r113 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File zipAlign(java.io.File,java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r104, r102, r3, r1)";
+    "r113 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File zipAlign(java.io.File,java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r104, r102, r3, r1)"->"$r100 := @caughtexception";
+    "r113 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File zipAlign(java.io.File,java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r104, r102, r3, r1)"->"$r98 := @caughtexception";
+    "r113 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File zipAlign(java.io.File,java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r104, r102, r3, r1)"->"if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>";
+    "if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$r51 = new java.lang.IllegalStateException";
+    "if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>";
+    "if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$r100 := @caughtexception";
+    "if r113 != null goto $z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$r98 := @caughtexception";
+    "$r51 = new java.lang.IllegalStateException"->"$r100 := @caughtexception";
+    "$r51 = new java.lang.IllegalStateException"->"$r98 := @caughtexception";
+    "$r51 = new java.lang.IllegalStateException"->"specialinvoke $r51.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"could not execute zipalign\")";
+    "specialinvoke $r51.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"could not execute zipalign\")"->"$r100 := @caughtexception";
+    "specialinvoke $r51.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"could not execute zipalign\")"->"$r98 := @caughtexception";
+    "specialinvoke $r51.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"could not execute zipalign\")"->"throw $r51";
+    "throw $r51"->"$r100 := @caughtexception";
+    "throw $r51"->"$r98 := @caughtexception";
+    "$z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$r100 := @caughtexception";
+    "$z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"$r98 := @caughtexception";
+    "$z9 = r3.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$z10 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r100 := @caughtexception";
+    "if $z9 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r98 := @caughtexception";
+    "$z10 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r100 := @caughtexception";
+    "$z10 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r98 := @caughtexception";
+    "$z10 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r113)";
+    "if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r100 := @caughtexception";
+    "if $z10 != 0 goto $r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r98 := @caughtexception";
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r113)"->"$r100 := @caughtexception";
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r113)"->"$r98 := @caughtexception";
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r113)"->"$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>";
+    "$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r100 := @caughtexception";
+    "$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"$r98 := @caughtexception";
+    "$r114 = r103.<at.favre.tools.apksigner.signing.SigningConfigGen: java.util.List signingConfig>"->"r110 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File sign(java.io.File,java.io.File,java.util.List,at.favre.tools.apksigner.ui.Arg)>(r113, r104, $r114, r3)";
+    "r110 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File sign(java.io.File,java.io.File,java.util.List,at.favre.tools.apksigner.ui.Arg)>(r113, r104, $r114, r3)"->"$r100 := @caughtexception";
+    "r110 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File sign(java.io.File,java.io.File,java.util.List,at.favre.tools.apksigner.ui.Arg)>(r113, r104, $r114, r3)"->"$r98 := @caughtexception";
+    "r110 = staticinvoke <at.favre.tools.apksigner.SignTool: java.io.File sign(java.io.File,java.io.File,java.util.List,at.favre.tools.apksigner.ui.Arg)>(r113, r104, $r114, r3)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\n\tVERIFY\")"->"$r115 = new java.lang.StringBuilder";
+    "$r115 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r115 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r115 = new java.lang.StringBuilder"->"specialinvoke $r115.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r115.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r115.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r115.<java.lang.StringBuilder: void <init>()>()"->"$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")";
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r100 := @caughtexception";
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r98 := @caughtexception";
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tfile: \")"->"$r117 = virtualinvoke r110.<java.io.File: java.lang.String getCanonicalPath()>()";
+    "$r117 = virtualinvoke r110.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r100 := @caughtexception";
+    "$r117 = virtualinvoke r110.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r98 := @caughtexception";
+    "$r117 = virtualinvoke r110.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r118 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r117)";
+    "$r118 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r117)"->"$r100 := @caughtexception";
+    "$r118 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r117)"->"$r98 := @caughtexception";
+    "$r118 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r117)"->"$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")";
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r100 := @caughtexception";
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r98 := @caughtexception";
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (\")"->"$r120 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)";
+    "$r120 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r100 := @caughtexception";
+    "$r120 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r98 := @caughtexception";
+    "$r120 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileSizeMb(java.io.File)>(r110)"->"$r121 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r120)";
+    "$r121 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r120)"->"$r100 := @caughtexception";
+    "$r121 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r120)"->"$r98 := @caughtexception";
+    "$r121 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r120)"->"$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r100 := @caughtexception";
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r98 := @caughtexception";
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r123 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r123 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r123 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r123 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r123)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r123)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r123)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r123)"->"$r124 = new java.lang.StringBuilder";
+    "$r124 = new java.lang.StringBuilder"->"$r100 := @caughtexception";
+    "$r124 = new java.lang.StringBuilder"->"$r98 := @caughtexception";
+    "$r124 = new java.lang.StringBuilder"->"specialinvoke $r124.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r124.<java.lang.StringBuilder: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r124.<java.lang.StringBuilder: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r124.<java.lang.StringBuilder: void <init>()>()"->"$r125 = virtualinvoke $r124.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")";
+    "$r125 = virtualinvoke $r124.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r100 := @caughtexception";
+    "$r125 = virtualinvoke $r124.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r98 := @caughtexception";
+    "$r125 = virtualinvoke $r124.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\tchecksum: \")"->"$r126 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r110, \"SHA-256\")";
+    "$r126 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r110, \"SHA-256\")"->"$r100 := @caughtexception";
+    "$r126 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r110, \"SHA-256\")"->"$r98 := @caughtexception";
+    "$r126 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String createChecksum(java.io.File,java.lang.String)>(r110, \"SHA-256\")"->"$r127 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r126)";
+    "$r127 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r126)"->"$r100 := @caughtexception";
+    "$r127 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r126)"->"$r98 := @caughtexception";
+    "$r127 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r126)"->"$r128 = virtualinvoke $r127.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")";
+    "$r128 = virtualinvoke $r127.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r100 := @caughtexception";
+    "$r128 = virtualinvoke $r127.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r98 := @caughtexception";
+    "$r128 = virtualinvoke $r127.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (sha256)\")"->"$r129 = virtualinvoke $r128.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r129 = virtualinvoke $r128.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r129 = virtualinvoke $r128.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r129 = virtualinvoke $r128.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r129)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r129)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r129)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r129)"->"$z22 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "$z22 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r100 := @caughtexception";
+    "$z22 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"$r98 := @caughtexception";
+    "$z22 = r3.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"if $z22 != 0 goto $z23 = 1";
+    "if $z22 != 0 goto $z23 = 1"->"$z8 = staticinvoke <at.favre.tools.apksigner.SignTool: boolean verifyZipAlign(java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r102, r3, r1)";
+    "if $z22 != 0 goto $z23 = 1"->"$z23 = 1";
+    "if $z22 != 0 goto $z23 = 1"->"$r100 := @caughtexception";
+    "if $z22 != 0 goto $z23 = 1"->"$r98 := @caughtexception";
+    "$z8 = staticinvoke <at.favre.tools.apksigner.SignTool: boolean verifyZipAlign(java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r102, r3, r1)"->"$r100 := @caughtexception";
+    "$z8 = staticinvoke <at.favre.tools.apksigner.SignTool: boolean verifyZipAlign(java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r102, r3, r1)"->"$r98 := @caughtexception";
+    "$z8 = staticinvoke <at.favre.tools.apksigner.SignTool: boolean verifyZipAlign(java.io.File,java.io.File,at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.ui.Arg,java.util.List)>(r110, r23, r102, r3, r1)"->"if $z8 == 0 goto $z23 = 0";
+    "if $z8 == 0 goto $z23 = 0"->"$z23 = 1";
+    "if $z8 == 0 goto $z23 = 0"->"$z23 = 0";
+    "if $z8 == 0 goto $z23 = 0"->"$r100 := @caughtexception";
+    "if $z8 == 0 goto $z23 = 0"->"$r98 := @caughtexception";
+    "$z23 = 1"->"$r100 := @caughtexception";
+    "$z23 = 1"->"$r98 := @caughtexception";
+    "$z23 = 1"->"goto [?= z24 = $z23]";
+    "goto [?= z24 = $z23]"->"$r100 := @caughtexception";
+    "goto [?= z24 = $z23]"->"$r98 := @caughtexception";
+    "goto [?= z24 = $z23]"->"z24 = $z23";
+    "$z23 = 0"->"$r100 := @caughtexception";
+    "$z23 = 0"->"$r98 := @caughtexception";
+    "$z23 = 0"->"z24 = $z23";
+    "z24 = $z23"->"$r100 := @caughtexception";
+    "z24 = $z23"->"$r98 := @caughtexception";
+    "z24 = $z23"->"$r34 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>";
+    "$r34 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"$r100 := @caughtexception";
+    "$r34 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"$r98 := @caughtexception";
+    "$r34 = r3.<at.favre.tools.apksigner.ui.Arg: java.lang.String[] checkCertSha256>"->"$z7 = r3.<at.favre.tools.apksigner.ui.Arg: boolean verbose>";
+    "$z7 = r3.<at.favre.tools.apksigner.ui.Arg: boolean verbose>"->"$r100 := @caughtexception";
+    "$z7 = r3.<at.favre.tools.apksigner.ui.Arg: boolean verbose>"->"$r98 := @caughtexception";
+    "$z7 = r3.<at.favre.tools.apksigner.ui.Arg: boolean verbose>"->"$r35 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r34, $z7, 0)";
+    "$r35 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r34, $z7, 0)"->"$r100 := @caughtexception";
+    "$r35 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r34, $z7, 0)"->"$r98 := @caughtexception";
+    "$r35 = staticinvoke <at.favre.tools.apksigner.SignTool: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verifySign(java.io.File,java.io.File,java.lang.String[],boolean,boolean)>(r110, r23, $r34, $z7, 0)"->"if $r35 == null goto $z25 = 0";
+    "if $r35 == null goto $z25 = 0"->"$z25 = 1";
+    "if $r35 == null goto $z25 = 0"->"$z25 = 0";
+    "if $r35 == null goto $z25 = 0"->"$r100 := @caughtexception";
+    "if $r35 == null goto $z25 = 0"->"$r98 := @caughtexception";
+    "$z25 = 1"->"$r100 := @caughtexception";
+    "$z25 = 1"->"$r98 := @caughtexception";
+    "$z25 = 1"->"goto [?= z26 = $z25]";
+    "goto [?= z26 = $z25]"->"$r100 := @caughtexception";
+    "goto [?= z26 = $z25]"->"$r98 := @caughtexception";
+    "goto [?= z26 = $z25]"->"z26 = $z25";
+    "$z25 = 0"->"$r100 := @caughtexception";
+    "$z25 = 0"->"$r98 := @caughtexception";
+    "$z25 = 0"->"z26 = $z25";
+    "z26 = $z25"->"$r100 := @caughtexception";
+    "z26 = $z25"->"$r98 := @caughtexception";
+    "z26 = $z25"->"if z24 == 0 goto i3 = i3 + 1";
+    "if z24 == 0 goto i3 = i3 + 1"->"if z26 == 0 goto i3 = i3 + 1";
+    "if z24 == 0 goto i3 = i3 + 1"->"i3 = i3 + 1";
+    "if z24 == 0 goto i3 = i3 + 1"->"$r100 := @caughtexception";
+    "if z24 == 0 goto i3 = i3 + 1"->"$r98 := @caughtexception";
+    "if z26 == 0 goto i3 = i3 + 1"->"i2 = i2 + 1";
+    "if z26 == 0 goto i3 = i3 + 1"->"i3 = i3 + 1";
+    "if z26 == 0 goto i3 = i3 + 1"->"$r100 := @caughtexception";
+    "if z26 == 0 goto i3 = i3 + 1"->"$r98 := @caughtexception";
+    "i2 = i2 + 1"->"$r100 := @caughtexception";
+    "i2 = i2 + 1"->"$r98 := @caughtexception";
+    "i2 = i2 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r100 := @caughtexception";
+    "goto [?= (branch)]"->"$r98 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]";
+    "i3 = i3 + 1"->"$r100 := @caughtexception";
+    "i3 = i3 + 1"->"$r98 := @caughtexception";
+    "i3 = i3 + 1"->"goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r100 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r98 := @caughtexception";
+    "goto [?= $z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$z20 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"No apks found.\")";
+    "if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)";
+    "if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"$r100 := @caughtexception";
+    "if i5 != 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"No apks found.\")"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"No apks found.\")"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"No apks found.\")"->"staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void deleteTempFiles(at.favre.tools.apksigner.ui.Arg,java.util.List)>(r3, r9)"->"$r13 = <java.util.Locale: java.util.Locale US>";
+    "$r13 = <java.util.Locale: java.util.Locale US>"->"$r100 := @caughtexception";
+    "$r13 = <java.util.Locale: java.util.Locale US>"->"$r98 := @caughtexception";
+    "$r13 = <java.util.Locale: java.util.Locale US>"->"$r11 = newarray (java.lang.Object)[5]";
+    "$r11 = newarray (java.lang.Object)[5]"->"$r100 := @caughtexception";
+    "$r11 = newarray (java.lang.Object)[5]"->"$r98 := @caughtexception";
+    "$r11 = newarray (java.lang.Object)[5]"->"$r12 = new java.util.Date";
+    "$r12 = new java.util.Date"->"$r100 := @caughtexception";
+    "$r12 = new java.util.Date"->"$r98 := @caughtexception";
+    "$r12 = new java.util.Date"->"specialinvoke $r12.<java.util.Date: void <init>()>()";
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"->"$r100 := @caughtexception";
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"->"$r98 := @caughtexception";
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"->"$r14 = virtualinvoke $r12.<java.util.Date: java.lang.String toString()>()";
+    "$r14 = virtualinvoke $r12.<java.util.Date: java.lang.String toString()>()"->"$r100 := @caughtexception";
+    "$r14 = virtualinvoke $r12.<java.util.Date: java.lang.String toString()>()"->"$r98 := @caughtexception";
+    "$r14 = virtualinvoke $r12.<java.util.Date: java.lang.String toString()>()"->"$r11[0] = $r14";
+    "$r11[0] = $r14"->"$r100 := @caughtexception";
+    "$r11[0] = $r14"->"$r98 := @caughtexception";
+    "$r11[0] = $r14"->"$r15 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.String jarVersion()>()";
+    "$r15 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.String jarVersion()>()"->"$r100 := @caughtexception";
+    "$r15 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.String jarVersion()>()"->"$r98 := @caughtexception";
+    "$r15 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.String jarVersion()>()"->"$r11[1] = $r15";
+    "$r11[1] = $r15"->"$r100 := @caughtexception";
+    "$r11[1] = $r15"->"$r98 := @caughtexception";
+    "$r11[1] = $r15"->"$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2)";
+    "$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2)"->"$r100 := @caughtexception";
+    "$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2)"->"$r98 := @caughtexception";
+    "$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2)"->"$r11[2] = $r16";
+    "$r11[2] = $r16"->"$r100 := @caughtexception";
+    "$r11[2] = $r16"->"$r98 := @caughtexception";
+    "$r11[2] = $r16"->"$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3)";
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3)"->"$r100 := @caughtexception";
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3)"->"$r98 := @caughtexception";
+    "$r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3)"->"$r11[3] = $r17";
+    "$r11[3] = $r17"->"$r100 := @caughtexception";
+    "$r11[3] = $r17"->"$r98 := @caughtexception";
+    "$r11[3] = $r17"->"$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r100 := @caughtexception";
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r98 := @caughtexception";
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l1 = $l0 - l4";
+    "$l1 = $l0 - l4"->"$r100 := @caughtexception";
+    "$l1 = $l0 - l4"->"$r98 := @caughtexception";
+    "$l1 = $l0 - l4"->"$d0 = (double) $l1";
+    "$d0 = (double) $l1"->"$r100 := @caughtexception";
+    "$d0 = (double) $l1"->"$r98 := @caughtexception";
+    "$d0 = (double) $l1"->"$d1 = $d0 / 1000.0";
+    "$d1 = $d0 / 1000.0"->"$r100 := @caughtexception";
+    "$d1 = $d0 / 1000.0"->"$r98 := @caughtexception";
+    "$d1 = $d0 / 1000.0"->"$r18 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)";
+    "$r18 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"->"$r100 := @caughtexception";
+    "$r18 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"->"$r98 := @caughtexception";
+    "$r18 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"->"$r11[4] = $r18";
+    "$r11[4] = $r18"->"$r100 := @caughtexception";
+    "$r11[4] = $r18"->"$r98 := @caughtexception";
+    "$r11[4] = $r18"->"$r19 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($r13, \"\n[%s][v%s]\nSuccessfully processed %d APKs and %d errors in %.2f seconds.\", $r11)";
+    "$r19 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($r13, \"\n[%s][v%s]\nSuccessfully processed %d APKs and %d errors in %.2f seconds.\", $r11)"->"$r100 := @caughtexception";
+    "$r19 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($r13, \"\n[%s][v%s]\nSuccessfully processed %d APKs and %d errors in %.2f seconds.\", $r11)"->"$r98 := @caughtexception";
+    "$r19 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($r13, \"\n[%s][v%s]\nSuccessfully processed %d APKs and %d errors in %.2f seconds.\", $r11)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r19)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r19)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r19)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r19)"->"$z4 = r3.<at.favre.tools.apksigner.ui.Arg: boolean debug>";
+    "$z4 = r3.<at.favre.tools.apksigner.ui.Arg: boolean debug>"->"$r100 := @caughtexception";
+    "$z4 = r3.<at.favre.tools.apksigner.ui.Arg: boolean debug>"->"$r98 := @caughtexception";
+    "$z4 = r3.<at.favre.tools.apksigner.ui.Arg: boolean debug>"->"if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)";
+    "if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"$r21 = staticinvoke <at.favre.tools.apksigner.SignTool: java.lang.String getCommandHistory(java.util.List)>(r1)";
+    "if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)";
+    "if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"$r100 := @caughtexception";
+    "if $z4 == 0 goto staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"$r98 := @caughtexception";
+    "$r21 = staticinvoke <at.favre.tools.apksigner.SignTool: java.lang.String getCommandHistory(java.util.List)>(r1)"->"$r100 := @caughtexception";
+    "$r21 = staticinvoke <at.favre.tools.apksigner.SignTool: java.lang.String getCommandHistory(java.util.List)>(r1)"->"$r98 := @caughtexception";
+    "$r21 = staticinvoke <at.favre.tools.apksigner.SignTool: java.lang.String getCommandHistory(java.util.List)>(r1)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"->"$r100 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"->"staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"goto [?= $r20 = new at.favre.tools.apksigner.SignTool$Result]";
+    "goto [?= $r20 = new at.favre.tools.apksigner.SignTool$Result]"->"$r20 = new at.favre.tools.apksigner.SignTool$Result";
+    "$r100 := @caughtexception"->"r130 = $r100";
+    "$r100 := @caughtexception"->"$r98 := @caughtexception";
+    "r130 = $r100"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logException(at.favre.tools.apksigner.ui.Arg,java.util.List,java.lang.Exception)>(r3, r1, r130)";
+    "r130 = $r100"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logException(at.favre.tools.apksigner.ui.Arg,java.util.List,java.lang.Exception)>(r3, r1, r130)"->"$r101 = new at.favre.tools.apksigner.SignTool$Result";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logException(at.favre.tools.apksigner.ui.Arg,java.util.List,java.lang.Exception)>(r3, r1, r130)"->"$r98 := @caughtexception";
+    "$r101 = new at.favre.tools.apksigner.SignTool$Result"->"specialinvoke $r101.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(1, i2, i3)";
+    "$r101 = new at.favre.tools.apksigner.SignTool$Result"->"$r98 := @caughtexception";
+    "specialinvoke $r101.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(1, i2, i3)"->"r131 = $r101";
+    "specialinvoke $r101.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(1, i2, i3)"->"$r98 := @caughtexception";
+    "r131 = $r101"->"staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)";
+    "r131 = $r101"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"return r131";
+    "$r98 := @caughtexception"->"r99 = $r98";
+    "$r98 := @caughtexception"->"$r98 := @caughtexception";
+    "r99 = $r98"->"staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)";
+    "r99 = $r98"->"$r98 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void cleanup(at.favre.tools.apksigner.signing.ZipAlignExecutor,at.favre.tools.apksigner.signing.SigningConfigGen)>(r102, r103)"->"throw r99";
+    "$r20 = new at.favre.tools.apksigner.SignTool$Result"->"specialinvoke $r20.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(0, i2, i3)";
+    "specialinvoke $r20.<at.favre.tools.apksigner.SignTool$Result: void <init>(boolean,int,int)>(0, i2, i3)"->"return $r20";
+}

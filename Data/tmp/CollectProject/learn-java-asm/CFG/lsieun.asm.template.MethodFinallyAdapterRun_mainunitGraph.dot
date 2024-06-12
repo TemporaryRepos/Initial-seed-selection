@@ -1,0 +1,35 @@
+digraph "unitGraph" {
+    "r10 := @parameter0: java.lang.String[]"
+    "r0 = \"sample/HelloWorld.class\""
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"
+    "r2 = staticinvoke <lsieun.utils.ReadUtils: byte[] readByPath(java.lang.String)>(r1)"
+    "$r3 = new org.objectweb.asm.ClassReader"
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"
+    "r4 = $r3"
+    "$r5 = new org.objectweb.asm.ClassWriter"
+    "specialinvoke $r5.<org.objectweb.asm.ClassWriter: void <init>(int)>(2)"
+    "r6 = $r5"
+    "$r7 = new lsieun.asm.template.MethodFinallyAdapter"
+    "specialinvoke $r7.<lsieun.asm.template.MethodFinallyAdapter: void <init>(int,org.objectweb.asm.ClassVisitor)>(589824, r6)"
+    "r8 = $r7"
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r8, 4)"
+    "r9 = virtualinvoke r6.<org.objectweb.asm.ClassWriter: byte[] toByteArray()>()"
+    "staticinvoke <lsieun.utils.FileUtils: void writeBytes(java.lang.String,byte[])>(r1, r9)"
+    "return"
+    "r10 := @parameter0: java.lang.String[]"->"r0 = \"sample/HelloWorld.class\"";
+    "r0 = \"sample/HelloWorld.class\""->"r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)";
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"->"r2 = staticinvoke <lsieun.utils.ReadUtils: byte[] readByPath(java.lang.String)>(r1)";
+    "r2 = staticinvoke <lsieun.utils.ReadUtils: byte[] readByPath(java.lang.String)>(r1)"->"$r3 = new org.objectweb.asm.ClassReader";
+    "$r3 = new org.objectweb.asm.ClassReader"->"specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)";
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"->"r4 = $r3";
+    "r4 = $r3"->"$r5 = new org.objectweb.asm.ClassWriter";
+    "$r5 = new org.objectweb.asm.ClassWriter"->"specialinvoke $r5.<org.objectweb.asm.ClassWriter: void <init>(int)>(2)";
+    "specialinvoke $r5.<org.objectweb.asm.ClassWriter: void <init>(int)>(2)"->"r6 = $r5";
+    "r6 = $r5"->"$r7 = new lsieun.asm.template.MethodFinallyAdapter";
+    "$r7 = new lsieun.asm.template.MethodFinallyAdapter"->"specialinvoke $r7.<lsieun.asm.template.MethodFinallyAdapter: void <init>(int,org.objectweb.asm.ClassVisitor)>(589824, r6)";
+    "specialinvoke $r7.<lsieun.asm.template.MethodFinallyAdapter: void <init>(int,org.objectweb.asm.ClassVisitor)>(589824, r6)"->"r8 = $r7";
+    "r8 = $r7"->"virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r8, 4)";
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r8, 4)"->"r9 = virtualinvoke r6.<org.objectweb.asm.ClassWriter: byte[] toByteArray()>()";
+    "r9 = virtualinvoke r6.<org.objectweb.asm.ClassWriter: byte[] toByteArray()>()"->"staticinvoke <lsieun.utils.FileUtils: void writeBytes(java.lang.String,byte[])>(r1, r9)";
+    "staticinvoke <lsieun.utils.FileUtils: void writeBytes(java.lang.String,byte[])>(r1, r9)"->"return";
+}

@@ -1,0 +1,23 @@
+digraph "unitGraph" {
+    "r0 := @this: Base.Other.Base62"
+    "r1 := @parameter0: byte[]"
+    "$z0 = virtualinvoke r0.<Base.Other.Base62: boolean isBase62Encoding(byte[])>(r1)"
+    "if $z0 != 0 goto $r2 = r0.<Base.Other.Base62: byte[] lookup>"
+    "$r5 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Input is not encoded correctly\")"
+    "throw $r5"
+    "$r2 = r0.<Base.Other.Base62: byte[] lookup>"
+    "r3 = specialinvoke r0.<Base.Other.Base62: byte[] translate(byte[],byte[])>(r1, $r2)"
+    "$r4 = specialinvoke r0.<Base.Other.Base62: byte[] convert(byte[],int,int)>(r3, 62, 256)"
+    "return $r4"
+    "r0 := @this: Base.Other.Base62"->"r1 := @parameter0: byte[]";
+    "r1 := @parameter0: byte[]"->"$z0 = virtualinvoke r0.<Base.Other.Base62: boolean isBase62Encoding(byte[])>(r1)";
+    "$z0 = virtualinvoke r0.<Base.Other.Base62: boolean isBase62Encoding(byte[])>(r1)"->"if $z0 != 0 goto $r2 = r0.<Base.Other.Base62: byte[] lookup>";
+    "if $z0 != 0 goto $r2 = r0.<Base.Other.Base62: byte[] lookup>"->"$r5 = new java.lang.IllegalArgumentException";
+    "if $z0 != 0 goto $r2 = r0.<Base.Other.Base62: byte[] lookup>"->"$r2 = r0.<Base.Other.Base62: byte[] lookup>";
+    "$r5 = new java.lang.IllegalArgumentException"->"specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Input is not encoded correctly\")";
+    "specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Input is not encoded correctly\")"->"throw $r5";
+    "$r2 = r0.<Base.Other.Base62: byte[] lookup>"->"r3 = specialinvoke r0.<Base.Other.Base62: byte[] translate(byte[],byte[])>(r1, $r2)";
+    "r3 = specialinvoke r0.<Base.Other.Base62: byte[] translate(byte[],byte[])>(r1, $r2)"->"$r4 = specialinvoke r0.<Base.Other.Base62: byte[] convert(byte[],int,int)>(r3, 62, 256)";
+    "$r4 = specialinvoke r0.<Base.Other.Base62: byte[] convert(byte[],int,int)>(r3, 62, 256)"->"return $r4";
+}

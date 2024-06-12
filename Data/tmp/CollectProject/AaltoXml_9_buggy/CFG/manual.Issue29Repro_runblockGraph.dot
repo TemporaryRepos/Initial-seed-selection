@@ -1,0 +1,538 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 18 ]
+r12 := @this: manual.Issue29Repro;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 18 ]
+$r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 18 ]
+$r0 = <manual.Issue29Repro: java.lang.String xml>;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 18 ]
+r15 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.ByteBuffer encode(java.lang.String)>($r0);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 18 ]
+$r2 = <manual.Issue29Repro: com.fasterxml.aalto.AsyncXMLInputFactory inputFactory>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 18 ]
+r3 = virtualinvoke $r2.<com.fasterxml.aalto.AsyncXMLInputFactory: com.fasterxml.aalto.AsyncXMLStreamReader createAsyncForByteBuffer()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 18 ]
+$r4 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: com.fasterxml.aalto.AsyncInputFeeder getInputFeeder()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 18 ]
+$r5 = (com.fasterxml.aalto.AsyncByteBufferFeeder) $r4;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 18 ]
+interfaceinvoke $r5.<com.fasterxml.aalto.AsyncByteBufferFeeder: void feedInput(java.nio.ByteBuffer)>(r15);
+"
+    "Block 9:
+[preds: 8 16 ] [succs: 10 18 ]
+$z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 17 18 ]
+if $z0 == 0 goto (branch);
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 18 ]
+i0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: int next()>();
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 18 ]
+if i0 != 257 goto $r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"
+    "Block 13:
+[preds: 12 ] [succs: 17 18 ]
+goto [?= (branch)];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 18 ]
+$r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+interfaceinvoke $r6.<javax.xml.stream.util.XMLEventAllocator: javax.xml.stream.events.XMLEvent allocate(javax.xml.stream.XMLStreamReader)>(r3);
+"
+    "Block 16:
+[preds: 15 ] [succs: 9 18 ]
+goto [?= $z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>()];
+"
+    "Block 17:
+[preds: 10 13 ] [succs: 19 ]
+goto [?= return];
+"
+    "Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+"
+    "Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 18 ]
+r12 := @this: manual.Issue29Repro;
+"->"Block 1:
+[preds: 0 ] [succs: 2 18 ]
+$r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+";
+    "Block 0:
+[preds: ] [succs: 1 18 ]
+r12 := @this: manual.Issue29Repro;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 18 ]
+$r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 18 ]
+$r0 = <manual.Issue29Repro: java.lang.String xml>;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 18 ]
+$r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 18 ]
+$r0 = <manual.Issue29Repro: java.lang.String xml>;
+"->"Block 3:
+[preds: 2 ] [succs: 4 18 ]
+r15 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.ByteBuffer encode(java.lang.String)>($r0);
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 18 ]
+$r0 = <manual.Issue29Repro: java.lang.String xml>;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 18 ]
+r15 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.ByteBuffer encode(java.lang.String)>($r0);
+"->"Block 4:
+[preds: 3 ] [succs: 5 18 ]
+$r2 = <manual.Issue29Repro: com.fasterxml.aalto.AsyncXMLInputFactory inputFactory>;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 18 ]
+r15 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.ByteBuffer encode(java.lang.String)>($r0);
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 18 ]
+$r2 = <manual.Issue29Repro: com.fasterxml.aalto.AsyncXMLInputFactory inputFactory>;
+"->"Block 5:
+[preds: 4 ] [succs: 6 18 ]
+r3 = virtualinvoke $r2.<com.fasterxml.aalto.AsyncXMLInputFactory: com.fasterxml.aalto.AsyncXMLStreamReader createAsyncForByteBuffer()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 18 ]
+$r2 = <manual.Issue29Repro: com.fasterxml.aalto.AsyncXMLInputFactory inputFactory>;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 18 ]
+r3 = virtualinvoke $r2.<com.fasterxml.aalto.AsyncXMLInputFactory: com.fasterxml.aalto.AsyncXMLStreamReader createAsyncForByteBuffer()>();
+"->"Block 6:
+[preds: 5 ] [succs: 7 18 ]
+$r4 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: com.fasterxml.aalto.AsyncInputFeeder getInputFeeder()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 18 ]
+r3 = virtualinvoke $r2.<com.fasterxml.aalto.AsyncXMLInputFactory: com.fasterxml.aalto.AsyncXMLStreamReader createAsyncForByteBuffer()>();
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 18 ]
+$r4 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: com.fasterxml.aalto.AsyncInputFeeder getInputFeeder()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 18 ]
+$r5 = (com.fasterxml.aalto.AsyncByteBufferFeeder) $r4;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 18 ]
+$r4 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: com.fasterxml.aalto.AsyncInputFeeder getInputFeeder()>();
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 18 ]
+$r5 = (com.fasterxml.aalto.AsyncByteBufferFeeder) $r4;
+"->"Block 8:
+[preds: 7 ] [succs: 9 18 ]
+interfaceinvoke $r5.<com.fasterxml.aalto.AsyncByteBufferFeeder: void feedInput(java.nio.ByteBuffer)>(r15);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 18 ]
+$r5 = (com.fasterxml.aalto.AsyncByteBufferFeeder) $r4;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 18 ]
+interfaceinvoke $r5.<com.fasterxml.aalto.AsyncByteBufferFeeder: void feedInput(java.nio.ByteBuffer)>(r15);
+"->"Block 9:
+[preds: 8 16 ] [succs: 10 18 ]
+$z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 18 ]
+interfaceinvoke $r5.<com.fasterxml.aalto.AsyncByteBufferFeeder: void feedInput(java.nio.ByteBuffer)>(r15);
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 9:
+[preds: 8 16 ] [succs: 10 18 ]
+$z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 17 18 ]
+if $z0 == 0 goto (branch);
+";
+    "Block 9:
+[preds: 8 16 ] [succs: 10 18 ]
+$z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>();
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 17 18 ]
+if $z0 == 0 goto (branch);
+"->"Block 11:
+[preds: 10 ] [succs: 12 18 ]
+i0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: int next()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 17 18 ]
+if $z0 == 0 goto (branch);
+"->"Block 17:
+[preds: 10 13 ] [succs: 19 ]
+goto [?= return];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 17 18 ]
+if $z0 == 0 goto (branch);
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 18 ]
+i0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: int next()>();
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 18 ]
+if i0 != 257 goto $r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 18 ]
+i0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: int next()>();
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 18 ]
+if i0 != 257 goto $r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"->"Block 13:
+[preds: 12 ] [succs: 17 18 ]
+goto [?= (branch)];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 18 ]
+if i0 != 257 goto $r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"->"Block 14:
+[preds: 12 ] [succs: 15 18 ]
+$r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 18 ]
+if i0 != 257 goto $r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 13:
+[preds: 12 ] [succs: 17 18 ]
+goto [?= (branch)];
+"->"Block 17:
+[preds: 10 13 ] [succs: 19 ]
+goto [?= return];
+";
+    "Block 13:
+[preds: 12 ] [succs: 17 18 ]
+goto [?= (branch)];
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 18 ]
+$r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"->"Block 15:
+[preds: 14 ] [succs: 16 18 ]
+interfaceinvoke $r6.<javax.xml.stream.util.XMLEventAllocator: javax.xml.stream.events.XMLEvent allocate(javax.xml.stream.XMLStreamReader)>(r3);
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 18 ]
+$r6 = <manual.Issue29Repro: javax.xml.stream.util.XMLEventAllocator allocator>;
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+interfaceinvoke $r6.<javax.xml.stream.util.XMLEventAllocator: javax.xml.stream.events.XMLEvent allocate(javax.xml.stream.XMLStreamReader)>(r3);
+"->"Block 16:
+[preds: 15 ] [succs: 9 18 ]
+goto [?= $z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>()];
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+interfaceinvoke $r6.<javax.xml.stream.util.XMLEventAllocator: javax.xml.stream.events.XMLEvent allocate(javax.xml.stream.XMLStreamReader)>(r3);
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 9 18 ]
+goto [?= $z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>()];
+"->"Block 9:
+[preds: 8 16 ] [succs: 10 18 ]
+$z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 9 18 ]
+goto [?= $z0 = interfaceinvoke r3.<com.fasterxml.aalto.AsyncXMLStreamReader: boolean hasNext()>()];
+"->"Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 17:
+[preds: 10 13 ] [succs: 19 ]
+goto [?= return];
+"->"Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+";
+    "Block 18:
+[preds: 0 1 2 3 4 5 6 7 8 16 9 10 11 12 13 14 15 ] [succs: 19 ]
+$r8 := @caughtexception;
+r16 = $r8;
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error in \");
+$i1 = r12.<manual.Issue29Repro: int count>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+virtualinvoke r16.<java.lang.Exception: void printStackTrace()>();
+"->"Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+";
+}

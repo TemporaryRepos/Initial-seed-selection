@@ -1,0 +1,78 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+$r0 = new java.lang.Double;
+$d0 = staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: double foo(double)>(1.0);
+specialinvoke $r0.<java.lang.Double: void <init>(double)>($d0);
+r2 = $r0;
+i0 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Double;
+$d1 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d2 = $d1 + 1.0;
+$d3 = staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: double foo(double)>($d2);
+specialinvoke $r1.<java.lang.Double: void <init>(double)>($d3);
+r2 = $r1;
+i0 = i0 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $r1 = new java.lang.Double;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: void dummy()>();
+$d4 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+return $d4;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+$r0 = new java.lang.Double;
+$d0 = staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: double foo(double)>(1.0);
+specialinvoke $r0.<java.lang.Double: void <init>(double)>($d0);
+r2 = $r0;
+i0 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $r1 = new java.lang.Double;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Double;
+$d1 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d2 = $d1 + 1.0;
+$d3 = staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: double foo(double)>($d2);
+specialinvoke $r1.<java.lang.Double: void <init>(double)>($d3);
+r2 = $r1;
+i0 = i0 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $r1 = new java.lang.Double;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $r1 = new java.lang.Double;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: void dummy()>();
+$d4 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+return $d4;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $r1 = new java.lang.Double;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Double;
+$d1 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d2 = $d1 + 1.0;
+$d3 = staticinvoke <compiler.eliminateAutobox.TestDoubleBoxing: double foo(double)>($d2);
+specialinvoke $r1.<java.lang.Double: void <init>(double)>($d3);
+r2 = $r1;
+i0 = i0 + 1;
+";
+}

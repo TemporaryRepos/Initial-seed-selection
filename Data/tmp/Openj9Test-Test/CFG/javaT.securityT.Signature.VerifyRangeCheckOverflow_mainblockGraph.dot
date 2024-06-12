@@ -1,0 +1,89 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r0.<java.security.KeyPairGenerator: void initialize(int)>(1024);
+r1 = virtualinvoke r0.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>();
+r2 = virtualinvoke r1.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+r3 = newarray (byte)[100];
+r4 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"SHA1withDSA\");
+virtualinvoke r4.<java.security.Signature: void initVerify(java.security.PublicKey)>(r2);
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r4.<java.security.Signature: boolean verify(byte[],int,int)>(r3, 2147483647, 1);
+"
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= return];
+"
+    "Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r5 := @caughtexception;
+r6 = $r5;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r0.<java.security.KeyPairGenerator: void initialize(int)>(1024);
+r1 = virtualinvoke r0.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>();
+r2 = virtualinvoke r1.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+r3 = newarray (byte)[100];
+r4 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"SHA1withDSA\");
+virtualinvoke r4.<java.security.Signature: void initVerify(java.security.PublicKey)>(r2);
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r4.<java.security.Signature: boolean verify(byte[],int,int)>(r3, 2147483647, 1);
+";
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r0.<java.security.KeyPairGenerator: void initialize(int)>(1024);
+r1 = virtualinvoke r0.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>();
+r2 = virtualinvoke r1.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+r3 = newarray (byte)[100];
+r4 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"SHA1withDSA\");
+virtualinvoke r4.<java.security.Signature: void initVerify(java.security.PublicKey)>(r2);
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r5 := @caughtexception;
+r6 = $r5;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r4.<java.security.Signature: boolean verify(byte[],int,int)>(r3, 2147483647, 1);
+"->"Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= return];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r4.<java.security.Signature: boolean verify(byte[],int,int)>(r3, 2147483647, 1);
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r5 := @caughtexception;
+r6 = $r5;
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= return];
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+return;
+";
+    "Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r5 := @caughtexception;
+r6 = $r5;
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+return;
+";
+}

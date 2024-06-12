@@ -1,0 +1,20 @@
+digraph "unitGraph" {
+    "b0 = 0"
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()"
+    "b0 = 1"
+    "goto [?= return]"
+    "$r0 := @caughtexception"
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void not_inline2(int)>(b0)"
+    "return"
+    "b0 = 0"->"staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()";
+    "b0 = 0"->"$r0 := @caughtexception";
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()"->"b0 = 1";
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()"->"$r0 := @caughtexception";
+    "b0 = 1"->"staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()";
+    "b0 = 1"->"$r0 := @caughtexception";
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()"->"goto [?= return]";
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void test1()>()"->"$r0 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r0 := @caughtexception"->"staticinvoke <TestC1ExceptionHandlersSameBCI: void not_inline2(int)>(b0)";
+    "staticinvoke <TestC1ExceptionHandlersSameBCI: void not_inline2(int)>(b0)"->"return";
+}

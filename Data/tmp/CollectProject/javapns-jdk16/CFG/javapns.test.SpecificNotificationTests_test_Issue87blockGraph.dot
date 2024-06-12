@@ -1,0 +1,768 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 37 ]
+r3 := @parameter0: java.lang.String;
+r4 := @parameter1: java.lang.String;
+r8 := @parameter2: java.lang.String;
+z1 := @parameter3: boolean;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 37 ]
+$r0 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 37 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"TESTING ISSUES #87 AND #88\");
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 37 ]
+$r1 = new java.io.BufferedInputStream;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 37 ]
+$r2 = new java.io.FileInputStream;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 37 ]
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.lang.String)>(r3);
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 37 ]
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r2);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 37 ]
+r21 = $r1;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 37 ]
+r5 = staticinvoke <javapns.Push: javapns.notification.transmission.PushQueue queue(java.lang.Object,java.lang.String,boolean,int)>(r21, r4, 0, 3);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue start()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 37 ]
+$r7 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r7, r8);
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 37 ]
+$r10 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r10, r8);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 37 ]
+$r12 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r12, r8);
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 37 ]
+$r14 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r14, r8);
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 37 ]
+r16 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: java.util.List getCriticalExceptions()>();
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 37 ]
+r22 = interfaceinvoke r16.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 21:
+[preds: 20 26 ] [succs: 22 37 ]
+$z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 27 37 ]
+if $z0 == 0 goto staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 37 ]
+$r18 = interfaceinvoke r22.<java.util.Iterator: java.lang.Object next()>();
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 37 ]
+r19 = (java.lang.Exception) $r18;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 37 ]
+virtualinvoke r19.<java.lang.Exception: void printStackTrace()>();
+"
+    "Block 26:
+[preds: 25 ] [succs: 21 37 ]
+goto [?= $z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 27:
+[preds: 22 ] [succs: 28 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 37 ]
+r23 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"BEFORE CLEAR:\", r23);
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: void clearPushedNotifications()>();
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 37 ]
+r24 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"
+    "Block 32:
+[preds: 31 ] [succs: 33 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"AFTER CLEAR:\", r24);
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(50000L);
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 37 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 35:
+[preds: 34 ] [succs: 36 37 ]
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"ISSUES #87 AND #88 TESTED\");
+"
+    "Block 36:
+[preds: 35 ] [succs: 38 ]
+goto [?= return];
+"
+    "Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+"
+    "Block 38:
+[preds: 36 37 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 37 ]
+r3 := @parameter0: java.lang.String;
+r4 := @parameter1: java.lang.String;
+r8 := @parameter2: java.lang.String;
+z1 := @parameter3: boolean;
+"->"Block 1:
+[preds: 0 ] [succs: 2 37 ]
+$r0 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 0:
+[preds: ] [succs: 1 37 ]
+r3 := @parameter0: java.lang.String;
+r4 := @parameter1: java.lang.String;
+r8 := @parameter2: java.lang.String;
+z1 := @parameter3: boolean;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 37 ]
+$r0 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 37 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"TESTING ISSUES #87 AND #88\");
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 37 ]
+$r0 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 37 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"TESTING ISSUES #87 AND #88\");
+"->"Block 3:
+[preds: 2 ] [succs: 4 37 ]
+$r1 = new java.io.BufferedInputStream;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 37 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"TESTING ISSUES #87 AND #88\");
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 37 ]
+$r1 = new java.io.BufferedInputStream;
+"->"Block 4:
+[preds: 3 ] [succs: 5 37 ]
+$r2 = new java.io.FileInputStream;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 37 ]
+$r1 = new java.io.BufferedInputStream;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 37 ]
+$r2 = new java.io.FileInputStream;
+"->"Block 5:
+[preds: 4 ] [succs: 6 37 ]
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.lang.String)>(r3);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 37 ]
+$r2 = new java.io.FileInputStream;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 37 ]
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.lang.String)>(r3);
+"->"Block 6:
+[preds: 5 ] [succs: 7 37 ]
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r2);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 37 ]
+specialinvoke $r2.<java.io.FileInputStream: void <init>(java.lang.String)>(r3);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 37 ]
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r2);
+"->"Block 7:
+[preds: 6 ] [succs: 8 37 ]
+r21 = $r1;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 37 ]
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r2);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 37 ]
+r21 = $r1;
+"->"Block 8:
+[preds: 7 ] [succs: 9 37 ]
+r5 = staticinvoke <javapns.Push: javapns.notification.transmission.PushQueue queue(java.lang.Object,java.lang.String,boolean,int)>(r21, r4, 0, 3);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 37 ]
+r21 = $r1;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 37 ]
+r5 = staticinvoke <javapns.Push: javapns.notification.transmission.PushQueue queue(java.lang.Object,java.lang.String,boolean,int)>(r21, r4, 0, 3);
+"->"Block 9:
+[preds: 8 ] [succs: 10 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue start()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 37 ]
+r5 = staticinvoke <javapns.Push: javapns.notification.transmission.PushQueue queue(java.lang.Object,java.lang.String,boolean,int)>(r21, r4, 0, 3);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue start()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 37 ]
+$r7 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue start()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 37 ]
+$r7 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 11:
+[preds: 10 ] [succs: 12 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r7, r8);
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 37 ]
+$r7 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r7, r8);
+"->"Block 12:
+[preds: 11 ] [succs: 13 37 ]
+$r10 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r7, r8);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 37 ]
+$r10 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 13:
+[preds: 12 ] [succs: 14 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r10, r8);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 37 ]
+$r10 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r10, r8);
+"->"Block 14:
+[preds: 13 ] [succs: 15 37 ]
+$r12 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r10, r8);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 37 ]
+$r12 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 15:
+[preds: 14 ] [succs: 16 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r12, r8);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 37 ]
+$r12 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r12, r8);
+"->"Block 16:
+[preds: 15 ] [succs: 17 37 ]
+$r14 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r12, r8);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 37 ]
+$r14 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 17:
+[preds: 16 ] [succs: 18 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r14, r8);
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 37 ]
+$r14 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r14, r8);
+"->"Block 18:
+[preds: 17 ] [succs: 19 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.transmission.PushQueue add(javapns.notification.Payload,java.lang.String)>($r14, r8);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 19:
+[preds: 18 ] [succs: 20 37 ]
+r16 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: java.util.List getCriticalExceptions()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 37 ]
+r16 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: java.util.List getCriticalExceptions()>();
+"->"Block 20:
+[preds: 19 ] [succs: 21 37 ]
+r22 = interfaceinvoke r16.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 37 ]
+r16 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: java.util.List getCriticalExceptions()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 37 ]
+r22 = interfaceinvoke r16.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 21:
+[preds: 20 26 ] [succs: 22 37 ]
+$z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 37 ]
+r22 = interfaceinvoke r16.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 21:
+[preds: 20 26 ] [succs: 22 37 ]
+$z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>();
+"->"Block 22:
+[preds: 21 ] [succs: 23 27 37 ]
+if $z0 == 0 goto staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+";
+    "Block 21:
+[preds: 20 26 ] [succs: 22 37 ]
+$z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 27 37 ]
+if $z0 == 0 goto staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 23:
+[preds: 22 ] [succs: 24 37 ]
+$r18 = interfaceinvoke r22.<java.util.Iterator: java.lang.Object next()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 27 37 ]
+if $z0 == 0 goto staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 27:
+[preds: 22 ] [succs: 28 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 27 37 ]
+if $z0 == 0 goto staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 37 ]
+$r18 = interfaceinvoke r22.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 24:
+[preds: 23 ] [succs: 25 37 ]
+r19 = (java.lang.Exception) $r18;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 37 ]
+$r18 = interfaceinvoke r22.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 37 ]
+r19 = (java.lang.Exception) $r18;
+"->"Block 25:
+[preds: 24 ] [succs: 26 37 ]
+virtualinvoke r19.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 37 ]
+r19 = (java.lang.Exception) $r18;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 37 ]
+virtualinvoke r19.<java.lang.Exception: void printStackTrace()>();
+"->"Block 26:
+[preds: 25 ] [succs: 21 37 ]
+goto [?= $z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 37 ]
+virtualinvoke r19.<java.lang.Exception: void printStackTrace()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 21 37 ]
+goto [?= $z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 21:
+[preds: 20 26 ] [succs: 22 37 ]
+$z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 21 37 ]
+goto [?= $z0 = interfaceinvoke r22.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 27:
+[preds: 22 ] [succs: 28 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 28:
+[preds: 27 ] [succs: 29 37 ]
+r23 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+";
+    "Block 27:
+[preds: 22 ] [succs: 28 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(10000L);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 37 ]
+r23 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"->"Block 29:
+[preds: 28 ] [succs: 30 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"BEFORE CLEAR:\", r23);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 37 ]
+r23 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"BEFORE CLEAR:\", r23);
+"->"Block 30:
+[preds: 29 ] [succs: 31 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: void clearPushedNotifications()>();
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"BEFORE CLEAR:\", r23);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: void clearPushedNotifications()>();
+"->"Block 31:
+[preds: 30 ] [succs: 32 37 ]
+r24 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 37 ]
+interfaceinvoke r5.<javapns.notification.transmission.PushQueue: void clearPushedNotifications()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 37 ]
+r24 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"->"Block 32:
+[preds: 31 ] [succs: 33 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"AFTER CLEAR:\", r24);
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 37 ]
+r24 = interfaceinvoke r5.<javapns.notification.transmission.PushQueue: javapns.notification.PushedNotifications getPushedNotifications()>();
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"AFTER CLEAR:\", r24);
+"->"Block 33:
+[preds: 32 ] [succs: 34 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(50000L);
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 37 ]
+staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.lang.String,java.util.List)>(\"AFTER CLEAR:\", r24);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(50000L);
+"->"Block 34:
+[preds: 33 ] [succs: 35 37 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 37 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(50000L);
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 37 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 35:
+[preds: 34 ] [succs: 36 37 ]
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"ISSUES #87 AND #88 TESTED\");
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 37 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 37 ]
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"ISSUES #87 AND #88 TESTED\");
+"->"Block 36:
+[preds: 35 ] [succs: 38 ]
+goto [?= return];
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 37 ]
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"ISSUES #87 AND #88 TESTED\");
+"->"Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 36:
+[preds: 35 ] [succs: 38 ]
+goto [?= return];
+"->"Block 38:
+[preds: 36 37 ] [succs: ]
+return;
+";
+    "Block 37:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 21 22 23 24 25 27 28 29 30 31 32 33 34 35 ] [succs: 38 ]
+$r20 := @caughtexception;
+r25 = $r20;
+virtualinvoke r25.<java.lang.Exception: void printStackTrace()>();
+"->"Block 38:
+[preds: 36 37 ] [succs: ]
+return;
+";
+}

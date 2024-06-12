@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "f0 := @parameter0: float"
+    "i0 := @parameter1: int"
+    "r0 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float foob(float)>(f0)"
+    "$i1 = i0 & 1"
+    "if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()"
+    "$f2 = f0 + 1.0F"
+    "$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2)"
+    "r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3)"
+    "staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()"
+    "$f1 = virtualinvoke r0.<java.lang.Float: float floatValue()>()"
+    "return $f1"
+    "f0 := @parameter0: float"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"r0 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float foob(float)>(f0)";
+    "r0 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float foob(float)>(f0)"->"$i1 = i0 & 1";
+    "$i1 = i0 & 1"->"if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()";
+    "if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()"->"$f2 = f0 + 1.0F";
+    "if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()"->"staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()";
+    "$f2 = f0 + 1.0F"->"$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2)";
+    "$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2)"->"r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3)";
+    "r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3)"->"staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>()"->"$f1 = virtualinvoke r0.<java.lang.Float: float floatValue()>()";
+    "$f1 = virtualinvoke r0.<java.lang.Float: float floatValue()>()"->"return $f1";
+}

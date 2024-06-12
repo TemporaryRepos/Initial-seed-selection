@@ -1,0 +1,89 @@
+digraph "unitGraph" {
+    "r23 := @parameter0: java.lang.String[]"
+    "r0 = \"SHA1withRSA\""
+    "r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"RSA\")"
+    "r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"
+    "$r3 = new java.security.SignedObject"
+    "$r4 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"
+    "$r5 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)"
+    "specialinvoke $r3.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(\"Hello\", $r4, $r5)"
+    "r6 = $r3"
+    "$r7 = new java.io.ByteArrayOutputStream"
+    "specialinvoke $r7.<java.io.ByteArrayOutputStream: void <init>()>()"
+    "r8 = $r7"
+    "$r9 = new java.io.ObjectOutputStream"
+    "specialinvoke $r9.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r8)"
+    "r10 = $r9"
+    "virtualinvoke r10.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r6)"
+    "virtualinvoke r10.<java.io.ObjectOutputStream: void close()>()"
+    "r11 = virtualinvoke r8.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+    "$r12 = new java.io.ObjectInputStream"
+    "$r13 = new java.io.ByteArrayInputStream"
+    "specialinvoke $r13.<java.io.ByteArrayInputStream: void <init>(byte[])>(r11)"
+    "specialinvoke $r12.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r13)"
+    "$r14 = virtualinvoke $r12.<java.io.ObjectInputStream: java.lang.Object readObject()>()"
+    "r15 = (java.security.SignedObject) $r14"
+    "$r16 = virtualinvoke r15.<java.security.SignedObject: java.lang.Object getObject()>()"
+    "$z0 = virtualinvoke $r16.<java.lang.Object: boolean equals(java.lang.Object)>(\"Hello\")"
+    "if $z0 != 0 goto $r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()"
+    "$r22 = new java.lang.Exception"
+    "specialinvoke $r22.<java.lang.Exception: void <init>(java.lang.String)>(\"Content changed\")"
+    "throw $r22"
+    "$r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()"
+    "$z1 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r0)"
+    "if $z1 != 0 goto $r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()"
+    "$r21 = new java.lang.Exception"
+    "specialinvoke $r21.<java.lang.Exception: void <init>(java.lang.String)>(\"Signature algorithm unknown\")"
+    "throw $r21"
+    "$r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()"
+    "$r19 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)"
+    "$z2 = virtualinvoke r15.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r18, $r19)"
+    "if $z2 != 0 goto return"
+    "$r20 = new java.lang.Exception"
+    "specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>(\"Not verified\")"
+    "throw $r20"
+    "return"
+    "r23 := @parameter0: java.lang.String[]"->"r0 = \"SHA1withRSA\"";
+    "r0 = \"SHA1withRSA\""->"r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"RSA\")";
+    "r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"RSA\")"->"r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()";
+    "r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"->"$r3 = new java.security.SignedObject";
+    "$r3 = new java.security.SignedObject"->"$r4 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()";
+    "$r4 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"->"$r5 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)";
+    "$r5 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)"->"specialinvoke $r3.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(\"Hello\", $r4, $r5)";
+    "specialinvoke $r3.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(\"Hello\", $r4, $r5)"->"r6 = $r3";
+    "r6 = $r3"->"$r7 = new java.io.ByteArrayOutputStream";
+    "$r7 = new java.io.ByteArrayOutputStream"->"specialinvoke $r7.<java.io.ByteArrayOutputStream: void <init>()>()";
+    "specialinvoke $r7.<java.io.ByteArrayOutputStream: void <init>()>()"->"r8 = $r7";
+    "r8 = $r7"->"$r9 = new java.io.ObjectOutputStream";
+    "$r9 = new java.io.ObjectOutputStream"->"specialinvoke $r9.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r8)";
+    "specialinvoke $r9.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r8)"->"r10 = $r9";
+    "r10 = $r9"->"virtualinvoke r10.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r6)";
+    "virtualinvoke r10.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r6)"->"virtualinvoke r10.<java.io.ObjectOutputStream: void close()>()";
+    "virtualinvoke r10.<java.io.ObjectOutputStream: void close()>()"->"r11 = virtualinvoke r8.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()";
+    "r11 = virtualinvoke r8.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"$r12 = new java.io.ObjectInputStream";
+    "$r12 = new java.io.ObjectInputStream"->"$r13 = new java.io.ByteArrayInputStream";
+    "$r13 = new java.io.ByteArrayInputStream"->"specialinvoke $r13.<java.io.ByteArrayInputStream: void <init>(byte[])>(r11)";
+    "specialinvoke $r13.<java.io.ByteArrayInputStream: void <init>(byte[])>(r11)"->"specialinvoke $r12.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r13)";
+    "specialinvoke $r12.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r13)"->"$r14 = virtualinvoke $r12.<java.io.ObjectInputStream: java.lang.Object readObject()>()";
+    "$r14 = virtualinvoke $r12.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"r15 = (java.security.SignedObject) $r14";
+    "r15 = (java.security.SignedObject) $r14"->"$r16 = virtualinvoke r15.<java.security.SignedObject: java.lang.Object getObject()>()";
+    "$r16 = virtualinvoke r15.<java.security.SignedObject: java.lang.Object getObject()>()"->"$z0 = virtualinvoke $r16.<java.lang.Object: boolean equals(java.lang.Object)>(\"Hello\")";
+    "$z0 = virtualinvoke $r16.<java.lang.Object: boolean equals(java.lang.Object)>(\"Hello\")"->"if $z0 != 0 goto $r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()";
+    "if $z0 != 0 goto $r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()"->"$r22 = new java.lang.Exception";
+    "if $z0 != 0 goto $r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()"->"$r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()";
+    "$r22 = new java.lang.Exception"->"specialinvoke $r22.<java.lang.Exception: void <init>(java.lang.String)>(\"Content changed\")";
+    "specialinvoke $r22.<java.lang.Exception: void <init>(java.lang.String)>(\"Content changed\")"->"throw $r22";
+    "$r17 = virtualinvoke r15.<java.security.SignedObject: java.lang.String getAlgorithm()>()"->"$z1 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r0)";
+    "$z1 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r0)"->"if $z1 != 0 goto $r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()";
+    "if $z1 != 0 goto $r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()"->"$r21 = new java.lang.Exception";
+    "if $z1 != 0 goto $r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()"->"$r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()";
+    "$r21 = new java.lang.Exception"->"specialinvoke $r21.<java.lang.Exception: void <init>(java.lang.String)>(\"Signature algorithm unknown\")";
+    "specialinvoke $r21.<java.lang.Exception: void <init>(java.lang.String)>(\"Signature algorithm unknown\")"->"throw $r21";
+    "$r18 = virtualinvoke r2.<java.security.KeyPair: java.security.PublicKey getPublic()>()"->"$r19 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)";
+    "$r19 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(r0)"->"$z2 = virtualinvoke r15.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r18, $r19)";
+    "$z2 = virtualinvoke r15.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r18, $r19)"->"if $z2 != 0 goto return";
+    "if $z2 != 0 goto return"->"$r20 = new java.lang.Exception";
+    "if $z2 != 0 goto return"->"return";
+    "$r20 = new java.lang.Exception"->"specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>(\"Not verified\")";
+    "specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>(\"Not verified\")"->"throw $r20";
+}

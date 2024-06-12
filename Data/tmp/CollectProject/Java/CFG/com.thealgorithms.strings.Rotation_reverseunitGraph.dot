@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: char[]"
+    "i2 := @parameter1: int"
+    "i3 := @parameter2: int"
+    "if i2 >= i3 goto return"
+    "c0 = r0[i2]"
+    "$c1 = r0[i3]"
+    "r0[i2] = $c1"
+    "r0[i3] = c0"
+    "i2 = i2 + 1"
+    "i3 = i3 + -1"
+    "goto [?= (branch)]"
+    "return"
+    "r0 := @parameter0: char[]"->"i2 := @parameter1: int";
+    "i2 := @parameter1: int"->"i3 := @parameter2: int";
+    "i3 := @parameter2: int"->"if i2 >= i3 goto return";
+    "if i2 >= i3 goto return"->"c0 = r0[i2]";
+    "if i2 >= i3 goto return"->"return";
+    "c0 = r0[i2]"->"$c1 = r0[i3]";
+    "$c1 = r0[i3]"->"r0[i2] = $c1";
+    "r0[i2] = $c1"->"r0[i3] = c0";
+    "r0[i3] = c0"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"i3 = i3 + -1";
+    "i3 = i3 + -1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 >= i3 goto return";
+}

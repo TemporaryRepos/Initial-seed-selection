@@ -1,0 +1,27 @@
+digraph "unitGraph" {
+    "r6 := @parameter0: java.lang.String[]"
+    "$r0 = new java.security.spec.RSAKeyGenParameterSpec"
+    "$r1 = <java.security.spec.RSAKeyGenParameterSpec: java.math.BigInteger F4>"
+    "specialinvoke $r0.<java.security.spec.RSAKeyGenParameterSpec: void <init>(int,java.math.BigInteger)>(1024, $r1)"
+    "r2 = $r0"
+    "r3 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")"
+    "virtualinvoke r3.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>(r2)"
+    "r4 = virtualinvoke r3.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"
+    "if r4 != null goto return"
+    "$r5 = new java.lang.Exception"
+    "specialinvoke $r5.<java.lang.Exception: void <init>(java.lang.String)>(\"no keypair generated\")"
+    "throw $r5"
+    "return"
+    "r6 := @parameter0: java.lang.String[]"->"$r0 = new java.security.spec.RSAKeyGenParameterSpec";
+    "$r0 = new java.security.spec.RSAKeyGenParameterSpec"->"$r1 = <java.security.spec.RSAKeyGenParameterSpec: java.math.BigInteger F4>";
+    "$r1 = <java.security.spec.RSAKeyGenParameterSpec: java.math.BigInteger F4>"->"specialinvoke $r0.<java.security.spec.RSAKeyGenParameterSpec: void <init>(int,java.math.BigInteger)>(1024, $r1)";
+    "specialinvoke $r0.<java.security.spec.RSAKeyGenParameterSpec: void <init>(int,java.math.BigInteger)>(1024, $r1)"->"r2 = $r0";
+    "r2 = $r0"->"r3 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")";
+    "r3 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")"->"virtualinvoke r3.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>(r2)";
+    "virtualinvoke r3.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>(r2)"->"r4 = virtualinvoke r3.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()";
+    "r4 = virtualinvoke r3.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"->"if r4 != null goto return";
+    "if r4 != null goto return"->"$r5 = new java.lang.Exception";
+    "if r4 != null goto return"->"return";
+    "$r5 = new java.lang.Exception"->"specialinvoke $r5.<java.lang.Exception: void <init>(java.lang.String)>(\"no keypair generated\")";
+    "specialinvoke $r5.<java.lang.Exception: void <init>(java.lang.String)>(\"no keypair generated\")"->"throw $r5";
+}

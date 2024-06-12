@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "r10 := @parameter0: java.lang.String[]"
+    "$z0 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"
+    "staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z0, \"A test invariant is broken\")"
+    "$z1 = <compiler.aot.SharedUsageTest: boolean IS_PARENT>"
+    "if $z1 == 0 goto <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1"
+    "$r1 = newarray (java.lang.String)[2]"
+    "$r1[0] = \"libSharedUsageTest.so  aot library\""
+    "$r1[1] = \"HelloWorld\""
+    "$r4 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode OK>"
+    "$r2 = newarray (java.lang.String)[5]"
+    "$r2[0] = \"-XX:+UseAOT\""
+    "$r2[1] = \"-XX:+PrintAOT\""
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dtest.jdk=\")"
+    "$r5 = <jdk.test.lib.Utils: java.lang.String TEST_JDK>"
+    "$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r2[2] = $r7"
+    "$r2[3] = \"-XX:AOTLibrary=./libSharedUsageTest.so\""
+    "$r8 = class \"Lcompiler/aot/SharedUsageTest;\""
+    "$r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>()"
+    "$r2[4] = $r9"
+    "staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r1, null, \"Unexpected exit code\", \"Unexpected output\", $r4, 0, $r2)"
+    "$z3 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"
+    "staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z3, \"A static member got unexpectedly changed\")"
+    "goto [?= return]"
+    "<compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1"
+    "$z2 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"
+    "staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z2, \"A static member wasn\'tchanged as expected\")"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"HelloWorld\")"
+    "return"
+    "r10 := @parameter0: java.lang.String[]"->"$z0 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>";
+    "$z0 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"->"staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z0, \"A test invariant is broken\")";
+    "staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z0, \"A test invariant is broken\")"->"$z1 = <compiler.aot.SharedUsageTest: boolean IS_PARENT>";
+    "$z1 = <compiler.aot.SharedUsageTest: boolean IS_PARENT>"->"if $z1 == 0 goto <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1";
+    "if $z1 == 0 goto <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1"->"$r1 = newarray (java.lang.String)[2]";
+    "if $z1 == 0 goto <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1"->"<compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1";
+    "$r1 = newarray (java.lang.String)[2]"->"$r1[0] = \"libSharedUsageTest.so  aot library\"";
+    "$r1[0] = \"libSharedUsageTest.so  aot library\""->"$r1[1] = \"HelloWorld\"";
+    "$r1[1] = \"HelloWorld\""->"$r4 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode OK>";
+    "$r4 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode OK>"->"$r2 = newarray (java.lang.String)[5]";
+    "$r2 = newarray (java.lang.String)[5]"->"$r2[0] = \"-XX:+UseAOT\"";
+    "$r2[0] = \"-XX:+UseAOT\""->"$r2[1] = \"-XX:+PrintAOT\"";
+    "$r2[1] = \"-XX:+PrintAOT\""->"$r3 = new java.lang.StringBuilder";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dtest.jdk=\")";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dtest.jdk=\")"->"$r5 = <jdk.test.lib.Utils: java.lang.String TEST_JDK>";
+    "$r5 = <jdk.test.lib.Utils: java.lang.String TEST_JDK>"->"$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)";
+    "$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r2[2] = $r7";
+    "$r2[2] = $r7"->"$r2[3] = \"-XX:AOTLibrary=./libSharedUsageTest.so\"";
+    "$r2[3] = \"-XX:AOTLibrary=./libSharedUsageTest.so\""->"$r8 = class \"Lcompiler/aot/SharedUsageTest;\"";
+    "$r8 = class \"Lcompiler/aot/SharedUsageTest;\""->"$r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>()";
+    "$r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>()"->"$r2[4] = $r9";
+    "$r2[4] = $r9"->"staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r1, null, \"Unexpected exit code\", \"Unexpected output\", $r4, 0, $r2)";
+    "staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r1, null, \"Unexpected exit code\", \"Unexpected output\", $r4, 0, $r2)"->"$z3 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>";
+    "$z3 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"->"staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z3, \"A static member got unexpectedly changed\")";
+    "staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z3, \"A static member got unexpectedly changed\")"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "<compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent> = 1"->"$z2 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>";
+    "$z2 = <compiler.aot.SharedUsageTest: boolean shouldBeFalseInParent>"->"staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z2, \"A static member wasn\'tchanged as expected\")";
+    "staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z2, \"A static member wasn\'tchanged as expected\")"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"HelloWorld\")";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"HelloWorld\")"->"return";
+}

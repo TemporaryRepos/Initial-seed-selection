@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.io.InputStream"
+    "$r0 = new java.io.ByteArrayOutputStream"
+    "specialinvoke $r0.<java.io.ByteArrayOutputStream: void <init>()>()"
+    "r1 = $r0"
+    "r2 = newarray (byte)[4096]"
+    "$i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)"
+    "i1 = $i0"
+    "if -1 == $i0 goto $r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+    "virtualinvoke r1.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r2, 0, i1)"
+    "goto [?= $i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)]"
+    "$r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+    "return $r4"
+    "r3 := @parameter0: java.io.InputStream"->"$r0 = new java.io.ByteArrayOutputStream";
+    "$r0 = new java.io.ByteArrayOutputStream"->"specialinvoke $r0.<java.io.ByteArrayOutputStream: void <init>()>()";
+    "specialinvoke $r0.<java.io.ByteArrayOutputStream: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"r2 = newarray (byte)[4096]";
+    "r2 = newarray (byte)[4096]"->"$i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)";
+    "$i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)"->"i1 = $i0";
+    "i1 = $i0"->"if -1 == $i0 goto $r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()";
+    "if -1 == $i0 goto $r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"virtualinvoke r1.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r2, 0, i1)";
+    "if -1 == $i0 goto $r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"$r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()";
+    "virtualinvoke r1.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r2, 0, i1)"->"goto [?= $i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)]";
+    "goto [?= $i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)]"->"$i0 = virtualinvoke r3.<java.io.InputStream: int read(byte[])>(r2)";
+    "$r4 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"->"return $r4";
+}

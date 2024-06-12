@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r14 := @this: com.github.davidmoten.rtree.RTreeTest;
+$r0 = new java.lang.Object;
+specialinvoke $r0.<java.lang.Object: void <init>()>();
+r1 = $r0;
+$r2 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree create()>();
+$r3 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Point point(float,float)>(1.0F, 1.0F);
+r4 = virtualinvoke $r2.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Object,com.github.davidmoten.rtree.geometry.Geometry)>(r1, $r3);
+$r5 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Point point(float,float)>(1.0F, 1.0F);
+$r6 = virtualinvoke r4.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Point,double)>($r5, 2.0);
+$r7 = virtualinvoke $r6.<rx.Observable: rx.Observable toList()>();
+$r8 = virtualinvoke $r7.<rx.Observable: rx.observables.BlockingObservable toBlocking()>();
+$r9 = virtualinvoke $r8.<rx.observables.BlockingObservable: java.lang.Object single()>();
+r10 = (java.util.List) $r9;
+$i0 = interfaceinvoke r10.<java.util.List: int size()>();
+$l1 = (long) $i0;
+staticinvoke <org.junit.Assert: void assertEquals(long,long)>(1L, $l1);
+$r11 = interfaceinvoke r10.<java.util.List: java.lang.Object get(int)>(0);
+$r12 = (com.github.davidmoten.rtree.Entry) $r11;
+$r13 = interfaceinvoke $r12.<com.github.davidmoten.rtree.Entry: java.lang.Object value()>();
+staticinvoke <org.junit.Assert: void assertEquals(java.lang.Object,java.lang.Object)>(r1, $r13);
+return;
+"
+}

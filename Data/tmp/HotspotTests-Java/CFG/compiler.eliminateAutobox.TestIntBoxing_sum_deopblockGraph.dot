@@ -1,0 +1,73 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: int[];
+i4 = 1;
+r1 = r0;
+i0 = lengthof r0;
+i5 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i5];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2);
+i4 = i4 + $i3;
+i5 = i5 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < i0 goto $i1 = r1[i5];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+return i4;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: int[];
+i4 = 1;
+r1 = r0;
+i0 = lengthof r0;
+i5 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < i0 goto $i1 = r1[i5];
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i5];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2);
+i4 = i4 + $i3;
+i5 = i5 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < i0 goto $i1 = r1[i5];
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < i0 goto $i1 = r1[i5];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+return i4;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < i0 goto $i1 = r1[i5];
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i5];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2);
+i4 = i4 + $i3;
+i5 = i5 + 1;
+";
+}

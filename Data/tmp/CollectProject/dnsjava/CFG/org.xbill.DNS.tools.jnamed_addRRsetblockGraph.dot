@@ -1,0 +1,376 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r9 := @this: org.xbill.DNS.tools.jnamed;
+r5 := @parameter0: org.xbill.DNS.Name;
+r4 := @parameter1: org.xbill.DNS.Message;
+r0 := @parameter2: org.xbill.DNS.RRset;
+i0 := @parameter3: int;
+i1 := @parameter4: int;
+i5 = 1;
+"
+    "Block 1:
+[preds: 0 4 ] [succs: 2 5 ]
+if i5 > i0 goto $i2 = i1 & 2;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = virtualinvoke r0.<org.xbill.DNS.RRset: int getType()>();
+$z6 = virtualinvoke r4.<org.xbill.DNS.Message: boolean findRRset(org.xbill.DNS.Name,int,int)>(r5, $i4, i5);
+if $z6 == 0 goto i5 = i5 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+return;
+"
+    "Block 4:
+[preds: 2 ] [succs: 1 ]
+i5 = i5 + 1;
+goto [?= (branch)];
+"
+    "Block 5:
+[preds: 1 ] [succs: 6 12 ]
+$i2 = i1 & 2;
+if $i2 != 0 goto $i3 = i1 & 3;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r6 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List rrs()>();
+r10 = interfaceinvoke $r6.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $i3 = i1 & 3;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+r11 = (org.xbill.DNS.Record) $r7;
+$r8 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z4 = virtualinvoke $r8.<org.xbill.DNS.Name: boolean isWild()>();
+if $z4 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$z5 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z5 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+r11 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+"
+    "Block 11:
+[preds: 8 9 10 ] [succs: 7 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+goto [?= $z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 12:
+[preds: 5 7 ] [succs: 13 19 ]
+$i3 = i1 & 3;
+if $i3 == 0 goto return;
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+$r1 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List sigs()>();
+r12 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 14:
+[preds: 13 18 ] [succs: 15 19 ]
+$z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$r2 = interfaceinvoke r12.<java.util.Iterator: java.lang.Object next()>();
+r13 = (org.xbill.DNS.Record) $r2;
+$r3 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z1 = virtualinvoke $r3.<org.xbill.DNS.Name: boolean isWild()>();
+if $z1 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$z2 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z2 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+r13 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+"
+    "Block 18:
+[preds: 15 16 17 ] [succs: 14 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+goto [?= $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 19:
+[preds: 12 14 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r9 := @this: org.xbill.DNS.tools.jnamed;
+r5 := @parameter0: org.xbill.DNS.Name;
+r4 := @parameter1: org.xbill.DNS.Message;
+r0 := @parameter2: org.xbill.DNS.RRset;
+i0 := @parameter3: int;
+i1 := @parameter4: int;
+i5 = 1;
+"->"Block 1:
+[preds: 0 4 ] [succs: 2 5 ]
+if i5 > i0 goto $i2 = i1 & 2;
+";
+    "Block 1:
+[preds: 0 4 ] [succs: 2 5 ]
+if i5 > i0 goto $i2 = i1 & 2;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = virtualinvoke r0.<org.xbill.DNS.RRset: int getType()>();
+$z6 = virtualinvoke r4.<org.xbill.DNS.Message: boolean findRRset(org.xbill.DNS.Name,int,int)>(r5, $i4, i5);
+if $z6 == 0 goto i5 = i5 + 1;
+";
+    "Block 1:
+[preds: 0 4 ] [succs: 2 5 ]
+if i5 > i0 goto $i2 = i1 & 2;
+"->"Block 5:
+[preds: 1 ] [succs: 6 12 ]
+$i2 = i1 & 2;
+if $i2 != 0 goto $i3 = i1 & 3;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = virtualinvoke r0.<org.xbill.DNS.RRset: int getType()>();
+$z6 = virtualinvoke r4.<org.xbill.DNS.Message: boolean findRRset(org.xbill.DNS.Name,int,int)>(r5, $i4, i5);
+if $z6 == 0 goto i5 = i5 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = virtualinvoke r0.<org.xbill.DNS.RRset: int getType()>();
+$z6 = virtualinvoke r4.<org.xbill.DNS.Message: boolean findRRset(org.xbill.DNS.Name,int,int)>(r5, $i4, i5);
+if $z6 == 0 goto i5 = i5 + 1;
+"->"Block 4:
+[preds: 2 ] [succs: 1 ]
+i5 = i5 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 2 ] [succs: 1 ]
+i5 = i5 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 4 ] [succs: 2 5 ]
+if i5 > i0 goto $i2 = i1 & 2;
+";
+    "Block 5:
+[preds: 1 ] [succs: 6 12 ]
+$i2 = i1 & 2;
+if $i2 != 0 goto $i3 = i1 & 3;
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+$r6 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List rrs()>();
+r10 = interfaceinvoke $r6.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 5:
+[preds: 1 ] [succs: 6 12 ]
+$i2 = i1 & 2;
+if $i2 != 0 goto $i3 = i1 & 3;
+"->"Block 12:
+[preds: 5 7 ] [succs: 13 19 ]
+$i3 = i1 & 3;
+if $i3 == 0 goto return;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r6 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List rrs()>();
+r10 = interfaceinvoke $r6.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $i3 = i1 & 3;
+";
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $i3 = i1 & 3;
+"->"Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+r11 = (org.xbill.DNS.Record) $r7;
+$r8 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z4 = virtualinvoke $r8.<org.xbill.DNS.Name: boolean isWild()>();
+if $z4 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+";
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $i3 = i1 & 3;
+"->"Block 12:
+[preds: 5 7 ] [succs: 13 19 ]
+$i3 = i1 & 3;
+if $i3 == 0 goto return;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+r11 = (org.xbill.DNS.Record) $r7;
+$r8 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z4 = virtualinvoke $r8.<org.xbill.DNS.Name: boolean isWild()>();
+if $z4 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"->"Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$z5 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z5 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+r11 = (org.xbill.DNS.Record) $r7;
+$r8 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z4 = virtualinvoke $r8.<org.xbill.DNS.Name: boolean isWild()>();
+if $z4 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"->"Block 11:
+[preds: 8 9 10 ] [succs: 7 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+goto [?= $z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$z5 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z5 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+r11 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$z5 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z5 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+"->"Block 11:
+[preds: 8 9 10 ] [succs: 7 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+goto [?= $z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+r11 = virtualinvoke r11.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+"->"Block 11:
+[preds: 8 9 10 ] [succs: 7 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+goto [?= $z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 11:
+[preds: 8 9 10 ] [succs: 7 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r11, i0);
+goto [?= $z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z3 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $i3 = i1 & 3;
+";
+    "Block 12:
+[preds: 5 7 ] [succs: 13 19 ]
+$i3 = i1 & 3;
+if $i3 == 0 goto return;
+"->"Block 13:
+[preds: 12 ] [succs: 14 ]
+$r1 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List sigs()>();
+r12 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 12:
+[preds: 5 7 ] [succs: 13 19 ]
+$i3 = i1 & 3;
+if $i3 == 0 goto return;
+"->"Block 19:
+[preds: 12 14 ] [succs: ]
+return;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+$r1 = virtualinvoke r0.<org.xbill.DNS.RRset: java.util.List sigs()>();
+r12 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 14:
+[preds: 13 18 ] [succs: 15 19 ]
+$z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return;
+";
+    "Block 14:
+[preds: 13 18 ] [succs: 15 19 ]
+$z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return;
+"->"Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$r2 = interfaceinvoke r12.<java.util.Iterator: java.lang.Object next()>();
+r13 = (org.xbill.DNS.Record) $r2;
+$r3 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z1 = virtualinvoke $r3.<org.xbill.DNS.Name: boolean isWild()>();
+if $z1 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+";
+    "Block 14:
+[preds: 13 18 ] [succs: 15 19 ]
+$z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return;
+"->"Block 19:
+[preds: 12 14 ] [succs: ]
+return;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$r2 = interfaceinvoke r12.<java.util.Iterator: java.lang.Object next()>();
+r13 = (org.xbill.DNS.Record) $r2;
+$r3 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z1 = virtualinvoke $r3.<org.xbill.DNS.Name: boolean isWild()>();
+if $z1 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"->"Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$z2 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z2 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$r2 = interfaceinvoke r12.<java.util.Iterator: java.lang.Object next()>();
+r13 = (org.xbill.DNS.Record) $r2;
+$r3 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Name getName()>();
+$z1 = virtualinvoke $r3.<org.xbill.DNS.Name: boolean isWild()>();
+if $z1 == 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"->"Block 18:
+[preds: 15 16 17 ] [succs: 14 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+goto [?= $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$z2 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z2 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+r13 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$z2 = virtualinvoke r5.<org.xbill.DNS.Name: boolean isWild()>();
+if $z2 != 0 goto virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+"->"Block 18:
+[preds: 15 16 17 ] [succs: 14 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+goto [?= $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+r13 = virtualinvoke r13.<org.xbill.DNS.Record: org.xbill.DNS.Record withName(org.xbill.DNS.Name)>(r5);
+"->"Block 18:
+[preds: 15 16 17 ] [succs: 14 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+goto [?= $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 18:
+[preds: 15 16 17 ] [succs: 14 ]
+virtualinvoke r4.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r13, i0);
+goto [?= $z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 14:
+[preds: 13 18 ] [succs: 15 19 ]
+$z0 = interfaceinvoke r12.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return;
+";
+}

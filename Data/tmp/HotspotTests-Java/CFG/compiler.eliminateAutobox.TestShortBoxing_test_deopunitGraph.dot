@@ -1,0 +1,30 @@
+digraph "unitGraph" {
+    "s0 := @parameter0: short"
+    "$r0 = new java.lang.Short"
+    "$s1 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(s0)"
+    "specialinvoke $r0.<java.lang.Short: void <init>(short)>($s1)"
+    "r1 = $r0"
+    "$i2 = s0 & 1"
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"
+    "$i4 = s0 + 1"
+    "$s5 = (short) $i4"
+    "$s6 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s5)"
+    "r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6)"
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"
+    "$s3 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"
+    "return $s3"
+    "s0 := @parameter0: short"->"$r0 = new java.lang.Short";
+    "$r0 = new java.lang.Short"->"$s1 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(s0)";
+    "$s1 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(s0)"->"specialinvoke $r0.<java.lang.Short: void <init>(short)>($s1)";
+    "specialinvoke $r0.<java.lang.Short: void <init>(short)>($s1)"->"r1 = $r0";
+    "r1 = $r0"->"$i2 = s0 & 1";
+    "$i2 = s0 & 1"->"if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()";
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"->"$i4 = s0 + 1";
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"->"staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()";
+    "$i4 = s0 + 1"->"$s5 = (short) $i4";
+    "$s5 = (short) $i4"->"$s6 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s5)";
+    "$s6 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s5)"->"r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6)";
+    "r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6)"->"staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"->"$s3 = virtualinvoke r1.<java.lang.Short: short shortValue()>()";
+    "$s3 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"->"return $s3";
+}

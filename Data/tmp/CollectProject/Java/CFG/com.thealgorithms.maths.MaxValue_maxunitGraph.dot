@@ -1,0 +1,16 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 := @parameter1: int"
+    "if i0 < i1 goto $i2 = i1"
+    "$i2 = i0"
+    "goto [?= return $i2]"
+    "$i2 = i1"
+    "return $i2"
+    "i0 := @parameter0: int"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"if i0 < i1 goto $i2 = i1";
+    "if i0 < i1 goto $i2 = i1"->"$i2 = i0";
+    "if i0 < i1 goto $i2 = i1"->"$i2 = i1";
+    "$i2 = i0"->"goto [?= return $i2]";
+    "goto [?= return $i2]"->"return $i2";
+    "$i2 = i1"->"return $i2";
+}

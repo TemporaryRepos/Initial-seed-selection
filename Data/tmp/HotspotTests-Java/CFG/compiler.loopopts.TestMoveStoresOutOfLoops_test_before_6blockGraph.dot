@@ -1,0 +1,107 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 5 ]
+i1 := @parameter0: int;
+i2 = 0;
+i3 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i3 % 2;
+if $i0 != 1 goto i2 = i2 + 1;
+"
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 * 2;
+goto [?= $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 + 1;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$r0[i1] = 999L;
+i3 = i3 + 1;
+"
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i3 < 1000 goto $i0 = i3 % 2;
+"
+    "Block 6:
+[preds: 5 ] [succs: ]
+return i2;
+"
+    "Block 0:
+[preds: ] [succs: 5 ]
+i1 := @parameter0: int;
+i2 = 0;
+i3 = 0;
+goto [?= (branch)];
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i3 < 1000 goto $i0 = i3 % 2;
+";
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i3 % 2;
+if $i0 != 1 goto i2 = i2 + 1;
+"->"Block 2:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 * 2;
+goto [?= $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>];
+";
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i3 % 2;
+if $i0 != 1 goto i2 = i2 + 1;
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 + 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 * 2;
+goto [?= $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>];
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$r0[i1] = 999L;
+i3 = i3 + 1;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+i2 = i2 + 1;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$r0[i1] = 999L;
+i3 = i3 + 1;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$r0[i1] = 999L;
+i3 = i3 + 1;
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i3 < 1000 goto $i0 = i3 % 2;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i3 < 1000 goto $i0 = i3 % 2;
+"->"Block 6:
+[preds: 5 ] [succs: ]
+return i2;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i3 < 1000 goto $i0 = i3 % 2;
+"->"Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i3 % 2;
+if $i0 != 1 goto i2 = i2 + 1;
+";
+}

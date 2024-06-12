@@ -1,0 +1,563 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String[]"
+    "r0 = \"Input parameters (separated by space): \n   run:<command>      (required) train or predict\n   ftype:<file_type>  (required) libsvm or json\n   data:<file_name>   (required) Input data file of the specified type\n   out:<file_name>    (required) Output file\n   bias:<bias>        (optional) Set to 0 if you do not want to add an\n                                 bias/intercept term\n                                 Set to 1 if you want to add a feature with\n                                 value 1 to every instance\n                                 Default: 0\n   param:<file_name>  (optional) for run:train, it specifies the prior mean\n                      (required) for run:predict, it specifies the model\n                                 File format: <featureName>=<value> per line\n   priorVar:<var>     (required) for run:train, <var> is the a number\n                      (not used) for run:predict\n   init:<file_name>   (optional) for run:train, it specifies the initial value\n                                 File format: <featureName>=<value> per line\n   posteriorVar:1/0   (optional) Whether to compute posterior variances\n                                 Default: 1\n   posteriorCov:1/0   (optional) Whether to compute posterior covariances\n                                 Default: 0\n   binaryFeature:1/0  (optional) Whether all of the input features are binary\n   useShort:1/0       (optional) Whether to use short to store feature indices\n   option:<options>   (optional) Comma-separated list of options\n                                 No space is allowed in <options>\n                                 Eg: max_iter=5,epsilon=0.01,positive_weight=2\n                      (not used) for run:predict\n\""
+    "$i0 = lengthof r1"
+    "if $i0 >= 3 goto r99 = null"
+    "$r95 = <java.lang.System: java.io.PrintStream out>"
+    "$r94 = new java.lang.StringBuilder"
+    "specialinvoke $r94.<java.lang.StringBuilder: void <init>()>()"
+    "$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98)"
+    "staticinvoke <java.lang.System: void exit(int)>(0)"
+    "r99 = null"
+    "r100 = null"
+    "r101 = null"
+    "r102 = null"
+    "d0 = 0.0"
+    "r103 = null"
+    "r104 = null"
+    "d1 = #NaN"
+    "r105 = null"
+    "z19 = 0"
+    "z20 = 0"
+    "z21 = 1"
+    "z22 = 0"
+    "i3 = 0"
+    "$i4 = lengthof r1"
+    "if i3 >= $i4 goto (branch)"
+    "$r46 = r1[i3]"
+    "if $r46 != null goto $r47 = r1[i3]"
+    "goto [?= i3 = i3 + 1]"
+    "$r47 = r1[i3]"
+    "r106 = virtualinvoke $r47.<java.lang.String: java.lang.String[] split(java.lang.String)>(\":\")"
+    "$i1 = lengthof r106"
+    "if $i1 >= 2 goto i5 = 2"
+    "$r88 = new java.lang.StringBuilder"
+    "specialinvoke $r88.<java.lang.StringBuilder: void <init>()>()"
+    "$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r90 = r1[i3]"
+    "$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r90)"
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")"
+    "$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r93, r0)"
+    "i5 = 2"
+    "$i6 = lengthof r106"
+    "if i5 >= $i6 goto $r48 = r106[0]"
+    "$r81 = new java.lang.StringBuilder"
+    "specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()"
+    "$r82 = r106[1]"
+    "$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r82)"
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")"
+    "$r85 = r106[i5]"
+    "$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r85)"
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r106[1] = $r87"
+    "i5 = i5 + 1"
+    "goto [?= $i6 = lengthof r106]"
+    "$r48 = r106[0]"
+    "$z6 = virtualinvoke $r48.<java.lang.String: boolean equals(java.lang.Object)>(\"run\")"
+    "if $z6 == 0 goto $r49 = r106[0]"
+    "r99 = r106[1]"
+    "$r49 = r106[0]"
+    "$z7 = virtualinvoke $r49.<java.lang.String: boolean equals(java.lang.Object)>(\"ftype\")"
+    "if $z7 == 0 goto $r50 = r106[0]"
+    "r100 = r106[1]"
+    "$r50 = r106[0]"
+    "$z8 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"data\")"
+    "if $z8 == 0 goto $r51 = r106[0]"
+    "$r79 = new java.io.File"
+    "$r80 = r106[1]"
+    "specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>($r80)"
+    "r101 = $r79"
+    "$r51 = r106[0]"
+    "$z9 = virtualinvoke $r51.<java.lang.String: boolean equals(java.lang.Object)>(\"out\")"
+    "if $z9 == 0 goto $r52 = r106[0]"
+    "$r77 = new java.io.File"
+    "$r78 = r106[1]"
+    "specialinvoke $r77.<java.io.File: void <init>(java.lang.String)>($r78)"
+    "r102 = $r77"
+    "$r52 = r106[0]"
+    "$z10 = virtualinvoke $r52.<java.lang.String: boolean equals(java.lang.Object)>(\"bias\")"
+    "if $z10 == 0 goto $r53 = r106[0]"
+    "$r76 = r106[1]"
+    "d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r76)"
+    "$r53 = r106[0]"
+    "$z11 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"param\")"
+    "if $z11 == 0 goto $r54 = r106[0]"
+    "$r74 = new java.io.File"
+    "$r75 = r106[1]"
+    "specialinvoke $r74.<java.io.File: void <init>(java.lang.String)>($r75)"
+    "r103 = $r74"
+    "$r54 = r106[0]"
+    "$z12 = virtualinvoke $r54.<java.lang.String: boolean equals(java.lang.Object)>(\"init\")"
+    "if $z12 == 0 goto $r55 = r106[0]"
+    "$r72 = new java.io.File"
+    "$r73 = r106[1]"
+    "specialinvoke $r72.<java.io.File: void <init>(java.lang.String)>($r73)"
+    "r104 = $r72"
+    "$r55 = r106[0]"
+    "$z13 = virtualinvoke $r55.<java.lang.String: boolean equals(java.lang.Object)>(\"priorVar\")"
+    "if $z13 == 0 goto $r56 = r106[0]"
+    "$r71 = r106[1]"
+    "d1 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r71)"
+    "$r56 = r106[0]"
+    "$z14 = virtualinvoke $r56.<java.lang.String: boolean equals(java.lang.Object)>(\"option\")"
+    "if $z14 == 0 goto $r57 = r106[0]"
+    "r105 = r106[1]"
+    "$r57 = r106[0]"
+    "$z15 = virtualinvoke $r57.<java.lang.String: boolean equals(java.lang.Object)>(\"binaryFeature\")"
+    "if $z15 == 0 goto $r58 = r106[0]"
+    "$r70 = r106[1]"
+    "z19 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r70)"
+    "$r58 = r106[0]"
+    "$z16 = virtualinvoke $r58.<java.lang.String: boolean equals(java.lang.Object)>(\"useShort\")"
+    "if $z16 == 0 goto $r59 = r106[0]"
+    "$r69 = r106[1]"
+    "z20 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r69)"
+    "$r59 = r106[0]"
+    "$z17 = virtualinvoke $r59.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorVar\")"
+    "if $z17 == 0 goto $r60 = r106[0]"
+    "$r68 = r106[1]"
+    "z21 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r68)"
+    "$r60 = r106[0]"
+    "$z18 = virtualinvoke $r60.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorCov\")"
+    "if $z18 == 0 goto $r61 = new java.lang.StringBuilder"
+    "$r67 = r106[1]"
+    "z22 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r67)"
+    "$r61 = new java.lang.StringBuilder"
+    "specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()"
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r63 = r1[i3]"
+    "$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r63)"
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")"
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r66, r0)"
+    "i3 = i3 + 1"
+    "goto [?= $i4 = lengthof r1]"
+    "if r99 != null goto (branch)"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify run:<command>\", r0)"
+    "if r100 != null goto (branch)"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify ftype:<file_type>\", r0)"
+    "if r101 != null goto (branch)"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify data:<file_name>\", r0)"
+    "if r102 != null goto $z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify out:<file_name>\", r0)"
+    "$z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")"
+    "if $z0 == 0 goto $z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")"
+    "r107 = null"
+    "r108 = null"
+    "if r103 == null goto (branch)"
+    "$z5 = virtualinvoke r103.<java.io.File: boolean exists()>()"
+    "if $z5 != 0 goto r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")"
+    "$r40 = new java.lang.StringBuilder"
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Param File \'\")"
+    "$r42 = virtualinvoke r103.<java.io.File: java.lang.String getPath()>()"
+    "$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r45, r0)"
+    "r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")"
+    "if r104 == null goto $b7 = d1 cmpl #NaN"
+    "$z4 = virtualinvoke r104.<java.io.File: boolean exists()>()"
+    "if $z4 != 0 goto r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")"
+    "$r34 = new java.lang.StringBuilder"
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Init File \'\")"
+    "$r36 = virtualinvoke r104.<java.io.File: java.lang.String getPath()>()"
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r39, r0)"
+    "r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")"
+    "$b7 = d1 cmpl #NaN"
+    "if $b7 != 0 goto $z2 = virtualinvoke r101.<java.io.File: boolean exists()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify priorVar:<var>\", r0)"
+    "$z2 = virtualinvoke r101.<java.io.File: boolean exists()>()"
+    "if $z2 != 0 goto (branch)"
+    "$r28 = new java.lang.StringBuilder"
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Data File \'\")"
+    "$r30 = virtualinvoke r101.<java.io.File: java.lang.String getPath()>()"
+    "$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30)"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r33, r0)"
+    "if z19 == 0 goto $r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"
+    "$r27 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset"
+    "specialinvoke $r27.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void <init>(double,boolean)>(d0, z20)"
+    "r109 = $r27"
+    "goto [?= $r8 = \"libsvm\"]"
+    "$r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"
+    "specialinvoke $r7.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void <init>(double)>(d0)"
+    "r109 = $r7"
+    "$r8 = \"libsvm\""
+    "$z3 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>(r100)"
+    "if $z3 == 0 goto $r9 = new java.lang.StringBuilder"
+    "virtualinvoke r109.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void readFromLibSVM(java.io.File)>(r101)"
+    "goto [?= (branch)]"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown file type \'ftype:\")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r13, r0)"
+    "if z22 != 1 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"
+    "if z21 != 0 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Cannot compute posterior covariances with posteriorVar:0\", r0)"
+    "$r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"
+    "specialinvoke $r110.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void <init>()>()"
+    "r14 = $r110"
+    "virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void setComputeFullPostVar(boolean)>(z22)"
+    "virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void train(com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset,java.util.Map,java.util.Map,java.util.Map,double,double,java.lang.String,boolean)>(r109, r108, r107, null, 0.0, d1, r105, z21)"
+    "$r111 = new java.io.PrintStream"
+    "specialinvoke $r111.<java.io.PrintStream: void <init>(java.io.File)>(r102)"
+    "r112 = $r111"
+    "$r113 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getParamMap()>()"
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r112, $r113, \"=\", 1)"
+    "virtualinvoke r112.<java.io.PrintStream: void close()>()"
+    "if z21 == 0 goto (branch)"
+    "$r15 = new java.io.PrintStream"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".var\")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r15.<java.io.PrintStream: void <init>(java.lang.String)>($r19)"
+    "r114 = $r15"
+    "$r20 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMap()>()"
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r114, $r20, \"=\", 1)"
+    "virtualinvoke r114.<java.io.PrintStream: void close()>()"
+    "if z22 == 0 goto (branch)"
+    "$r21 = new java.io.PrintStream"
+    "$r22 = new java.lang.StringBuilder"
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".cov\")"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r21.<java.io.PrintStream: void <init>(java.lang.String)>($r25)"
+    "r115 = $r21"
+    "$r26 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMatrixMap()>()"
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringListDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String)>(r115, $r26, \"=\")"
+    "virtualinvoke r115.<java.io.PrintStream: void close()>()"
+    "goto [?= return]"
+    "$z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")"
+    "if $z1 == 0 goto $r2 = new java.lang.StringBuilder"
+    "$r6 = new java.lang.Exception"
+    "specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"run:predict is not supported yet :(\")"
+    "throw $r6"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown run:\")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r99)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r5, r0)"
+    "return"
+    "r1 := @parameter0: java.lang.String[]"->"r0 = \"Input parameters (separated by space): \n   run:<command>      (required) train or predict\n   ftype:<file_type>  (required) libsvm or json\n   data:<file_name>   (required) Input data file of the specified type\n   out:<file_name>    (required) Output file\n   bias:<bias>        (optional) Set to 0 if you do not want to add an\n                                 bias/intercept term\n                                 Set to 1 if you want to add a feature with\n                                 value 1 to every instance\n                                 Default: 0\n   param:<file_name>  (optional) for run:train, it specifies the prior mean\n                      (required) for run:predict, it specifies the model\n                                 File format: <featureName>=<value> per line\n   priorVar:<var>     (required) for run:train, <var> is the a number\n                      (not used) for run:predict\n   init:<file_name>   (optional) for run:train, it specifies the initial value\n                                 File format: <featureName>=<value> per line\n   posteriorVar:1/0   (optional) Whether to compute posterior variances\n                                 Default: 1\n   posteriorCov:1/0   (optional) Whether to compute posterior covariances\n                                 Default: 0\n   binaryFeature:1/0  (optional) Whether all of the input features are binary\n   useShort:1/0       (optional) Whether to use short to store feature indices\n   option:<options>   (optional) Comma-separated list of options\n                                 No space is allowed in <options>\n                                 Eg: max_iter=5,epsilon=0.01,positive_weight=2\n                      (not used) for run:predict\n\"";
+    "r0 = \"Input parameters (separated by space): \n   run:<command>      (required) train or predict\n   ftype:<file_type>  (required) libsvm or json\n   data:<file_name>   (required) Input data file of the specified type\n   out:<file_name>    (required) Output file\n   bias:<bias>        (optional) Set to 0 if you do not want to add an\n                                 bias/intercept term\n                                 Set to 1 if you want to add a feature with\n                                 value 1 to every instance\n                                 Default: 0\n   param:<file_name>  (optional) for run:train, it specifies the prior mean\n                      (required) for run:predict, it specifies the model\n                                 File format: <featureName>=<value> per line\n   priorVar:<var>     (required) for run:train, <var> is the a number\n                      (not used) for run:predict\n   init:<file_name>   (optional) for run:train, it specifies the initial value\n                                 File format: <featureName>=<value> per line\n   posteriorVar:1/0   (optional) Whether to compute posterior variances\n                                 Default: 1\n   posteriorCov:1/0   (optional) Whether to compute posterior covariances\n                                 Default: 0\n   binaryFeature:1/0  (optional) Whether all of the input features are binary\n   useShort:1/0       (optional) Whether to use short to store feature indices\n   option:<options>   (optional) Comma-separated list of options\n                                 No space is allowed in <options>\n                                 Eg: max_iter=5,epsilon=0.01,positive_weight=2\n                      (not used) for run:predict\n\""->"$i0 = lengthof r1";
+    "$i0 = lengthof r1"->"if $i0 >= 3 goto r99 = null";
+    "if $i0 >= 3 goto r99 = null"->"$r95 = <java.lang.System: java.io.PrintStream out>";
+    "if $i0 >= 3 goto r99 = null"->"r99 = null";
+    "$r95 = <java.lang.System: java.io.PrintStream out>"->"$r94 = new java.lang.StringBuilder";
+    "$r94 = new java.lang.StringBuilder"->"specialinvoke $r94.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r94.<java.lang.StringBuilder: void <init>()>()"->"$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)";
+    "$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"->"$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98)";
+    "virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98)"->"staticinvoke <java.lang.System: void exit(int)>(0)";
+    "staticinvoke <java.lang.System: void exit(int)>(0)"->"r99 = null";
+    "r99 = null"->"r100 = null";
+    "r100 = null"->"r101 = null";
+    "r101 = null"->"r102 = null";
+    "r102 = null"->"d0 = 0.0";
+    "d0 = 0.0"->"r103 = null";
+    "r103 = null"->"r104 = null";
+    "r104 = null"->"d1 = #NaN";
+    "d1 = #NaN"->"r105 = null";
+    "r105 = null"->"z19 = 0";
+    "z19 = 0"->"z20 = 0";
+    "z20 = 0"->"z21 = 1";
+    "z21 = 1"->"z22 = 0";
+    "z22 = 0"->"i3 = 0";
+    "i3 = 0"->"$i4 = lengthof r1";
+    "$i4 = lengthof r1"->"if i3 >= $i4 goto (branch)";
+    "if i3 >= $i4 goto (branch)"->"$r46 = r1[i3]";
+    "if i3 >= $i4 goto (branch)"->"if r99 != null goto (branch)";
+    "$r46 = r1[i3]"->"if $r46 != null goto $r47 = r1[i3]";
+    "if $r46 != null goto $r47 = r1[i3]"->"goto [?= i3 = i3 + 1]";
+    "if $r46 != null goto $r47 = r1[i3]"->"$r47 = r1[i3]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r47 = r1[i3]"->"r106 = virtualinvoke $r47.<java.lang.String: java.lang.String[] split(java.lang.String)>(\":\")";
+    "r106 = virtualinvoke $r47.<java.lang.String: java.lang.String[] split(java.lang.String)>(\":\")"->"$i1 = lengthof r106";
+    "$i1 = lengthof r106"->"if $i1 >= 2 goto i5 = 2";
+    "if $i1 >= 2 goto i5 = 2"->"$r88 = new java.lang.StringBuilder";
+    "if $i1 >= 2 goto i5 = 2"->"i5 = 2";
+    "$r88 = new java.lang.StringBuilder"->"specialinvoke $r88.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r88.<java.lang.StringBuilder: void <init>()>()"->"$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r90 = r1[i3]";
+    "$r90 = r1[i3]"->"$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r90)";
+    "$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r90)"->"$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")";
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")"->"$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r93, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r93, r0)"->"i5 = 2";
+    "i5 = 2"->"$i6 = lengthof r106";
+    "$i6 = lengthof r106"->"if i5 >= $i6 goto $r48 = r106[0]";
+    "if i5 >= $i6 goto $r48 = r106[0]"->"$r81 = new java.lang.StringBuilder";
+    "if i5 >= $i6 goto $r48 = r106[0]"->"$r48 = r106[0]";
+    "$r81 = new java.lang.StringBuilder"->"specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()"->"$r82 = r106[1]";
+    "$r82 = r106[1]"->"$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r82)";
+    "$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r82)"->"$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")";
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")"->"$r85 = r106[i5]";
+    "$r85 = r106[i5]"->"$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r85)";
+    "$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r85)"->"$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()"->"r106[1] = $r87";
+    "r106[1] = $r87"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"goto [?= $i6 = lengthof r106]";
+    "goto [?= $i6 = lengthof r106]"->"$i6 = lengthof r106";
+    "$r48 = r106[0]"->"$z6 = virtualinvoke $r48.<java.lang.String: boolean equals(java.lang.Object)>(\"run\")";
+    "$z6 = virtualinvoke $r48.<java.lang.String: boolean equals(java.lang.Object)>(\"run\")"->"if $z6 == 0 goto $r49 = r106[0]";
+    "if $z6 == 0 goto $r49 = r106[0]"->"r99 = r106[1]";
+    "if $z6 == 0 goto $r49 = r106[0]"->"$r49 = r106[0]";
+    "r99 = r106[1]"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r49 = r106[0]"->"$z7 = virtualinvoke $r49.<java.lang.String: boolean equals(java.lang.Object)>(\"ftype\")";
+    "$z7 = virtualinvoke $r49.<java.lang.String: boolean equals(java.lang.Object)>(\"ftype\")"->"if $z7 == 0 goto $r50 = r106[0]";
+    "if $z7 == 0 goto $r50 = r106[0]"->"r100 = r106[1]";
+    "if $z7 == 0 goto $r50 = r106[0]"->"$r50 = r106[0]";
+    "r100 = r106[1]"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r50 = r106[0]"->"$z8 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"data\")";
+    "$z8 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"data\")"->"if $z8 == 0 goto $r51 = r106[0]";
+    "if $z8 == 0 goto $r51 = r106[0]"->"$r79 = new java.io.File";
+    "if $z8 == 0 goto $r51 = r106[0]"->"$r51 = r106[0]";
+    "$r79 = new java.io.File"->"$r80 = r106[1]";
+    "$r80 = r106[1]"->"specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>($r80)";
+    "specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>($r80)"->"r101 = $r79";
+    "r101 = $r79"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r51 = r106[0]"->"$z9 = virtualinvoke $r51.<java.lang.String: boolean equals(java.lang.Object)>(\"out\")";
+    "$z9 = virtualinvoke $r51.<java.lang.String: boolean equals(java.lang.Object)>(\"out\")"->"if $z9 == 0 goto $r52 = r106[0]";
+    "if $z9 == 0 goto $r52 = r106[0]"->"$r77 = new java.io.File";
+    "if $z9 == 0 goto $r52 = r106[0]"->"$r52 = r106[0]";
+    "$r77 = new java.io.File"->"$r78 = r106[1]";
+    "$r78 = r106[1]"->"specialinvoke $r77.<java.io.File: void <init>(java.lang.String)>($r78)";
+    "specialinvoke $r77.<java.io.File: void <init>(java.lang.String)>($r78)"->"r102 = $r77";
+    "r102 = $r77"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r52 = r106[0]"->"$z10 = virtualinvoke $r52.<java.lang.String: boolean equals(java.lang.Object)>(\"bias\")";
+    "$z10 = virtualinvoke $r52.<java.lang.String: boolean equals(java.lang.Object)>(\"bias\")"->"if $z10 == 0 goto $r53 = r106[0]";
+    "if $z10 == 0 goto $r53 = r106[0]"->"$r76 = r106[1]";
+    "if $z10 == 0 goto $r53 = r106[0]"->"$r53 = r106[0]";
+    "$r76 = r106[1]"->"d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r76)";
+    "d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r76)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r53 = r106[0]"->"$z11 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"param\")";
+    "$z11 = virtualinvoke $r53.<java.lang.String: boolean equals(java.lang.Object)>(\"param\")"->"if $z11 == 0 goto $r54 = r106[0]";
+    "if $z11 == 0 goto $r54 = r106[0]"->"$r74 = new java.io.File";
+    "if $z11 == 0 goto $r54 = r106[0]"->"$r54 = r106[0]";
+    "$r74 = new java.io.File"->"$r75 = r106[1]";
+    "$r75 = r106[1]"->"specialinvoke $r74.<java.io.File: void <init>(java.lang.String)>($r75)";
+    "specialinvoke $r74.<java.io.File: void <init>(java.lang.String)>($r75)"->"r103 = $r74";
+    "r103 = $r74"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r54 = r106[0]"->"$z12 = virtualinvoke $r54.<java.lang.String: boolean equals(java.lang.Object)>(\"init\")";
+    "$z12 = virtualinvoke $r54.<java.lang.String: boolean equals(java.lang.Object)>(\"init\")"->"if $z12 == 0 goto $r55 = r106[0]";
+    "if $z12 == 0 goto $r55 = r106[0]"->"$r72 = new java.io.File";
+    "if $z12 == 0 goto $r55 = r106[0]"->"$r55 = r106[0]";
+    "$r72 = new java.io.File"->"$r73 = r106[1]";
+    "$r73 = r106[1]"->"specialinvoke $r72.<java.io.File: void <init>(java.lang.String)>($r73)";
+    "specialinvoke $r72.<java.io.File: void <init>(java.lang.String)>($r73)"->"r104 = $r72";
+    "r104 = $r72"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r55 = r106[0]"->"$z13 = virtualinvoke $r55.<java.lang.String: boolean equals(java.lang.Object)>(\"priorVar\")";
+    "$z13 = virtualinvoke $r55.<java.lang.String: boolean equals(java.lang.Object)>(\"priorVar\")"->"if $z13 == 0 goto $r56 = r106[0]";
+    "if $z13 == 0 goto $r56 = r106[0]"->"$r71 = r106[1]";
+    "if $z13 == 0 goto $r56 = r106[0]"->"$r56 = r106[0]";
+    "$r71 = r106[1]"->"d1 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r71)";
+    "d1 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r71)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r56 = r106[0]"->"$z14 = virtualinvoke $r56.<java.lang.String: boolean equals(java.lang.Object)>(\"option\")";
+    "$z14 = virtualinvoke $r56.<java.lang.String: boolean equals(java.lang.Object)>(\"option\")"->"if $z14 == 0 goto $r57 = r106[0]";
+    "if $z14 == 0 goto $r57 = r106[0]"->"r105 = r106[1]";
+    "if $z14 == 0 goto $r57 = r106[0]"->"$r57 = r106[0]";
+    "r105 = r106[1]"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r57 = r106[0]"->"$z15 = virtualinvoke $r57.<java.lang.String: boolean equals(java.lang.Object)>(\"binaryFeature\")";
+    "$z15 = virtualinvoke $r57.<java.lang.String: boolean equals(java.lang.Object)>(\"binaryFeature\")"->"if $z15 == 0 goto $r58 = r106[0]";
+    "if $z15 == 0 goto $r58 = r106[0]"->"$r70 = r106[1]";
+    "if $z15 == 0 goto $r58 = r106[0]"->"$r58 = r106[0]";
+    "$r70 = r106[1]"->"z19 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r70)";
+    "z19 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r70)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r58 = r106[0]"->"$z16 = virtualinvoke $r58.<java.lang.String: boolean equals(java.lang.Object)>(\"useShort\")";
+    "$z16 = virtualinvoke $r58.<java.lang.String: boolean equals(java.lang.Object)>(\"useShort\")"->"if $z16 == 0 goto $r59 = r106[0]";
+    "if $z16 == 0 goto $r59 = r106[0]"->"$r69 = r106[1]";
+    "if $z16 == 0 goto $r59 = r106[0]"->"$r59 = r106[0]";
+    "$r69 = r106[1]"->"z20 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r69)";
+    "z20 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r69)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r59 = r106[0]"->"$z17 = virtualinvoke $r59.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorVar\")";
+    "$z17 = virtualinvoke $r59.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorVar\")"->"if $z17 == 0 goto $r60 = r106[0]";
+    "if $z17 == 0 goto $r60 = r106[0]"->"$r68 = r106[1]";
+    "if $z17 == 0 goto $r60 = r106[0]"->"$r60 = r106[0]";
+    "$r68 = r106[1]"->"z21 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r68)";
+    "z21 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r68)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r60 = r106[0]"->"$z18 = virtualinvoke $r60.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorCov\")";
+    "$z18 = virtualinvoke $r60.<java.lang.String: boolean equals(java.lang.Object)>(\"posteriorCov\")"->"if $z18 == 0 goto $r61 = new java.lang.StringBuilder";
+    "if $z18 == 0 goto $r61 = new java.lang.StringBuilder"->"$r67 = r106[1]";
+    "if $z18 == 0 goto $r61 = new java.lang.StringBuilder"->"$r61 = new java.lang.StringBuilder";
+    "$r67 = r106[1]"->"z22 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r67)";
+    "z22 = staticinvoke <com.linkedin.mlease.utils.Util: boolean atob(java.lang.String)>($r67)"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r61 = new java.lang.StringBuilder"->"specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()"->"$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r63 = r1[i3]";
+    "$r63 = r1[i3]"->"$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r63)";
+    "$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r63)"->"$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")";
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' is not a valid input parameter string!\")"->"$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r66, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r66, r0)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"goto [?= $i4 = lengthof r1]";
+    "goto [?= $i4 = lengthof r1]"->"$i4 = lengthof r1";
+    "if r99 != null goto (branch)"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify run:<command>\", r0)";
+    "if r99 != null goto (branch)"->"if r100 != null goto (branch)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify run:<command>\", r0)"->"if r100 != null goto (branch)";
+    "if r100 != null goto (branch)"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify ftype:<file_type>\", r0)";
+    "if r100 != null goto (branch)"->"if r101 != null goto (branch)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify ftype:<file_type>\", r0)"->"if r101 != null goto (branch)";
+    "if r101 != null goto (branch)"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify data:<file_name>\", r0)";
+    "if r101 != null goto (branch)"->"if r102 != null goto $z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify data:<file_name>\", r0)"->"if r102 != null goto $z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")";
+    "if r102 != null goto $z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify out:<file_name>\", r0)";
+    "if r102 != null goto $z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")"->"$z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify out:<file_name>\", r0)"->"$z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")";
+    "$z0 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"train\")"->"if $z0 == 0 goto $z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")";
+    "if $z0 == 0 goto $z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")"->"r107 = null";
+    "if $z0 == 0 goto $z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")"->"$z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")";
+    "r107 = null"->"r108 = null";
+    "r108 = null"->"if r103 == null goto (branch)";
+    "if r103 == null goto (branch)"->"$z5 = virtualinvoke r103.<java.io.File: boolean exists()>()";
+    "if r103 == null goto (branch)"->"if r104 == null goto $b7 = d1 cmpl #NaN";
+    "$z5 = virtualinvoke r103.<java.io.File: boolean exists()>()"->"if $z5 != 0 goto r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")";
+    "if $z5 != 0 goto r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")"->"$r40 = new java.lang.StringBuilder";
+    "if $z5 != 0 goto r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")"->"r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")";
+    "$r40 = new java.lang.StringBuilder"->"specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"->"$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Param File \'\")";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Param File \'\")"->"$r42 = virtualinvoke r103.<java.io.File: java.lang.String getPath()>()";
+    "$r42 = virtualinvoke r103.<java.io.File: java.lang.String getPath()>()"->"$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)";
+    "$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"->"$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r45, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r45, r0)"->"r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")";
+    "r107 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r103, \"=\")"->"if r104 == null goto $b7 = d1 cmpl #NaN";
+    "if r104 == null goto $b7 = d1 cmpl #NaN"->"$z4 = virtualinvoke r104.<java.io.File: boolean exists()>()";
+    "if r104 == null goto $b7 = d1 cmpl #NaN"->"$b7 = d1 cmpl #NaN";
+    "$z4 = virtualinvoke r104.<java.io.File: boolean exists()>()"->"if $z4 != 0 goto r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")";
+    "if $z4 != 0 goto r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")"->"$r34 = new java.lang.StringBuilder";
+    "if $z4 != 0 goto r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")"->"r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")";
+    "$r34 = new java.lang.StringBuilder"->"specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Init File \'\")";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Init File \'\")"->"$r36 = virtualinvoke r104.<java.io.File: java.lang.String getPath()>()";
+    "$r36 = virtualinvoke r104.<java.io.File: java.lang.String getPath()>()"->"$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)";
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r39, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r39, r0)"->"r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")";
+    "r108 = staticinvoke <com.linkedin.mlease.utils.Util: java.util.Map readStringDoubleMap(java.io.File,java.lang.String)>(r104, \"=\")"->"$b7 = d1 cmpl #NaN";
+    "$b7 = d1 cmpl #NaN"->"if $b7 != 0 goto $z2 = virtualinvoke r101.<java.io.File: boolean exists()>()";
+    "if $b7 != 0 goto $z2 = virtualinvoke r101.<java.io.File: boolean exists()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify priorVar:<var>\", r0)";
+    "if $b7 != 0 goto $z2 = virtualinvoke r101.<java.io.File: boolean exists()>()"->"$z2 = virtualinvoke r101.<java.io.File: boolean exists()>()";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Please specify priorVar:<var>\", r0)"->"$z2 = virtualinvoke r101.<java.io.File: boolean exists()>()";
+    "$z2 = virtualinvoke r101.<java.io.File: boolean exists()>()"->"if $z2 != 0 goto (branch)";
+    "if $z2 != 0 goto (branch)"->"$r28 = new java.lang.StringBuilder";
+    "if $z2 != 0 goto (branch)"->"if z19 == 0 goto $r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset";
+    "$r28 = new java.lang.StringBuilder"->"specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Data File \'\")";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Data File \'\")"->"$r30 = virtualinvoke r101.<java.io.File: java.lang.String getPath()>()";
+    "$r30 = virtualinvoke r101.<java.io.File: java.lang.String getPath()>()"->"$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30)";
+    "$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30)"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' does not exist\")"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r33, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r33, r0)"->"if z19 == 0 goto $r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset";
+    "if z19 == 0 goto $r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"->"$r27 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset";
+    "if z19 == 0 goto $r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"->"$r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset";
+    "$r27 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset"->"specialinvoke $r27.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void <init>(double,boolean)>(d0, z20)";
+    "specialinvoke $r27.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void <init>(double,boolean)>(d0, z20)"->"r109 = $r27";
+    "r109 = $r27"->"goto [?= $r8 = \"libsvm\"]";
+    "goto [?= $r8 = \"libsvm\"]"->"$r8 = \"libsvm\"";
+    "$r7 = new com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"->"specialinvoke $r7.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void <init>(double)>(d0)";
+    "specialinvoke $r7.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void <init>(double)>(d0)"->"r109 = $r7";
+    "r109 = $r7"->"$r8 = \"libsvm\"";
+    "$r8 = \"libsvm\""->"$z3 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>(r100)";
+    "$z3 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"if $z3 == 0 goto $r9 = new java.lang.StringBuilder";
+    "if $z3 == 0 goto $r9 = new java.lang.StringBuilder"->"virtualinvoke r109.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void readFromLibSVM(java.io.File)>(r101)";
+    "if $z3 == 0 goto $r9 = new java.lang.StringBuilder"->"$r9 = new java.lang.StringBuilder";
+    "virtualinvoke r109.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: void readFromLibSVM(java.io.File)>(r101)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if z22 != 1 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown file type \'ftype:\")";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown file type \'ftype:\")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r13, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r13, r0)"->"if z22 != 1 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "if z22 != 1 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"->"if z21 != 0 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "if z22 != 1 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"->"$r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "if z21 != 0 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Cannot compute posterior covariances with posteriorVar:0\", r0)";
+    "if z21 != 0 goto $r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"->"$r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>(\"Cannot compute posterior covariances with posteriorVar:0\", r0)"->"$r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear";
+    "$r110 = new com.linkedin.mlease.regression.liblinearfunc.LibLinear"->"specialinvoke $r110.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void <init>()>()";
+    "specialinvoke $r110.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void <init>()>()"->"r14 = $r110";
+    "r14 = $r110"->"virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void setComputeFullPostVar(boolean)>(z22)";
+    "virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void setComputeFullPostVar(boolean)>(z22)"->"virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void train(com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset,java.util.Map,java.util.Map,java.util.Map,double,double,java.lang.String,boolean)>(r109, r108, r107, null, 0.0, d1, r105, z21)";
+    "virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: void train(com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset,java.util.Map,java.util.Map,java.util.Map,double,double,java.lang.String,boolean)>(r109, r108, r107, null, 0.0, d1, r105, z21)"->"$r111 = new java.io.PrintStream";
+    "$r111 = new java.io.PrintStream"->"specialinvoke $r111.<java.io.PrintStream: void <init>(java.io.File)>(r102)";
+    "specialinvoke $r111.<java.io.PrintStream: void <init>(java.io.File)>(r102)"->"r112 = $r111";
+    "r112 = $r111"->"$r113 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getParamMap()>()";
+    "$r113 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getParamMap()>()"->"staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r112, $r113, \"=\", 1)";
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r112, $r113, \"=\", 1)"->"virtualinvoke r112.<java.io.PrintStream: void close()>()";
+    "virtualinvoke r112.<java.io.PrintStream: void close()>()"->"if z21 == 0 goto (branch)";
+    "if z21 == 0 goto (branch)"->"$r15 = new java.io.PrintStream";
+    "if z21 == 0 goto (branch)"->"goto [?= return]";
+    "$r15 = new java.io.PrintStream"->"$r16 = new java.lang.StringBuilder";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".var\")";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".var\")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r15.<java.io.PrintStream: void <init>(java.lang.String)>($r19)";
+    "specialinvoke $r15.<java.io.PrintStream: void <init>(java.lang.String)>($r19)"->"r114 = $r15";
+    "r114 = $r15"->"$r20 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMap()>()";
+    "$r20 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMap()>()"->"staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r114, $r20, \"=\", 1)";
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String,boolean)>(r114, $r20, \"=\", 1)"->"virtualinvoke r114.<java.io.PrintStream: void close()>()";
+    "virtualinvoke r114.<java.io.PrintStream: void close()>()"->"if z22 == 0 goto (branch)";
+    "if z22 == 0 goto (branch)"->"$r21 = new java.io.PrintStream";
+    "if z22 == 0 goto (branch)"->"goto [?= return]";
+    "$r21 = new java.io.PrintStream"->"$r22 = new java.lang.StringBuilder";
+    "$r22 = new java.lang.StringBuilder"->"specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r102)"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".cov\")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".cov\")"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r21.<java.io.PrintStream: void <init>(java.lang.String)>($r25)";
+    "specialinvoke $r21.<java.io.PrintStream: void <init>(java.lang.String)>($r25)"->"r115 = $r21";
+    "r115 = $r21"->"$r26 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMatrixMap()>()";
+    "$r26 = virtualinvoke r14.<com.linkedin.mlease.regression.liblinearfunc.LibLinear: java.util.Map getPostVarMatrixMap()>()"->"staticinvoke <com.linkedin.mlease.utils.Util: void printStringListDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String)>(r115, $r26, \"=\")";
+    "staticinvoke <com.linkedin.mlease.utils.Util: void printStringListDoubleMap(java.io.PrintStream,java.util.Map,java.lang.String)>(r115, $r26, \"=\")"->"virtualinvoke r115.<java.io.PrintStream: void close()>()";
+    "virtualinvoke r115.<java.io.PrintStream: void close()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$z1 = virtualinvoke r99.<java.lang.String: boolean equals(java.lang.Object)>(\"predict\")"->"if $z1 == 0 goto $r2 = new java.lang.StringBuilder";
+    "if $z1 == 0 goto $r2 = new java.lang.StringBuilder"->"$r6 = new java.lang.Exception";
+    "if $z1 == 0 goto $r2 = new java.lang.StringBuilder"->"$r2 = new java.lang.StringBuilder";
+    "$r6 = new java.lang.Exception"->"specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"run:predict is not supported yet :(\")";
+    "specialinvoke $r6.<java.lang.Exception: void <init>(java.lang.String)>(\"run:predict is not supported yet :(\")"->"throw $r6";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown run:\")";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown run:\")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r99)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r99)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r5, r0)";
+    "staticinvoke <com.linkedin.mlease.regression.liblinearfunc.LibLinear: void cmd_line_error(java.lang.String,java.lang.String)>($r5, r0)"->"return";
+}

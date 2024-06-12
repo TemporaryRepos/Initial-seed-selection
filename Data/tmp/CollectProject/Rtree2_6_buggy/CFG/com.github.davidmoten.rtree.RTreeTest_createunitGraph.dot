@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 := @parameter1: int"
+    "$r0 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree$Builder maxChildren(int)>(i0)"
+    "r2 = virtualinvoke $r0.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree create()>()"
+    "i2 = 1"
+    "if i2 > i1 goto return r2"
+    "$r1 = staticinvoke <com.github.davidmoten.rtree.RTreeTest: com.github.davidmoten.rtree.Entry e(int)>(i2)"
+    "r2 = virtualinvoke r2.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(com.github.davidmoten.rtree.Entry)>($r1)"
+    "i2 = i2 + 1"
+    "goto [?= (branch)]"
+    "return r2"
+    "i0 := @parameter0: int"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"$r0 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree$Builder maxChildren(int)>(i0)";
+    "$r0 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree$Builder maxChildren(int)>(i0)"->"r2 = virtualinvoke $r0.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree create()>()";
+    "r2 = virtualinvoke $r0.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree create()>()"->"i2 = 1";
+    "i2 = 1"->"if i2 > i1 goto return r2";
+    "if i2 > i1 goto return r2"->"$r1 = staticinvoke <com.github.davidmoten.rtree.RTreeTest: com.github.davidmoten.rtree.Entry e(int)>(i2)";
+    "if i2 > i1 goto return r2"->"return r2";
+    "$r1 = staticinvoke <com.github.davidmoten.rtree.RTreeTest: com.github.davidmoten.rtree.Entry e(int)>(i2)"->"r2 = virtualinvoke r2.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(com.github.davidmoten.rtree.Entry)>($r1)";
+    "r2 = virtualinvoke r2.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(com.github.davidmoten.rtree.Entry)>($r1)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 > i1 goto return r2";
+}

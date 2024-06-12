@@ -1,0 +1,694 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+r16 := @parameter1: java.io.PrintStream;
+if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = lengthof r0;
+if $i0 >= 1 goto r2 = r0[0];
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\");
+return 2;
+"
+    "Block 3:
+[preds: 1 ] [succs: 19 21 4 ]
+r2 = r0[0];
+$r3 = new nsk.share.test.Stresser;
+specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0);
+r4 = $r3;
+$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\";
+r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+$r7 = new java.lang.StringBuilder;
+$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+$r9 = <java.io.File: java.lang.String separator>;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14);
+i2 = 0;
+staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>();
+virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\");
+virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L);
+"
+    "Block 4:
+[preds: 3 ] [succs: 19 21 5 ]
+r31 = null;
+"
+    "Block 5:
+[preds: 4 ] [succs: 19 21 14 ]
+goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()];
+"
+    "Block 6:
+[preds: 15 ] [succs: 19 21 7 ]
+$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"
+    "Block 7:
+[preds: 6 ] [succs: 19 21 8 ]
+specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 19 21 9 ]
+r18 = $r17;
+"
+    "Block 9:
+[preds: 8 ] [succs: 19 21 10 ]
+r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31;
+"
+    "Block 10:
+[preds: 9 ] [succs: 19 21 11 ]
+r31 = r18;
+"
+    "Block 11:
+[preds: 10 ] [succs: 19 21 12 ]
+$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>;
+"
+    "Block 12:
+[preds: 11 ] [succs: 19 21 13 ]
+virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15);
+"
+    "Block 13:
+[preds: 12 ] [succs: 19 21 14 ]
+i2 = i2 + 1;
+"
+    "Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"
+    "Block 16:
+[preds: 15 ] [succs: 19 21 17 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 17:
+[preds: 16 ] [succs: 19 21 18 ]
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\");
+"
+    "Block 18:
+[preds: 17 ] [succs: ]
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+return 0;
+"
+    "Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+"
+    "Block 20:
+[preds: 19 ] [succs: 22 ]
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+goto [?= staticinvoke <java.lang.System: void gc()>()];
+"
+    "Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+"
+    "Block 22:
+[preds: 20 ] [succs: 23 24 ]
+staticinvoke <java.lang.System: void gc()>();
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \");
+$i1 = lengthof r15;
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30);
+if $z1 != 0 goto return 0;
+"
+    "Block 23:
+[preds: 22 ] [succs: ]
+return 2;
+"
+    "Block 24:
+[preds: 22 ] [succs: ]
+return 0;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+r16 := @parameter1: java.io.PrintStream;
+if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = lengthof r0;
+if $i0 >= 1 goto r2 = r0[0];
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+r16 := @parameter1: java.io.PrintStream;
+if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\");
+return 2;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = lengthof r0;
+if $i0 >= 1 goto r2 = r0[0];
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\");
+return 2;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i0 = lengthof r0;
+if $i0 >= 1 goto r2 = r0[0];
+"->"Block 3:
+[preds: 1 ] [succs: 19 21 4 ]
+r2 = r0[0];
+$r3 = new nsk.share.test.Stresser;
+specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0);
+r4 = $r3;
+$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\";
+r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+$r7 = new java.lang.StringBuilder;
+$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+$r9 = <java.io.File: java.lang.String separator>;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14);
+i2 = 0;
+staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>();
+virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\");
+virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L);
+";
+    "Block 3:
+[preds: 1 ] [succs: 19 21 4 ]
+r2 = r0[0];
+$r3 = new nsk.share.test.Stresser;
+specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0);
+r4 = $r3;
+$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\";
+r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+$r7 = new java.lang.StringBuilder;
+$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+$r9 = <java.io.File: java.lang.String separator>;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14);
+i2 = 0;
+staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>();
+virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\");
+virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L);
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 3:
+[preds: 1 ] [succs: 19 21 4 ]
+r2 = r0[0];
+$r3 = new nsk.share.test.Stresser;
+specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0);
+r4 = $r3;
+$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\";
+r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+$r7 = new java.lang.StringBuilder;
+$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+$r9 = <java.io.File: java.lang.String separator>;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14);
+i2 = 0;
+staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>();
+virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\");
+virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L);
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 3:
+[preds: 1 ] [succs: 19 21 4 ]
+r2 = r0[0];
+$r3 = new nsk.share.test.Stresser;
+specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0);
+r4 = $r3;
+$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\";
+r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+$r7 = new java.lang.StringBuilder;
+$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+$r9 = <java.io.File: java.lang.String separator>;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14);
+i2 = 0;
+staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>();
+virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\");
+virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L);
+"->"Block 4:
+[preds: 3 ] [succs: 19 21 5 ]
+r31 = null;
+";
+    "Block 4:
+[preds: 3 ] [succs: 19 21 5 ]
+r31 = null;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 19 21 5 ]
+r31 = null;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 4:
+[preds: 3 ] [succs: 19 21 5 ]
+r31 = null;
+"->"Block 5:
+[preds: 4 ] [succs: 19 21 14 ]
+goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 19 21 14 ]
+goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()];
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 19 21 14 ]
+goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()];
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 5:
+[preds: 4 ] [succs: 19 21 14 ]
+goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()];
+"->"Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+";
+    "Block 6:
+[preds: 15 ] [succs: 19 21 7 ]
+$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 6:
+[preds: 15 ] [succs: 19 21 7 ]
+$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 6:
+[preds: 15 ] [succs: 19 21 7 ]
+$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 7:
+[preds: 6 ] [succs: 19 21 8 ]
+specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 19 21 8 ]
+specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>();
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 19 21 8 ]
+specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>();
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 7:
+[preds: 6 ] [succs: 19 21 8 ]
+specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>();
+"->"Block 8:
+[preds: 7 ] [succs: 19 21 9 ]
+r18 = $r17;
+";
+    "Block 8:
+[preds: 7 ] [succs: 19 21 9 ]
+r18 = $r17;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 19 21 9 ]
+r18 = $r17;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 8:
+[preds: 7 ] [succs: 19 21 9 ]
+r18 = $r17;
+"->"Block 9:
+[preds: 8 ] [succs: 19 21 10 ]
+r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31;
+";
+    "Block 9:
+[preds: 8 ] [succs: 19 21 10 ]
+r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 19 21 10 ]
+r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 9:
+[preds: 8 ] [succs: 19 21 10 ]
+r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31;
+"->"Block 10:
+[preds: 9 ] [succs: 19 21 11 ]
+r31 = r18;
+";
+    "Block 10:
+[preds: 9 ] [succs: 19 21 11 ]
+r31 = r18;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 19 21 11 ]
+r31 = r18;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 10:
+[preds: 9 ] [succs: 19 21 11 ]
+r31 = r18;
+"->"Block 11:
+[preds: 10 ] [succs: 19 21 12 ]
+$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>;
+";
+    "Block 11:
+[preds: 10 ] [succs: 19 21 12 ]
+$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 19 21 12 ]
+$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 11:
+[preds: 10 ] [succs: 19 21 12 ]
+$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>;
+"->"Block 12:
+[preds: 11 ] [succs: 19 21 13 ]
+virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15);
+";
+    "Block 12:
+[preds: 11 ] [succs: 19 21 13 ]
+virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15);
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 19 21 13 ]
+virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15);
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 12:
+[preds: 11 ] [succs: 19 21 13 ]
+virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15);
+"->"Block 13:
+[preds: 12 ] [succs: 19 21 14 ]
+i2 = i2 + 1;
+";
+    "Block 13:
+[preds: 12 ] [succs: 19 21 14 ]
+i2 = i2 + 1;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 19 21 14 ]
+i2 = i2 + 1;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 13:
+[preds: 12 ] [succs: 19 21 14 ]
+i2 = i2 + 1;
+"->"Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+";
+    "Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 14:
+[preds: 5 13 ] [succs: 19 21 15 ]
+$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>();
+"->"Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 16:
+[preds: 15 ] [succs: 19 21 17 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 6:
+[preds: 15 ] [succs: 19 21 7 ]
+$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 6 19 21 ]
+if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 16:
+[preds: 15 ] [succs: 19 21 17 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 19 21 17 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 16:
+[preds: 15 ] [succs: 19 21 17 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 17:
+[preds: 16 ] [succs: 19 21 18 ]
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\");
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 21 18 ]
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\");
+"->"Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 21 18 ]
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\");
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 21 18 ]
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\");
+"->"Block 18:
+[preds: 17 ] [succs: ]
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+return 0;
+";
+    "Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+"->"Block 20:
+[preds: 19 ] [succs: 22 ]
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+goto [?= staticinvoke <java.lang.System: void gc()>()];
+";
+    "Block 19:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 ] [succs: 20 21 ]
+$r24 := @caughtexception;
+"->"Block 21:
+[preds: 3 4 5 15 6 7 8 9 10 11 12 13 14 16 17 19 ] [succs: ]
+$r22 := @caughtexception;
+r23 = $r22;
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+throw r23;
+";
+    "Block 20:
+[preds: 19 ] [succs: 22 ]
+virtualinvoke r4.<nsk.share.test.Stresser: void finish()>();
+goto [?= staticinvoke <java.lang.System: void gc()>()];
+"->"Block 22:
+[preds: 20 ] [succs: 23 24 ]
+staticinvoke <java.lang.System: void gc()>();
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \");
+$i1 = lengthof r15;
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30);
+if $z1 != 0 goto return 0;
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 ]
+staticinvoke <java.lang.System: void gc()>();
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \");
+$i1 = lengthof r15;
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30);
+if $z1 != 0 goto return 0;
+"->"Block 23:
+[preds: 22 ] [succs: ]
+return 2;
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 ]
+staticinvoke <java.lang.System: void gc()>();
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \");
+$i1 = lengthof r15;
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30);
+if $z1 != 0 goto return 0;
+"->"Block 24:
+[preds: 22 ] [succs: ]
+return 0;
+";
+}

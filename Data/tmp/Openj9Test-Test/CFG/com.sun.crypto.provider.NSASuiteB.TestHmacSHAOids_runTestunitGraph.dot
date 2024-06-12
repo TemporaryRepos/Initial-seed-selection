@@ -1,0 +1,103 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple"
+    "$r1 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "r2 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r1, \"SunJCE\")"
+    "$r3 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "r4 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r3, \"SunJCE\")"
+    "if r2 != null goto (branch)"
+    "$r27 = new java.lang.RuntimeException"
+    "$r24 = newarray (java.lang.Object)[1]"
+    "$r25 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "$r24[0] = $r25"
+    "$r26 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance failed.%n\", $r24)"
+    "specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)"
+    "throw $r27"
+    "if r4 != null goto $r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()"
+    "$r28 = new java.lang.RuntimeException"
+    "$r20 = newarray (java.lang.Object)[1]"
+    "$r21 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "$r20[0] = $r21"
+    "$r22 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using OID %s getInstance failed.%n\", $r20)"
+    "specialinvoke $r28.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22)"
+    "throw $r28"
+    "$r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()"
+    "$r6 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r6)"
+    "if $z0 != 0 goto $r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "$r29 = new java.lang.RuntimeException"
+    "$r16 = newarray (java.lang.Object)[1]"
+    "$r17 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "$r16[0] = $r17"
+    "$r18 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance doesn\'t generate expected algorithm.%n\", $r16)"
+    "specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)"
+    "throw $r29"
+    "$r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"
+    "r8 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String,java.lang.String)>($r7, \"SunJCE\")"
+    "r9 = virtualinvoke r8.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"
+    "$r31 = (java.security.Key) r9"
+    "virtualinvoke r2.<javax.crypto.Mac: void init(java.security.Key)>($r31)"
+    "$r10 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>"
+    "virtualinvoke r2.<javax.crypto.Mac: void update(byte[])>($r10)"
+    "$r32 = (java.security.Key) r9"
+    "virtualinvoke r4.<javax.crypto.Mac: void init(java.security.Key)>($r32)"
+    "$r11 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>"
+    "virtualinvoke r4.<javax.crypto.Mac: void update(byte[])>($r11)"
+    "$r12 = virtualinvoke r2.<javax.crypto.Mac: byte[] doFinal()>()"
+    "$r13 = virtualinvoke r4.<javax.crypto.Mac: byte[] doFinal()>()"
+    "$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r12, $r13)"
+    "if $z1 != 0 goto return"
+    "$r30 = new java.lang.RuntimeException"
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Digest comparison failed: the two MACs are not the same\")"
+    "throw $r30"
+    "return"
+    "r0 := @parameter0: com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple"->"$r1 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r1 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"r2 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r1, \"SunJCE\")";
+    "r2 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r1, \"SunJCE\")"->"$r3 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r3 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"r4 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r3, \"SunJCE\")";
+    "r4 = staticinvoke <javax.crypto.Mac: javax.crypto.Mac getInstance(java.lang.String,java.lang.String)>($r3, \"SunJCE\")"->"if r2 != null goto (branch)";
+    "if r2 != null goto (branch)"->"$r27 = new java.lang.RuntimeException";
+    "if r2 != null goto (branch)"->"if r4 != null goto $r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()";
+    "$r27 = new java.lang.RuntimeException"->"$r24 = newarray (java.lang.Object)[1]";
+    "$r24 = newarray (java.lang.Object)[1]"->"$r25 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r25 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$r24[0] = $r25";
+    "$r24[0] = $r25"->"$r26 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance failed.%n\", $r24)";
+    "$r26 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance failed.%n\", $r24)"->"specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)";
+    "specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>($r26)"->"throw $r27";
+    "if r4 != null goto $r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()"->"$r28 = new java.lang.RuntimeException";
+    "if r4 != null goto $r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()"->"$r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()";
+    "$r28 = new java.lang.RuntimeException"->"$r20 = newarray (java.lang.Object)[1]";
+    "$r20 = newarray (java.lang.Object)[1]"->"$r21 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r21 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$200(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$r20[0] = $r21";
+    "$r20[0] = $r21"->"$r22 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using OID %s getInstance failed.%n\", $r20)";
+    "$r22 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using OID %s getInstance failed.%n\", $r20)"->"specialinvoke $r28.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22)";
+    "specialinvoke $r28.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22)"->"throw $r28";
+    "$r5 = virtualinvoke r2.<javax.crypto.Mac: java.lang.String getAlgorithm()>()"->"$r6 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r6 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r6)";
+    "$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r6)"->"if $z0 != 0 goto $r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "if $z0 != 0 goto $r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$r29 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto $r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r29 = new java.lang.RuntimeException"->"$r16 = newarray (java.lang.Object)[1]";
+    "$r16 = newarray (java.lang.Object)[1]"->"$r17 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)";
+    "$r17 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"$r16[0] = $r17";
+    "$r16[0] = $r17"->"$r18 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance doesn\'t generate expected algorithm.%n\", $r16)";
+    "$r18 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Test failed: Mac using algorithm string %s getInstance doesn\'t generate expected algorithm.%n\", $r16)"->"specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)";
+    "specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18)"->"throw $r29";
+    "$r7 = staticinvoke <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple: java.lang.String access$100(com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids$DataTuple)>(r0)"->"r8 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String,java.lang.String)>($r7, \"SunJCE\")";
+    "r8 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String,java.lang.String)>($r7, \"SunJCE\")"->"r9 = virtualinvoke r8.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()";
+    "r9 = virtualinvoke r8.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"->"$r31 = (java.security.Key) r9";
+    "$r31 = (java.security.Key) r9"->"virtualinvoke r2.<javax.crypto.Mac: void init(java.security.Key)>($r31)";
+    "virtualinvoke r2.<javax.crypto.Mac: void init(java.security.Key)>($r31)"->"$r10 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>";
+    "$r10 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>"->"virtualinvoke r2.<javax.crypto.Mac: void update(byte[])>($r10)";
+    "virtualinvoke r2.<javax.crypto.Mac: void update(byte[])>($r10)"->"$r32 = (java.security.Key) r9";
+    "$r32 = (java.security.Key) r9"->"virtualinvoke r4.<javax.crypto.Mac: void init(java.security.Key)>($r32)";
+    "virtualinvoke r4.<javax.crypto.Mac: void init(java.security.Key)>($r32)"->"$r11 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>";
+    "$r11 = <com.sun.crypto.provider.NSASuiteB.TestHmacSHAOids: byte[] INPUT>"->"virtualinvoke r4.<javax.crypto.Mac: void update(byte[])>($r11)";
+    "virtualinvoke r4.<javax.crypto.Mac: void update(byte[])>($r11)"->"$r12 = virtualinvoke r2.<javax.crypto.Mac: byte[] doFinal()>()";
+    "$r12 = virtualinvoke r2.<javax.crypto.Mac: byte[] doFinal()>()"->"$r13 = virtualinvoke r4.<javax.crypto.Mac: byte[] doFinal()>()";
+    "$r13 = virtualinvoke r4.<javax.crypto.Mac: byte[] doFinal()>()"->"$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r12, $r13)";
+    "$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r12, $r13)"->"if $z1 != 0 goto return";
+    "if $z1 != 0 goto return"->"$r30 = new java.lang.RuntimeException";
+    "if $z1 != 0 goto return"->"return";
+    "$r30 = new java.lang.RuntimeException"->"specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Digest comparison failed: the two MACs are not the same\")";
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Digest comparison failed: the two MACs are not the same\")"->"throw $r30";
+}

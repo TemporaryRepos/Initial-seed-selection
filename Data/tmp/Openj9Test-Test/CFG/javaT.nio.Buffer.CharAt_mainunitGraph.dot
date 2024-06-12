@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(\"foo\")"
+    "i2 = 0"
+    "$i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()"
+    "if i2 >= $i0 goto $r1 = <java.lang.System: java.io.PrintStream err>"
+    "$r2 = <java.lang.System: java.io.PrintStream err>"
+    "$c1 = interfaceinvoke r0.<java.lang.CharSequence: char charAt(int)>(i2)"
+    "virtualinvoke $r2.<java.io.PrintStream: void print(char)>($c1)"
+    "i2 = i2 + 1"
+    "goto [?= $i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()]"
+    "$r1 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r1.<java.io.PrintStream: void println()>()"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(\"foo\")";
+    "r0 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(\"foo\")"->"i2 = 0";
+    "i2 = 0"->"$i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()";
+    "$i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()"->"if i2 >= $i0 goto $r1 = <java.lang.System: java.io.PrintStream err>";
+    "if i2 >= $i0 goto $r1 = <java.lang.System: java.io.PrintStream err>"->"$r2 = <java.lang.System: java.io.PrintStream err>";
+    "if i2 >= $i0 goto $r1 = <java.lang.System: java.io.PrintStream err>"->"$r1 = <java.lang.System: java.io.PrintStream err>";
+    "$r2 = <java.lang.System: java.io.PrintStream err>"->"$c1 = interfaceinvoke r0.<java.lang.CharSequence: char charAt(int)>(i2)";
+    "$c1 = interfaceinvoke r0.<java.lang.CharSequence: char charAt(int)>(i2)"->"virtualinvoke $r2.<java.io.PrintStream: void print(char)>($c1)";
+    "virtualinvoke $r2.<java.io.PrintStream: void print(char)>($c1)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"goto [?= $i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()]";
+    "goto [?= $i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()]"->"$i0 = interfaceinvoke r0.<java.lang.CharSequence: int length()>()";
+    "$r1 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r1.<java.io.PrintStream: void println()>()";
+    "virtualinvoke $r1.<java.io.PrintStream: void println()>()"->"return";
+}

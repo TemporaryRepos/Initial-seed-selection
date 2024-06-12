@@ -1,0 +1,393 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "z7 = 0"
+    "r66 = r0"
+    "i2 = lengthof r66"
+    "i3 = 0"
+    "if i3 >= i2 goto staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)"
+    "r67 = r66[i3]"
+    "$r32 = \"-v\""
+    "$z1 = virtualinvoke $r32.<java.lang.String: boolean equals(java.lang.Object)>(r67)"
+    "if $z1 == 0 goto $r33 = \"UseSM\""
+    "<javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose> = 1"
+    "goto [?= i3 = i3 + 1]"
+    "$r33 = \"UseSM\""
+    "$z2 = virtualinvoke $r33.<java.lang.String: boolean equals(java.lang.Object)>(r67)"
+    "if $z2 == 0 goto $r34 = new java.lang.IllegalArgumentException"
+    "r68 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>()"
+    "if r68 == null goto $r39 = new java.lang.SecurityManager"
+    "$r40 = new java.lang.RuntimeException"
+    "specialinvoke $r40.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"No security manager should initially be installed\")"
+    "throw $r40"
+    "$r39 = new java.lang.SecurityManager"
+    "specialinvoke $r39.<java.lang.SecurityManager: void <init>()>()"
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r39)"
+    "z7 = 1"
+    "$r34 = new java.lang.IllegalArgumentException"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected option: \")"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r34.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r38)"
+    "throw $r34"
+    "i3 = i3 + 1"
+    "goto [?= (branch)]"
+    "staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)"
+    "i4 = 0"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "$r1 = newarray (java.lang.Object)[1]"
+    "if z7 == 0 goto $r69 = \"out\""
+    "$r69 = \"\""
+    "goto [?= $r1[0] = $r69]"
+    "$r69 = \"out\""
+    "$r1[0] = $r69"
+    "virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Testing with%s a SecurityManager present\n\", $r1)"
+    "r70 = <javaT.util.concurrent.atomic.AtomicUpdaters: javaT.util.concurrent.atomic.AtomicUpdaters$Config[] tests>"
+    "i5 = lengthof r70"
+    "i6 = 0"
+    "if i6 >= i5 goto (branch)"
+    "r71 = r70[i6]"
+    "$r5 = <java.lang.System: java.io.PrintStream out>"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Testing: \")"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"
+    "r72 = null"
+    "r73 = null"
+    "r9 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.Class clazz>"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\" - testing getDeclaredField\")"
+    "$r11 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"
+    "virtualinvoke r9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($r11)"
+    "$z0 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>"
+    "if $z0 != 0 goto (branch)"
+    "$r27 = new java.lang.Error"
+    "$r28 = new java.lang.StringBuilder"
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access: \")"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r27.<java.lang.Error: void <init>(java.lang.String)>($r31)"
+    "r72 = $r27"
+    "$r54 := @caughtexception"
+    "r74 = $r54"
+    "$z5 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>"
+    "if $z5 == 0 goto $z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"
+    "$r61 = new java.lang.Error"
+    "$r62 = new java.lang.StringBuilder"
+    "specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()"
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access failure: \")"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r61.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r65, r74)"
+    "r72 = $r61"
+    "$z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"
+    "if $z6 == 0 goto (branch)"
+    "$r56 = <java.lang.System: java.io.PrintStream out>"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected reflection exception: \")"
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)"
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r59)"
+    "$r60 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke r74.<java.security.AccessControlException: void printStackTrace(java.io.PrintStream)>($r60)"
+    "if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"
+    "$r26 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke r72.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r26)"
+    "$r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"
+    "$r12 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: javaT.util.concurrent.atomic.AtomicUpdaters$TYPE type>"
+    "$i0 = virtualinvoke $r12.<javaT.util.concurrent.atomic.AtomicUpdaters$TYPE: int ordinal()>()"
+    "$i1 = $r13[$i0]"
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"
+    "$r24 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicIntegerFieldUpdater\")"
+    "$r25 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"
+    "staticinvoke <java.util.concurrent.atomic.AtomicIntegerFieldUpdater: java.util.concurrent.atomic.AtomicIntegerFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r25)"
+    "goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]"
+    "$r22 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicLongFieldUpdater\")"
+    "$r23 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"
+    "staticinvoke <java.util.concurrent.atomic.AtomicLongFieldUpdater: java.util.concurrent.atomic.AtomicLongFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r23)"
+    "$r14 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicReferenceFieldUpdater\")"
+    "$r15 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"
+    "staticinvoke <java.util.concurrent.atomic.AtomicReferenceFieldUpdater: java.util.concurrent.atomic.AtomicReferenceFieldUpdater newUpdater(java.lang.Class,java.lang.Class,java.lang.String)>(r9, class \"Ljava/lang/Object;\", $r15)"
+    "$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>"
+    "if $z8 != 0 goto (branch)"
+    "$r17 = new java.lang.Error"
+    "$r18 = new java.lang.StringBuilder"
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access: \")"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r17.<java.lang.Error: void <init>(java.lang.String)>($r21)"
+    "r73 = $r17"
+    "$r41 := @caughtexception"
+    "r42 = $r41"
+    "$z3 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>"
+    "if $z3 == 0 goto $z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"
+    "$r49 = new java.lang.Error"
+    "$r50 = new java.lang.StringBuilder"
+    "specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access failure: \")"
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r49.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r53, r42)"
+    "r73 = $r49"
+    "$z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"
+    "if $z4 == 0 goto (branch)"
+    "$r44 = <java.lang.System: java.io.PrintStream out>"
+    "$r43 = new java.lang.StringBuilder"
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected updater exception: \")"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r42)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>($r47)"
+    "$r48 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke r42.<java.lang.Exception: void printStackTrace(java.io.PrintStream)>($r48)"
+    "if r73 == null goto (branch)"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke r73.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r16)"
+    "if r73 != null goto i4 = i4 + 1"
+    "if r72 == null goto i6 = i6 + 1"
+    "i4 = i4 + 1"
+    "i6 = i6 + 1"
+    "if i4 <= 0 goto return"
+    "$r3 = new java.lang.Error"
+    "specialinvoke $r3.<java.lang.Error: void <init>(java.lang.String)>(\"Some tests failed - see previous stacktraces\")"
+    "throw $r3"
+    "return"
+    "r0 := @parameter0: java.lang.String[]"->"z7 = 0";
+    "z7 = 0"->"r66 = r0";
+    "r66 = r0"->"i2 = lengthof r66";
+    "i2 = lengthof r66"->"i3 = 0";
+    "i3 = 0"->"if i3 >= i2 goto staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)";
+    "if i3 >= i2 goto staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)"->"r67 = r66[i3]";
+    "if i3 >= i2 goto staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)"->"staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)";
+    "r67 = r66[i3]"->"$r32 = \"-v\"";
+    "$r32 = \"-v\""->"$z1 = virtualinvoke $r32.<java.lang.String: boolean equals(java.lang.Object)>(r67)";
+    "$z1 = virtualinvoke $r32.<java.lang.String: boolean equals(java.lang.Object)>(r67)"->"if $z1 == 0 goto $r33 = \"UseSM\"";
+    "if $z1 == 0 goto $r33 = \"UseSM\""->"<javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose> = 1";
+    "if $z1 == 0 goto $r33 = \"UseSM\""->"$r33 = \"UseSM\"";
+    "<javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose> = 1"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r33 = \"UseSM\""->"$z2 = virtualinvoke $r33.<java.lang.String: boolean equals(java.lang.Object)>(r67)";
+    "$z2 = virtualinvoke $r33.<java.lang.String: boolean equals(java.lang.Object)>(r67)"->"if $z2 == 0 goto $r34 = new java.lang.IllegalArgumentException";
+    "if $z2 == 0 goto $r34 = new java.lang.IllegalArgumentException"->"r68 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>()";
+    "if $z2 == 0 goto $r34 = new java.lang.IllegalArgumentException"->"$r34 = new java.lang.IllegalArgumentException";
+    "r68 = staticinvoke <java.lang.System: java.lang.SecurityManager getSecurityManager()>()"->"if r68 == null goto $r39 = new java.lang.SecurityManager";
+    "if r68 == null goto $r39 = new java.lang.SecurityManager"->"$r40 = new java.lang.RuntimeException";
+    "if r68 == null goto $r39 = new java.lang.SecurityManager"->"$r39 = new java.lang.SecurityManager";
+    "$r40 = new java.lang.RuntimeException"->"specialinvoke $r40.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"No security manager should initially be installed\")";
+    "specialinvoke $r40.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"No security manager should initially be installed\")"->"throw $r40";
+    "$r39 = new java.lang.SecurityManager"->"specialinvoke $r39.<java.lang.SecurityManager: void <init>()>()";
+    "specialinvoke $r39.<java.lang.SecurityManager: void <init>()>()"->"staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r39)";
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r39)"->"z7 = 1";
+    "z7 = 1"->"goto [?= i3 = i3 + 1]";
+    "goto [?= i3 = i3 + 1]"->"i3 = i3 + 1";
+    "$r34 = new java.lang.IllegalArgumentException"->"$r35 = new java.lang.StringBuilder";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected option: \")";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected option: \")"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r34.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r38)";
+    "specialinvoke $r34.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r38)"->"throw $r34";
+    "i3 = i3 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 >= i2 goto staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)";
+    "staticinvoke <javaT.util.concurrent.atomic.AtomicUpdaters: void initTests(boolean)>(z7)"->"i4 = 0";
+    "i4 = 0"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r1 = newarray (java.lang.Object)[1]";
+    "$r1 = newarray (java.lang.Object)[1]"->"if z7 == 0 goto $r69 = \"out\"";
+    "if z7 == 0 goto $r69 = \"out\""->"$r69 = \"\"";
+    "if z7 == 0 goto $r69 = \"out\""->"$r69 = \"out\"";
+    "$r69 = \"\""->"goto [?= $r1[0] = $r69]";
+    "goto [?= $r1[0] = $r69]"->"$r1[0] = $r69";
+    "$r69 = \"out\""->"$r1[0] = $r69";
+    "$r1[0] = $r69"->"virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Testing with%s a SecurityManager present\n\", $r1)";
+    "virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Testing with%s a SecurityManager present\n\", $r1)"->"r70 = <javaT.util.concurrent.atomic.AtomicUpdaters: javaT.util.concurrent.atomic.AtomicUpdaters$Config[] tests>";
+    "r70 = <javaT.util.concurrent.atomic.AtomicUpdaters: javaT.util.concurrent.atomic.AtomicUpdaters$Config[] tests>"->"i5 = lengthof r70";
+    "i5 = lengthof r70"->"i6 = 0";
+    "i6 = 0"->"if i6 >= i5 goto (branch)";
+    "if i6 >= i5 goto (branch)"->"r71 = r70[i6]";
+    "if i6 >= i5 goto (branch)"->"if i4 <= 0 goto return";
+    "r71 = r70[i6]"->"$r5 = <java.lang.System: java.io.PrintStream out>";
+    "$r5 = <java.lang.System: java.io.PrintStream out>"->"$r4 = new java.lang.StringBuilder";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Testing: \")";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Testing: \")"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"r72 = null";
+    "r72 = null"->"r73 = null";
+    "r73 = null"->"r9 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.Class clazz>";
+    "r9 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.Class clazz>"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\" - testing getDeclaredField\")";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\" - testing getDeclaredField\")"->"$r11 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\" - testing getDeclaredField\")"->"$r54 := @caughtexception";
+    "$r11 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"virtualinvoke r9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($r11)";
+    "$r11 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"$r54 := @caughtexception";
+    "virtualinvoke r9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($r11)"->"$z0 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>";
+    "virtualinvoke r9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($r11)"->"$r54 := @caughtexception";
+    "$z0 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>"->"if $z0 != 0 goto (branch)";
+    "$z0 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>"->"$r54 := @caughtexception";
+    "if $z0 != 0 goto (branch)"->"$r27 = new java.lang.Error";
+    "if $z0 != 0 goto (branch)"->"goto [?= (branch)]";
+    "if $z0 != 0 goto (branch)"->"$r54 := @caughtexception";
+    "$r27 = new java.lang.Error"->"$r28 = new java.lang.StringBuilder";
+    "$r27 = new java.lang.Error"->"$r54 := @caughtexception";
+    "$r28 = new java.lang.StringBuilder"->"specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()";
+    "$r28 = new java.lang.StringBuilder"->"$r54 := @caughtexception";
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access: \")";
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"->"$r54 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access: \")"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access: \")"->"$r54 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r54 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r27.<java.lang.Error: void <init>(java.lang.String)>($r31)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r54 := @caughtexception";
+    "specialinvoke $r27.<java.lang.Error: void <init>(java.lang.String)>($r31)"->"r72 = $r27";
+    "specialinvoke $r27.<java.lang.Error: void <init>(java.lang.String)>($r31)"->"$r54 := @caughtexception";
+    "r72 = $r27"->"goto [?= (branch)]";
+    "r72 = $r27"->"$r54 := @caughtexception";
+    "goto [?= (branch)]"->"if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "$r54 := @caughtexception"->"r74 = $r54";
+    "r74 = $r54"->"$z5 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>";
+    "$z5 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean reflectOk>"->"if $z5 == 0 goto $z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>";
+    "if $z5 == 0 goto $z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"$r61 = new java.lang.Error";
+    "if $z5 == 0 goto $z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"$z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>";
+    "$r61 = new java.lang.Error"->"$r62 = new java.lang.StringBuilder";
+    "$r62 = new java.lang.StringBuilder"->"specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()"->"$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access failure: \")";
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected reflective access failure: \")"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r61.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r65, r74)";
+    "specialinvoke $r61.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r65, r74)"->"r72 = $r61";
+    "r72 = $r61"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "$z6 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"if $z6 == 0 goto (branch)";
+    "if $z6 == 0 goto (branch)"->"$r56 = <java.lang.System: java.io.PrintStream out>";
+    "if $z6 == 0 goto (branch)"->"if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "$r56 = <java.lang.System: java.io.PrintStream out>"->"$r55 = new java.lang.StringBuilder";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected reflection exception: \")";
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected reflection exception: \")"->"$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)"->"$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r59)";
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r59)"->"$r60 = <java.lang.System: java.io.PrintStream out>";
+    "$r60 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke r74.<java.security.AccessControlException: void printStackTrace(java.io.PrintStream)>($r60)";
+    "virtualinvoke r74.<java.security.AccessControlException: void printStackTrace(java.io.PrintStream)>($r60)"->"if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"->"$r26 = <java.lang.System: java.io.PrintStream out>";
+    "if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"->"$r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "if r72 == null goto $r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"->"$r41 := @caughtexception";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke r72.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r26)";
+    "virtualinvoke r72.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r26)"->"$r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>";
+    "virtualinvoke r72.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r26)"->"$r41 := @caughtexception";
+    "$r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"->"$r12 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: javaT.util.concurrent.atomic.AtomicUpdaters$TYPE type>";
+    "$r13 = <javaT.util.concurrent.atomic.AtomicUpdaters$1: int[] $SwitchMap$javaT$util$concurrent$atomic$AtomicUpdaters$TYPE>"->"$r41 := @caughtexception";
+    "$r12 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: javaT.util.concurrent.atomic.AtomicUpdaters$TYPE type>"->"$i0 = virtualinvoke $r12.<javaT.util.concurrent.atomic.AtomicUpdaters$TYPE: int ordinal()>()";
+    "$r12 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: javaT.util.concurrent.atomic.AtomicUpdaters$TYPE type>"->"$r41 := @caughtexception";
+    "$i0 = virtualinvoke $r12.<javaT.util.concurrent.atomic.AtomicUpdaters$TYPE: int ordinal()>()"->"$i1 = $r13[$i0]";
+    "$i0 = virtualinvoke $r12.<javaT.util.concurrent.atomic.AtomicUpdaters$TYPE: int ordinal()>()"->"$r41 := @caughtexception";
+    "$i1 = $r13[$i0]"->"tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }";
+    "$i1 = $r13[$i0]"->"$r41 := @caughtexception";
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"->"$r24 = <java.lang.System: java.io.PrintStream out>";
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"->"$r22 = <java.lang.System: java.io.PrintStream out>";
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"->"$r14 = <java.lang.System: java.io.PrintStream out>";
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"->"$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>";
+    "tableswitch($i1) {     case 1: goto $r24 = <java.lang.System: java.io.PrintStream out>;     case 2: goto $r22 = <java.lang.System: java.io.PrintStream out>;     case 3: goto $r14 = <java.lang.System: java.io.PrintStream out>;     default: goto $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>; }"->"$r41 := @caughtexception";
+    "$r24 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicIntegerFieldUpdater\")";
+    "$r24 = <java.lang.System: java.io.PrintStream out>"->"$r41 := @caughtexception";
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicIntegerFieldUpdater\")"->"$r25 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>";
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicIntegerFieldUpdater\")"->"$r41 := @caughtexception";
+    "$r25 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"staticinvoke <java.util.concurrent.atomic.AtomicIntegerFieldUpdater: java.util.concurrent.atomic.AtomicIntegerFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r25)";
+    "$r25 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"$r41 := @caughtexception";
+    "staticinvoke <java.util.concurrent.atomic.AtomicIntegerFieldUpdater: java.util.concurrent.atomic.AtomicIntegerFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r25)"->"goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]";
+    "staticinvoke <java.util.concurrent.atomic.AtomicIntegerFieldUpdater: java.util.concurrent.atomic.AtomicIntegerFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r25)"->"$r41 := @caughtexception";
+    "goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]"->"$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>";
+    "goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]"->"$r41 := @caughtexception";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicLongFieldUpdater\")";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"$r41 := @caughtexception";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicLongFieldUpdater\")"->"$r23 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicLongFieldUpdater\")"->"$r41 := @caughtexception";
+    "$r23 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"staticinvoke <java.util.concurrent.atomic.AtomicLongFieldUpdater: java.util.concurrent.atomic.AtomicLongFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r23)";
+    "$r23 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"$r41 := @caughtexception";
+    "staticinvoke <java.util.concurrent.atomic.AtomicLongFieldUpdater: java.util.concurrent.atomic.AtomicLongFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r23)"->"goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]";
+    "staticinvoke <java.util.concurrent.atomic.AtomicLongFieldUpdater: java.util.concurrent.atomic.AtomicLongFieldUpdater newUpdater(java.lang.Class,java.lang.String)>(r9, $r23)"->"$r41 := @caughtexception";
+    "goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]"->"$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>";
+    "goto [?= $z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>]"->"$r41 := @caughtexception";
+    "$r14 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicReferenceFieldUpdater\")";
+    "$r14 = <java.lang.System: java.io.PrintStream out>"->"$r41 := @caughtexception";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicReferenceFieldUpdater\")"->"$r15 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" - testing AtomicReferenceFieldUpdater\")"->"$r41 := @caughtexception";
+    "$r15 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"staticinvoke <java.util.concurrent.atomic.AtomicReferenceFieldUpdater: java.util.concurrent.atomic.AtomicReferenceFieldUpdater newUpdater(java.lang.Class,java.lang.Class,java.lang.String)>(r9, class \"Ljava/lang/Object;\", $r15)";
+    "$r15 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: java.lang.String field>"->"$r41 := @caughtexception";
+    "staticinvoke <java.util.concurrent.atomic.AtomicReferenceFieldUpdater: java.util.concurrent.atomic.AtomicReferenceFieldUpdater newUpdater(java.lang.Class,java.lang.Class,java.lang.String)>(r9, class \"Ljava/lang/Object;\", $r15)"->"$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>";
+    "staticinvoke <java.util.concurrent.atomic.AtomicReferenceFieldUpdater: java.util.concurrent.atomic.AtomicReferenceFieldUpdater newUpdater(java.lang.Class,java.lang.Class,java.lang.String)>(r9, class \"Ljava/lang/Object;\", $r15)"->"$r41 := @caughtexception";
+    "$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>"->"if $z8 != 0 goto (branch)";
+    "$z8 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>"->"$r41 := @caughtexception";
+    "if $z8 != 0 goto (branch)"->"$r17 = new java.lang.Error";
+    "if $z8 != 0 goto (branch)"->"goto [?= (branch)]";
+    "if $z8 != 0 goto (branch)"->"$r41 := @caughtexception";
+    "$r17 = new java.lang.Error"->"$r18 = new java.lang.StringBuilder";
+    "$r17 = new java.lang.Error"->"$r41 := @caughtexception";
+    "$r18 = new java.lang.StringBuilder"->"specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()";
+    "$r18 = new java.lang.StringBuilder"->"$r41 := @caughtexception";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access: \")";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r41 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access: \")"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access: \")"->"$r41 := @caughtexception";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r41 := @caughtexception";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r17.<java.lang.Error: void <init>(java.lang.String)>($r21)";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 := @caughtexception";
+    "specialinvoke $r17.<java.lang.Error: void <init>(java.lang.String)>($r21)"->"r73 = $r17";
+    "specialinvoke $r17.<java.lang.Error: void <init>(java.lang.String)>($r21)"->"$r41 := @caughtexception";
+    "r73 = $r17"->"goto [?= (branch)]";
+    "r73 = $r17"->"$r41 := @caughtexception";
+    "goto [?= (branch)]"->"if r73 == null goto (branch)";
+    "$r41 := @caughtexception"->"r42 = $r41";
+    "r42 = $r41"->"$z3 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>";
+    "$z3 = r71.<javaT.util.concurrent.atomic.AtomicUpdaters$Config: boolean updaterOk>"->"if $z3 == 0 goto $z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>";
+    "if $z3 == 0 goto $z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"$r49 = new java.lang.Error";
+    "if $z3 == 0 goto $z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"$z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>";
+    "$r49 = new java.lang.Error"->"$r50 = new java.lang.StringBuilder";
+    "$r50 = new java.lang.StringBuilder"->"specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access failure: \")";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected updater access failure: \")"->"$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r71)"->"$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r49.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r53, r42)";
+    "specialinvoke $r49.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r53, r42)"->"r73 = $r49";
+    "r73 = $r49"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if r73 == null goto (branch)";
+    "$z4 = <javaT.util.concurrent.atomic.AtomicUpdaters: boolean verbose>"->"if $z4 == 0 goto (branch)";
+    "if $z4 == 0 goto (branch)"->"$r44 = <java.lang.System: java.io.PrintStream out>";
+    "if $z4 == 0 goto (branch)"->"if r73 == null goto (branch)";
+    "$r44 = <java.lang.System: java.io.PrintStream out>"->"$r43 = new java.lang.StringBuilder";
+    "$r43 = new java.lang.StringBuilder"->"specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected updater exception: \")";
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Got expected updater exception: \")"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r42)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r42)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>($r47)";
+    "virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>($r47)"->"$r48 = <java.lang.System: java.io.PrintStream out>";
+    "$r48 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke r42.<java.lang.Exception: void printStackTrace(java.io.PrintStream)>($r48)";
+    "virtualinvoke r42.<java.lang.Exception: void printStackTrace(java.io.PrintStream)>($r48)"->"if r73 == null goto (branch)";
+    "if r73 == null goto (branch)"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "if r73 == null goto (branch)"->"if r73 != null goto i4 = i4 + 1";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke r73.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r16)";
+    "virtualinvoke r73.<java.lang.Error: void printStackTrace(java.io.PrintStream)>($r16)"->"if r73 != null goto i4 = i4 + 1";
+    "if r73 != null goto i4 = i4 + 1"->"if r72 == null goto i6 = i6 + 1";
+    "if r73 != null goto i4 = i4 + 1"->"i4 = i4 + 1";
+    "if r72 == null goto i6 = i6 + 1"->"i4 = i4 + 1";
+    "if r72 == null goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "i4 = i4 + 1"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 >= i5 goto (branch)";
+    "if i4 <= 0 goto return"->"$r3 = new java.lang.Error";
+    "if i4 <= 0 goto return"->"return";
+    "$r3 = new java.lang.Error"->"specialinvoke $r3.<java.lang.Error: void <init>(java.lang.String)>(\"Some tests failed - see previous stacktraces\")";
+    "specialinvoke $r3.<java.lang.Error: void <init>(java.lang.String)>(\"Some tests failed - see previous stacktraces\")"->"throw $r3";
+}

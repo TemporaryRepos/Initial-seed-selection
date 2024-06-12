@@ -1,0 +1,288 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r15 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto $z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r2 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r3 = (java.net.NetworkInterface) $r2;
+$r4 = virtualinvoke r3.<java.net.NetworkInterface: java.util.List getInterfaceAddresses()>();
+r5 = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.net.InterfaceAddress) $r6;
+z3 = staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean checkPrefix(java.net.InterfaceAddress)>(r7);
+if z3 != 0 goto r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+$r14 = virtualinvoke r3.<java.net.NetworkInterface: java.lang.String getName()>();
+staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: void debug(java.lang.String,java.net.InterfaceAddress)>($r14, r7);
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 10 ]
+r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+$z4 = virtualinvoke r8.<java.net.InetAddress: boolean isLoopbackAddress()>();
+if $z4 == 0 goto (branch);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+$z5 = r8 instanceof java.net.Inet4Address;
+if $z5 == 0 goto (branch);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$s0 = virtualinvoke r7.<java.net.InterfaceAddress: short getNetworkPrefixLength()>();
+if $s0 == 8 goto (branch);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Expected prefix of 8, got \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13);
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+"
+    "Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 11:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+if $z1 != 0 goto return;
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+$r1 = new java.lang.RuntimeException;
+specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed: some interfaces have invalid prefix lengths\");
+throw $r1;
+"
+    "Block 14:
+[preds: 12 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r15 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"->"Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto $z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+";
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto $z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r2 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r3 = (java.net.NetworkInterface) $r2;
+$r4 = virtualinvoke r3.<java.net.NetworkInterface: java.util.List getInterfaceAddresses()>();
+r5 = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto $z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+"->"Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+if $z1 != 0 goto return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r2 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r3 = (java.net.NetworkInterface) $r2;
+$r4 = virtualinvoke r3.<java.net.NetworkInterface: java.util.List getInterfaceAddresses()>();
+r5 = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.net.InterfaceAddress) $r6;
+z3 = staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean checkPrefix(java.net.InterfaceAddress)>(r7);
+if z3 != 0 goto r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+";
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 11:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.net.InterfaceAddress) $r6;
+z3 = staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean checkPrefix(java.net.InterfaceAddress)>(r7);
+if z3 != 0 goto r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+$r14 = virtualinvoke r3.<java.net.NetworkInterface: java.lang.String getName()>();
+staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: void debug(java.lang.String,java.net.InterfaceAddress)>($r14, r7);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r6 = interfaceinvoke r5.<java.util.Iterator: java.lang.Object next()>();
+r7 = (java.net.InterfaceAddress) $r6;
+z3 = staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean checkPrefix(java.net.InterfaceAddress)>(r7);
+if z3 != 0 goto r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 10 ]
+r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+$z4 = virtualinvoke r8.<java.net.InetAddress: boolean isLoopbackAddress()>();
+if $z4 == 0 goto (branch);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+$r14 = virtualinvoke r3.<java.net.NetworkInterface: java.lang.String getName()>();
+staticinvoke <javaT.net.InterfaceAddress.NetworkPrefixLength: void debug(java.lang.String,java.net.InterfaceAddress)>($r14, r7);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 10 ]
+r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+$z4 = virtualinvoke r8.<java.net.InetAddress: boolean isLoopbackAddress()>();
+if $z4 == 0 goto (branch);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 10 ]
+r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+$z4 = virtualinvoke r8.<java.net.InetAddress: boolean isLoopbackAddress()>();
+if $z4 == 0 goto (branch);
+"->"Block 7:
+[preds: 6 ] [succs: 8 10 ]
+$z5 = r8 instanceof java.net.Inet4Address;
+if $z5 == 0 goto (branch);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 10 ]
+r8 = virtualinvoke r7.<java.net.InterfaceAddress: java.net.InetAddress getAddress()>();
+$z4 = virtualinvoke r8.<java.net.InetAddress: boolean isLoopbackAddress()>();
+if $z4 == 0 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+$z5 = r8 instanceof java.net.Inet4Address;
+if $z5 == 0 goto (branch);
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$s0 = virtualinvoke r7.<java.net.InterfaceAddress: short getNetworkPrefixLength()>();
+if $s0 == 8 goto (branch);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+$z5 = r8 instanceof java.net.Inet4Address;
+if $z5 == 0 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$s0 = virtualinvoke r7.<java.net.InterfaceAddress: short getNetworkPrefixLength()>();
+if $s0 == 8 goto (branch);
+"->"Block 9:
+[preds: 8 ] [succs: 10 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Expected prefix of 8, got \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13);
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$s0 = virtualinvoke r7.<java.net.InterfaceAddress: short getNetworkPrefixLength()>();
+if $s0 == 8 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Expected prefix of 8, got \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r13);
+<javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed> = 0;
+"->"Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 10:
+[preds: 6 7 8 9 ] [succs: 3 ]
+goto [?= $z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z2 = interfaceinvoke r5.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 11:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto $z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+";
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+if $z1 != 0 goto return;
+"->"Block 13:
+[preds: 12 ] [succs: ]
+$r1 = new java.lang.RuntimeException;
+specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed: some interfaces have invalid prefix lengths\");
+throw $r1;
+";
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$z1 = <javaT.net.InterfaceAddress.NetworkPrefixLength: boolean passed>;
+if $z1 != 0 goto return;
+"->"Block 14:
+[preds: 12 ] [succs: ]
+return;
+";
+}

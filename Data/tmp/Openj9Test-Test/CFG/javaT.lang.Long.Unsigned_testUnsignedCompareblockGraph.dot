@@ -1,0 +1,395 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+i15 = 0;
+$r0 = newarray (long)[14];
+$r0[0] = 0L;
+$r0[1] = 1L;
+$r0[2] = 2L;
+$r0[3] = 3L;
+$r0[4] = 2147483648L;
+$r0[5] = 4294967295L;
+$r0[6] = 4294967296L;
+$r0[7] = -9223372036854775808L;
+$r0[8] = -9223372036854775807L;
+$r0[9] = -9223372036854775806L;
+$r0[10] = -9223372036854775805L;
+$r0[11] = -9223372034707292160L;
+$r0[12] = -2L;
+$r0[13] = -1L;
+r1 = $r0;
+r2 = r1;
+i0 = lengthof r2;
+i16 = 0;
+"
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i16 >= i0 goto return i15;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+l1 = r2[i16];
+r3 = r1;
+i2 = lengthof r3;
+i17 = 0;
+"
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i17 >= i2 goto i16 = i16 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+l3 = r3[i17];
+$i4 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l1, l3);
+l5 = (long) $i4;
+$i6 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l3, l1);
+l7 = (long) $i6;
+$i8 = staticinvoke <javaT.lang.Long.Unsigned: int compUnsigned(long,long)>(l1, l3);
+l9 = (long) $i8;
+$b10 = l1 cmp l3;
+if $b10 != 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$b14 = l5 cmp 0L;
+if $b14 == 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i15 = i15 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned equal to itself; got %d%n\", $r18);
+"
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i15 = i15 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l9);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i12 = staticinvoke <java.lang.Long: int signum(long)>(l7);
+$i13 = neg $i12;
+if $i11 == $i13 goto i17 = i17 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i15 = i15 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l7);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i17 = i17 + 1;
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+"
+    "Block 13:
+[preds: 1 ] [succs: ]
+return i15;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+i15 = 0;
+$r0 = newarray (long)[14];
+$r0[0] = 0L;
+$r0[1] = 1L;
+$r0[2] = 2L;
+$r0[3] = 3L;
+$r0[4] = 2147483648L;
+$r0[5] = 4294967295L;
+$r0[6] = 4294967296L;
+$r0[7] = -9223372036854775808L;
+$r0[8] = -9223372036854775807L;
+$r0[9] = -9223372036854775806L;
+$r0[10] = -9223372036854775805L;
+$r0[11] = -9223372034707292160L;
+$r0[12] = -2L;
+$r0[13] = -1L;
+r1 = $r0;
+r2 = r1;
+i0 = lengthof r2;
+i16 = 0;
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i16 >= i0 goto return i15;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i16 >= i0 goto return i15;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+l1 = r2[i16];
+r3 = r1;
+i2 = lengthof r3;
+i17 = 0;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i16 >= i0 goto return i15;
+"->"Block 13:
+[preds: 1 ] [succs: ]
+return i15;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+l1 = r2[i16];
+r3 = r1;
+i2 = lengthof r3;
+i17 = 0;
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i17 >= i2 goto i16 = i16 + 1;
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i17 >= i2 goto i16 = i16 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 ]
+l3 = r3[i17];
+$i4 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l1, l3);
+l5 = (long) $i4;
+$i6 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l3, l1);
+l7 = (long) $i6;
+$i8 = staticinvoke <javaT.lang.Long.Unsigned: int compUnsigned(long,long)>(l1, l3);
+l9 = (long) $i8;
+$b10 = l1 cmp l3;
+if $b10 != 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i17 >= i2 goto i16 = i16 + 1;
+"->"Block 12:
+[preds: 3 ] [succs: 1 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+l3 = r3[i17];
+$i4 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l1, l3);
+l5 = (long) $i4;
+$i6 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l3, l1);
+l7 = (long) $i6;
+$i8 = staticinvoke <javaT.lang.Long.Unsigned: int compUnsigned(long,long)>(l1, l3);
+l9 = (long) $i8;
+$b10 = l1 cmp l3;
+if $b10 != 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$b14 = l5 cmp 0L;
+if $b14 == 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+l3 = r3[i17];
+$i4 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l1, l3);
+l5 = (long) $i4;
+$i6 = staticinvoke <java.lang.Long: int compareUnsigned(long,long)>(l3, l1);
+l7 = (long) $i6;
+$i8 = staticinvoke <javaT.lang.Long.Unsigned: int compUnsigned(long,long)>(l1, l3);
+l9 = (long) $i8;
+$b10 = l1 cmp l3;
+if $b10 != 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$b14 = l5 cmp 0L;
+if $b14 == 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+i15 = i15 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned equal to itself; got %d%n\", $r18);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$b14 = l5 cmp 0L;
+if $b14 == 0 goto $i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i15 = i15 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned equal to itself; got %d%n\", $r18);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+";
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+i15 = i15 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l9);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+";
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i18 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i19 = staticinvoke <java.lang.Long: int signum(long)>(l9);
+if $i18 == $i19 goto $i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i12 = staticinvoke <java.lang.Long: int signum(long)>(l7);
+$i13 = neg $i12;
+if $i11 == $i13 goto i17 = i17 + 1;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i15 = i15 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l9);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i12 = staticinvoke <java.lang.Long: int signum(long)>(l7);
+$i13 = neg $i12;
+if $i11 == $i13 goto i17 = i17 + 1;
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i12 = staticinvoke <java.lang.Long: int signum(long)>(l7);
+$i13 = neg $i12;
+if $i11 == $i13 goto i17 = i17 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+i15 = i15 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l7);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i11 = staticinvoke <java.lang.Long: int signum(long)>(l5);
+$i12 = staticinvoke <java.lang.Long: int signum(long)>(l7);
+$i13 = neg $i12;
+if $i11 == $i13 goto i17 = i17 + 1;
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i17 = i17 + 1;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i15 = i15 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l7);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i17 = i17 + 1;
+goto [?= (branch)];
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i17 = i17 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i17 >= i2 goto i16 = i16 + 1;
+";
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i16 >= i0 goto return i15;
+";
+}

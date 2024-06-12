@@ -1,0 +1,45 @@
+digraph "unitGraph" {
+    "z2 := @parameter0: boolean"
+    "r6 = null"
+    "$r0 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>"
+    "$z0 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r0, \"SOFTWARE\\Classes\\.pdf\")"
+    "if $z0 == 0 goto $r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r5 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>"
+    "r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r5, \"SOFTWARE\\Classes\\.pdf\", \"\")"
+    "goto [?= return r6]"
+    "$r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$z1 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r1, \"SOFTWARE\\Classes\\.pdf\")"
+    "if $z1 == 0 goto (branch)"
+    "$r4 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r4, \"SOFTWARE\\Classes\\.pdf\", \"\")"
+    "if z2 == 0 goto return r6"
+    "r6 = \"pdffiletype\""
+    "$r2 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <com.sun.jna.platform.win32.Advapi32Util: boolean registryCreateKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r2, \"SOFTWARE\\Classes\", \".pdf\")"
+    "$r3 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r3, \"SOFTWARE\\Classes\\.pdf\", \"\", r6)"
+    "return r6"
+    "z2 := @parameter0: boolean"->"r6 = null";
+    "r6 = null"->"$r0 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>";
+    "$r0 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>"->"$z0 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r0, \"SOFTWARE\\Classes\\.pdf\")";
+    "$z0 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r0, \"SOFTWARE\\Classes\\.pdf\")"->"if $z0 == 0 goto $r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "if $z0 == 0 goto $r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r5 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>";
+    "if $z0 == 0 goto $r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r5 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_LOCAL_MACHINE>"->"r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r5, \"SOFTWARE\\Classes\\.pdf\", \"\")";
+    "r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r5, \"SOFTWARE\\Classes\\.pdf\", \"\")"->"goto [?= return r6]";
+    "goto [?= return r6]"->"return r6";
+    "$r1 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$z1 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r1, \"SOFTWARE\\Classes\\.pdf\")";
+    "$z1 = staticinvoke <pmedit.WindowsRegisterContextMenu: boolean hasRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String)>($r1, \"SOFTWARE\\Classes\\.pdf\")"->"if $z1 == 0 goto (branch)";
+    "if $z1 == 0 goto (branch)"->"$r4 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "if $z1 == 0 goto (branch)"->"if z2 == 0 goto return r6";
+    "$r4 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r4, \"SOFTWARE\\Classes\\.pdf\", \"\")";
+    "r6 = staticinvoke <com.sun.jna.platform.win32.Advapi32Util: java.lang.String registryGetStringValue(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r4, \"SOFTWARE\\Classes\\.pdf\", \"\")"->"goto [?= return r6]";
+    "goto [?= return r6]"->"return r6";
+    "if z2 == 0 goto return r6"->"r6 = \"pdffiletype\"";
+    "if z2 == 0 goto return r6"->"return r6";
+    "r6 = \"pdffiletype\""->"$r2 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r2 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <com.sun.jna.platform.win32.Advapi32Util: boolean registryCreateKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r2, \"SOFTWARE\\Classes\", \".pdf\")";
+    "staticinvoke <com.sun.jna.platform.win32.Advapi32Util: boolean registryCreateKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String)>($r2, \"SOFTWARE\\Classes\", \".pdf\")"->"$r3 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r3 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r3, \"SOFTWARE\\Classes\\.pdf\", \"\", r6)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r3, \"SOFTWARE\\Classes\\.pdf\", \"\", r6)"->"return r6";
+}

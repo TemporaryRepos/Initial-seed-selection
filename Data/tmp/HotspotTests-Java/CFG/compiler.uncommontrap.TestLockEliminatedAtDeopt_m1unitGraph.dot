@@ -1,0 +1,33 @@
+digraph "unitGraph" {
+    "z0 := @parameter0: boolean"
+    "$r0 = new compiler.uncommontrap.TestLockEliminatedAtDeopt$A"
+    "specialinvoke $r0.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void <init>()>()"
+    "r1 = $r0"
+    "r2 = r1"
+    "entermonitor r1"
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m2(boolean)>(z0)"
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m()>()"
+    "exitmonitor r2"
+    "goto [?= return]"
+    "$r4 := @caughtexception"
+    "throw $r4"
+    "return"
+    "z0 := @parameter0: boolean"->"$r0 = new compiler.uncommontrap.TestLockEliminatedAtDeopt$A";
+    "$r0 = new compiler.uncommontrap.TestLockEliminatedAtDeopt$A"->"specialinvoke $r0.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void <init>()>()";
+    "specialinvoke $r0.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"r2 = r1";
+    "r2 = r1"->"entermonitor r1";
+    "entermonitor r1"->"virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m2(boolean)>(z0)";
+    "entermonitor r1"->"$r4 := @caughtexception";
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m2(boolean)>(z0)"->"virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m()>()";
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m2(boolean)>(z0)"->"$r4 := @caughtexception";
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m()>()"->"exitmonitor r2";
+    "virtualinvoke r1.<compiler.uncommontrap.TestLockEliminatedAtDeopt$A: void m()>()"->"$r4 := @caughtexception";
+    "exitmonitor r2"->"goto [?= return]";
+    "exitmonitor r2"->"$r4 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r4 := @caughtexception"->"exitmonitor r2";
+    "$r4 := @caughtexception"->"$r4 := @caughtexception";
+    "exitmonitor r2"->"throw $r4";
+    "exitmonitor r2"->"$r4 := @caughtexception";
+}

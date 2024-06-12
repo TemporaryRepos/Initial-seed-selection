@@ -1,0 +1,225 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r5 := @parameter0: java.lang.String[];
+z1 := @parameter1: boolean;
+r0 = \"(\\p{Digit}+)\";
+r1 = \"(\\p{XDigit}+)\";
+r2 = \"[eE][+-]?(\\p{Digit}+)\";
+r3 = \"[\\x00-\\x20]*[+-]?(NaN|Infinity|(((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?))|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*\";
+r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(\"[\\x00-\\x20]*[+-]?(NaN|Infinity|(((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?))|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*\");
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r5;
+if i1 >= $i0 goto return;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r6 = r5[i1];
+r7 = virtualinvoke r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r6);
+$z0 = virtualinvoke r7.<java.util.regex.Matcher: boolean matches()>();
+if z1 != 0 goto $z2 = 0;
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$z2 = 1;
+goto [?= (branch)];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$z2 = 0;
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 10 ]
+if $z0 == $z2 goto i1 = i1 + 1;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$r8 = new java.lang.RuntimeException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Regular expression \");
+if z1 == 0 goto $r17 = \"rejected good\";
+"
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"accepted bad\";
+goto [?= $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)];
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"rejected good\";
+"
+    "Block 9:
+[preds: 7 8 ] [succs: ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" string `\");
+$r13 = r5[i1];
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r16);
+throw $r8;
+"
+    "Block 10:
+[preds: 5 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r5];
+"
+    "Block 11:
+[preds: 1 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r5 := @parameter0: java.lang.String[];
+z1 := @parameter1: boolean;
+r0 = \"(\\p{Digit}+)\";
+r1 = \"(\\p{XDigit}+)\";
+r2 = \"[eE][+-]?(\\p{Digit}+)\";
+r3 = \"[\\x00-\\x20]*[+-]?(NaN|Infinity|(((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?))|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*\";
+r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(\"[\\x00-\\x20]*[+-]?(NaN|Infinity|(((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?))|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*\");
+i1 = 0;
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r5;
+if i1 >= $i0 goto return;
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r5;
+if i1 >= $i0 goto return;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r6 = r5[i1];
+r7 = virtualinvoke r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r6);
+$z0 = virtualinvoke r7.<java.util.regex.Matcher: boolean matches()>();
+if z1 != 0 goto $z2 = 0;
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r5;
+if i1 >= $i0 goto return;
+"->"Block 11:
+[preds: 1 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r6 = r5[i1];
+r7 = virtualinvoke r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r6);
+$z0 = virtualinvoke r7.<java.util.regex.Matcher: boolean matches()>();
+if z1 != 0 goto $z2 = 0;
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+$z2 = 1;
+goto [?= (branch)];
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r6 = r5[i1];
+r7 = virtualinvoke r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r6);
+$z0 = virtualinvoke r7.<java.util.regex.Matcher: boolean matches()>();
+if z1 != 0 goto $z2 = 0;
+"->"Block 4:
+[preds: 2 ] [succs: 5 ]
+$z2 = 0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$z2 = 1;
+goto [?= (branch)];
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 10 ]
+if $z0 == $z2 goto i1 = i1 + 1;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$z2 = 0;
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 10 ]
+if $z0 == $z2 goto i1 = i1 + 1;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 10 ]
+if $z0 == $z2 goto i1 = i1 + 1;
+"->"Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$r8 = new java.lang.RuntimeException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Regular expression \");
+if z1 == 0 goto $r17 = \"rejected good\";
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 10 ]
+if $z0 == $z2 goto i1 = i1 + 1;
+"->"Block 10:
+[preds: 5 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r5];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$r8 = new java.lang.RuntimeException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Regular expression \");
+if z1 == 0 goto $r17 = \"rejected good\";
+"->"Block 7:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"accepted bad\";
+goto [?= $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$r8 = new java.lang.RuntimeException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Regular expression \");
+if z1 == 0 goto $r17 = \"rejected good\";
+"->"Block 8:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"rejected good\";
+";
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"accepted bad\";
+goto [?= $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)];
+"->"Block 9:
+[preds: 7 8 ] [succs: ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" string `\");
+$r13 = r5[i1];
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r16);
+throw $r8;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+$r17 = \"rejected good\";
+"->"Block 9:
+[preds: 7 8 ] [succs: ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" string `\");
+$r13 = r5[i1];
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r16);
+throw $r8;
+";
+    "Block 10:
+[preds: 5 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r5];
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r5;
+if i1 >= $i0 goto return;
+";
+}

@@ -1,0 +1,453 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+if r0 == null goto return null;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $i0 = virtualinvoke r0.<java.lang.String: int length()>();
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$i0 = virtualinvoke r0.<java.lang.String: int length()>();
+if $i0 == 0 goto return \"\";
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$i1 = virtualinvoke r1.<java.lang.String: int length()>();
+if $i1 != 0 goto r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+return \"\";
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+r3 = virtualinvoke r1.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+$i2 = lengthof r2;
+$i5 = $i2 + 1;
+$i3 = lengthof r3;
+$i4 = $i3 + 1;
+r4 = newmultiarray (int)[$i5][$i4];
+i25 = 0;
+"
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$i6 = lengthof r2;
+$i7 = $i6 + 1;
+if i25 >= $i7 goto i26 = 1;
+"
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r14 = r4[i25];
+$r14[0] = 0;
+i25 = i25 + 1;
+goto [?= $i6 = lengthof r2];
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+i26 = 1;
+"
+    "Block 10:
+[preds: 9 11 ] [succs: 11 12 ]
+$i8 = lengthof r3;
+$i9 = $i8 + 1;
+if i26 >= $i9 goto i27 = 1;
+"
+    "Block 11:
+[preds: 10 ] [succs: 10 ]
+$r13 = r4[0];
+$r13[i26] = 0;
+i26 = i26 + 1;
+goto [?= $i8 = lengthof r3];
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+i27 = 1;
+"
+    "Block 13:
+[preds: 12 20 ] [succs: 14 21 ]
+$i10 = lengthof r2;
+$i11 = $i10 + 1;
+if i27 >= $i11 goto $r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+i28 = 1;
+"
+    "Block 15:
+[preds: 14 19 ] [succs: 16 20 ]
+$i12 = lengthof r3;
+$i13 = $i12 + 1;
+if i28 >= $i13 goto i27 = i27 + 1;
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i14 = i27 - 1;
+$r7 = r2[$i14];
+$i15 = i28 - 1;
+$r6 = r3[$i15];
+$z0 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6);
+if $z0 == 0 goto $r10 = r4[i27];
+"
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$r12 = r4[i27];
+$i21 = i27 - 1;
+$r11 = r4[$i21];
+$i22 = i28 - 1;
+$i23 = $r11[$i22];
+$i24 = $i23 + 1;
+$r12[i28] = $i24;
+goto [?= i28 = i28 + 1];
+"
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$r10 = r4[i27];
+$i16 = i27 - 1;
+$r8 = r4[$i16];
+$i19 = $r8[i28];
+$r9 = r4[i27];
+$i17 = i28 - 1;
+$i18 = $r9[$i17];
+$i20 = staticinvoke <java.lang.Math: int max(int,int)>($i19, $i18);
+$r10[i28] = $i20;
+"
+    "Block 19:
+[preds: 17 18 ] [succs: 15 ]
+i28 = i28 + 1;
+goto [?= $i12 = lengthof r3];
+"
+    "Block 20:
+[preds: 15 ] [succs: 13 ]
+i27 = i27 + 1;
+goto [?= $i10 = lengthof r2];
+"
+    "Block 21:
+[preds: 13 ] [succs: ]
+$r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+return $r5;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+if r0 == null goto return null;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $i0 = virtualinvoke r0.<java.lang.String: int length()>();
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+if r0 == null goto return null;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $i0 = virtualinvoke r0.<java.lang.String: int length()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $i0 = virtualinvoke r0.<java.lang.String: int length()>();
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$i0 = virtualinvoke r0.<java.lang.String: int length()>();
+if $i0 == 0 goto return \"\";
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$i0 = virtualinvoke r0.<java.lang.String: int length()>();
+if $i0 == 0 goto return \"\";
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$i1 = virtualinvoke r1.<java.lang.String: int length()>();
+if $i1 != 0 goto r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+$i0 = virtualinvoke r0.<java.lang.String: int length()>();
+if $i0 == 0 goto return \"\";
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+return \"\";
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$i1 = virtualinvoke r1.<java.lang.String: int length()>();
+if $i1 != 0 goto r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+return \"\";
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$i1 = virtualinvoke r1.<java.lang.String: int length()>();
+if $i1 != 0 goto r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+"->"Block 6:
+[preds: 4 ] [succs: 7 ]
+r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+r3 = virtualinvoke r1.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+$i2 = lengthof r2;
+$i5 = $i2 + 1;
+$i3 = lengthof r3;
+$i4 = $i3 + 1;
+r4 = newmultiarray (int)[$i5][$i4];
+i25 = 0;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+r3 = virtualinvoke r1.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\");
+$i2 = lengthof r2;
+$i5 = $i2 + 1;
+$i3 = lengthof r3;
+$i4 = $i3 + 1;
+r4 = newmultiarray (int)[$i5][$i4];
+i25 = 0;
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$i6 = lengthof r2;
+$i7 = $i6 + 1;
+if i25 >= $i7 goto i26 = 1;
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$i6 = lengthof r2;
+$i7 = $i6 + 1;
+if i25 >= $i7 goto i26 = 1;
+"->"Block 8:
+[preds: 7 ] [succs: 7 ]
+$r14 = r4[i25];
+$r14[0] = 0;
+i25 = i25 + 1;
+goto [?= $i6 = lengthof r2];
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$i6 = lengthof r2;
+$i7 = $i6 + 1;
+if i25 >= $i7 goto i26 = 1;
+"->"Block 9:
+[preds: 7 ] [succs: 10 ]
+i26 = 1;
+";
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r14 = r4[i25];
+$r14[0] = 0;
+i25 = i25 + 1;
+goto [?= $i6 = lengthof r2];
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$i6 = lengthof r2;
+$i7 = $i6 + 1;
+if i25 >= $i7 goto i26 = 1;
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+i26 = 1;
+"->"Block 10:
+[preds: 9 11 ] [succs: 11 12 ]
+$i8 = lengthof r3;
+$i9 = $i8 + 1;
+if i26 >= $i9 goto i27 = 1;
+";
+    "Block 10:
+[preds: 9 11 ] [succs: 11 12 ]
+$i8 = lengthof r3;
+$i9 = $i8 + 1;
+if i26 >= $i9 goto i27 = 1;
+"->"Block 11:
+[preds: 10 ] [succs: 10 ]
+$r13 = r4[0];
+$r13[i26] = 0;
+i26 = i26 + 1;
+goto [?= $i8 = lengthof r3];
+";
+    "Block 10:
+[preds: 9 11 ] [succs: 11 12 ]
+$i8 = lengthof r3;
+$i9 = $i8 + 1;
+if i26 >= $i9 goto i27 = 1;
+"->"Block 12:
+[preds: 10 ] [succs: 13 ]
+i27 = 1;
+";
+    "Block 11:
+[preds: 10 ] [succs: 10 ]
+$r13 = r4[0];
+$r13[i26] = 0;
+i26 = i26 + 1;
+goto [?= $i8 = lengthof r3];
+"->"Block 10:
+[preds: 9 11 ] [succs: 11 12 ]
+$i8 = lengthof r3;
+$i9 = $i8 + 1;
+if i26 >= $i9 goto i27 = 1;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+i27 = 1;
+"->"Block 13:
+[preds: 12 20 ] [succs: 14 21 ]
+$i10 = lengthof r2;
+$i11 = $i10 + 1;
+if i27 >= $i11 goto $r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+";
+    "Block 13:
+[preds: 12 20 ] [succs: 14 21 ]
+$i10 = lengthof r2;
+$i11 = $i10 + 1;
+if i27 >= $i11 goto $r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+"->"Block 14:
+[preds: 13 ] [succs: 15 ]
+i28 = 1;
+";
+    "Block 13:
+[preds: 12 20 ] [succs: 14 21 ]
+$i10 = lengthof r2;
+$i11 = $i10 + 1;
+if i27 >= $i11 goto $r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+"->"Block 21:
+[preds: 13 ] [succs: ]
+$r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+return $r5;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+i28 = 1;
+"->"Block 15:
+[preds: 14 19 ] [succs: 16 20 ]
+$i12 = lengthof r3;
+$i13 = $i12 + 1;
+if i28 >= $i13 goto i27 = i27 + 1;
+";
+    "Block 15:
+[preds: 14 19 ] [succs: 16 20 ]
+$i12 = lengthof r3;
+$i13 = $i12 + 1;
+if i28 >= $i13 goto i27 = i27 + 1;
+"->"Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i14 = i27 - 1;
+$r7 = r2[$i14];
+$i15 = i28 - 1;
+$r6 = r3[$i15];
+$z0 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6);
+if $z0 == 0 goto $r10 = r4[i27];
+";
+    "Block 15:
+[preds: 14 19 ] [succs: 16 20 ]
+$i12 = lengthof r3;
+$i13 = $i12 + 1;
+if i28 >= $i13 goto i27 = i27 + 1;
+"->"Block 20:
+[preds: 15 ] [succs: 13 ]
+i27 = i27 + 1;
+goto [?= $i10 = lengthof r2];
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i14 = i27 - 1;
+$r7 = r2[$i14];
+$i15 = i28 - 1;
+$r6 = r3[$i15];
+$z0 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6);
+if $z0 == 0 goto $r10 = r4[i27];
+"->"Block 17:
+[preds: 16 ] [succs: 19 ]
+$r12 = r4[i27];
+$i21 = i27 - 1;
+$r11 = r4[$i21];
+$i22 = i28 - 1;
+$i23 = $r11[$i22];
+$i24 = $i23 + 1;
+$r12[i28] = $i24;
+goto [?= i28 = i28 + 1];
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i14 = i27 - 1;
+$r7 = r2[$i14];
+$i15 = i28 - 1;
+$r6 = r3[$i15];
+$z0 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6);
+if $z0 == 0 goto $r10 = r4[i27];
+"->"Block 18:
+[preds: 16 ] [succs: 19 ]
+$r10 = r4[i27];
+$i16 = i27 - 1;
+$r8 = r4[$i16];
+$i19 = $r8[i28];
+$r9 = r4[i27];
+$i17 = i28 - 1;
+$i18 = $r9[$i17];
+$i20 = staticinvoke <java.lang.Math: int max(int,int)>($i19, $i18);
+$r10[i28] = $i20;
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$r12 = r4[i27];
+$i21 = i27 - 1;
+$r11 = r4[$i21];
+$i22 = i28 - 1;
+$i23 = $r11[$i22];
+$i24 = $i23 + 1;
+$r12[i28] = $i24;
+goto [?= i28 = i28 + 1];
+"->"Block 19:
+[preds: 17 18 ] [succs: 15 ]
+i28 = i28 + 1;
+goto [?= $i12 = lengthof r3];
+";
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$r10 = r4[i27];
+$i16 = i27 - 1;
+$r8 = r4[$i16];
+$i19 = $r8[i28];
+$r9 = r4[i27];
+$i17 = i28 - 1;
+$i18 = $r9[$i17];
+$i20 = staticinvoke <java.lang.Math: int max(int,int)>($i19, $i18);
+$r10[i28] = $i20;
+"->"Block 19:
+[preds: 17 18 ] [succs: 15 ]
+i28 = i28 + 1;
+goto [?= $i12 = lengthof r3];
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 15 ]
+i28 = i28 + 1;
+goto [?= $i12 = lengthof r3];
+"->"Block 15:
+[preds: 14 19 ] [succs: 16 20 ]
+$i12 = lengthof r3;
+$i13 = $i12 + 1;
+if i28 >= $i13 goto i27 = i27 + 1;
+";
+    "Block 20:
+[preds: 15 ] [succs: 13 ]
+i27 = i27 + 1;
+goto [?= $i10 = lengthof r2];
+"->"Block 13:
+[preds: 12 20 ] [succs: 14 21 ]
+$i10 = lengthof r2;
+$i11 = $i10 + 1;
+if i27 >= $i11 goto $r5 = staticinvoke <com.thealgorithms.dynamicprogramming.LongestCommonSubsequence: java.lang.String lcsString(java.lang.String,java.lang.String,int[][])>(r0, r1, r4);
+";
+}

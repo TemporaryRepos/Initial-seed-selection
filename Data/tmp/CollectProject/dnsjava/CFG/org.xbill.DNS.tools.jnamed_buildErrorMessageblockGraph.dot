@@ -1,0 +1,103 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r5 := @this: org.xbill.DNS.tools.jnamed;
+r2 := @parameter0: org.xbill.DNS.Header;
+i0 := @parameter1: int;
+r4 := @parameter2: org.xbill.DNS.Record;
+$r0 = new org.xbill.DNS.Message;
+specialinvoke $r0.<org.xbill.DNS.Message: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<org.xbill.DNS.Message: void setHeader(org.xbill.DNS.Header)>(r2);
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 4 goto (branch);
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void removeAllRecords(int)>(i1);
+i1 = i1 + 1;
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i0 != 2 goto virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r4, 0);
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+$r3 = virtualinvoke r1.<org.xbill.DNS.Message: byte[] toWire()>();
+return $r3;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r5 := @this: org.xbill.DNS.tools.jnamed;
+r2 := @parameter0: org.xbill.DNS.Header;
+i0 := @parameter1: int;
+r4 := @parameter2: org.xbill.DNS.Record;
+$r0 = new org.xbill.DNS.Message;
+specialinvoke $r0.<org.xbill.DNS.Message: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<org.xbill.DNS.Message: void setHeader(org.xbill.DNS.Header)>(r2);
+i1 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 4 goto (branch);
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 4 goto (branch);
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void removeAllRecords(int)>(i1);
+i1 = i1 + 1;
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 4 goto (branch);
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i0 != 2 goto virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void removeAllRecords(int)>(i1);
+i1 = i1 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 4 goto (branch);
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i0 != 2 goto virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r4, 0);
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if i0 != 2 goto virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+$r3 = virtualinvoke r1.<org.xbill.DNS.Message: byte[] toWire()>();
+return $r3;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+virtualinvoke r1.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>(r4, 0);
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+virtualinvoke r2.<org.xbill.DNS.Header: void setRcode(int)>(i0);
+$r3 = virtualinvoke r1.<org.xbill.DNS.Message: byte[] toWire()>();
+return $r3;
+";
+}

@@ -1,0 +1,64 @@
+digraph "unitGraph" {
+    "r18 := @this: com.doinb.jdbc.JDBCDemo"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "$r0 = new java.lang.StringBuilder"
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"
+    "$r2 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.Thread: java.lang.String getName()>()"
+    "$r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t \u8fdb\u884c\u8c03\u7528\")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)"
+    "$r7 = new com.doinb.jdbc.MyDataSource"
+    "specialinvoke $r7.<com.doinb.jdbc.MyDataSource: void <init>()>()"
+    "r8 = $r7"
+    "r9 = virtualinvoke r8.<com.doinb.jdbc.MyDataSource: java.sql.Connection getConnection()>()"
+    "r10 = interfaceinvoke r9.<java.sql.Connection: java.sql.Statement createStatement()>()"
+    "r11 = interfaceinvoke r10.<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>(\"select * from order_detail\")"
+    "$z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()"
+    "if $z0 == 0 goto interfaceinvoke r11.<java.sql.ResultSet: void close()>()"
+    "$r13 = <java.lang.System: java.io.PrintStream out>"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u8fde\u63a5\u6c60\u67e5\u8be2\uff1a\")"
+    "$r15 = interfaceinvoke r11.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\")"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17)"
+    "goto [?= $z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()]"
+    "interfaceinvoke r11.<java.sql.ResultSet: void close()>()"
+    "interfaceinvoke r10.<java.sql.Statement: void close()>()"
+    "virtualinvoke r8.<com.doinb.jdbc.MyDataSource: void releaseConnection(java.sql.Connection)>(r9)"
+    "return"
+    "r18 := @this: com.doinb.jdbc.JDBCDemo"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"$r0 = new java.lang.StringBuilder";
+    "$r0 = new java.lang.StringBuilder"->"specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"->"$r2 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()";
+    "$r2 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"->"$r3 = virtualinvoke $r2.<java.lang.Thread: java.lang.String getName()>()";
+    "$r3 = virtualinvoke $r2.<java.lang.Thread: java.lang.String getName()>()"->"$r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)";
+    "$r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t \u8fdb\u884c\u8c03\u7528\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t \u8fdb\u884c\u8c03\u7528\")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)"->"$r7 = new com.doinb.jdbc.MyDataSource";
+    "$r7 = new com.doinb.jdbc.MyDataSource"->"specialinvoke $r7.<com.doinb.jdbc.MyDataSource: void <init>()>()";
+    "specialinvoke $r7.<com.doinb.jdbc.MyDataSource: void <init>()>()"->"r8 = $r7";
+    "r8 = $r7"->"r9 = virtualinvoke r8.<com.doinb.jdbc.MyDataSource: java.sql.Connection getConnection()>()";
+    "r9 = virtualinvoke r8.<com.doinb.jdbc.MyDataSource: java.sql.Connection getConnection()>()"->"r10 = interfaceinvoke r9.<java.sql.Connection: java.sql.Statement createStatement()>()";
+    "r10 = interfaceinvoke r9.<java.sql.Connection: java.sql.Statement createStatement()>()"->"r11 = interfaceinvoke r10.<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>(\"select * from order_detail\")";
+    "r11 = interfaceinvoke r10.<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>(\"select * from order_detail\")"->"$z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()";
+    "$z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()"->"if $z0 == 0 goto interfaceinvoke r11.<java.sql.ResultSet: void close()>()";
+    "if $z0 == 0 goto interfaceinvoke r11.<java.sql.ResultSet: void close()>()"->"$r13 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto interfaceinvoke r11.<java.sql.ResultSet: void close()>()"->"interfaceinvoke r11.<java.sql.ResultSet: void close()>()";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"$r12 = new java.lang.StringBuilder";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u8fde\u63a5\u6c60\u67e5\u8be2\uff1a\")";
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u8fde\u63a5\u6c60\u67e5\u8be2\uff1a\")"->"$r15 = interfaceinvoke r11.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\")";
+    "$r15 = interfaceinvoke r11.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\")"->"$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17)";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17)"->"goto [?= $z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()]";
+    "goto [?= $z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()]"->"$z0 = interfaceinvoke r11.<java.sql.ResultSet: boolean next()>()";
+    "interfaceinvoke r11.<java.sql.ResultSet: void close()>()"->"interfaceinvoke r10.<java.sql.Statement: void close()>()";
+    "interfaceinvoke r10.<java.sql.Statement: void close()>()"->"virtualinvoke r8.<com.doinb.jdbc.MyDataSource: void releaseConnection(java.sql.Connection)>(r9)";
+    "virtualinvoke r8.<com.doinb.jdbc.MyDataSource: void releaseConnection(java.sql.Connection)>(r9)"->"return";
+}

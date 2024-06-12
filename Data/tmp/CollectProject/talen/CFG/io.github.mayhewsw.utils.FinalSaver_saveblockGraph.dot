@@ -1,0 +1,279 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 10 ]
+r14 := @parameter0: java.lang.String;
+r8 := @parameter1: java.lang.String;
+r1 := @parameter2: java.lang.String;
+$r0 = new java.io.File;
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1);
+$z0 = virtualinvoke $r0.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r7 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+specialinvoke $r7.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>(r8);
+r9 = $r7;
+"
+    "Block 2:
+[preds: 1 8 ] [succs: 3 9 ]
+$z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+r10 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+r11 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+$r12 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+$r13 = new java.lang.StringBuilder;
+specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r17 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String getId()>();
+$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>($r19);
+r20 = virtualinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: void addView(java.lang.String,edu.illinois.cs.cogcomp.core.datastructures.textannotation.View)>(\"NER_CONLL\", r11);
+r21 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+r22 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\");
+$r23 = virtualinvoke r22.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>();
+r24 = interfaceinvoke $r23.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r25 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+r26 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent) $r25;
+staticinvoke <io.github.mayhewsw.controllers.SentenceController: java.lang.String getSentId(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$r28 = virtualinvoke r21.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituentsCovering(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$i0 = interfaceinvoke $r28.<java.util.List: int size()>();
+if $i0 != 0 goto staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+"
+    "Block 6:
+[preds: 5 ] [succs: 4 ]
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 7:
+[preds: 5 ] [succs: 4 ]
+staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 8:
+[preds: 4 ] [succs: 2 ]
+goto [?= $z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>()];
+"
+    "Block 9:
+[preds: 2 ] [succs: 11 ]
+goto [?= return];
+"
+    "Block 10:
+[preds: 0 ] [succs: 11 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not exist. Not doing anything.\");
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 10 ]
+r14 := @parameter0: java.lang.String;
+r8 := @parameter1: java.lang.String;
+r1 := @parameter2: java.lang.String;
+$r0 = new java.io.File;
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1);
+$z0 = virtualinvoke $r0.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$r7 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+specialinvoke $r7.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>(r8);
+r9 = $r7;
+";
+    "Block 0:
+[preds: ] [succs: 1 10 ]
+r14 := @parameter0: java.lang.String;
+r8 := @parameter1: java.lang.String;
+r1 := @parameter2: java.lang.String;
+$r0 = new java.io.File;
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1);
+$z0 = virtualinvoke $r0.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 10:
+[preds: 0 ] [succs: 11 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not exist. Not doing anything.\");
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r7 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+specialinvoke $r7.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>(r8);
+r9 = $r7;
+"->"Block 2:
+[preds: 1 8 ] [succs: 3 9 ]
+$z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 2:
+[preds: 1 8 ] [succs: 3 9 ]
+$z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+r10 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+r11 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+$r12 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+$r13 = new java.lang.StringBuilder;
+specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r17 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String getId()>();
+$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>($r19);
+r20 = virtualinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: void addView(java.lang.String,edu.illinois.cs.cogcomp.core.datastructures.textannotation.View)>(\"NER_CONLL\", r11);
+r21 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+r22 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\");
+$r23 = virtualinvoke r22.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>();
+r24 = interfaceinvoke $r23.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 1 8 ] [succs: 3 9 ]
+$z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 9:
+[preds: 2 ] [succs: 11 ]
+goto [?= return];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+r10 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+r11 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+$r12 = new edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader;
+$r13 = new java.lang.StringBuilder;
+specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r17 = virtualinvoke r10.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String getId()>();
+$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: void <init>(java.lang.String)>($r19);
+r20 = virtualinvoke $r12.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation next()>();
+virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: void addView(java.lang.String,edu.illinois.cs.cogcomp.core.datastructures.textannotation.View)>(\"NER_CONLL\", r11);
+r21 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\");
+r22 = virtualinvoke r20.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\");
+$r23 = virtualinvoke r22.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>();
+r24 = interfaceinvoke $r23.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r25 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+r26 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent) $r25;
+staticinvoke <io.github.mayhewsw.controllers.SentenceController: java.lang.String getSentId(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$r28 = virtualinvoke r21.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituentsCovering(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$i0 = interfaceinvoke $r28.<java.util.List: int size()>();
+if $i0 != 0 goto staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+";
+    "Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 8:
+[preds: 4 ] [succs: 2 ]
+goto [?= $z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r25 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+r26 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent) $r25;
+staticinvoke <io.github.mayhewsw.controllers.SentenceController: java.lang.String getSentId(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$r28 = virtualinvoke r21.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituentsCovering(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$i0 = interfaceinvoke $r28.<java.util.List: int size()>();
+if $i0 != 0 goto staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+"->"Block 6:
+[preds: 5 ] [succs: 4 ]
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r25 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+r26 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent) $r25;
+staticinvoke <io.github.mayhewsw.controllers.SentenceController: java.lang.String getSentId(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$r28 = virtualinvoke r21.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituentsCovering(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent)>(r26);
+$i0 = interfaceinvoke $r28.<java.util.List: int size()>();
+if $i0 != 0 goto staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+"->"Block 7:
+[preds: 5 ] [succs: 4 ]
+staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 6:
+[preds: 5 ] [succs: 4 ]
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 7:
+[preds: 5 ] [succs: 4 ]
+staticinvoke <io.github.mayhewsw.utils.FinalSaver: void SentToConll(edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent,java.lang.String)>(r26, r1);
+goto [?= $z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 4:
+[preds: 3 6 7 ] [succs: 5 8 ]
+$z2 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 8:
+[preds: 4 ] [succs: 2 ]
+goto [?= $z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>()];
+"->"Block 2:
+[preds: 1 8 ] [succs: 3 9 ]
+$z1 = virtualinvoke r9.<edu.illinois.cs.cogcomp.nlp.corpusreaders.CoNLLNerReader: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 9:
+[preds: 2 ] [succs: 11 ]
+goto [?= return];
+"->"Block 11:
+[preds: 9 10 ] [succs: ]
+return;
+";
+    "Block 10:
+[preds: 0 ] [succs: 11 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not exist. Not doing anything.\");
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+"->"Block 11:
+[preds: 9 10 ] [succs: ]
+return;
+";
+}

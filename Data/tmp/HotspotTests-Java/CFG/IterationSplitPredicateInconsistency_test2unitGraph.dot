@@ -1,0 +1,17 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "r1 := @parameter1: double[]"
+    "i1 := @parameter2: int"
+    "r0 = newarray (double)[10]"
+    "$z0 = staticinvoke <IterationSplitPredicateInconsistency: boolean test2_helper(int,int,double[],double[],int)>(i0, 0, r0, r1, i1)"
+    "if $z0 == 0 goto return r0"
+    "return null"
+    "return r0"
+    "i0 := @parameter0: int"->"r1 := @parameter1: double[]";
+    "r1 := @parameter1: double[]"->"i1 := @parameter2: int";
+    "i1 := @parameter2: int"->"r0 = newarray (double)[10]";
+    "r0 = newarray (double)[10]"->"$z0 = staticinvoke <IterationSplitPredicateInconsistency: boolean test2_helper(int,int,double[],double[],int)>(i0, 0, r0, r1, i1)";
+    "$z0 = staticinvoke <IterationSplitPredicateInconsistency: boolean test2_helper(int,int,double[],double[],int)>(i0, 0, r0, r1, i1)"->"if $z0 == 0 goto return r0";
+    "if $z0 == 0 goto return r0"->"return null";
+    "if $z0 == 0 goto return r0"->"return r0";
+}

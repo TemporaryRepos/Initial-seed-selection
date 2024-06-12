@@ -1,0 +1,49 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String"
+    "$r0 = new java.io.File"
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)"
+    "r2 = $r0"
+    "$z0 = virtualinvoke r2.<java.io.File: boolean exists()>()"
+    "if $z0 != 0 goto $z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()"
+    "$r7 = new java.io.FileNotFoundException"
+    "specialinvoke $r7.<java.io.FileNotFoundException: void <init>()>()"
+    "throw $r7"
+    "$z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()"
+    "if $z1 == 0 goto return"
+    "r3 = virtualinvoke r2.<java.io.File: java.io.File[] listFiles()>()"
+    "i1 = 0"
+    "$i0 = lengthof r3"
+    "if i1 >= $i0 goto return"
+    "$r4 = r3[i1]"
+    "$r5 = virtualinvoke $r4.<java.io.File: java.lang.String toString()>()"
+    "staticinvoke <com.megagao.production.ssm.util.FileUtil: boolean deleteFiles(java.lang.String)>($r5)"
+    "$r6 = r3[i1]"
+    "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+    "i1 = i1 + 1"
+    "goto [?= $i0 = lengthof r3]"
+    "return"
+    "r1 := @parameter0: java.lang.String"->"$r0 = new java.io.File";
+    "$r0 = new java.io.File"->"specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)";
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"$z0 = virtualinvoke r2.<java.io.File: boolean exists()>()";
+    "$z0 = virtualinvoke r2.<java.io.File: boolean exists()>()"->"if $z0 != 0 goto $z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()";
+    "if $z0 != 0 goto $z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()"->"$r7 = new java.io.FileNotFoundException";
+    "if $z0 != 0 goto $z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()"->"$z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()";
+    "$r7 = new java.io.FileNotFoundException"->"specialinvoke $r7.<java.io.FileNotFoundException: void <init>()>()";
+    "specialinvoke $r7.<java.io.FileNotFoundException: void <init>()>()"->"throw $r7";
+    "$z1 = virtualinvoke r2.<java.io.File: boolean isDirectory()>()"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"r3 = virtualinvoke r2.<java.io.File: java.io.File[] listFiles()>()";
+    "if $z1 == 0 goto return"->"return";
+    "r3 = virtualinvoke r2.<java.io.File: java.io.File[] listFiles()>()"->"i1 = 0";
+    "i1 = 0"->"$i0 = lengthof r3";
+    "$i0 = lengthof r3"->"if i1 >= $i0 goto return";
+    "if i1 >= $i0 goto return"->"$r4 = r3[i1]";
+    "if i1 >= $i0 goto return"->"return";
+    "$r4 = r3[i1]"->"$r5 = virtualinvoke $r4.<java.io.File: java.lang.String toString()>()";
+    "$r5 = virtualinvoke $r4.<java.io.File: java.lang.String toString()>()"->"staticinvoke <com.megagao.production.ssm.util.FileUtil: boolean deleteFiles(java.lang.String)>($r5)";
+    "staticinvoke <com.megagao.production.ssm.util.FileUtil: boolean deleteFiles(java.lang.String)>($r5)"->"$r6 = r3[i1]";
+    "$r6 = r3[i1]"->"virtualinvoke $r6.<java.io.File: boolean delete()>()";
+    "virtualinvoke $r6.<java.io.File: boolean delete()>()"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= $i0 = lengthof r3]";
+    "goto [?= $i0 = lengthof r3]"->"$i0 = lengthof r3";
+}

@@ -1,0 +1,15 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "l1 := @parameter1: long"
+    "$r0 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(16)"
+    "$r1 = virtualinvoke $r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l0)"
+    "$r2 = virtualinvoke $r1.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l1)"
+    "$r3 = virtualinvoke $r2.<java.nio.ByteBuffer: byte[] array()>()"
+    "return $r3"
+    "l0 := @parameter0: long"->"l1 := @parameter1: long";
+    "l1 := @parameter1: long"->"$r0 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(16)";
+    "$r0 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(16)"->"$r1 = virtualinvoke $r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l0)";
+    "$r1 = virtualinvoke $r0.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l0)"->"$r2 = virtualinvoke $r1.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l1)";
+    "$r2 = virtualinvoke $r1.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>(l1)"->"$r3 = virtualinvoke $r2.<java.nio.ByteBuffer: byte[] array()>()";
+    "$r3 = virtualinvoke $r2.<java.nio.ByteBuffer: byte[] array()>()"->"return $r3";
+}

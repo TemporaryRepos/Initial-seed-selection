@@ -1,0 +1,97 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 4 ]
+r1 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+i5 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i5 & 1;
+if $i0 != 0 goto i5 = i5 + 1;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$l1 = virtualinvoke r1.<java.lang.Long: long longValue()>();
+$r0 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+$l2 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+$l3 = $l1 + $l2;
+r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i5 = i5 + 1;
+"
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i5 < 1000 goto $i0 = i5 & 1;
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+$l4 = virtualinvoke r1.<java.lang.Long: long longValue()>();
+return $l4;
+"
+    "Block 0:
+[preds: ] [succs: 4 ]
+r1 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+i5 = 0;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i5 < 1000 goto $i0 = i5 & 1;
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i5 & 1;
+if $i0 != 0 goto i5 = i5 + 1;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$l1 = virtualinvoke r1.<java.lang.Long: long longValue()>();
+$r0 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+$l2 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+$l3 = $l1 + $l2;
+r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i5 & 1;
+if $i0 != 0 goto i5 = i5 + 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i5 = i5 + 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$l1 = virtualinvoke r1.<java.lang.Long: long longValue()>();
+$r0 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+$l2 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+$l3 = $l1 + $l2;
+r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i5 = i5 + 1;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i5 = i5 + 1;
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i5 < 1000 goto $i0 = i5 & 1;
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i5 < 1000 goto $i0 = i5 & 1;
+"->"Block 5:
+[preds: 4 ] [succs: ]
+$l4 = virtualinvoke r1.<java.lang.Long: long longValue()>();
+return $l4;
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i5 < 1000 goto $i0 = i5 & 1;
+"->"Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i5 & 1;
+if $i0 != 0 goto i5 = i5 + 1;
+";
+}

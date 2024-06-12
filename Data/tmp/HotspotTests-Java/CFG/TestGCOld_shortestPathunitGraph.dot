@@ -1,0 +1,21 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: TreeNode"
+    "if r0 != null goto $r1 = r0.<TreeNode: TreeNode left>"
+    "return 0"
+    "$r1 = r0.<TreeNode: TreeNode left>"
+    "$i0 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r1)"
+    "$r2 = r0.<TreeNode: TreeNode right>"
+    "$i1 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r2)"
+    "$i2 = staticinvoke <java.lang.Math: int min(int,int)>($i0, $i1)"
+    "$i3 = 1 + $i2"
+    "return $i3"
+    "r0 := @parameter0: TreeNode"->"if r0 != null goto $r1 = r0.<TreeNode: TreeNode left>";
+    "if r0 != null goto $r1 = r0.<TreeNode: TreeNode left>"->"return 0";
+    "if r0 != null goto $r1 = r0.<TreeNode: TreeNode left>"->"$r1 = r0.<TreeNode: TreeNode left>";
+    "$r1 = r0.<TreeNode: TreeNode left>"->"$i0 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r1)";
+    "$i0 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r1)"->"$r2 = r0.<TreeNode: TreeNode right>";
+    "$r2 = r0.<TreeNode: TreeNode right>"->"$i1 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r2)";
+    "$i1 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>($r2)"->"$i2 = staticinvoke <java.lang.Math: int min(int,int)>($i0, $i1)";
+    "$i2 = staticinvoke <java.lang.Math: int min(int,int)>($i0, $i1)"->"$i3 = 1 + $i2";
+    "$i3 = 1 + $i2"->"return $i3";
+}

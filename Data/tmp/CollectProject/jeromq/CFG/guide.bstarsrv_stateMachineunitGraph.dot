@@ -1,0 +1,195 @@
+digraph "unitGraph" {
+    "r0 := @this: guide.bstarsrv"
+    "z1 = 0"
+    "$r2 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r1 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PRIMARY>"
+    "if $r2 != $r1 goto $r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r35 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r34 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>"
+    "if $r35 != $r34 goto $r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r40 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r40.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (passive), ready active\n\")"
+    "$r41 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r41"
+    "goto [?= return z1]"
+    "$r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r36 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"
+    "if $r37 != $r36 goto return z1"
+    "$r38 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (active), ready passive\n\")"
+    "$r39 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r39"
+    "$r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r3 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_BACKUP>"
+    "if $r4 != $r3 goto $r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r29 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r28 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"
+    "if $r29 != $r28 goto $r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r32 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r32.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to primary (active), ready passive\n\")"
+    "$r33 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r33"
+    "$r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r30 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>"
+    "if $r31 != $r30 goto return z1"
+    "z1 = 1"
+    "$r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r5 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"
+    "if $r6 != $r5 goto $r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r26 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r25 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"
+    "if $r26 != $r25 goto return z1"
+    "$r27 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual actives, aborting\n\")"
+    "$r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"
+    "$r7 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"
+    "if $r8 != $r7 goto return z1"
+    "$r10 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r9 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PRIMARY>"
+    "if $r10 != $r9 goto $r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r23 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r23.<java.io.PrintStream: void print(java.lang.String)>(\"I: primary (passive) is restarting, ready active\n\")"
+    "$r24 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r24"
+    "$r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r11 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>"
+    "if $r12 != $r11 goto $r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"I: backup (passive) is restarting, ready active\n\")"
+    "$r22 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r22"
+    "$r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r13 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PASSIVE>"
+    "if $r14 != $r13 goto $r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r20 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r20.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual passives, aborting\n\")"
+    "$r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"
+    "$r15 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>"
+    "if $r16 != $r15 goto return z1"
+    "$z0 = <guide.bstarsrv: boolean $assertionsDisabled>"
+    "if $z0 != 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l3 = r0.<guide.bstarsrv: long peerExpiry>"
+    "$b4 = $l3 cmp 0L"
+    "if $b4 > 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$r19 = new java.lang.AssertionError"
+    "specialinvoke $r19.<java.lang.AssertionError: void <init>()>()"
+    "throw $r19"
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l1 = r0.<guide.bstarsrv: long peerExpiry>"
+    "$b2 = $l0 cmp $l1"
+    "if $b2 < 0 goto z1 = 1"
+    "$r17 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r17.<java.io.PrintStream: void print(java.lang.String)>(\"I: failover successful, ready active\n\")"
+    "$r18 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r18"
+    "return z1"
+    "r0 := @this: guide.bstarsrv"->"z1 = 0";
+    "z1 = 0"->"$r2 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "$r2 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r1 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PRIMARY>";
+    "$r1 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PRIMARY>"->"if $r2 != $r1 goto $r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "if $r2 != $r1 goto $r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r35 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r2 != $r1 goto $r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "$r35 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r34 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>";
+    "$r34 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>"->"if $r35 != $r34 goto $r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r35 != $r34 goto $r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r40 = <java.lang.System: java.io.PrintStream out>";
+    "if $r35 != $r34 goto $r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "$r40 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r40.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (passive), ready active\n\")";
+    "virtualinvoke $r40.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (passive), ready active\n\")"->"$r41 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>";
+    "$r41 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r41";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r41"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r37 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r36 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>";
+    "$r36 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"->"if $r37 != $r36 goto return z1";
+    "if $r37 != $r36 goto return z1"->"$r38 = <java.lang.System: java.io.PrintStream out>";
+    "if $r37 != $r36 goto return z1"->"return z1";
+    "$r38 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (active), ready passive\n\")";
+    "virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to backup (active), ready passive\n\")"->"$r39 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>";
+    "$r39 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r39";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r39"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r4 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r3 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_BACKUP>";
+    "$r3 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_BACKUP>"->"if $r4 != $r3 goto $r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "if $r4 != $r3 goto $r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r29 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r4 != $r3 goto $r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "$r29 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r28 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>";
+    "$r28 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"->"if $r29 != $r28 goto $r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r29 != $r28 goto $r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r32 = <java.lang.System: java.io.PrintStream out>";
+    "if $r29 != $r28 goto $r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "$r32 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r32.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to primary (active), ready passive\n\")";
+    "virtualinvoke $r32.<java.io.PrintStream: void print(java.lang.String)>(\"I: connected to primary (active), ready passive\n\")"->"$r33 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>";
+    "$r33 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r33";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r33"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r31 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r30 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>";
+    "$r30 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>"->"if $r31 != $r30 goto return z1";
+    "if $r31 != $r30 goto return z1"->"z1 = 1";
+    "if $r31 != $r30 goto return z1"->"return z1";
+    "z1 = 1"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r6 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r5 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>";
+    "$r5 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"->"if $r6 != $r5 goto $r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "if $r6 != $r5 goto $r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r26 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r6 != $r5 goto $r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>";
+    "$r26 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r25 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>";
+    "$r25 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_ACTIVE>"->"if $r26 != $r25 goto return z1";
+    "if $r26 != $r25 goto return z1"->"$r27 = <java.lang.System: java.io.PrintStream out>";
+    "if $r26 != $r25 goto return z1"->"return z1";
+    "$r27 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual actives, aborting\n\")";
+    "virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual actives, aborting\n\")"->"z1 = 1";
+    "z1 = 1"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r8 = r0.<guide.bstarsrv: guide.bstarsrv$State state>"->"$r7 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>";
+    "$r7 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_PASSIVE>"->"if $r8 != $r7 goto return z1";
+    "if $r8 != $r7 goto return z1"->"$r10 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r8 != $r7 goto return z1"->"return z1";
+    "$r10 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r9 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PRIMARY>";
+    "$r9 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PRIMARY>"->"if $r10 != $r9 goto $r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r10 != $r9 goto $r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r23 = <java.lang.System: java.io.PrintStream out>";
+    "if $r10 != $r9 goto $r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "$r23 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r23.<java.io.PrintStream: void print(java.lang.String)>(\"I: primary (passive) is restarting, ready active\n\")";
+    "virtualinvoke $r23.<java.io.PrintStream: void print(java.lang.String)>(\"I: primary (passive) is restarting, ready active\n\")"->"$r24 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>";
+    "$r24 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r24";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r24"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r12 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r11 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>";
+    "$r11 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_BACKUP>"->"if $r12 != $r11 goto $r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r12 != $r11 goto $r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "if $r12 != $r11 goto $r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"I: backup (passive) is restarting, ready active\n\")";
+    "virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"I: backup (passive) is restarting, ready active\n\")"->"$r22 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>";
+    "$r22 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r22";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r22"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r14 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r13 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PASSIVE>";
+    "$r13 = <guide.bstarsrv$Event: guide.bstarsrv$Event PEER_PASSIVE>"->"if $r14 != $r13 goto $r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "if $r14 != $r13 goto $r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r20 = <java.lang.System: java.io.PrintStream out>";
+    "if $r14 != $r13 goto $r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>";
+    "$r20 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r20.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual passives, aborting\n\")";
+    "virtualinvoke $r20.<java.io.PrintStream: void print(java.lang.String)>(\"E: fatal error - dual passives, aborting\n\")"->"z1 = 1";
+    "z1 = 1"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "$r16 = r0.<guide.bstarsrv: guide.bstarsrv$Event event>"->"$r15 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>";
+    "$r15 = <guide.bstarsrv$Event: guide.bstarsrv$Event CLIENT_REQUEST>"->"if $r16 != $r15 goto return z1";
+    "if $r16 != $r15 goto return z1"->"$z0 = <guide.bstarsrv: boolean $assertionsDisabled>";
+    "if $r16 != $r15 goto return z1"->"return z1";
+    "$z0 = <guide.bstarsrv: boolean $assertionsDisabled>"->"if $z0 != 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "if $z0 != 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l3 = r0.<guide.bstarsrv: long peerExpiry>";
+    "if $z0 != 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "$l3 = r0.<guide.bstarsrv: long peerExpiry>"->"$b4 = $l3 cmp 0L";
+    "$b4 = $l3 cmp 0L"->"if $b4 > 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "if $b4 > 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r19 = new java.lang.AssertionError";
+    "if $b4 > 0 goto $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "$r19 = new java.lang.AssertionError"->"specialinvoke $r19.<java.lang.AssertionError: void <init>()>()";
+    "specialinvoke $r19.<java.lang.AssertionError: void <init>()>()"->"throw $r19";
+    "$l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l1 = r0.<guide.bstarsrv: long peerExpiry>";
+    "$l1 = r0.<guide.bstarsrv: long peerExpiry>"->"$b2 = $l0 cmp $l1";
+    "$b2 = $l0 cmp $l1"->"if $b2 < 0 goto z1 = 1";
+    "if $b2 < 0 goto z1 = 1"->"$r17 = <java.lang.System: java.io.PrintStream out>";
+    "if $b2 < 0 goto z1 = 1"->"z1 = 1";
+    "$r17 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r17.<java.io.PrintStream: void print(java.lang.String)>(\"I: failover successful, ready active\n\")";
+    "virtualinvoke $r17.<java.io.PrintStream: void print(java.lang.String)>(\"I: failover successful, ready active\n\")"->"$r18 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>";
+    "$r18 = <guide.bstarsrv$State: guide.bstarsrv$State STATE_ACTIVE>"->"r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r18";
+    "r0.<guide.bstarsrv: guide.bstarsrv$State state> = $r18"->"goto [?= return z1]";
+    "goto [?= return z1]"->"return z1";
+    "z1 = 1"->"return z1";
+}

@@ -1,0 +1,17 @@
+digraph "unitGraph" {
+    "b0 := @parameter0: byte"
+    "$r0 = new java.lang.Byte"
+    "$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)"
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b1)"
+    "r1 = $r0"
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"
+    "$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"
+    "return $b2"
+    "b0 := @parameter0: byte"->"$r0 = new java.lang.Byte";
+    "$r0 = new java.lang.Byte"->"$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)";
+    "$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)"->"specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b1)";
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b1)"->"r1 = $r0";
+    "r1 = $r0"->"staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()";
+    "$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"->"return $b2";
+}

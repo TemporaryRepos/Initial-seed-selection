@@ -1,0 +1,50 @@
+digraph "unitGraph" {
+    "r7 := @parameter0: java.lang.String[]"
+    "$r0 = newarray (java.nio.channels.SelectableChannel)[3]"
+    "$r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>()"
+    "$r0[0] = $r1"
+    "$r2 = staticinvoke <java.nio.channels.SocketChannel: java.nio.channels.SocketChannel open()>()"
+    "$r0[1] = $r2"
+    "$r3 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"
+    "$r0[2] = $r3"
+    "r8 = $r0"
+    "i1 = 0"
+    "$i0 = lengthof r8"
+    "if i1 >= $i0 goto return"
+    "r4 = r8[i1]"
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: void close()>()"
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)"
+    "$r5 = new java.lang.RuntimeException"
+    "specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"expected exception not thrown\")"
+    "throw $r5"
+    "$r6 := @caughtexception"
+    "i1 = i1 + 1"
+    "goto [?= $i0 = lengthof r8]"
+    "return"
+    "r7 := @parameter0: java.lang.String[]"->"$r0 = newarray (java.nio.channels.SelectableChannel)[3]";
+    "$r0 = newarray (java.nio.channels.SelectableChannel)[3]"->"$r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>()";
+    "$r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>()"->"$r0[0] = $r1";
+    "$r0[0] = $r1"->"$r2 = staticinvoke <java.nio.channels.SocketChannel: java.nio.channels.SocketChannel open()>()";
+    "$r2 = staticinvoke <java.nio.channels.SocketChannel: java.nio.channels.SocketChannel open()>()"->"$r0[1] = $r2";
+    "$r0[1] = $r2"->"$r3 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()";
+    "$r3 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"->"$r0[2] = $r3";
+    "$r0[2] = $r3"->"r8 = $r0";
+    "r8 = $r0"->"i1 = 0";
+    "i1 = 0"->"$i0 = lengthof r8";
+    "$i0 = lengthof r8"->"if i1 >= $i0 goto return";
+    "if i1 >= $i0 goto return"->"r4 = r8[i1]";
+    "if i1 >= $i0 goto return"->"return";
+    "r4 = r8[i1]"->"virtualinvoke r4.<java.nio.channels.SelectableChannel: void close()>()";
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: void close()>()"->"virtualinvoke r4.<java.nio.channels.SelectableChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)";
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: void close()>()"->"$r6 := @caughtexception";
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)"->"$r5 = new java.lang.RuntimeException";
+    "virtualinvoke r4.<java.nio.channels.SelectableChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)"->"$r6 := @caughtexception";
+    "$r5 = new java.lang.RuntimeException"->"specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"expected exception not thrown\")";
+    "$r5 = new java.lang.RuntimeException"->"$r6 := @caughtexception";
+    "specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"expected exception not thrown\")"->"throw $r5";
+    "specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"expected exception not thrown\")"->"$r6 := @caughtexception";
+    "throw $r5"->"$r6 := @caughtexception";
+    "$r6 := @caughtexception"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= $i0 = lengthof r8]";
+    "goto [?= $i0 = lengthof r8]"->"$i0 = lengthof r8";
+}

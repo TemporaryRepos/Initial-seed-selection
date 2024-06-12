@@ -1,0 +1,44 @@
+digraph "unitGraph" {
+    "r7 := @parameter0: java.lang.String[]"
+    "$r0 = new jit.deoptimization.test05.A"
+    "specialinvoke $r0.<jit.deoptimization.test05.A: void <init>()>()"
+    "r1 = $r0"
+    "i1 = -1"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "$i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()"
+    "i1 = i1 + $i0"
+    "i2 = i2 + 1"
+    "if i2 < 1 goto $i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()"
+    "if i1 == -1 goto return"
+    "$r2 = new nsk.share.TestFailure"
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"result : \")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" must equal 1\")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r2.<nsk.share.TestFailure: void <init>(java.lang.String)>($r6)"
+    "throw $r2"
+    "return"
+    "r7 := @parameter0: java.lang.String[]"->"$r0 = new jit.deoptimization.test05.A";
+    "$r0 = new jit.deoptimization.test05.A"->"specialinvoke $r0.<jit.deoptimization.test05.A: void <init>()>()";
+    "specialinvoke $r0.<jit.deoptimization.test05.A: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"i1 = -1";
+    "i1 = -1"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 1 goto $i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()";
+    "$i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()"->"i1 = i1 + $i0";
+    "i1 = i1 + $i0"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 1 goto $i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()";
+    "if i2 < 1 goto $i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()"->"if i1 == -1 goto return";
+    "if i2 < 1 goto $i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()"->"$i0 = virtualinvoke r1.<jit.deoptimization.test05.A: int used_alot()>()";
+    "if i1 == -1 goto return"->"$r2 = new nsk.share.TestFailure";
+    "if i1 == -1 goto return"->"return";
+    "$r2 = new nsk.share.TestFailure"->"$r3 = new java.lang.StringBuilder";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"result : \")";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"result : \")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" must equal 1\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" must equal 1\")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r2.<nsk.share.TestFailure: void <init>(java.lang.String)>($r6)";
+    "specialinvoke $r2.<nsk.share.TestFailure: void <init>(java.lang.String)>($r6)"->"throw $r2";
+}

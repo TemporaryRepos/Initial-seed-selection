@@ -1,0 +1,410 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r2 := @this: org.snomed.otf.owltoolkit.Application;
+r0 := @parameter0: java.lang.String[];
+r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0);
+z10 = 0;
+$z0 = interfaceinvoke r1.<java.util.List: boolean isEmpty()>();
+if $z0 != 0 goto z11 = 1;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$z1 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-help\");
+if $z1 == 0 goto r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 21 ]
+z11 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void printHelp()>();
+goto [?= return];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 4:
+[preds: 3 9 ] [succs: 5 10 ]
+$z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 8 ]
+$r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+r5 = (java.lang.String) $r4;
+$z8 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(\",\");
+if $z8 != 0 goto $z12 = 0;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$z9 = virtualinvoke r5.<java.lang.String: boolean endsWith(java.lang.String)>(\",\");
+if $z9 != 0 goto $z12 = 0;
+"
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+$z12 = 1;
+goto [?= specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12)];
+"
+    "Block 8:
+[preds: 5 6 ] [succs: 9 ]
+$z12 = 0;
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 4 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12);
+goto [?= $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 10:
+[preds: 4 ] [succs: 11 12 ]
+$z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+if $z3 == 0 goto $z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+"
+    "Block 11:
+[preds: 10 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void classify(java.util.List)>(r1);
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+if $z4 == 0 goto $z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+"
+    "Block 13:
+[preds: 12 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void statedRelationshipsToOwlReferenceSet(java.util.List)>(r1);
+goto [?= (branch)];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+if $z5 == 0 goto $z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+"
+    "Block 15:
+[preds: 14 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void owlReferenceSetToStatedRelationships(java.util.List)>(r1);
+goto [?= (branch)];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+if $z6 == 0 goto (branch);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void convertStatedRelationshipsToOwlReferenceSetAndReconcile(java.util.List)>(r1);
+"
+    "Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z7 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-to-owl\");
+if $z7 == 0 goto return;
+"
+    "Block 20:
+[preds: 18 19 ] [succs: 21 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+"
+    "Block 21:
+[preds: 2 19 20 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r2 := @this: org.snomed.otf.owltoolkit.Application;
+r0 := @parameter0: java.lang.String[];
+r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0);
+z10 = 0;
+$z0 = interfaceinvoke r1.<java.util.List: boolean isEmpty()>();
+if $z0 != 0 goto z11 = 1;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$z1 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-help\");
+if $z1 == 0 goto r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r2 := @this: org.snomed.otf.owltoolkit.Application;
+r0 := @parameter0: java.lang.String[];
+r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0);
+z10 = 0;
+$z0 = interfaceinvoke r1.<java.util.List: boolean isEmpty()>();
+if $z0 != 0 goto z11 = 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 21 ]
+z11 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void printHelp()>();
+goto [?= return];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$z1 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-help\");
+if $z1 == 0 goto r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: 21 ]
+z11 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void printHelp()>();
+goto [?= return];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$z1 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-help\");
+if $z1 == 0 goto r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 21 ]
+z11 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void printHelp()>();
+goto [?= return];
+"->"Block 21:
+[preds: 2 19 20 ] [succs: ]
+return;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+r3 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 4:
+[preds: 3 9 ] [succs: 5 10 ]
+$z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+";
+    "Block 4:
+[preds: 3 9 ] [succs: 5 10 ]
+$z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+"->"Block 5:
+[preds: 4 ] [succs: 6 8 ]
+$r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+r5 = (java.lang.String) $r4;
+$z8 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(\",\");
+if $z8 != 0 goto $z12 = 0;
+";
+    "Block 4:
+[preds: 3 9 ] [succs: 5 10 ]
+$z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+"->"Block 10:
+[preds: 4 ] [succs: 11 12 ]
+$z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+if $z3 == 0 goto $z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 8 ]
+$r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+r5 = (java.lang.String) $r4;
+$z8 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(\",\");
+if $z8 != 0 goto $z12 = 0;
+"->"Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$z9 = virtualinvoke r5.<java.lang.String: boolean endsWith(java.lang.String)>(\",\");
+if $z9 != 0 goto $z12 = 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 8 ]
+$r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+r5 = (java.lang.String) $r4;
+$z8 = virtualinvoke r5.<java.lang.String: boolean startsWith(java.lang.String)>(\",\");
+if $z8 != 0 goto $z12 = 0;
+"->"Block 8:
+[preds: 5 6 ] [succs: 9 ]
+$z12 = 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$z9 = virtualinvoke r5.<java.lang.String: boolean endsWith(java.lang.String)>(\",\");
+if $z9 != 0 goto $z12 = 0;
+"->"Block 7:
+[preds: 6 ] [succs: 9 ]
+$z12 = 1;
+goto [?= specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12)];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+$z9 = virtualinvoke r5.<java.lang.String: boolean endsWith(java.lang.String)>(\",\");
+if $z9 != 0 goto $z12 = 0;
+"->"Block 8:
+[preds: 5 6 ] [succs: 9 ]
+$z12 = 0;
+";
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+$z12 = 1;
+goto [?= specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12)];
+"->"Block 9:
+[preds: 7 8 ] [succs: 4 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12);
+goto [?= $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 8:
+[preds: 5 6 ] [succs: 9 ]
+$z12 = 0;
+"->"Block 9:
+[preds: 7 8 ] [succs: 4 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12);
+goto [?= $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 4 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"When specifying multiple archives please include no whitespace before or after the comma.\", $z12);
+goto [?= $z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 4:
+[preds: 3 9 ] [succs: 5 10 ]
+$z2 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+";
+    "Block 10:
+[preds: 4 ] [succs: 11 12 ]
+$z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+if $z3 == 0 goto $z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+"->"Block 11:
+[preds: 10 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void classify(java.util.List)>(r1);
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 4 ] [succs: 11 12 ]
+$z3 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-classify\");
+if $z3 == 0 goto $z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+"->"Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+if $z4 == 0 goto $z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+";
+    "Block 11:
+[preds: 10 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void classify(java.util.List)>(r1);
+goto [?= (branch)];
+"->"Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+if $z4 == 0 goto $z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+"->"Block 13:
+[preds: 12 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void statedRelationshipsToOwlReferenceSet(java.util.List)>(r1);
+goto [?= (branch)];
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$z4 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl\");
+if $z4 == 0 goto $z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+if $z5 == 0 goto $z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+";
+    "Block 13:
+[preds: 12 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void statedRelationshipsToOwlReferenceSet(java.util.List)>(r1);
+goto [?= (branch)];
+"->"Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+if $z5 == 0 goto $z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+"->"Block 15:
+[preds: 14 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void owlReferenceSetToStatedRelationships(java.util.List)>(r1);
+goto [?= (branch)];
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$z5 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-owl-to-stated\");
+if $z5 == 0 goto $z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+"->"Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+if $z6 == 0 goto (branch);
+";
+    "Block 15:
+[preds: 14 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void owlReferenceSetToStatedRelationships(java.util.List)>(r1);
+goto [?= (branch)];
+"->"Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+if $z6 == 0 goto (branch);
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void convertStatedRelationshipsToOwlReferenceSetAndReconcile(java.util.List)>(r1);
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z6 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-stated-to-complete-owl-reconcile\");
+if $z6 == 0 goto (branch);
+"->"Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+z10 = 1;
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void convertStatedRelationshipsToOwlReferenceSetAndReconcile(java.util.List)>(r1);
+"->"Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+"->"Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z7 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-to-owl\");
+if $z7 == 0 goto return;
+";
+    "Block 18:
+[preds: 11 13 15 16 17 ] [succs: 19 20 ]
+if z10 == 0 goto specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+"->"Block 20:
+[preds: 18 19 ] [succs: 21 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z7 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-to-owl\");
+if $z7 == 0 goto return;
+"->"Block 20:
+[preds: 18 19 ] [succs: 21 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 21 ]
+$z7 = interfaceinvoke r1.<java.util.List: boolean contains(java.lang.Object)>(\"-rf2-to-owl\");
+if $z7 == 0 goto return;
+"->"Block 21:
+[preds: 2 19 20 ] [succs: ]
+return;
+";
+    "Block 20:
+[preds: 18 19 ] [succs: 21 ]
+specialinvoke r2.<org.snomed.otf.owltoolkit.Application: void rf2ToOwl(java.util.List)>(r1);
+"->"Block 21:
+[preds: 2 19 20 ] [succs: ]
+return;
+";
+}

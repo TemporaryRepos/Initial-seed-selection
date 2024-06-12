@@ -1,0 +1,421 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+$z0 = staticinvoke <com.thealgorithms.stacks.BalancedBrackets: boolean isBalanced(java.lang.String)>(r0);
+if $z0 != 0 goto $r1 = new java.lang.StringBuilder;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r23 = new java.lang.Exception;
+specialinvoke $r23.<java.lang.Exception: void <init>(java.lang.String)>(\"invalid expression\");
+throw $r23;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.lang.StringBuilder;
+specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.Stack;
+specialinvoke $r3.<java.util.Stack: void <init>()>();
+r4 = $r3;
+r5 = virtualinvoke r0.<java.lang.String: char[] toCharArray()>();
+i0 = lengthof r5;
+i6 = 0;
+"
+    "Block 3:
+[preds: 2 17 ] [succs: 4 18 ]
+if i6 >= i0 goto $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+c1 = r5[i6];
+$z2 = staticinvoke <java.lang.Character: boolean isLetterOrDigit(char)>(c1);
+if $z2 == 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 17 ]
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c1);
+goto [?= i6 = i6 + 1];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if c1 != 40 goto (branch);
+"
+    "Block 7:
+[preds: 6 ] [succs: 17 ]
+$r20 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r20);
+goto [?= i6 = i6 + 1];
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+if c1 != 41 goto $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"
+    "Block 9:
+[preds: 8 11 ] [succs: 10 12 ]
+$z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z4 != 0 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$r16 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r17 = (java.lang.Character) $r16;
+$c5 = virtualinvoke $r17.<java.lang.Character: char charValue()>();
+if $c5 == 40 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 9 ]
+$r18 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r18);
+goto [?= $z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"
+    "Block 12:
+[preds: 9 10 ] [succs: 17 ]
+virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+goto [?= i6 = i6 + 1];
+"
+    "Block 13:
+[preds: 8 15 ] [succs: 14 16 ]
+$z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z3 != 0 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 16 ]
+$i2 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>(c1);
+$r11 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r12 = (java.lang.Character) $r11;
+$c3 = virtualinvoke $r12.<java.lang.Character: char charValue()>();
+$i4 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>($c3);
+if $i2 > $i4 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"
+    "Block 15:
+[preds: 14 ] [succs: 13 ]
+$r13 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r13);
+goto [?= $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"
+    "Block 16:
+[preds: 13 14 ] [succs: 17 ]
+$r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r9);
+"
+    "Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+"
+    "Block 18:
+[preds: 3 19 ] [succs: 19 20 ]
+$z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z1 != 0 goto $r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 19:
+[preds: 18 ] [succs: 18 ]
+$r7 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+goto [?= $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"
+    "Block 20:
+[preds: 18 ] [succs: ]
+$r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+return $r6;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+$z0 = staticinvoke <com.thealgorithms.stacks.BalancedBrackets: boolean isBalanced(java.lang.String)>(r0);
+if $z0 != 0 goto $r1 = new java.lang.StringBuilder;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r23 = new java.lang.Exception;
+specialinvoke $r23.<java.lang.Exception: void <init>(java.lang.String)>(\"invalid expression\");
+throw $r23;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+$z0 = staticinvoke <com.thealgorithms.stacks.BalancedBrackets: boolean isBalanced(java.lang.String)>(r0);
+if $z0 != 0 goto $r1 = new java.lang.StringBuilder;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.lang.StringBuilder;
+specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.Stack;
+specialinvoke $r3.<java.util.Stack: void <init>()>();
+r4 = $r3;
+r5 = virtualinvoke r0.<java.lang.String: char[] toCharArray()>();
+i0 = lengthof r5;
+i6 = 0;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.lang.StringBuilder;
+specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.Stack;
+specialinvoke $r3.<java.util.Stack: void <init>()>();
+r4 = $r3;
+r5 = virtualinvoke r0.<java.lang.String: char[] toCharArray()>();
+i0 = lengthof r5;
+i6 = 0;
+"->"Block 3:
+[preds: 2 17 ] [succs: 4 18 ]
+if i6 >= i0 goto $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+";
+    "Block 3:
+[preds: 2 17 ] [succs: 4 18 ]
+if i6 >= i0 goto $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+c1 = r5[i6];
+$z2 = staticinvoke <java.lang.Character: boolean isLetterOrDigit(char)>(c1);
+if $z2 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 17 ] [succs: 4 18 ]
+if i6 >= i0 goto $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"->"Block 18:
+[preds: 3 19 ] [succs: 19 20 ]
+$z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z1 != 0 goto $r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+c1 = r5[i6];
+$z2 = staticinvoke <java.lang.Character: boolean isLetterOrDigit(char)>(c1);
+if $z2 == 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 17 ]
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c1);
+goto [?= i6 = i6 + 1];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+c1 = r5[i6];
+$z2 = staticinvoke <java.lang.Character: boolean isLetterOrDigit(char)>(c1);
+if $z2 == 0 goto (branch);
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if c1 != 40 goto (branch);
+";
+    "Block 5:
+[preds: 4 ] [succs: 17 ]
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c1);
+goto [?= i6 = i6 + 1];
+"->"Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if c1 != 40 goto (branch);
+"->"Block 7:
+[preds: 6 ] [succs: 17 ]
+$r20 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r20);
+goto [?= i6 = i6 + 1];
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+if c1 != 40 goto (branch);
+"->"Block 8:
+[preds: 6 ] [succs: 9 13 ]
+if c1 != 41 goto $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 17 ]
+$r20 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r20);
+goto [?= i6 = i6 + 1];
+"->"Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+if c1 != 41 goto $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"->"Block 9:
+[preds: 8 11 ] [succs: 10 12 ]
+$z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z4 != 0 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+if c1 != 41 goto $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+"->"Block 13:
+[preds: 8 15 ] [succs: 14 16 ]
+$z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z3 != 0 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+";
+    "Block 9:
+[preds: 8 11 ] [succs: 10 12 ]
+$z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z4 != 0 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$r16 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r17 = (java.lang.Character) $r16;
+$c5 = virtualinvoke $r17.<java.lang.Character: char charValue()>();
+if $c5 == 40 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+";
+    "Block 9:
+[preds: 8 11 ] [succs: 10 12 ]
+$z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z4 != 0 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"->"Block 12:
+[preds: 9 10 ] [succs: 17 ]
+virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+goto [?= i6 = i6 + 1];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$r16 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r17 = (java.lang.Character) $r16;
+$c5 = virtualinvoke $r17.<java.lang.Character: char charValue()>();
+if $c5 == 40 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"->"Block 11:
+[preds: 10 ] [succs: 9 ]
+$r18 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r18);
+goto [?= $z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$r16 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r17 = (java.lang.Character) $r16;
+$c5 = virtualinvoke $r17.<java.lang.Character: char charValue()>();
+if $c5 == 40 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+"->"Block 12:
+[preds: 9 10 ] [succs: 17 ]
+virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+goto [?= i6 = i6 + 1];
+";
+    "Block 11:
+[preds: 10 ] [succs: 9 ]
+$r18 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r18);
+goto [?= $z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"->"Block 9:
+[preds: 8 11 ] [succs: 10 12 ]
+$z4 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z4 != 0 goto virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+";
+    "Block 12:
+[preds: 9 10 ] [succs: 17 ]
+virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+goto [?= i6 = i6 + 1];
+"->"Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 13:
+[preds: 8 15 ] [succs: 14 16 ]
+$z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z3 != 0 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"->"Block 14:
+[preds: 13 ] [succs: 15 16 ]
+$i2 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>(c1);
+$r11 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r12 = (java.lang.Character) $r11;
+$c3 = virtualinvoke $r12.<java.lang.Character: char charValue()>();
+$i4 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>($c3);
+if $i2 > $i4 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+";
+    "Block 13:
+[preds: 8 15 ] [succs: 14 16 ]
+$z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z3 != 0 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"->"Block 16:
+[preds: 13 14 ] [succs: 17 ]
+$r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r9);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 16 ]
+$i2 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>(c1);
+$r11 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r12 = (java.lang.Character) $r11;
+$c3 = virtualinvoke $r12.<java.lang.Character: char charValue()>();
+$i4 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>($c3);
+if $i2 > $i4 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"->"Block 15:
+[preds: 14 ] [succs: 13 ]
+$r13 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r13);
+goto [?= $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 16 ]
+$i2 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>(c1);
+$r11 = virtualinvoke r4.<java.util.Stack: java.lang.Object peek()>();
+$r12 = (java.lang.Character) $r11;
+$c3 = virtualinvoke $r12.<java.lang.Character: char charValue()>();
+$i4 = staticinvoke <com.thealgorithms.stacks.InfixToPostfix: int precedence(char)>($c3);
+if $i2 > $i4 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+"->"Block 16:
+[preds: 13 14 ] [succs: 17 ]
+$r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r9);
+";
+    "Block 15:
+[preds: 14 ] [succs: 13 ]
+$r13 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r13);
+goto [?= $z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"->"Block 13:
+[preds: 8 15 ] [succs: 14 16 ]
+$z3 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z3 != 0 goto $r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+";
+    "Block 16:
+[preds: 13 14 ] [succs: 17 ]
+$r9 = staticinvoke <java.lang.Character: java.lang.Character valueOf(char)>(c1);
+virtualinvoke r4.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r9);
+"->"Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 17:
+[preds: 5 7 12 16 ] [succs: 3 ]
+i6 = i6 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 17 ] [succs: 4 18 ]
+if i6 >= i0 goto $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+";
+    "Block 18:
+[preds: 3 19 ] [succs: 19 20 ]
+$z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z1 != 0 goto $r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 19:
+[preds: 18 ] [succs: 18 ]
+$r7 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+goto [?= $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+";
+    "Block 18:
+[preds: 3 19 ] [succs: 19 20 ]
+$z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z1 != 0 goto $r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 20:
+[preds: 18 ] [succs: ]
+$r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+return $r6;
+";
+    "Block 19:
+[preds: 18 ] [succs: 18 ]
+$r7 = virtualinvoke r4.<java.util.Stack: java.lang.Object pop()>();
+virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+goto [?= $z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>()];
+"->"Block 18:
+[preds: 3 19 ] [succs: 19 20 ]
+$z1 = virtualinvoke r4.<java.util.Stack: boolean isEmpty()>();
+if $z1 != 0 goto $r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+}

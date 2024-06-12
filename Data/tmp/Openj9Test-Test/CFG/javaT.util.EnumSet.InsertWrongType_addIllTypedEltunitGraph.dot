@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.Class"
+    "r2 := @parameter1: java.lang.Enum"
+    "r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0)"
+    "virtualinvoke r1.<java.util.EnumSet: boolean add(java.lang.Object)>(r2)"
+    "goto [?= $r3 = new java.lang.RuntimeException]"
+    "$r4 := @caughtexception"
+    "r5 = $r4"
+    "return"
+    "$r3 = new java.lang.RuntimeException"
+    "specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Incorrectly typed add succeeded\")"
+    "throw $r3"
+    "r0 := @parameter0: java.lang.Class"->"r2 := @parameter1: java.lang.Enum";
+    "r2 := @parameter1: java.lang.Enum"->"r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0)";
+    "r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0)"->"virtualinvoke r1.<java.util.EnumSet: boolean add(java.lang.Object)>(r2)";
+    "r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0)"->"$r4 := @caughtexception";
+    "virtualinvoke r1.<java.util.EnumSet: boolean add(java.lang.Object)>(r2)"->"goto [?= $r3 = new java.lang.RuntimeException]";
+    "virtualinvoke r1.<java.util.EnumSet: boolean add(java.lang.Object)>(r2)"->"$r4 := @caughtexception";
+    "goto [?= $r3 = new java.lang.RuntimeException]"->"$r3 = new java.lang.RuntimeException";
+    "$r4 := @caughtexception"->"r5 = $r4";
+    "r5 = $r4"->"return";
+    "$r3 = new java.lang.RuntimeException"->"specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Incorrectly typed add succeeded\")";
+    "specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Incorrectly typed add succeeded\")"->"throw $r3";
+}

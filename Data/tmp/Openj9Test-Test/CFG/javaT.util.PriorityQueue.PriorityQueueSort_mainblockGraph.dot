@@ -1,0 +1,622 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+i5 = 10000;
+$i0 = lengthof r0;
+if $i0 <= 0 goto $r1 = new java.util.ArrayList;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r21 = r0[0];
+i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = new java.util.ArrayList;
+specialinvoke $r1.<java.util.ArrayList: void <init>(int)>(i5);
+r2 = $r1;
+i6 = 0;
+"
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+if i6 >= i5 goto $r3 = new java.util.ArrayList;
+"
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r20 = new java.lang.Integer;
+specialinvoke $r20.<java.lang.Integer: void <init>(int)>(i6);
+interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>($r20);
+i6 = i6 + 1;
+goto [?= (branch)];
+"
+    "Block 5:
+[preds: 3 ] [succs: 6 ]
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>(java.util.Collection)>(r2);
+r22 = $r3;
+staticinvoke <java.util.Collections: void shuffle(java.util.List)>(r22);
+$r4 = new java.util.PriorityQueue;
+$r5 = new javaT.util.PriorityQueue.PriorityQueueSort$MyComparator;
+specialinvoke $r5.<javaT.util.PriorityQueue.PriorityQueueSort$MyComparator: void <init>()>();
+specialinvoke $r4.<java.util.PriorityQueue: void <init>(int,java.util.Comparator)>(i5, $r5);
+r23 = $r4;
+r24 = interfaceinvoke r22.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+$z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r6 = new java.util.ArrayList;
+"
+    "Block 7:
+[preds: 6 ] [succs: 6 ]
+$r19 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+interfaceinvoke r23.<java.util.Queue: boolean add(java.lang.Object)>($r19);
+goto [?= $z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+$r6 = new java.util.ArrayList;
+specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+r25 = $r6;
+"
+    "Block 9:
+[preds: 8 10 ] [succs: 10 11 ]
+$z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>();
+if $z1 != 0 goto $z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"
+    "Block 10:
+[preds: 9 ] [succs: 9 ]
+$r18 = interfaceinvoke r23.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r18);
+goto [?= $z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>()];
+"
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z2 != 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"
+    "Block 12:
+[preds: 11 ] [succs: ]
+$r17 = new java.lang.RuntimeException;
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Sort test failed\");
+throw $r17;
+"
+    "Block 13:
+[preds: 11 ] [succs: 14 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+$r7 = new java.util.PriorityQueue;
+specialinvoke $r7.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r26 = $r7;
+"
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>();
+if $z3 != 0 goto $z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"
+    "Block 15:
+[preds: 14 ] [succs: 14 ]
+$r16 = interfaceinvoke r26.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r16);
+goto [?= $z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>()];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z4 != 0 goto $r8 = new java.util.PriorityQueue;
+"
+    "Block 17:
+[preds: 16 ] [succs: ]
+$r15 = new java.lang.RuntimeException;
+specialinvoke $r15.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Sort test failed\");
+throw $r15;
+"
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$r8 = new java.util.PriorityQueue;
+specialinvoke $r8.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r27 = $r8;
+r28 = interfaceinvoke r27.<java.util.Queue: java.util.Iterator iterator()>();
+"
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r13 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>();
+$r14 = (java.lang.Integer) $r13;
+$i3 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+$i4 = $i3 & 1;
+if $i4 != 1 goto $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 21:
+[preds: 20 ] [succs: 19 ]
+interfaceinvoke r28.<java.util.Iterator: void remove()>();
+goto [?= $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 22:
+[preds: 19 ] [succs: 23 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+"
+    "Block 23:
+[preds: 22 24 ] [succs: 24 25 ]
+$z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>();
+if $z5 != 0 goto r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 24:
+[preds: 23 ] [succs: 23 ]
+$r12 = interfaceinvoke r27.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r12);
+goto [?= $z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>()];
+"
+    "Block 25:
+[preds: 23 ] [succs: 26 ]
+r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+$r10 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+$r11 = (java.lang.Integer) $r10;
+$i1 = virtualinvoke $r11.<java.lang.Integer: int intValue()>();
+$i2 = $i1 & 1;
+if $i2 != 1 goto $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 28:
+[preds: 27 ] [succs: 26 ]
+interfaceinvoke r29.<java.util.Iterator: void remove()>();
+goto [?= $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 29:
+[preds: 26 ] [succs: 30 31 ]
+$z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z6 != 0 goto return;
+"
+    "Block 30:
+[preds: 29 ] [succs: ]
+$r9 = new java.lang.RuntimeException;
+specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Iterator remove test failed.\");
+throw $r9;
+"
+    "Block 31:
+[preds: 29 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+i5 = 10000;
+$i0 = lengthof r0;
+if $i0 <= 0 goto $r1 = new java.util.ArrayList;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$r21 = r0[0];
+i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+i5 = 10000;
+$i0 = lengthof r0;
+if $i0 <= 0 goto $r1 = new java.util.ArrayList;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = new java.util.ArrayList;
+specialinvoke $r1.<java.util.ArrayList: void <init>(int)>(i5);
+r2 = $r1;
+i6 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r21 = r0[0];
+i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = new java.util.ArrayList;
+specialinvoke $r1.<java.util.ArrayList: void <init>(int)>(i5);
+r2 = $r1;
+i6 = 0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = new java.util.ArrayList;
+specialinvoke $r1.<java.util.ArrayList: void <init>(int)>(i5);
+r2 = $r1;
+i6 = 0;
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+if i6 >= i5 goto $r3 = new java.util.ArrayList;
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+if i6 >= i5 goto $r3 = new java.util.ArrayList;
+"->"Block 4:
+[preds: 3 ] [succs: 3 ]
+$r20 = new java.lang.Integer;
+specialinvoke $r20.<java.lang.Integer: void <init>(int)>(i6);
+interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>($r20);
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+if i6 >= i5 goto $r3 = new java.util.ArrayList;
+"->"Block 5:
+[preds: 3 ] [succs: 6 ]
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>(java.util.Collection)>(r2);
+r22 = $r3;
+staticinvoke <java.util.Collections: void shuffle(java.util.List)>(r22);
+$r4 = new java.util.PriorityQueue;
+$r5 = new javaT.util.PriorityQueue.PriorityQueueSort$MyComparator;
+specialinvoke $r5.<javaT.util.PriorityQueue.PriorityQueueSort$MyComparator: void <init>()>();
+specialinvoke $r4.<java.util.PriorityQueue: void <init>(int,java.util.Comparator)>(i5, $r5);
+r23 = $r4;
+r24 = interfaceinvoke r22.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r20 = new java.lang.Integer;
+specialinvoke $r20.<java.lang.Integer: void <init>(int)>(i6);
+interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>($r20);
+i6 = i6 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+if i6 >= i5 goto $r3 = new java.util.ArrayList;
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 ]
+$r3 = new java.util.ArrayList;
+specialinvoke $r3.<java.util.ArrayList: void <init>(java.util.Collection)>(r2);
+r22 = $r3;
+staticinvoke <java.util.Collections: void shuffle(java.util.List)>(r22);
+$r4 = new java.util.PriorityQueue;
+$r5 = new javaT.util.PriorityQueue.PriorityQueueSort$MyComparator;
+specialinvoke $r5.<javaT.util.PriorityQueue.PriorityQueueSort$MyComparator: void <init>()>();
+specialinvoke $r4.<java.util.PriorityQueue: void <init>(int,java.util.Comparator)>(i5, $r5);
+r23 = $r4;
+r24 = interfaceinvoke r22.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+$z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r6 = new java.util.ArrayList;
+";
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+$z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r6 = new java.util.ArrayList;
+"->"Block 7:
+[preds: 6 ] [succs: 6 ]
+$r19 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+interfaceinvoke r23.<java.util.Queue: boolean add(java.lang.Object)>($r19);
+goto [?= $z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+$z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r6 = new java.util.ArrayList;
+"->"Block 8:
+[preds: 6 ] [succs: 9 ]
+$r6 = new java.util.ArrayList;
+specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+r25 = $r6;
+";
+    "Block 7:
+[preds: 6 ] [succs: 6 ]
+$r19 = interfaceinvoke r24.<java.util.Iterator: java.lang.Object next()>();
+interfaceinvoke r23.<java.util.Queue: boolean add(java.lang.Object)>($r19);
+goto [?= $z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+$z0 = interfaceinvoke r24.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r6 = new java.util.ArrayList;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+$r6 = new java.util.ArrayList;
+specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+r25 = $r6;
+"->"Block 9:
+[preds: 8 10 ] [succs: 10 11 ]
+$z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>();
+if $z1 != 0 goto $z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 9:
+[preds: 8 10 ] [succs: 10 11 ]
+$z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>();
+if $z1 != 0 goto $z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 10:
+[preds: 9 ] [succs: 9 ]
+$r18 = interfaceinvoke r23.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r18);
+goto [?= $z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>()];
+";
+    "Block 9:
+[preds: 8 10 ] [succs: 10 11 ]
+$z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>();
+if $z1 != 0 goto $z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z2 != 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 9 ]
+$r18 = interfaceinvoke r23.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r18);
+goto [?= $z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>()];
+"->"Block 9:
+[preds: 8 10 ] [succs: 10 11 ]
+$z1 = interfaceinvoke r23.<java.util.Queue: boolean isEmpty()>();
+if $z1 != 0 goto $z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z2 != 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"->"Block 12:
+[preds: 11 ] [succs: ]
+$r17 = new java.lang.RuntimeException;
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Sort test failed\");
+throw $r17;
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z2 != 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"->"Block 13:
+[preds: 11 ] [succs: 14 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+$r7 = new java.util.PriorityQueue;
+specialinvoke $r7.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r26 = $r7;
+";
+    "Block 13:
+[preds: 11 ] [succs: 14 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+$r7 = new java.util.PriorityQueue;
+specialinvoke $r7.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r26 = $r7;
+"->"Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>();
+if $z3 != 0 goto $z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>();
+if $z3 != 0 goto $z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 15:
+[preds: 14 ] [succs: 14 ]
+$r16 = interfaceinvoke r26.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r16);
+goto [?= $z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>()];
+";
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>();
+if $z3 != 0 goto $z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z4 != 0 goto $r8 = new java.util.PriorityQueue;
+";
+    "Block 15:
+[preds: 14 ] [succs: 14 ]
+$r16 = interfaceinvoke r26.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r16);
+goto [?= $z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>()];
+"->"Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$z3 = interfaceinvoke r26.<java.util.Queue: boolean isEmpty()>();
+if $z3 != 0 goto $z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z4 != 0 goto $r8 = new java.util.PriorityQueue;
+"->"Block 17:
+[preds: 16 ] [succs: ]
+$r15 = new java.lang.RuntimeException;
+specialinvoke $r15.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Sort test failed\");
+throw $r15;
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z4 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z4 != 0 goto $r8 = new java.util.PriorityQueue;
+"->"Block 18:
+[preds: 16 ] [succs: 19 ]
+$r8 = new java.util.PriorityQueue;
+specialinvoke $r8.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r27 = $r8;
+r28 = interfaceinvoke r27.<java.util.Queue: java.util.Iterator iterator()>();
+";
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$r8 = new java.util.PriorityQueue;
+specialinvoke $r8.<java.util.PriorityQueue: void <init>(java.util.Collection)>(r22);
+r27 = $r8;
+r28 = interfaceinvoke r27.<java.util.Queue: java.util.Iterator iterator()>();
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+";
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"->"Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r13 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>();
+$r14 = (java.lang.Integer) $r13;
+$i3 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+$i4 = $i3 & 1;
+if $i4 != 1 goto $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+"->"Block 22:
+[preds: 19 ] [succs: 23 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r13 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>();
+$r14 = (java.lang.Integer) $r13;
+$i3 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+$i4 = $i3 & 1;
+if $i4 != 1 goto $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+"->"Block 21:
+[preds: 20 ] [succs: 19 ]
+interfaceinvoke r28.<java.util.Iterator: void remove()>();
+goto [?= $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r13 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>();
+$r14 = (java.lang.Integer) $r13;
+$i3 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+$i4 = $i3 & 1;
+if $i4 != 1 goto $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+";
+    "Block 21:
+[preds: 20 ] [succs: 19 ]
+interfaceinvoke r28.<java.util.Iterator: void remove()>();
+goto [?= $z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z12 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>();
+if $z12 == 0 goto interfaceinvoke r25.<java.util.List: void clear()>();
+";
+    "Block 22:
+[preds: 19 ] [succs: 23 ]
+interfaceinvoke r25.<java.util.List: void clear()>();
+"->"Block 23:
+[preds: 22 24 ] [succs: 24 25 ]
+$z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>();
+if $z5 != 0 goto r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 23:
+[preds: 22 24 ] [succs: 24 25 ]
+$z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>();
+if $z5 != 0 goto r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 24:
+[preds: 23 ] [succs: 23 ]
+$r12 = interfaceinvoke r27.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r12);
+goto [?= $z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>()];
+";
+    "Block 23:
+[preds: 22 24 ] [succs: 24 25 ]
+$z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>();
+if $z5 != 0 goto r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 25:
+[preds: 23 ] [succs: 26 ]
+r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 23 ]
+$r12 = interfaceinvoke r27.<java.util.Queue: java.lang.Object remove()>();
+interfaceinvoke r25.<java.util.List: boolean add(java.lang.Object)>($r12);
+goto [?= $z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>()];
+"->"Block 23:
+[preds: 22 24 ] [succs: 24 25 ]
+$z5 = interfaceinvoke r27.<java.util.Queue: boolean isEmpty()>();
+if $z5 != 0 goto r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 25:
+[preds: 23 ] [succs: 26 ]
+r29 = interfaceinvoke r2.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 27:
+[preds: 26 ] [succs: 28 26 ]
+$r10 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+$r11 = (java.lang.Integer) $r10;
+$i1 = virtualinvoke $r11.<java.lang.Integer: int intValue()>();
+$i2 = $i1 & 1;
+if $i2 != 1 goto $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+"->"Block 29:
+[preds: 26 ] [succs: 30 31 ]
+$z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z6 != 0 goto return;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+$r10 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+$r11 = (java.lang.Integer) $r10;
+$i1 = virtualinvoke $r11.<java.lang.Integer: int intValue()>();
+$i2 = $i1 & 1;
+if $i2 != 1 goto $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+"->"Block 28:
+[preds: 27 ] [succs: 26 ]
+interfaceinvoke r29.<java.util.Iterator: void remove()>();
+goto [?= $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 26 ]
+$r10 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+$r11 = (java.lang.Integer) $r10;
+$i1 = virtualinvoke $r11.<java.lang.Integer: int intValue()>();
+$i2 = $i1 & 1;
+if $i2 != 1 goto $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+"->"Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 28:
+[preds: 27 ] [succs: 26 ]
+interfaceinvoke r29.<java.util.Iterator: void remove()>();
+goto [?= $z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 26:
+[preds: 25 27 28 ] [succs: 27 29 ]
+$z13 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z13 == 0 goto $z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+";
+    "Block 29:
+[preds: 26 ] [succs: 30 31 ]
+$z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z6 != 0 goto return;
+"->"Block 30:
+[preds: 29 ] [succs: ]
+$r9 = new java.lang.RuntimeException;
+specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Iterator remove test failed.\");
+throw $r9;
+";
+    "Block 29:
+[preds: 26 ] [succs: 30 31 ]
+$z6 = interfaceinvoke r25.<java.util.List: boolean equals(java.lang.Object)>(r2);
+if $z6 != 0 goto return;
+"->"Block 31:
+[preds: 29 ] [succs: ]
+return;
+";
+}

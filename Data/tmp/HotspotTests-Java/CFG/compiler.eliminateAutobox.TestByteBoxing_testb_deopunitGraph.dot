@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "b0 := @parameter0: byte"
+    "$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)"
+    "r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)"
+    "$i2 = b0 & 1"
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"
+    "$i4 = b0 + 1"
+    "$b5 = (byte) $i4"
+    "$b6 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b5)"
+    "r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b6)"
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"
+    "$b3 = virtualinvoke r0.<java.lang.Byte: byte byteValue()>()"
+    "return $b3"
+    "b0 := @parameter0: byte"->"$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)";
+    "$b1 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(b0)"->"r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)";
+    "r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)"->"$i2 = b0 & 1";
+    "$i2 = b0 & 1"->"if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"$i4 = b0 + 1";
+    "if $i2 != 0 goto staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "$i4 = b0 + 1"->"$b5 = (byte) $i4";
+    "$b5 = (byte) $i4"->"$b6 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b5)";
+    "$b6 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b5)"->"r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b6)";
+    "r0 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b6)"->"staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"$b3 = virtualinvoke r0.<java.lang.Byte: byte byteValue()>()";
+    "$b3 = virtualinvoke r0.<java.lang.Byte: byte byteValue()>()"->"return $b3";
+}

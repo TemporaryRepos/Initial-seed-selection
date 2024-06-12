@@ -1,0 +1,339 @@
+digraph "unitGraph" {
+    "r27 := @parameter0: java.lang.String[]"
+    "$r0 = new org.zeromq.ZContext"
+    "specialinvoke $r0.<org.zeromq.ZContext: void <init>()>()"
+    "r1 = $r0"
+    "r28 = null"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"I: connecting to server\")"
+    "$r3 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r3)"
+    "$z0 = <guide.lpclient: boolean $assertionsDisabled>"
+    "if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"
+    "if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"
+    "$r20 = new java.lang.AssertionError"
+    "specialinvoke $r20.<java.lang.AssertionError: void <init>()>()"
+    "throw $r20"
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"
+    "r4 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"
+    "i4 = 0"
+    "i5 = 3"
+    "if i5 <= 0 goto (branch)"
+    "$r5 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"
+    "$z2 = virtualinvoke $r5.<java.lang.Thread: boolean isInterrupted()>()"
+    "if $z2 != 0 goto (branch)"
+    "$r6 = newarray (java.lang.Object)[1]"
+    "i4 = i4 + 1"
+    "$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4)"
+    "$r6[0] = $r7"
+    "r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r6)"
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"
+    "b6 = 1"
+    "if b6 <= 0 goto (branch)"
+    "i1 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: int poll(long)>(2500L)"
+    "if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"
+    "goto [?= (branch)]"
+    "$z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"
+    "if $z4 == 0 goto i5 = i5 + -1"
+    "r13 = virtualinvoke r29.<org.zeromq.ZMQ$Socket: java.lang.String recvStr()>()"
+    "if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"
+    "if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r18 = <java.lang.System: java.io.PrintStream out>"
+    "$r17 = newarray (java.lang.Object)[1]"
+    "$r17[0] = r13"
+    "virtualinvoke $r18.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: server replied OK (%s)\n\", $r17)"
+    "b6 = 0"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = newarray (java.lang.Object)[1]"
+    "$r14[0] = r13"
+    "virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"E: malformed reply from server: %s\n\", $r14)"
+    "i5 = i5 + -1"
+    "if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r12 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"E: server seems to be offline, abandoning\n\")"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"W: no response from server, retrying\n\")"
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: void unregister(org.zeromq.ZMQ$Socket)>(r29)"
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: void close()>()"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"I: reconnecting to server\n\")"
+    "$r11 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r11)"
+    "if r1 == null goto return"
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"
+    "goto [?= return]"
+    "$r26 := @caughtexception"
+    "r30 = $r26"
+    "virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r30)"
+    "$r25 := @caughtexception"
+    "r31 = $r25"
+    "r28 = r31"
+    "throw r31"
+    "$r24 := @caughtexception"
+    "r23 = $r24"
+    "if r1 == null goto throw r23"
+    "goto [?= throw r23]"
+    "$r21 := @caughtexception"
+    "r22 = $r21"
+    "virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r22)"
+    "throw r23"
+    "return"
+    "r27 := @parameter0: java.lang.String[]"->"$r0 = new org.zeromq.ZContext";
+    "$r0 = new org.zeromq.ZContext"->"specialinvoke $r0.<org.zeromq.ZContext: void <init>()>()";
+    "specialinvoke $r0.<org.zeromq.ZContext: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"r28 = null";
+    "r28 = null"->"$r25 := @caughtexception";
+    "r28 = null"->"$r24 := @caughtexception";
+    "r28 = null"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"I: connecting to server\")";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"I: connecting to server\")"->"$r25 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"I: connecting to server\")"->"$r24 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"I: connecting to server\")"->"$r3 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>";
+    "$r3 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"$r25 := @caughtexception";
+    "$r3 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"$r24 := @caughtexception";
+    "$r3 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r3)";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r3)"->"$r25 := @caughtexception";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r3)"->"$r24 := @caughtexception";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r3)"->"$z0 = <guide.lpclient: boolean $assertionsDisabled>";
+    "$z0 = <guide.lpclient: boolean $assertionsDisabled>"->"$r25 := @caughtexception";
+    "$z0 = <guide.lpclient: boolean $assertionsDisabled>"->"$r24 := @caughtexception";
+    "$z0 = <guide.lpclient: boolean $assertionsDisabled>"->"if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")";
+    "if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")";
+    "if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")";
+    "if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r25 := @caughtexception";
+    "if $z0 != 0 goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r24 := @caughtexception";
+    "if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r20 = new java.lang.AssertionError";
+    "if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")";
+    "if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r25 := @caughtexception";
+    "if r29 != null goto virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r24 := @caughtexception";
+    "$r20 = new java.lang.AssertionError"->"$r25 := @caughtexception";
+    "$r20 = new java.lang.AssertionError"->"$r24 := @caughtexception";
+    "$r20 = new java.lang.AssertionError"->"specialinvoke $r20.<java.lang.AssertionError: void <init>()>()";
+    "specialinvoke $r20.<java.lang.AssertionError: void <init>()>()"->"$r25 := @caughtexception";
+    "specialinvoke $r20.<java.lang.AssertionError: void <init>()>()"->"$r24 := @caughtexception";
+    "specialinvoke $r20.<java.lang.AssertionError: void <init>()>()"->"throw $r20";
+    "throw $r20"->"$r25 := @caughtexception";
+    "throw $r20"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r25 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"r4 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)";
+    "r4 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"->"$r25 := @caughtexception";
+    "r4 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"->"$r24 := @caughtexception";
+    "r4 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"->"virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"$r25 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"$r24 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"i4 = 0";
+    "i4 = 0"->"$r25 := @caughtexception";
+    "i4 = 0"->"$r24 := @caughtexception";
+    "i4 = 0"->"i5 = 3";
+    "i5 = 3"->"$r25 := @caughtexception";
+    "i5 = 3"->"$r24 := @caughtexception";
+    "i5 = 3"->"if i5 <= 0 goto (branch)";
+    "if i5 <= 0 goto (branch)"->"$r5 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()";
+    "if i5 <= 0 goto (branch)"->"if r1 == null goto return";
+    "if i5 <= 0 goto (branch)"->"$r25 := @caughtexception";
+    "if i5 <= 0 goto (branch)"->"$r24 := @caughtexception";
+    "$r5 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"->"$r25 := @caughtexception";
+    "$r5 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"->"$r24 := @caughtexception";
+    "$r5 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()"->"$z2 = virtualinvoke $r5.<java.lang.Thread: boolean isInterrupted()>()";
+    "$z2 = virtualinvoke $r5.<java.lang.Thread: boolean isInterrupted()>()"->"$r25 := @caughtexception";
+    "$z2 = virtualinvoke $r5.<java.lang.Thread: boolean isInterrupted()>()"->"$r24 := @caughtexception";
+    "$z2 = virtualinvoke $r5.<java.lang.Thread: boolean isInterrupted()>()"->"if $z2 != 0 goto (branch)";
+    "if $z2 != 0 goto (branch)"->"$r6 = newarray (java.lang.Object)[1]";
+    "if $z2 != 0 goto (branch)"->"if r1 == null goto return";
+    "if $z2 != 0 goto (branch)"->"$r25 := @caughtexception";
+    "if $z2 != 0 goto (branch)"->"$r24 := @caughtexception";
+    "$r6 = newarray (java.lang.Object)[1]"->"$r25 := @caughtexception";
+    "$r6 = newarray (java.lang.Object)[1]"->"$r24 := @caughtexception";
+    "$r6 = newarray (java.lang.Object)[1]"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"$r25 := @caughtexception";
+    "i4 = i4 + 1"->"$r24 := @caughtexception";
+    "i4 = i4 + 1"->"$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4)";
+    "$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4)"->"$r25 := @caughtexception";
+    "$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4)"->"$r24 := @caughtexception";
+    "$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4)"->"$r6[0] = $r7";
+    "$r6[0] = $r7"->"$r25 := @caughtexception";
+    "$r6[0] = $r7"->"$r24 := @caughtexception";
+    "$r6[0] = $r7"->"r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r6)";
+    "r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r6)"->"$r25 := @caughtexception";
+    "r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r6)"->"$r24 := @caughtexception";
+    "r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r6)"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"$r25 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"b6 = 1";
+    "b6 = 1"->"$r25 := @caughtexception";
+    "b6 = 1"->"$r24 := @caughtexception";
+    "b6 = 1"->"if b6 <= 0 goto (branch)";
+    "if b6 <= 0 goto (branch)"->"i1 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: int poll(long)>(2500L)";
+    "if b6 <= 0 goto (branch)"->"goto [?= (branch)]";
+    "if b6 <= 0 goto (branch)"->"$r25 := @caughtexception";
+    "if b6 <= 0 goto (branch)"->"$r24 := @caughtexception";
+    "i1 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: int poll(long)>(2500L)"->"$r25 := @caughtexception";
+    "i1 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: int poll(long)>(2500L)"->"$r24 := @caughtexception";
+    "i1 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: int poll(long)>(2500L)"->"if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)";
+    "if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"goto [?= (branch)]";
+    "if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"$z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)";
+    "if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"$r25 := @caughtexception";
+    "if i1 != -1 goto $z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "$z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"$r25 := @caughtexception";
+    "$z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"$r24 := @caughtexception";
+    "$z4 = virtualinvoke r4.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"if $z4 == 0 goto i5 = i5 + -1";
+    "if $z4 == 0 goto i5 = i5 + -1"->"r13 = virtualinvoke r29.<org.zeromq.ZMQ$Socket: java.lang.String recvStr()>()";
+    "if $z4 == 0 goto i5 = i5 + -1"->"i5 = i5 + -1";
+    "if $z4 == 0 goto i5 = i5 + -1"->"$r25 := @caughtexception";
+    "if $z4 == 0 goto i5 = i5 + -1"->"$r24 := @caughtexception";
+    "r13 = virtualinvoke r29.<org.zeromq.ZMQ$Socket: java.lang.String recvStr()>()"->"$r25 := @caughtexception";
+    "r13 = virtualinvoke r29.<org.zeromq.ZMQ$Socket: java.lang.String recvStr()>()"->"$r24 := @caughtexception";
+    "r13 = virtualinvoke r29.<org.zeromq.ZMQ$Socket: java.lang.String recvStr()>()"->"if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)";
+    "if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"goto [?= (branch)]";
+    "if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)";
+    "if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"$r25 := @caughtexception";
+    "if r13 != null goto $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"$r25 := @caughtexception";
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"$r24 := @caughtexception";
+    "$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r13)"->"if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>";
+    "if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r18 = <java.lang.System: java.io.PrintStream out>";
+    "if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "if $i3 != i4 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r18 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r18 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r18 = <java.lang.System: java.io.PrintStream out>"->"$r17 = newarray (java.lang.Object)[1]";
+    "$r17 = newarray (java.lang.Object)[1]"->"$r25 := @caughtexception";
+    "$r17 = newarray (java.lang.Object)[1]"->"$r24 := @caughtexception";
+    "$r17 = newarray (java.lang.Object)[1]"->"$r17[0] = r13";
+    "$r17[0] = r13"->"$r25 := @caughtexception";
+    "$r17[0] = r13"->"$r24 := @caughtexception";
+    "$r17[0] = r13"->"virtualinvoke $r18.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: server replied OK (%s)\n\", $r17)";
+    "virtualinvoke $r18.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: server replied OK (%s)\n\", $r17)"->"$r25 := @caughtexception";
+    "virtualinvoke $r18.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: server replied OK (%s)\n\", $r17)"->"$r24 := @caughtexception";
+    "virtualinvoke $r18.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: server replied OK (%s)\n\", $r17)"->"i5 = 3";
+    "i5 = 3"->"$r25 := @caughtexception";
+    "i5 = 3"->"$r24 := @caughtexception";
+    "i5 = 3"->"b6 = 0";
+    "b6 = 0"->"$r25 := @caughtexception";
+    "b6 = 0"->"$r24 := @caughtexception";
+    "b6 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r14 = newarray (java.lang.Object)[1]";
+    "$r14 = newarray (java.lang.Object)[1]"->"$r25 := @caughtexception";
+    "$r14 = newarray (java.lang.Object)[1]"->"$r24 := @caughtexception";
+    "$r14 = newarray (java.lang.Object)[1]"->"$r14[0] = r13";
+    "$r14[0] = r13"->"$r25 := @caughtexception";
+    "$r14[0] = r13"->"$r24 := @caughtexception";
+    "$r14[0] = r13"->"virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"E: malformed reply from server: %s\n\", $r14)";
+    "virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"E: malformed reply from server: %s\n\", $r14)"->"$r25 := @caughtexception";
+    "virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"E: malformed reply from server: %s\n\", $r14)"->"$r24 := @caughtexception";
+    "virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"E: malformed reply from server: %s\n\", $r14)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "i5 = i5 + -1"->"$r25 := @caughtexception";
+    "i5 = i5 + -1"->"$r24 := @caughtexception";
+    "i5 = i5 + -1"->"if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>";
+    "if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r12 = <java.lang.System: java.io.PrintStream out>";
+    "if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "if i5 != 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r12 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r12 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r12 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"E: server seems to be offline, abandoning\n\")";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"E: server seems to be offline, abandoning\n\")"->"$r25 := @caughtexception";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"E: server seems to be offline, abandoning\n\")"->"$r24 := @caughtexception";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"E: server seems to be offline, abandoning\n\")"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"W: no response from server, retrying\n\")";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"W: no response from server, retrying\n\")"->"$r25 := @caughtexception";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"W: no response from server, retrying\n\")"->"$r24 := @caughtexception";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"W: no response from server, retrying\n\")"->"virtualinvoke r4.<org.zeromq.ZMQ$Poller: void unregister(org.zeromq.ZMQ$Socket)>(r29)";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: void unregister(org.zeromq.ZMQ$Socket)>(r29)"->"$r25 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: void unregister(org.zeromq.ZMQ$Socket)>(r29)"->"$r24 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: void unregister(org.zeromq.ZMQ$Socket)>(r29)"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: void close()>()";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: void close()>()"->"$r25 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: void close()>()"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"I: reconnecting to server\n\")";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"I: reconnecting to server\n\")"->"$r25 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"I: reconnecting to server\n\")"->"$r24 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"I: reconnecting to server\n\")"->"$r11 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>";
+    "$r11 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"$r25 := @caughtexception";
+    "$r11 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"$r24 := @caughtexception";
+    "$r11 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r11)";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r11)"->"$r25 := @caughtexception";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r11)"->"$r24 := @caughtexception";
+    "r29 = virtualinvoke r1.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r11)"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r25 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(\"tcp://localhost:5555\")"->"virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"$r25 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"$r24 := @caughtexception";
+    "virtualinvoke r4.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r29, 1)"->"virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"$r25 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"$r24 := @caughtexception";
+    "virtualinvoke r29.<org.zeromq.ZMQ$Socket: boolean send(java.lang.String)>(r8)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"if b6 <= 0 goto (branch)";
+    "goto [?= (branch)]"->"$r25 := @caughtexception";
+    "goto [?= (branch)]"->"$r24 := @caughtexception";
+    "goto [?= (branch)]"->"if i5 <= 0 goto (branch)";
+    "if r1 == null goto return"->"if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r1 == null goto return"->"return";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"$r26 := @caughtexception";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"goto [?= return]";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"$r26 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r26 := @caughtexception"->"r30 = $r26";
+    "r30 = $r26"->"virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r30)";
+    "virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r30)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r25 := @caughtexception"->"r31 = $r25";
+    "$r25 := @caughtexception"->"$r24 := @caughtexception";
+    "r31 = $r25"->"r28 = r31";
+    "r31 = $r25"->"$r24 := @caughtexception";
+    "r28 = r31"->"throw r31";
+    "r28 = r31"->"$r24 := @caughtexception";
+    "throw r31"->"$r24 := @caughtexception";
+    "$r24 := @caughtexception"->"r23 = $r24";
+    "$r24 := @caughtexception"->"$r24 := @caughtexception";
+    "r23 = $r24"->"if r1 == null goto throw r23";
+    "r23 = $r24"->"$r24 := @caughtexception";
+    "if r1 == null goto throw r23"->"if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r1 == null goto throw r23"->"throw r23";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"virtualinvoke r1.<org.zeromq.ZContext: void close()>()";
+    "if r28 == null goto virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"$r21 := @caughtexception";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"goto [?= throw r23]";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"$r21 := @caughtexception";
+    "goto [?= throw r23]"->"throw r23";
+    "$r21 := @caughtexception"->"r22 = $r21";
+    "r22 = $r21"->"virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r22)";
+    "virtualinvoke r28.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r22)"->"goto [?= throw r23]";
+    "goto [?= throw r23]"->"throw r23";
+    "virtualinvoke r1.<org.zeromq.ZContext: void close()>()"->"throw r23";
+}

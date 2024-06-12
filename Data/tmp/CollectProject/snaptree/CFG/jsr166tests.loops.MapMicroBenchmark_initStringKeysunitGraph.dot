@@ -1,0 +1,123 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.Object[]"
+    "i0 := @parameter1: int"
+    "$r0 = new java.io.FileInputStream"
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\")"
+    "r17 = $r0"
+    "goto [?= $r1 = new java.io.BufferedInputStream]"
+    "$r14 := @caughtexception"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\")"
+    "i6 = 0"
+    "if i6 >= i0 goto return"
+    "$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6)"
+    "r2[i6] = $r16"
+    "i6 = i6 + 1"
+    "goto [?= (branch)]"
+    "return"
+    "$r1 = new java.io.BufferedInputStream"
+    "specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17)"
+    "r18 = $r1"
+    "i7 = 0"
+    "if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>()"
+    "$r12 = new java.lang.StringBuffer"
+    "specialinvoke $r12.<java.lang.StringBuffer: void <init>()>()"
+    "r19 = $r12"
+    "i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()"
+    "if i3 >= 0 goto c4 = (char) i3"
+    "goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()]"
+    "c4 = (char) i3"
+    "if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)"
+    "$i5 = i7"
+    "i7 = i7 + 1"
+    "$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>()"
+    "r2[$i5] = $r13"
+    "$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)"
+    "if $z0 != 0 goto (branch)"
+    "virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4)"
+    "goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()]"
+    "virtualinvoke r18.<java.io.BufferedInputStream: void close()>()"
+    "i8 = 0"
+    "if i7 >= i0 goto return"
+    "$i1 = i7"
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"
+    "$i2 = i8"
+    "i8 = i8 + 1"
+    "$r4 = r2[$i2]"
+    "$r5 = (java.lang.String) $r4"
+    "$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")"
+    "$r8 = r2[i8]"
+    "$r9 = (java.lang.String) $r8"
+    "$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r2[$i1] = $r11"
+    "r2 := @parameter0: java.lang.Object[]"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"$r0 = new java.io.FileInputStream";
+    "i0 := @parameter1: int"->"$r14 := @caughtexception";
+    "$r0 = new java.io.FileInputStream"->"specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\")";
+    "$r0 = new java.io.FileInputStream"->"$r14 := @caughtexception";
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\")"->"r17 = $r0";
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\")"->"$r14 := @caughtexception";
+    "r17 = $r0"->"goto [?= $r1 = new java.io.BufferedInputStream]";
+    "r17 = $r0"->"$r14 := @caughtexception";
+    "goto [?= $r1 = new java.io.BufferedInputStream]"->"$r1 = new java.io.BufferedInputStream";
+    "$r14 := @caughtexception"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\")";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\")"->"i6 = 0";
+    "i6 = 0"->"if i6 >= i0 goto return";
+    "if i6 >= i0 goto return"->"$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6)";
+    "if i6 >= i0 goto return"->"return";
+    "$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6)"->"r2[i6] = $r16";
+    "r2[i6] = $r16"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 >= i0 goto return";
+    "$r1 = new java.io.BufferedInputStream"->"specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17)";
+    "specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17)"->"r18 = $r1";
+    "r18 = $r1"->"i7 = 0";
+    "i7 = 0"->"if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>()";
+    "if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>()"->"$r12 = new java.lang.StringBuffer";
+    "if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>()"->"virtualinvoke r18.<java.io.BufferedInputStream: void close()>()";
+    "$r12 = new java.lang.StringBuffer"->"specialinvoke $r12.<java.lang.StringBuffer: void <init>()>()";
+    "specialinvoke $r12.<java.lang.StringBuffer: void <init>()>()"->"r19 = $r12";
+    "r19 = $r12"->"i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()";
+    "i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()"->"if i3 >= 0 goto c4 = (char) i3";
+    "if i3 >= 0 goto c4 = (char) i3"->"goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()]";
+    "if i3 >= 0 goto c4 = (char) i3"->"c4 = (char) i3";
+    "goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()]"->"virtualinvoke r18.<java.io.BufferedInputStream: void close()>()";
+    "c4 = (char) i3"->"if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)";
+    "if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)"->"$i5 = i7";
+    "if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)"->"$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)";
+    "$i5 = i7"->"i7 = i7 + 1";
+    "i7 = i7 + 1"->"$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>()";
+    "$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>()"->"r2[$i5] = $r13";
+    "r2[$i5] = $r13"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4)"->"if $z0 != 0 goto (branch)";
+    "if $z0 != 0 goto (branch)"->"virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4)";
+    "if $z0 != 0 goto (branch)"->"goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()]";
+    "virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4)"->"goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()]";
+    "goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()]"->"i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()";
+    "goto [?= (branch)]"->"if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>()";
+    "virtualinvoke r18.<java.io.BufferedInputStream: void close()>()"->"i8 = 0";
+    "i8 = 0"->"if i7 >= i0 goto return";
+    "if i7 >= i0 goto return"->"$i1 = i7";
+    "if i7 >= i0 goto return"->"return";
+    "$i1 = i7"->"i7 = i7 + 1";
+    "i7 = i7 + 1"->"$r3 = new java.lang.StringBuilder";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"->"$i2 = i8";
+    "$i2 = i8"->"i8 = i8 + 1";
+    "i8 = i8 + 1"->"$r4 = r2[$i2]";
+    "$r4 = r2[$i2]"->"$r5 = (java.lang.String) $r4";
+    "$r5 = (java.lang.String) $r4"->"$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)";
+    "$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")"->"$r8 = r2[i8]";
+    "$r8 = r2[i8]"->"$r9 = (java.lang.String) $r8";
+    "$r9 = (java.lang.String) $r8"->"$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)";
+    "$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"r2[$i1] = $r11";
+    "r2[$i1] = $r11"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i7 >= i0 goto return";
+}

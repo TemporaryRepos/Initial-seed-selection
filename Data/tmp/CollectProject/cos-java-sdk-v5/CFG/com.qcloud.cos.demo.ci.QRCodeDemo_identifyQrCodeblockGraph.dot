@@ -1,0 +1,782 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 22 23 1 ]
+r12 := @parameter0: com.qcloud.cos.COSClient;
+r0 = \"examplebucket-1250000000\";
+r1 = \"qrcode.png\";
+$r2 = new java.io.File;
+specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\");
+r3 = $r2;
+$r4 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3);
+r5 = $r4;
+$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations;
+specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>();
+r7 = $r6;
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1);
+$r8 = new java.util.LinkedList;
+specialinvoke $r8.<java.util.LinkedList: void <init>()>();
+r9 = $r8;
+$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule;
+specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>();
+r11 = $r10;
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0);
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\");
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\");
+interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11);
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9);
+virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7);
+"
+    "Block 1:
+[preds: 0 ] [succs: 22 23 2 ]
+r28 = virtualinvoke r12.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r5);
+"
+    "Block 2:
+[preds: 1 ] [succs: 22 23 3 ]
+r13 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 22 23 4 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 22 23 5 ]
+$r15 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: java.lang.String getRequestId()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 22 23 6 ]
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r15);
+"
+    "Block 6:
+[preds: 5 ] [succs: 22 23 7 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 7:
+[preds: 6 ] [succs: 22 23 8 ]
+$r17 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 22 23 9 ]
+$r18 = virtualinvoke $r17.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>();
+"
+    "Block 9:
+[preds: 8 ] [succs: 22 23 10 ]
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+"
+    "Block 10:
+[preds: 9 ] [succs: 22 23 11 ]
+$r19 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 22 23 12 ]
+$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>();
+"
+    "Block 12:
+[preds: 11 ] [succs: 22 23 13 ]
+r21 = interfaceinvoke $r20.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+"
+    "Block 15:
+[preds: 14 ] [succs: 22 23 16 ]
+$r22 = interfaceinvoke r21.<java.util.Iterator: java.lang.Object next()>();
+"
+    "Block 16:
+[preds: 15 ] [succs: 22 23 17 ]
+r23 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r22;
+"
+    "Block 17:
+[preds: 16 ] [succs: 22 23 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 18:
+[preds: 17 ] [succs: 22 23 19 ]
+$r25 = virtualinvoke r23.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>();
+"
+    "Block 19:
+[preds: 18 ] [succs: 22 23 20 ]
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+"
+    "Block 20:
+[preds: 19 ] [succs: 22 23 13 ]
+goto [?= $z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 21:
+[preds: 14 ] [succs: 24 ]
+goto [?= return];
+"
+    "Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+"
+    "Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+"
+    "Block 24:
+[preds: 21 22 23 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 22 23 1 ]
+r12 := @parameter0: com.qcloud.cos.COSClient;
+r0 = \"examplebucket-1250000000\";
+r1 = \"qrcode.png\";
+$r2 = new java.io.File;
+specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\");
+r3 = $r2;
+$r4 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3);
+r5 = $r4;
+$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations;
+specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>();
+r7 = $r6;
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1);
+$r8 = new java.util.LinkedList;
+specialinvoke $r8.<java.util.LinkedList: void <init>()>();
+r9 = $r8;
+$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule;
+specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>();
+r11 = $r10;
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0);
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\");
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\");
+interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11);
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9);
+virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 0:
+[preds: ] [succs: 22 23 1 ]
+r12 := @parameter0: com.qcloud.cos.COSClient;
+r0 = \"examplebucket-1250000000\";
+r1 = \"qrcode.png\";
+$r2 = new java.io.File;
+specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\");
+r3 = $r2;
+$r4 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3);
+r5 = $r4;
+$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations;
+specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>();
+r7 = $r6;
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1);
+$r8 = new java.util.LinkedList;
+specialinvoke $r8.<java.util.LinkedList: void <init>()>();
+r9 = $r8;
+$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule;
+specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>();
+r11 = $r10;
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0);
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\");
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\");
+interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11);
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9);
+virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 0:
+[preds: ] [succs: 22 23 1 ]
+r12 := @parameter0: com.qcloud.cos.COSClient;
+r0 = \"examplebucket-1250000000\";
+r1 = \"qrcode.png\";
+$r2 = new java.io.File;
+specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\");
+r3 = $r2;
+$r4 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3);
+r5 = $r4;
+$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations;
+specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>();
+r7 = $r6;
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1);
+$r8 = new java.util.LinkedList;
+specialinvoke $r8.<java.util.LinkedList: void <init>()>();
+r9 = $r8;
+$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule;
+specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>();
+r11 = $r10;
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0);
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\");
+virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\");
+interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11);
+virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9);
+virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7);
+"->"Block 1:
+[preds: 0 ] [succs: 22 23 2 ]
+r28 = virtualinvoke r12.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r5);
+";
+    "Block 1:
+[preds: 0 ] [succs: 22 23 2 ]
+r28 = virtualinvoke r12.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r5);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 1:
+[preds: 0 ] [succs: 22 23 2 ]
+r28 = virtualinvoke r12.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r5);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 22 23 2 ]
+r28 = virtualinvoke r12.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r5);
+"->"Block 2:
+[preds: 1 ] [succs: 22 23 3 ]
+r13 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 22 23 3 ]
+r13 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 2:
+[preds: 1 ] [succs: 22 23 3 ]
+r13 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 22 23 3 ]
+r13 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>();
+"->"Block 3:
+[preds: 2 ] [succs: 22 23 4 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 3:
+[preds: 2 ] [succs: 22 23 4 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 3:
+[preds: 2 ] [succs: 22 23 4 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 22 23 4 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 4:
+[preds: 3 ] [succs: 22 23 5 ]
+$r15 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: java.lang.String getRequestId()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 22 23 5 ]
+$r15 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: java.lang.String getRequestId()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 4:
+[preds: 3 ] [succs: 22 23 5 ]
+$r15 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: java.lang.String getRequestId()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 22 23 5 ]
+$r15 = virtualinvoke r28.<com.qcloud.cos.model.PutObjectResult: java.lang.String getRequestId()>();
+"->"Block 5:
+[preds: 4 ] [succs: 22 23 6 ]
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r15);
+";
+    "Block 5:
+[preds: 4 ] [succs: 22 23 6 ]
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r15);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 5:
+[preds: 4 ] [succs: 22 23 6 ]
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r15);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 22 23 6 ]
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r15);
+"->"Block 6:
+[preds: 5 ] [succs: 22 23 7 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 6:
+[preds: 5 ] [succs: 22 23 7 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 6:
+[preds: 5 ] [succs: 22 23 7 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 22 23 7 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 7:
+[preds: 6 ] [succs: 22 23 8 ]
+$r17 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 22 23 8 ]
+$r17 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 7:
+[preds: 6 ] [succs: 22 23 8 ]
+$r17 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 22 23 8 ]
+$r17 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>();
+"->"Block 8:
+[preds: 7 ] [succs: 22 23 9 ]
+$r18 = virtualinvoke $r17.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 22 23 9 ]
+$r18 = virtualinvoke $r17.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 8:
+[preds: 7 ] [succs: 22 23 9 ]
+$r18 = virtualinvoke $r17.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 22 23 9 ]
+$r18 = virtualinvoke $r17.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>();
+"->"Block 9:
+[preds: 8 ] [succs: 22 23 10 ]
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+";
+    "Block 9:
+[preds: 8 ] [succs: 22 23 10 ]
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 9:
+[preds: 8 ] [succs: 22 23 10 ]
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 22 23 10 ]
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+"->"Block 10:
+[preds: 9 ] [succs: 22 23 11 ]
+$r19 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 22 23 11 ]
+$r19 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 10:
+[preds: 9 ] [succs: 22 23 11 ]
+$r19 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 22 23 11 ]
+$r19 = virtualinvoke r13.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>();
+"->"Block 11:
+[preds: 10 ] [succs: 22 23 12 ]
+$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 22 23 12 ]
+$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 11:
+[preds: 10 ] [succs: 22 23 12 ]
+$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 22 23 12 ]
+$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>();
+"->"Block 12:
+[preds: 11 ] [succs: 22 23 13 ]
+r21 = interfaceinvoke $r20.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 22 23 13 ]
+r21 = interfaceinvoke $r20.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 12:
+[preds: 11 ] [succs: 22 23 13 ]
+r21 = interfaceinvoke $r20.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 22 23 13 ]
+r21 = interfaceinvoke $r20.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+"->"Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+"->"Block 15:
+[preds: 14 ] [succs: 22 23 16 ]
+$r22 = interfaceinvoke r21.<java.util.Iterator: java.lang.Object next()>();
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+"->"Block 21:
+[preds: 14 ] [succs: 24 ]
+goto [?= return];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 21 22 23 ]
+if $z1 == 0 goto (branch);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 22 23 16 ]
+$r22 = interfaceinvoke r21.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 15:
+[preds: 14 ] [succs: 22 23 16 ]
+$r22 = interfaceinvoke r21.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 22 23 16 ]
+$r22 = interfaceinvoke r21.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 16:
+[preds: 15 ] [succs: 22 23 17 ]
+r23 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r22;
+";
+    "Block 16:
+[preds: 15 ] [succs: 22 23 17 ]
+r23 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r22;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 16:
+[preds: 15 ] [succs: 22 23 17 ]
+r23 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r22;
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 22 23 17 ]
+r23 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r22;
+"->"Block 17:
+[preds: 16 ] [succs: 22 23 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 17:
+[preds: 16 ] [succs: 22 23 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 17:
+[preds: 16 ] [succs: 22 23 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 22 23 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 18:
+[preds: 17 ] [succs: 22 23 19 ]
+$r25 = virtualinvoke r23.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 22 23 19 ]
+$r25 = virtualinvoke r23.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 18:
+[preds: 17 ] [succs: 22 23 19 ]
+$r25 = virtualinvoke r23.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>();
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 22 23 19 ]
+$r25 = virtualinvoke r23.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>();
+"->"Block 19:
+[preds: 18 ] [succs: 22 23 20 ]
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+";
+    "Block 19:
+[preds: 18 ] [succs: 22 23 20 ]
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 19:
+[preds: 18 ] [succs: 22 23 20 ]
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 22 23 20 ]
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+"->"Block 20:
+[preds: 19 ] [succs: 22 23 13 ]
+goto [?= $z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 20:
+[preds: 19 ] [succs: 22 23 13 ]
+goto [?= $z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 20:
+[preds: 19 ] [succs: 22 23 13 ]
+goto [?= $z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 22 23 13 ]
+goto [?= $z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 13:
+[preds: 12 20 ] [succs: 22 23 14 ]
+$z1 = interfaceinvoke r21.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 21:
+[preds: 14 ] [succs: 24 ]
+goto [?= return];
+"->"Block 24:
+[preds: 21 22 23 ] [succs: ]
+return;
+";
+    "Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r27 := @caughtexception;
+r29 = $r27;
+virtualinvoke r29.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= return];
+"->"Block 24:
+[preds: 21 22 23 ] [succs: ]
+return;
+";
+    "Block 23:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 20 13 14 15 16 17 18 19 ] [succs: 24 ]
+$r26 := @caughtexception;
+r30 = $r26;
+virtualinvoke r30.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+"->"Block 24:
+[preds: 21 22 23 ] [succs: ]
+return;
+";
+}

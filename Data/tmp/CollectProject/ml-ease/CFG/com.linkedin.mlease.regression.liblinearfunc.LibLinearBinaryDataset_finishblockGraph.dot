@@ -1,0 +1,1212 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset;
+$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>;
+if $z0 == 0 goto $r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r45 = new java.io.IOException;
+specialinvoke $r45.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot finish a finished dataset.\");
+throw $r45;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 11 ]
+$r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l> = $i0;
+$i1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i1;
+$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b2 = $d0 cmpl 0.0;
+if $b2 <= 0 goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 7 ]
+$i34 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$i35 = $i34 + 1;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i35;
+$i36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+if $i36 != 1 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r41 == null goto $r42 = new java.util.HashMap;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r44 != null goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 ]
+$r42 = new java.util.HashMap;
+specialinvoke $r42.<java.util.HashMap: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex> = $r42;
+$r43 = new java.util.ArrayList;
+specialinvoke $r43.<java.util.ArrayList: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName> = $r43;
+"
+    "Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r38 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+$i37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$r39 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i37);
+virtualinvoke $r38.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"(INTERCEPT)\", $r39);
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r36 == null goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+virtualinvoke $r37.<java.util.ArrayList: boolean add(java.lang.Object)>(\"(INTERCEPT)\");
+"
+    "Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+i38 = 0;
+"
+    "Block 13:
+[preds: 12 19 ] [succs: 14 20 ]
+$i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i38 >= $i24 goto (branch);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r33 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>;
+$r34 = virtualinvoke $r33.<java.util.ArrayList: java.lang.Object get(int)>(i38);
+r47 = (short[]) $r34;
+$d4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b25 = $d4 cmpl 0.0;
+if $b25 <= 0 goto i38 = i38 + 1;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$z2 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z2 != 0 goto $i26 = lengthof r47;
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i31 = lengthof r47;
+$i32 = $i31 - 1;
+$s33 = r47[$i32];
+if $s33 == -1 goto $i26 = lengthof r47;
+"
+    "Block 17:
+[preds: 16 ] [succs: ]
+$r35 = new java.lang.AssertionError;
+specialinvoke $r35.<java.lang.AssertionError: void <init>()>();
+throw $r35;
+"
+    "Block 18:
+[preds: 15 16 ] [succs: 19 ]
+$i26 = lengthof r47;
+$i30 = $i26 - 1;
+$i27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i28 = $i27 + 1;
+$s29 = (short) $i28;
+r47[$i30] = $s29;
+"
+    "Block 19:
+[preds: 14 18 ] [succs: 13 ]
+i38 = i38 + 1;
+goto [?= $i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 20:
+[preds: 13 ] [succs: 29 ]
+goto [?= $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 21:
+[preds: 11 ] [succs: 22 ]
+i39 = 0;
+"
+    "Block 22:
+[preds: 21 28 ] [succs: 23 29 ]
+$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i39 >= $i3 goto $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 28 ]
+$r30 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>;
+$r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i39);
+r48 = (int[]) $r31;
+$d3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b16 = $d3 cmpl 0.0;
+if $b16 <= 0 goto i39 = i39 + 1;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 27 ]
+$z1 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z1 != 0 goto $i17 = lengthof r48;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+$i21 = lengthof r48;
+$i22 = $i21 - 1;
+$i23 = r48[$i22];
+if $i23 == -1 goto $i17 = lengthof r48;
+"
+    "Block 26:
+[preds: 25 ] [succs: ]
+$r32 = new java.lang.AssertionError;
+specialinvoke $r32.<java.lang.AssertionError: void <init>()>();
+throw $r32;
+"
+    "Block 27:
+[preds: 24 25 ] [succs: 28 ]
+$i17 = lengthof r48;
+$i20 = $i17 - 1;
+$i18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i19 = $i18 + 1;
+r48[$i20] = $i19;
+"
+    "Block 28:
+[preds: 23 27 ] [succs: 22 ]
+i39 = i39 + 1;
+goto [?= $i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 29:
+[preds: 20 22 ] [succs: 30 ]
+$i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r2 = newarray (int)[$i4];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y> = $r2;
+i40 = 0;
+"
+    "Block 30:
+[preds: 29 31 ] [succs: 31 32 ]
+$i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i40 >= $i41 goto $i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"
+    "Block 31:
+[preds: 30 ] [succs: 30 ]
+$r27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y>;
+$r26 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$r28 = virtualinvoke $r26.<java.util.ArrayList: java.lang.Object get(int)>(i40);
+$r29 = (java.lang.Integer) $r28;
+$i15 = virtualinvoke $r29.<java.lang.Integer: int intValue()>();
+$r27[i40] = $i15;
+i40 = i40 + 1;
+goto [?= $i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 32:
+[preds: 30 ] [succs: 33 39 ]
+$i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r3 = newarray (double)[$i5];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset> = $r3;
+$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i6 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+if $i6 <= 0 goto i43 = 0;
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 ]
+i42 = 0;
+"
+    "Block 34:
+[preds: 33 35 ] [succs: 35 36 ]
+$r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i13 = virtualinvoke $r20.<java.util.ArrayList: int size()>();
+if i42 >= $i13 goto $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"
+    "Block 35:
+[preds: 34 ] [succs: 34 ]
+$r23 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$r24 = virtualinvoke $r22.<java.util.ArrayList: java.lang.Object get(int)>(i42);
+$r25 = (java.lang.Double) $r24;
+$d2 = virtualinvoke $r25.<java.lang.Double: double doubleValue()>();
+$r23[i42] = $d2;
+i42 = i42 + 1;
+goto [?= $r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>];
+"
+    "Block 36:
+[preds: 34 37 ] [succs: 37 38 ]
+$i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i42 >= $i14 goto (branch);
+"
+    "Block 37:
+[preds: 36 ] [succs: 36 ]
+$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r21[i42] = 0.0;
+i42 = i42 + 1;
+goto [?= $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 38:
+[preds: 36 ] [succs: 42 ]
+goto [?= $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 39:
+[preds: 32 ] [succs: 40 ]
+i43 = 0;
+"
+    "Block 40:
+[preds: 39 41 ] [succs: 41 42 ]
+$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$i7 = lengthof $r5;
+if i43 >= $i7 goto $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"
+    "Block 41:
+[preds: 40 ] [succs: 40 ]
+$r19 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r19[i43] = 0.0;
+i43 = i43 + 1;
+goto [?= $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>];
+"
+    "Block 42:
+[preds: 38 40 ] [succs: 43 49 ]
+$i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r6 = newarray (double)[$i8];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight> = $r6;
+$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i9 = virtualinvoke $r7.<java.util.ArrayList: int size()>();
+if $i9 <= 0 goto i45 = 0;
+"
+    "Block 43:
+[preds: 42 ] [succs: 44 ]
+i44 = 0;
+"
+    "Block 44:
+[preds: 43 45 ] [succs: 45 46 ]
+$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i11 = virtualinvoke $r13.<java.util.ArrayList: int size()>();
+if i44 >= $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"
+    "Block 45:
+[preds: 44 ] [succs: 44 ]
+$r16 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r15 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$r17 = virtualinvoke $r15.<java.util.ArrayList: java.lang.Object get(int)>(i44);
+$r18 = (java.lang.Double) $r17;
+$d1 = virtualinvoke $r18.<java.lang.Double: double doubleValue()>();
+$r16[i44] = $d1;
+i44 = i44 + 1;
+goto [?= $r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>];
+"
+    "Block 46:
+[preds: 44 47 ] [succs: 47 48 ]
+$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i44 >= $i12 goto (branch);
+"
+    "Block 47:
+[preds: 46 ] [succs: 46 ]
+$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r14[i44] = 1.0;
+i44 = i44 + 1;
+goto [?= $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"
+    "Block 48:
+[preds: 46 ] [succs: 52 ]
+goto [?= virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1)];
+"
+    "Block 49:
+[preds: 42 ] [succs: 50 ]
+i45 = 0;
+"
+    "Block 50:
+[preds: 49 51 ] [succs: 51 52 ]
+$r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$i10 = lengthof $r8;
+if i45 >= $i10 goto virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+"
+    "Block 51:
+[preds: 50 ] [succs: 50 ]
+$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r12[i45] = 1.0;
+i45 = i45 + 1;
+goto [?= $r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>];
+"
+    "Block 52:
+[preds: 48 50 ] [succs: ]
+virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+$r9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+virtualinvoke $r9.<java.util.ArrayList: void clear()>();
+$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+virtualinvoke $r10.<java.util.ArrayList: void clear()>();
+$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+virtualinvoke $r11.<java.util.ArrayList: void clear()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished> = 1;
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset;
+$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>;
+if $z0 == 0 goto $r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r45 = new java.io.IOException;
+specialinvoke $r45.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot finish a finished dataset.\");
+throw $r45;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset;
+$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>;
+if $z0 == 0 goto $r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+"->"Block 2:
+[preds: 0 ] [succs: 3 11 ]
+$r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l> = $i0;
+$i1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i1;
+$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b2 = $d0 cmpl 0.0;
+if $b2 <= 0 goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 11 ]
+$r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l> = $i0;
+$i1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i1;
+$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b2 = $d0 cmpl 0.0;
+if $b2 <= 0 goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"->"Block 3:
+[preds: 2 ] [succs: 4 7 ]
+$i34 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$i35 = $i34 + 1;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i35;
+$i36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+if $i36 != 1 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 11 ]
+$r1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l> = $i0;
+$i1 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i1;
+$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b2 = $d0 cmpl 0.0;
+if $b2 <= 0 goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"->"Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 7 ]
+$i34 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$i35 = $i34 + 1;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i35;
+$i36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+if $i36 != 1 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r41 == null goto $r42 = new java.util.HashMap;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 7 ]
+$i34 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$i35 = $i34 + 1;
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n> = $i35;
+$i36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+if $i36 != 1 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"->"Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r41 == null goto $r42 = new java.util.HashMap;
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r44 != null goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r41 == null goto $r42 = new java.util.HashMap;
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 ]
+$r42 = new java.util.HashMap;
+specialinvoke $r42.<java.util.HashMap: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex> = $r42;
+$r43 = new java.util.ArrayList;
+specialinvoke $r43.<java.util.ArrayList: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName> = $r43;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r44 != null goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 ]
+$r42 = new java.util.HashMap;
+specialinvoke $r42.<java.util.HashMap: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex> = $r42;
+$r43 = new java.util.ArrayList;
+specialinvoke $r43.<java.util.ArrayList: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName> = $r43;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r44 != null goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+"->"Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 ]
+$r42 = new java.util.HashMap;
+specialinvoke $r42.<java.util.HashMap: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex> = $r42;
+$r43 = new java.util.ArrayList;
+specialinvoke $r43.<java.util.ArrayList: void <init>()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName> = $r43;
+"->"Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+";
+    "Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+$r38 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+$i37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$r39 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i37);
+virtualinvoke $r38.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"(INTERCEPT)\", $r39);
+";
+    "Block 7:
+[preds: 3 5 6 ] [succs: 8 9 ]
+$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+if $r46 == null goto $r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r36 == null goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r38 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.HashMap featureIndex>;
+$i37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int n>;
+$r39 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i37);
+virtualinvoke $r38.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"(INTERCEPT)\", $r39);
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r36 == null goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r36 == null goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+$r37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+virtualinvoke $r37.<java.util.ArrayList: boolean add(java.lang.Object)>(\"(INTERCEPT)\");
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$r36 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+if $r36 == null goto $z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+"->"Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r37 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList featureName>;
+virtualinvoke $r37.<java.util.ArrayList: boolean add(java.lang.Object)>(\"(INTERCEPT)\");
+"->"Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+";
+    "Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+i38 = 0;
+";
+    "Block 11:
+[preds: 2 9 10 ] [succs: 12 21 ]
+$z4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>;
+if $z4 == 0 goto i39 = 0;
+"->"Block 21:
+[preds: 11 ] [succs: 22 ]
+i39 = 0;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+i38 = 0;
+"->"Block 13:
+[preds: 12 19 ] [succs: 14 20 ]
+$i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i38 >= $i24 goto (branch);
+";
+    "Block 13:
+[preds: 12 19 ] [succs: 14 20 ]
+$i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i38 >= $i24 goto (branch);
+"->"Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r33 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>;
+$r34 = virtualinvoke $r33.<java.util.ArrayList: java.lang.Object get(int)>(i38);
+r47 = (short[]) $r34;
+$d4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b25 = $d4 cmpl 0.0;
+if $b25 <= 0 goto i38 = i38 + 1;
+";
+    "Block 13:
+[preds: 12 19 ] [succs: 14 20 ]
+$i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i38 >= $i24 goto (branch);
+"->"Block 20:
+[preds: 13 ] [succs: 29 ]
+goto [?= $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r33 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>;
+$r34 = virtualinvoke $r33.<java.util.ArrayList: java.lang.Object get(int)>(i38);
+r47 = (short[]) $r34;
+$d4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b25 = $d4 cmpl 0.0;
+if $b25 <= 0 goto i38 = i38 + 1;
+"->"Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$z2 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z2 != 0 goto $i26 = lengthof r47;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r33 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>;
+$r34 = virtualinvoke $r33.<java.util.ArrayList: java.lang.Object get(int)>(i38);
+r47 = (short[]) $r34;
+$d4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b25 = $d4 cmpl 0.0;
+if $b25 <= 0 goto i38 = i38 + 1;
+"->"Block 19:
+[preds: 14 18 ] [succs: 13 ]
+i38 = i38 + 1;
+goto [?= $i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$z2 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z2 != 0 goto $i26 = lengthof r47;
+"->"Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i31 = lengthof r47;
+$i32 = $i31 - 1;
+$s33 = r47[$i32];
+if $s33 == -1 goto $i26 = lengthof r47;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 18 ]
+$z2 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z2 != 0 goto $i26 = lengthof r47;
+"->"Block 18:
+[preds: 15 16 ] [succs: 19 ]
+$i26 = lengthof r47;
+$i30 = $i26 - 1;
+$i27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i28 = $i27 + 1;
+$s29 = (short) $i28;
+r47[$i30] = $s29;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i31 = lengthof r47;
+$i32 = $i31 - 1;
+$s33 = r47[$i32];
+if $s33 == -1 goto $i26 = lengthof r47;
+"->"Block 17:
+[preds: 16 ] [succs: ]
+$r35 = new java.lang.AssertionError;
+specialinvoke $r35.<java.lang.AssertionError: void <init>()>();
+throw $r35;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 18 ]
+$i31 = lengthof r47;
+$i32 = $i31 - 1;
+$s33 = r47[$i32];
+if $s33 == -1 goto $i26 = lengthof r47;
+"->"Block 18:
+[preds: 15 16 ] [succs: 19 ]
+$i26 = lengthof r47;
+$i30 = $i26 - 1;
+$i27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i28 = $i27 + 1;
+$s29 = (short) $i28;
+r47[$i30] = $s29;
+";
+    "Block 18:
+[preds: 15 16 ] [succs: 19 ]
+$i26 = lengthof r47;
+$i30 = $i26 - 1;
+$i27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i28 = $i27 + 1;
+$s29 = (short) $i28;
+r47[$i30] = $s29;
+"->"Block 19:
+[preds: 14 18 ] [succs: 13 ]
+i38 = i38 + 1;
+goto [?= $i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 19:
+[preds: 14 18 ] [succs: 13 ]
+i38 = i38 + 1;
+goto [?= $i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 13:
+[preds: 12 19 ] [succs: 14 20 ]
+$i24 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i38 >= $i24 goto (branch);
+";
+    "Block 20:
+[preds: 13 ] [succs: 29 ]
+goto [?= $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 29:
+[preds: 20 22 ] [succs: 30 ]
+$i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r2 = newarray (int)[$i4];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y> = $r2;
+i40 = 0;
+";
+    "Block 21:
+[preds: 11 ] [succs: 22 ]
+i39 = 0;
+"->"Block 22:
+[preds: 21 28 ] [succs: 23 29 ]
+$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i39 >= $i3 goto $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 22:
+[preds: 21 28 ] [succs: 23 29 ]
+$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i39 >= $i3 goto $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 23:
+[preds: 22 ] [succs: 24 28 ]
+$r30 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>;
+$r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i39);
+r48 = (int[]) $r31;
+$d3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b16 = $d3 cmpl 0.0;
+if $b16 <= 0 goto i39 = i39 + 1;
+";
+    "Block 22:
+[preds: 21 28 ] [succs: 23 29 ]
+$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i39 >= $i3 goto $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 29:
+[preds: 20 22 ] [succs: 30 ]
+$i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r2 = newarray (int)[$i4];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y> = $r2;
+i40 = 0;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 28 ]
+$r30 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>;
+$r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i39);
+r48 = (int[]) $r31;
+$d3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b16 = $d3 cmpl 0.0;
+if $b16 <= 0 goto i39 = i39 + 1;
+"->"Block 24:
+[preds: 23 ] [succs: 25 27 ]
+$z1 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z1 != 0 goto $i17 = lengthof r48;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 28 ]
+$r30 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>;
+$r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i39);
+r48 = (int[]) $r31;
+$d3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>;
+$b16 = $d3 cmpl 0.0;
+if $b16 <= 0 goto i39 = i39 + 1;
+"->"Block 28:
+[preds: 23 27 ] [succs: 22 ]
+i39 = i39 + 1;
+goto [?= $i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 27 ]
+$z1 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z1 != 0 goto $i17 = lengthof r48;
+"->"Block 25:
+[preds: 24 ] [succs: 26 27 ]
+$i21 = lengthof r48;
+$i22 = $i21 - 1;
+$i23 = r48[$i22];
+if $i23 == -1 goto $i17 = lengthof r48;
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 27 ]
+$z1 = <com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean $assertionsDisabled>;
+if $z1 != 0 goto $i17 = lengthof r48;
+"->"Block 27:
+[preds: 24 25 ] [succs: 28 ]
+$i17 = lengthof r48;
+$i20 = $i17 - 1;
+$i18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i19 = $i18 + 1;
+r48[$i20] = $i19;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+$i21 = lengthof r48;
+$i22 = $i21 - 1;
+$i23 = r48[$i22];
+if $i23 == -1 goto $i17 = lengthof r48;
+"->"Block 26:
+[preds: 25 ] [succs: ]
+$r32 = new java.lang.AssertionError;
+specialinvoke $r32.<java.lang.AssertionError: void <init>()>();
+throw $r32;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+$i21 = lengthof r48;
+$i22 = $i21 - 1;
+$i23 = r48[$i22];
+if $i23 == -1 goto $i17 = lengthof r48;
+"->"Block 27:
+[preds: 24 25 ] [succs: 28 ]
+$i17 = lengthof r48;
+$i20 = $i17 - 1;
+$i18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i19 = $i18 + 1;
+r48[$i20] = $i19;
+";
+    "Block 27:
+[preds: 24 25 ] [succs: 28 ]
+$i17 = lengthof r48;
+$i20 = $i17 - 1;
+$i18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>;
+$i19 = $i18 + 1;
+r48[$i20] = $i19;
+"->"Block 28:
+[preds: 23 27 ] [succs: 22 ]
+i39 = i39 + 1;
+goto [?= $i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 28:
+[preds: 23 27 ] [succs: 22 ]
+i39 = i39 + 1;
+goto [?= $i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 22:
+[preds: 21 28 ] [succs: 23 29 ]
+$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i39 >= $i3 goto $i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 29:
+[preds: 20 22 ] [succs: 30 ]
+$i4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r2 = newarray (int)[$i4];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y> = $r2;
+i40 = 0;
+"->"Block 30:
+[preds: 29 31 ] [succs: 31 32 ]
+$i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i40 >= $i41 goto $i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 30:
+[preds: 29 31 ] [succs: 31 32 ]
+$i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i40 >= $i41 goto $i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 31:
+[preds: 30 ] [succs: 30 ]
+$r27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y>;
+$r26 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$r28 = virtualinvoke $r26.<java.util.ArrayList: java.lang.Object get(int)>(i40);
+$r29 = (java.lang.Integer) $r28;
+$i15 = virtualinvoke $r29.<java.lang.Integer: int intValue()>();
+$r27[i40] = $i15;
+i40 = i40 + 1;
+goto [?= $i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 30:
+[preds: 29 31 ] [succs: 31 32 ]
+$i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i40 >= $i41 goto $i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 32:
+[preds: 30 ] [succs: 33 39 ]
+$i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r3 = newarray (double)[$i5];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset> = $r3;
+$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i6 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+if $i6 <= 0 goto i43 = 0;
+";
+    "Block 31:
+[preds: 30 ] [succs: 30 ]
+$r27 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int[] y>;
+$r26 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+$r28 = virtualinvoke $r26.<java.util.ArrayList: java.lang.Object get(int)>(i40);
+$r29 = (java.lang.Integer) $r28;
+$i15 = virtualinvoke $r29.<java.lang.Integer: int intValue()>();
+$r27[i40] = $i15;
+i40 = i40 + 1;
+goto [?= $i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 30:
+[preds: 29 31 ] [succs: 31 32 ]
+$i41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i40 >= $i41 goto $i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 32:
+[preds: 30 ] [succs: 33 39 ]
+$i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r3 = newarray (double)[$i5];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset> = $r3;
+$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i6 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+if $i6 <= 0 goto i43 = 0;
+"->"Block 33:
+[preds: 32 ] [succs: 34 ]
+i42 = 0;
+";
+    "Block 32:
+[preds: 30 ] [succs: 33 39 ]
+$i5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r3 = newarray (double)[$i5];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset> = $r3;
+$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i6 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+if $i6 <= 0 goto i43 = 0;
+"->"Block 39:
+[preds: 32 ] [succs: 40 ]
+i43 = 0;
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 ]
+i42 = 0;
+"->"Block 34:
+[preds: 33 35 ] [succs: 35 36 ]
+$r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i13 = virtualinvoke $r20.<java.util.ArrayList: int size()>();
+if i42 >= $i13 goto $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 34:
+[preds: 33 35 ] [succs: 35 36 ]
+$r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i13 = virtualinvoke $r20.<java.util.ArrayList: int size()>();
+if i42 >= $i13 goto $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 35:
+[preds: 34 ] [succs: 34 ]
+$r23 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$r24 = virtualinvoke $r22.<java.util.ArrayList: java.lang.Object get(int)>(i42);
+$r25 = (java.lang.Double) $r24;
+$d2 = virtualinvoke $r25.<java.lang.Double: double doubleValue()>();
+$r23[i42] = $d2;
+i42 = i42 + 1;
+goto [?= $r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>];
+";
+    "Block 34:
+[preds: 33 35 ] [succs: 35 36 ]
+$r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i13 = virtualinvoke $r20.<java.util.ArrayList: int size()>();
+if i42 >= $i13 goto $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 36:
+[preds: 34 37 ] [succs: 37 38 ]
+$i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i42 >= $i14 goto (branch);
+";
+    "Block 35:
+[preds: 34 ] [succs: 34 ]
+$r23 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$r24 = virtualinvoke $r22.<java.util.ArrayList: java.lang.Object get(int)>(i42);
+$r25 = (java.lang.Double) $r24;
+$d2 = virtualinvoke $r25.<java.lang.Double: double doubleValue()>();
+$r23[i42] = $d2;
+i42 = i42 + 1;
+goto [?= $r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>];
+"->"Block 34:
+[preds: 33 35 ] [succs: 35 36 ]
+$r20 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+$i13 = virtualinvoke $r20.<java.util.ArrayList: int size()>();
+if i42 >= $i13 goto $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 36:
+[preds: 34 37 ] [succs: 37 38 ]
+$i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i42 >= $i14 goto (branch);
+"->"Block 37:
+[preds: 36 ] [succs: 36 ]
+$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r21[i42] = 0.0;
+i42 = i42 + 1;
+goto [?= $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 36:
+[preds: 34 37 ] [succs: 37 38 ]
+$i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i42 >= $i14 goto (branch);
+"->"Block 38:
+[preds: 36 ] [succs: 42 ]
+goto [?= $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 37:
+[preds: 36 ] [succs: 36 ]
+$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r21[i42] = 0.0;
+i42 = i42 + 1;
+goto [?= $i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 36:
+[preds: 34 37 ] [succs: 37 38 ]
+$i14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i42 >= $i14 goto (branch);
+";
+    "Block 38:
+[preds: 36 ] [succs: 42 ]
+goto [?= $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 42:
+[preds: 38 40 ] [succs: 43 49 ]
+$i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r6 = newarray (double)[$i8];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight> = $r6;
+$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i9 = virtualinvoke $r7.<java.util.ArrayList: int size()>();
+if $i9 <= 0 goto i45 = 0;
+";
+    "Block 39:
+[preds: 32 ] [succs: 40 ]
+i43 = 0;
+"->"Block 40:
+[preds: 39 41 ] [succs: 41 42 ]
+$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$i7 = lengthof $r5;
+if i43 >= $i7 goto $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 40:
+[preds: 39 41 ] [succs: 41 42 ]
+$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$i7 = lengthof $r5;
+if i43 >= $i7 goto $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 41:
+[preds: 40 ] [succs: 40 ]
+$r19 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r19[i43] = 0.0;
+i43 = i43 + 1;
+goto [?= $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>];
+";
+    "Block 40:
+[preds: 39 41 ] [succs: 41 42 ]
+$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$i7 = lengthof $r5;
+if i43 >= $i7 goto $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 42:
+[preds: 38 40 ] [succs: 43 49 ]
+$i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r6 = newarray (double)[$i8];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight> = $r6;
+$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i9 = virtualinvoke $r7.<java.util.ArrayList: int size()>();
+if $i9 <= 0 goto i45 = 0;
+";
+    "Block 41:
+[preds: 40 ] [succs: 40 ]
+$r19 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$r19[i43] = 0.0;
+i43 = i43 + 1;
+goto [?= $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>];
+"->"Block 40:
+[preds: 39 41 ] [succs: 41 42 ]
+$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] offset>;
+$i7 = lengthof $r5;
+if i43 >= $i7 goto $i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 42:
+[preds: 38 40 ] [succs: 43 49 ]
+$i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r6 = newarray (double)[$i8];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight> = $r6;
+$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i9 = virtualinvoke $r7.<java.util.ArrayList: int size()>();
+if $i9 <= 0 goto i45 = 0;
+"->"Block 43:
+[preds: 42 ] [succs: 44 ]
+i44 = 0;
+";
+    "Block 42:
+[preds: 38 40 ] [succs: 43 49 ]
+$i8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+$r6 = newarray (double)[$i8];
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight> = $r6;
+$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i9 = virtualinvoke $r7.<java.util.ArrayList: int size()>();
+if $i9 <= 0 goto i45 = 0;
+"->"Block 49:
+[preds: 42 ] [succs: 50 ]
+i45 = 0;
+";
+    "Block 43:
+[preds: 42 ] [succs: 44 ]
+i44 = 0;
+"->"Block 44:
+[preds: 43 45 ] [succs: 45 46 ]
+$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i11 = virtualinvoke $r13.<java.util.ArrayList: int size()>();
+if i44 >= $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 44:
+[preds: 43 45 ] [succs: 45 46 ]
+$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i11 = virtualinvoke $r13.<java.util.ArrayList: int size()>();
+if i44 >= $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 45:
+[preds: 44 ] [succs: 44 ]
+$r16 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r15 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$r17 = virtualinvoke $r15.<java.util.ArrayList: java.lang.Object get(int)>(i44);
+$r18 = (java.lang.Double) $r17;
+$d1 = virtualinvoke $r18.<java.lang.Double: double doubleValue()>();
+$r16[i44] = $d1;
+i44 = i44 + 1;
+goto [?= $r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>];
+";
+    "Block 44:
+[preds: 43 45 ] [succs: 45 46 ]
+$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i11 = virtualinvoke $r13.<java.util.ArrayList: int size()>();
+if i44 >= $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+"->"Block 46:
+[preds: 44 47 ] [succs: 47 48 ]
+$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i44 >= $i12 goto (branch);
+";
+    "Block 45:
+[preds: 44 ] [succs: 44 ]
+$r16 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r15 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$r17 = virtualinvoke $r15.<java.util.ArrayList: java.lang.Object get(int)>(i44);
+$r18 = (java.lang.Double) $r17;
+$d1 = virtualinvoke $r18.<java.lang.Double: double doubleValue()>();
+$r16[i44] = $d1;
+i44 = i44 + 1;
+goto [?= $r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>];
+"->"Block 44:
+[preds: 43 45 ] [succs: 45 46 ]
+$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+$i11 = virtualinvoke $r13.<java.util.ArrayList: int size()>();
+if i44 >= $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+";
+    "Block 46:
+[preds: 44 47 ] [succs: 47 48 ]
+$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i44 >= $i12 goto (branch);
+"->"Block 47:
+[preds: 46 ] [succs: 46 ]
+$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r14[i44] = 1.0;
+i44 = i44 + 1;
+goto [?= $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+";
+    "Block 46:
+[preds: 44 47 ] [succs: 47 48 ]
+$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i44 >= $i12 goto (branch);
+"->"Block 48:
+[preds: 46 ] [succs: 52 ]
+goto [?= virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1)];
+";
+    "Block 47:
+[preds: 46 ] [succs: 46 ]
+$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r14[i44] = 1.0;
+i44 = i44 + 1;
+goto [?= $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>];
+"->"Block 46:
+[preds: 44 47 ] [succs: 47 48 ]
+$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int l>;
+if i44 >= $i12 goto (branch);
+";
+    "Block 48:
+[preds: 46 ] [succs: 52 ]
+goto [?= virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1)];
+"->"Block 52:
+[preds: 48 50 ] [succs: ]
+virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+$r9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+virtualinvoke $r9.<java.util.ArrayList: void clear()>();
+$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+virtualinvoke $r10.<java.util.ArrayList: void clear()>();
+$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+virtualinvoke $r11.<java.util.ArrayList: void clear()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished> = 1;
+return;
+";
+    "Block 49:
+[preds: 42 ] [succs: 50 ]
+i45 = 0;
+"->"Block 50:
+[preds: 49 51 ] [succs: 51 52 ]
+$r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$i10 = lengthof $r8;
+if i45 >= $i10 goto virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+";
+    "Block 50:
+[preds: 49 51 ] [succs: 51 52 ]
+$r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$i10 = lengthof $r8;
+if i45 >= $i10 goto virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+"->"Block 51:
+[preds: 50 ] [succs: 50 ]
+$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r12[i45] = 1.0;
+i45 = i45 + 1;
+goto [?= $r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>];
+";
+    "Block 50:
+[preds: 49 51 ] [succs: 51 52 ]
+$r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$i10 = lengthof $r8;
+if i45 >= $i10 goto virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+"->"Block 52:
+[preds: 48 50 ] [succs: ]
+virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+$r9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>;
+virtualinvoke $r9.<java.util.ArrayList: void clear()>();
+$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList offset_temp>;
+virtualinvoke $r10.<java.util.ArrayList: void clear()>();
+$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList weight_temp>;
+virtualinvoke $r11.<java.util.ArrayList: void clear()>();
+r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished> = 1;
+return;
+";
+    "Block 51:
+[preds: 50 ] [succs: 50 ]
+$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$r12[i45] = 1.0;
+i45 = i45 + 1;
+goto [?= $r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>];
+"->"Block 50:
+[preds: 49 51 ] [succs: 51 52 ]
+$r8 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double[] weight>;
+$i10 = lengthof $r8;
+if i45 >= $i10 goto virtualinvoke r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: void sanity_check(int)>(1);
+";
+}

@@ -1,0 +1,13 @@
+digraph "unitGraph" {
+    "r3 := @this: org.xbill.DNS.tools.jnamed"
+    "r0 := @parameter0: org.xbill.DNS.Message"
+    "r1 := @parameter1: org.xbill.DNS.Zone"
+    "$r2 = virtualinvoke r1.<org.xbill.DNS.Zone: org.xbill.DNS.SOARecord getSOA()>()"
+    "virtualinvoke r0.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>($r2, 2)"
+    "return"
+    "r3 := @this: org.xbill.DNS.tools.jnamed"->"r0 := @parameter0: org.xbill.DNS.Message";
+    "r0 := @parameter0: org.xbill.DNS.Message"->"r1 := @parameter1: org.xbill.DNS.Zone";
+    "r1 := @parameter1: org.xbill.DNS.Zone"->"$r2 = virtualinvoke r1.<org.xbill.DNS.Zone: org.xbill.DNS.SOARecord getSOA()>()";
+    "$r2 = virtualinvoke r1.<org.xbill.DNS.Zone: org.xbill.DNS.SOARecord getSOA()>()"->"virtualinvoke r0.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>($r2, 2)";
+    "virtualinvoke r0.<org.xbill.DNS.Message: void addRecord(org.xbill.DNS.Record,int)>($r2, 2)"->"return";
+}

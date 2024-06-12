@@ -1,0 +1,102 @@
+digraph "unitGraph" {
+    "r12 := @parameter0: java.lang.String[]"
+    "$r0 = newarray (java.lang.String)[6]"
+    "$r0[0] = \"HmacMD5\""
+    "$r0[1] = \"HmacSHA1\""
+    "$r0[2] = \"HmacSHA224\""
+    "$r0[3] = \"HmacSHA256\""
+    "$r0[4] = \"HmacSHA384\""
+    "$r0[5] = \"HmacSHA512\""
+    "r1 = $r0"
+    "r2 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")"
+    "r13 = virtualinvoke r2.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"
+    "r14 = r1"
+    "i0 = lengthof r14"
+    "i1 = 0"
+    "if i1 >= i0 goto $r3 = newarray (java.lang.String)[6]"
+    "r15 = r14[i1]"
+    "staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r15, r13, null)"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "$r3 = newarray (java.lang.String)[6]"
+    "$r3[0] = \"HmacPBESHA1\""
+    "$r3[1] = \"PBEWithHmacSHA1\""
+    "$r3[2] = \"PBEWithHmacSHA224\""
+    "$r3[3] = \"PBEWithHmacSHA256\""
+    "$r3[4] = \"PBEWithHmacSHA384\""
+    "$r3[5] = \"PBEWithHmacSHA512\""
+    "r16 = $r3"
+    "$r20 = new javax.crypto.spec.SecretKeySpec"
+    "$r5 = \"whatever\""
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"
+    "specialinvoke $r20.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r6, \"PBE\")"
+    "r17 = $r20"
+    "$r21 = new javax.crypto.spec.PBEParameterSpec"
+    "$r8 = \"1234567890\""
+    "$r9 = virtualinvoke $r8.<java.lang.String: byte[] getBytes()>()"
+    "specialinvoke $r21.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>($r9, 500)"
+    "r18 = $r21"
+    "r19 = r16"
+    "i2 = lengthof r19"
+    "i3 = 0"
+    "if i3 >= i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"
+    "r11 = r19[i3]"
+    "$r22 = (javax.crypto.SecretKey) r17"
+    "$r23 = (java.security.spec.AlgorithmParameterSpec) r18"
+    "staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r11, $r22, $r23)"
+    "i3 = i3 + 1"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed\")"
+    "return"
+    "r12 := @parameter0: java.lang.String[]"->"$r0 = newarray (java.lang.String)[6]";
+    "$r0 = newarray (java.lang.String)[6]"->"$r0[0] = \"HmacMD5\"";
+    "$r0[0] = \"HmacMD5\""->"$r0[1] = \"HmacSHA1\"";
+    "$r0[1] = \"HmacSHA1\""->"$r0[2] = \"HmacSHA224\"";
+    "$r0[2] = \"HmacSHA224\""->"$r0[3] = \"HmacSHA256\"";
+    "$r0[3] = \"HmacSHA256\""->"$r0[4] = \"HmacSHA384\"";
+    "$r0[4] = \"HmacSHA384\""->"$r0[5] = \"HmacSHA512\"";
+    "$r0[5] = \"HmacSHA512\""->"r1 = $r0";
+    "r1 = $r0"->"r2 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")";
+    "r2 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")"->"r13 = virtualinvoke r2.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()";
+    "r13 = virtualinvoke r2.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"->"r14 = r1";
+    "r14 = r1"->"i0 = lengthof r14";
+    "i0 = lengthof r14"->"i1 = 0";
+    "i1 = 0"->"if i1 >= i0 goto $r3 = newarray (java.lang.String)[6]";
+    "if i1 >= i0 goto $r3 = newarray (java.lang.String)[6]"->"r15 = r14[i1]";
+    "if i1 >= i0 goto $r3 = newarray (java.lang.String)[6]"->"$r3 = newarray (java.lang.String)[6]";
+    "r15 = r14[i1]"->"staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r15, r13, null)";
+    "staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r15, r13, null)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= i0 goto $r3 = newarray (java.lang.String)[6]";
+    "$r3 = newarray (java.lang.String)[6]"->"$r3[0] = \"HmacPBESHA1\"";
+    "$r3[0] = \"HmacPBESHA1\""->"$r3[1] = \"PBEWithHmacSHA1\"";
+    "$r3[1] = \"PBEWithHmacSHA1\""->"$r3[2] = \"PBEWithHmacSHA224\"";
+    "$r3[2] = \"PBEWithHmacSHA224\""->"$r3[3] = \"PBEWithHmacSHA256\"";
+    "$r3[3] = \"PBEWithHmacSHA256\""->"$r3[4] = \"PBEWithHmacSHA384\"";
+    "$r3[4] = \"PBEWithHmacSHA384\""->"$r3[5] = \"PBEWithHmacSHA512\"";
+    "$r3[5] = \"PBEWithHmacSHA512\""->"r16 = $r3";
+    "r16 = $r3"->"$r20 = new javax.crypto.spec.SecretKeySpec";
+    "$r20 = new javax.crypto.spec.SecretKeySpec"->"$r5 = \"whatever\"";
+    "$r5 = \"whatever\""->"$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"->"specialinvoke $r20.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r6, \"PBE\")";
+    "specialinvoke $r20.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r6, \"PBE\")"->"r17 = $r20";
+    "r17 = $r20"->"$r21 = new javax.crypto.spec.PBEParameterSpec";
+    "$r21 = new javax.crypto.spec.PBEParameterSpec"->"$r8 = \"1234567890\"";
+    "$r8 = \"1234567890\""->"$r9 = virtualinvoke $r8.<java.lang.String: byte[] getBytes()>()";
+    "$r9 = virtualinvoke $r8.<java.lang.String: byte[] getBytes()>()"->"specialinvoke $r21.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>($r9, 500)";
+    "specialinvoke $r21.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>($r9, 500)"->"r18 = $r21";
+    "r18 = $r21"->"r19 = r16";
+    "r19 = r16"->"i2 = lengthof r19";
+    "i2 = lengthof r19"->"i3 = 0";
+    "i3 = 0"->"if i3 >= i2 goto $r10 = <java.lang.System: java.io.PrintStream out>";
+    "if i3 >= i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"r11 = r19[i3]";
+    "if i3 >= i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "r11 = r19[i3]"->"$r22 = (javax.crypto.SecretKey) r17";
+    "$r22 = (javax.crypto.SecretKey) r17"->"$r23 = (java.security.spec.AlgorithmParameterSpec) r18";
+    "$r23 = (java.security.spec.AlgorithmParameterSpec) r18"->"staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r11, $r22, $r23)";
+    "staticinvoke <com.sun.crypto.provider.Mac.MacClone: void doTest(java.lang.String,javax.crypto.SecretKey,java.security.spec.AlgorithmParameterSpec)>(r11, $r22, $r23)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 >= i2 goto $r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed\")";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed\")"->"return";
+}

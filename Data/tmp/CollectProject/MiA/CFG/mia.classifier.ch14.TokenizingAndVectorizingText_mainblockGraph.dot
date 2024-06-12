@@ -1,0 +1,113 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r19 := @parameter0: java.lang.String[];
+$r0 = new org.apache.mahout.vectorizer.encoders.StaticWordValueEncoder;
+specialinvoke $r0.<org.apache.mahout.vectorizer.encoders.StaticWordValueEncoder: void <init>(java.lang.String)>(\"text\");
+r1 = $r0;
+$r2 = new org.apache.lucene.analysis.standard.StandardAnalyzer;
+$r3 = <org.apache.lucene.util.Version: org.apache.lucene.util.Version LUCENE_31>;
+specialinvoke $r2.<org.apache.lucene.analysis.standard.StandardAnalyzer: void <init>(org.apache.lucene.util.Version)>($r3);
+r4 = $r2;
+$r5 = new java.io.StringReader;
+specialinvoke $r5.<java.io.StringReader: void <init>(java.lang.String)>(\"text to magically vectorize\");
+r6 = $r5;
+r7 = virtualinvoke r4.<org.apache.lucene.analysis.Analyzer: org.apache.lucene.analysis.TokenStream tokenStream(java.lang.String,java.io.Reader)>(\"body\", r6);
+$r8 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: org.apache.lucene.util.Attribute addAttribute(java.lang.Class)>(class \"Lorg/apache/lucene/analysis/tokenattributes/TermAttribute;\");
+r9 = (org.apache.lucene.analysis.tokenattributes.TermAttribute) $r8;
+$r10 = new org.apache.mahout.math.RandomAccessSparseVector;
+specialinvoke $r10.<org.apache.mahout.math.RandomAccessSparseVector: void <init>(int)>(100);
+r11 = $r10;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>();
+if $z0 == 0 goto $r14 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r16 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: char[] termBuffer()>();
+i0 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: int termLength()>();
+$r17 = new java.lang.String;
+specialinvoke $r17.<java.lang.String: void <init>(char[],int,int)>(r16, 0, i0);
+r18 = $r17;
+virtualinvoke r1.<org.apache.mahout.vectorizer.encoders.FeatureVectorEncoder: void addToVector(java.lang.String,double,org.apache.mahout.math.Vector)>(r18, 1.0, r11);
+goto [?= $z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>()];
+"
+    "Block 3:
+[preds: 1 ] [succs: ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r12 = newarray (java.lang.Object)[1];
+$r13 = new org.apache.mahout.math.SequentialAccessSparseVector;
+specialinvoke $r13.<org.apache.mahout.math.SequentialAccessSparseVector: void <init>(org.apache.mahout.math.Vector)>(r11);
+$r12[0] = $r13;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%s\n\", $r12);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r19 := @parameter0: java.lang.String[];
+$r0 = new org.apache.mahout.vectorizer.encoders.StaticWordValueEncoder;
+specialinvoke $r0.<org.apache.mahout.vectorizer.encoders.StaticWordValueEncoder: void <init>(java.lang.String)>(\"text\");
+r1 = $r0;
+$r2 = new org.apache.lucene.analysis.standard.StandardAnalyzer;
+$r3 = <org.apache.lucene.util.Version: org.apache.lucene.util.Version LUCENE_31>;
+specialinvoke $r2.<org.apache.lucene.analysis.standard.StandardAnalyzer: void <init>(org.apache.lucene.util.Version)>($r3);
+r4 = $r2;
+$r5 = new java.io.StringReader;
+specialinvoke $r5.<java.io.StringReader: void <init>(java.lang.String)>(\"text to magically vectorize\");
+r6 = $r5;
+r7 = virtualinvoke r4.<org.apache.lucene.analysis.Analyzer: org.apache.lucene.analysis.TokenStream tokenStream(java.lang.String,java.io.Reader)>(\"body\", r6);
+$r8 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: org.apache.lucene.util.Attribute addAttribute(java.lang.Class)>(class \"Lorg/apache/lucene/analysis/tokenattributes/TermAttribute;\");
+r9 = (org.apache.lucene.analysis.tokenattributes.TermAttribute) $r8;
+$r10 = new org.apache.mahout.math.RandomAccessSparseVector;
+specialinvoke $r10.<org.apache.mahout.math.RandomAccessSparseVector: void <init>(int)>(100);
+r11 = $r10;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>();
+if $z0 == 0 goto $r14 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>();
+if $z0 == 0 goto $r14 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+r16 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: char[] termBuffer()>();
+i0 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: int termLength()>();
+$r17 = new java.lang.String;
+specialinvoke $r17.<java.lang.String: void <init>(char[],int,int)>(r16, 0, i0);
+r18 = $r17;
+virtualinvoke r1.<org.apache.mahout.vectorizer.encoders.FeatureVectorEncoder: void addToVector(java.lang.String,double,org.apache.mahout.math.Vector)>(r18, 1.0, r11);
+goto [?= $z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>()];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>();
+if $z0 == 0 goto $r14 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 3:
+[preds: 1 ] [succs: ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r12 = newarray (java.lang.Object)[1];
+$r13 = new org.apache.mahout.math.SequentialAccessSparseVector;
+specialinvoke $r13.<org.apache.mahout.math.SequentialAccessSparseVector: void <init>(org.apache.mahout.math.Vector)>(r11);
+$r12[0] = $r13;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%s\n\", $r12);
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r16 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: char[] termBuffer()>();
+i0 = interfaceinvoke r9.<org.apache.lucene.analysis.tokenattributes.TermAttribute: int termLength()>();
+$r17 = new java.lang.String;
+specialinvoke $r17.<java.lang.String: void <init>(char[],int,int)>(r16, 0, i0);
+r18 = $r17;
+virtualinvoke r1.<org.apache.mahout.vectorizer.encoders.FeatureVectorEncoder: void addToVector(java.lang.String,double,org.apache.mahout.math.Vector)>(r18, 1.0, r11);
+goto [?= $z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>()];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = virtualinvoke r7.<org.apache.lucene.analysis.TokenStream: boolean incrementToken()>();
+if $z0 == 0 goto $r14 = <java.lang.System: java.io.PrintStream out>;
+";
+}

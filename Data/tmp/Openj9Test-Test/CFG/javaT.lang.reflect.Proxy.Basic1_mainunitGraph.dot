@@ -1,0 +1,478 @@
+digraph "unitGraph" {
+    "r74 := @parameter0: java.lang.String[]"
+    "$r0 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nBasic functional test of dynamic proxy API, part 1\n\")"
+    "$r1 = newarray (java.lang.Class)[2]"
+    "$r1[0] = class \"Ljava/lang/Runnable;\""
+    "$r1[1] = class \"Ljava/util/Observer;\""
+    "r75 = $r1"
+    "r2 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>()"
+    "r3 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(r2, r75)"
+    "$r5 = <java.lang.System: java.io.PrintStream err>"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ generated proxy class: \")"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r3)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"
+    "i0 = virtualinvoke r3.<java.lang.Class: int getModifiers()>()"
+    "$r10 = <java.lang.System: java.io.PrintStream err>"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s modifiers: \")"
+    "$r12 = staticinvoke <java.lang.reflect.Modifier: java.lang.String toString(int)>(i0)"
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)"
+    "$z0 = staticinvoke <java.lang.reflect.Modifier: boolean isPublic(int)>(i0)"
+    "if $z0 != 0 goto $z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"
+    "$r50 = new java.lang.RuntimeException"
+    "specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not public\")"
+    "throw $r50"
+    "$z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"
+    "if $z1 != 0 goto $z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"
+    "$r49 = new java.lang.RuntimeException"
+    "specialinvoke $r49.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not final\")"
+    "throw $r49"
+    "$z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"
+    "if $z2 == 0 goto r76 = r75"
+    "$r48 = new java.lang.RuntimeException"
+    "specialinvoke $r48.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in abstract\")"
+    "throw $r48"
+    "r76 = r75"
+    "i1 = lengthof r76"
+    "i2 = 0"
+    "if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"
+    "r77 = r76[i2]"
+    "$z7 = virtualinvoke r77.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>(r3)"
+    "if $z7 != 0 goto i2 = i2 + 1"
+    "$r42 = new java.lang.RuntimeException"
+    "$r43 = new java.lang.StringBuilder"
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class not assignable to proxy interface \")"
+    "$r45 = virtualinvoke r77.<java.lang.Class: java.lang.String getName()>()"
+    "$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r42.<java.lang.RuntimeException: void <init>(java.lang.String)>($r47)"
+    "throw $r42"
+    "i2 = i2 + 1"
+    "goto [?= (branch)]"
+    "r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"
+    "$r15 = virtualinvoke r3.<java.lang.Class: java.lang.Class[] getInterfaces()>()"
+    "r79 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r15)"
+    "$r17 = <java.lang.System: java.io.PrintStream err>"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s interfaces: \")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)"
+    "$z3 = interfaceinvoke r78.<java.util.List: boolean equals(java.lang.Object)>(r79)"
+    "if $z3 != 0 goto $z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"
+    "$r34 = new java.lang.RuntimeException"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class interfaces are \")"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (expected \")"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r78)"
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r34.<java.lang.RuntimeException: void <init>(java.lang.String)>($r41)"
+    "throw $r34"
+    "$z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"
+    "if $z4 == 0 goto $z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"
+    "$r33 = new java.lang.RuntimeException"
+    "specialinvoke $r33.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned true for java.lang.Object\")"
+    "throw $r33"
+    "$z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"
+    "if $z5 != 0 goto r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"
+    "$r32 = new java.lang.RuntimeException"
+    "specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned false for proxy class\")"
+    "throw $r32"
+    "r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"
+    "$r22 = <java.lang.System: java.io.PrintStream err>"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s protextion domain: \")"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r80)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)"
+    "$r26 = new java.security.AllPermission"
+    "specialinvoke $r26.<java.security.AllPermission: void <init>()>()"
+    "$z6 = virtualinvoke r80.<java.security.ProtectionDomain: boolean implies(java.security.Permission)>($r26)"
+    "if $z6 != 0 goto $r27 = newarray (java.lang.Class)[1]"
+    "$r31 = new java.lang.RuntimeException"
+    "specialinvoke $r31.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class does not have AllPermission\")"
+    "throw $r31"
+    "$r27 = newarray (java.lang.Class)[1]"
+    "$r27[0] = class \"Ljava/lang/reflect/InvocationHandler;\""
+    "r81 = virtualinvoke r3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r27)"
+    "$r28 = newarray (java.lang.Object)[1]"
+    "$r28[0] = null"
+    "virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r28)"
+    "$r30 = new java.lang.RuntimeException"
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected NullPointerException thrown\")"
+    "throw $r30"
+    "$r59 := @caughtexception"
+    "r82 = $r59"
+    "r83 = virtualinvoke r82.<java.lang.reflect.InvocationTargetException: java.lang.Throwable getTargetException()>()"
+    "$z8 = r83 instanceof java.lang.NullPointerException"
+    "if $z8 != 0 goto $r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"
+    "throw r83"
+    "$r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"
+    "specialinvoke $r60.<javaT.lang.reflect.Proxy.Basic1$Handler: void <init>()>()"
+    "r84 = $r60"
+    "$r61 = newarray (java.lang.Object)[1]"
+    "$r61[0] = r84"
+    "r85 = virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r61)"
+    "r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.Object currentProxy> = r85"
+    "$r62 = class \"Ljava/lang/Runnable;\""
+    "r63 = virtualinvoke $r62.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"run\", null)"
+    "$r64 = (java.lang.Runnable) r85"
+    "interfaceinvoke $r64.<java.lang.Runnable: void run()>()"
+    "$r65 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"
+    "$z9 = virtualinvoke $r65.<java.lang.reflect.Method: boolean equals(java.lang.Object)>(r63)"
+    "if $z9 != 0 goto $r66 = <java.lang.System: java.io.PrintStream err>"
+    "$r67 = new java.lang.RuntimeException"
+    "$r68 = new java.lang.StringBuilder"
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy method invocation failure (lastMethod = \")"
+    "$r70 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r70)"
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r67.<java.lang.RuntimeException: void <init>(java.lang.String)>($r73)"
+    "throw $r67"
+    "$r66 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\")"
+    "goto [?= return]"
+    "$r51 := @caughtexception"
+    "r86 = $r51"
+    "$r52 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\")"
+    "virtualinvoke r86.<java.lang.Throwable: void printStackTrace()>()"
+    "$r53 = new java.lang.RuntimeException"
+    "$r54 = new java.lang.StringBuilder"
+    "specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()"
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \")"
+    "$r56 = virtualinvoke r86.<java.lang.Throwable: java.lang.String toString()>()"
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56)"
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r53.<java.lang.RuntimeException: void <init>(java.lang.String)>($r58)"
+    "throw $r53"
+    "return"
+    "r74 := @parameter0: java.lang.String[]"->"$r0 = <java.lang.System: java.io.PrintStream err>";
+    "$r0 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nBasic functional test of dynamic proxy API, part 1\n\")";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nBasic functional test of dynamic proxy API, part 1\n\")"->"$r1 = newarray (java.lang.Class)[2]";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nBasic functional test of dynamic proxy API, part 1\n\")"->"$r51 := @caughtexception";
+    "$r1 = newarray (java.lang.Class)[2]"->"$r1[0] = class \"Ljava/lang/Runnable;\"";
+    "$r1 = newarray (java.lang.Class)[2]"->"$r51 := @caughtexception";
+    "$r1[0] = class \"Ljava/lang/Runnable;\""->"$r1[1] = class \"Ljava/util/Observer;\"";
+    "$r1[0] = class \"Ljava/lang/Runnable;\""->"$r51 := @caughtexception";
+    "$r1[1] = class \"Ljava/util/Observer;\""->"r75 = $r1";
+    "$r1[1] = class \"Ljava/util/Observer;\""->"$r51 := @caughtexception";
+    "r75 = $r1"->"r2 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>()";
+    "r75 = $r1"->"$r51 := @caughtexception";
+    "r2 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>()"->"r3 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(r2, r75)";
+    "r2 = staticinvoke <java.lang.ClassLoader: java.lang.ClassLoader getSystemClassLoader()>()"->"$r51 := @caughtexception";
+    "r3 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(r2, r75)"->"$r5 = <java.lang.System: java.io.PrintStream err>";
+    "r3 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(r2, r75)"->"$r51 := @caughtexception";
+    "$r5 = <java.lang.System: java.io.PrintStream err>"->"$r4 = new java.lang.StringBuilder";
+    "$r5 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "$r4 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ generated proxy class: \")";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ generated proxy class: \")"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r3)";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ generated proxy class: \")"->"$r51 := @caughtexception";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r3)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r3)"->"$r51 := @caughtexception";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"i0 = virtualinvoke r3.<java.lang.Class: int getModifiers()>()";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"$r51 := @caughtexception";
+    "i0 = virtualinvoke r3.<java.lang.Class: int getModifiers()>()"->"$r10 = <java.lang.System: java.io.PrintStream err>";
+    "i0 = virtualinvoke r3.<java.lang.Class: int getModifiers()>()"->"$r51 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream err>"->"$r9 = new java.lang.StringBuilder";
+    "$r10 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "$r9 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s modifiers: \")";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s modifiers: \")"->"$r12 = staticinvoke <java.lang.reflect.Modifier: java.lang.String toString(int)>(i0)";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s modifiers: \")"->"$r51 := @caughtexception";
+    "$r12 = staticinvoke <java.lang.reflect.Modifier: java.lang.String toString(int)>(i0)"->"$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)";
+    "$r12 = staticinvoke <java.lang.reflect.Modifier: java.lang.String toString(int)>(i0)"->"$r51 := @caughtexception";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r51 := @caughtexception";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)"->"$z0 = staticinvoke <java.lang.reflect.Modifier: boolean isPublic(int)>(i0)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)"->"$r51 := @caughtexception";
+    "$z0 = staticinvoke <java.lang.reflect.Modifier: boolean isPublic(int)>(i0)"->"if $z0 != 0 goto $z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)";
+    "$z0 = staticinvoke <java.lang.reflect.Modifier: boolean isPublic(int)>(i0)"->"$r51 := @caughtexception";
+    "if $z0 != 0 goto $z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"->"$r50 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto $z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"->"$z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)";
+    "if $z0 != 0 goto $z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"->"$r51 := @caughtexception";
+    "$r50 = new java.lang.RuntimeException"->"specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not public\")";
+    "$r50 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not public\")"->"throw $r50";
+    "specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not public\")"->"$r51 := @caughtexception";
+    "throw $r50"->"$r51 := @caughtexception";
+    "$z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"->"if $z1 != 0 goto $z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)";
+    "$z1 = staticinvoke <java.lang.reflect.Modifier: boolean isFinal(int)>(i0)"->"$r51 := @caughtexception";
+    "if $z1 != 0 goto $z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"->"$r49 = new java.lang.RuntimeException";
+    "if $z1 != 0 goto $z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"->"$z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)";
+    "if $z1 != 0 goto $z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"->"$r51 := @caughtexception";
+    "$r49 = new java.lang.RuntimeException"->"specialinvoke $r49.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not final\")";
+    "$r49 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r49.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not final\")"->"throw $r49";
+    "specialinvoke $r49.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in not final\")"->"$r51 := @caughtexception";
+    "throw $r49"->"$r51 := @caughtexception";
+    "$z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"->"if $z2 == 0 goto r76 = r75";
+    "$z2 = staticinvoke <java.lang.reflect.Modifier: boolean isAbstract(int)>(i0)"->"$r51 := @caughtexception";
+    "if $z2 == 0 goto r76 = r75"->"$r48 = new java.lang.RuntimeException";
+    "if $z2 == 0 goto r76 = r75"->"r76 = r75";
+    "if $z2 == 0 goto r76 = r75"->"$r51 := @caughtexception";
+    "$r48 = new java.lang.RuntimeException"->"specialinvoke $r48.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in abstract\")";
+    "$r48 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r48.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in abstract\")"->"throw $r48";
+    "specialinvoke $r48.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class in abstract\")"->"$r51 := @caughtexception";
+    "throw $r48"->"$r51 := @caughtexception";
+    "r76 = r75"->"i1 = lengthof r76";
+    "r76 = r75"->"$r51 := @caughtexception";
+    "i1 = lengthof r76"->"i2 = 0";
+    "i1 = lengthof r76"->"$r51 := @caughtexception";
+    "i2 = 0"->"if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)";
+    "i2 = 0"->"$r51 := @caughtexception";
+    "if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"->"r77 = r76[i2]";
+    "if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"->"r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)";
+    "if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"->"$r51 := @caughtexception";
+    "r77 = r76[i2]"->"$z7 = virtualinvoke r77.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>(r3)";
+    "r77 = r76[i2]"->"$r51 := @caughtexception";
+    "$z7 = virtualinvoke r77.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>(r3)"->"if $z7 != 0 goto i2 = i2 + 1";
+    "$z7 = virtualinvoke r77.<java.lang.Class: boolean isAssignableFrom(java.lang.Class)>(r3)"->"$r51 := @caughtexception";
+    "if $z7 != 0 goto i2 = i2 + 1"->"$r42 = new java.lang.RuntimeException";
+    "if $z7 != 0 goto i2 = i2 + 1"->"i2 = i2 + 1";
+    "if $z7 != 0 goto i2 = i2 + 1"->"$r51 := @caughtexception";
+    "$r42 = new java.lang.RuntimeException"->"$r43 = new java.lang.StringBuilder";
+    "$r42 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "$r43 = new java.lang.StringBuilder"->"specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()";
+    "$r43 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class not assignable to proxy interface \")";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class not assignable to proxy interface \")"->"$r45 = virtualinvoke r77.<java.lang.Class: java.lang.String getName()>()";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class not assignable to proxy interface \")"->"$r51 := @caughtexception";
+    "$r45 = virtualinvoke r77.<java.lang.Class: java.lang.String getName()>()"->"$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)";
+    "$r45 = virtualinvoke r77.<java.lang.Class: java.lang.String getName()>()"->"$r51 := @caughtexception";
+    "$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"->"$r51 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r42.<java.lang.RuntimeException: void <init>(java.lang.String)>($r47)";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "specialinvoke $r42.<java.lang.RuntimeException: void <init>(java.lang.String)>($r47)"->"throw $r42";
+    "specialinvoke $r42.<java.lang.RuntimeException: void <init>(java.lang.String)>($r47)"->"$r51 := @caughtexception";
+    "throw $r42"->"$r51 := @caughtexception";
+    "i2 = i2 + 1"->"goto [?= (branch)]";
+    "i2 = i2 + 1"->"$r51 := @caughtexception";
+    "goto [?= (branch)]"->"if i2 >= i1 goto r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)";
+    "goto [?= (branch)]"->"$r51 := @caughtexception";
+    "r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"->"$r15 = virtualinvoke r3.<java.lang.Class: java.lang.Class[] getInterfaces()>()";
+    "r78 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r75)"->"$r51 := @caughtexception";
+    "$r15 = virtualinvoke r3.<java.lang.Class: java.lang.Class[] getInterfaces()>()"->"r79 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r15)";
+    "$r15 = virtualinvoke r3.<java.lang.Class: java.lang.Class[] getInterfaces()>()"->"$r51 := @caughtexception";
+    "r79 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r15)"->"$r17 = <java.lang.System: java.io.PrintStream err>";
+    "r79 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r15)"->"$r51 := @caughtexception";
+    "$r17 = <java.lang.System: java.io.PrintStream err>"->"$r16 = new java.lang.StringBuilder";
+    "$r17 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "$r16 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s interfaces: \")";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s interfaces: \")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s interfaces: \")"->"$r51 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"->"$r51 := @caughtexception";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)"->"$z3 = interfaceinvoke r78.<java.util.List: boolean equals(java.lang.Object)>(r79)";
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)"->"$r51 := @caughtexception";
+    "$z3 = interfaceinvoke r78.<java.util.List: boolean equals(java.lang.Object)>(r79)"->"if $z3 != 0 goto $z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")";
+    "$z3 = interfaceinvoke r78.<java.util.List: boolean equals(java.lang.Object)>(r79)"->"$r51 := @caughtexception";
+    "if $z3 != 0 goto $z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"->"$r34 = new java.lang.RuntimeException";
+    "if $z3 != 0 goto $z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"->"$z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")";
+    "if $z3 != 0 goto $z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"->"$r51 := @caughtexception";
+    "$r34 = new java.lang.RuntimeException"->"$r35 = new java.lang.StringBuilder";
+    "$r34 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "$r35 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class interfaces are \")";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class interfaces are \")"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class interfaces are \")"->"$r51 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (expected \")";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r79)"->"$r51 := @caughtexception";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (expected \")"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r78)";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (expected \")"->"$r51 := @caughtexception";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r78)"->"$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r78)"->"$r51 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r51 := @caughtexception";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r34.<java.lang.RuntimeException: void <init>(java.lang.String)>($r41)";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "specialinvoke $r34.<java.lang.RuntimeException: void <init>(java.lang.String)>($r41)"->"throw $r34";
+    "specialinvoke $r34.<java.lang.RuntimeException: void <init>(java.lang.String)>($r41)"->"$r51 := @caughtexception";
+    "throw $r34"->"$r51 := @caughtexception";
+    "$z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"->"if $z4 == 0 goto $z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)";
+    "$z4 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(class \"Ljava/lang/Object;\")"->"$r51 := @caughtexception";
+    "if $z4 == 0 goto $z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"->"$r33 = new java.lang.RuntimeException";
+    "if $z4 == 0 goto $z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"->"$z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)";
+    "if $z4 == 0 goto $z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"->"$r51 := @caughtexception";
+    "$r33 = new java.lang.RuntimeException"->"specialinvoke $r33.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned true for java.lang.Object\")";
+    "$r33 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r33.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned true for java.lang.Object\")"->"throw $r33";
+    "specialinvoke $r33.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned true for java.lang.Object\")"->"$r51 := @caughtexception";
+    "throw $r33"->"$r51 := @caughtexception";
+    "$z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"->"if $z5 != 0 goto r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()";
+    "$z5 = staticinvoke <java.lang.reflect.Proxy: boolean isProxyClass(java.lang.Class)>(r3)"->"$r51 := @caughtexception";
+    "if $z5 != 0 goto r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r32 = new java.lang.RuntimeException";
+    "if $z5 != 0 goto r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()";
+    "if $z5 != 0 goto r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r51 := @caughtexception";
+    "$r32 = new java.lang.RuntimeException"->"specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned false for proxy class\")";
+    "$r32 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned false for proxy class\")"->"throw $r32";
+    "specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Proxy.isProxyClass returned false for proxy class\")"->"$r51 := @caughtexception";
+    "throw $r32"->"$r51 := @caughtexception";
+    "r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r22 = <java.lang.System: java.io.PrintStream err>";
+    "r80 = virtualinvoke r3.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r51 := @caughtexception";
+    "$r22 = <java.lang.System: java.io.PrintStream err>"->"$r21 = new java.lang.StringBuilder";
+    "$r22 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "$r21 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s protextion domain: \")";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s protextion domain: \")"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r80)";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"+ proxy class\'s protextion domain: \")"->"$r51 := @caughtexception";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r80)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r80)"->"$r51 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)"->"$r26 = new java.security.AllPermission";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)"->"$r51 := @caughtexception";
+    "$r26 = new java.security.AllPermission"->"specialinvoke $r26.<java.security.AllPermission: void <init>()>()";
+    "$r26 = new java.security.AllPermission"->"$r51 := @caughtexception";
+    "specialinvoke $r26.<java.security.AllPermission: void <init>()>()"->"$z6 = virtualinvoke r80.<java.security.ProtectionDomain: boolean implies(java.security.Permission)>($r26)";
+    "specialinvoke $r26.<java.security.AllPermission: void <init>()>()"->"$r51 := @caughtexception";
+    "$z6 = virtualinvoke r80.<java.security.ProtectionDomain: boolean implies(java.security.Permission)>($r26)"->"if $z6 != 0 goto $r27 = newarray (java.lang.Class)[1]";
+    "$z6 = virtualinvoke r80.<java.security.ProtectionDomain: boolean implies(java.security.Permission)>($r26)"->"$r51 := @caughtexception";
+    "if $z6 != 0 goto $r27 = newarray (java.lang.Class)[1]"->"$r31 = new java.lang.RuntimeException";
+    "if $z6 != 0 goto $r27 = newarray (java.lang.Class)[1]"->"$r27 = newarray (java.lang.Class)[1]";
+    "if $z6 != 0 goto $r27 = newarray (java.lang.Class)[1]"->"$r51 := @caughtexception";
+    "$r31 = new java.lang.RuntimeException"->"specialinvoke $r31.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class does not have AllPermission\")";
+    "$r31 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "specialinvoke $r31.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class does not have AllPermission\")"->"throw $r31";
+    "specialinvoke $r31.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class does not have AllPermission\")"->"$r51 := @caughtexception";
+    "throw $r31"->"$r51 := @caughtexception";
+    "$r27 = newarray (java.lang.Class)[1]"->"$r27[0] = class \"Ljava/lang/reflect/InvocationHandler;\"";
+    "$r27 = newarray (java.lang.Class)[1]"->"$r51 := @caughtexception";
+    "$r27[0] = class \"Ljava/lang/reflect/InvocationHandler;\""->"r81 = virtualinvoke r3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r27)";
+    "$r27[0] = class \"Ljava/lang/reflect/InvocationHandler;\""->"$r51 := @caughtexception";
+    "r81 = virtualinvoke r3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r27)"->"$r59 := @caughtexception";
+    "r81 = virtualinvoke r3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r27)"->"$r51 := @caughtexception";
+    "r81 = virtualinvoke r3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r27)"->"$r28 = newarray (java.lang.Object)[1]";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r59 := @caughtexception";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r51 := @caughtexception";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r28[0] = null";
+    "$r28[0] = null"->"$r59 := @caughtexception";
+    "$r28[0] = null"->"$r51 := @caughtexception";
+    "$r28[0] = null"->"virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r28)";
+    "virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r28)"->"$r59 := @caughtexception";
+    "virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r28)"->"$r51 := @caughtexception";
+    "virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r28)"->"$r30 = new java.lang.RuntimeException";
+    "$r30 = new java.lang.RuntimeException"->"$r59 := @caughtexception";
+    "$r30 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "$r30 = new java.lang.RuntimeException"->"specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected NullPointerException thrown\")";
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected NullPointerException thrown\")"->"$r59 := @caughtexception";
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected NullPointerException thrown\")"->"$r51 := @caughtexception";
+    "specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Expected NullPointerException thrown\")"->"throw $r30";
+    "throw $r30"->"$r59 := @caughtexception";
+    "throw $r30"->"$r51 := @caughtexception";
+    "$r59 := @caughtexception"->"r82 = $r59";
+    "$r59 := @caughtexception"->"$r51 := @caughtexception";
+    "r82 = $r59"->"r83 = virtualinvoke r82.<java.lang.reflect.InvocationTargetException: java.lang.Throwable getTargetException()>()";
+    "r82 = $r59"->"$r51 := @caughtexception";
+    "r83 = virtualinvoke r82.<java.lang.reflect.InvocationTargetException: java.lang.Throwable getTargetException()>()"->"$z8 = r83 instanceof java.lang.NullPointerException";
+    "r83 = virtualinvoke r82.<java.lang.reflect.InvocationTargetException: java.lang.Throwable getTargetException()>()"->"$r51 := @caughtexception";
+    "$z8 = r83 instanceof java.lang.NullPointerException"->"if $z8 != 0 goto $r60 = new javaT.lang.reflect.Proxy.Basic1$Handler";
+    "$z8 = r83 instanceof java.lang.NullPointerException"->"$r51 := @caughtexception";
+    "if $z8 != 0 goto $r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"->"throw r83";
+    "if $z8 != 0 goto $r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"->"$r60 = new javaT.lang.reflect.Proxy.Basic1$Handler";
+    "if $z8 != 0 goto $r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"->"$r51 := @caughtexception";
+    "throw r83"->"$r51 := @caughtexception";
+    "$r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"->"specialinvoke $r60.<javaT.lang.reflect.Proxy.Basic1$Handler: void <init>()>()";
+    "$r60 = new javaT.lang.reflect.Proxy.Basic1$Handler"->"$r51 := @caughtexception";
+    "specialinvoke $r60.<javaT.lang.reflect.Proxy.Basic1$Handler: void <init>()>()"->"r84 = $r60";
+    "specialinvoke $r60.<javaT.lang.reflect.Proxy.Basic1$Handler: void <init>()>()"->"$r51 := @caughtexception";
+    "r84 = $r60"->"$r61 = newarray (java.lang.Object)[1]";
+    "r84 = $r60"->"$r51 := @caughtexception";
+    "$r61 = newarray (java.lang.Object)[1]"->"$r61[0] = r84";
+    "$r61 = newarray (java.lang.Object)[1]"->"$r51 := @caughtexception";
+    "$r61[0] = r84"->"r85 = virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r61)";
+    "$r61[0] = r84"->"$r51 := @caughtexception";
+    "r85 = virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r61)"->"r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.Object currentProxy> = r85";
+    "r85 = virtualinvoke r81.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r61)"->"$r51 := @caughtexception";
+    "r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.Object currentProxy> = r85"->"$r62 = class \"Ljava/lang/Runnable;\"";
+    "r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.Object currentProxy> = r85"->"$r51 := @caughtexception";
+    "$r62 = class \"Ljava/lang/Runnable;\""->"r63 = virtualinvoke $r62.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"run\", null)";
+    "$r62 = class \"Ljava/lang/Runnable;\""->"$r51 := @caughtexception";
+    "r63 = virtualinvoke $r62.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"run\", null)"->"$r64 = (java.lang.Runnable) r85";
+    "r63 = virtualinvoke $r62.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"run\", null)"->"$r51 := @caughtexception";
+    "$r64 = (java.lang.Runnable) r85"->"interfaceinvoke $r64.<java.lang.Runnable: void run()>()";
+    "$r64 = (java.lang.Runnable) r85"->"$r51 := @caughtexception";
+    "interfaceinvoke $r64.<java.lang.Runnable: void run()>()"->"$r65 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>";
+    "interfaceinvoke $r64.<java.lang.Runnable: void run()>()"->"$r51 := @caughtexception";
+    "$r65 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"->"$z9 = virtualinvoke $r65.<java.lang.reflect.Method: boolean equals(java.lang.Object)>(r63)";
+    "$r65 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"->"$r51 := @caughtexception";
+    "$z9 = virtualinvoke $r65.<java.lang.reflect.Method: boolean equals(java.lang.Object)>(r63)"->"if $z9 != 0 goto $r66 = <java.lang.System: java.io.PrintStream err>";
+    "$z9 = virtualinvoke $r65.<java.lang.reflect.Method: boolean equals(java.lang.Object)>(r63)"->"$r51 := @caughtexception";
+    "if $z9 != 0 goto $r66 = <java.lang.System: java.io.PrintStream err>"->"$r67 = new java.lang.RuntimeException";
+    "if $z9 != 0 goto $r66 = <java.lang.System: java.io.PrintStream err>"->"$r66 = <java.lang.System: java.io.PrintStream err>";
+    "if $z9 != 0 goto $r66 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "$r67 = new java.lang.RuntimeException"->"$r68 = new java.lang.StringBuilder";
+    "$r67 = new java.lang.RuntimeException"->"$r51 := @caughtexception";
+    "$r68 = new java.lang.StringBuilder"->"specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()";
+    "$r68 = new java.lang.StringBuilder"->"$r51 := @caughtexception";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy method invocation failure (lastMethod = \")";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r51 := @caughtexception";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy method invocation failure (lastMethod = \")"->"$r70 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy method invocation failure (lastMethod = \")"->"$r51 := @caughtexception";
+    "$r70 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"->"$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r70)";
+    "$r70 = r84.<javaT.lang.reflect.Proxy.Basic1$Handler: java.lang.reflect.Method lastMethod>"->"$r51 := @caughtexception";
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r70)"->"$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r70)"->"$r51 := @caughtexception";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r51 := @caughtexception";
+    "$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r67.<java.lang.RuntimeException: void <init>(java.lang.String)>($r73)";
+    "$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r51 := @caughtexception";
+    "specialinvoke $r67.<java.lang.RuntimeException: void <init>(java.lang.String)>($r73)"->"throw $r67";
+    "specialinvoke $r67.<java.lang.RuntimeException: void <init>(java.lang.String)>($r73)"->"$r51 := @caughtexception";
+    "throw $r67"->"$r51 := @caughtexception";
+    "$r66 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\")";
+    "$r66 = <java.lang.System: java.io.PrintStream err>"->"$r51 := @caughtexception";
+    "virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\")"->"goto [?= return]";
+    "virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\")"->"$r51 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r51 := @caughtexception"->"r86 = $r51";
+    "r86 = $r51"->"$r52 = <java.lang.System: java.io.PrintStream err>";
+    "$r52 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\")";
+    "virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\")"->"virtualinvoke r86.<java.lang.Throwable: void printStackTrace()>()";
+    "virtualinvoke r86.<java.lang.Throwable: void printStackTrace()>()"->"$r53 = new java.lang.RuntimeException";
+    "$r53 = new java.lang.RuntimeException"->"$r54 = new java.lang.StringBuilder";
+    "$r54 = new java.lang.StringBuilder"->"specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()"->"$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \")";
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \")"->"$r56 = virtualinvoke r86.<java.lang.Throwable: java.lang.String toString()>()";
+    "$r56 = virtualinvoke r86.<java.lang.Throwable: java.lang.String toString()>()"->"$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56)";
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56)"->"$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r53.<java.lang.RuntimeException: void <init>(java.lang.String)>($r58)";
+    "specialinvoke $r53.<java.lang.RuntimeException: void <init>(java.lang.String)>($r58)"->"throw $r53";
+}

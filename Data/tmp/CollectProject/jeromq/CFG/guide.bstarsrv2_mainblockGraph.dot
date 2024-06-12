@@ -1,0 +1,205 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r12 = null;
+$i0 = lengthof r0;
+if $i0 != 1 goto $i1 = lengthof r0;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r7 = r0[0];
+$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>(\"-p\");
+if $z1 == 0 goto $i1 = lengthof r0;
+"
+    "Block 2:
+[preds: 1 ] [succs: 7 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r8.<java.io.PrintStream: void print(java.lang.String)>(\"I: Primary active, waiting for backup (passive)\n\");
+$r9 = new guide.bstar;
+specialinvoke $r9.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(1, \"tcp://*:5003\", \"tcp://localhost:5004\");
+r12 = $r9;
+$r11 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r10 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5001\", $r11, $r10, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+"
+    "Block 3:
+[preds: 0 1 ] [succs: 4 6 ]
+$i1 = lengthof r0;
+if $i1 != 1 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r2 = r0[0];
+$z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(\"-b\");
+if $z0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\"I: Backup passive, waiting for primary (active)\n\");
+$r4 = new guide.bstar;
+specialinvoke $r4.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(0, \"tcp://*:5004\", \"tcp://localhost:5003\");
+r12 = $r4;
+$r6 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r5 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5002\", $r6, $r5, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+"
+    "Block 6:
+[preds: 3 4 ] [succs: 7 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>(\"Usage: bstarsrv { -p | -b }\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+"
+    "Block 7:
+[preds: 2 5 6 ] [succs: ]
+virtualinvoke r12.<guide.bstar: int start()>();
+virtualinvoke r12.<guide.bstar: void destroy()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r12 = null;
+$i0 = lengthof r0;
+if $i0 != 1 goto $i1 = lengthof r0;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r7 = r0[0];
+$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>(\"-p\");
+if $z1 == 0 goto $i1 = lengthof r0;
+";
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r12 = null;
+$i0 = lengthof r0;
+if $i0 != 1 goto $i1 = lengthof r0;
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 6 ]
+$i1 = lengthof r0;
+if $i1 != 1 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r7 = r0[0];
+$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>(\"-p\");
+if $z1 == 0 goto $i1 = lengthof r0;
+"->"Block 2:
+[preds: 1 ] [succs: 7 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r8.<java.io.PrintStream: void print(java.lang.String)>(\"I: Primary active, waiting for backup (passive)\n\");
+$r9 = new guide.bstar;
+specialinvoke $r9.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(1, \"tcp://*:5003\", \"tcp://localhost:5004\");
+r12 = $r9;
+$r11 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r10 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5001\", $r11, $r10, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r7 = r0[0];
+$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>(\"-p\");
+if $z1 == 0 goto $i1 = lengthof r0;
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 6 ]
+$i1 = lengthof r0;
+if $i1 != 1 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 2:
+[preds: 1 ] [succs: 7 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r8.<java.io.PrintStream: void print(java.lang.String)>(\"I: Primary active, waiting for backup (passive)\n\");
+$r9 = new guide.bstar;
+specialinvoke $r9.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(1, \"tcp://*:5003\", \"tcp://localhost:5004\");
+r12 = $r9;
+$r11 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r10 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5001\", $r11, $r10, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+"->"Block 7:
+[preds: 2 5 6 ] [succs: ]
+virtualinvoke r12.<guide.bstar: int start()>();
+virtualinvoke r12.<guide.bstar: void destroy()>();
+return;
+";
+    "Block 3:
+[preds: 0 1 ] [succs: 4 6 ]
+$i1 = lengthof r0;
+if $i1 != 1 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r2 = r0[0];
+$z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(\"-b\");
+if $z0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 3:
+[preds: 0 1 ] [succs: 4 6 ]
+$i1 = lengthof r0;
+if $i1 != 1 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 6:
+[preds: 3 4 ] [succs: 7 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>(\"Usage: bstarsrv { -p | -b }\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r2 = r0[0];
+$z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(\"-b\");
+if $z0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 5:
+[preds: 4 ] [succs: 7 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\"I: Backup passive, waiting for primary (active)\n\");
+$r4 = new guide.bstar;
+specialinvoke $r4.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(0, \"tcp://*:5004\", \"tcp://localhost:5003\");
+r12 = $r4;
+$r6 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r5 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5002\", $r6, $r5, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r2 = r0[0];
+$z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>(\"-b\");
+if $z0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 6:
+[preds: 3 4 ] [succs: 7 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>(\"Usage: bstarsrv { -p | -b }\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+";
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r3 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\"I: Backup passive, waiting for primary (active)\n\");
+$r4 = new guide.bstar;
+specialinvoke $r4.<guide.bstar: void <init>(boolean,java.lang.String,java.lang.String)>(0, \"tcp://*:5004\", \"tcp://localhost:5003\");
+r12 = $r4;
+$r6 = <org.zeromq.SocketType: org.zeromq.SocketType ROUTER>;
+$r5 = <guide.bstarsrv2: org.zeromq.ZLoop$IZLoopHandler Echo>;
+virtualinvoke r12.<guide.bstar: int voter(java.lang.String,org.zeromq.SocketType,org.zeromq.ZLoop$IZLoopHandler,java.lang.Object)>(\"tcp://*:5002\", $r6, $r5, null);
+goto [?= virtualinvoke r12.<guide.bstar: int start()>()];
+"->"Block 7:
+[preds: 2 5 6 ] [succs: ]
+virtualinvoke r12.<guide.bstar: int start()>();
+virtualinvoke r12.<guide.bstar: void destroy()>();
+return;
+";
+    "Block 6:
+[preds: 3 4 ] [succs: 7 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>(\"Usage: bstarsrv { -p | -b }\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+"->"Block 7:
+[preds: 2 5 6 ] [succs: ]
+virtualinvoke r12.<guide.bstar: int start()>();
+virtualinvoke r12.<guide.bstar: void destroy()>();
+return;
+";
+}

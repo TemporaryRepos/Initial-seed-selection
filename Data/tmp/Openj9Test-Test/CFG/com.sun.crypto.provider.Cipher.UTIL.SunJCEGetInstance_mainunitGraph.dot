@@ -1,0 +1,81 @@
+digraph "unitGraph" {
+    "r15 := @parameter0: java.lang.String[]"
+    "staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"SunJCE\")"
+    "$r18 = new com.sun.crypto.provider.SunJCE"
+    "specialinvoke $r18.<com.sun.crypto.provider.SunJCE: void <init>()>()"
+    "$r20 = (java.security.Provider) $r18"
+    "r1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"AES/CBC/PKCS5Padding\", $r20)"
+    "$r19 = new javax.crypto.spec.SecretKeySpec"
+    "$r3 = \"1234567890abcedf\""
+    "$r4 = virtualinvoke $r3.<java.lang.String: byte[] getBytes()>()"
+    "specialinvoke $r19.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r4, \"AES\")"
+    "$r21 = (java.security.Key) $r19"
+    "virtualinvoke r1.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r21)"
+    "$r5 = \"PlainText\""
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"
+    "virtualinvoke r1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r6)"
+    "goto [?= $r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()]"
+    "$r13 := @caughtexception"
+    "r16 = $r13"
+    "$r14 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Setup failure:  \")"
+    "throw r16"
+    "$r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()"
+    "virtualinvoke $r8.<java.security.AlgorithmParameters: byte[] getEncoded()>()"
+    "goto [?= $r10 = <java.lang.System: java.io.PrintStream out>]"
+    "$r11 := @caughtexception"
+    "r17 = $r11"
+    "$r12 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Test Failure\")"
+    "throw r17"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Passed\")"
+    "return"
+    "r15 := @parameter0: java.lang.String[]"->"staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"SunJCE\")";
+    "r15 := @parameter0: java.lang.String[]"->"$r13 := @caughtexception";
+    "staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"SunJCE\")"->"$r18 = new com.sun.crypto.provider.SunJCE";
+    "staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"SunJCE\")"->"$r13 := @caughtexception";
+    "$r18 = new com.sun.crypto.provider.SunJCE"->"specialinvoke $r18.<com.sun.crypto.provider.SunJCE: void <init>()>()";
+    "$r18 = new com.sun.crypto.provider.SunJCE"->"$r13 := @caughtexception";
+    "specialinvoke $r18.<com.sun.crypto.provider.SunJCE: void <init>()>()"->"$r20 = (java.security.Provider) $r18";
+    "specialinvoke $r18.<com.sun.crypto.provider.SunJCE: void <init>()>()"->"$r13 := @caughtexception";
+    "$r20 = (java.security.Provider) $r18"->"r1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"AES/CBC/PKCS5Padding\", $r20)";
+    "$r20 = (java.security.Provider) $r18"->"$r13 := @caughtexception";
+    "r1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"AES/CBC/PKCS5Padding\", $r20)"->"$r19 = new javax.crypto.spec.SecretKeySpec";
+    "r1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"AES/CBC/PKCS5Padding\", $r20)"->"$r13 := @caughtexception";
+    "$r19 = new javax.crypto.spec.SecretKeySpec"->"$r3 = \"1234567890abcedf\"";
+    "$r19 = new javax.crypto.spec.SecretKeySpec"->"$r13 := @caughtexception";
+    "$r3 = \"1234567890abcedf\""->"$r4 = virtualinvoke $r3.<java.lang.String: byte[] getBytes()>()";
+    "$r3 = \"1234567890abcedf\""->"$r13 := @caughtexception";
+    "$r4 = virtualinvoke $r3.<java.lang.String: byte[] getBytes()>()"->"specialinvoke $r19.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r4, \"AES\")";
+    "$r4 = virtualinvoke $r3.<java.lang.String: byte[] getBytes()>()"->"$r13 := @caughtexception";
+    "specialinvoke $r19.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r4, \"AES\")"->"$r21 = (java.security.Key) $r19";
+    "specialinvoke $r19.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r4, \"AES\")"->"$r13 := @caughtexception";
+    "$r21 = (java.security.Key) $r19"->"virtualinvoke r1.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r21)";
+    "$r21 = (java.security.Key) $r19"->"$r13 := @caughtexception";
+    "virtualinvoke r1.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r21)"->"$r5 = \"PlainText\"";
+    "virtualinvoke r1.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r21)"->"$r13 := @caughtexception";
+    "$r5 = \"PlainText\""->"$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()";
+    "$r5 = \"PlainText\""->"$r13 := @caughtexception";
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"->"virtualinvoke r1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r6)";
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"->"$r13 := @caughtexception";
+    "virtualinvoke r1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r6)"->"goto [?= $r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()]";
+    "virtualinvoke r1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r6)"->"$r13 := @caughtexception";
+    "goto [?= $r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()]"->"$r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()";
+    "goto [?= $r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()]"->"$r11 := @caughtexception";
+    "$r13 := @caughtexception"->"r16 = $r13";
+    "r16 = $r13"->"$r14 = <java.lang.System: java.io.PrintStream err>";
+    "$r14 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Setup failure:  \")";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Setup failure:  \")"->"throw r16";
+    "$r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()"->"virtualinvoke $r8.<java.security.AlgorithmParameters: byte[] getEncoded()>()";
+    "$r8 = virtualinvoke r1.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>()"->"$r11 := @caughtexception";
+    "virtualinvoke $r8.<java.security.AlgorithmParameters: byte[] getEncoded()>()"->"goto [?= $r10 = <java.lang.System: java.io.PrintStream out>]";
+    "virtualinvoke $r8.<java.security.AlgorithmParameters: byte[] getEncoded()>()"->"$r11 := @caughtexception";
+    "goto [?= $r10 = <java.lang.System: java.io.PrintStream out>]"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r11 := @caughtexception"->"r17 = $r11";
+    "r17 = $r11"->"$r12 = <java.lang.System: java.io.PrintStream err>";
+    "$r12 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Test Failure\")";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Test Failure\")"->"throw r17";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Passed\")";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"Passed\")"->"return";
+}

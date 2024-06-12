@@ -1,0 +1,532 @@
+digraph "unitGraph" {
+    "r6 := @parameter0: double[]"
+    "i0 := @parameter1: int"
+    "i1 := @parameter2: int"
+    "i2 := @parameter3: int"
+    "r7 := @parameter4: net.seninp.jmotif.sax.NumerosityReductionStrategy"
+    "i11 := @parameter5: int"
+    "r3 := @parameter6: net.seninp.gi.GIAlgorithm"
+    "r40 := @parameter7: java.lang.String"
+    "d0 := @parameter8: double"
+    "$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with pruning algorithm, building the grammar ...\")"
+    "$r1 = new java.util.Date"
+    "specialinvoke $r1.<java.util.Date: void <init>()>()"
+    "r2 = $r1"
+    "$r4 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm SEQUITUR>"
+    "$z0 = virtualinvoke $r4.<net.seninp.gi.GIAlgorithm: boolean equals(java.lang.Object)>(r3)"
+    "if $z0 == 0 goto $r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation"
+    "r95 = staticinvoke <net.seninp.gi.sequitur.SequiturFactory: net.seninp.gi.logic.GrammarRules series2SequiturRules(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, i0, i1, i2, r7, d0)"
+    "goto [?= $r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>]"
+    "$r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation"
+    "specialinvoke $r5.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: void <init>()>()"
+    "r96 = $r5"
+    "r97 = virtualinvoke r96.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: net.seninp.jmotif.sax.datastructure.SAXRecords process(double[],int,int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, 2, i0, i1, i2, r7, d0)"
+    "r98 = staticinvoke <net.seninp.gi.repair.RePairFactory: net.seninp.gi.repair.RePairGrammar buildGrammar(net.seninp.jmotif.sax.datastructure.SAXRecords)>(r97)"
+    "virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void expandRules()>()"
+    "virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void buildIntervals(net.seninp.jmotif.sax.datastructure.SAXRecords,double[],int)>(r97, r6, i0)"
+    "r95 = virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: net.seninp.gi.logic.GrammarRules toGrammarRulesData()>()"
+    "$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$i3 = virtualinvoke r95.<net.seninp.gi.logic.GrammarRules: int size()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules inferred in \")"
+    "$l4 = virtualinvoke r2.<java.util.Date: long getTime()>()"
+    "$r12 = new java.util.Date"
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"
+    "$l5 = virtualinvoke $r12.<java.util.Date: long getTime()>()"
+    "$r13 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l4, $l5)"
+    "$r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13)"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", pruning ...\")"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r16)"
+    "r99 = staticinvoke <net.seninp.gi.rulepruner.RulePrunerFactory: net.seninp.gi.logic.GrammarRules performPruning(double[],net.seninp.gi.logic.GrammarRules)>(r6, r95)"
+    "$r18 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r17 = new java.lang.StringBuilder"
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"
+    "$r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"finished pruning in \")"
+    "$l6 = virtualinvoke r2.<java.util.Date: long getTime()>()"
+    "$r20 = new java.util.Date"
+    "specialinvoke $r20.<java.util.Date: void <init>()>()"
+    "$l7 = virtualinvoke $r20.<java.util.Date: long getTime()>()"
+    "$r21 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l6, $l7)"
+    "$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", keeping \")"
+    "$i8 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: int size()>()"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules for anomaly discovery ...\")"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r18.<org.slf4j.Logger: void info(java.lang.String)>($r26)"
+    "$r27 = new java.util.ArrayList"
+    "specialinvoke $r27.<java.util.ArrayList: void <init>()>()"
+    "r100 = $r27"
+    "r101 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()"
+    "$z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()"
+    "if $z7 == 0 goto $i9 = lengthof r6"
+    "$r91 = interfaceinvoke r101.<java.util.Iterator: java.lang.Object next()>()"
+    "r102 = (net.seninp.gi.logic.GrammarRuleRecord) $r91"
+    "$i34 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"
+    "if 0 != $i34 goto $r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"
+    "goto [?= $z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()]"
+    "$r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"
+    "r103 = virtualinvoke $r92.<java.util.ArrayList: java.util.Iterator iterator()>()"
+    "$z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"
+    "if $z5 == 0 goto (branch)"
+    "$r93 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"
+    "r104 = (net.seninp.gi.logic.RuleInterval) $r93"
+    "$r94 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"
+    "$i35 = virtualinvoke $r94.<java.util.ArrayList: int size()>()"
+    "$d5 = (double) $i35"
+    "virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setCoverage(double)>($d5)"
+    "$i36 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"
+    "virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setId(int)>($i36)"
+    "virtualinvoke r100.<java.util.ArrayList: boolean add(java.lang.Object)>(r104)"
+    "goto [?= $z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"
+    "$i9 = lengthof r6"
+    "r105 = newarray (int)[$i9]"
+    "r106 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()"
+    "$z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"
+    "if $z8 == 0 goto r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)"
+    "$r89 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"
+    "r107 = (net.seninp.gi.logic.GrammarRuleRecord) $r89"
+    "$i31 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"
+    "if 0 != $i31 goto r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"
+    "goto [?= $z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"
+    "r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"
+    "r109 = virtualinvoke r108.<java.util.ArrayList: java.util.Iterator iterator()>()"
+    "$z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()"
+    "if $z4 == 0 goto (branch)"
+    "$r90 = interfaceinvoke r109.<java.util.Iterator: java.lang.Object next()>()"
+    "r110 = (net.seninp.gi.logic.RuleInterval) $r90"
+    "i37 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getStart()>()"
+    "i38 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getEnd()>()"
+    "i39 = i37"
+    "if i39 >= i38 goto (branch)"
+    "$i32 = r105[i39]"
+    "$i33 = $i32 + 1"
+    "r105[i39] = $i33"
+    "i39 = i39 + 1"
+    "goto [?= (branch)]"
+    "goto [?= $z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()]"
+    "r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)"
+    "$i10 = interfaceinvoke r111.<java.util.List: int size()>()"
+    "if $i10 <= 0 goto $r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r82 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r81 = new java.lang.StringBuilder"
+    "specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()"
+    "$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found \")"
+    "$i30 = interfaceinvoke r111.<java.util.List: int size()>()"
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i30)"
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" intervals not covered by rules: \")"
+    "$r86 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.lang.String intervalsToString(java.util.List)>(r111)"
+    "$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r86)"
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r82.<org.slf4j.Logger: void info(java.lang.String)>($r88)"
+    "virtualinvoke r100.<java.util.ArrayList: boolean addAll(java.util.Collection)>(r111)"
+    "goto [?= r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)]"
+    "$r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r28.<org.slf4j.Logger: void info(java.lang.String)>(\"the whole timeseries is covered by rule intervals ...\")"
+    "r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)"
+    "$r29 = new java.util.Date"
+    "specialinvoke $r29.<java.util.Date: void <init>()>()"
+    "r113 = $r29"
+    "$r31 = <java.lang.System: java.io.PrintStream out>"
+    "$r30 = new java.lang.StringBuilder"
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"
+    "$r32 = virtualinvoke r112.<net.seninp.jmotif.sax.discord.DiscordRecords: java.lang.String toString()>()"
+    "$r33 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Discords found in \")"
+    "$l12 = virtualinvoke r2.<java.util.Date: long getTime()>()"
+    "$l13 = virtualinvoke r113.<java.util.Date: long getTime()>()"
+    "$r36 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l12, $l13)"
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r39)"
+    "$z1 = virtualinvoke r40.<java.lang.String: boolean isEmpty()>()"
+    "if $z1 != 0 goto return"
+    "$r41 = new java.io.File"
+    "specialinvoke $r41.<java.io.File: void <init>(java.lang.String)>(\".\")"
+    "r114 = virtualinvoke $r41.<java.io.File: java.lang.String getCanonicalPath()>()"
+    "$r42 = new java.io.BufferedWriter"
+    "$r43 = new java.io.FileWriter"
+    "$r44 = new java.io.File"
+    "$r45 = new java.lang.StringBuilder"
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)"
+    "$r47 = <java.io.File: java.lang.String separator>"
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_coverage.txt\")"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r44.<java.io.File: void <init>(java.lang.String)>($r51)"
+    "specialinvoke $r43.<java.io.FileWriter: void <init>(java.io.File)>($r44)"
+    "specialinvoke $r42.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r43)"
+    "r115 = $r42"
+    "r116 = r105"
+    "i40 = lengthof r116"
+    "i41 = 0"
+    "if i41 >= i40 goto virtualinvoke r115.<java.io.BufferedWriter: void close()>()"
+    "i42 = r116[i41]"
+    "$r77 = new java.lang.StringBuilder"
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i42)"
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke r115.<java.io.BufferedWriter: void write(java.lang.String)>($r80)"
+    "i41 = i41 + 1"
+    "virtualinvoke r115.<java.io.BufferedWriter: void close()>()"
+    "$r52 = new net.seninp.grammarviz.GrammarVizAnomaly$1"
+    "specialinvoke $r52.<net.seninp.grammarviz.GrammarVizAnomaly$1: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r100, $r52)"
+    "$i14 = lengthof r6"
+    "r117 = newarray (double)[$i14]"
+    "$i15 = lengthof r6"
+    "r118 = newarray (double)[$i15]"
+    "r119 = virtualinvoke r100.<java.util.ArrayList: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto $r53 = new java.io.BufferedWriter"
+    "$r71 = interfaceinvoke r119.<java.util.Iterator: java.lang.Object next()>()"
+    "r120 = (net.seninp.gi.logic.RuleInterval) $r71"
+    "i17 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getStart()>()"
+    "$i18 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()"
+    "i19 = i17 + $i18"
+    "i20 = i19 - i17"
+    "$r72 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>"
+    "$i21 = i17 + i20"
+    "r73 = virtualinvoke $r72.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i17, $i21)"
+    "d6 = 1.7976931348623157E308"
+    "i43 = 0"
+    "$i22 = lengthof r6"
+    "$i23 = $i22 - i20"
+    "$i24 = $i23 - 1"
+    "if i43 >= $i24 goto r117[i17] = d6"
+    "$i26 = i17 - i43"
+    "$i27 = staticinvoke <java.lang.Math: int abs(int)>($i26)"
+    "if $i27 <= i20 goto i43 = i43 + 1"
+    "$r74 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>"
+    "$i28 = i43 + i20"
+    "r75 = virtualinvoke $r74.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i43, $i28)"
+    "$r76 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.distance.EuclideanDistance ed>"
+    "d4 = virtualinvoke $r76.<net.seninp.jmotif.distance.EuclideanDistance: double distance(double[],double[])>(r73, r75)"
+    "$b29 = d4 cmpg d6"
+    "if $b29 >= 0 goto i43 = i43 + 1"
+    "d6 = d4"
+    "i43 = i43 + 1"
+    "goto [?= $i22 = lengthof r6]"
+    "r117[i17] = d6"
+    "$i25 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()"
+    "$d3 = (double) $i25"
+    "r118[i17] = $d3"
+    "goto [?= $z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()]"
+    "$r53 = new java.io.BufferedWriter"
+    "$r54 = new java.io.FileWriter"
+    "$r55 = new java.io.File"
+    "$r56 = new java.lang.StringBuilder"
+    "specialinvoke $r56.<java.lang.StringBuilder: void <init>()>()"
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)"
+    "$r58 = <java.io.File: java.lang.String separator>"
+    "$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)"
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_distances.txt\")"
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r55.<java.io.File: void <init>(java.lang.String)>($r62)"
+    "specialinvoke $r54.<java.io.FileWriter: void <init>(java.io.File)>($r55)"
+    "specialinvoke $r53.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r54)"
+    "r121 = $r53"
+    "i44 = 0"
+    "$i16 = lengthof r117"
+    "if i44 >= $i16 goto virtualinvoke r121.<java.io.BufferedWriter: void close()>()"
+    "$r63 = new java.lang.StringBuilder"
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i44)"
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$d1 = r117[i44]"
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1)"
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$d2 = r118[i44]"
+    "$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d2)"
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke r121.<java.io.BufferedWriter: void write(java.lang.String)>($r70)"
+    "i44 = i44 + 1"
+    "goto [?= $i16 = lengthof r117]"
+    "virtualinvoke r121.<java.io.BufferedWriter: void close()>()"
+    "return"
+    "r6 := @parameter0: double[]"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"i1 := @parameter2: int";
+    "i1 := @parameter2: int"->"i2 := @parameter3: int";
+    "i2 := @parameter3: int"->"r7 := @parameter4: net.seninp.jmotif.sax.NumerosityReductionStrategy";
+    "r7 := @parameter4: net.seninp.jmotif.sax.NumerosityReductionStrategy"->"i11 := @parameter5: int";
+    "i11 := @parameter5: int"->"r3 := @parameter6: net.seninp.gi.GIAlgorithm";
+    "r3 := @parameter6: net.seninp.gi.GIAlgorithm"->"r40 := @parameter7: java.lang.String";
+    "r40 := @parameter7: java.lang.String"->"d0 := @parameter8: double";
+    "d0 := @parameter8: double"->"$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with pruning algorithm, building the grammar ...\")";
+    "interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with pruning algorithm, building the grammar ...\")"->"$r1 = new java.util.Date";
+    "$r1 = new java.util.Date"->"specialinvoke $r1.<java.util.Date: void <init>()>()";
+    "specialinvoke $r1.<java.util.Date: void <init>()>()"->"r2 = $r1";
+    "r2 = $r1"->"$r4 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm SEQUITUR>";
+    "$r4 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm SEQUITUR>"->"$z0 = virtualinvoke $r4.<net.seninp.gi.GIAlgorithm: boolean equals(java.lang.Object)>(r3)";
+    "$z0 = virtualinvoke $r4.<net.seninp.gi.GIAlgorithm: boolean equals(java.lang.Object)>(r3)"->"if $z0 == 0 goto $r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation";
+    "if $z0 == 0 goto $r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation"->"r95 = staticinvoke <net.seninp.gi.sequitur.SequiturFactory: net.seninp.gi.logic.GrammarRules series2SequiturRules(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, i0, i1, i2, r7, d0)";
+    "if $z0 == 0 goto $r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation"->"$r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation";
+    "r95 = staticinvoke <net.seninp.gi.sequitur.SequiturFactory: net.seninp.gi.logic.GrammarRules series2SequiturRules(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, i0, i1, i2, r7, d0)"->"goto [?= $r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>]";
+    "goto [?= $r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>]"->"$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r5 = new net.seninp.jmotif.sax.parallel.ParallelSAXImplementation"->"specialinvoke $r5.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: void <init>()>()";
+    "specialinvoke $r5.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: void <init>()>()"->"r96 = $r5";
+    "r96 = $r5"->"r97 = virtualinvoke r96.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: net.seninp.jmotif.sax.datastructure.SAXRecords process(double[],int,int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, 2, i0, i1, i2, r7, d0)";
+    "r97 = virtualinvoke r96.<net.seninp.jmotif.sax.parallel.ParallelSAXImplementation: net.seninp.jmotif.sax.datastructure.SAXRecords process(double[],int,int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(r6, 2, i0, i1, i2, r7, d0)"->"r98 = staticinvoke <net.seninp.gi.repair.RePairFactory: net.seninp.gi.repair.RePairGrammar buildGrammar(net.seninp.jmotif.sax.datastructure.SAXRecords)>(r97)";
+    "r98 = staticinvoke <net.seninp.gi.repair.RePairFactory: net.seninp.gi.repair.RePairGrammar buildGrammar(net.seninp.jmotif.sax.datastructure.SAXRecords)>(r97)"->"virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void expandRules()>()";
+    "virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void expandRules()>()"->"virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void buildIntervals(net.seninp.jmotif.sax.datastructure.SAXRecords,double[],int)>(r97, r6, i0)";
+    "virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: void buildIntervals(net.seninp.jmotif.sax.datastructure.SAXRecords,double[],int)>(r97, r6, i0)"->"r95 = virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: net.seninp.gi.logic.GrammarRules toGrammarRulesData()>()";
+    "r95 = virtualinvoke r98.<net.seninp.gi.repair.RePairGrammar: net.seninp.gi.logic.GrammarRules toGrammarRulesData()>()"->"$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$i3 = virtualinvoke r95.<net.seninp.gi.logic.GrammarRules: int size()>()";
+    "$i3 = virtualinvoke r95.<net.seninp.gi.logic.GrammarRules: int size()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules inferred in \")";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules inferred in \")"->"$l4 = virtualinvoke r2.<java.util.Date: long getTime()>()";
+    "$l4 = virtualinvoke r2.<java.util.Date: long getTime()>()"->"$r12 = new java.util.Date";
+    "$r12 = new java.util.Date"->"specialinvoke $r12.<java.util.Date: void <init>()>()";
+    "specialinvoke $r12.<java.util.Date: void <init>()>()"->"$l5 = virtualinvoke $r12.<java.util.Date: long getTime()>()";
+    "$l5 = virtualinvoke $r12.<java.util.Date: long getTime()>()"->"$r13 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l4, $l5)";
+    "$r13 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l4, $l5)"->"$r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13)";
+    "$r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13)"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", pruning ...\")";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", pruning ...\")"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r16)";
+    "interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r16)"->"r99 = staticinvoke <net.seninp.gi.rulepruner.RulePrunerFactory: net.seninp.gi.logic.GrammarRules performPruning(double[],net.seninp.gi.logic.GrammarRules)>(r6, r95)";
+    "r99 = staticinvoke <net.seninp.gi.rulepruner.RulePrunerFactory: net.seninp.gi.logic.GrammarRules performPruning(double[],net.seninp.gi.logic.GrammarRules)>(r6, r95)"->"$r18 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r18 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r17 = new java.lang.StringBuilder";
+    "$r17 = new java.lang.StringBuilder"->"specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"->"$r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"finished pruning in \")";
+    "$r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"finished pruning in \")"->"$l6 = virtualinvoke r2.<java.util.Date: long getTime()>()";
+    "$l6 = virtualinvoke r2.<java.util.Date: long getTime()>()"->"$r20 = new java.util.Date";
+    "$r20 = new java.util.Date"->"specialinvoke $r20.<java.util.Date: void <init>()>()";
+    "specialinvoke $r20.<java.util.Date: void <init>()>()"->"$l7 = virtualinvoke $r20.<java.util.Date: long getTime()>()";
+    "$l7 = virtualinvoke $r20.<java.util.Date: long getTime()>()"->"$r21 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l6, $l7)";
+    "$r21 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l6, $l7)"->"$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)";
+    "$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", keeping \")";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", keeping \")"->"$i8 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: int size()>()";
+    "$i8 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: int size()>()"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules for anomaly discovery ...\")";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" rules for anomaly discovery ...\")"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r18.<org.slf4j.Logger: void info(java.lang.String)>($r26)";
+    "interfaceinvoke $r18.<org.slf4j.Logger: void info(java.lang.String)>($r26)"->"$r27 = new java.util.ArrayList";
+    "$r27 = new java.util.ArrayList"->"specialinvoke $r27.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r27.<java.util.ArrayList: void <init>()>()"->"r100 = $r27";
+    "r100 = $r27"->"r101 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()";
+    "r101 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()"->"$z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()";
+    "$z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()"->"if $z7 == 0 goto $i9 = lengthof r6";
+    "if $z7 == 0 goto $i9 = lengthof r6"->"$r91 = interfaceinvoke r101.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z7 == 0 goto $i9 = lengthof r6"->"$i9 = lengthof r6";
+    "$r91 = interfaceinvoke r101.<java.util.Iterator: java.lang.Object next()>()"->"r102 = (net.seninp.gi.logic.GrammarRuleRecord) $r91";
+    "r102 = (net.seninp.gi.logic.GrammarRuleRecord) $r91"->"$i34 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()";
+    "$i34 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"->"if 0 != $i34 goto $r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()";
+    "if 0 != $i34 goto $r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"goto [?= $z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()]";
+    "if 0 != $i34 goto $r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"$r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()";
+    "goto [?= $z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()]"->"$z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()";
+    "$r92 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"r103 = virtualinvoke $r92.<java.util.ArrayList: java.util.Iterator iterator()>()";
+    "r103 = virtualinvoke $r92.<java.util.ArrayList: java.util.Iterator iterator()>()"->"$z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()";
+    "$z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"->"if $z5 == 0 goto (branch)";
+    "if $z5 == 0 goto (branch)"->"$r93 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z5 == 0 goto (branch)"->"goto [?= $z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()]";
+    "$r93 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"->"r104 = (net.seninp.gi.logic.RuleInterval) $r93";
+    "r104 = (net.seninp.gi.logic.RuleInterval) $r93"->"$r94 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()";
+    "$r94 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"$i35 = virtualinvoke $r94.<java.util.ArrayList: int size()>()";
+    "$i35 = virtualinvoke $r94.<java.util.ArrayList: int size()>()"->"$d5 = (double) $i35";
+    "$d5 = (double) $i35"->"virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setCoverage(double)>($d5)";
+    "virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setCoverage(double)>($d5)"->"$i36 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()";
+    "$i36 = virtualinvoke r102.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"->"virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setId(int)>($i36)";
+    "virtualinvoke r104.<net.seninp.gi.logic.RuleInterval: void setId(int)>($i36)"->"virtualinvoke r100.<java.util.ArrayList: boolean add(java.lang.Object)>(r104)";
+    "virtualinvoke r100.<java.util.ArrayList: boolean add(java.lang.Object)>(r104)"->"goto [?= $z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$z5 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()]"->"$z7 = interfaceinvoke r101.<java.util.Iterator: boolean hasNext()>()";
+    "$i9 = lengthof r6"->"r105 = newarray (int)[$i9]";
+    "r105 = newarray (int)[$i9]"->"r106 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()";
+    "r106 = virtualinvoke r99.<net.seninp.gi.logic.GrammarRules: java.util.Iterator iterator()>()"->"$z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()";
+    "$z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()"->"if $z8 == 0 goto r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)";
+    "if $z8 == 0 goto r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)"->"$r89 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z8 == 0 goto r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)"->"r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)";
+    "$r89 = interfaceinvoke r106.<java.util.Iterator: java.lang.Object next()>()"->"r107 = (net.seninp.gi.logic.GrammarRuleRecord) $r89";
+    "r107 = (net.seninp.gi.logic.GrammarRuleRecord) $r89"->"$i31 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()";
+    "$i31 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: int ruleNumber()>()"->"if 0 != $i31 goto r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()";
+    "if 0 != $i31 goto r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"goto [?= $z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]";
+    "if 0 != $i31 goto r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()";
+    "goto [?= $z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"->"$z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()";
+    "r108 = virtualinvoke r107.<net.seninp.gi.logic.GrammarRuleRecord: java.util.ArrayList getRuleIntervals()>()"->"r109 = virtualinvoke r108.<java.util.ArrayList: java.util.Iterator iterator()>()";
+    "r109 = virtualinvoke r108.<java.util.ArrayList: java.util.Iterator iterator()>()"->"$z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()";
+    "$z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()"->"if $z4 == 0 goto (branch)";
+    "if $z4 == 0 goto (branch)"->"$r90 = interfaceinvoke r109.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z4 == 0 goto (branch)"->"goto [?= $z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]";
+    "$r90 = interfaceinvoke r109.<java.util.Iterator: java.lang.Object next()>()"->"r110 = (net.seninp.gi.logic.RuleInterval) $r90";
+    "r110 = (net.seninp.gi.logic.RuleInterval) $r90"->"i37 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getStart()>()";
+    "i37 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getStart()>()"->"i38 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getEnd()>()";
+    "i38 = virtualinvoke r110.<net.seninp.gi.logic.RuleInterval: int getEnd()>()"->"i39 = i37";
+    "i39 = i37"->"if i39 >= i38 goto (branch)";
+    "if i39 >= i38 goto (branch)"->"$i32 = r105[i39]";
+    "if i39 >= i38 goto (branch)"->"goto [?= $z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()]";
+    "$i32 = r105[i39]"->"$i33 = $i32 + 1";
+    "$i33 = $i32 + 1"->"r105[i39] = $i33";
+    "r105[i39] = $i33"->"i39 = i39 + 1";
+    "i39 = i39 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i39 >= i38 goto (branch)";
+    "goto [?= $z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()]"->"$z4 = interfaceinvoke r109.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()]"->"$z8 = interfaceinvoke r106.<java.util.Iterator: boolean hasNext()>()";
+    "r111 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.util.List getZeroIntervals(int[])>(r105)"->"$i10 = interfaceinvoke r111.<java.util.List: int size()>()";
+    "$i10 = interfaceinvoke r111.<java.util.List: int size()>()"->"if $i10 <= 0 goto $r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "if $i10 <= 0 goto $r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r82 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "if $i10 <= 0 goto $r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r82 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r81 = new java.lang.StringBuilder";
+    "$r81 = new java.lang.StringBuilder"->"specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r81.<java.lang.StringBuilder: void <init>()>()"->"$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found \")";
+    "$r83 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found \")"->"$i30 = interfaceinvoke r111.<java.util.List: int size()>()";
+    "$i30 = interfaceinvoke r111.<java.util.List: int size()>()"->"$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i30)";
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i30)"->"$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" intervals not covered by rules: \")";
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" intervals not covered by rules: \")"->"$r86 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.lang.String intervalsToString(java.util.List)>(r111)";
+    "$r86 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: java.lang.String intervalsToString(java.util.List)>(r111)"->"$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r86)";
+    "$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r86)"->"$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r82.<org.slf4j.Logger: void info(java.lang.String)>($r88)";
+    "interfaceinvoke $r82.<org.slf4j.Logger: void info(java.lang.String)>($r88)"->"virtualinvoke r100.<java.util.ArrayList: boolean addAll(java.util.Collection)>(r111)";
+    "virtualinvoke r100.<java.util.ArrayList: boolean addAll(java.util.Collection)>(r111)"->"goto [?= r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)]";
+    "goto [?= r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)]"->"r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)";
+    "$r28 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r28.<org.slf4j.Logger: void info(java.lang.String)>(\"the whole timeseries is covered by rule intervals ...\")";
+    "interfaceinvoke $r28.<org.slf4j.Logger: void info(java.lang.String)>(\"the whole timeseries is covered by rule intervals ...\")"->"r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)";
+    "r112 = staticinvoke <net.seninp.grammarviz.anomaly.RRAImplementation: net.seninp.jmotif.sax.discord.DiscordRecords series2RRAAnomalies(double[],int,java.util.ArrayList,double)>(r6, i11, r100, d0)"->"$r29 = new java.util.Date";
+    "$r29 = new java.util.Date"->"specialinvoke $r29.<java.util.Date: void <init>()>()";
+    "specialinvoke $r29.<java.util.Date: void <init>()>()"->"r113 = $r29";
+    "r113 = $r29"->"$r31 = <java.lang.System: java.io.PrintStream out>";
+    "$r31 = <java.lang.System: java.io.PrintStream out>"->"$r30 = new java.lang.StringBuilder";
+    "$r30 = new java.lang.StringBuilder"->"specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"->"$r32 = virtualinvoke r112.<net.seninp.jmotif.sax.discord.DiscordRecords: java.lang.String toString()>()";
+    "$r32 = virtualinvoke r112.<net.seninp.jmotif.sax.discord.DiscordRecords: java.lang.String toString()>()"->"$r33 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)";
+    "$r33 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Discords found in \")";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Discords found in \")"->"$l12 = virtualinvoke r2.<java.util.Date: long getTime()>()";
+    "$l12 = virtualinvoke r2.<java.util.Date: long getTime()>()"->"$l13 = virtualinvoke r113.<java.util.Date: long getTime()>()";
+    "$l13 = virtualinvoke r113.<java.util.Date: long getTime()>()"->"$r36 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l12, $l13)";
+    "$r36 = staticinvoke <net.seninp.jmotif.sax.SAXProcessor: java.lang.String timeToString(long,long)>($l12, $l13)"->"$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)";
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r39)";
+    "virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r39)"->"$z1 = virtualinvoke r40.<java.lang.String: boolean isEmpty()>()";
+    "$z1 = virtualinvoke r40.<java.lang.String: boolean isEmpty()>()"->"if $z1 != 0 goto return";
+    "if $z1 != 0 goto return"->"$r41 = new java.io.File";
+    "if $z1 != 0 goto return"->"return";
+    "$r41 = new java.io.File"->"specialinvoke $r41.<java.io.File: void <init>(java.lang.String)>(\".\")";
+    "specialinvoke $r41.<java.io.File: void <init>(java.lang.String)>(\".\")"->"r114 = virtualinvoke $r41.<java.io.File: java.lang.String getCanonicalPath()>()";
+    "r114 = virtualinvoke $r41.<java.io.File: java.lang.String getCanonicalPath()>()"->"$r42 = new java.io.BufferedWriter";
+    "$r42 = new java.io.BufferedWriter"->"$r43 = new java.io.FileWriter";
+    "$r43 = new java.io.FileWriter"->"$r44 = new java.io.File";
+    "$r44 = new java.io.File"->"$r45 = new java.lang.StringBuilder";
+    "$r45 = new java.lang.StringBuilder"->"specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)"->"$r47 = <java.io.File: java.lang.String separator>";
+    "$r47 = <java.io.File: java.lang.String separator>"->"$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)";
+    "$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"->"$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_coverage.txt\")";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_coverage.txt\")"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r44.<java.io.File: void <init>(java.lang.String)>($r51)";
+    "specialinvoke $r44.<java.io.File: void <init>(java.lang.String)>($r51)"->"specialinvoke $r43.<java.io.FileWriter: void <init>(java.io.File)>($r44)";
+    "specialinvoke $r43.<java.io.FileWriter: void <init>(java.io.File)>($r44)"->"specialinvoke $r42.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r43)";
+    "specialinvoke $r42.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r43)"->"r115 = $r42";
+    "r115 = $r42"->"r116 = r105";
+    "r116 = r105"->"i40 = lengthof r116";
+    "i40 = lengthof r116"->"i41 = 0";
+    "i41 = 0"->"if i41 >= i40 goto virtualinvoke r115.<java.io.BufferedWriter: void close()>()";
+    "if i41 >= i40 goto virtualinvoke r115.<java.io.BufferedWriter: void close()>()"->"i42 = r116[i41]";
+    "if i41 >= i40 goto virtualinvoke r115.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r115.<java.io.BufferedWriter: void close()>()";
+    "i42 = r116[i41]"->"$r77 = new java.lang.StringBuilder";
+    "$r77 = new java.lang.StringBuilder"->"specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i42)";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i42)"->"$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke r115.<java.io.BufferedWriter: void write(java.lang.String)>($r80)";
+    "virtualinvoke r115.<java.io.BufferedWriter: void write(java.lang.String)>($r80)"->"i41 = i41 + 1";
+    "i41 = i41 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i41 >= i40 goto virtualinvoke r115.<java.io.BufferedWriter: void close()>()";
+    "virtualinvoke r115.<java.io.BufferedWriter: void close()>()"->"$r52 = new net.seninp.grammarviz.GrammarVizAnomaly$1";
+    "$r52 = new net.seninp.grammarviz.GrammarVizAnomaly$1"->"specialinvoke $r52.<net.seninp.grammarviz.GrammarVizAnomaly$1: void <init>()>()";
+    "specialinvoke $r52.<net.seninp.grammarviz.GrammarVizAnomaly$1: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r100, $r52)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r100, $r52)"->"$i14 = lengthof r6";
+    "$i14 = lengthof r6"->"r117 = newarray (double)[$i14]";
+    "r117 = newarray (double)[$i14]"->"$i15 = lengthof r6";
+    "$i15 = lengthof r6"->"r118 = newarray (double)[$i15]";
+    "r118 = newarray (double)[$i15]"->"r119 = virtualinvoke r100.<java.util.ArrayList: java.util.Iterator iterator()>()";
+    "r119 = virtualinvoke r100.<java.util.ArrayList: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto $r53 = new java.io.BufferedWriter";
+    "if $z2 == 0 goto $r53 = new java.io.BufferedWriter"->"$r71 = interfaceinvoke r119.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto $r53 = new java.io.BufferedWriter"->"$r53 = new java.io.BufferedWriter";
+    "$r71 = interfaceinvoke r119.<java.util.Iterator: java.lang.Object next()>()"->"r120 = (net.seninp.gi.logic.RuleInterval) $r71";
+    "r120 = (net.seninp.gi.logic.RuleInterval) $r71"->"i17 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getStart()>()";
+    "i17 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getStart()>()"->"$i18 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()";
+    "$i18 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()"->"i19 = i17 + $i18";
+    "i19 = i17 + $i18"->"i20 = i19 - i17";
+    "i20 = i19 - i17"->"$r72 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>";
+    "$r72 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>"->"$i21 = i17 + i20";
+    "$i21 = i17 + i20"->"r73 = virtualinvoke $r72.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i17, $i21)";
+    "r73 = virtualinvoke $r72.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i17, $i21)"->"d6 = 1.7976931348623157E308";
+    "d6 = 1.7976931348623157E308"->"i43 = 0";
+    "i43 = 0"->"$i22 = lengthof r6";
+    "$i22 = lengthof r6"->"$i23 = $i22 - i20";
+    "$i23 = $i22 - i20"->"$i24 = $i23 - 1";
+    "$i24 = $i23 - 1"->"if i43 >= $i24 goto r117[i17] = d6";
+    "if i43 >= $i24 goto r117[i17] = d6"->"$i26 = i17 - i43";
+    "if i43 >= $i24 goto r117[i17] = d6"->"r117[i17] = d6";
+    "$i26 = i17 - i43"->"$i27 = staticinvoke <java.lang.Math: int abs(int)>($i26)";
+    "$i27 = staticinvoke <java.lang.Math: int abs(int)>($i26)"->"if $i27 <= i20 goto i43 = i43 + 1";
+    "if $i27 <= i20 goto i43 = i43 + 1"->"$r74 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>";
+    "if $i27 <= i20 goto i43 = i43 + 1"->"i43 = i43 + 1";
+    "$r74 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.sax.TSProcessor tp>"->"$i28 = i43 + i20";
+    "$i28 = i43 + i20"->"r75 = virtualinvoke $r74.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i43, $i28)";
+    "r75 = virtualinvoke $r74.<net.seninp.jmotif.sax.TSProcessor: double[] subseriesByCopy(double[],int,int)>(r6, i43, $i28)"->"$r76 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.distance.EuclideanDistance ed>";
+    "$r76 = <net.seninp.grammarviz.GrammarVizAnomaly: net.seninp.jmotif.distance.EuclideanDistance ed>"->"d4 = virtualinvoke $r76.<net.seninp.jmotif.distance.EuclideanDistance: double distance(double[],double[])>(r73, r75)";
+    "d4 = virtualinvoke $r76.<net.seninp.jmotif.distance.EuclideanDistance: double distance(double[],double[])>(r73, r75)"->"$b29 = d4 cmpg d6";
+    "$b29 = d4 cmpg d6"->"if $b29 >= 0 goto i43 = i43 + 1";
+    "if $b29 >= 0 goto i43 = i43 + 1"->"d6 = d4";
+    "if $b29 >= 0 goto i43 = i43 + 1"->"i43 = i43 + 1";
+    "d6 = d4"->"i43 = i43 + 1";
+    "i43 = i43 + 1"->"goto [?= $i22 = lengthof r6]";
+    "goto [?= $i22 = lengthof r6]"->"$i22 = lengthof r6";
+    "r117[i17] = d6"->"$i25 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()";
+    "$i25 = virtualinvoke r120.<net.seninp.gi.logic.RuleInterval: int getLength()>()"->"$d3 = (double) $i25";
+    "$d3 = (double) $i25"->"r118[i17] = $d3";
+    "r118[i17] = $d3"->"goto [?= $z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r119.<java.util.Iterator: boolean hasNext()>()";
+    "$r53 = new java.io.BufferedWriter"->"$r54 = new java.io.FileWriter";
+    "$r54 = new java.io.FileWriter"->"$r55 = new java.io.File";
+    "$r55 = new java.io.File"->"$r56 = new java.lang.StringBuilder";
+    "$r56 = new java.lang.StringBuilder"->"specialinvoke $r56.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r56.<java.lang.StringBuilder: void <init>()>()"->"$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r114)"->"$r58 = <java.io.File: java.lang.String separator>";
+    "$r58 = <java.io.File: java.lang.String separator>"->"$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)";
+    "$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)"->"$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)";
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_distances.txt\")";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_distances.txt\")"->"$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r55.<java.io.File: void <init>(java.lang.String)>($r62)";
+    "specialinvoke $r55.<java.io.File: void <init>(java.lang.String)>($r62)"->"specialinvoke $r54.<java.io.FileWriter: void <init>(java.io.File)>($r55)";
+    "specialinvoke $r54.<java.io.FileWriter: void <init>(java.io.File)>($r55)"->"specialinvoke $r53.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r54)";
+    "specialinvoke $r53.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r54)"->"r121 = $r53";
+    "r121 = $r53"->"i44 = 0";
+    "i44 = 0"->"$i16 = lengthof r117";
+    "$i16 = lengthof r117"->"if i44 >= $i16 goto virtualinvoke r121.<java.io.BufferedWriter: void close()>()";
+    "if i44 >= $i16 goto virtualinvoke r121.<java.io.BufferedWriter: void close()>()"->"$r63 = new java.lang.StringBuilder";
+    "if i44 >= $i16 goto virtualinvoke r121.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r121.<java.io.BufferedWriter: void close()>()";
+    "$r63 = new java.lang.StringBuilder"->"specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r63.<java.lang.StringBuilder: void <init>()>()"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i44)";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i44)"->"$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$d1 = r117[i44]";
+    "$d1 = r117[i44]"->"$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1)";
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1)"->"$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$d2 = r118[i44]";
+    "$d2 = r118[i44]"->"$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d2)";
+    "$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d2)"->"$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke r121.<java.io.BufferedWriter: void write(java.lang.String)>($r70)";
+    "virtualinvoke r121.<java.io.BufferedWriter: void write(java.lang.String)>($r70)"->"i44 = i44 + 1";
+    "i44 = i44 + 1"->"goto [?= $i16 = lengthof r117]";
+    "goto [?= $i16 = lengthof r117]"->"$i16 = lengthof r117";
+    "virtualinvoke r121.<java.io.BufferedWriter: void close()>()"->"return";
+}

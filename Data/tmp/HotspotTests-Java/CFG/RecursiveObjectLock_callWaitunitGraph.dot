@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "r0 := @this: RecursiveObjectLock"
+    "virtualinvoke r0.<java.lang.Object: void wait(long)>(1L)"
+    "goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()]"
+    "$r1 := @caughtexception"
+    "r2 = $r1"
+    "virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>()"
+    "staticinvoke <RecursiveObjectLock: void breakpoint1()>()"
+    "return"
+    "r0 := @this: RecursiveObjectLock"->"virtualinvoke r0.<java.lang.Object: void wait(long)>(1L)";
+    "r0 := @this: RecursiveObjectLock"->"$r1 := @caughtexception";
+    "virtualinvoke r0.<java.lang.Object: void wait(long)>(1L)"->"goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()]";
+    "virtualinvoke r0.<java.lang.Object: void wait(long)>(1L)"->"$r1 := @caughtexception";
+    "goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()]"->"staticinvoke <RecursiveObjectLock: void breakpoint1()>()";
+    "$r1 := @caughtexception"->"r2 = $r1";
+    "r2 = $r1"->"virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>()";
+    "virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>()"->"staticinvoke <RecursiveObjectLock: void breakpoint1()>()";
+    "staticinvoke <RecursiveObjectLock: void breakpoint1()>()"->"return";
+}

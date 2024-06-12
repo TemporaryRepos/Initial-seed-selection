@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>"
+    "i5 = 0"
+    "goto [?= (branch)]"
+    "$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"
+    "$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>"
+    "$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>()"
+    "$i2 = $s0 + $s1"
+    "$s3 = (short) $i2"
+    "r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3)"
+    "i5 = i5 + 1"
+    "if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"
+    "$s4 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"
+    "return $s4"
+    "r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>"->"i5 = 0";
+    "i5 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()";
+    "$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"->"$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>";
+    "$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>"->"$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>()";
+    "$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>()"->"$i2 = $s0 + $s1";
+    "$i2 = $s0 + $s1"->"$s3 = (short) $i2";
+    "$s3 = (short) $i2"->"r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3)";
+    "r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3)"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()";
+    "if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"->"$s4 = virtualinvoke r1.<java.lang.Short: short shortValue()>()";
+    "if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"->"$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>()";
+    "$s4 = virtualinvoke r1.<java.lang.Short: short shortValue()>()"->"return $s4";
+}

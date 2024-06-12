@@ -1,0 +1,38 @@
+digraph "unitGraph" {
+    "i5 = 1"
+    "goto [?= i5 = i5 + 1]"
+    "$i0 = i5 % 2"
+    "if $i0 != 0 goto i5 = i5 + 1"
+    "i6 = 2"
+    "goto [?= (branch)]"
+    "$r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>"
+    "$i1 = i6 - 1"
+    "$i3 = $r0[$i1]"
+    "$i2 = <compiler.loopopts.superword.TestNegBaseOffset: int iFld>"
+    "$i4 = $i3 & $i2"
+    "$r0[$i1] = $i4"
+    "i6 = i6 + -3"
+    "if i6 > i5 goto $r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>"
+    "i5 = i5 + 1"
+    "if i5 < 339 goto $i0 = i5 % 2"
+    "return"
+    "i5 = 1"->"goto [?= i5 = i5 + 1]";
+    "goto [?= i5 = i5 + 1]"->"i5 = i5 + 1";
+    "$i0 = i5 % 2"->"if $i0 != 0 goto i5 = i5 + 1";
+    "if $i0 != 0 goto i5 = i5 + 1"->"i6 = 2";
+    "if $i0 != 0 goto i5 = i5 + 1"->"i5 = i5 + 1";
+    "i6 = 2"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 > i5 goto $r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>";
+    "$r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>"->"$i1 = i6 - 1";
+    "$i1 = i6 - 1"->"$i3 = $r0[$i1]";
+    "$i3 = $r0[$i1]"->"$i2 = <compiler.loopopts.superword.TestNegBaseOffset: int iFld>";
+    "$i2 = <compiler.loopopts.superword.TestNegBaseOffset: int iFld>"->"$i4 = $i3 & $i2";
+    "$i4 = $i3 & $i2"->"$r0[$i1] = $i4";
+    "$r0[$i1] = $i4"->"i6 = i6 + -3";
+    "i6 = i6 + -3"->"if i6 > i5 goto $r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>";
+    "if i6 > i5 goto $r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>"->"i5 = i5 + 1";
+    "if i6 > i5 goto $r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>"->"$r0 = <compiler.loopopts.superword.TestNegBaseOffset: int[] iArr>";
+    "i5 = i5 + 1"->"if i5 < 339 goto $i0 = i5 % 2";
+    "if i5 < 339 goto $i0 = i5 % 2"->"return";
+    "if i5 < 339 goto $i0 = i5 % 2"->"$i0 = i5 % 2";
+}

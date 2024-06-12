@@ -1,0 +1,350 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r25 := @parameter0: java.lang.String[];
+l0 = <compiler.c1.TestUnalignedLoad: long l1v>;
+d0 = <compiler.c1.TestUnalignedLoad: double d1v>;
+l1 = <compiler.c1.TestUnalignedLoad: long l2v>;
+d1 = <compiler.c1.TestUnalignedLoad: double d2v>;
+i10 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i10 = i10 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i10 < 10000000 goto i10 = i10 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+z0 = 0;
+$l2 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$b3 = l0 cmp $l2;
+if $b3 == 0 goto $l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+$r20 = <java.lang.System: java.io.PrintStream out>;
+$r19 = new java.lang.StringBuilder;
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l0);
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>($r21);
+$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l9 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r24);
+z0 = 1;
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$b5 = l1 cmp $l4;
+if $b5 == 0 goto $d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = new java.lang.StringBuilder;
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l1);
+specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+$r16 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l8 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r18);
+z0 = 1;
+"
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$b6 = d0 cmpl $d2;
+if $b6 == 0 goto $d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d0);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r9);
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d5 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d5);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+z0 = 1;
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$b7 = d1 cmpl $d3;
+if $b7 == 0 goto (branch);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+$r1 = new java.lang.StringBuilder;
+$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d1);
+specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d4 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+z0 = 1;
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+if z0 == 0 goto return;
+"
+    "Block 12:
+[preds: 11 ] [succs: ]
+$r0 = new java.lang.InternalError;
+specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+throw $r0;
+"
+    "Block 13:
+[preds: 11 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r25 := @parameter0: java.lang.String[];
+l0 = <compiler.c1.TestUnalignedLoad: long l1v>;
+d0 = <compiler.c1.TestUnalignedLoad: double d1v>;
+l1 = <compiler.c1.TestUnalignedLoad: long l2v>;
+d1 = <compiler.c1.TestUnalignedLoad: double d2v>;
+i10 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i10 < 10000000 goto i10 = i10 + 1;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i10 = i10 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i10 < 10000000 goto i10 = i10 + 1;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i10 < 10000000 goto i10 = i10 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+z0 = 0;
+$l2 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$b3 = l0 cmp $l2;
+if $b3 == 0 goto $l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i10 < 10000000 goto i10 = i10 + 1;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+i10 = i10 + 1;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+z0 = 0;
+$l2 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$b3 = l0 cmp $l2;
+if $b3 == 0 goto $l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+$r20 = <java.lang.System: java.io.PrintStream out>;
+$r19 = new java.lang.StringBuilder;
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l0);
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>($r21);
+$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l9 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r24);
+z0 = 1;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+z0 = 0;
+$l2 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$b3 = l0 cmp $l2;
+if $b3 == 0 goto $l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$b5 = l1 cmp $l4;
+if $b5 == 0 goto $d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+$r20 = <java.lang.System: java.io.PrintStream out>;
+$r19 = new java.lang.StringBuilder;
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l0);
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>($r21);
+$r22 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l9 = <compiler.c1.TestUnalignedLoad: long l1v>;
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r24);
+z0 = 1;
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$b5 = l1 cmp $l4;
+if $b5 == 0 goto $d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$b5 = l1 cmp $l4;
+if $b5 == 0 goto $d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = new java.lang.StringBuilder;
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l1);
+specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+$r16 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l8 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r18);
+z0 = 1;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$l4 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$b5 = l1 cmp $l4;
+if $b5 == 0 goto $d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$b6 = d0 cmpl $d2;
+if $b6 == 0 goto $d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = new java.lang.StringBuilder;
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l1);
+specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+$r16 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$l8 = <compiler.c1.TestUnalignedLoad: long l2v>;
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r18);
+z0 = 1;
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$b6 = d0 cmpl $d2;
+if $b6 == 0 goto $d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$b6 = d0 cmpl $d2;
+if $b6 == 0 goto $d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d0);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r9);
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d5 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d5);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+z0 = 1;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$d2 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$b6 = d0 cmpl $d2;
+if $b6 == 0 goto $d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$b7 = d1 cmpl $d3;
+if $b7 == 0 goto (branch);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d0);
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r9);
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d5 = <compiler.c1.TestUnalignedLoad: double d1v>;
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d5);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+z0 = 1;
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$b7 = d1 cmpl $d3;
+if $b7 == 0 goto (branch);
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$b7 = d1 cmpl $d3;
+if $b7 == 0 goto (branch);
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+$r1 = new java.lang.StringBuilder;
+$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d1);
+specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d4 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+z0 = 1;
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$d3 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$b7 = d1 cmpl $d3;
+if $b7 == 0 goto (branch);
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+if z0 == 0 goto return;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+$r1 = new java.lang.StringBuilder;
+$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d1);
+specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$d4 = <compiler.c1.TestUnalignedLoad: double d2v>;
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+z0 = 1;
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+if z0 == 0 goto return;
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+if z0 == 0 goto return;
+"->"Block 12:
+[preds: 11 ] [succs: ]
+$r0 = new java.lang.InternalError;
+specialinvoke $r0.<java.lang.InternalError: void <init>()>();
+throw $r0;
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+if z0 == 0 goto return;
+"->"Block 13:
+[preds: 11 ] [succs: ]
+return;
+";
+}

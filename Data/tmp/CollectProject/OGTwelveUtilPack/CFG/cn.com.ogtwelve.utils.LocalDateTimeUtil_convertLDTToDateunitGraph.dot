@@ -1,0 +1,13 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.time.LocalDateTime"
+    "$r1 = staticinvoke <java.time.ZoneId: java.time.ZoneId systemDefault()>()"
+    "$r2 = virtualinvoke r0.<java.time.LocalDateTime: java.time.ZonedDateTime atZone(java.time.ZoneId)>($r1)"
+    "$r3 = virtualinvoke $r2.<java.time.ZonedDateTime: java.time.Instant toInstant()>()"
+    "$r4 = staticinvoke <java.util.Date: java.util.Date 'from'(java.time.Instant)>($r3)"
+    "return $r4"
+    "r0 := @parameter0: java.time.LocalDateTime"->"$r1 = staticinvoke <java.time.ZoneId: java.time.ZoneId systemDefault()>()";
+    "$r1 = staticinvoke <java.time.ZoneId: java.time.ZoneId systemDefault()>()"->"$r2 = virtualinvoke r0.<java.time.LocalDateTime: java.time.ZonedDateTime atZone(java.time.ZoneId)>($r1)";
+    "$r2 = virtualinvoke r0.<java.time.LocalDateTime: java.time.ZonedDateTime atZone(java.time.ZoneId)>($r1)"->"$r3 = virtualinvoke $r2.<java.time.ZonedDateTime: java.time.Instant toInstant()>()";
+    "$r3 = virtualinvoke $r2.<java.time.ZonedDateTime: java.time.Instant toInstant()>()"->"$r4 = staticinvoke <java.util.Date: java.util.Date 'from'(java.time.Instant)>($r3)";
+    "$r4 = staticinvoke <java.util.Date: java.util.Date 'from'(java.time.Instant)>($r3)"->"return $r4";
+}

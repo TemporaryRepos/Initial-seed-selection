@@ -1,0 +1,17 @@
+digraph "unitGraph" {
+    "$i0 = <compiler.regalloc.TestVectorRegAlloc: int test_helper_i>"
+    "$i1 = $i0 + 1"
+    "<compiler.regalloc.TestVectorRegAlloc: int test_helper_i> = $i1"
+    "$i2 = <compiler.regalloc.TestVectorRegAlloc: int test_helper_i>"
+    "$i3 = $i2 & 7"
+    "if $i3 == 0 goto return 0"
+    "return 1"
+    "return 0"
+    "$i0 = <compiler.regalloc.TestVectorRegAlloc: int test_helper_i>"->"$i1 = $i0 + 1";
+    "$i1 = $i0 + 1"->"<compiler.regalloc.TestVectorRegAlloc: int test_helper_i> = $i1";
+    "<compiler.regalloc.TestVectorRegAlloc: int test_helper_i> = $i1"->"$i2 = <compiler.regalloc.TestVectorRegAlloc: int test_helper_i>";
+    "$i2 = <compiler.regalloc.TestVectorRegAlloc: int test_helper_i>"->"$i3 = $i2 & 7";
+    "$i3 = $i2 & 7"->"if $i3 == 0 goto return 0";
+    "if $i3 == 0 goto return 0"->"return 1";
+    "if $i3 == 0 goto return 0"->"return 0";
+}

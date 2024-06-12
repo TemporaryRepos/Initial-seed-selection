@@ -1,0 +1,549 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @parameter0: java.lang.String;
+r1 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"  \");
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+r30 = $r2;
+i7 = 0;
+"
+    "Block 1:
+[preds: 0 21 ] [succs: 2 22 ]
+$i0 = lengthof r1;
+if i7 >= $i0 goto return r30;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r3 = r1[i7];
+r31 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+r32 = r31[0];
+$i1 = virtualinvoke r32.<java.lang.String: int length()>();
+if $i1 != 1 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$i3 = lengthof r31;
+if $i3 != 2 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r22 = r31[1];
+$z2 = virtualinvoke $r22.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z2 == 0 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$i4 = lengthof r1;
+$i5 = $i4 - 1;
+if i7 == $i5 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+i7 = i7 + 1;
+$r23 = r1[i7];
+r33 = virtualinvoke $r23.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$i6 = lengthof r33;
+if $i6 != 2 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r24 = r33[1];
+$z3 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z3 == 0 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r26 = r33[0];
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+goto [?= virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")];
+"
+    "Block 9:
+[preds: 6 7 ] [succs: 10 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+"
+    "Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+r34 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"[\", \"\");
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34);
+$r13 = r1[i7];
+$z0 = virtualinvoke $r13.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z0 == 0 goto i7 = i7 + 1;
+"
+    "Block 13:
+[preds: 12 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+i7 = i7 + 1;
+r35 = r1[i7];
+"
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z1 != 0 goto $r14 = new java.lang.StringBuilder;
+"
+    "Block 16:
+[preds: 15 ] [succs: 15 ]
+$r20 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r21 = $r20[0];
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+i7 = i7 + 1;
+r35 = r1[i7];
+goto [?= $z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\")];
+"
+    "Block 17:
+[preds: 15 ] [succs: 21 ]
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r16 = $r15[0];
+$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nt\t\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+goto [?= i7 = i7 + 1];
+"
+    "Block 18:
+[preds: 11 ] [succs: 19 20 ]
+$i2 = lengthof r31;
+if $i2 != 1 goto $r4 = new java.lang.StringBuilder;
+"
+    "Block 19:
+[preds: 18 ] [succs: 21 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+$r11 = r1[i7];
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r11);
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"[\");
+goto [?= i7 = i7 + 1];
+"
+    "Block 20:
+[preds: 18 ] [succs: 21 ]
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r7 = r31[1];
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+"
+    "Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+"
+    "Block 22:
+[preds: 1 ] [succs: ]
+return r30;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @parameter0: java.lang.String;
+r1 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"  \");
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+r30 = $r2;
+i7 = 0;
+"->"Block 1:
+[preds: 0 21 ] [succs: 2 22 ]
+$i0 = lengthof r1;
+if i7 >= $i0 goto return r30;
+";
+    "Block 1:
+[preds: 0 21 ] [succs: 2 22 ]
+$i0 = lengthof r1;
+if i7 >= $i0 goto return r30;
+"->"Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r3 = r1[i7];
+r31 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+r32 = r31[0];
+$i1 = virtualinvoke r32.<java.lang.String: int length()>();
+if $i1 != 1 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+";
+    "Block 1:
+[preds: 0 21 ] [succs: 2 22 ]
+$i0 = lengthof r1;
+if i7 >= $i0 goto return r30;
+"->"Block 22:
+[preds: 1 ] [succs: ]
+return r30;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r3 = r1[i7];
+r31 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+r32 = r31[0];
+$i1 = virtualinvoke r32.<java.lang.String: int length()>();
+if $i1 != 1 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$i3 = lengthof r31;
+if $i3 != 2 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r3 = r1[i7];
+r31 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+r32 = r31[0];
+$i1 = virtualinvoke r32.<java.lang.String: int length()>();
+if $i1 != 1 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$i3 = lengthof r31;
+if $i3 != 2 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r22 = r31[1];
+$z2 = virtualinvoke $r22.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z2 == 0 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$i3 = lengthof r31;
+if $i3 != 2 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r22 = r31[1];
+$z2 = virtualinvoke $r22.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z2 == 0 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$i4 = lengthof r1;
+$i5 = $i4 - 1;
+if i7 == $i5 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r22 = r31[1];
+$z2 = virtualinvoke $r22.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z2 == 0 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$i4 = lengthof r1;
+$i5 = $i4 - 1;
+if i7 == $i5 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 6:
+[preds: 5 ] [succs: 7 9 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+i7 = i7 + 1;
+$r23 = r1[i7];
+r33 = virtualinvoke $r23.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$i6 = lengthof r33;
+if $i6 != 2 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$i4 = lengthof r1;
+$i5 = $i4 - 1;
+if i7 == $i5 goto $z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+"->"Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+i7 = i7 + 1;
+$r23 = r1[i7];
+r33 = virtualinvoke $r23.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$i6 = lengthof r33;
+if $i6 != 2 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r24 = r33[1];
+$z3 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z3 == 0 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+i7 = i7 + 1;
+$r23 = r1[i7];
+r33 = virtualinvoke $r23.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$i6 = lengthof r33;
+if $i6 != 2 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"->"Block 9:
+[preds: 6 7 ] [succs: 10 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r24 = r33[1];
+$z3 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z3 == 0 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"->"Block 8:
+[preds: 7 ] [succs: 10 ]
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r26 = r33[0];
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+goto [?= virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")];
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$r24 = r33[1];
+$z3 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(\"nr\");
+if $z3 == 0 goto virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"->"Block 9:
+[preds: 6 7 ] [succs: 10 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+";
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r26 = r33[0];
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+goto [?= virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")];
+"->"Block 10:
+[preds: 8 9 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+";
+    "Block 9:
+[preds: 6 7 ] [succs: 10 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nr\");
+"->"Block 10:
+[preds: 8 9 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+"->"Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+";
+    "Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 ]
+r34 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"[\", \"\");
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34);
+$r13 = r1[i7];
+$z0 = virtualinvoke $r13.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z0 == 0 goto i7 = i7 + 1;
+";
+    "Block 11:
+[preds: 2 3 4 5 ] [succs: 12 18 ]
+$z4 = virtualinvoke r32.<java.lang.String: boolean startsWith(java.lang.String)>(\"[\");
+if $z4 == 0 goto $i2 = lengthof r31;
+"->"Block 18:
+[preds: 11 ] [succs: 19 20 ]
+$i2 = lengthof r31;
+if $i2 != 1 goto $r4 = new java.lang.StringBuilder;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+r34 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"[\", \"\");
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34);
+$r13 = r1[i7];
+$z0 = virtualinvoke $r13.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z0 == 0 goto i7 = i7 + 1;
+"->"Block 13:
+[preds: 12 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+r34 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"[\", \"\");
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34);
+$r13 = r1[i7];
+$z0 = virtualinvoke $r13.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z0 == 0 goto i7 = i7 + 1;
+"->"Block 14:
+[preds: 12 ] [succs: 15 ]
+i7 = i7 + 1;
+r35 = r1[i7];
+";
+    "Block 13:
+[preds: 12 ] [succs: 21 ]
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+goto [?= i7 = i7 + 1];
+"->"Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+i7 = i7 + 1;
+r35 = r1[i7];
+"->"Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z1 != 0 goto $r14 = new java.lang.StringBuilder;
+";
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z1 != 0 goto $r14 = new java.lang.StringBuilder;
+"->"Block 16:
+[preds: 15 ] [succs: 15 ]
+$r20 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r21 = $r20[0];
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+i7 = i7 + 1;
+r35 = r1[i7];
+goto [?= $z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\")];
+";
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z1 != 0 goto $r14 = new java.lang.StringBuilder;
+"->"Block 17:
+[preds: 15 ] [succs: 21 ]
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r16 = $r15[0];
+$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nt\t\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+goto [?= i7 = i7 + 1];
+";
+    "Block 16:
+[preds: 15 ] [succs: 15 ]
+$r20 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r21 = $r20[0];
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+i7 = i7 + 1;
+r35 = r1[i7];
+goto [?= $z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\")];
+"->"Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z1 = virtualinvoke r35.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"]\");
+if $z1 != 0 goto $r14 = new java.lang.StringBuilder;
+";
+    "Block 17:
+[preds: 15 ] [succs: 21 ]
+$r14 = new java.lang.StringBuilder;
+specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+$r15 = virtualinvoke r35.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\/\");
+$r16 = $r15[0];
+$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/nt\t\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+goto [?= i7 = i7 + 1];
+"->"Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+";
+    "Block 18:
+[preds: 11 ] [succs: 19 20 ]
+$i2 = lengthof r31;
+if $i2 != 1 goto $r4 = new java.lang.StringBuilder;
+"->"Block 19:
+[preds: 18 ] [succs: 21 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+$r11 = r1[i7];
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r11);
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"[\");
+goto [?= i7 = i7 + 1];
+";
+    "Block 18:
+[preds: 11 ] [succs: 19 20 ]
+$i2 = lengthof r31;
+if $i2 != 1 goto $r4 = new java.lang.StringBuilder;
+"->"Block 20:
+[preds: 18 ] [succs: 21 ]
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r7 = r31[1];
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+";
+    "Block 19:
+[preds: 18 ] [succs: 21 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+$r11 = r1[i7];
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r11);
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"[\");
+goto [?= i7 = i7 + 1];
+"->"Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+";
+    "Block 20:
+[preds: 18 ] [succs: 21 ]
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r7 = r31[1];
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+"->"Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+";
+    "Block 21:
+[preds: 10 13 17 19 20 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = lengthof r1];
+"->"Block 1:
+[preds: 0 21 ] [succs: 2 22 ]
+$i0 = lengthof r1;
+if i7 >= $i0 goto return r30;
+";
+}

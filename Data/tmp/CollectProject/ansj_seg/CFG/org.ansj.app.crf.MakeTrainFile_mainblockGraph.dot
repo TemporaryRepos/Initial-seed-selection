@@ -1,0 +1,2913 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r34 = \"corpus.txt\";
+r35 = \"train.txt\";
+if r0 == null goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i2 = lengthof r0;
+if $i2 != 2 goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r34 = r0[0];
+r35 = r0[1];
+"
+    "Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r1.<org.nlpcn.commons.lang.util.logging.Log: void info(java.lang.String)>(\"org.ansj.app.crf.MakeTrainFile [inputPath] [outputPath]\");
+return;
+"
+    "Block 6:
+[preds: 4 ] [succs: 102 103 7 ]
+r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"
+    "Block 8:
+[preds: 7 ] [succs: 85 89 9 ]
+$r2 = new java.io.FileOutputStream;
+"
+    "Block 9:
+[preds: 8 ] [succs: 85 89 10 ]
+specialinvoke $r2.<java.io.FileOutputStream: void <init>(java.lang.String)>(r35);
+"
+    "Block 10:
+[preds: 9 ] [succs: 85 89 11 ]
+r38 = $r2;
+"
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"
+    "Block 12:
+[preds: 11 ] [succs: 59 63 13 ]
+i3 = 0;
+"
+    "Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 14:
+[preds: 13 ] [succs: 59 63 15 ]
+r41 = $r40;
+"
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"
+    "Block 16:
+[preds: 15 ] [succs: 59 63 17 ]
+$r3 = new java.lang.StringBuilder;
+"
+    "Block 17:
+[preds: 16 ] [succs: 59 63 18 ]
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"\n\");
+"
+    "Block 18:
+[preds: 17 ] [succs: 59 63 19 ]
+r4 = $r3;
+"
+    "Block 19:
+[preds: 18 ] [succs: 59 63 20 ]
+$z1 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r41);
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+"
+    "Block 21:
+[preds: 20 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"
+    "Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"
+    "Block 23:
+[preds: 22 ] [succs: 59 63 24 ]
+r41 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: java.lang.String trim(java.lang.String)>(r41);
+"
+    "Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"
+    "Block 25:
+[preds: 24 ] [succs: 59 63 26 ]
+r6 = interfaceinvoke r5.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 28:
+[preds: 27 ] [succs: 59 63 29 ]
+$r10 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>();
+"
+    "Block 29:
+[preds: 28 ] [succs: 59 63 30 ]
+r11 = (org.ansj.app.crf.pojo.Element) $r10;
+"
+    "Block 30:
+[preds: 29 ] [succs: 59 63 31 ]
+$r12 = new java.lang.StringBuilder;
+"
+    "Block 31:
+[preds: 30 ] [succs: 59 63 32 ]
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 32:
+[preds: 31 ] [succs: 59 63 33 ]
+$r13 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: java.lang.String nameStr()>();
+"
+    "Block 33:
+[preds: 32 ] [succs: 59 63 34 ]
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+"
+    "Block 34:
+[preds: 33 ] [succs: 59 63 35 ]
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"
+    "Block 35:
+[preds: 34 ] [succs: 59 63 36 ]
+$i0 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: int getTag()>();
+"
+    "Block 36:
+[preds: 35 ] [succs: 59 63 37 ]
+$c1 = staticinvoke <org.ansj.app.crf.Config: char getTagName(int)>($i0);
+"
+    "Block 37:
+[preds: 36 ] [succs: 59 63 38 ]
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c1);
+"
+    "Block 38:
+[preds: 37 ] [succs: 59 63 39 ]
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 39:
+[preds: 38 ] [succs: 59 63 40 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+"
+    "Block 40:
+[preds: 39 ] [succs: 59 63 41 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\");
+"
+    "Block 41:
+[preds: 40 ] [succs: 59 63 26 ]
+goto [?= $z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 42:
+[preds: 27 ] [succs: 59 63 43 ]
+$r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 43:
+[preds: 42 ] [succs: 59 63 44 ]
+$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"utf-8\");
+"
+    "Block 44:
+[preds: 43 ] [succs: 59 63 45 ]
+virtualinvoke r38.<java.io.FileOutputStream: void write(byte[])>($r8);
+"
+    "Block 45:
+[preds: 44 ] [succs: 59 63 46 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 46:
+[preds: 45 ] [succs: 59 63 47 ]
+i3 = i3 + 1;
+"
+    "Block 47:
+[preds: 46 ] [succs: 59 63 48 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(int)>(i3);
+"
+    "Block 48:
+[preds: 47 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"
+    "Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+"
+    "Block 54:
+[preds: 53 ] [succs: 85 89 55 ]
+r42 = $r33;
+"
+    "Block 55:
+[preds: 54 ] [succs: 85 89 56 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42);
+"
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"
+    "Block 57:
+[preds: 50 ] [succs: 85 89 58 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"
+    "Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+"
+    "Block 60:
+[preds: 59 ] [succs: 61 63 ]
+r43 = $r32;
+"
+    "Block 61:
+[preds: 60 ] [succs: 62 63 ]
+r39 = r43;
+"
+    "Block 62:
+[preds: 61 ] [succs: 63 ]
+throw r43;
+"
+    "Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+"
+    "Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+"
+    "Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+"
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 68:
+[preds: 67 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"
+    "Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+"
+    "Block 70:
+[preds: 69 ] [succs: 85 89 71 ]
+r29 = $r28;
+"
+    "Block 71:
+[preds: 70 ] [succs: 85 89 72 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r29);
+"
+    "Block 72:
+[preds: 71 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"
+    "Block 73:
+[preds: 66 ] [succs: 85 89 74 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"
+    "Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+"
+    "Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+"
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 78:
+[preds: 77 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"
+    "Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+"
+    "Block 80:
+[preds: 79 ] [succs: 102 103 81 ]
+r44 = $r27;
+"
+    "Block 81:
+[preds: 80 ] [succs: 102 103 82 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44);
+"
+    "Block 82:
+[preds: 81 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"
+    "Block 83:
+[preds: 76 ] [succs: 102 103 84 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 84:
+[preds: 83 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"
+    "Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+"
+    "Block 86:
+[preds: 85 ] [succs: 87 89 ]
+r45 = $r26;
+"
+    "Block 87:
+[preds: 86 ] [succs: 88 89 ]
+r37 = r45;
+"
+    "Block 88:
+[preds: 87 ] [succs: 89 ]
+throw r45;
+"
+    "Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+"
+    "Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+"
+    "Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+"
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 94:
+[preds: 93 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"
+    "Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+"
+    "Block 96:
+[preds: 95 ] [succs: 102 103 97 ]
+r23 = $r22;
+"
+    "Block 97:
+[preds: 96 ] [succs: 102 103 98 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r23);
+"
+    "Block 98:
+[preds: 97 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"
+    "Block 99:
+[preds: 92 ] [succs: 102 103 100 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"
+    "Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+"
+    "Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+"
+    "Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+"
+    "Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+"
+    "Block 104:
+[preds: 101 102 103 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r34 = \"corpus.txt\";
+r35 = \"train.txt\";
+if r0 == null goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i2 = lengthof r0;
+if $i2 != 2 goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+";
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @parameter0: java.lang.String[];
+r34 = \"corpus.txt\";
+r35 = \"train.txt\";
+if r0 == null goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"->"Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i2 = lengthof r0;
+if $i2 != 2 goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+r34 = r0[0];
+r35 = r0[1];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$i2 = lengthof r0;
+if $i2 != 2 goto $z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+"->"Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r34 = r0[0];
+r35 = r0[1];
+"->"Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+";
+    "Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+";
+    "Block 3:
+[preds: 0 1 2 ] [succs: 4 5 ]
+$z2 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r34);
+if $z2 != 0 goto $r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r1.<org.nlpcn.commons.lang.util.logging.Log: void info(java.lang.String)>(\"org.ansj.app.crf.MakeTrainFile [inputPath] [outputPath]\");
+return;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r1 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r1.<org.nlpcn.commons.lang.util.logging.Log: void info(java.lang.String)>(\"org.ansj.app.crf.MakeTrainFile [inputPath] [outputPath]\");
+return;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 6:
+[preds: 4 ] [succs: 102 103 7 ]
+r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 102 103 ]
+$z0 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r35);
+if $z0 == 0 goto r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 6:
+[preds: 4 ] [succs: 102 103 7 ]
+r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 6:
+[preds: 4 ] [succs: 102 103 7 ]
+r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 6:
+[preds: 4 ] [succs: 102 103 7 ]
+r36 = staticinvoke <org.nlpcn.commons.lang.util.IOUtil: java.io.BufferedReader getReader(java.lang.String,java.lang.String)>(r34, \"utf-8\");
+"->"Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+";
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 85 102 103 89 8 ]
+r37 = null;
+"->"Block 8:
+[preds: 7 ] [succs: 85 89 9 ]
+$r2 = new java.io.FileOutputStream;
+";
+    "Block 8:
+[preds: 7 ] [succs: 85 89 9 ]
+$r2 = new java.io.FileOutputStream;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 85 89 9 ]
+$r2 = new java.io.FileOutputStream;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 85 89 9 ]
+$r2 = new java.io.FileOutputStream;
+"->"Block 9:
+[preds: 8 ] [succs: 85 89 10 ]
+specialinvoke $r2.<java.io.FileOutputStream: void <init>(java.lang.String)>(r35);
+";
+    "Block 9:
+[preds: 8 ] [succs: 85 89 10 ]
+specialinvoke $r2.<java.io.FileOutputStream: void <init>(java.lang.String)>(r35);
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 85 89 10 ]
+specialinvoke $r2.<java.io.FileOutputStream: void <init>(java.lang.String)>(r35);
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 85 89 10 ]
+specialinvoke $r2.<java.io.FileOutputStream: void <init>(java.lang.String)>(r35);
+"->"Block 10:
+[preds: 9 ] [succs: 85 89 11 ]
+r38 = $r2;
+";
+    "Block 10:
+[preds: 9 ] [succs: 85 89 11 ]
+r38 = $r2;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 85 89 11 ]
+r38 = $r2;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 85 89 11 ]
+r38 = $r2;
+"->"Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+";
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 59 85 63 89 12 ]
+r39 = null;
+"->"Block 12:
+[preds: 11 ] [succs: 59 63 13 ]
+i3 = 0;
+";
+    "Block 12:
+[preds: 11 ] [succs: 59 63 13 ]
+i3 = 0;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 59 63 13 ]
+i3 = 0;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 59 63 13 ]
+i3 = 0;
+"->"Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 14:
+[preds: 13 ] [succs: 59 63 15 ]
+r41 = $r40;
+";
+    "Block 14:
+[preds: 13 ] [succs: 59 63 15 ]
+r41 = $r40;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 59 63 15 ]
+r41 = $r40;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 59 63 15 ]
+r41 = $r40;
+"->"Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 16:
+[preds: 15 ] [succs: 59 63 17 ]
+$r3 = new java.lang.StringBuilder;
+";
+    "Block 15:
+[preds: 14 ] [succs: 59 85 63 89 16 49 ]
+if $r40 == null goto (branch);
+"->"Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+";
+    "Block 16:
+[preds: 15 ] [succs: 59 63 17 ]
+$r3 = new java.lang.StringBuilder;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 59 63 17 ]
+$r3 = new java.lang.StringBuilder;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 59 63 17 ]
+$r3 = new java.lang.StringBuilder;
+"->"Block 17:
+[preds: 16 ] [succs: 59 63 18 ]
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"\n\");
+";
+    "Block 17:
+[preds: 16 ] [succs: 59 63 18 ]
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"\n\");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 59 63 18 ]
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"\n\");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 59 63 18 ]
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"\n\");
+"->"Block 18:
+[preds: 17 ] [succs: 59 63 19 ]
+r4 = $r3;
+";
+    "Block 18:
+[preds: 17 ] [succs: 59 63 19 ]
+r4 = $r3;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 59 63 19 ]
+r4 = $r3;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 59 63 19 ]
+r4 = $r3;
+"->"Block 19:
+[preds: 18 ] [succs: 59 63 20 ]
+$z1 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r41);
+";
+    "Block 19:
+[preds: 18 ] [succs: 59 63 20 ]
+$z1 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r41);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 59 63 20 ]
+$z1 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r41);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 59 63 20 ]
+$z1 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: boolean isBlank(java.lang.CharSequence)>(r41);
+"->"Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+"->"Block 21:
+[preds: 20 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+"->"Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 59 63 ]
+if $z1 == 0 goto (branch);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 23:
+[preds: 22 ] [succs: 59 63 24 ]
+r41 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: java.lang.String trim(java.lang.String)>(r41);
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 22:
+[preds: 20 ] [succs: 23 24 59 63 ]
+if i3 != 0 goto r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 59 63 24 ]
+r41 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: java.lang.String trim(java.lang.String)>(r41);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 59 63 24 ]
+r41 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: java.lang.String trim(java.lang.String)>(r41);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 59 63 24 ]
+r41 = staticinvoke <org.nlpcn.commons.lang.util.StringUtil: java.lang.String trim(java.lang.String)>(r41);
+"->"Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+";
+    "Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 24:
+[preds: 22 23 ] [succs: 59 63 25 ]
+r5 = staticinvoke <org.ansj.app.crf.Config: java.util.List makeToElementList(java.lang.String,java.lang.String)>(r41, \"\\s+\");
+"->"Block 25:
+[preds: 24 ] [succs: 59 63 26 ]
+r6 = interfaceinvoke r5.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 25:
+[preds: 24 ] [succs: 59 63 26 ]
+r6 = interfaceinvoke r5.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 59 63 26 ]
+r6 = interfaceinvoke r5.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 59 63 26 ]
+r6 = interfaceinvoke r5.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+"->"Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 28:
+[preds: 27 ] [succs: 59 63 29 ]
+$r10 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 42:
+[preds: 27 ] [succs: 59 63 43 ]
+$r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 42 59 63 ]
+if $z3 == 0 goto $r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 59 63 29 ]
+$r10 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 59 63 29 ]
+$r10 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 59 63 29 ]
+$r10 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 29:
+[preds: 28 ] [succs: 59 63 30 ]
+r11 = (org.ansj.app.crf.pojo.Element) $r10;
+";
+    "Block 29:
+[preds: 28 ] [succs: 59 63 30 ]
+r11 = (org.ansj.app.crf.pojo.Element) $r10;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 59 63 30 ]
+r11 = (org.ansj.app.crf.pojo.Element) $r10;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 59 63 30 ]
+r11 = (org.ansj.app.crf.pojo.Element) $r10;
+"->"Block 30:
+[preds: 29 ] [succs: 59 63 31 ]
+$r12 = new java.lang.StringBuilder;
+";
+    "Block 30:
+[preds: 29 ] [succs: 59 63 31 ]
+$r12 = new java.lang.StringBuilder;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 59 63 31 ]
+$r12 = new java.lang.StringBuilder;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 59 63 31 ]
+$r12 = new java.lang.StringBuilder;
+"->"Block 31:
+[preds: 30 ] [succs: 59 63 32 ]
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 31:
+[preds: 30 ] [succs: 59 63 32 ]
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 59 63 32 ]
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 59 63 32 ]
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+"->"Block 32:
+[preds: 31 ] [succs: 59 63 33 ]
+$r13 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: java.lang.String nameStr()>();
+";
+    "Block 32:
+[preds: 31 ] [succs: 59 63 33 ]
+$r13 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: java.lang.String nameStr()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 59 63 33 ]
+$r13 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: java.lang.String nameStr()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 59 63 33 ]
+$r13 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: java.lang.String nameStr()>();
+"->"Block 33:
+[preds: 32 ] [succs: 59 63 34 ]
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+";
+    "Block 33:
+[preds: 32 ] [succs: 59 63 34 ]
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 59 63 34 ]
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 59 63 34 ]
+$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+"->"Block 34:
+[preds: 33 ] [succs: 59 63 35 ]
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+";
+    "Block 34:
+[preds: 33 ] [succs: 59 63 35 ]
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 59 63 35 ]
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 59 63 35 ]
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"->"Block 35:
+[preds: 34 ] [succs: 59 63 36 ]
+$i0 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: int getTag()>();
+";
+    "Block 35:
+[preds: 34 ] [succs: 59 63 36 ]
+$i0 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: int getTag()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 59 63 36 ]
+$i0 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: int getTag()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 59 63 36 ]
+$i0 = virtualinvoke r11.<org.ansj.app.crf.pojo.Element: int getTag()>();
+"->"Block 36:
+[preds: 35 ] [succs: 59 63 37 ]
+$c1 = staticinvoke <org.ansj.app.crf.Config: char getTagName(int)>($i0);
+";
+    "Block 36:
+[preds: 35 ] [succs: 59 63 37 ]
+$c1 = staticinvoke <org.ansj.app.crf.Config: char getTagName(int)>($i0);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 59 63 37 ]
+$c1 = staticinvoke <org.ansj.app.crf.Config: char getTagName(int)>($i0);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 59 63 37 ]
+$c1 = staticinvoke <org.ansj.app.crf.Config: char getTagName(int)>($i0);
+"->"Block 37:
+[preds: 36 ] [succs: 59 63 38 ]
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c1);
+";
+    "Block 37:
+[preds: 36 ] [succs: 59 63 38 ]
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c1);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 59 63 38 ]
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c1);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 59 63 38 ]
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c1);
+"->"Block 38:
+[preds: 37 ] [succs: 59 63 39 ]
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 38:
+[preds: 37 ] [succs: 59 63 39 ]
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 38:
+[preds: 37 ] [succs: 59 63 39 ]
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 38:
+[preds: 37 ] [succs: 59 63 39 ]
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 39:
+[preds: 38 ] [succs: 59 63 40 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+";
+    "Block 39:
+[preds: 38 ] [succs: 59 63 40 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 39:
+[preds: 38 ] [succs: 59 63 40 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 39:
+[preds: 38 ] [succs: 59 63 40 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+"->"Block 40:
+[preds: 39 ] [succs: 59 63 41 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\");
+";
+    "Block 40:
+[preds: 39 ] [succs: 59 63 41 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 40:
+[preds: 39 ] [succs: 59 63 41 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 40:
+[preds: 39 ] [succs: 59 63 41 ]
+virtualinvoke r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\");
+"->"Block 41:
+[preds: 40 ] [succs: 59 63 26 ]
+goto [?= $z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 41:
+[preds: 40 ] [succs: 59 63 26 ]
+goto [?= $z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 41:
+[preds: 40 ] [succs: 59 63 26 ]
+goto [?= $z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 41:
+[preds: 40 ] [succs: 59 63 26 ]
+goto [?= $z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 26:
+[preds: 25 41 ] [succs: 59 63 27 ]
+$z3 = interfaceinvoke r6.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 42:
+[preds: 27 ] [succs: 59 63 43 ]
+$r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 42:
+[preds: 27 ] [succs: 59 63 43 ]
+$r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 42:
+[preds: 27 ] [succs: 59 63 43 ]
+$r7 = virtualinvoke r4.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 43:
+[preds: 42 ] [succs: 59 63 44 ]
+$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"utf-8\");
+";
+    "Block 43:
+[preds: 42 ] [succs: 59 63 44 ]
+$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"utf-8\");
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 59 63 44 ]
+$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"utf-8\");
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 59 63 44 ]
+$r8 = virtualinvoke $r7.<java.lang.String: byte[] getBytes(java.lang.String)>(\"utf-8\");
+"->"Block 44:
+[preds: 43 ] [succs: 59 63 45 ]
+virtualinvoke r38.<java.io.FileOutputStream: void write(byte[])>($r8);
+";
+    "Block 44:
+[preds: 43 ] [succs: 59 63 45 ]
+virtualinvoke r38.<java.io.FileOutputStream: void write(byte[])>($r8);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 44:
+[preds: 43 ] [succs: 59 63 45 ]
+virtualinvoke r38.<java.io.FileOutputStream: void write(byte[])>($r8);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 44:
+[preds: 43 ] [succs: 59 63 45 ]
+virtualinvoke r38.<java.io.FileOutputStream: void write(byte[])>($r8);
+"->"Block 45:
+[preds: 44 ] [succs: 59 63 46 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 45:
+[preds: 44 ] [succs: 59 63 46 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 59 63 46 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 59 63 46 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 46:
+[preds: 45 ] [succs: 59 63 47 ]
+i3 = i3 + 1;
+";
+    "Block 46:
+[preds: 45 ] [succs: 59 63 47 ]
+i3 = i3 + 1;
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 59 63 47 ]
+i3 = i3 + 1;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 59 63 47 ]
+i3 = i3 + 1;
+"->"Block 47:
+[preds: 46 ] [succs: 59 63 48 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(int)>(i3);
+";
+    "Block 47:
+[preds: 46 ] [succs: 59 63 48 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 59 63 48 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 59 63 48 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 48:
+[preds: 47 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 48:
+[preds: 47 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+";
+    "Block 48:
+[preds: 47 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 48:
+[preds: 47 ] [succs: 59 63 13 ]
+goto [?= $r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 13:
+[preds: 12 21 48 ] [succs: 59 63 14 ]
+$r40 = virtualinvoke r36.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 49:
+[preds: 15 ] [succs: 85 102 103 89 50 75 ]
+if r38 == null goto (branch);
+"->"Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+";
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 50:
+[preds: 49 ] [succs: 53 85 89 51 57 ]
+if null == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 57:
+[preds: 50 ] [succs: 85 89 58 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 53 85 89 52 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+";
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 52:
+[preds: 51 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+";
+    "Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 53:
+[preds: 50 51 ] [succs: 85 89 54 ]
+$r33 := @caughtexception;
+"->"Block 54:
+[preds: 53 ] [succs: 85 89 55 ]
+r42 = $r33;
+";
+    "Block 54:
+[preds: 53 ] [succs: 85 89 55 ]
+r42 = $r33;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 54:
+[preds: 53 ] [succs: 85 89 55 ]
+r42 = $r33;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 54:
+[preds: 53 ] [succs: 85 89 55 ]
+r42 = $r33;
+"->"Block 55:
+[preds: 54 ] [succs: 85 89 56 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42);
+";
+    "Block 55:
+[preds: 54 ] [succs: 85 89 56 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42);
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 55:
+[preds: 54 ] [succs: 85 89 56 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42);
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 55:
+[preds: 54 ] [succs: 85 89 56 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42);
+"->"Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+";
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 56:
+[preds: 55 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+";
+    "Block 57:
+[preds: 50 ] [succs: 85 89 58 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 57:
+[preds: 50 ] [succs: 85 89 58 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 57:
+[preds: 50 ] [succs: 85 89 58 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+";
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 58:
+[preds: 57 ] [succs: 85 102 103 89 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+";
+    "Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+"->"Block 60:
+[preds: 59 ] [succs: 61 63 ]
+r43 = $r32;
+";
+    "Block 59:
+[preds: 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 60 63 ]
+$r32 := @caughtexception;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 63 ]
+r43 = $r32;
+"->"Block 61:
+[preds: 60 ] [succs: 62 63 ]
+r39 = r43;
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 63 ]
+r43 = $r32;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 63 ]
+r39 = r43;
+"->"Block 62:
+[preds: 61 ] [succs: 63 ]
+throw r43;
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 63 ]
+r39 = r43;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 62:
+[preds: 61 ] [succs: 63 ]
+throw r43;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+"->"Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+";
+    "Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+"->"Block 63:
+[preds: 59 60 61 62 63 64 11 12 21 48 13 14 15 16 17 18 19 20 22 23 24 25 41 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 42 43 44 45 46 47 ] [succs: 64 63 ]
+$r31 := @caughtexception;
+";
+    "Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 64:
+[preds: 63 ] [succs: 63 85 89 65 ]
+r30 = $r31;
+"->"Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+"->"Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+"->"Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 85 89 ]
+if r38 == null goto throw r30;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+";
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 66:
+[preds: 65 ] [succs: 69 85 89 67 73 ]
+if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 73:
+[preds: 66 ] [succs: 85 89 74 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+";
+    "Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+";
+    "Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 67:
+[preds: 66 ] [succs: 69 85 89 68 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 68:
+[preds: 67 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+";
+    "Block 68:
+[preds: 67 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 68:
+[preds: 67 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 68:
+[preds: 67 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+";
+    "Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 69:
+[preds: 66 67 ] [succs: 85 89 70 ]
+$r28 := @caughtexception;
+"->"Block 70:
+[preds: 69 ] [succs: 85 89 71 ]
+r29 = $r28;
+";
+    "Block 70:
+[preds: 69 ] [succs: 85 89 71 ]
+r29 = $r28;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 70:
+[preds: 69 ] [succs: 85 89 71 ]
+r29 = $r28;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 70:
+[preds: 69 ] [succs: 85 89 71 ]
+r29 = $r28;
+"->"Block 71:
+[preds: 70 ] [succs: 85 89 72 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r29);
+";
+    "Block 71:
+[preds: 70 ] [succs: 85 89 72 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r29);
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 71:
+[preds: 70 ] [succs: 85 89 72 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r29);
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 71:
+[preds: 70 ] [succs: 85 89 72 ]
+virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r29);
+"->"Block 72:
+[preds: 71 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+";
+    "Block 72:
+[preds: 71 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 72:
+[preds: 71 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 72:
+[preds: 71 ] [succs: 85 89 74 ]
+goto [?= throw r30];
+"->"Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+";
+    "Block 73:
+[preds: 66 ] [succs: 85 89 74 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 73:
+[preds: 66 ] [succs: 85 89 74 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 73:
+[preds: 66 ] [succs: 85 89 74 ]
+virtualinvoke r38.<java.io.FileOutputStream: void close()>();
+"->"Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+";
+    "Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+"->"Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+";
+    "Block 74:
+[preds: 65 68 72 73 ] [succs: 85 89 ]
+throw r30;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+"->"Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+"->"Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+";
+    "Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 75:
+[preds: 49 52 56 58 ] [succs: 76 101 102 103 ]
+if r36 == null goto (branch);
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+";
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 76:
+[preds: 75 ] [succs: 79 102 103 77 83 ]
+if null == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 83:
+[preds: 76 ] [succs: 102 103 84 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+";
+    "Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 77:
+[preds: 76 ] [succs: 79 102 103 78 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 78:
+[preds: 77 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+";
+    "Block 78:
+[preds: 77 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 78:
+[preds: 77 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 78:
+[preds: 77 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+";
+    "Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 79:
+[preds: 76 77 ] [succs: 102 103 80 ]
+$r27 := @caughtexception;
+"->"Block 80:
+[preds: 79 ] [succs: 102 103 81 ]
+r44 = $r27;
+";
+    "Block 80:
+[preds: 79 ] [succs: 102 103 81 ]
+r44 = $r27;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 80:
+[preds: 79 ] [succs: 102 103 81 ]
+r44 = $r27;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 80:
+[preds: 79 ] [succs: 102 103 81 ]
+r44 = $r27;
+"->"Block 81:
+[preds: 80 ] [succs: 102 103 82 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44);
+";
+    "Block 81:
+[preds: 80 ] [succs: 102 103 82 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44);
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 81:
+[preds: 80 ] [succs: 102 103 82 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44);
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 81:
+[preds: 80 ] [succs: 102 103 82 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44);
+"->"Block 82:
+[preds: 81 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+";
+    "Block 82:
+[preds: 81 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 82:
+[preds: 81 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 82:
+[preds: 81 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+";
+    "Block 83:
+[preds: 76 ] [succs: 102 103 84 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 83:
+[preds: 76 ] [succs: 102 103 84 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 83:
+[preds: 76 ] [succs: 102 103 84 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 84:
+[preds: 83 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+";
+    "Block 84:
+[preds: 83 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 84:
+[preds: 83 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 84:
+[preds: 83 ] [succs: 102 103 101 ]
+goto [?= (branch)];
+"->"Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+";
+    "Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+"->"Block 86:
+[preds: 85 ] [succs: 87 89 ]
+r45 = $r26;
+";
+    "Block 85:
+[preds: 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 86 89 ]
+$r26 := @caughtexception;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 86:
+[preds: 85 ] [succs: 87 89 ]
+r45 = $r26;
+"->"Block 87:
+[preds: 86 ] [succs: 88 89 ]
+r37 = r45;
+";
+    "Block 86:
+[preds: 85 ] [succs: 87 89 ]
+r45 = $r26;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 87:
+[preds: 86 ] [succs: 88 89 ]
+r37 = r45;
+"->"Block 88:
+[preds: 87 ] [succs: 89 ]
+throw r45;
+";
+    "Block 87:
+[preds: 86 ] [succs: 88 89 ]
+r37 = r45;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 88:
+[preds: 87 ] [succs: 89 ]
+throw r45;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+"->"Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+";
+    "Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+"->"Block 89:
+[preds: 85 86 87 88 89 90 7 8 9 10 11 15 49 50 51 52 53 54 55 56 57 58 64 65 66 67 68 69 70 71 72 73 74 ] [succs: 90 89 ]
+$r25 := @caughtexception;
+";
+    "Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 90:
+[preds: 89 ] [succs: 89 102 103 91 ]
+r24 = $r25;
+"->"Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+";
+    "Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+"->"Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+"->"Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+";
+    "Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 91:
+[preds: 90 ] [succs: 92 100 102 103 ]
+if r36 == null goto throw r24;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+";
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 92:
+[preds: 91 ] [succs: 95 102 103 93 99 ]
+if r37 == null goto virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 99:
+[preds: 92 ] [succs: 102 103 100 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+";
+    "Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+";
+    "Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 93:
+[preds: 92 ] [succs: 95 102 103 94 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 94:
+[preds: 93 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+";
+    "Block 94:
+[preds: 93 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 94:
+[preds: 93 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 94:
+[preds: 93 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+";
+    "Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 95:
+[preds: 92 93 ] [succs: 102 103 96 ]
+$r22 := @caughtexception;
+"->"Block 96:
+[preds: 95 ] [succs: 102 103 97 ]
+r23 = $r22;
+";
+    "Block 96:
+[preds: 95 ] [succs: 102 103 97 ]
+r23 = $r22;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 96:
+[preds: 95 ] [succs: 102 103 97 ]
+r23 = $r22;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 96:
+[preds: 95 ] [succs: 102 103 97 ]
+r23 = $r22;
+"->"Block 97:
+[preds: 96 ] [succs: 102 103 98 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r23);
+";
+    "Block 97:
+[preds: 96 ] [succs: 102 103 98 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r23);
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 97:
+[preds: 96 ] [succs: 102 103 98 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r23);
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 97:
+[preds: 96 ] [succs: 102 103 98 ]
+virtualinvoke r37.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r23);
+"->"Block 98:
+[preds: 97 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+";
+    "Block 98:
+[preds: 97 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 98:
+[preds: 97 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 98:
+[preds: 97 ] [succs: 102 103 100 ]
+goto [?= throw r24];
+"->"Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+";
+    "Block 99:
+[preds: 92 ] [succs: 102 103 100 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 99:
+[preds: 92 ] [succs: 102 103 100 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 99:
+[preds: 92 ] [succs: 102 103 100 ]
+virtualinvoke r36.<java.io.BufferedReader: void close()>();
+"->"Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+";
+    "Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+"->"Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+";
+    "Block 100:
+[preds: 91 94 98 99 ] [succs: 102 103 ]
+throw r24;
+"->"Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+";
+    "Block 101:
+[preds: 75 78 82 84 ] [succs: 104 ]
+goto [?= return];
+"->"Block 104:
+[preds: 101 102 103 ] [succs: ]
+return;
+";
+    "Block 102:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r20 := @caughtexception;
+r46 = $r20;
+$r21 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r21.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"\u6587\u4ef6\u6ca1\u6709\u627e\u5230\", r46);
+goto [?= return];
+"->"Block 104:
+[preds: 101 102 103 ] [succs: ]
+return;
+";
+    "Block 103:
+[preds: 4 6 7 49 52 56 58 75 76 77 78 79 80 81 82 83 84 90 91 92 93 94 95 96 97 98 99 100 ] [succs: 104 ]
+$r18 := @caughtexception;
+r47 = $r18;
+$r19 = <org.ansj.app.crf.MakeTrainFile: org.nlpcn.commons.lang.util.logging.Log logger>;
+interfaceinvoke $r19.<org.nlpcn.commons.lang.util.logging.Log: void warn(java.lang.String,java.lang.Throwable)>(\"IO\u5f02\u5e38\", r47);
+"->"Block 104:
+[preds: 101 102 103 ] [succs: ]
+return;
+";
+}

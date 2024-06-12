@@ -1,0 +1,84 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: int[];
+r4 := @parameter1: java.lang.Integer;
+r1 = r0;
+i0 = lengthof r0;
+i7 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i7];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r4.<java.lang.Integer: int intValue()>();
+$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>($i3);
+$i4 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+$i5 = $i2 + $i4;
+r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+i7 = i7 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $i1 = r1[i7];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i6 = virtualinvoke r4.<java.lang.Integer: int intValue()>();
+return $i6;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: int[];
+r4 := @parameter1: java.lang.Integer;
+r1 = r0;
+i0 = lengthof r0;
+i7 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $i1 = r1[i7];
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i7];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r4.<java.lang.Integer: int intValue()>();
+$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>($i3);
+$i4 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+$i5 = $i2 + $i4;
+r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+i7 = i7 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $i1 = r1[i7];
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $i1 = r1[i7];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i6 = virtualinvoke r4.<java.lang.Integer: int intValue()>();
+return $i6;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $i1 = r1[i7];
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$i1 = r1[i7];
+r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$i2 = virtualinvoke r4.<java.lang.Integer: int intValue()>();
+$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>($i3);
+$i4 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+$i5 = $i2 + $i4;
+r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+i7 = i7 + 1;
+";
+}

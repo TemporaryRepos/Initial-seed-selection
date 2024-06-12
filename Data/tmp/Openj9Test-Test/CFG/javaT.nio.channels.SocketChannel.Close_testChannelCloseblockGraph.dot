@@ -1,0 +1,119 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r0 = staticinvoke <javaT.nio.channels.SocketChannel.Close: java.nio.channels.SelectionKey open()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+virtualinvoke $r1.<java.nio.channels.SelectableChannel: void close()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+staticinvoke <javaT.nio.channels.SocketChannel.Close: void check(java.nio.channels.SelectionKey)>(r0);
+"
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+$r2 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r2.<java.nio.channels.Selector: void close()>();
+goto [?= return];
+"
+    "Block 5:
+[preds: 0 1 2 3 ] [succs: ]
+$r3 := @caughtexception;
+r4 = $r3;
+$r5 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r5.<java.nio.channels.Selector: void close()>();
+throw r4;
+"
+    "Block 6:
+[preds: 4 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r0 = staticinvoke <javaT.nio.channels.SocketChannel.Close: java.nio.channels.SelectionKey open()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+";
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r0 = staticinvoke <javaT.nio.channels.SocketChannel.Close: java.nio.channels.SelectionKey open()>();
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: ]
+$r3 := @caughtexception;
+r4 = $r3;
+$r5 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r5.<java.nio.channels.Selector: void close()>();
+throw r4;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"->"Block 2:
+[preds: 1 ] [succs: 3 5 ]
+virtualinvoke $r1.<java.nio.channels.SelectableChannel: void close()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: ]
+$r3 := @caughtexception;
+r4 = $r3;
+$r5 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r5.<java.nio.channels.Selector: void close()>();
+throw r4;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+virtualinvoke $r1.<java.nio.channels.SelectableChannel: void close()>();
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+staticinvoke <javaT.nio.channels.SocketChannel.Close: void check(java.nio.channels.SelectionKey)>(r0);
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+virtualinvoke $r1.<java.nio.channels.SelectableChannel: void close()>();
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: ]
+$r3 := @caughtexception;
+r4 = $r3;
+$r5 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r5.<java.nio.channels.Selector: void close()>();
+throw r4;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+staticinvoke <javaT.nio.channels.SocketChannel.Close: void check(java.nio.channels.SelectionKey)>(r0);
+"->"Block 4:
+[preds: 3 ] [succs: 6 ]
+$r2 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r2.<java.nio.channels.Selector: void close()>();
+goto [?= return];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+staticinvoke <javaT.nio.channels.SocketChannel.Close: void check(java.nio.channels.SelectionKey)>(r0);
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: ]
+$r3 := @caughtexception;
+r4 = $r3;
+$r5 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r5.<java.nio.channels.Selector: void close()>();
+throw r4;
+";
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+$r2 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.Selector selector()>();
+virtualinvoke $r2.<java.nio.channels.Selector: void close()>();
+goto [?= return];
+"->"Block 6:
+[preds: 4 ] [succs: ]
+return;
+";
+}

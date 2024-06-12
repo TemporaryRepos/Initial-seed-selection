@@ -1,0 +1,282 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 9 ]
+$r0 = new compiler.runtime.TestFloatsOnStackDeopt$1;
+specialinvoke $r0.<compiler.runtime.TestFloatsOnStackDeopt$1: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<java.lang.Thread: void start()>();
+i1 = 0;
+i2 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 9 ] [succs: 5 ]
+r2 = newarray (float)[97];
+staticinvoke <compiler.runtime.TestFloatsOnStackDeopt: void run_loop_with_safepoint(float[],float)>(r2, 15.0F);
+i3 = 0;
+goto [?= (branch)];
+"
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$f0 = r2[i3];
+$b0 = $f0 cmpl 600000.0F;
+if $b0 == 0 goto r2[i3] = 0.0F;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+$r4 = <java.lang.System: java.io.PrintStream err>;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"(\");
+$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"): \");
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"x0[\");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \");
+$f1 = r2[i3];
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f1);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>(600000.0F);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r13);
+i1 = i1 + 1;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+r2[i3] = 0.0F;
+i3 = i3 + 1;
+"
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+if i3 < 97 goto $f0 = r2[i3];
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+if i1 <= 0 goto i2 = i2 + 1;
+"
+    "Block 7:
+[preds: 6 ] [succs: 10 ]
+goto [?= <compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1];
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+i2 = i2 + 1;
+"
+    "Block 9:
+[preds: 0 8 ] [succs: 10 1 ]
+if i2 < 100 goto r2 = newarray (float)[97];
+"
+    "Block 10:
+[preds: 7 9 ] [succs: 11 13 ]
+<compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+virtualinvoke r1.<java.lang.Thread: void join()>();
+"
+    "Block 12:
+[preds: 11 ] [succs: 14 ]
+goto [?= return i1];
+"
+    "Block 13:
+[preds: 10 11 ] [succs: ]
+$r14 := @caughtexception;
+r16 = $r14;
+$r15 = new java.lang.Error;
+specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"InterruptedException in main thread \", r16);
+throw $r15;
+"
+    "Block 14:
+[preds: 12 ] [succs: ]
+return i1;
+"
+    "Block 0:
+[preds: ] [succs: 9 ]
+$r0 = new compiler.runtime.TestFloatsOnStackDeopt$1;
+specialinvoke $r0.<compiler.runtime.TestFloatsOnStackDeopt$1: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<java.lang.Thread: void start()>();
+i1 = 0;
+i2 = 0;
+goto [?= (branch)];
+"->"Block 9:
+[preds: 0 8 ] [succs: 10 1 ]
+if i2 < 100 goto r2 = newarray (float)[97];
+";
+    "Block 1:
+[preds: 9 ] [succs: 5 ]
+r2 = newarray (float)[97];
+staticinvoke <compiler.runtime.TestFloatsOnStackDeopt: void run_loop_with_safepoint(float[],float)>(r2, 15.0F);
+i3 = 0;
+goto [?= (branch)];
+"->"Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+if i3 < 97 goto $f0 = r2[i3];
+";
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$f0 = r2[i3];
+$b0 = $f0 cmpl 600000.0F;
+if $b0 == 0 goto r2[i3] = 0.0F;
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+$r4 = <java.lang.System: java.io.PrintStream err>;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"(\");
+$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"): \");
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"x0[\");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \");
+$f1 = r2[i3];
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f1);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>(600000.0F);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r13);
+i1 = i1 + 1;
+";
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$f0 = r2[i3];
+$b0 = $f0 cmpl 600000.0F;
+if $b0 == 0 goto r2[i3] = 0.0F;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+r2[i3] = 0.0F;
+i3 = i3 + 1;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+$r4 = <java.lang.System: java.io.PrintStream err>;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"(\");
+$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"): \");
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"x0[\");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \");
+$f1 = r2[i3];
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f1);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>(600000.0F);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r13);
+i1 = i1 + 1;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+r2[i3] = 0.0F;
+i3 = i3 + 1;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+r2[i3] = 0.0F;
+i3 = i3 + 1;
+"->"Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+if i3 < 97 goto $f0 = r2[i3];
+";
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+if i3 < 97 goto $f0 = r2[i3];
+"->"Block 6:
+[preds: 5 ] [succs: 7 8 ]
+if i1 <= 0 goto i2 = i2 + 1;
+";
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+if i3 < 97 goto $f0 = r2[i3];
+"->"Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$f0 = r2[i3];
+$b0 = $f0 cmpl 600000.0F;
+if $b0 == 0 goto r2[i3] = 0.0F;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+if i1 <= 0 goto i2 = i2 + 1;
+"->"Block 7:
+[preds: 6 ] [succs: 10 ]
+goto [?= <compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 8 ]
+if i1 <= 0 goto i2 = i2 + 1;
+"->"Block 8:
+[preds: 6 ] [succs: 9 ]
+i2 = i2 + 1;
+";
+    "Block 7:
+[preds: 6 ] [succs: 10 ]
+goto [?= <compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1];
+"->"Block 10:
+[preds: 7 9 ] [succs: 11 13 ]
+<compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+i2 = i2 + 1;
+"->"Block 9:
+[preds: 0 8 ] [succs: 10 1 ]
+if i2 < 100 goto r2 = newarray (float)[97];
+";
+    "Block 9:
+[preds: 0 8 ] [succs: 10 1 ]
+if i2 < 100 goto r2 = newarray (float)[97];
+"->"Block 10:
+[preds: 7 9 ] [succs: 11 13 ]
+<compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1;
+";
+    "Block 9:
+[preds: 0 8 ] [succs: 10 1 ]
+if i2 < 100 goto r2 = newarray (float)[97];
+"->"Block 1:
+[preds: 9 ] [succs: 5 ]
+r2 = newarray (float)[97];
+staticinvoke <compiler.runtime.TestFloatsOnStackDeopt: void run_loop_with_safepoint(float[],float)>(r2, 15.0F);
+i3 = 0;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 7 9 ] [succs: 11 13 ]
+<compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1;
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+virtualinvoke r1.<java.lang.Thread: void join()>();
+";
+    "Block 10:
+[preds: 7 9 ] [succs: 11 13 ]
+<compiler.runtime.TestFloatsOnStackDeopt: boolean pleaseStop> = 1;
+"->"Block 13:
+[preds: 10 11 ] [succs: ]
+$r14 := @caughtexception;
+r16 = $r14;
+$r15 = new java.lang.Error;
+specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"InterruptedException in main thread \", r16);
+throw $r15;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+virtualinvoke r1.<java.lang.Thread: void join()>();
+"->"Block 12:
+[preds: 11 ] [succs: 14 ]
+goto [?= return i1];
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+virtualinvoke r1.<java.lang.Thread: void join()>();
+"->"Block 13:
+[preds: 10 11 ] [succs: ]
+$r14 := @caughtexception;
+r16 = $r14;
+$r15 = new java.lang.Error;
+specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"InterruptedException in main thread \", r16);
+throw $r15;
+";
+    "Block 12:
+[preds: 11 ] [succs: 14 ]
+goto [?= return i1];
+"->"Block 14:
+[preds: 12 ] [succs: ]
+return i1;
+";
+}

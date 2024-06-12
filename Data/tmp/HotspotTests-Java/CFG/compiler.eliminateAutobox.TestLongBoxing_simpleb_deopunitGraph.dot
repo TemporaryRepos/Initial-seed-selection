@@ -1,0 +1,13 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "$l1 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>(l0)"
+    "r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"
+    "staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()"
+    "$l2 = virtualinvoke r0.<java.lang.Long: long longValue()>()"
+    "return $l2"
+    "l0 := @parameter0: long"->"$l1 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>(l0)";
+    "$l1 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>(l0)"->"r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)";
+    "r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()"->"$l2 = virtualinvoke r0.<java.lang.Long: long longValue()>()";
+    "$l2 = virtualinvoke r0.<java.lang.Long: long longValue()>()"->"return $l2";
+}

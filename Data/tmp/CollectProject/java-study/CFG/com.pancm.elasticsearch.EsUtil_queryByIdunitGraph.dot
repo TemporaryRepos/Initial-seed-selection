@@ -1,0 +1,82 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "r1 := @parameter1: java.lang.String"
+    "r7 := @parameter2: java.lang.String"
+    "if r0 == null goto return null"
+    "if r1 != null goto $r2 = new java.util.HashMap"
+    "return null"
+    "$r2 = new java.util.HashMap"
+    "specialinvoke $r2.<java.util.HashMap: void <init>()>()"
+    "r14 = $r2"
+    "$r3 = new org.elasticsearch.action.get.GetRequest"
+    "specialinvoke $r3.<org.elasticsearch.action.get.GetRequest: void <init>()>()"
+    "r4 = $r3"
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.support.single.shard.SingleShardRequest index(java.lang.String)>(r0)"
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest type(java.lang.String)>(r1)"
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest id(java.lang.String)>(r7)"
+    "$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"
+    "$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"
+    "r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.get.GetResponse get(org.elasticsearch.action.get.GetRequest,org.elasticsearch.client.RequestOptions)>(r4, $r9)"
+    "$z0 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: boolean isExists()>()"
+    "if $z0 == 0 goto $z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "r14 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: java.util.Map getSourceAsMap()>()"
+    "$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z1 == 0 goto return r14"
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"
+    "goto [?= return r14]"
+    "$r12 := @caughtexception"
+    "r13 = $r12"
+    "$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z2 == 0 goto throw r13"
+    "throw r13"
+    "return r14"
+    "r0 := @parameter0: java.lang.String"->"r1 := @parameter1: java.lang.String";
+    "r1 := @parameter1: java.lang.String"->"r7 := @parameter2: java.lang.String";
+    "r7 := @parameter2: java.lang.String"->"if r0 == null goto return null";
+    "if r0 == null goto return null"->"if r1 != null goto $r2 = new java.util.HashMap";
+    "if r0 == null goto return null"->"return null";
+    "if r1 != null goto $r2 = new java.util.HashMap"->"return null";
+    "if r1 != null goto $r2 = new java.util.HashMap"->"$r2 = new java.util.HashMap";
+    "$r2 = new java.util.HashMap"->"specialinvoke $r2.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r2.<java.util.HashMap: void <init>()>()"->"r14 = $r2";
+    "r14 = $r2"->"$r3 = new org.elasticsearch.action.get.GetRequest";
+    "r14 = $r2"->"$r12 := @caughtexception";
+    "$r3 = new org.elasticsearch.action.get.GetRequest"->"specialinvoke $r3.<org.elasticsearch.action.get.GetRequest: void <init>()>()";
+    "$r3 = new org.elasticsearch.action.get.GetRequest"->"$r12 := @caughtexception";
+    "specialinvoke $r3.<org.elasticsearch.action.get.GetRequest: void <init>()>()"->"r4 = $r3";
+    "specialinvoke $r3.<org.elasticsearch.action.get.GetRequest: void <init>()>()"->"$r12 := @caughtexception";
+    "r4 = $r3"->"virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.support.single.shard.SingleShardRequest index(java.lang.String)>(r0)";
+    "r4 = $r3"->"$r12 := @caughtexception";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.support.single.shard.SingleShardRequest index(java.lang.String)>(r0)"->"virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest type(java.lang.String)>(r1)";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.support.single.shard.SingleShardRequest index(java.lang.String)>(r0)"->"$r12 := @caughtexception";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest type(java.lang.String)>(r1)"->"virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest id(java.lang.String)>(r7)";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest type(java.lang.String)>(r1)"->"$r12 := @caughtexception";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest id(java.lang.String)>(r7)"->"$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>";
+    "virtualinvoke r4.<org.elasticsearch.action.get.GetRequest: org.elasticsearch.action.get.GetRequest id(java.lang.String)>(r7)"->"$r12 := @caughtexception";
+    "$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>";
+    "$r10 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r12 := @caughtexception";
+    "$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.get.GetResponse get(org.elasticsearch.action.get.GetRequest,org.elasticsearch.client.RequestOptions)>(r4, $r9)";
+    "$r9 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"$r12 := @caughtexception";
+    "r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.get.GetResponse get(org.elasticsearch.action.get.GetRequest,org.elasticsearch.client.RequestOptions)>(r4, $r9)"->"$z0 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: boolean isExists()>()";
+    "r11 = virtualinvoke $r10.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.get.GetResponse get(org.elasticsearch.action.get.GetRequest,org.elasticsearch.client.RequestOptions)>(r4, $r9)"->"$r12 := @caughtexception";
+    "$z0 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: boolean isExists()>()"->"if $z0 == 0 goto $z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "$z0 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: boolean isExists()>()"->"$r12 := @caughtexception";
+    "if $z0 == 0 goto $z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"r14 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: java.util.Map getSourceAsMap()>()";
+    "if $z0 == 0 goto $z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "if $z0 == 0 goto $z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$r12 := @caughtexception";
+    "r14 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: java.util.Map getSourceAsMap()>()"->"$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "r14 = virtualinvoke r11.<org.elasticsearch.action.get.GetResponse: java.util.Map getSourceAsMap()>()"->"$r12 := @caughtexception";
+    "$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z1 == 0 goto return r14";
+    "if $z1 == 0 goto return r14"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z1 == 0 goto return r14"->"return r14";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"goto [?= return r14]";
+    "goto [?= return r14]"->"return r14";
+    "$r12 := @caughtexception"->"r13 = $r12";
+    "$r12 := @caughtexception"->"$r12 := @caughtexception";
+    "r13 = $r12"->"$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "r13 = $r12"->"$r12 := @caughtexception";
+    "$z2 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z2 == 0 goto throw r13";
+    "if $z2 == 0 goto throw r13"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z2 == 0 goto throw r13"->"throw r13";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"throw r13";
+}

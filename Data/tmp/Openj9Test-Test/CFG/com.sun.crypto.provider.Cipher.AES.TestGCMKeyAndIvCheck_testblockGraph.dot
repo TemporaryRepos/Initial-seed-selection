@@ -1,0 +1,1026 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r44 := @this: com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck;
+r0 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>(\"AES/GCM/NoPadding\", \"SunJCE\");
+$r54 = new javax.crypto.spec.SecretKeySpec;
+$r2 = newarray (byte)[16];
+specialinvoke $r54.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r2, \"AES\");
+r3 = $r54;
+$r68 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r68);
+$r4 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r4);
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+r6 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r5);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+r7 = virtualinvoke r0.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>();
+if r7 != null goto $r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r55 = new java.lang.Exception;
+specialinvoke $r55.<java.lang.Exception: void <init>(java.lang.String)>(\"getParameters() should not return null\");
+throw $r55;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+r9 = (javax.crypto.spec.GCMParameterSpec) $r8;
+$i0 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: int getTLen()>();
+$i2 = lengthof r6;
+$r10 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$i1 = lengthof $r10;
+$i3 = $i2 - $i1;
+$i4 = $i3 * 8;
+if $i0 == $i4 goto $r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$r56 = new java.lang.Exception;
+specialinvoke $r56.<java.lang.Exception: void <init>(java.lang.String)>(\"Parameters contains incorrect TLen value\");
+throw $r56;
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+$r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$r12 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r11, $r12);
+if $z0 != 0 goto $r69 = (java.security.Key) r3;
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+$r57 = new java.lang.Exception;
+specialinvoke $r57.<java.lang.Exception: void <init>(java.lang.String)>(\"Parameters contains incorrect IV value\");
+throw $r57;
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 13 ]
+$r69 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r69, r7);
+$r13 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r13);
+r45 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r14 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r45, $r14);
+if $z1 != 0 goto $r70 = (java.security.Key) r3;
+"
+    "Block 7:
+[preds: 6 ] [succs: ]
+$r58 = new java.lang.Exception;
+specialinvoke $r58.<java.lang.Exception: void <init>(java.lang.String)>(\"decryption result mismatch\");
+throw $r58;
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+$r70 = (java.security.Key) r3;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(1, $r70, r7);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 13 ]
+$r59 = new java.lang.Exception;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw exception when same key+iv is used\");
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+throw $r59;
+"
+    "Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+"
+    "Block 14:
+[preds: 13 ] [succs: ]
+$r60 = new java.lang.Exception;
+specialinvoke $r60.<java.lang.Exception: void <init>(java.lang.String)>(\"IV should be different now\");
+throw $r60;
+"
+    "Block 15:
+[preds: 13 ] [succs: 16 17 ]
+$r61 = new javax.crypto.spec.GCMParameterSpec;
+$r33 = newarray (byte)[30];
+specialinvoke $r61.<javax.crypto.spec.GCMParameterSpec: void <init>(int,byte[])>(128, $r33);
+$r72 = (java.security.Key) r3;
+$r73 = (java.security.spec.AlgorithmParameterSpec) $r61;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r72, $r73);
+$r34 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r34);
+$r35 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r35);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+$r74 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r74, r7);
+$r37 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r37);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r38 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r38);
+r49 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r39 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r49, $r39);
+if $z3 != 0 goto $r75 = (java.security.Key) r3;
+"
+    "Block 16:
+[preds: 15 ] [succs: ]
+$r62 = new java.lang.Exception;
+specialinvoke $r62.<java.lang.Exception: void <init>(java.lang.String)>(\"decryption result mismatch\");
+throw $r62;
+"
+    "Block 17:
+[preds: 15 ] [succs: 18 23 ]
+$r75 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r75, r7);
+$r40 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r40);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 23 ]
+$r76 = (java.security.Key) r3;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 23 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, $r76);
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 23 ]
+$r63 = new java.lang.Exception;
+"
+    "Block 21:
+[preds: 20 ] [succs: 22 23 ]
+specialinvoke $r63.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IKE for dec w/o params\");
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 ]
+throw $r63;
+"
+    "Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r64 = new javax.crypto.spec.IvParameterSpec;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r64.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+$r77 = (java.security.Key) r3;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+$r78 = (java.security.spec.AlgorithmParameterSpec) $r64;
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 32 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r77, $r78);
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+$r65 = new java.lang.Exception;
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+specialinvoke $r65.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 ]
+throw $r65;
+"
+    "Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 41 ]
+$r66 = new javax.crypto.spec.IvParameterSpec;
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 41 ]
+specialinvoke $r66.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"
+    "Block 35:
+[preds: 34 ] [succs: 36 41 ]
+$r79 = (java.security.Key) r3;
+"
+    "Block 36:
+[preds: 35 ] [succs: 37 41 ]
+$r80 = (java.security.spec.AlgorithmParameterSpec) $r66;
+"
+    "Block 37:
+[preds: 36 ] [succs: 38 41 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(2, $r79, $r80);
+"
+    "Block 38:
+[preds: 37 ] [succs: 39 41 ]
+$r67 = new java.lang.Exception;
+"
+    "Block 39:
+[preds: 38 ] [succs: 40 41 ]
+specialinvoke $r67.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"
+    "Block 40:
+[preds: 39 ] [succs: 41 ]
+throw $r67;
+"
+    "Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r44 := @this: com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck;
+r0 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>(\"AES/GCM/NoPadding\", \"SunJCE\");
+$r54 = new javax.crypto.spec.SecretKeySpec;
+$r2 = newarray (byte)[16];
+specialinvoke $r54.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r2, \"AES\");
+r3 = $r54;
+$r68 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r68);
+$r4 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r4);
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+r6 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r5);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+r7 = virtualinvoke r0.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>();
+if r7 != null goto $r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r55 = new java.lang.Exception;
+specialinvoke $r55.<java.lang.Exception: void <init>(java.lang.String)>(\"getParameters() should not return null\");
+throw $r55;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r44 := @this: com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck;
+r0 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>(\"AES/GCM/NoPadding\", \"SunJCE\");
+$r54 = new javax.crypto.spec.SecretKeySpec;
+$r2 = newarray (byte)[16];
+specialinvoke $r54.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r2, \"AES\");
+r3 = $r54;
+$r68 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r68);
+$r4 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r4);
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+r6 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r5);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+r7 = virtualinvoke r0.<javax.crypto.Cipher: java.security.AlgorithmParameters getParameters()>();
+if r7 != null goto $r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+r9 = (javax.crypto.spec.GCMParameterSpec) $r8;
+$i0 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: int getTLen()>();
+$i2 = lengthof r6;
+$r10 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$i1 = lengthof $r10;
+$i3 = $i2 - $i1;
+$i4 = $i3 * 8;
+if $i0 == $i4 goto $r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+r9 = (javax.crypto.spec.GCMParameterSpec) $r8;
+$i0 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: int getTLen()>();
+$i2 = lengthof r6;
+$r10 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$i1 = lengthof $r10;
+$i3 = $i2 - $i1;
+$i4 = $i3 * 8;
+if $i0 == $i4 goto $r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$r56 = new java.lang.Exception;
+specialinvoke $r56.<java.lang.Exception: void <init>(java.lang.String)>(\"Parameters contains incorrect TLen value\");
+throw $r56;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r8 = virtualinvoke r7.<java.security.AlgorithmParameters: java.security.spec.AlgorithmParameterSpec getParameterSpec(java.lang.Class)>(class \"Ljavax/crypto/spec/GCMParameterSpec;\");
+r9 = (javax.crypto.spec.GCMParameterSpec) $r8;
+$i0 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: int getTLen()>();
+$i2 = lengthof r6;
+$r10 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$i1 = lengthof $r10;
+$i3 = $i2 - $i1;
+$i4 = $i3 * 8;
+if $i0 == $i4 goto $r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+"->"Block 4:
+[preds: 2 ] [succs: 5 6 ]
+$r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$r12 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r11, $r12);
+if $z0 != 0 goto $r69 = (java.security.Key) r3;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+$r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$r12 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r11, $r12);
+if $z0 != 0 goto $r69 = (java.security.Key) r3;
+"->"Block 5:
+[preds: 4 ] [succs: ]
+$r57 = new java.lang.Exception;
+specialinvoke $r57.<java.lang.Exception: void <init>(java.lang.String)>(\"Parameters contains incorrect IV value\");
+throw $r57;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+$r11 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$r12 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r11, $r12);
+if $z0 != 0 goto $r69 = (java.security.Key) r3;
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 13 ]
+$r69 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r69, r7);
+$r13 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r13);
+r45 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r14 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r45, $r14);
+if $z1 != 0 goto $r70 = (java.security.Key) r3;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 13 ]
+$r69 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r69, r7);
+$r13 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r13);
+r45 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r14 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r45, $r14);
+if $z1 != 0 goto $r70 = (java.security.Key) r3;
+"->"Block 7:
+[preds: 6 ] [succs: ]
+$r58 = new java.lang.Exception;
+specialinvoke $r58.<java.lang.Exception: void <init>(java.lang.String)>(\"decryption result mismatch\");
+throw $r58;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 13 ]
+$r69 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r69, r7);
+$r13 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r13);
+r45 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r14 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r45, $r14);
+if $z1 != 0 goto $r70 = (java.security.Key) r3;
+"->"Block 8:
+[preds: 6 ] [succs: 9 13 ]
+$r70 = (java.security.Key) r3;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 13 ]
+$r69 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r69, r7);
+$r13 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r13);
+r45 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r14 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z1 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r45, $r14);
+if $z1 != 0 goto $r70 = (java.security.Key) r3;
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+$r70 = (java.security.Key) r3;
+"->"Block 9:
+[preds: 8 ] [succs: 10 13 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(1, $r70, r7);
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 13 ]
+$r70 = (java.security.Key) r3;
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(1, $r70, r7);
+"->"Block 10:
+[preds: 9 ] [succs: 11 13 ]
+$r59 = new java.lang.Exception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(1, $r70, r7);
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 13 ]
+$r59 = new java.lang.Exception;
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw exception when same key+iv is used\");
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 13 ]
+$r59 = new java.lang.Exception;
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw exception when same key+iv is used\");
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+throw $r59;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw exception when same key+iv is used\");
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+throw $r59;
+"->"Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+";
+    "Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+"->"Block 14:
+[preds: 13 ] [succs: ]
+$r60 = new java.lang.Exception;
+specialinvoke $r60.<java.lang.Exception: void <init>(java.lang.String)>(\"IV should be different now\");
+throw $r60;
+";
+    "Block 13:
+[preds: 6 8 9 10 11 12 ] [succs: 14 15 ]
+$r28 := @caughtexception;
+r46 = $r28;
+$r71 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71);
+$r29 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r29);
+r47 = virtualinvoke r0.<javax.crypto.Cipher: byte[] getIV()>();
+$r31 = virtualinvoke r9.<javax.crypto.spec.GCMParameterSpec: byte[] getIV()>();
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r31, r47);
+if $z2 == 0 goto $r61 = new javax.crypto.spec.GCMParameterSpec;
+"->"Block 15:
+[preds: 13 ] [succs: 16 17 ]
+$r61 = new javax.crypto.spec.GCMParameterSpec;
+$r33 = newarray (byte)[30];
+specialinvoke $r61.<javax.crypto.spec.GCMParameterSpec: void <init>(int,byte[])>(128, $r33);
+$r72 = (java.security.Key) r3;
+$r73 = (java.security.spec.AlgorithmParameterSpec) $r61;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r72, $r73);
+$r34 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r34);
+$r35 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r35);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+$r74 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r74, r7);
+$r37 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r37);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r38 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r38);
+r49 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r39 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r49, $r39);
+if $z3 != 0 goto $r75 = (java.security.Key) r3;
+";
+    "Block 15:
+[preds: 13 ] [succs: 16 17 ]
+$r61 = new javax.crypto.spec.GCMParameterSpec;
+$r33 = newarray (byte)[30];
+specialinvoke $r61.<javax.crypto.spec.GCMParameterSpec: void <init>(int,byte[])>(128, $r33);
+$r72 = (java.security.Key) r3;
+$r73 = (java.security.spec.AlgorithmParameterSpec) $r61;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r72, $r73);
+$r34 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r34);
+$r35 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r35);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+$r74 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r74, r7);
+$r37 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r37);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r38 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r38);
+r49 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r39 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r49, $r39);
+if $z3 != 0 goto $r75 = (java.security.Key) r3;
+"->"Block 16:
+[preds: 15 ] [succs: ]
+$r62 = new java.lang.Exception;
+specialinvoke $r62.<java.lang.Exception: void <init>(java.lang.String)>(\"decryption result mismatch\");
+throw $r62;
+";
+    "Block 15:
+[preds: 13 ] [succs: 16 17 ]
+$r61 = new javax.crypto.spec.GCMParameterSpec;
+$r33 = newarray (byte)[30];
+specialinvoke $r61.<javax.crypto.spec.GCMParameterSpec: void <init>(int,byte[])>(128, $r33);
+$r72 = (java.security.Key) r3;
+$r73 = (java.security.spec.AlgorithmParameterSpec) $r61;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r72, $r73);
+$r34 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r34);
+$r35 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r35);
+staticinvoke <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: void checkISE(javax.crypto.Cipher)>(r0);
+$r74 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r74, r7);
+$r37 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r37);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r38 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r38);
+r49 = virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+$r39 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] PT>;
+$z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r49, $r39);
+if $z3 != 0 goto $r75 = (java.security.Key) r3;
+"->"Block 17:
+[preds: 15 ] [succs: 18 23 ]
+$r75 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r75, r7);
+$r40 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r40);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+";
+    "Block 17:
+[preds: 15 ] [succs: 18 23 ]
+$r75 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r75, r7);
+$r40 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r40);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+"->"Block 18:
+[preds: 17 ] [succs: 19 23 ]
+$r76 = (java.security.Key) r3;
+";
+    "Block 17:
+[preds: 15 ] [succs: 18 23 ]
+$r75 = (java.security.Key) r3;
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.AlgorithmParameters)>(2, $r75, r7);
+$r40 = <com.sun.crypto.provider.Cipher.AES.TestGCMKeyAndIvCheck: byte[] AAD>;
+virtualinvoke r0.<javax.crypto.Cipher: void updateAAD(byte[])>($r40);
+virtualinvoke r0.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r6);
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 23 ]
+$r76 = (java.security.Key) r3;
+"->"Block 19:
+[preds: 18 ] [succs: 20 23 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, $r76);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 23 ]
+$r76 = (java.security.Key) r3;
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 23 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, $r76);
+"->"Block 20:
+[preds: 19 ] [succs: 21 23 ]
+$r63 = new java.lang.Exception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 23 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, $r76);
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 23 ]
+$r63 = new java.lang.Exception;
+"->"Block 21:
+[preds: 20 ] [succs: 22 23 ]
+specialinvoke $r63.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IKE for dec w/o params\");
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 23 ]
+$r63 = new java.lang.Exception;
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 23 ]
+specialinvoke $r63.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IKE for dec w/o params\");
+"->"Block 22:
+[preds: 21 ] [succs: 23 ]
+throw $r63;
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 23 ]
+specialinvoke $r63.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IKE for dec w/o params\");
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 ]
+throw $r63;
+"->"Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+";
+    "Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+"->"Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r64 = new javax.crypto.spec.IvParameterSpec;
+";
+    "Block 23:
+[preds: 17 18 19 20 21 22 ] [succs: 24 32 ]
+$r25 := @caughtexception;
+r51 = $r25;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r64 = new javax.crypto.spec.IvParameterSpec;
+"->"Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r64.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r64 = new javax.crypto.spec.IvParameterSpec;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r64.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"->"Block 26:
+[preds: 25 ] [succs: 27 32 ]
+$r77 = (java.security.Key) r3;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r64.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+$r77 = (java.security.Key) r3;
+"->"Block 27:
+[preds: 26 ] [succs: 28 32 ]
+$r78 = (java.security.spec.AlgorithmParameterSpec) $r64;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+$r77 = (java.security.Key) r3;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+$r78 = (java.security.spec.AlgorithmParameterSpec) $r64;
+"->"Block 28:
+[preds: 27 ] [succs: 29 32 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r77, $r78);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+$r78 = (java.security.spec.AlgorithmParameterSpec) $r64;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 32 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r77, $r78);
+"->"Block 29:
+[preds: 28 ] [succs: 30 32 ]
+$r65 = new java.lang.Exception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 32 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r77, $r78);
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+$r65 = new java.lang.Exception;
+"->"Block 30:
+[preds: 29 ] [succs: 31 32 ]
+specialinvoke $r65.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+$r65 = new java.lang.Exception;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+specialinvoke $r65.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"->"Block 31:
+[preds: 30 ] [succs: 32 ]
+throw $r65;
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+specialinvoke $r65.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 ]
+throw $r65;
+"->"Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+";
+    "Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+"->"Block 33:
+[preds: 32 ] [succs: 34 41 ]
+$r66 = new javax.crypto.spec.IvParameterSpec;
+";
+    "Block 32:
+[preds: 23 24 25 26 27 28 29 30 31 ] [succs: 33 41 ]
+$r22 := @caughtexception;
+r52 = $r22;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 41 ]
+$r66 = new javax.crypto.spec.IvParameterSpec;
+"->"Block 34:
+[preds: 33 ] [succs: 35 41 ]
+specialinvoke $r66.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 41 ]
+$r66 = new javax.crypto.spec.IvParameterSpec;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 41 ]
+specialinvoke $r66.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"->"Block 35:
+[preds: 34 ] [succs: 36 41 ]
+$r79 = (java.security.Key) r3;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 41 ]
+specialinvoke $r66.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>(r47);
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 41 ]
+$r79 = (java.security.Key) r3;
+"->"Block 36:
+[preds: 35 ] [succs: 37 41 ]
+$r80 = (java.security.spec.AlgorithmParameterSpec) $r66;
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 41 ]
+$r79 = (java.security.Key) r3;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 41 ]
+$r80 = (java.security.spec.AlgorithmParameterSpec) $r66;
+"->"Block 37:
+[preds: 36 ] [succs: 38 41 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(2, $r79, $r80);
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 41 ]
+$r80 = (java.security.spec.AlgorithmParameterSpec) $r66;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 41 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(2, $r79, $r80);
+"->"Block 38:
+[preds: 37 ] [succs: 39 41 ]
+$r67 = new java.lang.Exception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 41 ]
+virtualinvoke r0.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(2, $r79, $r80);
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 41 ]
+$r67 = new java.lang.Exception;
+"->"Block 39:
+[preds: 38 ] [succs: 40 41 ]
+specialinvoke $r67.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 41 ]
+$r67 = new java.lang.Exception;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 41 ]
+specialinvoke $r67.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"->"Block 40:
+[preds: 39 ] [succs: 41 ]
+throw $r67;
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 41 ]
+specialinvoke $r67.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw IAPE\");
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 ]
+throw $r67;
+"->"Block 41:
+[preds: 32 33 34 35 36 37 38 39 40 ] [succs: ]
+$r20 := @caughtexception;
+r53 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Test Passed!\");
+return;
+";
+}

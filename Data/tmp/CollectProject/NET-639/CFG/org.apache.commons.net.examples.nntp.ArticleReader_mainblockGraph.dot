@@ -1,0 +1,556 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 2 goto r1 = r0[0];
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$i3 = lengthof r0;
+if $i3 == 3 goto r1 = r0[0];
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = lengthof r0;
+if $i4 == 5 goto r1 = r0[0];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: MessageThreading <hostname> <groupname> [<article specifier> [<user> <password>]]\");
+return;
+"
+    "Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+"
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r22 = r0[2];
+goto [?= r3 = $r22];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+$r22 = null;
+"
+    "Block 7:
+[preds: 5 6 ] [succs: 8 10 ]
+r3 = $r22;
+$r4 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r4.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r5 = $r4;
+$r6 = new org.apache.commons.net.PrintCommandListener;
+$r7 = new java.io.PrintWriter;
+$r8 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r7.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r8);
+specialinvoke $r6.<org.apache.commons.net.PrintCommandListener: void <init>(java.io.PrintWriter,boolean)>($r7, 1);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)>($r6);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>(r1);
+$i1 = lengthof r0;
+if $i1 != 5 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r23 = r0[3];
+r24 = r0[4];
+$z1 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean authenticate(java.lang.String,java.lang.String)>(r23, r24);
+if $z1 != 0 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Authentication failed for user \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r23);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"!\");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r20);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+$r14 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleHeader(java.lang.String)>(r3);
+r27 = (java.io.BufferedReader) $r14;
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r27 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleHeader(long)>(l6);
+"
+    "Block 13:
+[preds: 11 12 ] [succs: 14 17 ]
+if r27 == null goto (branch);
+"
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>();
+r28 = $r12;
+if $r12 == null goto virtualinvoke r27.<java.io.BufferedReader: void close()>();
+"
+    "Block 15:
+[preds: 14 ] [succs: 14 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+goto [?= $r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>()];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 ]
+virtualinvoke r27.<java.io.BufferedReader: void close()>();
+"
+    "Block 17:
+[preds: 13 16 ] [succs: 18 19 ]
+if r3 == null goto l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"
+    "Block 18:
+[preds: 17 ] [succs: 20 ]
+$r11 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleBody(java.lang.String)>(r3);
+r29 = (java.io.BufferedReader) $r11;
+goto [?= (branch)];
+"
+    "Block 19:
+[preds: 17 ] [succs: 20 ]
+l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r29 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleBody(long)>(l2);
+"
+    "Block 20:
+[preds: 18 19 ] [succs: 21 24 ]
+if r29 == null goto return;
+"
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+$r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>();
+r30 = $r9;
+if $r9 == null goto virtualinvoke r29.<java.io.BufferedReader: void close()>();
+"
+    "Block 22:
+[preds: 21 ] [succs: 21 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r30);
+goto [?= $r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>()];
+"
+    "Block 23:
+[preds: 21 ] [succs: 24 ]
+virtualinvoke r29.<java.io.BufferedReader: void close()>();
+"
+    "Block 24:
+[preds: 20 23 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 2 goto r1 = r0[0];
+"->"Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$i3 = lengthof r0;
+if $i3 == 3 goto r1 = r0[0];
+";
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 2 goto r1 = r0[0];
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$i3 = lengthof r0;
+if $i3 == 3 goto r1 = r0[0];
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = lengthof r0;
+if $i4 == 5 goto r1 = r0[0];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$i3 = lengthof r0;
+if $i3 == 3 goto r1 = r0[0];
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = lengthof r0;
+if $i4 == 5 goto r1 = r0[0];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: MessageThreading <hostname> <groupname> [<article specifier> [<user> <password>]]\");
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$i4 = lengthof r0;
+if $i4 == 5 goto r1 = r0[0];
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+";
+    "Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+"->"Block 5:
+[preds: 4 ] [succs: 7 ]
+$r22 = r0[2];
+goto [?= r3 = $r22];
+";
+    "Block 4:
+[preds: 0 1 2 ] [succs: 5 6 ]
+r1 = r0[0];
+r2 = r0[1];
+$i5 = lengthof r0;
+if $i5 < 3 goto $r22 = null;
+"->"Block 6:
+[preds: 4 ] [succs: 7 ]
+$r22 = null;
+";
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r22 = r0[2];
+goto [?= r3 = $r22];
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 10 ]
+r3 = $r22;
+$r4 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r4.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r5 = $r4;
+$r6 = new org.apache.commons.net.PrintCommandListener;
+$r7 = new java.io.PrintWriter;
+$r8 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r7.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r8);
+specialinvoke $r6.<org.apache.commons.net.PrintCommandListener: void <init>(java.io.PrintWriter,boolean)>($r7, 1);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)>($r6);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>(r1);
+$i1 = lengthof r0;
+if $i1 != 5 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+$r22 = null;
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 10 ]
+r3 = $r22;
+$r4 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r4.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r5 = $r4;
+$r6 = new org.apache.commons.net.PrintCommandListener;
+$r7 = new java.io.PrintWriter;
+$r8 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r7.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r8);
+specialinvoke $r6.<org.apache.commons.net.PrintCommandListener: void <init>(java.io.PrintWriter,boolean)>($r7, 1);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)>($r6);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>(r1);
+$i1 = lengthof r0;
+if $i1 != 5 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 10 ]
+r3 = $r22;
+$r4 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r4.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r5 = $r4;
+$r6 = new org.apache.commons.net.PrintCommandListener;
+$r7 = new java.io.PrintWriter;
+$r8 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r7.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r8);
+specialinvoke $r6.<org.apache.commons.net.PrintCommandListener: void <init>(java.io.PrintWriter,boolean)>($r7, 1);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)>($r6);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>(r1);
+$i1 = lengthof r0;
+if $i1 != 5 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r23 = r0[3];
+r24 = r0[4];
+$z1 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean authenticate(java.lang.String,java.lang.String)>(r23, r24);
+if $z1 != 0 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 10 ]
+r3 = $r22;
+$r4 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r4.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r5 = $r4;
+$r6 = new org.apache.commons.net.PrintCommandListener;
+$r7 = new java.io.PrintWriter;
+$r8 = <java.lang.System: java.io.PrintStream out>;
+specialinvoke $r7.<java.io.PrintWriter: void <init>(java.io.OutputStream)>($r8);
+specialinvoke $r6.<org.apache.commons.net.PrintCommandListener: void <init>(java.io.PrintWriter,boolean)>($r7, 1);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void addProtocolCommandListener(org.apache.commons.net.ProtocolCommandListener)>($r6);
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>(r1);
+$i1 = lengthof r0;
+if $i1 != 5 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"->"Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r23 = r0[3];
+r24 = r0[4];
+$z1 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean authenticate(java.lang.String,java.lang.String)>(r23, r24);
+if $z1 != 0 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"->"Block 9:
+[preds: 8 ] [succs: 10 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Authentication failed for user \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r23);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"!\");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r20);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r23 = r0[3];
+r24 = r0[4];
+$z1 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean authenticate(java.lang.String,java.lang.String)>(r23, r24);
+if $z1 != 0 goto $r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+"->"Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Authentication failed for user \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r23);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"!\");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r20);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+";
+    "Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"->"Block 11:
+[preds: 10 ] [succs: 13 ]
+$r14 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleHeader(java.lang.String)>(r3);
+r27 = (java.io.BufferedReader) $r14;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 7 8 9 ] [succs: 11 12 ]
+$r25 = new org.apache.commons.net.nntp.NewsgroupInfo;
+specialinvoke $r25.<org.apache.commons.net.nntp.NewsgroupInfo: void <init>()>();
+r26 = $r25;
+virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: boolean selectNewsgroup(java.lang.String,org.apache.commons.net.nntp.NewsgroupInfo)>(r2, r26);
+if r3 == null goto l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"->"Block 12:
+[preds: 10 ] [succs: 13 ]
+l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r27 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleHeader(long)>(l6);
+";
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+$r14 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleHeader(java.lang.String)>(r3);
+r27 = (java.io.BufferedReader) $r14;
+goto [?= (branch)];
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 17 ]
+if r27 == null goto (branch);
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+l6 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r27 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleHeader(long)>(l6);
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 17 ]
+if r27 == null goto (branch);
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 17 ]
+if r27 == null goto (branch);
+"->"Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>();
+r28 = $r12;
+if $r12 == null goto virtualinvoke r27.<java.io.BufferedReader: void close()>();
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 17 ]
+if r27 == null goto (branch);
+"->"Block 17:
+[preds: 13 16 ] [succs: 18 19 ]
+if r3 == null goto l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+";
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>();
+r28 = $r12;
+if $r12 == null goto virtualinvoke r27.<java.io.BufferedReader: void close()>();
+"->"Block 15:
+[preds: 14 ] [succs: 14 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+goto [?= $r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>();
+r28 = $r12;
+if $r12 == null goto virtualinvoke r27.<java.io.BufferedReader: void close()>();
+"->"Block 16:
+[preds: 14 ] [succs: 17 ]
+virtualinvoke r27.<java.io.BufferedReader: void close()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 14 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+goto [?= $r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 14:
+[preds: 13 15 ] [succs: 15 16 ]
+$r12 = virtualinvoke r27.<java.io.BufferedReader: java.lang.String readLine()>();
+r28 = $r12;
+if $r12 == null goto virtualinvoke r27.<java.io.BufferedReader: void close()>();
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 ]
+virtualinvoke r27.<java.io.BufferedReader: void close()>();
+"->"Block 17:
+[preds: 13 16 ] [succs: 18 19 ]
+if r3 == null goto l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+";
+    "Block 17:
+[preds: 13 16 ] [succs: 18 19 ]
+if r3 == null goto l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"->"Block 18:
+[preds: 17 ] [succs: 20 ]
+$r11 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleBody(java.lang.String)>(r3);
+r29 = (java.io.BufferedReader) $r11;
+goto [?= (branch)];
+";
+    "Block 17:
+[preds: 13 16 ] [succs: 18 19 ]
+if r3 == null goto l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+"->"Block 19:
+[preds: 17 ] [succs: 20 ]
+l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r29 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleBody(long)>(l2);
+";
+    "Block 18:
+[preds: 17 ] [succs: 20 ]
+$r11 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.Reader retrieveArticleBody(java.lang.String)>(r3);
+r29 = (java.io.BufferedReader) $r11;
+goto [?= (branch)];
+"->"Block 20:
+[preds: 18 19 ] [succs: 21 24 ]
+if r29 == null goto return;
+";
+    "Block 19:
+[preds: 17 ] [succs: 20 ]
+l2 = virtualinvoke r26.<org.apache.commons.net.nntp.NewsgroupInfo: long getLastArticleLong()>();
+r29 = virtualinvoke r5.<org.apache.commons.net.nntp.NNTPClient: java.io.BufferedReader retrieveArticleBody(long)>(l2);
+"->"Block 20:
+[preds: 18 19 ] [succs: 21 24 ]
+if r29 == null goto return;
+";
+    "Block 20:
+[preds: 18 19 ] [succs: 21 24 ]
+if r29 == null goto return;
+"->"Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+$r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>();
+r30 = $r9;
+if $r9 == null goto virtualinvoke r29.<java.io.BufferedReader: void close()>();
+";
+    "Block 20:
+[preds: 18 19 ] [succs: 21 24 ]
+if r29 == null goto return;
+"->"Block 24:
+[preds: 20 23 ] [succs: ]
+return;
+";
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+$r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>();
+r30 = $r9;
+if $r9 == null goto virtualinvoke r29.<java.io.BufferedReader: void close()>();
+"->"Block 22:
+[preds: 21 ] [succs: 21 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r30);
+goto [?= $r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+$r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>();
+r30 = $r9;
+if $r9 == null goto virtualinvoke r29.<java.io.BufferedReader: void close()>();
+"->"Block 23:
+[preds: 21 ] [succs: 24 ]
+virtualinvoke r29.<java.io.BufferedReader: void close()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 21 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r30);
+goto [?= $r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+$r9 = virtualinvoke r29.<java.io.BufferedReader: java.lang.String readLine()>();
+r30 = $r9;
+if $r9 == null goto virtualinvoke r29.<java.io.BufferedReader: void close()>();
+";
+    "Block 23:
+[preds: 21 ] [succs: 24 ]
+virtualinvoke r29.<java.io.BufferedReader: void close()>();
+"->"Block 24:
+[preds: 20 23 ] [succs: ]
+return;
+";
+}

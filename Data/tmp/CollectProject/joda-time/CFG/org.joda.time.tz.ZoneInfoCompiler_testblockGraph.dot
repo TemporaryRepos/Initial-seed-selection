@@ -1,0 +1,603 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: org.joda.time.DateTimeZone;
+$r2 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+if $z0 != 0 goto $r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return 1;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r4 = virtualinvoke $r3.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l11 = virtualinvoke $r4.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+$r5 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r6 = virtualinvoke $r5.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l12 = virtualinvoke $r6.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+i13 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i0 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r54 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r8 = $r7;
+"
+    "Block 3:
+[preds: 2 14 ] [succs: 4 15 ]
+l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11);
+$b1 = l14 cmp l11;
+if $b1 == 0 goto $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$b8 = l14 cmp l12;
+if $b8 <= 0 goto l11 = l14;
+"
+    "Block 5:
+[preds: 4 ] [succs: 15 ]
+goto [?= $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>()];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+l11 = l14;
+i9 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i15 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r29 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+if i13 != i9 goto (branch);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+if i0 != i15 goto (branch);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$z3 = virtualinvoke r54.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z3 == 0 goto (branch);
+"
+    "Block 9:
+[preds: 8 ] [succs: ]
+$r45 = <java.lang.System: java.io.PrintStream out>;
+$r44 = new java.lang.StringBuilder;
+specialinvoke $r44.<java.lang.StringBuilder: void <init>()>();
+$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*d* Error in \");
+$r47 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47);
+$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r50 = new org.joda.time.DateTime;
+$r51 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r50.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l11, $r51);
+$r52 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r50);
+$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>($r53);
+return 0;
+"
+    "Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 14 ]
+$i10 = virtualinvoke r29.<java.lang.String: int length()>();
+if $i10 >= 3 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r43 = \"??\";
+$z2 = virtualinvoke $r43.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z2 != 0 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"
+    "Block 13:
+[preds: 10 12 ] [succs: ]
+$r31 = <java.lang.System: java.io.PrintStream out>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*s* Error in \");
+$r33 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r36 = new org.joda.time.DateTime;
+$r37 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r36.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l11, $r37);
+$r38 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r36);
+$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", nameKey=\");
+$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r29);
+$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r41);
+return 0;
+"
+    "Block 14:
+[preds: 11 12 ] [succs: 3 ]
+$r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+interfaceinvoke r8.<java.util.List: boolean add(java.lang.Object)>($r42);
+i13 = i9;
+r54 = r29;
+goto [?= l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11)];
+"
+    "Block 15:
+[preds: 3 5 ] [succs: 16 ]
+$r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r10 = virtualinvoke $r9.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l16 = virtualinvoke $r10.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+$r11 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r12 = virtualinvoke $r11.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l17 = virtualinvoke $r12.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+i18 = interfaceinvoke r8.<java.util.List: int size()>();
+"
+    "Block 16:
+[preds: 15 22 ] [succs: 17 23 ]
+i18 = i18 + -1;
+if i18 < 0 goto return 1;
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 23 ]
+l2 = virtualinvoke r1.<org.joda.time.DateTimeZone: long previousTransition(long)>(l16);
+$b3 = l2 cmp l16;
+if $b3 == 0 goto return 1;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 20 ]
+$b4 = l2 cmp l17;
+if $b4 >= 0 goto l16 = l2;
+"
+    "Block 19:
+[preds: 18 ] [succs: 23 ]
+goto [?= return 1];
+"
+    "Block 20:
+[preds: 18 ] [succs: 21 22 ]
+l16 = l2;
+$r13 = interfaceinvoke r8.<java.util.List: java.lang.Object get(int)>(i18);
+$r14 = (java.lang.Long) $r13;
+l19 = virtualinvoke $r14.<java.lang.Long: long longValue()>();
+$l5 = l19 - 1L;
+$b6 = $l5 cmp l16;
+if $b6 == 0 goto (branch);
+"
+    "Block 21:
+[preds: 20 ] [succs: ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*r* Error in \");
+$r18 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r21 = new org.joda.time.DateTime;
+$r22 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r21.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l16, $r22);
+$r23 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r21);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$r25 = new org.joda.time.DateTime;
+$l7 = l19 - 1L;
+$r26 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r25.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>($l7, $r26);
+$r27 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r25);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r28);
+return 0;
+"
+    "Block 22:
+[preds: 20 ] [succs: 16 ]
+goto [?= i18 = i18 + -1];
+"
+    "Block 23:
+[preds: 16 17 19 ] [succs: ]
+return 1;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: org.joda.time.DateTimeZone;
+$r2 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+if $z0 != 0 goto $r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return 1;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: org.joda.time.DateTimeZone;
+$r2 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+if $z0 != 0 goto $r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r4 = virtualinvoke $r3.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l11 = virtualinvoke $r4.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+$r5 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r6 = virtualinvoke $r5.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l12 = virtualinvoke $r6.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+i13 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i0 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r54 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r8 = $r7;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r3 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r4 = virtualinvoke $r3.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l11 = virtualinvoke $r4.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+$r5 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r6 = virtualinvoke $r5.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l12 = virtualinvoke $r6.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+i13 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i0 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r54 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r8 = $r7;
+"->"Block 3:
+[preds: 2 14 ] [succs: 4 15 ]
+l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11);
+$b1 = l14 cmp l11;
+if $b1 == 0 goto $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+";
+    "Block 3:
+[preds: 2 14 ] [succs: 4 15 ]
+l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11);
+$b1 = l14 cmp l11;
+if $b1 == 0 goto $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$b8 = l14 cmp l12;
+if $b8 <= 0 goto l11 = l14;
+";
+    "Block 3:
+[preds: 2 14 ] [succs: 4 15 ]
+l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11);
+$b1 = l14 cmp l11;
+if $b1 == 0 goto $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+"->"Block 15:
+[preds: 3 5 ] [succs: 16 ]
+$r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r10 = virtualinvoke $r9.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l16 = virtualinvoke $r10.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+$r11 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r12 = virtualinvoke $r11.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l17 = virtualinvoke $r12.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+i18 = interfaceinvoke r8.<java.util.List: int size()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$b8 = l14 cmp l12;
+if $b8 <= 0 goto l11 = l14;
+"->"Block 5:
+[preds: 4 ] [succs: 15 ]
+goto [?= $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$b8 = l14 cmp l12;
+if $b8 <= 0 goto l11 = l14;
+"->"Block 6:
+[preds: 4 ] [succs: 7 10 ]
+l11 = l14;
+i9 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i15 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r29 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+if i13 != i9 goto (branch);
+";
+    "Block 5:
+[preds: 4 ] [succs: 15 ]
+goto [?= $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>()];
+"->"Block 15:
+[preds: 3 5 ] [succs: 16 ]
+$r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r10 = virtualinvoke $r9.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l16 = virtualinvoke $r10.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+$r11 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r12 = virtualinvoke $r11.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l17 = virtualinvoke $r12.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+i18 = interfaceinvoke r8.<java.util.List: int size()>();
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+l11 = l14;
+i9 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i15 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r29 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+if i13 != i9 goto (branch);
+"->"Block 7:
+[preds: 6 ] [succs: 8 10 ]
+if i0 != i15 goto (branch);
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+l11 = l14;
+i9 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getOffset(long)>(l11);
+i15 = virtualinvoke r1.<org.joda.time.DateTimeZone: int getStandardOffset(long)>(l11);
+r29 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getNameKey(long)>(l11);
+if i13 != i9 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+if i0 != i15 goto (branch);
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$z3 = virtualinvoke r54.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z3 == 0 goto (branch);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 10 ]
+if i0 != i15 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$z3 = virtualinvoke r54.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z3 == 0 goto (branch);
+"->"Block 9:
+[preds: 8 ] [succs: ]
+$r45 = <java.lang.System: java.io.PrintStream out>;
+$r44 = new java.lang.StringBuilder;
+specialinvoke $r44.<java.lang.StringBuilder: void <init>()>();
+$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*d* Error in \");
+$r47 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47);
+$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r50 = new org.joda.time.DateTime;
+$r51 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r50.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l11, $r51);
+$r52 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r50);
+$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>($r53);
+return 0;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$z3 = virtualinvoke r54.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z3 == 0 goto (branch);
+"->"Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 11:
+[preds: 10 ] [succs: 12 14 ]
+$i10 = virtualinvoke r29.<java.lang.String: int length()>();
+if $i10 >= 3 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+";
+    "Block 10:
+[preds: 6 7 8 ] [succs: 11 13 ]
+if r29 == null goto $r31 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 13:
+[preds: 10 12 ] [succs: ]
+$r31 = <java.lang.System: java.io.PrintStream out>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*s* Error in \");
+$r33 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r36 = new org.joda.time.DateTime;
+$r37 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r36.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l11, $r37);
+$r38 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r36);
+$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", nameKey=\");
+$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r29);
+$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r41);
+return 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 14 ]
+$i10 = virtualinvoke r29.<java.lang.String: int length()>();
+if $i10 >= 3 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r43 = \"??\";
+$z2 = virtualinvoke $r43.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z2 != 0 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 14 ]
+$i10 = virtualinvoke r29.<java.lang.String: int length()>();
+if $i10 >= 3 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"->"Block 14:
+[preds: 11 12 ] [succs: 3 ]
+$r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+interfaceinvoke r8.<java.util.List: boolean add(java.lang.Object)>($r42);
+i13 = i9;
+r54 = r29;
+goto [?= l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11)];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r43 = \"??\";
+$z2 = virtualinvoke $r43.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z2 != 0 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"->"Block 13:
+[preds: 10 12 ] [succs: ]
+$r31 = <java.lang.System: java.io.PrintStream out>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*s* Error in \");
+$r33 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r36 = new org.joda.time.DateTime;
+$r37 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r36.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l11, $r37);
+$r38 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r36);
+$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", nameKey=\");
+$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r29);
+$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r41);
+return 0;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r43 = \"??\";
+$z2 = virtualinvoke $r43.<java.lang.String: boolean equals(java.lang.Object)>(r29);
+if $z2 != 0 goto $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+"->"Block 14:
+[preds: 11 12 ] [succs: 3 ]
+$r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+interfaceinvoke r8.<java.util.List: boolean add(java.lang.Object)>($r42);
+i13 = i9;
+r54 = r29;
+goto [?= l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11)];
+";
+    "Block 14:
+[preds: 11 12 ] [succs: 3 ]
+$r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l11);
+interfaceinvoke r8.<java.util.List: boolean add(java.lang.Object)>($r42);
+i13 = i9;
+r54 = r29;
+goto [?= l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11)];
+"->"Block 3:
+[preds: 2 14 ] [succs: 4 15 ]
+l14 = virtualinvoke r1.<org.joda.time.DateTimeZone: long nextTransition(long)>(l11);
+$b1 = l14 cmp l11;
+if $b1 == 0 goto $r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+";
+    "Block 15:
+[preds: 3 5 ] [succs: 16 ]
+$r9 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r10 = virtualinvoke $r9.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l16 = virtualinvoke $r10.<org.joda.time.DateTimeField: long set(long,int)>(0L, 2050);
+$r11 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+$r12 = virtualinvoke $r11.<org.joda.time.chrono.ISOChronology: org.joda.time.DateTimeField year()>();
+l17 = virtualinvoke $r12.<org.joda.time.DateTimeField: long set(long,int)>(0L, 1850);
+i18 = interfaceinvoke r8.<java.util.List: int size()>();
+"->"Block 16:
+[preds: 15 22 ] [succs: 17 23 ]
+i18 = i18 + -1;
+if i18 < 0 goto return 1;
+";
+    "Block 16:
+[preds: 15 22 ] [succs: 17 23 ]
+i18 = i18 + -1;
+if i18 < 0 goto return 1;
+"->"Block 17:
+[preds: 16 ] [succs: 18 23 ]
+l2 = virtualinvoke r1.<org.joda.time.DateTimeZone: long previousTransition(long)>(l16);
+$b3 = l2 cmp l16;
+if $b3 == 0 goto return 1;
+";
+    "Block 16:
+[preds: 15 22 ] [succs: 17 23 ]
+i18 = i18 + -1;
+if i18 < 0 goto return 1;
+"->"Block 23:
+[preds: 16 17 19 ] [succs: ]
+return 1;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 23 ]
+l2 = virtualinvoke r1.<org.joda.time.DateTimeZone: long previousTransition(long)>(l16);
+$b3 = l2 cmp l16;
+if $b3 == 0 goto return 1;
+"->"Block 18:
+[preds: 17 ] [succs: 19 20 ]
+$b4 = l2 cmp l17;
+if $b4 >= 0 goto l16 = l2;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 23 ]
+l2 = virtualinvoke r1.<org.joda.time.DateTimeZone: long previousTransition(long)>(l16);
+$b3 = l2 cmp l16;
+if $b3 == 0 goto return 1;
+"->"Block 23:
+[preds: 16 17 19 ] [succs: ]
+return 1;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 20 ]
+$b4 = l2 cmp l17;
+if $b4 >= 0 goto l16 = l2;
+"->"Block 19:
+[preds: 18 ] [succs: 23 ]
+goto [?= return 1];
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 20 ]
+$b4 = l2 cmp l17;
+if $b4 >= 0 goto l16 = l2;
+"->"Block 20:
+[preds: 18 ] [succs: 21 22 ]
+l16 = l2;
+$r13 = interfaceinvoke r8.<java.util.List: java.lang.Object get(int)>(i18);
+$r14 = (java.lang.Long) $r13;
+l19 = virtualinvoke $r14.<java.lang.Long: long longValue()>();
+$l5 = l19 - 1L;
+$b6 = $l5 cmp l16;
+if $b6 == 0 goto (branch);
+";
+    "Block 19:
+[preds: 18 ] [succs: 23 ]
+goto [?= return 1];
+"->"Block 23:
+[preds: 16 17 19 ] [succs: ]
+return 1;
+";
+    "Block 20:
+[preds: 18 ] [succs: 21 22 ]
+l16 = l2;
+$r13 = interfaceinvoke r8.<java.util.List: java.lang.Object get(int)>(i18);
+$r14 = (java.lang.Long) $r13;
+l19 = virtualinvoke $r14.<java.lang.Long: long longValue()>();
+$l5 = l19 - 1L;
+$b6 = $l5 cmp l16;
+if $b6 == 0 goto (branch);
+"->"Block 21:
+[preds: 20 ] [succs: ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*r* Error in \");
+$r18 = virtualinvoke r1.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+$r21 = new org.joda.time.DateTime;
+$r22 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r21.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>(l16, $r22);
+$r23 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r21);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \");
+$r25 = new org.joda.time.DateTime;
+$l7 = l19 - 1L;
+$r26 = staticinvoke <org.joda.time.chrono.ISOChronology: org.joda.time.chrono.ISOChronology getInstanceUTC()>();
+specialinvoke $r25.<org.joda.time.DateTime: void <init>(long,org.joda.time.Chronology)>($l7, $r26);
+$r27 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r25);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r28);
+return 0;
+";
+    "Block 20:
+[preds: 18 ] [succs: 21 22 ]
+l16 = l2;
+$r13 = interfaceinvoke r8.<java.util.List: java.lang.Object get(int)>(i18);
+$r14 = (java.lang.Long) $r13;
+l19 = virtualinvoke $r14.<java.lang.Long: long longValue()>();
+$l5 = l19 - 1L;
+$b6 = $l5 cmp l16;
+if $b6 == 0 goto (branch);
+"->"Block 22:
+[preds: 20 ] [succs: 16 ]
+goto [?= i18 = i18 + -1];
+";
+    "Block 22:
+[preds: 20 ] [succs: 16 ]
+goto [?= i18 = i18 + -1];
+"->"Block 16:
+[preds: 15 22 ] [succs: 17 23 ]
+i18 = i18 + -1;
+if i18 < 0 goto return 1;
+";
+}

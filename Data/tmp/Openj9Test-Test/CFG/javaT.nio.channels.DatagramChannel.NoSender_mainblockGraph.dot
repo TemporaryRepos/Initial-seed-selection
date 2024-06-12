@@ -1,0 +1,61 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>();
+$r1 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.DatagramSocket socket()>();
+$r2 = new java.net.InetSocketAddress;
+specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0);
+virtualinvoke $r1.<java.net.DatagramSocket: void bind(java.net.SocketAddress)>($r2);
+virtualinvoke r0.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(256);
+r5 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.SocketAddress receive(java.nio.ByteBuffer)>(r4);
+if r5 == null goto virtualinvoke r0.<java.nio.channels.DatagramChannel: void close()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r6 = new java.lang.RuntimeException;
+specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\");
+throw $r6;
+"
+    "Block 2:
+[preds: 0 ] [succs: ]
+virtualinvoke r0.<java.nio.channels.DatagramChannel: void close()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>();
+$r1 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.DatagramSocket socket()>();
+$r2 = new java.net.InetSocketAddress;
+specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0);
+virtualinvoke $r1.<java.net.DatagramSocket: void bind(java.net.SocketAddress)>($r2);
+virtualinvoke r0.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(256);
+r5 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.SocketAddress receive(java.nio.ByteBuffer)>(r4);
+if r5 == null goto virtualinvoke r0.<java.nio.channels.DatagramChannel: void close()>();
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r6 = new java.lang.RuntimeException;
+specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\");
+throw $r6;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r7 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open()>();
+$r1 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.DatagramSocket socket()>();
+$r2 = new java.net.InetSocketAddress;
+specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0);
+virtualinvoke $r1.<java.net.DatagramSocket: void bind(java.net.SocketAddress)>($r2);
+virtualinvoke r0.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(256);
+r5 = virtualinvoke r0.<java.nio.channels.DatagramChannel: java.net.SocketAddress receive(java.nio.ByteBuffer)>(r4);
+if r5 == null goto virtualinvoke r0.<java.nio.channels.DatagramChannel: void close()>();
+"->"Block 2:
+[preds: 0 ] [succs: ]
+virtualinvoke r0.<java.nio.channels.DatagramChannel: void close()>();
+return;
+";
+}

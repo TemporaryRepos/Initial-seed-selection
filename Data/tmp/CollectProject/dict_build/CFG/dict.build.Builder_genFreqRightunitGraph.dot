@@ -1,0 +1,1159 @@
+digraph "unitGraph" {
+    "r17 := @this: dict.build.Builder"
+    "r1 := @parameter0: java.lang.String"
+    "i4 := @parameter1: int"
+    "i8 := @parameter2: int"
+    "$r0 = new java.io.File"
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)"
+    "r2 = $r0"
+    "r3 = virtualinvoke r2.<java.io.File: java.io.File getParentFile()>()"
+    "$r4 = new java.io.File"
+    "specialinvoke $r4.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram.data\")"
+    "r5 = $r4"
+    "$r6 = new java.io.File"
+    "specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram_sort.data\")"
+    "r7 = $r6"
+    "$r8 = new java.io.File"
+    "specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram.data\")"
+    "r9 = $r8"
+    "$r10 = new java.io.File"
+    "specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram_sort.data\")"
+    "r11 = $r10"
+    "$r12 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"
+    "r85 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r2, $r12)"
+    "r86 = null"
+    "$r13 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"
+    "r87 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r5, $r13)"
+    "r88 = null"
+    "$r14 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"
+    "r89 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r9, $r14)"
+    "r90 = null"
+    "$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r91 = $r15"
+    "if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>"
+    "$r39 = virtualinvoke r91.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Punct}\", \" \")"
+    "$r40 = virtualinvoke $r39.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\pP\", \" \")"
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\u3000\", \" \")"
+    "$r42 = virtualinvoke $r41.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Blank}\", \" \")"
+    "$r43 = virtualinvoke $r42.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Space}\", \" \")"
+    "$r44 = virtualinvoke $r43.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Cntrl}\", \" \")"
+    "r92 = virtualinvoke $r44.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"[\u7684\u5f88\u4e86\u4e48\u5462\u662f\u561b]\", \" \")"
+    "$r45 = staticinvoke <com.google.common.base.Splitter: com.google.common.base.Splitter on(java.lang.String)>(\" \")"
+    "$r46 = virtualinvoke $r45.<com.google.common.base.Splitter: com.google.common.base.Splitter omitEmptyStrings()>()"
+    "$r47 = virtualinvoke $r46.<com.google.common.base.Splitter: java.util.List splitToList(java.lang.CharSequence)>(r92)"
+    "r93 = interfaceinvoke $r47.<java.util.List: java.util.Iterator iterator()>()"
+    "$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()"
+    "if $z8 == 0 goto (branch)"
+    "$r48 = interfaceinvoke r93.<java.util.Iterator: java.lang.Object next()>()"
+    "r94 = (java.lang.String) $r48"
+    "r95 = virtualinvoke r94.<java.lang.String: java.lang.String trim()>()"
+    "$r49 = new java.lang.StringBuilder"
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r95)"
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"
+    "r96 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r53 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>(r96)"
+    "$r54 = <java.lang.System: java.io.PrintStream out>"
+    "$i2 = virtualinvoke r96.<java.lang.String: int length()>()"
+    "virtualinvoke $r54.<java.io.PrintStream: void println(int)>($i2)"
+    "i9 = 0"
+    "$i3 = virtualinvoke r96.<java.lang.String: int length()>()"
+    "if i9 >= $i3 goto (branch)"
+    "i10 = i9 + 1"
+    "$i5 = i9 + i4"
+    "$i6 = $i5 + 1"
+    "if i10 >= $i6 goto i9 = i9 + 1"
+    "$i7 = virtualinvoke r96.<java.lang.String: int length()>()"
+    "if i10 > $i7 goto i9 = i9 + 1"
+    "r97 = virtualinvoke r96.<java.lang.String: java.lang.String substring(int,int)>(i9, i10)"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r97)"
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke r87.<java.io.BufferedWriter: void write(java.lang.String)>($r58)"
+    "i10 = i10 + 1"
+    "goto [?= $i5 = i9 + i4]"
+    "i9 = i9 + 1"
+    "goto [?= $i3 = virtualinvoke r96.<java.lang.String: int length()>()]"
+    "goto [?= $z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= $r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"gen sorting...\")"
+    "$r18 = new dict.build.Builder$3"
+    "specialinvoke $r18.<dict.build.Builder$3: void <init>(dict.build.Builder)>(r17)"
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r5, r7, $r18)"
+    "$r19 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"
+    "r98 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r7, $r19)"
+    "r99 = null"
+    "r100 = null"
+    "r101 = null"
+    "r102 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"
+    "z9 = 0"
+    "if z9 != 0 goto (branch)"
+    "$r38 = virtualinvoke r98.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r101 = $r38"
+    "if null == $r38 goto (branch)"
+    "if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"
+    "r100 = r101"
+    "goto [?= (branch)]"
+    "$z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"
+    "if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"
+    "$z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"
+    "if $z1 == 0 goto $r20 = new dict.build.CounterMap"
+    "$r20 = new dict.build.CounterMap"
+    "specialinvoke $r20.<dict.build.CounterMap: void <init>()>()"
+    "r21 = $r20"
+    "i11 = 0"
+    "r103 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"
+    "$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"
+    "if $z10 == 0 goto d6 = 0.0"
+    "$r35 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"
+    "r36 = (java.lang.String) $r35"
+    "$z6 = virtualinvoke r36.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"
+    "if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"
+    "goto [?= d6 = 0.0]"
+    "$z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"
+    "if $z7 == 0 goto i11 = i11 + 1"
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"
+    "i11 = i11 + 1"
+    "$i1 = virtualinvoke r100.<java.lang.String: int length()>()"
+    "$r37 = virtualinvoke r36.<java.lang.String: java.lang.String substring(int)>($i1)"
+    "virtualinvoke r21.<dict.build.CounterMap: void incr(java.lang.String)>($r37)"
+    "d6 = 0.0"
+    "$r22 = virtualinvoke r21.<dict.build.CounterMap: java.util.Map countAll()>()"
+    "$r23 = interfaceinvoke $r22.<java.util.Map: java.util.Set keySet()>()"
+    "r104 = interfaceinvoke $r23.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()"
+    "if $z11 == 0 goto $r24 = new java.lang.StringBuilder"
+    "$r34 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>()"
+    "r105 = (java.lang.String) $r34"
+    "$i0 = virtualinvoke r21.<dict.build.CounterMap: int get(java.lang.String)>(r105)"
+    "$d0 = (double) $i0"
+    "$d2 = $d0 * 1.0"
+    "$d1 = (double) i11"
+    "d7 = $d2 / $d1"
+    "$d3 = -1.0 * d7"
+    "$d4 = staticinvoke <java.lang.Math: double log(double)>(d7)"
+    "$d5 = $d3 * $d4"
+    "d6 = d6 + $d5"
+    "goto [?= $z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()]"
+    "$r24 = new java.lang.StringBuilder"
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d6)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke r89.<java.io.BufferedWriter: void write(java.lang.String)>($r31)"
+    "r106 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"
+    "r107 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto r102 = r106"
+    "$r33 = interfaceinvoke r107.<java.util.Iterator: java.lang.Object next()>()"
+    "r108 = (java.lang.String) $r33"
+    "$z5 = virtualinvoke r108.<java.lang.String: boolean equals(java.lang.Object)>(r100)"
+    "if $z5 != 0 goto (branch)"
+    "interfaceinvoke r106.<java.util.List: boolean add(java.lang.Object)>(r108)"
+    "goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]"
+    "r102 = r106"
+    "$z3 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"
+    "if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"
+    "$r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"
+    "r100 = (java.lang.String) $r32"
+    "$z4 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"
+    "if $z4 == 0 goto z9 = 1"
+    "z9 = 1"
+    "if r98 == null goto $r111 = new dict.build.Builder$4"
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"
+    "goto [?= $r111 = new dict.build.Builder$4]"
+    "$r84 := @caughtexception"
+    "r109 = $r84"
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r109)"
+    "$r83 := @caughtexception"
+    "r110 = $r83"
+    "r99 = r110"
+    "throw r110"
+    "$r82 := @caughtexception"
+    "r81 = $r82"
+    "if r98 == null goto throw r81"
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"
+    "goto [?= throw r81]"
+    "$r79 := @caughtexception"
+    "r80 = $r79"
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r80)"
+    "throw r81"
+    "$r111 = new dict.build.Builder$4"
+    "specialinvoke $r111.<dict.build.Builder$4: void <init>(dict.build.Builder)>(r17)"
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"
+    "if r89 == null goto (branch)"
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"
+    "$r78 := @caughtexception"
+    "r112 = $r78"
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r112)"
+    "$r77 := @caughtexception"
+    "r113 = $r77"
+    "r90 = r113"
+    "throw r113"
+    "$r76 := @caughtexception"
+    "r75 = $r76"
+    "if r89 == null goto throw r75"
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"
+    "goto [?= throw r75]"
+    "$r73 := @caughtexception"
+    "r74 = $r73"
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"
+    "throw r75"
+    "if r87 == null goto (branch)"
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"
+    "$r72 := @caughtexception"
+    "r114 = $r72"
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r114)"
+    "$r71 := @caughtexception"
+    "r115 = $r71"
+    "r88 = r115"
+    "throw r115"
+    "$r70 := @caughtexception"
+    "r69 = $r70"
+    "if r87 == null goto throw r69"
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"
+    "goto [?= throw r69]"
+    "$r67 := @caughtexception"
+    "r68 = $r67"
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"
+    "throw r69"
+    "if r85 == null goto (branch)"
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"
+    "$r66 := @caughtexception"
+    "r116 = $r66"
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r116)"
+    "$r65 := @caughtexception"
+    "r117 = $r65"
+    "r86 = r117"
+    "throw r117"
+    "$r64 := @caughtexception"
+    "r63 = $r64"
+    "if r85 == null goto throw r63"
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"
+    "goto [?= throw r63]"
+    "$r61 := @caughtexception"
+    "r62 = $r61"
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r62)"
+    "throw r63"
+    "goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]"
+    "$r60 := @caughtexception"
+    "r118 = $r60"
+    "virtualinvoke r118.<java.io.FileNotFoundException: void printStackTrace()>()"
+    "$r59 := @caughtexception"
+    "r119 = $r59"
+    "virtualinvoke r119.<java.io.IOException: void printStackTrace()>()"
+    "$r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()"
+    "return $r120"
+    "r17 := @this: dict.build.Builder"->"r1 := @parameter0: java.lang.String";
+    "r1 := @parameter0: java.lang.String"->"i4 := @parameter1: int";
+    "i4 := @parameter1: int"->"i8 := @parameter2: int";
+    "i8 := @parameter2: int"->"$r0 = new java.io.File";
+    "$r0 = new java.io.File"->"specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)";
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"r3 = virtualinvoke r2.<java.io.File: java.io.File getParentFile()>()";
+    "r3 = virtualinvoke r2.<java.io.File: java.io.File getParentFile()>()"->"$r4 = new java.io.File";
+    "$r4 = new java.io.File"->"specialinvoke $r4.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram.data\")";
+    "specialinvoke $r4.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram.data\")"->"r5 = $r4";
+    "r5 = $r4"->"$r6 = new java.io.File";
+    "$r6 = new java.io.File"->"specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram_sort.data\")";
+    "specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"ngram_sort.data\")"->"r7 = $r6";
+    "r7 = $r6"->"$r8 = new java.io.File";
+    "$r8 = new java.io.File"->"specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram.data\")";
+    "specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram.data\")"->"r9 = $r8";
+    "r9 = $r8"->"$r10 = new java.io.File";
+    "$r10 = new java.io.File"->"specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram_sort.data\")";
+    "specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, \"freq_ngram_sort.data\")"->"r11 = $r10";
+    "r11 = $r10"->"$r60 := @caughtexception";
+    "r11 = $r10"->"$r59 := @caughtexception";
+    "r11 = $r10"->"$r12 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>";
+    "$r12 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r60 := @caughtexception";
+    "$r12 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r59 := @caughtexception";
+    "$r12 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"r85 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r2, $r12)";
+    "r85 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r2, $r12)"->"$r60 := @caughtexception";
+    "r85 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r2, $r12)"->"$r59 := @caughtexception";
+    "r85 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r2, $r12)"->"r86 = null";
+    "r86 = null"->"$r65 := @caughtexception";
+    "r86 = null"->"$r60 := @caughtexception";
+    "r86 = null"->"$r59 := @caughtexception";
+    "r86 = null"->"$r64 := @caughtexception";
+    "r86 = null"->"$r13 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>";
+    "$r13 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r65 := @caughtexception";
+    "$r13 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r64 := @caughtexception";
+    "$r13 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"r87 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r5, $r13)";
+    "r87 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r5, $r13)"->"$r65 := @caughtexception";
+    "r87 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r5, $r13)"->"$r64 := @caughtexception";
+    "r87 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r5, $r13)"->"r88 = null";
+    "r88 = null"->"$r71 := @caughtexception";
+    "r88 = null"->"$r65 := @caughtexception";
+    "r88 = null"->"$r70 := @caughtexception";
+    "r88 = null"->"$r64 := @caughtexception";
+    "r88 = null"->"$r14 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>";
+    "$r14 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r71 := @caughtexception";
+    "$r14 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r70 := @caughtexception";
+    "$r14 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"r89 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r9, $r14)";
+    "r89 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r9, $r14)"->"$r71 := @caughtexception";
+    "r89 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r9, $r14)"->"$r70 := @caughtexception";
+    "r89 = staticinvoke <com.google.common.io.Files: java.io.BufferedWriter newWriter(java.io.File,java.nio.charset.Charset)>(r9, $r14)"->"r90 = null";
+    "r90 = null"->"$r77 := @caughtexception";
+    "r90 = null"->"$r71 := @caughtexception";
+    "r90 = null"->"$r76 := @caughtexception";
+    "r90 = null"->"$r70 := @caughtexception";
+    "r90 = null"->"$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r77 := @caughtexception";
+    "$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r76 := @caughtexception";
+    "$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()"->"r91 = $r15";
+    "r91 = $r15"->"$r77 := @caughtexception";
+    "r91 = $r15"->"$r76 := @caughtexception";
+    "r91 = $r15"->"if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>";
+    "if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>"->"$r39 = virtualinvoke r91.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Punct}\", \" \")";
+    "if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>"->"$r77 := @caughtexception";
+    "if null == $r15 goto $r16 = <java.lang.System: java.io.PrintStream out>"->"$r76 := @caughtexception";
+    "$r39 = virtualinvoke r91.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Punct}\", \" \")"->"$r77 := @caughtexception";
+    "$r39 = virtualinvoke r91.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Punct}\", \" \")"->"$r76 := @caughtexception";
+    "$r39 = virtualinvoke r91.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Punct}\", \" \")"->"$r40 = virtualinvoke $r39.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\pP\", \" \")";
+    "$r40 = virtualinvoke $r39.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\pP\", \" \")"->"$r77 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\pP\", \" \")"->"$r76 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\pP\", \" \")"->"$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\u3000\", \" \")";
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\u3000\", \" \")"->"$r77 := @caughtexception";
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\u3000\", \" \")"->"$r76 := @caughtexception";
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\u3000\", \" \")"->"$r42 = virtualinvoke $r41.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Blank}\", \" \")";
+    "$r42 = virtualinvoke $r41.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Blank}\", \" \")"->"$r77 := @caughtexception";
+    "$r42 = virtualinvoke $r41.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Blank}\", \" \")"->"$r76 := @caughtexception";
+    "$r42 = virtualinvoke $r41.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Blank}\", \" \")"->"$r43 = virtualinvoke $r42.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Space}\", \" \")";
+    "$r43 = virtualinvoke $r42.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Space}\", \" \")"->"$r77 := @caughtexception";
+    "$r43 = virtualinvoke $r42.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Space}\", \" \")"->"$r76 := @caughtexception";
+    "$r43 = virtualinvoke $r42.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Space}\", \" \")"->"$r44 = virtualinvoke $r43.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Cntrl}\", \" \")";
+    "$r44 = virtualinvoke $r43.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Cntrl}\", \" \")"->"$r77 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Cntrl}\", \" \")"->"$r76 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"\\p{Cntrl}\", \" \")"->"r92 = virtualinvoke $r44.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"[\u7684\u5f88\u4e86\u4e48\u5462\u662f\u561b]\", \" \")";
+    "r92 = virtualinvoke $r44.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"[\u7684\u5f88\u4e86\u4e48\u5462\u662f\u561b]\", \" \")"->"$r77 := @caughtexception";
+    "r92 = virtualinvoke $r44.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"[\u7684\u5f88\u4e86\u4e48\u5462\u662f\u561b]\", \" \")"->"$r76 := @caughtexception";
+    "r92 = virtualinvoke $r44.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"[\u7684\u5f88\u4e86\u4e48\u5462\u662f\u561b]\", \" \")"->"$r45 = staticinvoke <com.google.common.base.Splitter: com.google.common.base.Splitter on(java.lang.String)>(\" \")";
+    "$r45 = staticinvoke <com.google.common.base.Splitter: com.google.common.base.Splitter on(java.lang.String)>(\" \")"->"$r77 := @caughtexception";
+    "$r45 = staticinvoke <com.google.common.base.Splitter: com.google.common.base.Splitter on(java.lang.String)>(\" \")"->"$r76 := @caughtexception";
+    "$r45 = staticinvoke <com.google.common.base.Splitter: com.google.common.base.Splitter on(java.lang.String)>(\" \")"->"$r46 = virtualinvoke $r45.<com.google.common.base.Splitter: com.google.common.base.Splitter omitEmptyStrings()>()";
+    "$r46 = virtualinvoke $r45.<com.google.common.base.Splitter: com.google.common.base.Splitter omitEmptyStrings()>()"->"$r77 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<com.google.common.base.Splitter: com.google.common.base.Splitter omitEmptyStrings()>()"->"$r76 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<com.google.common.base.Splitter: com.google.common.base.Splitter omitEmptyStrings()>()"->"$r47 = virtualinvoke $r46.<com.google.common.base.Splitter: java.util.List splitToList(java.lang.CharSequence)>(r92)";
+    "$r47 = virtualinvoke $r46.<com.google.common.base.Splitter: java.util.List splitToList(java.lang.CharSequence)>(r92)"->"$r77 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<com.google.common.base.Splitter: java.util.List splitToList(java.lang.CharSequence)>(r92)"->"$r76 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<com.google.common.base.Splitter: java.util.List splitToList(java.lang.CharSequence)>(r92)"->"r93 = interfaceinvoke $r47.<java.util.List: java.util.Iterator iterator()>()";
+    "r93 = interfaceinvoke $r47.<java.util.List: java.util.Iterator iterator()>()"->"$r77 := @caughtexception";
+    "r93 = interfaceinvoke $r47.<java.util.List: java.util.Iterator iterator()>()"->"$r76 := @caughtexception";
+    "r93 = interfaceinvoke $r47.<java.util.List: java.util.Iterator iterator()>()"->"$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()";
+    "$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()"->"$r77 := @caughtexception";
+    "$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()"->"$r76 := @caughtexception";
+    "$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()"->"if $z8 == 0 goto (branch)";
+    "if $z8 == 0 goto (branch)"->"$r48 = interfaceinvoke r93.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z8 == 0 goto (branch)"->"goto [?= $r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "if $z8 == 0 goto (branch)"->"$r77 := @caughtexception";
+    "if $z8 == 0 goto (branch)"->"$r76 := @caughtexception";
+    "$r48 = interfaceinvoke r93.<java.util.Iterator: java.lang.Object next()>()"->"$r77 := @caughtexception";
+    "$r48 = interfaceinvoke r93.<java.util.Iterator: java.lang.Object next()>()"->"$r76 := @caughtexception";
+    "$r48 = interfaceinvoke r93.<java.util.Iterator: java.lang.Object next()>()"->"r94 = (java.lang.String) $r48";
+    "r94 = (java.lang.String) $r48"->"$r77 := @caughtexception";
+    "r94 = (java.lang.String) $r48"->"$r76 := @caughtexception";
+    "r94 = (java.lang.String) $r48"->"r95 = virtualinvoke r94.<java.lang.String: java.lang.String trim()>()";
+    "r95 = virtualinvoke r94.<java.lang.String: java.lang.String trim()>()"->"$r77 := @caughtexception";
+    "r95 = virtualinvoke r94.<java.lang.String: java.lang.String trim()>()"->"$r76 := @caughtexception";
+    "r95 = virtualinvoke r94.<java.lang.String: java.lang.String trim()>()"->"$r49 = new java.lang.StringBuilder";
+    "$r49 = new java.lang.StringBuilder"->"$r77 := @caughtexception";
+    "$r49 = new java.lang.StringBuilder"->"$r76 := @caughtexception";
+    "$r49 = new java.lang.StringBuilder"->"specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"->"$r77 := @caughtexception";
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"->"$r76 := @caughtexception";
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"$r77 := @caughtexception";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"$r76 := @caughtexception";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r95)";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r95)"->"$r77 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r95)"->"$r76 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r95)"->"$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"$r77 := @caughtexception";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"$r76 := @caughtexception";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"$\")"->"r96 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r96 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r77 := @caughtexception";
+    "r96 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r76 := @caughtexception";
+    "r96 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r53 = <java.lang.System: java.io.PrintStream out>";
+    "$r53 = <java.lang.System: java.io.PrintStream out>"->"$r77 := @caughtexception";
+    "$r53 = <java.lang.System: java.io.PrintStream out>"->"$r76 := @caughtexception";
+    "$r53 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>(r96)";
+    "virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>(r96)"->"$r77 := @caughtexception";
+    "virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>(r96)"->"$r76 := @caughtexception";
+    "virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>(r96)"->"$r54 = <java.lang.System: java.io.PrintStream out>";
+    "$r54 = <java.lang.System: java.io.PrintStream out>"->"$r77 := @caughtexception";
+    "$r54 = <java.lang.System: java.io.PrintStream out>"->"$r76 := @caughtexception";
+    "$r54 = <java.lang.System: java.io.PrintStream out>"->"$i2 = virtualinvoke r96.<java.lang.String: int length()>()";
+    "$i2 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r77 := @caughtexception";
+    "$i2 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r76 := @caughtexception";
+    "$i2 = virtualinvoke r96.<java.lang.String: int length()>()"->"virtualinvoke $r54.<java.io.PrintStream: void println(int)>($i2)";
+    "virtualinvoke $r54.<java.io.PrintStream: void println(int)>($i2)"->"$r77 := @caughtexception";
+    "virtualinvoke $r54.<java.io.PrintStream: void println(int)>($i2)"->"$r76 := @caughtexception";
+    "virtualinvoke $r54.<java.io.PrintStream: void println(int)>($i2)"->"i9 = 0";
+    "i9 = 0"->"$r77 := @caughtexception";
+    "i9 = 0"->"$r76 := @caughtexception";
+    "i9 = 0"->"$i3 = virtualinvoke r96.<java.lang.String: int length()>()";
+    "$i3 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r77 := @caughtexception";
+    "$i3 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r76 := @caughtexception";
+    "$i3 = virtualinvoke r96.<java.lang.String: int length()>()"->"if i9 >= $i3 goto (branch)";
+    "if i9 >= $i3 goto (branch)"->"i10 = i9 + 1";
+    "if i9 >= $i3 goto (branch)"->"goto [?= $z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()]";
+    "if i9 >= $i3 goto (branch)"->"$r77 := @caughtexception";
+    "if i9 >= $i3 goto (branch)"->"$r76 := @caughtexception";
+    "i10 = i9 + 1"->"$r77 := @caughtexception";
+    "i10 = i9 + 1"->"$r76 := @caughtexception";
+    "i10 = i9 + 1"->"$i5 = i9 + i4";
+    "$i5 = i9 + i4"->"$r77 := @caughtexception";
+    "$i5 = i9 + i4"->"$r76 := @caughtexception";
+    "$i5 = i9 + i4"->"$i6 = $i5 + 1";
+    "$i6 = $i5 + 1"->"$r77 := @caughtexception";
+    "$i6 = $i5 + 1"->"$r76 := @caughtexception";
+    "$i6 = $i5 + 1"->"if i10 >= $i6 goto i9 = i9 + 1";
+    "if i10 >= $i6 goto i9 = i9 + 1"->"$i7 = virtualinvoke r96.<java.lang.String: int length()>()";
+    "if i10 >= $i6 goto i9 = i9 + 1"->"i9 = i9 + 1";
+    "if i10 >= $i6 goto i9 = i9 + 1"->"$r77 := @caughtexception";
+    "if i10 >= $i6 goto i9 = i9 + 1"->"$r76 := @caughtexception";
+    "$i7 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r77 := @caughtexception";
+    "$i7 = virtualinvoke r96.<java.lang.String: int length()>()"->"$r76 := @caughtexception";
+    "$i7 = virtualinvoke r96.<java.lang.String: int length()>()"->"if i10 > $i7 goto i9 = i9 + 1";
+    "if i10 > $i7 goto i9 = i9 + 1"->"r97 = virtualinvoke r96.<java.lang.String: java.lang.String substring(int,int)>(i9, i10)";
+    "if i10 > $i7 goto i9 = i9 + 1"->"i9 = i9 + 1";
+    "if i10 > $i7 goto i9 = i9 + 1"->"$r77 := @caughtexception";
+    "if i10 > $i7 goto i9 = i9 + 1"->"$r76 := @caughtexception";
+    "r97 = virtualinvoke r96.<java.lang.String: java.lang.String substring(int,int)>(i9, i10)"->"$r77 := @caughtexception";
+    "r97 = virtualinvoke r96.<java.lang.String: java.lang.String substring(int,int)>(i9, i10)"->"$r76 := @caughtexception";
+    "r97 = virtualinvoke r96.<java.lang.String: java.lang.String substring(int,int)>(i9, i10)"->"$r55 = new java.lang.StringBuilder";
+    "$r55 = new java.lang.StringBuilder"->"$r77 := @caughtexception";
+    "$r55 = new java.lang.StringBuilder"->"$r76 := @caughtexception";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r77 := @caughtexception";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r76 := @caughtexception";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r97)";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r97)"->"$r77 := @caughtexception";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r97)"->"$r76 := @caughtexception";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r97)"->"$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r77 := @caughtexception";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r76 := @caughtexception";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r77 := @caughtexception";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r76 := @caughtexception";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke r87.<java.io.BufferedWriter: void write(java.lang.String)>($r58)";
+    "virtualinvoke r87.<java.io.BufferedWriter: void write(java.lang.String)>($r58)"->"$r77 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void write(java.lang.String)>($r58)"->"$r76 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void write(java.lang.String)>($r58)"->"i10 = i10 + 1";
+    "i10 = i10 + 1"->"$r77 := @caughtexception";
+    "i10 = i10 + 1"->"$r76 := @caughtexception";
+    "i10 = i10 + 1"->"goto [?= $i5 = i9 + i4]";
+    "goto [?= $i5 = i9 + i4]"->"$r77 := @caughtexception";
+    "goto [?= $i5 = i9 + i4]"->"$r76 := @caughtexception";
+    "goto [?= $i5 = i9 + i4]"->"$i5 = i9 + i4";
+    "i9 = i9 + 1"->"$r77 := @caughtexception";
+    "i9 = i9 + 1"->"$r76 := @caughtexception";
+    "i9 = i9 + 1"->"goto [?= $i3 = virtualinvoke r96.<java.lang.String: int length()>()]";
+    "goto [?= $i3 = virtualinvoke r96.<java.lang.String: int length()>()]"->"$r77 := @caughtexception";
+    "goto [?= $i3 = virtualinvoke r96.<java.lang.String: int length()>()]"->"$r76 := @caughtexception";
+    "goto [?= $i3 = virtualinvoke r96.<java.lang.String: int length()>()]"->"$i3 = virtualinvoke r96.<java.lang.String: int length()>()";
+    "goto [?= $z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()]"->"$r77 := @caughtexception";
+    "goto [?= $z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()]"->"$r76 := @caughtexception";
+    "goto [?= $z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()]"->"$z8 = interfaceinvoke r93.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r77 := @caughtexception";
+    "goto [?= $r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r76 := @caughtexception";
+    "goto [?= $r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r15 = virtualinvoke r85.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r77 := @caughtexception";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r76 := @caughtexception";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"gen sorting...\")";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"gen sorting...\")"->"$r77 := @caughtexception";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"gen sorting...\")"->"$r76 := @caughtexception";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"gen sorting...\")"->"$r18 = new dict.build.Builder$3";
+    "$r18 = new dict.build.Builder$3"->"$r77 := @caughtexception";
+    "$r18 = new dict.build.Builder$3"->"$r76 := @caughtexception";
+    "$r18 = new dict.build.Builder$3"->"specialinvoke $r18.<dict.build.Builder$3: void <init>(dict.build.Builder)>(r17)";
+    "specialinvoke $r18.<dict.build.Builder$3: void <init>(dict.build.Builder)>(r17)"->"$r77 := @caughtexception";
+    "specialinvoke $r18.<dict.build.Builder$3: void <init>(dict.build.Builder)>(r17)"->"$r76 := @caughtexception";
+    "specialinvoke $r18.<dict.build.Builder$3: void <init>(dict.build.Builder)>(r17)"->"virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r5, r7, $r18)";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r5, r7, $r18)"->"$r77 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r5, r7, $r18)"->"$r76 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r5, r7, $r18)"->"$r19 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>";
+    "$r19 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r77 := @caughtexception";
+    "$r19 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"$r76 := @caughtexception";
+    "$r19 = <com.google.common.base.Charsets: java.nio.charset.Charset UTF_8>"->"r98 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r7, $r19)";
+    "r98 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r7, $r19)"->"$r77 := @caughtexception";
+    "r98 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r7, $r19)"->"$r76 := @caughtexception";
+    "r98 = staticinvoke <com.google.common.io.Files: java.io.BufferedReader newReader(java.io.File,java.nio.charset.Charset)>(r7, $r19)"->"r99 = null";
+    "r99 = null"->"$r83 := @caughtexception";
+    "r99 = null"->"$r77 := @caughtexception";
+    "r99 = null"->"$r82 := @caughtexception";
+    "r99 = null"->"$r76 := @caughtexception";
+    "r99 = null"->"r100 = null";
+    "r100 = null"->"$r83 := @caughtexception";
+    "r100 = null"->"$r82 := @caughtexception";
+    "r100 = null"->"r101 = null";
+    "r101 = null"->"$r83 := @caughtexception";
+    "r101 = null"->"$r82 := @caughtexception";
+    "r101 = null"->"r102 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()";
+    "r102 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"$r83 := @caughtexception";
+    "r102 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"$r82 := @caughtexception";
+    "r102 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"z9 = 0";
+    "z9 = 0"->"$r83 := @caughtexception";
+    "z9 = 0"->"$r82 := @caughtexception";
+    "z9 = 0"->"if z9 != 0 goto (branch)";
+    "if z9 != 0 goto (branch)"->"$r38 = virtualinvoke r98.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "if z9 != 0 goto (branch)"->"if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)";
+    "if z9 != 0 goto (branch)"->"$r83 := @caughtexception";
+    "if z9 != 0 goto (branch)"->"$r82 := @caughtexception";
+    "$r38 = virtualinvoke r98.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r83 := @caughtexception";
+    "$r38 = virtualinvoke r98.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r82 := @caughtexception";
+    "$r38 = virtualinvoke r98.<java.io.BufferedReader: java.lang.String readLine()>()"->"r101 = $r38";
+    "r101 = $r38"->"$r83 := @caughtexception";
+    "r101 = $r38"->"$r82 := @caughtexception";
+    "r101 = $r38"->"if null == $r38 goto (branch)";
+    "if null == $r38 goto (branch)"->"$r83 := @caughtexception";
+    "if null == $r38 goto (branch)"->"$r77 := @caughtexception";
+    "if null == $r38 goto (branch)"->"$r82 := @caughtexception";
+    "if null == $r38 goto (branch)"->"$r76 := @caughtexception";
+    "if null == $r38 goto (branch)"->"if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)";
+    "if null == $r38 goto (branch)"->"if r98 == null goto $r111 = new dict.build.Builder$4";
+    "if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)";
+    "if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)";
+    "if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r83 := @caughtexception";
+    "if null != r100 goto $z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r83 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"r100 = r101";
+    "r100 = r101"->"$r83 := @caughtexception";
+    "r100 = r101"->"$r82 := @caughtexception";
+    "r100 = r101"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"if z9 != 0 goto (branch)";
+    "$z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r83 := @caughtexception";
+    "$z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r82 := @caughtexception";
+    "$z0 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()";
+    "if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)";
+    "if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()";
+    "if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r83 := @caughtexception";
+    "if $z0 == 0 goto $z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r83 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"if z9 != 0 goto (branch)";
+    "$z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r83 := @caughtexception";
+    "$z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r82 := @caughtexception";
+    "$z1 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"if $z1 == 0 goto $r20 = new dict.build.CounterMap";
+    "if $z1 == 0 goto $r20 = new dict.build.CounterMap"->"z9 = 0";
+    "if $z1 == 0 goto $r20 = new dict.build.CounterMap"->"$r20 = new dict.build.CounterMap";
+    "if $z1 == 0 goto $r20 = new dict.build.CounterMap"->"$r83 := @caughtexception";
+    "if $z1 == 0 goto $r20 = new dict.build.CounterMap"->"$r82 := @caughtexception";
+    "z9 = 0"->"$r83 := @caughtexception";
+    "z9 = 0"->"$r82 := @caughtexception";
+    "z9 = 0"->"interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r83 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"r100 = r101";
+    "r100 = r101"->"$r83 := @caughtexception";
+    "r100 = r101"->"$r82 := @caughtexception";
+    "r100 = r101"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"if z9 != 0 goto (branch)";
+    "$r20 = new dict.build.CounterMap"->"$r83 := @caughtexception";
+    "$r20 = new dict.build.CounterMap"->"$r82 := @caughtexception";
+    "$r20 = new dict.build.CounterMap"->"specialinvoke $r20.<dict.build.CounterMap: void <init>()>()";
+    "specialinvoke $r20.<dict.build.CounterMap: void <init>()>()"->"$r83 := @caughtexception";
+    "specialinvoke $r20.<dict.build.CounterMap: void <init>()>()"->"$r82 := @caughtexception";
+    "specialinvoke $r20.<dict.build.CounterMap: void <init>()>()"->"r21 = $r20";
+    "r21 = $r20"->"$r83 := @caughtexception";
+    "r21 = $r20"->"$r82 := @caughtexception";
+    "r21 = $r20"->"i11 = 0";
+    "i11 = 0"->"$r83 := @caughtexception";
+    "i11 = 0"->"$r82 := @caughtexception";
+    "i11 = 0"->"r103 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()";
+    "r103 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$r83 := @caughtexception";
+    "r103 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$r82 := @caughtexception";
+    "r103 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()";
+    "$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"->"$r83 := @caughtexception";
+    "$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"->"$r82 := @caughtexception";
+    "$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()"->"if $z10 == 0 goto d6 = 0.0";
+    "if $z10 == 0 goto d6 = 0.0"->"$r35 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z10 == 0 goto d6 = 0.0"->"d6 = 0.0";
+    "if $z10 == 0 goto d6 = 0.0"->"$r83 := @caughtexception";
+    "if $z10 == 0 goto d6 = 0.0"->"$r82 := @caughtexception";
+    "$r35 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"->"$r83 := @caughtexception";
+    "$r35 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"->"$r82 := @caughtexception";
+    "$r35 = interfaceinvoke r103.<java.util.Iterator: java.lang.Object next()>()"->"r36 = (java.lang.String) $r35";
+    "r36 = (java.lang.String) $r35"->"$r83 := @caughtexception";
+    "r36 = (java.lang.String) $r35"->"$r82 := @caughtexception";
+    "r36 = (java.lang.String) $r35"->"$z6 = virtualinvoke r36.<java.lang.String: boolean startsWith(java.lang.String)>(r100)";
+    "$z6 = virtualinvoke r36.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r83 := @caughtexception";
+    "$z6 = virtualinvoke r36.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r82 := @caughtexception";
+    "$z6 = virtualinvoke r36.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)";
+    "if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"goto [?= d6 = 0.0]";
+    "if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)";
+    "if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r83 := @caughtexception";
+    "if $z6 != 0 goto $z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r82 := @caughtexception";
+    "goto [?= d6 = 0.0]"->"$r83 := @caughtexception";
+    "goto [?= d6 = 0.0]"->"$r82 := @caughtexception";
+    "goto [?= d6 = 0.0]"->"d6 = 0.0";
+    "$z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r83 := @caughtexception";
+    "$z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r82 := @caughtexception";
+    "$z7 = virtualinvoke r36.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"if $z7 == 0 goto i11 = i11 + 1";
+    "if $z7 == 0 goto i11 = i11 + 1"->"goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]";
+    "if $z7 == 0 goto i11 = i11 + 1"->"i11 = i11 + 1";
+    "if $z7 == 0 goto i11 = i11 + 1"->"$r83 := @caughtexception";
+    "if $z7 == 0 goto i11 = i11 + 1"->"$r82 := @caughtexception";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$r83 := @caughtexception";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$r82 := @caughtexception";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()";
+    "i11 = i11 + 1"->"$r83 := @caughtexception";
+    "i11 = i11 + 1"->"$r82 := @caughtexception";
+    "i11 = i11 + 1"->"$i1 = virtualinvoke r100.<java.lang.String: int length()>()";
+    "$i1 = virtualinvoke r100.<java.lang.String: int length()>()"->"$r83 := @caughtexception";
+    "$i1 = virtualinvoke r100.<java.lang.String: int length()>()"->"$r82 := @caughtexception";
+    "$i1 = virtualinvoke r100.<java.lang.String: int length()>()"->"$r37 = virtualinvoke r36.<java.lang.String: java.lang.String substring(int)>($i1)";
+    "$r37 = virtualinvoke r36.<java.lang.String: java.lang.String substring(int)>($i1)"->"$r83 := @caughtexception";
+    "$r37 = virtualinvoke r36.<java.lang.String: java.lang.String substring(int)>($i1)"->"$r82 := @caughtexception";
+    "$r37 = virtualinvoke r36.<java.lang.String: java.lang.String substring(int)>($i1)"->"virtualinvoke r21.<dict.build.CounterMap: void incr(java.lang.String)>($r37)";
+    "virtualinvoke r21.<dict.build.CounterMap: void incr(java.lang.String)>($r37)"->"$r83 := @caughtexception";
+    "virtualinvoke r21.<dict.build.CounterMap: void incr(java.lang.String)>($r37)"->"$r82 := @caughtexception";
+    "virtualinvoke r21.<dict.build.CounterMap: void incr(java.lang.String)>($r37)"->"goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$r83 := @caughtexception";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$r82 := @caughtexception";
+    "goto [?= $z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()]"->"$z10 = interfaceinvoke r103.<java.util.Iterator: boolean hasNext()>()";
+    "d6 = 0.0"->"$r83 := @caughtexception";
+    "d6 = 0.0"->"$r82 := @caughtexception";
+    "d6 = 0.0"->"$r22 = virtualinvoke r21.<dict.build.CounterMap: java.util.Map countAll()>()";
+    "$r22 = virtualinvoke r21.<dict.build.CounterMap: java.util.Map countAll()>()"->"$r83 := @caughtexception";
+    "$r22 = virtualinvoke r21.<dict.build.CounterMap: java.util.Map countAll()>()"->"$r82 := @caughtexception";
+    "$r22 = virtualinvoke r21.<dict.build.CounterMap: java.util.Map countAll()>()"->"$r23 = interfaceinvoke $r22.<java.util.Map: java.util.Set keySet()>()";
+    "$r23 = interfaceinvoke $r22.<java.util.Map: java.util.Set keySet()>()"->"$r83 := @caughtexception";
+    "$r23 = interfaceinvoke $r22.<java.util.Map: java.util.Set keySet()>()"->"$r82 := @caughtexception";
+    "$r23 = interfaceinvoke $r22.<java.util.Map: java.util.Set keySet()>()"->"r104 = interfaceinvoke $r23.<java.util.Set: java.util.Iterator iterator()>()";
+    "r104 = interfaceinvoke $r23.<java.util.Set: java.util.Iterator iterator()>()"->"$r83 := @caughtexception";
+    "r104 = interfaceinvoke $r23.<java.util.Set: java.util.Iterator iterator()>()"->"$r82 := @caughtexception";
+    "r104 = interfaceinvoke $r23.<java.util.Set: java.util.Iterator iterator()>()"->"$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()";
+    "$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()"->"$r83 := @caughtexception";
+    "$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()"->"$r82 := @caughtexception";
+    "$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()"->"if $z11 == 0 goto $r24 = new java.lang.StringBuilder";
+    "if $z11 == 0 goto $r24 = new java.lang.StringBuilder"->"$r34 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z11 == 0 goto $r24 = new java.lang.StringBuilder"->"$r24 = new java.lang.StringBuilder";
+    "if $z11 == 0 goto $r24 = new java.lang.StringBuilder"->"$r83 := @caughtexception";
+    "if $z11 == 0 goto $r24 = new java.lang.StringBuilder"->"$r82 := @caughtexception";
+    "$r34 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>()"->"$r83 := @caughtexception";
+    "$r34 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>()"->"$r82 := @caughtexception";
+    "$r34 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>()"->"r105 = (java.lang.String) $r34";
+    "r105 = (java.lang.String) $r34"->"$r83 := @caughtexception";
+    "r105 = (java.lang.String) $r34"->"$r82 := @caughtexception";
+    "r105 = (java.lang.String) $r34"->"$i0 = virtualinvoke r21.<dict.build.CounterMap: int get(java.lang.String)>(r105)";
+    "$i0 = virtualinvoke r21.<dict.build.CounterMap: int get(java.lang.String)>(r105)"->"$r83 := @caughtexception";
+    "$i0 = virtualinvoke r21.<dict.build.CounterMap: int get(java.lang.String)>(r105)"->"$r82 := @caughtexception";
+    "$i0 = virtualinvoke r21.<dict.build.CounterMap: int get(java.lang.String)>(r105)"->"$d0 = (double) $i0";
+    "$d0 = (double) $i0"->"$r83 := @caughtexception";
+    "$d0 = (double) $i0"->"$r82 := @caughtexception";
+    "$d0 = (double) $i0"->"$d2 = $d0 * 1.0";
+    "$d2 = $d0 * 1.0"->"$r83 := @caughtexception";
+    "$d2 = $d0 * 1.0"->"$r82 := @caughtexception";
+    "$d2 = $d0 * 1.0"->"$d1 = (double) i11";
+    "$d1 = (double) i11"->"$r83 := @caughtexception";
+    "$d1 = (double) i11"->"$r82 := @caughtexception";
+    "$d1 = (double) i11"->"d7 = $d2 / $d1";
+    "d7 = $d2 / $d1"->"$r83 := @caughtexception";
+    "d7 = $d2 / $d1"->"$r82 := @caughtexception";
+    "d7 = $d2 / $d1"->"$d3 = -1.0 * d7";
+    "$d3 = -1.0 * d7"->"$r83 := @caughtexception";
+    "$d3 = -1.0 * d7"->"$r82 := @caughtexception";
+    "$d3 = -1.0 * d7"->"$d4 = staticinvoke <java.lang.Math: double log(double)>(d7)";
+    "$d4 = staticinvoke <java.lang.Math: double log(double)>(d7)"->"$r83 := @caughtexception";
+    "$d4 = staticinvoke <java.lang.Math: double log(double)>(d7)"->"$r82 := @caughtexception";
+    "$d4 = staticinvoke <java.lang.Math: double log(double)>(d7)"->"$d5 = $d3 * $d4";
+    "$d5 = $d3 * $d4"->"$r83 := @caughtexception";
+    "$d5 = $d3 * $d4"->"$r82 := @caughtexception";
+    "$d5 = $d3 * $d4"->"d6 = d6 + $d5";
+    "d6 = d6 + $d5"->"$r83 := @caughtexception";
+    "d6 = d6 + $d5"->"$r82 := @caughtexception";
+    "d6 = d6 + $d5"->"goto [?= $z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()]"->"$r83 := @caughtexception";
+    "goto [?= $z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()]"->"$r82 := @caughtexception";
+    "goto [?= $z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()]"->"$z11 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()";
+    "$r24 = new java.lang.StringBuilder"->"$r83 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"$r82 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r83 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r82 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"->"$r83 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"->"$r82 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r100)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r83 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r82 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"->"$r83 := @caughtexception";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"->"$r82 := @caughtexception";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r83 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r82 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d6)";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d6)"->"$r83 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d6)"->"$r82 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d6)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r83 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r82 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r83 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r82 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke r89.<java.io.BufferedWriter: void write(java.lang.String)>($r31)";
+    "virtualinvoke r89.<java.io.BufferedWriter: void write(java.lang.String)>($r31)"->"$r83 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void write(java.lang.String)>($r31)"->"$r82 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void write(java.lang.String)>($r31)"->"r106 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()";
+    "r106 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"$r83 := @caughtexception";
+    "r106 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"$r82 := @caughtexception";
+    "r106 = staticinvoke <com.google.common.collect.Lists: java.util.LinkedList newLinkedList()>()"->"r107 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()";
+    "r107 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$r83 := @caughtexception";
+    "r107 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$r82 := @caughtexception";
+    "r107 = interfaceinvoke r102.<java.util.List: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()"->"$r83 := @caughtexception";
+    "$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()"->"$r82 := @caughtexception";
+    "$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto r102 = r106";
+    "if $z2 == 0 goto r102 = r106"->"$r33 = interfaceinvoke r107.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto r102 = r106"->"r102 = r106";
+    "if $z2 == 0 goto r102 = r106"->"$r83 := @caughtexception";
+    "if $z2 == 0 goto r102 = r106"->"$r82 := @caughtexception";
+    "$r33 = interfaceinvoke r107.<java.util.Iterator: java.lang.Object next()>()"->"$r83 := @caughtexception";
+    "$r33 = interfaceinvoke r107.<java.util.Iterator: java.lang.Object next()>()"->"$r82 := @caughtexception";
+    "$r33 = interfaceinvoke r107.<java.util.Iterator: java.lang.Object next()>()"->"r108 = (java.lang.String) $r33";
+    "r108 = (java.lang.String) $r33"->"$r83 := @caughtexception";
+    "r108 = (java.lang.String) $r33"->"$r82 := @caughtexception";
+    "r108 = (java.lang.String) $r33"->"$z5 = virtualinvoke r108.<java.lang.String: boolean equals(java.lang.Object)>(r100)";
+    "$z5 = virtualinvoke r108.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r83 := @caughtexception";
+    "$z5 = virtualinvoke r108.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"$r82 := @caughtexception";
+    "$z5 = virtualinvoke r108.<java.lang.String: boolean equals(java.lang.Object)>(r100)"->"if $z5 != 0 goto (branch)";
+    "if $z5 != 0 goto (branch)"->"interfaceinvoke r106.<java.util.List: boolean add(java.lang.Object)>(r108)";
+    "if $z5 != 0 goto (branch)"->"goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]";
+    "if $z5 != 0 goto (branch)"->"$r83 := @caughtexception";
+    "if $z5 != 0 goto (branch)"->"$r82 := @caughtexception";
+    "interfaceinvoke r106.<java.util.List: boolean add(java.lang.Object)>(r108)"->"$r83 := @caughtexception";
+    "interfaceinvoke r106.<java.util.List: boolean add(java.lang.Object)>(r108)"->"$r82 := @caughtexception";
+    "interfaceinvoke r106.<java.util.List: boolean add(java.lang.Object)>(r108)"->"goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]"->"$r83 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]"->"$r82 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r107.<java.util.Iterator: boolean hasNext()>()";
+    "r102 = r106"->"$r83 := @caughtexception";
+    "r102 = r106"->"$r82 := @caughtexception";
+    "r102 = r106"->"$z3 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()";
+    "$z3 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r83 := @caughtexception";
+    "$z3 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"$r82 := @caughtexception";
+    "$z3 = interfaceinvoke r102.<java.util.List: boolean isEmpty()>()"->"if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)";
+    "if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"z9 = 0";
+    "if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"$r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)";
+    "if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"$r83 := @caughtexception";
+    "if $z3 == 0 goto $r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"$r82 := @caughtexception";
+    "z9 = 0"->"$r83 := @caughtexception";
+    "z9 = 0"->"$r82 := @caughtexception";
+    "z9 = 0"->"interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r83 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"r100 = r101";
+    "r100 = r101"->"$r83 := @caughtexception";
+    "r100 = r101"->"$r82 := @caughtexception";
+    "r100 = r101"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"if z9 != 0 goto (branch)";
+    "$r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"$r83 := @caughtexception";
+    "$r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"$r82 := @caughtexception";
+    "$r32 = interfaceinvoke r102.<java.util.List: java.lang.Object get(int)>(0)"->"r100 = (java.lang.String) $r32";
+    "r100 = (java.lang.String) $r32"->"$r83 := @caughtexception";
+    "r100 = (java.lang.String) $r32"->"$r82 := @caughtexception";
+    "r100 = (java.lang.String) $r32"->"$z4 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)";
+    "$z4 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r83 := @caughtexception";
+    "$z4 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"$r82 := @caughtexception";
+    "$z4 = virtualinvoke r101.<java.lang.String: boolean startsWith(java.lang.String)>(r100)"->"if $z4 == 0 goto z9 = 1";
+    "if $z4 == 0 goto z9 = 1"->"interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)";
+    "if $z4 == 0 goto z9 = 1"->"z9 = 1";
+    "if $z4 == 0 goto z9 = 1"->"$r83 := @caughtexception";
+    "if $z4 == 0 goto z9 = 1"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r83 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"$r82 := @caughtexception";
+    "interfaceinvoke r102.<java.util.List: boolean add(java.lang.Object)>(r101)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= (branch)]";
+    "z9 = 1"->"$r83 := @caughtexception";
+    "z9 = 1"->"$r82 := @caughtexception";
+    "z9 = 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r83 := @caughtexception";
+    "goto [?= (branch)]"->"$r82 := @caughtexception";
+    "goto [?= (branch)]"->"if z9 != 0 goto (branch)";
+    "if r98 == null goto $r111 = new dict.build.Builder$4"->"if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "if r98 == null goto $r111 = new dict.build.Builder$4"->"$r111 = new dict.build.Builder$4";
+    "if r98 == null goto $r111 = new dict.build.Builder$4"->"$r77 := @caughtexception";
+    "if r98 == null goto $r111 = new dict.build.Builder$4"->"$r76 := @caughtexception";
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r84 := @caughtexception";
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "if null == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r84 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"goto [?= $r111 = new dict.build.Builder$4]";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r77 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r76 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r111 = new dict.build.Builder$4";
+    "$r84 := @caughtexception"->"$r77 := @caughtexception";
+    "$r84 := @caughtexception"->"$r76 := @caughtexception";
+    "$r84 := @caughtexception"->"r109 = $r84";
+    "r109 = $r84"->"$r77 := @caughtexception";
+    "r109 = $r84"->"$r76 := @caughtexception";
+    "r109 = $r84"->"virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r109)";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r109)"->"$r77 := @caughtexception";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r109)"->"$r76 := @caughtexception";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r109)"->"goto [?= $r111 = new dict.build.Builder$4]";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r77 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r76 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r111 = new dict.build.Builder$4";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"goto [?= $r111 = new dict.build.Builder$4]";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r77 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r76 := @caughtexception";
+    "goto [?= $r111 = new dict.build.Builder$4]"->"$r111 = new dict.build.Builder$4";
+    "$r83 := @caughtexception"->"r110 = $r83";
+    "$r83 := @caughtexception"->"$r82 := @caughtexception";
+    "r110 = $r83"->"r99 = r110";
+    "r110 = $r83"->"$r82 := @caughtexception";
+    "r99 = r110"->"throw r110";
+    "r99 = r110"->"$r82 := @caughtexception";
+    "throw r110"->"$r82 := @caughtexception";
+    "$r82 := @caughtexception"->"r81 = $r82";
+    "$r82 := @caughtexception"->"$r82 := @caughtexception";
+    "r81 = $r82"->"$r82 := @caughtexception";
+    "r81 = $r82"->"$r77 := @caughtexception";
+    "r81 = $r82"->"$r76 := @caughtexception";
+    "r81 = $r82"->"if r98 == null goto throw r81";
+    "if r98 == null goto throw r81"->"if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "if r98 == null goto throw r81"->"throw r81";
+    "if r98 == null goto throw r81"->"$r77 := @caughtexception";
+    "if r98 == null goto throw r81"->"$r76 := @caughtexception";
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r79 := @caughtexception";
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "if r99 == null goto virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"virtualinvoke r98.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r79 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"goto [?= throw r81]";
+    "goto [?= throw r81]"->"$r77 := @caughtexception";
+    "goto [?= throw r81]"->"$r76 := @caughtexception";
+    "goto [?= throw r81]"->"throw r81";
+    "$r79 := @caughtexception"->"$r77 := @caughtexception";
+    "$r79 := @caughtexception"->"$r76 := @caughtexception";
+    "$r79 := @caughtexception"->"r80 = $r79";
+    "r80 = $r79"->"$r77 := @caughtexception";
+    "r80 = $r79"->"$r76 := @caughtexception";
+    "r80 = $r79"->"virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r80)";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r80)"->"$r77 := @caughtexception";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r80)"->"$r76 := @caughtexception";
+    "virtualinvoke r99.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r80)"->"goto [?= throw r81]";
+    "goto [?= throw r81]"->"$r77 := @caughtexception";
+    "goto [?= throw r81]"->"$r76 := @caughtexception";
+    "goto [?= throw r81]"->"throw r81";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r77 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"$r76 := @caughtexception";
+    "virtualinvoke r98.<java.io.BufferedReader: void close()>()"->"throw r81";
+    "throw r81"->"$r77 := @caughtexception";
+    "throw r81"->"$r76 := @caughtexception";
+    "$r111 = new dict.build.Builder$4"->"$r77 := @caughtexception";
+    "$r111 = new dict.build.Builder$4"->"$r76 := @caughtexception";
+    "$r111 = new dict.build.Builder$4"->"specialinvoke $r111.<dict.build.Builder$4: void <init>(dict.build.Builder)>(r17)";
+    "specialinvoke $r111.<dict.build.Builder$4: void <init>(dict.build.Builder)>(r17)"->"$r77 := @caughtexception";
+    "specialinvoke $r111.<dict.build.Builder$4: void <init>(dict.build.Builder)>(r17)"->"$r76 := @caughtexception";
+    "specialinvoke $r111.<dict.build.Builder$4: void <init>(dict.build.Builder)>(r17)"->"virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"->"$r77 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"->"$r71 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"->"$r76 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"->"$r70 := @caughtexception";
+    "virtualinvoke r17.<dict.build.Builder: void sortFile(java.io.File,java.io.File,java.util.Comparator)>(r9, r11, $r111)"->"if r89 == null goto (branch)";
+    "if r89 == null goto (branch)"->"$r71 := @caughtexception";
+    "if r89 == null goto (branch)"->"$r65 := @caughtexception";
+    "if r89 == null goto (branch)"->"$r70 := @caughtexception";
+    "if r89 == null goto (branch)"->"$r64 := @caughtexception";
+    "if r89 == null goto (branch)"->"if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "if r89 == null goto (branch)"->"if r87 == null goto (branch)";
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r78 := @caughtexception";
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "if null == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r78 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r71 := @caughtexception";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r70 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r87 == null goto (branch)";
+    "$r78 := @caughtexception"->"$r71 := @caughtexception";
+    "$r78 := @caughtexception"->"$r70 := @caughtexception";
+    "$r78 := @caughtexception"->"r112 = $r78";
+    "r112 = $r78"->"$r71 := @caughtexception";
+    "r112 = $r78"->"$r70 := @caughtexception";
+    "r112 = $r78"->"virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r112)";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r112)"->"$r71 := @caughtexception";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r112)"->"$r70 := @caughtexception";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r112)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r71 := @caughtexception";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r70 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r87 == null goto (branch)";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r71 := @caughtexception";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r70 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r87 == null goto (branch)";
+    "$r77 := @caughtexception"->"r113 = $r77";
+    "$r77 := @caughtexception"->"$r76 := @caughtexception";
+    "r113 = $r77"->"r90 = r113";
+    "r113 = $r77"->"$r76 := @caughtexception";
+    "r90 = r113"->"throw r113";
+    "r90 = r113"->"$r76 := @caughtexception";
+    "throw r113"->"$r76 := @caughtexception";
+    "$r76 := @caughtexception"->"r75 = $r76";
+    "$r76 := @caughtexception"->"$r76 := @caughtexception";
+    "r75 = $r76"->"$r76 := @caughtexception";
+    "r75 = $r76"->"$r71 := @caughtexception";
+    "r75 = $r76"->"$r70 := @caughtexception";
+    "r75 = $r76"->"if r89 == null goto throw r75";
+    "if r89 == null goto throw r75"->"if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "if r89 == null goto throw r75"->"throw r75";
+    "if r89 == null goto throw r75"->"$r71 := @caughtexception";
+    "if r89 == null goto throw r75"->"$r70 := @caughtexception";
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r73 := @caughtexception";
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "if r90 == null goto virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r89.<java.io.BufferedWriter: void close()>()";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r73 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"goto [?= throw r75]";
+    "goto [?= throw r75]"->"$r71 := @caughtexception";
+    "goto [?= throw r75]"->"$r70 := @caughtexception";
+    "goto [?= throw r75]"->"throw r75";
+    "$r73 := @caughtexception"->"$r71 := @caughtexception";
+    "$r73 := @caughtexception"->"$r70 := @caughtexception";
+    "$r73 := @caughtexception"->"r74 = $r73";
+    "r74 = $r73"->"$r71 := @caughtexception";
+    "r74 = $r73"->"$r70 := @caughtexception";
+    "r74 = $r73"->"virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"$r71 := @caughtexception";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"$r70 := @caughtexception";
+    "virtualinvoke r90.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"goto [?= throw r75]";
+    "goto [?= throw r75]"->"$r71 := @caughtexception";
+    "goto [?= throw r75]"->"$r70 := @caughtexception";
+    "goto [?= throw r75]"->"throw r75";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r71 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"$r70 := @caughtexception";
+    "virtualinvoke r89.<java.io.BufferedWriter: void close()>()"->"throw r75";
+    "throw r75"->"$r71 := @caughtexception";
+    "throw r75"->"$r70 := @caughtexception";
+    "if r87 == null goto (branch)"->"$r65 := @caughtexception";
+    "if r87 == null goto (branch)"->"$r60 := @caughtexception";
+    "if r87 == null goto (branch)"->"$r59 := @caughtexception";
+    "if r87 == null goto (branch)"->"$r64 := @caughtexception";
+    "if r87 == null goto (branch)"->"if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "if r87 == null goto (branch)"->"if r85 == null goto (branch)";
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r72 := @caughtexception";
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "if null == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r72 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r85 == null goto (branch)";
+    "$r72 := @caughtexception"->"$r65 := @caughtexception";
+    "$r72 := @caughtexception"->"$r64 := @caughtexception";
+    "$r72 := @caughtexception"->"r114 = $r72";
+    "r114 = $r72"->"$r65 := @caughtexception";
+    "r114 = $r72"->"$r64 := @caughtexception";
+    "r114 = $r72"->"virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r114)";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r114)"->"$r65 := @caughtexception";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r114)"->"$r64 := @caughtexception";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r114)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r85 == null goto (branch)";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r65 := @caughtexception";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"$r64 := @caughtexception";
+    "goto [?= (branch)]"->"if r85 == null goto (branch)";
+    "$r71 := @caughtexception"->"r115 = $r71";
+    "$r71 := @caughtexception"->"$r70 := @caughtexception";
+    "r115 = $r71"->"r88 = r115";
+    "r115 = $r71"->"$r70 := @caughtexception";
+    "r88 = r115"->"throw r115";
+    "r88 = r115"->"$r70 := @caughtexception";
+    "throw r115"->"$r70 := @caughtexception";
+    "$r70 := @caughtexception"->"r69 = $r70";
+    "$r70 := @caughtexception"->"$r70 := @caughtexception";
+    "r69 = $r70"->"$r70 := @caughtexception";
+    "r69 = $r70"->"$r65 := @caughtexception";
+    "r69 = $r70"->"$r64 := @caughtexception";
+    "r69 = $r70"->"if r87 == null goto throw r69";
+    "if r87 == null goto throw r69"->"if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "if r87 == null goto throw r69"->"throw r69";
+    "if r87 == null goto throw r69"->"$r65 := @caughtexception";
+    "if r87 == null goto throw r69"->"$r64 := @caughtexception";
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r67 := @caughtexception";
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "if r88 == null goto virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"virtualinvoke r87.<java.io.BufferedWriter: void close()>()";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r67 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"goto [?= throw r69]";
+    "goto [?= throw r69]"->"$r65 := @caughtexception";
+    "goto [?= throw r69]"->"$r64 := @caughtexception";
+    "goto [?= throw r69]"->"throw r69";
+    "$r67 := @caughtexception"->"$r65 := @caughtexception";
+    "$r67 := @caughtexception"->"$r64 := @caughtexception";
+    "$r67 := @caughtexception"->"r68 = $r67";
+    "r68 = $r67"->"$r65 := @caughtexception";
+    "r68 = $r67"->"$r64 := @caughtexception";
+    "r68 = $r67"->"virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"$r65 := @caughtexception";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"$r64 := @caughtexception";
+    "virtualinvoke r88.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"goto [?= throw r69]";
+    "goto [?= throw r69]"->"$r65 := @caughtexception";
+    "goto [?= throw r69]"->"$r64 := @caughtexception";
+    "goto [?= throw r69]"->"throw r69";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r65 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"$r64 := @caughtexception";
+    "virtualinvoke r87.<java.io.BufferedWriter: void close()>()"->"throw r69";
+    "throw r69"->"$r65 := @caughtexception";
+    "throw r69"->"$r64 := @caughtexception";
+    "if r85 == null goto (branch)"->"if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "if r85 == null goto (branch)"->"goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]";
+    "if r85 == null goto (branch)"->"$r60 := @caughtexception";
+    "if r85 == null goto (branch)"->"$r59 := @caughtexception";
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r66 := @caughtexception";
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "if null == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r66 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]";
+    "$r66 := @caughtexception"->"$r60 := @caughtexception";
+    "$r66 := @caughtexception"->"$r59 := @caughtexception";
+    "$r66 := @caughtexception"->"r116 = $r66";
+    "r116 = $r66"->"$r60 := @caughtexception";
+    "r116 = $r66"->"$r59 := @caughtexception";
+    "r116 = $r66"->"virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r116)";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r116)"->"$r60 := @caughtexception";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r116)"->"$r59 := @caughtexception";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r116)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r60 := @caughtexception";
+    "goto [?= (branch)]"->"$r59 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]";
+    "$r65 := @caughtexception"->"r117 = $r65";
+    "$r65 := @caughtexception"->"$r64 := @caughtexception";
+    "r117 = $r65"->"r86 = r117";
+    "r117 = $r65"->"$r64 := @caughtexception";
+    "r86 = r117"->"throw r117";
+    "r86 = r117"->"$r64 := @caughtexception";
+    "throw r117"->"$r64 := @caughtexception";
+    "$r64 := @caughtexception"->"r63 = $r64";
+    "$r64 := @caughtexception"->"$r64 := @caughtexception";
+    "r63 = $r64"->"$r64 := @caughtexception";
+    "r63 = $r64"->"$r60 := @caughtexception";
+    "r63 = $r64"->"$r59 := @caughtexception";
+    "r63 = $r64"->"if r85 == null goto throw r63";
+    "if r85 == null goto throw r63"->"if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "if r85 == null goto throw r63"->"throw r63";
+    "if r85 == null goto throw r63"->"$r60 := @caughtexception";
+    "if r85 == null goto throw r63"->"$r59 := @caughtexception";
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r61 := @caughtexception";
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "if r86 == null goto virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"virtualinvoke r85.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r61 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"goto [?= throw r63]";
+    "goto [?= throw r63]"->"$r60 := @caughtexception";
+    "goto [?= throw r63]"->"$r59 := @caughtexception";
+    "goto [?= throw r63]"->"throw r63";
+    "$r61 := @caughtexception"->"$r60 := @caughtexception";
+    "$r61 := @caughtexception"->"$r59 := @caughtexception";
+    "$r61 := @caughtexception"->"r62 = $r61";
+    "r62 = $r61"->"$r60 := @caughtexception";
+    "r62 = $r61"->"$r59 := @caughtexception";
+    "r62 = $r61"->"virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r62)";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r62)"->"$r60 := @caughtexception";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r62)"->"$r59 := @caughtexception";
+    "virtualinvoke r86.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r62)"->"goto [?= throw r63]";
+    "goto [?= throw r63]"->"$r60 := @caughtexception";
+    "goto [?= throw r63]"->"$r59 := @caughtexception";
+    "goto [?= throw r63]"->"throw r63";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r60 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"$r59 := @caughtexception";
+    "virtualinvoke r85.<java.io.BufferedReader: void close()>()"->"throw r63";
+    "throw r63"->"$r60 := @caughtexception";
+    "throw r63"->"$r59 := @caughtexception";
+    "goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]"->"$r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r60 := @caughtexception"->"r118 = $r60";
+    "r118 = $r60"->"virtualinvoke r118.<java.io.FileNotFoundException: void printStackTrace()>()";
+    "virtualinvoke r118.<java.io.FileNotFoundException: void printStackTrace()>()"->"goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]";
+    "goto [?= $r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()]"->"$r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r59 := @caughtexception"->"r119 = $r59";
+    "r119 = $r59"->"virtualinvoke r119.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r119.<java.io.IOException: void printStackTrace()>()"->"$r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r120 = virtualinvoke r11.<java.io.File: java.lang.String getAbsolutePath()>()"->"return $r120";
+}

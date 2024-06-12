@@ -1,0 +1,363 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "$i0 = lengthof r0"
+    "if $i0 != 0 goto $r1 = r0[0]"
+    "$r38 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: java MapMicroBenchmark className [r|s]keys [r|s]searches\")"
+    "return"
+    "$r1 = r0[0]"
+    "$r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r1)"
+    "<jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass> = $r2"
+    "$i1 = lengthof r0"
+    "if $i1 <= 1 goto $r39 = <java.lang.System: java.io.PrintStream out>"
+    "$r36 = r0[1]"
+    "$z0 = virtualinvoke $r36.<java.lang.String: boolean startsWith(java.lang.String)>(\"s\")"
+    "if $z0 == 0 goto $r37 = r0[1]"
+    "<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 0"
+    "goto [?= $r39 = <java.lang.System: java.io.PrintStream out>]"
+    "$r37 = r0[1]"
+    "$z1 = virtualinvoke $r37.<java.lang.String: boolean startsWith(java.lang.String)>(\"r\")"
+    "if $z1 == 0 goto $r39 = <java.lang.System: java.io.PrintStream out>"
+    "<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 1"
+    "$r39 = <java.lang.System: java.io.PrintStream out>"
+    "$r40 = new java.lang.StringBuilder"
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Class \")"
+    "$r42 = <jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass>"
+    "$r43 = virtualinvoke $r42.<java.lang.Class: java.lang.String getName()>()"
+    "$r44 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r43)"
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r39.<java.io.PrintStream: void print(java.lang.String)>($r45)"
+    "$z2 = <jsr166tests.loops.MapMicroBenchmark: boolean randomSearches>"
+    "if $z2 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>"
+    "$r35 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>(\" randomized searches\")"
+    "goto [?= $r4 = <java.lang.System: java.io.PrintStream out>]"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\" sequential searches\")"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println()>()"
+    "i9 = 9"
+    "i10 = 0"
+    "if i10 >= 8 goto $r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"
+    "$r34 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"
+    "$r34[i10] = i9"
+    "i9 = i9 * 4"
+    "i10 = i10 + 1"
+    "goto [?= (branch)]"
+    "$r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"
+    "$r5[8] = i9"
+    "b11 = 10"
+    "r6 = newarray (jsr166tests.loops.MapMicroBenchmark$Job)[b11]"
+    "r7 = newarray (java.lang.Object)[i9]"
+    "i12 = 0"
+    "if i12 >= i9 goto $r8 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$r33 = new java.lang.Object"
+    "specialinvoke $r33.<java.lang.Object: void <init>()>()"
+    "r7[i12] = $r33"
+    "i12 = i12 + 1"
+    "$r8 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r8.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Object    \", r7, class \"Ljava/lang/Object;\")"
+    "r6[0] = $r8"
+    "r46 = newarray (java.lang.Object)[i9]"
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void initStringKeys(java.lang.Object[],int)>(r46, i9)"
+    "$r9 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r9.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"String    \", r46, class \"Ljava/lang/String;\")"
+    "r6[1] = $r9"
+    "r10 = newarray (java.lang.Object)[i9]"
+    "i13 = 0"
+    "if i13 >= i9 goto $r11 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$r32 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i13)"
+    "r10[i13] = $r32"
+    "i13 = i13 + 1"
+    "$r11 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r11.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Integer   \", r10, class \"Ljava/lang/Integer;\")"
+    "r6[2] = $r11"
+    "r47 = newarray (java.lang.Object)[i9]"
+    "i14 = 0"
+    "if i14 >= i9 goto $r12 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$l8 = (long) i14"
+    "$r31 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8)"
+    "r47[i14] = $r31"
+    "i14 = i14 + 1"
+    "$r12 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r12.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Long      \", r47, class \"Ljava/lang/Long;\")"
+    "r6[3] = $r12"
+    "r48 = newarray (java.lang.Object)[i9]"
+    "i15 = 0"
+    "if i15 >= i9 goto $r13 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$f0 = (float) i15"
+    "$r30 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f0)"
+    "r48[i15] = $r30"
+    "i15 = i15 + 1"
+    "$r13 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r13.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Float     \", r48, class \"Ljava/lang/Float;\")"
+    "r6[4] = $r13"
+    "r49 = newarray (java.lang.Object)[i9]"
+    "i16 = 0"
+    "if i16 >= i9 goto $r14 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$d0 = (double) i16"
+    "$r29 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"
+    "r49[i16] = $r29"
+    "i16 = i16 + 1"
+    "$r14 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r14.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Double    \", r49, class \"Ljava/lang/Double;\")"
+    "r6[5] = $r14"
+    "r50 = newarray (java.lang.Object)[i9]"
+    "$i2 = neg i9"
+    "l17 = (long) $i2"
+    "i18 = 0"
+    "if i18 >= i9 goto $r15 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$l7 = l17 + 3L"
+    "l17 = $l7"
+    "$r28 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l7)"
+    "r50[i18] = $r28"
+    "i18 = i18 + 1"
+    "$r15 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r15.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigInteger\", r50, class \"Ljava/math/BigInteger;\")"
+    "r6[6] = $r15"
+    "r51 = newarray (java.lang.Object)[i9]"
+    "l19 = 2147483647L"
+    "i20 = 0"
+    "if i20 >= i9 goto $r16 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$l6 = l19 + 65536L"
+    "l19 = $l6"
+    "$r27 = staticinvoke <java.math.BigDecimal: java.math.BigDecimal valueOf(long)>($l6)"
+    "r51[i20] = $r27"
+    "i20 = i20 + 1"
+    "$r16 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r16.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigDecimal\", r51, class \"Ljava/math/BigDecimal;\")"
+    "r6[7] = $r16"
+    "r52 = newarray (java.lang.Object)[i9]"
+    "i21 = 0"
+    "if i21 >= i9 goto $r17 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$r26 = new jsr166tests.loops.MapMicroBenchmark$RandomInt"
+    "specialinvoke $r26.<jsr166tests.loops.MapMicroBenchmark$RandomInt: void <init>()>()"
+    "r52[i21] = $r26"
+    "i21 = i21 + 1"
+    "$r17 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r17.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"RandomInt \", r52, class \"Ljsr166tests/loops/MapMicroBenchmark$RandomInt;\")"
+    "r6[8] = $r17"
+    "r53 = newarray (java.lang.Object)[i9]"
+    "i22 = 0"
+    "if i22 >= i9 goto $r18 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "$r19 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>"
+    "$i3 = b11 - 1"
+    "i23 = virtualinvoke $r19.<java.util.Random: int nextInt(int)>($i3)"
+    "$r20 = r6[i23]"
+    "$r21 = $r20.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>"
+    "$r22 = $r21[i22]"
+    "r53[i22] = $r22"
+    "i24 = i23 + 1"
+    "$i4 = b11 - 1"
+    "if i24 < $i4 goto $i5 = i22 + 1"
+    "i24 = 0"
+    "$i5 = i22 + 1"
+    "$r23 = r6[i24]"
+    "$r24 = $r23.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>"
+    "$r25 = $r24[i22]"
+    "r53[$i5] = $r25"
+    "i22 = i22 + 2"
+    "$r18 = new jsr166tests.loops.MapMicroBenchmark$Job"
+    "specialinvoke $r18.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Mixed     \", r53, class \"Ljava/lang/Object;\")"
+    "r6[9] = $r18"
+    "r54 = r6[9]"
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup1(jsr166tests.loops.MapMicroBenchmark$Job)>(r54)"
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup2(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup3(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"
+    "staticinvoke <java.lang.Thread: void sleep(long)>(500L)"
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void time(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"
+    "r0 := @parameter0: java.lang.String[]"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if $i0 != 0 goto $r1 = r0[0]";
+    "if $i0 != 0 goto $r1 = r0[0]"->"$r38 = <java.lang.System: java.io.PrintStream out>";
+    "if $i0 != 0 goto $r1 = r0[0]"->"$r1 = r0[0]";
+    "$r38 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: java MapMicroBenchmark className [r|s]keys [r|s]searches\")";
+    "virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: java MapMicroBenchmark className [r|s]keys [r|s]searches\")"->"return";
+    "$r1 = r0[0]"->"$r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r1)";
+    "$r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r1)"->"<jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass> = $r2";
+    "<jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass> = $r2"->"$i1 = lengthof r0";
+    "$i1 = lengthof r0"->"if $i1 <= 1 goto $r39 = <java.lang.System: java.io.PrintStream out>";
+    "if $i1 <= 1 goto $r39 = <java.lang.System: java.io.PrintStream out>"->"$r36 = r0[1]";
+    "if $i1 <= 1 goto $r39 = <java.lang.System: java.io.PrintStream out>"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "$r36 = r0[1]"->"$z0 = virtualinvoke $r36.<java.lang.String: boolean startsWith(java.lang.String)>(\"s\")";
+    "$z0 = virtualinvoke $r36.<java.lang.String: boolean startsWith(java.lang.String)>(\"s\")"->"if $z0 == 0 goto $r37 = r0[1]";
+    "if $z0 == 0 goto $r37 = r0[1]"->"<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 0";
+    "if $z0 == 0 goto $r37 = r0[1]"->"$r37 = r0[1]";
+    "<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 0"->"goto [?= $r39 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r39 = <java.lang.System: java.io.PrintStream out>]"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "$r37 = r0[1]"->"$z1 = virtualinvoke $r37.<java.lang.String: boolean startsWith(java.lang.String)>(\"r\")";
+    "$z1 = virtualinvoke $r37.<java.lang.String: boolean startsWith(java.lang.String)>(\"r\")"->"if $z1 == 0 goto $r39 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r39 = <java.lang.System: java.io.PrintStream out>"->"<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 1";
+    "if $z1 == 0 goto $r39 = <java.lang.System: java.io.PrintStream out>"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "<jsr166tests.loops.MapMicroBenchmark: boolean randomSearches> = 1"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "$r39 = <java.lang.System: java.io.PrintStream out>"->"$r40 = new java.lang.StringBuilder";
+    "$r40 = new java.lang.StringBuilder"->"specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"->"$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Class \")";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Class \")"->"$r42 = <jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass>";
+    "$r42 = <jsr166tests.loops.MapMicroBenchmark: java.lang.Class mapClass>"->"$r43 = virtualinvoke $r42.<java.lang.Class: java.lang.String getName()>()";
+    "$r43 = virtualinvoke $r42.<java.lang.Class: java.lang.String getName()>()"->"$r44 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r43)";
+    "$r44 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r43)"->"$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r39.<java.io.PrintStream: void print(java.lang.String)>($r45)";
+    "virtualinvoke $r39.<java.io.PrintStream: void print(java.lang.String)>($r45)"->"$z2 = <jsr166tests.loops.MapMicroBenchmark: boolean randomSearches>";
+    "$z2 = <jsr166tests.loops.MapMicroBenchmark: boolean randomSearches>"->"if $z2 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>";
+    "if $z2 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>"->"$r35 = <java.lang.System: java.io.PrintStream out>";
+    "if $z2 == 0 goto $r3 = <java.lang.System: java.io.PrintStream out>"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "$r35 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>(\" randomized searches\")";
+    "virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>(\" randomized searches\")"->"goto [?= $r4 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r4 = <java.lang.System: java.io.PrintStream out>]"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\" sequential searches\")";
+    "virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>(\" sequential searches\")"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println()>()";
+    "virtualinvoke $r4.<java.io.PrintStream: void println()>()"->"i9 = 9";
+    "i9 = 9"->"i10 = 0";
+    "i10 = 0"->"if i10 >= 8 goto $r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>";
+    "if i10 >= 8 goto $r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"->"$r34 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>";
+    "if i10 >= 8 goto $r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"->"$r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>";
+    "$r34 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"->"$r34[i10] = i9";
+    "$r34[i10] = i9"->"i9 = i9 * 4";
+    "i9 = i9 * 4"->"i10 = i10 + 1";
+    "i10 = i10 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i10 >= 8 goto $r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>";
+    "$r5 = <jsr166tests.loops.MapMicroBenchmark: int[] sizes>"->"$r5[8] = i9";
+    "$r5[8] = i9"->"b11 = 10";
+    "b11 = 10"->"r6 = newarray (jsr166tests.loops.MapMicroBenchmark$Job)[b11]";
+    "r6 = newarray (jsr166tests.loops.MapMicroBenchmark$Job)[b11]"->"r7 = newarray (java.lang.Object)[i9]";
+    "r7 = newarray (java.lang.Object)[i9]"->"i12 = 0";
+    "i12 = 0"->"if i12 >= i9 goto $r8 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i12 >= i9 goto $r8 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r33 = new java.lang.Object";
+    "if i12 >= i9 goto $r8 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r8 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r33 = new java.lang.Object"->"specialinvoke $r33.<java.lang.Object: void <init>()>()";
+    "specialinvoke $r33.<java.lang.Object: void <init>()>()"->"r7[i12] = $r33";
+    "r7[i12] = $r33"->"i12 = i12 + 1";
+    "i12 = i12 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i12 >= i9 goto $r8 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r8 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r8.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Object    \", r7, class \"Ljava/lang/Object;\")";
+    "specialinvoke $r8.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Object    \", r7, class \"Ljava/lang/Object;\")"->"r6[0] = $r8";
+    "r6[0] = $r8"->"r46 = newarray (java.lang.Object)[i9]";
+    "r46 = newarray (java.lang.Object)[i9]"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void initStringKeys(java.lang.Object[],int)>(r46, i9)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void initStringKeys(java.lang.Object[],int)>(r46, i9)"->"$r9 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r9 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r9.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"String    \", r46, class \"Ljava/lang/String;\")";
+    "specialinvoke $r9.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"String    \", r46, class \"Ljava/lang/String;\")"->"r6[1] = $r9";
+    "r6[1] = $r9"->"r10 = newarray (java.lang.Object)[i9]";
+    "r10 = newarray (java.lang.Object)[i9]"->"i13 = 0";
+    "i13 = 0"->"if i13 >= i9 goto $r11 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i13 >= i9 goto $r11 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r32 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i13)";
+    "if i13 >= i9 goto $r11 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r11 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r32 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i13)"->"r10[i13] = $r32";
+    "r10[i13] = $r32"->"i13 = i13 + 1";
+    "i13 = i13 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i13 >= i9 goto $r11 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r11 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r11.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Integer   \", r10, class \"Ljava/lang/Integer;\")";
+    "specialinvoke $r11.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Integer   \", r10, class \"Ljava/lang/Integer;\")"->"r6[2] = $r11";
+    "r6[2] = $r11"->"r47 = newarray (java.lang.Object)[i9]";
+    "r47 = newarray (java.lang.Object)[i9]"->"i14 = 0";
+    "i14 = 0"->"if i14 >= i9 goto $r12 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i14 >= i9 goto $r12 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$l8 = (long) i14";
+    "if i14 >= i9 goto $r12 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r12 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$l8 = (long) i14"->"$r31 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8)";
+    "$r31 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8)"->"r47[i14] = $r31";
+    "r47[i14] = $r31"->"i14 = i14 + 1";
+    "i14 = i14 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i14 >= i9 goto $r12 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r12 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r12.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Long      \", r47, class \"Ljava/lang/Long;\")";
+    "specialinvoke $r12.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Long      \", r47, class \"Ljava/lang/Long;\")"->"r6[3] = $r12";
+    "r6[3] = $r12"->"r48 = newarray (java.lang.Object)[i9]";
+    "r48 = newarray (java.lang.Object)[i9]"->"i15 = 0";
+    "i15 = 0"->"if i15 >= i9 goto $r13 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i15 >= i9 goto $r13 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$f0 = (float) i15";
+    "if i15 >= i9 goto $r13 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r13 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$f0 = (float) i15"->"$r30 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f0)";
+    "$r30 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f0)"->"r48[i15] = $r30";
+    "r48[i15] = $r30"->"i15 = i15 + 1";
+    "i15 = i15 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i15 >= i9 goto $r13 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r13 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r13.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Float     \", r48, class \"Ljava/lang/Float;\")";
+    "specialinvoke $r13.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Float     \", r48, class \"Ljava/lang/Float;\")"->"r6[4] = $r13";
+    "r6[4] = $r13"->"r49 = newarray (java.lang.Object)[i9]";
+    "r49 = newarray (java.lang.Object)[i9]"->"i16 = 0";
+    "i16 = 0"->"if i16 >= i9 goto $r14 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i16 >= i9 goto $r14 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$d0 = (double) i16";
+    "if i16 >= i9 goto $r14 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r14 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$d0 = (double) i16"->"$r29 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)";
+    "$r29 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"->"r49[i16] = $r29";
+    "r49[i16] = $r29"->"i16 = i16 + 1";
+    "i16 = i16 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i16 >= i9 goto $r14 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r14 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r14.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Double    \", r49, class \"Ljava/lang/Double;\")";
+    "specialinvoke $r14.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Double    \", r49, class \"Ljava/lang/Double;\")"->"r6[5] = $r14";
+    "r6[5] = $r14"->"r50 = newarray (java.lang.Object)[i9]";
+    "r50 = newarray (java.lang.Object)[i9]"->"$i2 = neg i9";
+    "$i2 = neg i9"->"l17 = (long) $i2";
+    "l17 = (long) $i2"->"i18 = 0";
+    "i18 = 0"->"if i18 >= i9 goto $r15 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i18 >= i9 goto $r15 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$l7 = l17 + 3L";
+    "if i18 >= i9 goto $r15 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r15 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$l7 = l17 + 3L"->"l17 = $l7";
+    "l17 = $l7"->"$r28 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l7)";
+    "$r28 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l7)"->"r50[i18] = $r28";
+    "r50[i18] = $r28"->"i18 = i18 + 1";
+    "i18 = i18 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i18 >= i9 goto $r15 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r15 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r15.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigInteger\", r50, class \"Ljava/math/BigInteger;\")";
+    "specialinvoke $r15.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigInteger\", r50, class \"Ljava/math/BigInteger;\")"->"r6[6] = $r15";
+    "r6[6] = $r15"->"r51 = newarray (java.lang.Object)[i9]";
+    "r51 = newarray (java.lang.Object)[i9]"->"l19 = 2147483647L";
+    "l19 = 2147483647L"->"i20 = 0";
+    "i20 = 0"->"if i20 >= i9 goto $r16 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i20 >= i9 goto $r16 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$l6 = l19 + 65536L";
+    "if i20 >= i9 goto $r16 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r16 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$l6 = l19 + 65536L"->"l19 = $l6";
+    "l19 = $l6"->"$r27 = staticinvoke <java.math.BigDecimal: java.math.BigDecimal valueOf(long)>($l6)";
+    "$r27 = staticinvoke <java.math.BigDecimal: java.math.BigDecimal valueOf(long)>($l6)"->"r51[i20] = $r27";
+    "r51[i20] = $r27"->"i20 = i20 + 1";
+    "i20 = i20 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i20 >= i9 goto $r16 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r16 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r16.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigDecimal\", r51, class \"Ljava/math/BigDecimal;\")";
+    "specialinvoke $r16.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"BigDecimal\", r51, class \"Ljava/math/BigDecimal;\")"->"r6[7] = $r16";
+    "r6[7] = $r16"->"r52 = newarray (java.lang.Object)[i9]";
+    "r52 = newarray (java.lang.Object)[i9]"->"i21 = 0";
+    "i21 = 0"->"if i21 >= i9 goto $r17 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i21 >= i9 goto $r17 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r26 = new jsr166tests.loops.MapMicroBenchmark$RandomInt";
+    "if i21 >= i9 goto $r17 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r17 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r26 = new jsr166tests.loops.MapMicroBenchmark$RandomInt"->"specialinvoke $r26.<jsr166tests.loops.MapMicroBenchmark$RandomInt: void <init>()>()";
+    "specialinvoke $r26.<jsr166tests.loops.MapMicroBenchmark$RandomInt: void <init>()>()"->"r52[i21] = $r26";
+    "r52[i21] = $r26"->"i21 = i21 + 1";
+    "i21 = i21 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i21 >= i9 goto $r17 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r17 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r17.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"RandomInt \", r52, class \"Ljsr166tests/loops/MapMicroBenchmark$RandomInt;\")";
+    "specialinvoke $r17.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"RandomInt \", r52, class \"Ljsr166tests/loops/MapMicroBenchmark$RandomInt;\")"->"r6[8] = $r17";
+    "r6[8] = $r17"->"r53 = newarray (java.lang.Object)[i9]";
+    "r53 = newarray (java.lang.Object)[i9]"->"i22 = 0";
+    "i22 = 0"->"if i22 >= i9 goto $r18 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "if i22 >= i9 goto $r18 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r19 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>";
+    "if i22 >= i9 goto $r18 = new jsr166tests.loops.MapMicroBenchmark$Job"->"$r18 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r19 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>"->"$i3 = b11 - 1";
+    "$i3 = b11 - 1"->"i23 = virtualinvoke $r19.<java.util.Random: int nextInt(int)>($i3)";
+    "i23 = virtualinvoke $r19.<java.util.Random: int nextInt(int)>($i3)"->"$r20 = r6[i23]";
+    "$r20 = r6[i23]"->"$r21 = $r20.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>";
+    "$r21 = $r20.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>"->"$r22 = $r21[i22]";
+    "$r22 = $r21[i22]"->"r53[i22] = $r22";
+    "r53[i22] = $r22"->"i24 = i23 + 1";
+    "i24 = i23 + 1"->"$i4 = b11 - 1";
+    "$i4 = b11 - 1"->"if i24 < $i4 goto $i5 = i22 + 1";
+    "if i24 < $i4 goto $i5 = i22 + 1"->"i24 = 0";
+    "if i24 < $i4 goto $i5 = i22 + 1"->"$i5 = i22 + 1";
+    "i24 = 0"->"$i5 = i22 + 1";
+    "$i5 = i22 + 1"->"$r23 = r6[i24]";
+    "$r23 = r6[i24]"->"$r24 = $r23.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>";
+    "$r24 = $r23.<jsr166tests.loops.MapMicroBenchmark$Job: java.lang.Object[] items>"->"$r25 = $r24[i22]";
+    "$r25 = $r24[i22]"->"r53[$i5] = $r25";
+    "r53[$i5] = $r25"->"i22 = i22 + 2";
+    "i22 = i22 + 2"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i22 >= i9 goto $r18 = new jsr166tests.loops.MapMicroBenchmark$Job";
+    "$r18 = new jsr166tests.loops.MapMicroBenchmark$Job"->"specialinvoke $r18.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Mixed     \", r53, class \"Ljava/lang/Object;\")";
+    "specialinvoke $r18.<jsr166tests.loops.MapMicroBenchmark$Job: void <init>(java.lang.String,java.lang.Object[],java.lang.Class)>(\"Mixed     \", r53, class \"Ljava/lang/Object;\")"->"r6[9] = $r18";
+    "r6[9] = $r18"->"r54 = r6[9]";
+    "r54 = r6[9]"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup1(jsr166tests.loops.MapMicroBenchmark$Job)>(r54)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup1(jsr166tests.loops.MapMicroBenchmark$Job)>(r54)"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup2(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup2(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup1(jsr166tests.loops.MapMicroBenchmark$Job)>(r54)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup1(jsr166tests.loops.MapMicroBenchmark$Job)>(r54)"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup3(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void warmup3(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"->"staticinvoke <java.lang.Thread: void sleep(long)>(500L)";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(500L)"->"staticinvoke <jsr166tests.loops.MapMicroBenchmark: void time(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)";
+    "staticinvoke <jsr166tests.loops.MapMicroBenchmark: void time(jsr166tests.loops.MapMicroBenchmark$Job[])>(r6)"->"return";
+}

@@ -1,0 +1,243 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r26 := @parameter0: java.lang.String[];
+r27 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r27.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r28 = virtualinvoke r27.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+r29 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"DSA\");
+$r0 = new javaT.securityT.SignedObject.Copy$Test;
+specialinvoke $r0.<javaT.securityT.SignedObject.Copy$Test: void <init>(javaT.securityT.SignedObject.Copy$1)>(null);
+r1 = $r0;
+$r2 = new java.security.SignedObject;
+$r3 = virtualinvoke r28.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+specialinvoke $r2.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(r1, $r3, r29);
+r4 = $r2;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signature algorithm: \");
+$r8 = virtualinvoke r4.<java.security.SignedObject: java.lang.String getAlgorithm()>();
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r10);
+r30 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+$r11 = virtualinvoke r28.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r11, r30);
+if $z0 != 0 goto r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r25 = new java.lang.RuntimeException;
+specialinvoke $r25.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Verification failed\");
+throw $r25;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r31.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r32 = virtualinvoke r31.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r12 = virtualinvoke r32.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z1 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r12, r30);
+if $z1 == 0 goto r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$r24 = new java.lang.RuntimeException;
+specialinvoke $r24.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Unexpected success\");
+throw $r24;
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z2 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r33);
+if $z2 != 0 goto virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+$r19 = new java.lang.RuntimeException;
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signed object is not equal to original one: \");
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r33);
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>($r23);
+throw $r19;
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+r34 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z3 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r34);
+if $z3 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 7:
+[preds: 6 ] [succs: ]
+$r14 = new java.lang.RuntimeException;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signed object is not a copy of original one: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r34);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18);
+throw $r14;
+"
+    "Block 8:
+[preds: 6 ] [succs: ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Test passed\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r26 := @parameter0: java.lang.String[];
+r27 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r27.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r28 = virtualinvoke r27.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+r29 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"DSA\");
+$r0 = new javaT.securityT.SignedObject.Copy$Test;
+specialinvoke $r0.<javaT.securityT.SignedObject.Copy$Test: void <init>(javaT.securityT.SignedObject.Copy$1)>(null);
+r1 = $r0;
+$r2 = new java.security.SignedObject;
+$r3 = virtualinvoke r28.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+specialinvoke $r2.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(r1, $r3, r29);
+r4 = $r2;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signature algorithm: \");
+$r8 = virtualinvoke r4.<java.security.SignedObject: java.lang.String getAlgorithm()>();
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r10);
+r30 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+$r11 = virtualinvoke r28.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r11, r30);
+if $z0 != 0 goto r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r25 = new java.lang.RuntimeException;
+specialinvoke $r25.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Verification failed\");
+throw $r25;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r26 := @parameter0: java.lang.String[];
+r27 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r27.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r28 = virtualinvoke r27.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+r29 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>(\"DSA\");
+$r0 = new javaT.securityT.SignedObject.Copy$Test;
+specialinvoke $r0.<javaT.securityT.SignedObject.Copy$Test: void <init>(javaT.securityT.SignedObject.Copy$1)>(null);
+r1 = $r0;
+$r2 = new java.security.SignedObject;
+$r3 = virtualinvoke r28.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+specialinvoke $r2.<java.security.SignedObject: void <init>(java.io.Serializable,java.security.PrivateKey,java.security.Signature)>(r1, $r3, r29);
+r4 = $r2;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signature algorithm: \");
+$r8 = virtualinvoke r4.<java.security.SignedObject: java.lang.String getAlgorithm()>();
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r10);
+r30 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+$r11 = virtualinvoke r28.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r11, r30);
+if $z0 != 0 goto r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r31.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r32 = virtualinvoke r31.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r12 = virtualinvoke r32.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z1 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r12, r30);
+if $z1 == 0 goto r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r31.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r32 = virtualinvoke r31.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r12 = virtualinvoke r32.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z1 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r12, r30);
+if $z1 == 0 goto r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$r24 = new java.lang.RuntimeException;
+specialinvoke $r24.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Unexpected success\");
+throw $r24;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r31 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\");
+virtualinvoke r31.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r32 = virtualinvoke r31.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r12 = virtualinvoke r32.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z1 = virtualinvoke r4.<java.security.SignedObject: boolean verify(java.security.PublicKey,java.security.Signature)>($r12, r30);
+if $z1 == 0 goto r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+"->"Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z2 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r33);
+if $z2 != 0 goto virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z2 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r33);
+if $z2 != 0 goto virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+"->"Block 5:
+[preds: 4 ] [succs: ]
+$r19 = new java.lang.RuntimeException;
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signed object is not equal to original one: \");
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r33);
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>($r23);
+throw $r19;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r33 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z2 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r33);
+if $z2 != 0 goto virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+r34 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z3 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r34);
+if $z3 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+r34 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z3 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r34);
+if $z3 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 7:
+[preds: 6 ] [succs: ]
+$r14 = new java.lang.RuntimeException;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Signed object is not a copy of original one: \");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r34);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18);
+throw $r14;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: void set(int)>(122);
+r34 = virtualinvoke r4.<java.security.SignedObject: java.lang.Object getObject()>();
+$z3 = virtualinvoke r1.<javaT.securityT.SignedObject.Copy$Test: boolean equals(java.lang.Object)>(r34);
+if $z3 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 8:
+[preds: 6 ] [succs: ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Test passed\");
+return;
+";
+}

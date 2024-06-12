@@ -1,0 +1,16 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "$b1 = l0 cmp 10L"
+    "if $b1 != 0 goto $l2 = 2L"
+    "$l2 = 1L"
+    "goto [?= return $l2]"
+    "$l2 = 2L"
+    "return $l2"
+    "l0 := @parameter0: long"->"$b1 = l0 cmp 10L";
+    "$b1 = l0 cmp 10L"->"if $b1 != 0 goto $l2 = 2L";
+    "if $b1 != 0 goto $l2 = 2L"->"$l2 = 1L";
+    "if $b1 != 0 goto $l2 = 2L"->"$l2 = 2L";
+    "$l2 = 1L"->"goto [?= return $l2]";
+    "goto [?= return $l2]"->"return $l2";
+    "$l2 = 2L"->"return $l2";
+}

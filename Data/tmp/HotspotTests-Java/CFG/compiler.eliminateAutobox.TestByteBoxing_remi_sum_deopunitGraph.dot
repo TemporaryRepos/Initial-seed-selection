@@ -1,0 +1,38 @@
+digraph "unitGraph" {
+    "$r0 = new java.lang.Byte"
+    "$b0 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(1)"
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b0)"
+    "r2 = $r0"
+    "i6 = 0"
+    "goto [?= (branch)]"
+    "$r1 = new java.lang.Byte"
+    "$b1 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"
+    "$i2 = $b1 + 1"
+    "$b3 = (byte) $i2"
+    "$b4 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b3)"
+    "specialinvoke $r1.<java.lang.Byte: void <init>(byte)>($b4)"
+    "r2 = $r1"
+    "i6 = i6 + 1"
+    "if i6 < 1000 goto $r1 = new java.lang.Byte"
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"
+    "$b5 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"
+    "return $b5"
+    "$r0 = new java.lang.Byte"->"$b0 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(1)";
+    "$b0 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>(1)"->"specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b0)";
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b0)"->"r2 = $r0";
+    "r2 = $r0"->"i6 = 0";
+    "i6 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 < 1000 goto $r1 = new java.lang.Byte";
+    "$r1 = new java.lang.Byte"->"$b1 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()";
+    "$b1 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"->"$i2 = $b1 + 1";
+    "$i2 = $b1 + 1"->"$b3 = (byte) $i2";
+    "$b3 = (byte) $i2"->"$b4 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b3)";
+    "$b4 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b3)"->"specialinvoke $r1.<java.lang.Byte: void <init>(byte)>($b4)";
+    "specialinvoke $r1.<java.lang.Byte: void <init>(byte)>($b4)"->"r2 = $r1";
+    "r2 = $r1"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"if i6 < 1000 goto $r1 = new java.lang.Byte";
+    "if i6 < 1000 goto $r1 = new java.lang.Byte"->"staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "if i6 < 1000 goto $r1 = new java.lang.Byte"->"$r1 = new java.lang.Byte";
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"$b5 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()";
+    "$b5 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"->"return $b5";
+}

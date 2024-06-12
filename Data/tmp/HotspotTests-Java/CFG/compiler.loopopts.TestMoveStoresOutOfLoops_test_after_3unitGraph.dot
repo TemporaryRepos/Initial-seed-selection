@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i4 = 0"
+    "goto [?= (branch)]"
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "$l1 = (long) i4"
+    "$r0[i0] = $l1"
+    "$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "$l2 = $r1[0]"
+    "$b3 = $l2 cmp -1L"
+    "if $b3 != 0 goto i4 = i4 + 1"
+    "goto [?= return]"
+    "i4 = i4 + 1"
+    "if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "return"
+    "i0 := @parameter0: int"->"i4 = 0";
+    "i4 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$l1 = (long) i4";
+    "$l1 = (long) i4"->"$r0[i0] = $l1";
+    "$r0[i0] = $l1"->"$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$l2 = $r1[0]";
+    "$l2 = $r1[0]"->"$b3 = $l2 cmp -1L";
+    "$b3 = $l2 cmp -1L"->"if $b3 != 0 goto i4 = i4 + 1";
+    "if $b3 != 0 goto i4 = i4 + 1"->"goto [?= return]";
+    "if $b3 != 0 goto i4 = i4 + 1"->"i4 = i4 + 1";
+    "goto [?= return]"->"return";
+    "i4 = i4 + 1"->"if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"return";
+    "if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+}

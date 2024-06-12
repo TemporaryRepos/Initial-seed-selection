@@ -1,0 +1,76 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r1 := @parameter0: TreeNode;
+r0 := @parameter1: TreeNode;
+$i0 = r0.<TreeNode: int val>;
+$i1 = $i0 % 2;
+if $i1 != 0 goto $z1 = 0;
+"
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$z1 = 1;
+goto [?= z0 = $z1];
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$z1 = 0;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: ]
+z0 = $z1;
+$l2 = <TestGCOld: long actuallyMut>;
+$l3 = $l2 + 1L;
+<TestGCOld: long actuallyMut> = $l3;
+staticinvoke <TestGCOld: void replaceTreeWork(TreeNode,TreeNode,boolean)>(r1, r0, z0);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r1 := @parameter0: TreeNode;
+r0 := @parameter1: TreeNode;
+$i0 = r0.<TreeNode: int val>;
+$i1 = $i0 % 2;
+if $i1 != 0 goto $z1 = 0;
+"->"Block 1:
+[preds: 0 ] [succs: 3 ]
+$z1 = 1;
+goto [?= z0 = $z1];
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r1 := @parameter0: TreeNode;
+r0 := @parameter1: TreeNode;
+$i0 = r0.<TreeNode: int val>;
+$i1 = $i0 % 2;
+if $i1 != 0 goto $z1 = 0;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$z1 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$z1 = 1;
+goto [?= z0 = $z1];
+"->"Block 3:
+[preds: 1 2 ] [succs: ]
+z0 = $z1;
+$l2 = <TestGCOld: long actuallyMut>;
+$l3 = $l2 + 1L;
+<TestGCOld: long actuallyMut> = $l3;
+staticinvoke <TestGCOld: void replaceTreeWork(TreeNode,TreeNode,boolean)>(r1, r0, z0);
+return;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$z1 = 0;
+"->"Block 3:
+[preds: 1 2 ] [succs: ]
+z0 = $z1;
+$l2 = <TestGCOld: long actuallyMut>;
+$l3 = $l2 + 1L;
+<TestGCOld: long actuallyMut> = $l3;
+staticinvoke <TestGCOld: void replaceTreeWork(TreeNode,TreeNode,boolean)>(r1, r0, z0);
+return;
+";
+}

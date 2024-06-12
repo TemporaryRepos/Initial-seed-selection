@@ -1,0 +1,34 @@
+digraph "unitGraph" {
+    "l2 := @parameter0: long"
+    "i0 := @parameter1: int"
+    "i1 = i0 * 4"
+    "i8 = 0"
+    "goto [?= $l3 = (long) i8]"
+    "$r0 = newarray (int)[i0]"
+    "<TestGCOld: int[] aexport> = $r0"
+    "i8 = i8 + i1"
+    "$l3 = (long) i8"
+    "$b4 = $l3 cmp l2"
+    "if $b4 < 0 goto $r0 = newarray (int)[i0]"
+    "$l6 = <TestGCOld: long youngBytes>"
+    "$l5 = (long) i8"
+    "$l7 = $l6 + $l5"
+    "<TestGCOld: long youngBytes> = $l7"
+    "return"
+    "l2 := @parameter0: long"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"i1 = i0 * 4";
+    "i1 = i0 * 4"->"i8 = 0";
+    "i8 = 0"->"goto [?= $l3 = (long) i8]";
+    "goto [?= $l3 = (long) i8]"->"$l3 = (long) i8";
+    "$r0 = newarray (int)[i0]"->"<TestGCOld: int[] aexport> = $r0";
+    "<TestGCOld: int[] aexport> = $r0"->"i8 = i8 + i1";
+    "i8 = i8 + i1"->"$l3 = (long) i8";
+    "$l3 = (long) i8"->"$b4 = $l3 cmp l2";
+    "$b4 = $l3 cmp l2"->"if $b4 < 0 goto $r0 = newarray (int)[i0]";
+    "if $b4 < 0 goto $r0 = newarray (int)[i0]"->"$l6 = <TestGCOld: long youngBytes>";
+    "if $b4 < 0 goto $r0 = newarray (int)[i0]"->"$r0 = newarray (int)[i0]";
+    "$l6 = <TestGCOld: long youngBytes>"->"$l5 = (long) i8";
+    "$l5 = (long) i8"->"$l7 = $l6 + $l5";
+    "$l7 = $l6 + $l5"->"<TestGCOld: long youngBytes> = $l7";
+    "<TestGCOld: long youngBytes> = $l7"->"return";
+}

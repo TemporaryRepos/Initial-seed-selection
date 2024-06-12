@@ -1,0 +1,46 @@
+digraph "unitGraph" {
+    "$r0 = <TestGCOld: TreeNode[] trees>"
+    "i0 = lengthof $r0"
+    "i3 = 0"
+    "goto [?= (branch)]"
+    "$r1 = <TestGCOld: TreeNode[] trees>"
+    "r2 = $r1[i3]"
+    "i1 = staticinvoke <TestGCOld: int height(TreeNode)>(r2)"
+    "i2 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>(r2)"
+    "if i1 != 14 goto $r4 = <java.lang.System: java.io.PrintStream err>"
+    "if i2 == 14 goto i3 = i3 + 1"
+    "$r4 = <java.lang.System: java.io.PrintStream err>"
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"*****BUG: \")"
+    "$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8)"
+    "i3 = i3 + 1"
+    "if i3 < i0 goto $r1 = <TestGCOld: TreeNode[] trees>"
+    "return"
+    "$r0 = <TestGCOld: TreeNode[] trees>"->"i0 = lengthof $r0";
+    "i0 = lengthof $r0"->"i3 = 0";
+    "i3 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < i0 goto $r1 = <TestGCOld: TreeNode[] trees>";
+    "$r1 = <TestGCOld: TreeNode[] trees>"->"r2 = $r1[i3]";
+    "r2 = $r1[i3]"->"i1 = staticinvoke <TestGCOld: int height(TreeNode)>(r2)";
+    "i1 = staticinvoke <TestGCOld: int height(TreeNode)>(r2)"->"i2 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>(r2)";
+    "i2 = staticinvoke <TestGCOld: int shortestPath(TreeNode)>(r2)"->"if i1 != 14 goto $r4 = <java.lang.System: java.io.PrintStream err>";
+    "if i1 != 14 goto $r4 = <java.lang.System: java.io.PrintStream err>"->"if i2 == 14 goto i3 = i3 + 1";
+    "if i1 != 14 goto $r4 = <java.lang.System: java.io.PrintStream err>"->"$r4 = <java.lang.System: java.io.PrintStream err>";
+    "if i2 == 14 goto i3 = i3 + 1"->"$r4 = <java.lang.System: java.io.PrintStream err>";
+    "if i2 == 14 goto i3 = i3 + 1"->"i3 = i3 + 1";
+    "$r4 = <java.lang.System: java.io.PrintStream err>"->"$r3 = new java.lang.StringBuilder";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"*****BUG: \")";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"*****BUG: \")"->"$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)";
+    "$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8)";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 < i0 goto $r1 = <TestGCOld: TreeNode[] trees>";
+    "if i3 < i0 goto $r1 = <TestGCOld: TreeNode[] trees>"->"return";
+    "if i3 < i0 goto $r1 = <TestGCOld: TreeNode[] trees>"->"$r1 = <TestGCOld: TreeNode[] trees>";
+}

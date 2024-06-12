@@ -1,0 +1,687 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r4 := @this: com.thealgorithms.divideandconquer.ClosestPair;
+r1 := @parameter0: com.thealgorithms.divideandconquer.ClosestPair$Location[];
+i0 := @parameter1: int;
+r0 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i0];
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = i0 / 2;
+r2 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i1];
+$i2 = i0 - i1;
+r3 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i2];
+if i0 > 3 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$d25 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double bruteForce(com.thealgorithms.divideandconquer.ClosestPair$Location[])>(r0);
+return $d25;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+$i3 = i0 - i1;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, i1, r3, 0, $i3);
+d0 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r2, i1);
+$i4 = i0 - i1;
+d1 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r3, $i4);
+d26 = staticinvoke <java.lang.Math: double min(double,double)>(d0, d1);
+i18 = 0;
+"
+    "Block 3:
+[preds: 2 8 ] [succs: 4 9 ]
+if i18 >= i0 goto $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r16 = r0[i1];
+$d21 = $r16.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r17 = r0[i18];
+$d20 = $r17.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d22 = $d21 - $d20;
+d27 = staticinvoke <java.lang.Math: double abs(double)>($d22);
+$b14 = d27 cmpg d26;
+if $b14 >= 0 goto $r18 = r0[i18];
+"
+    "Block 5:
+[preds: 4 ] [succs: 8 ]
+$i16 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i17 = $i16 + 1;
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>($i17);
+goto [?= i18 = i18 + 1];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$r18 = r0[i18];
+$d24 = $r18.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r19 = r0[i1];
+$d23 = $r19.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b15 = $d24 cmpl $d23;
+if $b15 <= 0 goto i18 = i18 + 1;
+"
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+goto [?= $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"
+    "Block 8:
+[preds: 5 6 ] [succs: 3 ]
+i18 = i18 + 1;
+goto [?= (branch)];
+"
+    "Block 9:
+[preds: 3 7 ] [succs: 10 ]
+$i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+r20 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i5];
+i19 = 0;
+i20 = 0;
+"
+    "Block 10:
+[preds: 9 15 ] [succs: 11 16 ]
+if i20 >= i0 goto $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r11 = r0[i1];
+$d15 = $r11.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r12 = r0[i20];
+$d14 = $r12.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d16 = $d15 - $d14;
+d17 = staticinvoke <java.lang.Math: double abs(double)>($d16);
+$b12 = d17 cmpg d26;
+if $b12 >= 0 goto $r13 = r0[i20];
+"
+    "Block 12:
+[preds: 11 ] [succs: 15 ]
+$r15 = r0[i20];
+r20[i19] = $r15;
+i19 = i19 + 1;
+goto [?= i20 = i20 + 1];
+"
+    "Block 13:
+[preds: 11 ] [succs: 14 15 ]
+$r13 = r0[i20];
+$d19 = $r13.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r14 = r0[i1];
+$d18 = $r14.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b13 = $d19 cmpl $d18;
+if $b13 <= 0 goto i20 = i20 + 1;
+"
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+goto [?= $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"
+    "Block 15:
+[preds: 12 13 ] [succs: 10 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+"
+    "Block 16:
+[preds: 10 14 ] [succs: 17 ]
+$i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i7 = $i6 - 1;
+virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: void yQuickSort(com.thealgorithms.divideandconquer.ClosestPair$Location[],int,int)>(r20, 0, $i7);
+i21 = 0;
+"
+    "Block 17:
+[preds: 16 25 ] [succs: 18 26 ]
+$i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i23 = $i22 - 1;
+if i21 >= $i23 goto staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+i24 = i21 + 1;
+"
+    "Block 19:
+[preds: 18 24 ] [succs: 20 25 ]
+$i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+if i24 >= $i8 goto i21 = i21 + 1;
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 25 ]
+$r5 = r20[i21];
+$d3 = $r5.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r6 = r20[i24];
+$d2 = $r6.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d4 = $d3 - $d2;
+d5 = staticinvoke <java.lang.Math: double abs(double)>($d4);
+$r7 = r20[i21];
+$d7 = $r7.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$r8 = r20[i24];
+$d6 = $r8.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$d8 = $d7 - $d6;
+d9 = staticinvoke <java.lang.Math: double abs(double)>($d8);
+$b9 = d9 cmpg d26;
+if $b9 >= 0 goto i21 = i21 + 1;
+"
+    "Block 21:
+[preds: 20 ] [succs: 22 24 ]
+$d10 = staticinvoke <java.lang.Math: double pow(double,double)>(d5, 2.0);
+$d11 = staticinvoke <java.lang.Math: double pow(double,double)>(d9, 2.0);
+$d12 = $d10 + $d11;
+d28 = staticinvoke <java.lang.Math: double sqrt(double)>($d12);
+$b10 = d28 cmpg d26;
+if $b10 >= 0 goto i24 = i24 + 1;
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 24 ]
+d26 = d28;
+$d13 = <com.thealgorithms.divideandconquer.ClosestPair: double minNum>;
+$b11 = d28 cmpg $d13;
+if $b11 >= 0 goto i24 = i24 + 1;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setMinNum(double)>(d28);
+$r9 = r20[i21];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point1> = $r9;
+$r10 = r20[i24];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point2> = $r10;
+"
+    "Block 24:
+[preds: 21 22 23 ] [succs: 19 ]
+i24 = i24 + 1;
+goto [?= $i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"
+    "Block 25:
+[preds: 19 20 ] [succs: 17 ]
+i21 = i21 + 1;
+goto [?= $i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"
+    "Block 26:
+[preds: 17 ] [succs: ]
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+return d26;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r4 := @this: com.thealgorithms.divideandconquer.ClosestPair;
+r1 := @parameter0: com.thealgorithms.divideandconquer.ClosestPair$Location[];
+i0 := @parameter1: int;
+r0 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i0];
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = i0 / 2;
+r2 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i1];
+$i2 = i0 - i1;
+r3 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i2];
+if i0 > 3 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$d25 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double bruteForce(com.thealgorithms.divideandconquer.ClosestPair$Location[])>(r0);
+return $d25;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r4 := @this: com.thealgorithms.divideandconquer.ClosestPair;
+r1 := @parameter0: com.thealgorithms.divideandconquer.ClosestPair$Location[];
+i0 := @parameter1: int;
+r0 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i0];
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, i0);
+i1 = i0 / 2;
+r2 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[i1];
+$i2 = i0 - i1;
+r3 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i2];
+if i0 > 3 goto staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+$i3 = i0 - i1;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, i1, r3, 0, $i3);
+d0 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r2, i1);
+$i4 = i0 - i1;
+d1 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r3, $i4);
+d26 = staticinvoke <java.lang.Math: double min(double,double)>(d0, d1);
+i18 = 0;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r2, 0, i1);
+$i3 = i0 - i1;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, i1, r3, 0, $i3);
+d0 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r2, i1);
+$i4 = i0 - i1;
+d1 = virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: double closestPair(com.thealgorithms.divideandconquer.ClosestPair$Location[],int)>(r3, $i4);
+d26 = staticinvoke <java.lang.Math: double min(double,double)>(d0, d1);
+i18 = 0;
+"->"Block 3:
+[preds: 2 8 ] [succs: 4 9 ]
+if i18 >= i0 goto $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+";
+    "Block 3:
+[preds: 2 8 ] [succs: 4 9 ]
+if i18 >= i0 goto $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r16 = r0[i1];
+$d21 = $r16.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r17 = r0[i18];
+$d20 = $r17.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d22 = $d21 - $d20;
+d27 = staticinvoke <java.lang.Math: double abs(double)>($d22);
+$b14 = d27 cmpg d26;
+if $b14 >= 0 goto $r18 = r0[i18];
+";
+    "Block 3:
+[preds: 2 8 ] [succs: 4 9 ]
+if i18 >= i0 goto $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"->"Block 9:
+[preds: 3 7 ] [succs: 10 ]
+$i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+r20 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i5];
+i19 = 0;
+i20 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r16 = r0[i1];
+$d21 = $r16.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r17 = r0[i18];
+$d20 = $r17.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d22 = $d21 - $d20;
+d27 = staticinvoke <java.lang.Math: double abs(double)>($d22);
+$b14 = d27 cmpg d26;
+if $b14 >= 0 goto $r18 = r0[i18];
+"->"Block 5:
+[preds: 4 ] [succs: 8 ]
+$i16 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i17 = $i16 + 1;
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>($i17);
+goto [?= i18 = i18 + 1];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r16 = r0[i1];
+$d21 = $r16.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r17 = r0[i18];
+$d20 = $r17.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d22 = $d21 - $d20;
+d27 = staticinvoke <java.lang.Math: double abs(double)>($d22);
+$b14 = d27 cmpg d26;
+if $b14 >= 0 goto $r18 = r0[i18];
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$r18 = r0[i18];
+$d24 = $r18.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r19 = r0[i1];
+$d23 = $r19.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b15 = $d24 cmpl $d23;
+if $b15 <= 0 goto i18 = i18 + 1;
+";
+    "Block 5:
+[preds: 4 ] [succs: 8 ]
+$i16 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i17 = $i16 + 1;
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>($i17);
+goto [?= i18 = i18 + 1];
+"->"Block 8:
+[preds: 5 6 ] [succs: 3 ]
+i18 = i18 + 1;
+goto [?= (branch)];
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$r18 = r0[i18];
+$d24 = $r18.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r19 = r0[i1];
+$d23 = $r19.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b15 = $d24 cmpl $d23;
+if $b15 <= 0 goto i18 = i18 + 1;
+"->"Block 7:
+[preds: 6 ] [succs: 9 ]
+goto [?= $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$r18 = r0[i18];
+$d24 = $r18.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r19 = r0[i1];
+$d23 = $r19.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b15 = $d24 cmpl $d23;
+if $b15 <= 0 goto i18 = i18 + 1;
+"->"Block 8:
+[preds: 5 6 ] [succs: 3 ]
+i18 = i18 + 1;
+goto [?= (branch)];
+";
+    "Block 7:
+[preds: 6 ] [succs: 9 ]
+goto [?= $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"->"Block 9:
+[preds: 3 7 ] [succs: 10 ]
+$i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+r20 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i5];
+i19 = 0;
+i20 = 0;
+";
+    "Block 8:
+[preds: 5 6 ] [succs: 3 ]
+i18 = i18 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 8 ] [succs: 4 9 ]
+if i18 >= i0 goto $i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+";
+    "Block 9:
+[preds: 3 7 ] [succs: 10 ]
+$i5 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+r20 = newarray (com.thealgorithms.divideandconquer.ClosestPair$Location)[$i5];
+i19 = 0;
+i20 = 0;
+"->"Block 10:
+[preds: 9 15 ] [succs: 11 16 ]
+if i20 >= i0 goto $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+";
+    "Block 10:
+[preds: 9 15 ] [succs: 11 16 ]
+if i20 >= i0 goto $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r11 = r0[i1];
+$d15 = $r11.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r12 = r0[i20];
+$d14 = $r12.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d16 = $d15 - $d14;
+d17 = staticinvoke <java.lang.Math: double abs(double)>($d16);
+$b12 = d17 cmpg d26;
+if $b12 >= 0 goto $r13 = r0[i20];
+";
+    "Block 10:
+[preds: 9 15 ] [succs: 11 16 ]
+if i20 >= i0 goto $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+"->"Block 16:
+[preds: 10 14 ] [succs: 17 ]
+$i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i7 = $i6 - 1;
+virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: void yQuickSort(com.thealgorithms.divideandconquer.ClosestPair$Location[],int,int)>(r20, 0, $i7);
+i21 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r11 = r0[i1];
+$d15 = $r11.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r12 = r0[i20];
+$d14 = $r12.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d16 = $d15 - $d14;
+d17 = staticinvoke <java.lang.Math: double abs(double)>($d16);
+$b12 = d17 cmpg d26;
+if $b12 >= 0 goto $r13 = r0[i20];
+"->"Block 12:
+[preds: 11 ] [succs: 15 ]
+$r15 = r0[i20];
+r20[i19] = $r15;
+i19 = i19 + 1;
+goto [?= i20 = i20 + 1];
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r11 = r0[i1];
+$d15 = $r11.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r12 = r0[i20];
+$d14 = $r12.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d16 = $d15 - $d14;
+d17 = staticinvoke <java.lang.Math: double abs(double)>($d16);
+$b12 = d17 cmpg d26;
+if $b12 >= 0 goto $r13 = r0[i20];
+"->"Block 13:
+[preds: 11 ] [succs: 14 15 ]
+$r13 = r0[i20];
+$d19 = $r13.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r14 = r0[i1];
+$d18 = $r14.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b13 = $d19 cmpl $d18;
+if $b13 <= 0 goto i20 = i20 + 1;
+";
+    "Block 12:
+[preds: 11 ] [succs: 15 ]
+$r15 = r0[i20];
+r20[i19] = $r15;
+i19 = i19 + 1;
+goto [?= i20 = i20 + 1];
+"->"Block 15:
+[preds: 12 13 ] [succs: 10 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+";
+    "Block 13:
+[preds: 11 ] [succs: 14 15 ]
+$r13 = r0[i20];
+$d19 = $r13.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r14 = r0[i1];
+$d18 = $r14.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b13 = $d19 cmpl $d18;
+if $b13 <= 0 goto i20 = i20 + 1;
+"->"Block 14:
+[preds: 13 ] [succs: 16 ]
+goto [?= $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 13:
+[preds: 11 ] [succs: 14 15 ]
+$r13 = r0[i20];
+$d19 = $r13.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r14 = r0[i1];
+$d18 = $r14.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$b13 = $d19 cmpl $d18;
+if $b13 <= 0 goto i20 = i20 + 1;
+"->"Block 15:
+[preds: 12 13 ] [succs: 10 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+";
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+goto [?= $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"->"Block 16:
+[preds: 10 14 ] [succs: 17 ]
+$i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i7 = $i6 - 1;
+virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: void yQuickSort(com.thealgorithms.divideandconquer.ClosestPair$Location[],int,int)>(r20, 0, $i7);
+i21 = 0;
+";
+    "Block 15:
+[preds: 12 13 ] [succs: 10 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+"->"Block 10:
+[preds: 9 15 ] [succs: 11 16 ]
+if i20 >= i0 goto $i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+";
+    "Block 16:
+[preds: 10 14 ] [succs: 17 ]
+$i6 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i7 = $i6 - 1;
+virtualinvoke r4.<com.thealgorithms.divideandconquer.ClosestPair: void yQuickSort(com.thealgorithms.divideandconquer.ClosestPair$Location[],int,int)>(r20, 0, $i7);
+i21 = 0;
+"->"Block 17:
+[preds: 16 25 ] [succs: 18 26 ]
+$i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i23 = $i22 - 1;
+if i21 >= $i23 goto staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+";
+    "Block 17:
+[preds: 16 25 ] [succs: 18 26 ]
+$i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i23 = $i22 - 1;
+if i21 >= $i23 goto staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+"->"Block 18:
+[preds: 17 ] [succs: 19 ]
+i24 = i21 + 1;
+";
+    "Block 17:
+[preds: 16 25 ] [succs: 18 26 ]
+$i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i23 = $i22 - 1;
+if i21 >= $i23 goto staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+"->"Block 26:
+[preds: 17 ] [succs: ]
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+return d26;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+i24 = i21 + 1;
+"->"Block 19:
+[preds: 18 24 ] [succs: 20 25 ]
+$i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+if i24 >= $i8 goto i21 = i21 + 1;
+";
+    "Block 19:
+[preds: 18 24 ] [succs: 20 25 ]
+$i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+if i24 >= $i8 goto i21 = i21 + 1;
+"->"Block 20:
+[preds: 19 ] [succs: 21 25 ]
+$r5 = r20[i21];
+$d3 = $r5.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r6 = r20[i24];
+$d2 = $r6.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d4 = $d3 - $d2;
+d5 = staticinvoke <java.lang.Math: double abs(double)>($d4);
+$r7 = r20[i21];
+$d7 = $r7.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$r8 = r20[i24];
+$d6 = $r8.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$d8 = $d7 - $d6;
+d9 = staticinvoke <java.lang.Math: double abs(double)>($d8);
+$b9 = d9 cmpg d26;
+if $b9 >= 0 goto i21 = i21 + 1;
+";
+    "Block 19:
+[preds: 18 24 ] [succs: 20 25 ]
+$i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+if i24 >= $i8 goto i21 = i21 + 1;
+"->"Block 25:
+[preds: 19 20 ] [succs: 17 ]
+i21 = i21 + 1;
+goto [?= $i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 25 ]
+$r5 = r20[i21];
+$d3 = $r5.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r6 = r20[i24];
+$d2 = $r6.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d4 = $d3 - $d2;
+d5 = staticinvoke <java.lang.Math: double abs(double)>($d4);
+$r7 = r20[i21];
+$d7 = $r7.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$r8 = r20[i24];
+$d6 = $r8.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$d8 = $d7 - $d6;
+d9 = staticinvoke <java.lang.Math: double abs(double)>($d8);
+$b9 = d9 cmpg d26;
+if $b9 >= 0 goto i21 = i21 + 1;
+"->"Block 21:
+[preds: 20 ] [succs: 22 24 ]
+$d10 = staticinvoke <java.lang.Math: double pow(double,double)>(d5, 2.0);
+$d11 = staticinvoke <java.lang.Math: double pow(double,double)>(d9, 2.0);
+$d12 = $d10 + $d11;
+d28 = staticinvoke <java.lang.Math: double sqrt(double)>($d12);
+$b10 = d28 cmpg d26;
+if $b10 >= 0 goto i24 = i24 + 1;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 25 ]
+$r5 = r20[i21];
+$d3 = $r5.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$r6 = r20[i24];
+$d2 = $r6.<com.thealgorithms.divideandconquer.ClosestPair$Location: double x>;
+$d4 = $d3 - $d2;
+d5 = staticinvoke <java.lang.Math: double abs(double)>($d4);
+$r7 = r20[i21];
+$d7 = $r7.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$r8 = r20[i24];
+$d6 = $r8.<com.thealgorithms.divideandconquer.ClosestPair$Location: double y>;
+$d8 = $d7 - $d6;
+d9 = staticinvoke <java.lang.Math: double abs(double)>($d8);
+$b9 = d9 cmpg d26;
+if $b9 >= 0 goto i21 = i21 + 1;
+"->"Block 25:
+[preds: 19 20 ] [succs: 17 ]
+i21 = i21 + 1;
+goto [?= $i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 24 ]
+$d10 = staticinvoke <java.lang.Math: double pow(double,double)>(d5, 2.0);
+$d11 = staticinvoke <java.lang.Math: double pow(double,double)>(d9, 2.0);
+$d12 = $d10 + $d11;
+d28 = staticinvoke <java.lang.Math: double sqrt(double)>($d12);
+$b10 = d28 cmpg d26;
+if $b10 >= 0 goto i24 = i24 + 1;
+"->"Block 22:
+[preds: 21 ] [succs: 23 24 ]
+d26 = d28;
+$d13 = <com.thealgorithms.divideandconquer.ClosestPair: double minNum>;
+$b11 = d28 cmpg $d13;
+if $b11 >= 0 goto i24 = i24 + 1;
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 24 ]
+$d10 = staticinvoke <java.lang.Math: double pow(double,double)>(d5, 2.0);
+$d11 = staticinvoke <java.lang.Math: double pow(double,double)>(d9, 2.0);
+$d12 = $d10 + $d11;
+d28 = staticinvoke <java.lang.Math: double sqrt(double)>($d12);
+$b10 = d28 cmpg d26;
+if $b10 >= 0 goto i24 = i24 + 1;
+"->"Block 24:
+[preds: 21 22 23 ] [succs: 19 ]
+i24 = i24 + 1;
+goto [?= $i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 24 ]
+d26 = d28;
+$d13 = <com.thealgorithms.divideandconquer.ClosestPair: double minNum>;
+$b11 = d28 cmpg $d13;
+if $b11 >= 0 goto i24 = i24 + 1;
+"->"Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setMinNum(double)>(d28);
+$r9 = r20[i21];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point1> = $r9;
+$r10 = r20[i24];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point2> = $r10;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 24 ]
+d26 = d28;
+$d13 = <com.thealgorithms.divideandconquer.ClosestPair: double minNum>;
+$b11 = d28 cmpg $d13;
+if $b11 >= 0 goto i24 = i24 + 1;
+"->"Block 24:
+[preds: 21 22 23 ] [succs: 19 ]
+i24 = i24 + 1;
+goto [?= $i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setMinNum(double)>(d28);
+$r9 = r20[i21];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point1> = $r9;
+$r10 = r20[i24];
+r4.<com.thealgorithms.divideandconquer.ClosestPair: com.thealgorithms.divideandconquer.ClosestPair$Location point2> = $r10;
+"->"Block 24:
+[preds: 21 22 23 ] [succs: 19 ]
+i24 = i24 + 1;
+goto [?= $i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+";
+    "Block 24:
+[preds: 21 22 23 ] [succs: 19 ]
+i24 = i24 + 1;
+goto [?= $i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"->"Block 19:
+[preds: 18 24 ] [succs: 20 25 ]
+$i8 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+if i24 >= $i8 goto i21 = i21 + 1;
+";
+    "Block 25:
+[preds: 19 20 ] [succs: 17 ]
+i21 = i21 + 1;
+goto [?= $i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>];
+"->"Block 17:
+[preds: 16 25 ] [succs: 18 26 ]
+$i22 = <com.thealgorithms.divideandconquer.ClosestPair: int secondCount>;
+$i23 = $i22 - 1;
+if i21 >= $i23 goto staticinvoke <com.thealgorithms.divideandconquer.ClosestPair: void setSecondCount(int)>(0);
+";
+}

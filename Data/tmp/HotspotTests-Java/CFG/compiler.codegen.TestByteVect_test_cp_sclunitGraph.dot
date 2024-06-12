@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: byte[]"
+    "r1 := @parameter1: byte[]"
+    "i5 = 0"
+    "goto [?= $i1 = i5 * 2]"
+    "$i4 = i5 * 2"
+    "$i2 = i5 * 2"
+    "$b3 = r1[$i2]"
+    "r0[$i4] = $b3"
+    "i5 = i5 + 1"
+    "$i1 = i5 * 2"
+    "$i0 = lengthof r0"
+    "if $i1 < $i0 goto $i4 = i5 * 2"
+    "return"
+    "r0 := @parameter0: byte[]"->"r1 := @parameter1: byte[]";
+    "r1 := @parameter1: byte[]"->"i5 = 0";
+    "i5 = 0"->"goto [?= $i1 = i5 * 2]";
+    "goto [?= $i1 = i5 * 2]"->"$i1 = i5 * 2";
+    "$i4 = i5 * 2"->"$i2 = i5 * 2";
+    "$i2 = i5 * 2"->"$b3 = r1[$i2]";
+    "$b3 = r1[$i2]"->"r0[$i4] = $b3";
+    "r0[$i4] = $b3"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"$i1 = i5 * 2";
+    "$i1 = i5 * 2"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if $i1 < $i0 goto $i4 = i5 * 2";
+    "if $i1 < $i0 goto $i4 = i5 * 2"->"return";
+    "if $i1 < $i0 goto $i4 = i5 * 2"->"$i4 = i5 * 2";
+}

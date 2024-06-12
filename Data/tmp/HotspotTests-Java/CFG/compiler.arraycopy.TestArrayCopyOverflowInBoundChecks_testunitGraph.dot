@@ -1,0 +1,13 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "r0 = newarray (byte)[10]"
+    "$r1 = <compiler.arraycopy.TestArrayCopyOverflowInBoundChecks: byte[] src_array>"
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r1, 0, r0, 1, i0)"
+    "$b1 = r0[1]"
+    "return $b1"
+    "i0 := @parameter0: int"->"r0 = newarray (byte)[10]";
+    "r0 = newarray (byte)[10]"->"$r1 = <compiler.arraycopy.TestArrayCopyOverflowInBoundChecks: byte[] src_array>";
+    "$r1 = <compiler.arraycopy.TestArrayCopyOverflowInBoundChecks: byte[] src_array>"->"staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r1, 0, r0, 1, i0)";
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r1, 0, r0, 1, i0)"->"$b1 = r0[1]";
+    "$b1 = r0[1]"->"return $b1";
+}

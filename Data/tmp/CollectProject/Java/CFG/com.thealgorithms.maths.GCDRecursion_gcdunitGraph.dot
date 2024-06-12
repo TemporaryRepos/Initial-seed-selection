@@ -1,0 +1,39 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 := @parameter1: int"
+    "if i0 < 0 goto $r0 = new java.lang.ArithmeticException"
+    "if i1 >= 0 goto (branch)"
+    "$r0 = new java.lang.ArithmeticException"
+    "specialinvoke $r0.<java.lang.ArithmeticException: void <init>()>()"
+    "throw $r0"
+    "if i0 == 0 goto $i2 = i0 - i1"
+    "if i1 != 0 goto $i4 = i0 % i1"
+    "$i2 = i0 - i1"
+    "$i3 = staticinvoke <java.lang.Math: int abs(int)>($i2)"
+    "return $i3"
+    "$i4 = i0 % i1"
+    "if $i4 != 0 goto $i5 = i0 % i1"
+    "return i1"
+    "$i5 = i0 % i1"
+    "$i6 = staticinvoke <com.thealgorithms.maths.GCDRecursion: int gcd(int,int)>(i1, $i5)"
+    "return $i6"
+    "i0 := @parameter0: int"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"if i0 < 0 goto $r0 = new java.lang.ArithmeticException";
+    "if i0 < 0 goto $r0 = new java.lang.ArithmeticException"->"if i1 >= 0 goto (branch)";
+    "if i0 < 0 goto $r0 = new java.lang.ArithmeticException"->"$r0 = new java.lang.ArithmeticException";
+    "if i1 >= 0 goto (branch)"->"$r0 = new java.lang.ArithmeticException";
+    "if i1 >= 0 goto (branch)"->"if i0 == 0 goto $i2 = i0 - i1";
+    "$r0 = new java.lang.ArithmeticException"->"specialinvoke $r0.<java.lang.ArithmeticException: void <init>()>()";
+    "specialinvoke $r0.<java.lang.ArithmeticException: void <init>()>()"->"throw $r0";
+    "if i0 == 0 goto $i2 = i0 - i1"->"if i1 != 0 goto $i4 = i0 % i1";
+    "if i0 == 0 goto $i2 = i0 - i1"->"$i2 = i0 - i1";
+    "if i1 != 0 goto $i4 = i0 % i1"->"$i2 = i0 - i1";
+    "if i1 != 0 goto $i4 = i0 % i1"->"$i4 = i0 % i1";
+    "$i2 = i0 - i1"->"$i3 = staticinvoke <java.lang.Math: int abs(int)>($i2)";
+    "$i3 = staticinvoke <java.lang.Math: int abs(int)>($i2)"->"return $i3";
+    "$i4 = i0 % i1"->"if $i4 != 0 goto $i5 = i0 % i1";
+    "if $i4 != 0 goto $i5 = i0 % i1"->"return i1";
+    "if $i4 != 0 goto $i5 = i0 % i1"->"$i5 = i0 % i1";
+    "$i5 = i0 % i1"->"$i6 = staticinvoke <com.thealgorithms.maths.GCDRecursion: int gcd(int,int)>(i1, $i5)";
+    "$i6 = staticinvoke <com.thealgorithms.maths.GCDRecursion: int gcd(int,int)>(i1, $i5)"->"return $i6";
+}

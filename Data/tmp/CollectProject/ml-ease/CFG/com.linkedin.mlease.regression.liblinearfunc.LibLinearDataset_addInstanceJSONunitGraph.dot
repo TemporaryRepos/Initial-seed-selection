@@ -1,0 +1,373 @@
+digraph "unitGraph" {
+    "r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"
+    "r1 := @parameter0: java.util.Map"
+    "$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: boolean finished>"
+    "if $z0 == 0 goto i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")"
+    "$r64 = new java.io.IOException"
+    "specialinvoke $r64.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")"
+    "throw $r64"
+    "i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")"
+    "if i21 == 1 goto (branch)"
+    "if i21 == 0 goto (branch)"
+    "if i21 == -1 goto (branch)"
+    "$r58 = new java.io.IOException"
+    "$r59 = new java.lang.StringBuilder"
+    "specialinvoke $r59.<java.lang.StringBuilder: void <init>()>()"
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"response = \")"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i21)"
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (only 1, 0, -1 are allowed)\")"
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r58.<java.io.IOException: void <init>(java.lang.String)>($r63)"
+    "throw $r58"
+    "if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"
+    "i21 = -1"
+    "$r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"
+    "$r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i21)"
+    "virtualinvoke $r2.<java.util.ArrayList: boolean add(java.lang.Object)>($r3)"
+    "d2 = 1.0"
+    "$z2 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"weight\")"
+    "if $z2 == 0 goto $b0 = d2 cmpl 1.0"
+    "d2 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"weight\")"
+    "$b0 = d2 cmpl 1.0"
+    "if $b0 == 0 goto d3 = 0.0"
+    "$b17 = d2 cmpg 0.0"
+    "if $b17 >= 0 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"
+    "$r52 = new java.io.IOException"
+    "$r53 = new java.lang.StringBuilder"
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"weight = \")"
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d2)"
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (weight cannot < 0)\")"
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r52.<java.io.IOException: void <init>(java.lang.String)>($r57)"
+    "throw $r52"
+    "$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"
+    "$i18 = virtualinvoke $r46.<java.util.ArrayList: int size()>()"
+    "$r47 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"
+    "$i19 = virtualinvoke $r47.<java.util.ArrayList: int size()>()"
+    "$i20 = $i19 - 1"
+    "if $i18 >= $i20 goto $r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"
+    "$r50 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"
+    "$r51 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)"
+    "virtualinvoke $r50.<java.util.ArrayList: boolean add(java.lang.Object)>($r51)"
+    "goto [?= $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>]"
+    "$r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"
+    "$r49 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"
+    "virtualinvoke $r48.<java.util.ArrayList: boolean add(java.lang.Object)>($r49)"
+    "d3 = 0.0"
+    "$z3 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"offset\")"
+    "if $z3 == 0 goto $b1 = d3 cmpl 0.0"
+    "d3 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"offset\")"
+    "$b1 = d3 cmpl 0.0"
+    "if $b1 == 0 goto r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")"
+    "$r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"
+    "$i14 = virtualinvoke $r40.<java.util.ArrayList: int size()>()"
+    "$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"
+    "$i15 = virtualinvoke $r41.<java.util.ArrayList: int size()>()"
+    "$i16 = $i15 - 1"
+    "if $i14 >= $i16 goto $r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"
+    "$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"
+    "$r45 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(0.0)"
+    "virtualinvoke $r44.<java.util.ArrayList: boolean add(java.lang.Object)>($r45)"
+    "goto [?= $r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>]"
+    "$r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"
+    "$r43 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d3)"
+    "virtualinvoke $r42.<java.util.ArrayList: boolean add(java.lang.Object)>($r43)"
+    "r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")"
+    "if r65 != null goto $z4 = r65 instanceof java.util.List"
+    "$r39 = new java.io.IOException"
+    "specialinvoke $r39.<java.io.IOException: void <init>(java.lang.String)>(\"features is null\")"
+    "throw $r39"
+    "$z4 = r65 instanceof java.util.List"
+    "if $z4 != 0 goto r4 = (java.util.List) r65"
+    "$r38 = new java.io.IOException"
+    "specialinvoke $r38.<java.io.IOException: void <init>(java.lang.String)>(\"features is not a list\")"
+    "throw $r38"
+    "r4 = (java.util.List) r65"
+    "i2 = interfaceinvoke r4.<java.util.List: int size()>()"
+    "$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: double bias>"
+    "$b3 = $d0 cmpl 0.0"
+    "if $b3 <= 0 goto r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]"
+    "$i13 = i2 + 1"
+    "r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[$i13]"
+    "goto [?= i22 = 0]"
+    "r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]"
+    "i22 = 0"
+    "if i22 >= i2 goto (branch)"
+    "r67 = interfaceinvoke r4.<java.util.List: java.lang.Object get(int)>(i22)"
+    "$z6 = r67 instanceof java.util.Map"
+    "if $z6 != 0 goto r7 = (java.util.Map) r67"
+    "$r32 = new java.io.IOException"
+    "$r33 = new java.lang.StringBuilder"
+    "specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"features[\")"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i22)"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] is not a map\")"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r32.<java.io.IOException: void <init>(java.lang.String)>($r37)"
+    "throw $r32"
+    "r7 = (java.util.Map) r67"
+    "r68 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"name\", 0)"
+    "r8 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"term\", 1)"
+    "$r9 = \"\""
+    "$z7 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>(r8)"
+    "if $z7 != 0 goto d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")"
+    "$r28 = new java.lang.StringBuilder"
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r68)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)"
+    "r68 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")"
+    "$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "if $r10 != null goto $r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"
+    "$r27 = new java.util.HashMap"
+    "specialinvoke $r27.<java.util.HashMap: void <init>()>()"
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex> = $r27"
+    "$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"
+    "if $r11 != null goto $r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "$r26 = new java.util.ArrayList"
+    "specialinvoke $r26.<java.util.ArrayList: void <init>()>()"
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName> = $r26"
+    "$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "$i4 = virtualinvoke $r12.<java.util.HashMap: int size()>()"
+    "$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"
+    "$i5 = virtualinvoke $r13.<java.util.ArrayList: int size()>()"
+    "if $i4 == $i5 goto $r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "$r25 = new java.io.IOException"
+    "specialinvoke $r25.<java.io.IOException: void <init>(java.lang.String)>(\"featureIndex.size() != featureName.size()\")"
+    "throw $r25"
+    "$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "$r15 = virtualinvoke $r14.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r68)"
+    "r69 = (java.lang.Integer) $r15"
+    "if r69 != null goto $r16 = new de.bwaldvogel.liblinear.FeatureNode"
+    "$r17 = \"(INTERCEPT)\""
+    "$z8 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r68)"
+    "if $z8 == 0 goto $i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "$r24 = new java.io.IOException"
+    "specialinvoke $r24.<java.io.IOException: void <init>(java.lang.String)>(\"feature name cannot be (INTERCEPT)\")"
+    "throw $r24"
+    "$i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "$i8 = $i7 + 1"
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex> = $i8"
+    "$r18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"
+    "$i9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i9)"
+    "virtualinvoke $r18.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r19)"
+    "$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"
+    "virtualinvoke $r21.<java.util.ArrayList: boolean add(java.lang.Object)>(r68)"
+    "$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"
+    "$i10 = virtualinvoke $r22.<java.util.ArrayList: int size()>()"
+    "$i11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "if $i10 == $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "$r23 = new java.io.IOException"
+    "specialinvoke $r23.<java.io.IOException: void <init>(java.lang.String)>(\"featureName.size() != maxFeatureIndex\")"
+    "throw $r23"
+    "$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"
+    "r69 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)"
+    "$r16 = new de.bwaldvogel.liblinear.FeatureNode"
+    "$i6 = virtualinvoke r69.<java.lang.Integer: int intValue()>()"
+    "specialinvoke $r16.<de.bwaldvogel.liblinear.FeatureNode: void <init>(int,double)>($i6, d1)"
+    "r66[i22] = $r16"
+    "i22 = i22 + 1"
+    "goto [?= (branch)]"
+    "if i2 <= 1 goto $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>"
+    "$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: com.linkedin.mlease.regression.liblinearfunc.FeatureNodeComparator featureNodeCmp>"
+    "staticinvoke <java.util.Arrays: void sort(java.lang.Object[],int,int,java.util.Comparator)>(r66, 0, i2, $r6)"
+    "$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>"
+    "interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>(r66)"
+    "return"
+    "r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset"->"r1 := @parameter0: java.util.Map";
+    "r1 := @parameter0: java.util.Map"->"$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: boolean finished>";
+    "$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: boolean finished>"->"if $z0 == 0 goto i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")";
+    "if $z0 == 0 goto i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")"->"$r64 = new java.io.IOException";
+    "if $z0 == 0 goto i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")"->"i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")";
+    "$r64 = new java.io.IOException"->"specialinvoke $r64.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")";
+    "specialinvoke $r64.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")"->"throw $r64";
+    "i21 = staticinvoke <com.linkedin.mlease.utils.Util: int getInt(java.util.Map,java.lang.String)>(r1, \"response\")"->"if i21 == 1 goto (branch)";
+    "if i21 == 1 goto (branch)"->"if i21 == 0 goto (branch)";
+    "if i21 == 1 goto (branch)"->"if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "if i21 == 0 goto (branch)"->"if i21 == -1 goto (branch)";
+    "if i21 == 0 goto (branch)"->"if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "if i21 == -1 goto (branch)"->"$r58 = new java.io.IOException";
+    "if i21 == -1 goto (branch)"->"if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "$r58 = new java.io.IOException"->"$r59 = new java.lang.StringBuilder";
+    "$r59 = new java.lang.StringBuilder"->"specialinvoke $r59.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r59.<java.lang.StringBuilder: void <init>()>()"->"$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"response = \")";
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"response = \")"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i21)";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i21)"->"$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (only 1, 0, -1 are allowed)\")";
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (only 1, 0, -1 are allowed)\")"->"$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r58.<java.io.IOException: void <init>(java.lang.String)>($r63)";
+    "specialinvoke $r58.<java.io.IOException: void <init>(java.lang.String)>($r63)"->"throw $r58";
+    "if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"->"i21 = -1";
+    "if i21 != 0 goto $r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"->"$r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "i21 = -1"->"$r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "$r2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"->"$r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i21)";
+    "$r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i21)"->"virtualinvoke $r2.<java.util.ArrayList: boolean add(java.lang.Object)>($r3)";
+    "virtualinvoke $r2.<java.util.ArrayList: boolean add(java.lang.Object)>($r3)"->"d2 = 1.0";
+    "d2 = 1.0"->"$z2 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"weight\")";
+    "$z2 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"weight\")"->"if $z2 == 0 goto $b0 = d2 cmpl 1.0";
+    "if $z2 == 0 goto $b0 = d2 cmpl 1.0"->"d2 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"weight\")";
+    "if $z2 == 0 goto $b0 = d2 cmpl 1.0"->"$b0 = d2 cmpl 1.0";
+    "d2 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"weight\")"->"$b0 = d2 cmpl 1.0";
+    "$b0 = d2 cmpl 1.0"->"if $b0 == 0 goto d3 = 0.0";
+    "if $b0 == 0 goto d3 = 0.0"->"$b17 = d2 cmpg 0.0";
+    "if $b0 == 0 goto d3 = 0.0"->"d3 = 0.0";
+    "$b17 = d2 cmpg 0.0"->"if $b17 >= 0 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "if $b17 >= 0 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r52 = new java.io.IOException";
+    "if $b17 >= 0 goto $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "$r52 = new java.io.IOException"->"$r53 = new java.lang.StringBuilder";
+    "$r53 = new java.lang.StringBuilder"->"specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r53.<java.lang.StringBuilder: void <init>()>()"->"$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"weight = \")";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"weight = \")"->"$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d2)";
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d2)"->"$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (weight cannot < 0)\")";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (weight cannot < 0)\")"->"$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r52.<java.io.IOException: void <init>(java.lang.String)>($r57)";
+    "specialinvoke $r52.<java.io.IOException: void <init>(java.lang.String)>($r57)"->"throw $r52";
+    "$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$i18 = virtualinvoke $r46.<java.util.ArrayList: int size()>()";
+    "$i18 = virtualinvoke $r46.<java.util.ArrayList: int size()>()"->"$r47 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "$r47 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"->"$i19 = virtualinvoke $r47.<java.util.ArrayList: int size()>()";
+    "$i19 = virtualinvoke $r47.<java.util.ArrayList: int size()>()"->"$i20 = $i19 - 1";
+    "$i20 = $i19 - 1"->"if $i18 >= $i20 goto $r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "if $i18 >= $i20 goto $r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r50 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "if $i18 >= $i20 goto $r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "$r50 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r51 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)";
+    "$r51 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)"->"virtualinvoke $r50.<java.util.ArrayList: boolean add(java.lang.Object)>($r51)";
+    "virtualinvoke $r50.<java.util.ArrayList: boolean add(java.lang.Object)>($r51)"->"goto [?= $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>]";
+    "goto [?= $r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>]"->"$r46 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>";
+    "$r48 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList weight_temp>"->"$r49 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)";
+    "$r49 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"->"virtualinvoke $r48.<java.util.ArrayList: boolean add(java.lang.Object)>($r49)";
+    "virtualinvoke $r48.<java.util.ArrayList: boolean add(java.lang.Object)>($r49)"->"d3 = 0.0";
+    "d3 = 0.0"->"$z3 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"offset\")";
+    "$z3 = interfaceinvoke r1.<java.util.Map: boolean containsKey(java.lang.Object)>(\"offset\")"->"if $z3 == 0 goto $b1 = d3 cmpl 0.0";
+    "if $z3 == 0 goto $b1 = d3 cmpl 0.0"->"d3 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"offset\")";
+    "if $z3 == 0 goto $b1 = d3 cmpl 0.0"->"$b1 = d3 cmpl 0.0";
+    "d3 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r1, \"offset\")"->"$b1 = d3 cmpl 0.0";
+    "$b1 = d3 cmpl 0.0"->"if $b1 == 0 goto r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")";
+    "if $b1 == 0 goto r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")"->"$r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>";
+    "if $b1 == 0 goto r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")"->"r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")";
+    "$r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"->"$i14 = virtualinvoke $r40.<java.util.ArrayList: int size()>()";
+    "$i14 = virtualinvoke $r40.<java.util.ArrayList: int size()>()"->"$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>";
+    "$r41 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList y_temp>"->"$i15 = virtualinvoke $r41.<java.util.ArrayList: int size()>()";
+    "$i15 = virtualinvoke $r41.<java.util.ArrayList: int size()>()"->"$i16 = $i15 - 1";
+    "$i16 = $i15 - 1"->"if $i14 >= $i16 goto $r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>";
+    "if $i14 >= $i16 goto $r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"->"$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>";
+    "if $i14 >= $i16 goto $r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"->"$r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>";
+    "$r44 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"->"$r45 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(0.0)";
+    "$r45 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(0.0)"->"virtualinvoke $r44.<java.util.ArrayList: boolean add(java.lang.Object)>($r45)";
+    "virtualinvoke $r44.<java.util.ArrayList: boolean add(java.lang.Object)>($r45)"->"goto [?= $r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>]";
+    "goto [?= $r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>]"->"$r40 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>";
+    "$r42 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList offset_temp>"->"$r43 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d3)";
+    "$r43 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d3)"->"virtualinvoke $r42.<java.util.ArrayList: boolean add(java.lang.Object)>($r43)";
+    "virtualinvoke $r42.<java.util.ArrayList: boolean add(java.lang.Object)>($r43)"->"r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")";
+    "r65 = interfaceinvoke r1.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"features\")"->"if r65 != null goto $z4 = r65 instanceof java.util.List";
+    "if r65 != null goto $z4 = r65 instanceof java.util.List"->"$r39 = new java.io.IOException";
+    "if r65 != null goto $z4 = r65 instanceof java.util.List"->"$z4 = r65 instanceof java.util.List";
+    "$r39 = new java.io.IOException"->"specialinvoke $r39.<java.io.IOException: void <init>(java.lang.String)>(\"features is null\")";
+    "specialinvoke $r39.<java.io.IOException: void <init>(java.lang.String)>(\"features is null\")"->"throw $r39";
+    "$z4 = r65 instanceof java.util.List"->"if $z4 != 0 goto r4 = (java.util.List) r65";
+    "if $z4 != 0 goto r4 = (java.util.List) r65"->"$r38 = new java.io.IOException";
+    "if $z4 != 0 goto r4 = (java.util.List) r65"->"r4 = (java.util.List) r65";
+    "$r38 = new java.io.IOException"->"specialinvoke $r38.<java.io.IOException: void <init>(java.lang.String)>(\"features is not a list\")";
+    "specialinvoke $r38.<java.io.IOException: void <init>(java.lang.String)>(\"features is not a list\")"->"throw $r38";
+    "r4 = (java.util.List) r65"->"i2 = interfaceinvoke r4.<java.util.List: int size()>()";
+    "i2 = interfaceinvoke r4.<java.util.List: int size()>()"->"$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: double bias>";
+    "$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: double bias>"->"$b3 = $d0 cmpl 0.0";
+    "$b3 = $d0 cmpl 0.0"->"if $b3 <= 0 goto r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]";
+    "if $b3 <= 0 goto r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]"->"$i13 = i2 + 1";
+    "if $b3 <= 0 goto r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]"->"r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]";
+    "$i13 = i2 + 1"->"r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[$i13]";
+    "r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[$i13]"->"goto [?= i22 = 0]";
+    "goto [?= i22 = 0]"->"i22 = 0";
+    "r66 = newarray (de.bwaldvogel.liblinear.FeatureNode)[i2]"->"i22 = 0";
+    "i22 = 0"->"if i22 >= i2 goto (branch)";
+    "if i22 >= i2 goto (branch)"->"r67 = interfaceinvoke r4.<java.util.List: java.lang.Object get(int)>(i22)";
+    "if i22 >= i2 goto (branch)"->"if i2 <= 1 goto $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>";
+    "r67 = interfaceinvoke r4.<java.util.List: java.lang.Object get(int)>(i22)"->"$z6 = r67 instanceof java.util.Map";
+    "$z6 = r67 instanceof java.util.Map"->"if $z6 != 0 goto r7 = (java.util.Map) r67";
+    "if $z6 != 0 goto r7 = (java.util.Map) r67"->"$r32 = new java.io.IOException";
+    "if $z6 != 0 goto r7 = (java.util.Map) r67"->"r7 = (java.util.Map) r67";
+    "$r32 = new java.io.IOException"->"$r33 = new java.lang.StringBuilder";
+    "$r33 = new java.lang.StringBuilder"->"specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"features[\")";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"features[\")"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i22)";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i22)"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] is not a map\")";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] is not a map\")"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r32.<java.io.IOException: void <init>(java.lang.String)>($r37)";
+    "specialinvoke $r32.<java.io.IOException: void <init>(java.lang.String)>($r37)"->"throw $r32";
+    "r7 = (java.util.Map) r67"->"r68 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"name\", 0)";
+    "r68 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"name\", 0)"->"r8 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"term\", 1)";
+    "r8 = staticinvoke <com.linkedin.mlease.utils.Util: java.lang.String getString(java.util.Map,java.lang.String,boolean)>(r7, \"term\", 1)"->"$r9 = \"\"";
+    "$r9 = \"\""->"$z7 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>(r8)";
+    "$z7 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>(r8)"->"if $z7 != 0 goto d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")";
+    "if $z7 != 0 goto d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")"->"$r28 = new java.lang.StringBuilder";
+    "if $z7 != 0 goto d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")"->"d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")";
+    "$r28 = new java.lang.StringBuilder"->"specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r28.<java.lang.StringBuilder: void <init>()>()"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r68)";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r68)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)"->"r68 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r68 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"->"d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")";
+    "d1 = staticinvoke <com.linkedin.mlease.utils.Util: double getDouble(java.util.Map,java.lang.String)>(r7, \"value\")"->"$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "$r10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"if $r10 != null goto $r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "if $r10 != null goto $r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"$r27 = new java.util.HashMap";
+    "if $r10 != null goto $r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "$r27 = new java.util.HashMap"->"specialinvoke $r27.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r27.<java.util.HashMap: void <init>()>()"->"r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex> = $r27";
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex> = $r27"->"$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "$r11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"if $r11 != null goto $r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "if $r11 != null goto $r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$r26 = new java.util.ArrayList";
+    "if $r11 != null goto $r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "$r26 = new java.util.ArrayList"->"specialinvoke $r26.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r26.<java.util.ArrayList: void <init>()>()"->"r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName> = $r26";
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName> = $r26"->"$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "$r12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$i4 = virtualinvoke $r12.<java.util.HashMap: int size()>()";
+    "$i4 = virtualinvoke $r12.<java.util.HashMap: int size()>()"->"$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "$r13 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"$i5 = virtualinvoke $r13.<java.util.ArrayList: int size()>()";
+    "$i5 = virtualinvoke $r13.<java.util.ArrayList: int size()>()"->"if $i4 == $i5 goto $r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "if $i4 == $i5 goto $r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$r25 = new java.io.IOException";
+    "if $i4 == $i5 goto $r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "$r25 = new java.io.IOException"->"specialinvoke $r25.<java.io.IOException: void <init>(java.lang.String)>(\"featureIndex.size() != featureName.size()\")";
+    "specialinvoke $r25.<java.io.IOException: void <init>(java.lang.String)>(\"featureIndex.size() != featureName.size()\")"->"throw $r25";
+    "$r14 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$r15 = virtualinvoke $r14.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r68)";
+    "$r15 = virtualinvoke $r14.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r68)"->"r69 = (java.lang.Integer) $r15";
+    "r69 = (java.lang.Integer) $r15"->"if r69 != null goto $r16 = new de.bwaldvogel.liblinear.FeatureNode";
+    "if r69 != null goto $r16 = new de.bwaldvogel.liblinear.FeatureNode"->"$r17 = \"(INTERCEPT)\"";
+    "if r69 != null goto $r16 = new de.bwaldvogel.liblinear.FeatureNode"->"$r16 = new de.bwaldvogel.liblinear.FeatureNode";
+    "$r17 = \"(INTERCEPT)\""->"$z8 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r68)";
+    "$z8 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>(r68)"->"if $z8 == 0 goto $i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "if $z8 == 0 goto $i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$r24 = new java.io.IOException";
+    "if $z8 == 0 goto $i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "$r24 = new java.io.IOException"->"specialinvoke $r24.<java.io.IOException: void <init>(java.lang.String)>(\"feature name cannot be (INTERCEPT)\")";
+    "specialinvoke $r24.<java.io.IOException: void <init>(java.lang.String)>(\"feature name cannot be (INTERCEPT)\")"->"throw $r24";
+    "$i7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$i8 = $i7 + 1";
+    "$i8 = $i7 + 1"->"r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex> = $i8";
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex> = $i8"->"$r18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>";
+    "$r18 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.HashMap featureIndex>"->"$i9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "$i9 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i9)";
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i9)"->"virtualinvoke $r18.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r19)";
+    "virtualinvoke $r18.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r19)"->"$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "$r21 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"virtualinvoke $r21.<java.util.ArrayList: boolean add(java.lang.Object)>(r68)";
+    "virtualinvoke $r21.<java.util.ArrayList: boolean add(java.lang.Object)>(r68)"->"$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>";
+    "$r22 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.ArrayList featureName>"->"$i10 = virtualinvoke $r22.<java.util.ArrayList: int size()>()";
+    "$i10 = virtualinvoke $r22.<java.util.ArrayList: int size()>()"->"$i11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "$i11 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"if $i10 == $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "if $i10 == $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$r23 = new java.io.IOException";
+    "if $i10 == $i11 goto $i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>";
+    "$r23 = new java.io.IOException"->"specialinvoke $r23.<java.io.IOException: void <init>(java.lang.String)>(\"featureName.size() != maxFeatureIndex\")";
+    "specialinvoke $r23.<java.io.IOException: void <init>(java.lang.String)>(\"featureName.size() != maxFeatureIndex\")"->"throw $r23";
+    "$i12 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: int maxFeatureIndex>"->"r69 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)";
+    "r69 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)"->"$r16 = new de.bwaldvogel.liblinear.FeatureNode";
+    "$r16 = new de.bwaldvogel.liblinear.FeatureNode"->"$i6 = virtualinvoke r69.<java.lang.Integer: int intValue()>()";
+    "$i6 = virtualinvoke r69.<java.lang.Integer: int intValue()>()"->"specialinvoke $r16.<de.bwaldvogel.liblinear.FeatureNode: void <init>(int,double)>($i6, d1)";
+    "specialinvoke $r16.<de.bwaldvogel.liblinear.FeatureNode: void <init>(int,double)>($i6, d1)"->"r66[i22] = $r16";
+    "r66[i22] = $r16"->"i22 = i22 + 1";
+    "i22 = i22 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i22 >= i2 goto (branch)";
+    "if i2 <= 1 goto $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>"->"$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: com.linkedin.mlease.regression.liblinearfunc.FeatureNodeComparator featureNodeCmp>";
+    "if i2 <= 1 goto $r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>"->"$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>";
+    "$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: com.linkedin.mlease.regression.liblinearfunc.FeatureNodeComparator featureNodeCmp>"->"staticinvoke <java.util.Arrays: void sort(java.lang.Object[],int,int,java.util.Comparator)>(r66, 0, i2, $r6)";
+    "staticinvoke <java.util.Arrays: void sort(java.lang.Object[],int,int,java.util.Comparator)>(r66, 0, i2, $r6)"->"$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>";
+    "$r5 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearDataset: java.util.List x_temp>"->"interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>(r66)";
+    "interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>(r66)"->"return";
+}

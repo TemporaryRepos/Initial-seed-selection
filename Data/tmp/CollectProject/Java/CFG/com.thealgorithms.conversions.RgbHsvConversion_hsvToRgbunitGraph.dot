@@ -1,0 +1,72 @@
+digraph "unitGraph" {
+    "d0 := @parameter0: double"
+    "d1 := @parameter1: double"
+    "d2 := @parameter2: double"
+    "$b0 = d0 cmpg 0.0"
+    "if $b0 < 0 goto $r0 = new java.lang.IllegalArgumentException"
+    "$b1 = d0 cmpl 360.0"
+    "if $b1 <= 0 goto $b2 = d1 cmpg 0.0"
+    "$r0 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"hue should be between 0 and 360\")"
+    "throw $r0"
+    "$b2 = d1 cmpg 0.0"
+    "if $b2 < 0 goto $r1 = new java.lang.IllegalArgumentException"
+    "$b3 = d1 cmpl 1.0"
+    "if $b3 <= 0 goto $b4 = d2 cmpg 0.0"
+    "$r1 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"saturation should be between 0 and 1\")"
+    "throw $r1"
+    "$b4 = d2 cmpg 0.0"
+    "if $b4 < 0 goto $r2 = new java.lang.IllegalArgumentException"
+    "$b5 = d2 cmpl 1.0"
+    "if $b5 <= 0 goto d3 = d2 * d1"
+    "$r2 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"value should be between 0 and 1\")"
+    "throw $r2"
+    "d3 = d2 * d1"
+    "d4 = d0 / 60.0"
+    "$d5 = d4 % 2.0"
+    "$d6 = $d5 - 1.0"
+    "$d7 = staticinvoke <java.lang.Math: double abs(double)>($d6)"
+    "$d8 = 1.0 - $d7"
+    "d9 = d3 * $d8"
+    "d10 = d2 - d3"
+    "$r3 = staticinvoke <com.thealgorithms.conversions.RgbHsvConversion: int[] getRgbBySection(double,double,double,double)>(d4, d3, d10, d9)"
+    "return $r3"
+    "d0 := @parameter0: double"->"d1 := @parameter1: double";
+    "d1 := @parameter1: double"->"d2 := @parameter2: double";
+    "d2 := @parameter2: double"->"$b0 = d0 cmpg 0.0";
+    "$b0 = d0 cmpg 0.0"->"if $b0 < 0 goto $r0 = new java.lang.IllegalArgumentException";
+    "if $b0 < 0 goto $r0 = new java.lang.IllegalArgumentException"->"$b1 = d0 cmpl 360.0";
+    "if $b0 < 0 goto $r0 = new java.lang.IllegalArgumentException"->"$r0 = new java.lang.IllegalArgumentException";
+    "$b1 = d0 cmpl 360.0"->"if $b1 <= 0 goto $b2 = d1 cmpg 0.0";
+    "if $b1 <= 0 goto $b2 = d1 cmpg 0.0"->"$r0 = new java.lang.IllegalArgumentException";
+    "if $b1 <= 0 goto $b2 = d1 cmpg 0.0"->"$b2 = d1 cmpg 0.0";
+    "$r0 = new java.lang.IllegalArgumentException"->"specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"hue should be between 0 and 360\")";
+    "specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"hue should be between 0 and 360\")"->"throw $r0";
+    "$b2 = d1 cmpg 0.0"->"if $b2 < 0 goto $r1 = new java.lang.IllegalArgumentException";
+    "if $b2 < 0 goto $r1 = new java.lang.IllegalArgumentException"->"$b3 = d1 cmpl 1.0";
+    "if $b2 < 0 goto $r1 = new java.lang.IllegalArgumentException"->"$r1 = new java.lang.IllegalArgumentException";
+    "$b3 = d1 cmpl 1.0"->"if $b3 <= 0 goto $b4 = d2 cmpg 0.0";
+    "if $b3 <= 0 goto $b4 = d2 cmpg 0.0"->"$r1 = new java.lang.IllegalArgumentException";
+    "if $b3 <= 0 goto $b4 = d2 cmpg 0.0"->"$b4 = d2 cmpg 0.0";
+    "$r1 = new java.lang.IllegalArgumentException"->"specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"saturation should be between 0 and 1\")";
+    "specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"saturation should be between 0 and 1\")"->"throw $r1";
+    "$b4 = d2 cmpg 0.0"->"if $b4 < 0 goto $r2 = new java.lang.IllegalArgumentException";
+    "if $b4 < 0 goto $r2 = new java.lang.IllegalArgumentException"->"$b5 = d2 cmpl 1.0";
+    "if $b4 < 0 goto $r2 = new java.lang.IllegalArgumentException"->"$r2 = new java.lang.IllegalArgumentException";
+    "$b5 = d2 cmpl 1.0"->"if $b5 <= 0 goto d3 = d2 * d1";
+    "if $b5 <= 0 goto d3 = d2 * d1"->"$r2 = new java.lang.IllegalArgumentException";
+    "if $b5 <= 0 goto d3 = d2 * d1"->"d3 = d2 * d1";
+    "$r2 = new java.lang.IllegalArgumentException"->"specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"value should be between 0 and 1\")";
+    "specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"value should be between 0 and 1\")"->"throw $r2";
+    "d3 = d2 * d1"->"d4 = d0 / 60.0";
+    "d4 = d0 / 60.0"->"$d5 = d4 % 2.0";
+    "$d5 = d4 % 2.0"->"$d6 = $d5 - 1.0";
+    "$d6 = $d5 - 1.0"->"$d7 = staticinvoke <java.lang.Math: double abs(double)>($d6)";
+    "$d7 = staticinvoke <java.lang.Math: double abs(double)>($d6)"->"$d8 = 1.0 - $d7";
+    "$d8 = 1.0 - $d7"->"d9 = d3 * $d8";
+    "d9 = d3 * $d8"->"d10 = d2 - d3";
+    "d10 = d2 - d3"->"$r3 = staticinvoke <com.thealgorithms.conversions.RgbHsvConversion: int[] getRgbBySection(double,double,double,double)>(d4, d3, d10, d9)";
+    "$r3 = staticinvoke <com.thealgorithms.conversions.RgbHsvConversion: int[] getRgbBySection(double,double,double,double)>(d4, d3, d10, d9)"->"return $r3";
+}

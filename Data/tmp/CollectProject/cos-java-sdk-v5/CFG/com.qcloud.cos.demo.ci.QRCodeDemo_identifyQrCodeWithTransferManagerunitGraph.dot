@@ -1,0 +1,96 @@
+digraph "unitGraph" {
+    "r12 := @parameter0: com.qcloud.cos.transfer.TransferManager"
+    "r0 = \"examplebucket-1250000000\""
+    "r1 = \"qrcode.png\""
+    "$r2 = new java.io.File"
+    "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\")"
+    "r3 = $r2"
+    "$r4 = new com.qcloud.cos.model.PutObjectRequest"
+    "specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3)"
+    "r5 = $r4"
+    "$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations"
+    "specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>()"
+    "r7 = $r6"
+    "virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1)"
+    "$r8 = new java.util.LinkedList"
+    "specialinvoke $r8.<java.util.LinkedList: void <init>()>()"
+    "r9 = $r8"
+    "$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule"
+    "specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>()"
+    "r11 = $r10"
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0)"
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\")"
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\")"
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11)"
+    "virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9)"
+    "virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7)"
+    "r13 = virtualinvoke r12.<com.qcloud.cos.transfer.TransferManager: com.qcloud.cos.transfer.Upload upload(com.qcloud.cos.model.PutObjectRequest)>(r5)"
+    "r14 = interfaceinvoke r13.<com.qcloud.cos.transfer.Upload: com.qcloud.cos.model.UploadResult waitForUploadResult()>()"
+    "r15 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>()"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "$r17 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: java.lang.String getRequestId()>()"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r17)"
+    "$r18 = <java.lang.System: java.io.PrintStream out>"
+    "$r19 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>()"
+    "$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>()"
+    "virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20)"
+    "$r21 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>()"
+    "$r22 = virtualinvoke $r21.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>()"
+    "r23 = interfaceinvoke $r22.<java.util.List: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto return"
+    "$r24 = interfaceinvoke r23.<java.util.Iterator: java.lang.Object next()>()"
+    "r25 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r24"
+    "$r26 = <java.lang.System: java.io.PrintStream out>"
+    "$r27 = virtualinvoke r25.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>()"
+    "virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r27)"
+    "goto [?= $z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()]"
+    "return"
+    "r12 := @parameter0: com.qcloud.cos.transfer.TransferManager"->"r0 = \"examplebucket-1250000000\"";
+    "r0 = \"examplebucket-1250000000\""->"r1 = \"qrcode.png\"";
+    "r1 = \"qrcode.png\""->"$r2 = new java.io.File";
+    "$r2 = new java.io.File"->"specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\")";
+    "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(\"E://qrcode.png\")"->"r3 = $r2";
+    "r3 = $r2"->"$r4 = new com.qcloud.cos.model.PutObjectRequest";
+    "$r4 = new com.qcloud.cos.model.PutObjectRequest"->"specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3)";
+    "specialinvoke $r4.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r0, r1, r3)"->"r5 = $r4";
+    "r5 = $r4"->"$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations";
+    "$r6 = new com.qcloud.cos.model.ciModel.persistence.PicOperations"->"specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>()";
+    "specialinvoke $r6.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void <init>()>()"->"r7 = $r6";
+    "r7 = $r6"->"virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1)";
+    "virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setIsPicInfo(int)>(1)"->"$r8 = new java.util.LinkedList";
+    "$r8 = new java.util.LinkedList"->"specialinvoke $r8.<java.util.LinkedList: void <init>()>()";
+    "specialinvoke $r8.<java.util.LinkedList: void <init>()>()"->"r9 = $r8";
+    "r9 = $r8"->"$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule";
+    "$r10 = new com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule"->"specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>()";
+    "specialinvoke $r10.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void <init>()>()"->"r11 = $r10";
+    "r11 = $r10"->"virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0)";
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setBucket(java.lang.String)>(r0)"->"virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\")";
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setFileId(java.lang.String)>(\"qrcode-1.png\")"->"virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\")";
+    "virtualinvoke r11.<com.qcloud.cos.model.ciModel.persistence.PicOperations$Rule: void setRule(java.lang.String)>(\"QRcode/cover/1\")"->"interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11)";
+    "interfaceinvoke r9.<java.util.List: boolean add(java.lang.Object)>(r11)"->"virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9)";
+    "virtualinvoke r7.<com.qcloud.cos.model.ciModel.persistence.PicOperations: void setRules(java.util.List)>(r9)"->"virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7)";
+    "virtualinvoke r5.<com.qcloud.cos.model.PutObjectRequest: void setPicOperations(com.qcloud.cos.model.ciModel.persistence.PicOperations)>(r7)"->"r13 = virtualinvoke r12.<com.qcloud.cos.transfer.TransferManager: com.qcloud.cos.transfer.Upload upload(com.qcloud.cos.model.PutObjectRequest)>(r5)";
+    "r13 = virtualinvoke r12.<com.qcloud.cos.transfer.TransferManager: com.qcloud.cos.transfer.Upload upload(com.qcloud.cos.model.PutObjectRequest)>(r5)"->"r14 = interfaceinvoke r13.<com.qcloud.cos.transfer.Upload: com.qcloud.cos.model.UploadResult waitForUploadResult()>()";
+    "r14 = interfaceinvoke r13.<com.qcloud.cos.transfer.Upload: com.qcloud.cos.model.UploadResult waitForUploadResult()>()"->"r15 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>()";
+    "r15 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: com.qcloud.cos.model.ciModel.persistence.CIUploadResult getCiUploadResult()>()"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r17 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: java.lang.String getRequestId()>()";
+    "$r17 = virtualinvoke r14.<com.qcloud.cos.model.UploadResult: java.lang.String getRequestId()>()"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r17)";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r17)"->"$r18 = <java.lang.System: java.io.PrintStream out>";
+    "$r18 = <java.lang.System: java.io.PrintStream out>"->"$r19 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>()";
+    "$r19 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.OriginalInfo getOriginalInfo()>()"->"$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>()";
+    "$r20 = virtualinvoke $r19.<com.qcloud.cos.model.ciModel.persistence.OriginalInfo: java.lang.String getEtag()>()"->"virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20)";
+    "virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20)"->"$r21 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>()";
+    "$r21 = virtualinvoke r15.<com.qcloud.cos.model.ciModel.persistence.CIUploadResult: com.qcloud.cos.model.ciModel.persistence.ProcessResults getProcessResults()>()"->"$r22 = virtualinvoke $r21.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>()";
+    "$r22 = virtualinvoke $r21.<com.qcloud.cos.model.ciModel.persistence.ProcessResults: java.util.List getObjectList()>()"->"r23 = interfaceinvoke $r22.<java.util.List: java.util.Iterator iterator()>()";
+    "r23 = interfaceinvoke $r22.<java.util.List: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"$r24 = interfaceinvoke r23.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z1 == 0 goto return"->"return";
+    "$r24 = interfaceinvoke r23.<java.util.Iterator: java.lang.Object next()>()"->"r25 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r24";
+    "r25 = (com.qcloud.cos.model.ciModel.persistence.CIObject) $r24"->"$r26 = <java.lang.System: java.io.PrintStream out>";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"$r27 = virtualinvoke r25.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>()";
+    "$r27 = virtualinvoke r25.<com.qcloud.cos.model.ciModel.persistence.CIObject: java.lang.String getLocation()>()"->"virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r27)";
+    "virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r27)"->"goto [?= $z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r23.<java.util.Iterator: boolean hasNext()>()";
+}

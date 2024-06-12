@@ -1,0 +1,628 @@
+digraph "unitGraph" {
+    "r0 := @this: org.snomed.otf.owltoolkit.Application"
+    "r1 := @parameter0: java.util.List"
+    "r2 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.util.List getSnapshotFileAsList(java.util.List)>(r1)"
+    "$i0 = interfaceinvoke r2.<java.util.Collection: int size()>()"
+    "if $i0 != 2 goto $z0 = 0"
+    "$z0 = 1"
+    "goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)]"
+    "$z0 = 0"
+    "specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)"
+    "r4 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.io.File getDeltaFiles(java.util.List)>(r1)"
+    "if r4 == null goto $z1 = 0"
+    "$z1 = 1"
+    "goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)]"
+    "$z1 = 0"
+    "specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)"
+    "r5 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.lang.String getEffectiveDate(java.util.List)>(r1)"
+    "$r6 = new java.lang.StringBuilder"
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"complete-owl-axiom-delta-\")"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5)"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".zip\")"
+    "r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r11 = new java.io.File"
+    "specialinvoke $r11.<java.io.File: void <init>(java.lang.String)>(r10)"
+    "r12 = $r11"
+    "$r13 = new org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService"
+    "specialinvoke $r13.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void <init>()>()"
+    "r14 = $r13"
+    "r15 = interfaceinvoke r2.<java.util.Collection: java.util.Iterator iterator()>()"
+    "$r16 = new java.io.FileInputStream"
+    "$r17 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"
+    "$r18 = (java.io.File) $r17"
+    "specialinvoke $r16.<java.io.FileInputStream: void <init>(java.io.File)>($r18)"
+    "r60 = $r16"
+    "r61 = null"
+    "$r19 = new java.io.FileInputStream"
+    "specialinvoke $r19.<java.io.FileInputStream: void <init>(java.io.File)>(r4)"
+    "r62 = $r19"
+    "r63 = null"
+    "$r20 = new java.io.FileInputStream"
+    "$r21 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"
+    "$r22 = (java.io.File) $r21"
+    "specialinvoke $r20.<java.io.FileInputStream: void <init>(java.io.File)>($r22)"
+    "r64 = $r20"
+    "r65 = null"
+    "$r23 = new java.io.FileOutputStream"
+    "specialinvoke $r23.<java.io.FileOutputStream: void <init>(java.io.File)>(r12)"
+    "r66 = $r23"
+    "r67 = null"
+    "virtualinvoke r14.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void convertStatedRelationshipsToOwlReRefsetAndReconcileWithPublishedArchive(java.io.InputStream,java.io.InputStream,java.io.InputStream,java.io.OutputStream,java.lang.String)>(r60, r62, r64, r66, r5)"
+    "$r25 = <java.lang.System: java.io.PrintStream out>"
+    "$r24 = new java.lang.StringBuilder"
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Delta archive successfully written to \")"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10)"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"
+    "if r66 == null goto (branch)"
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"
+    "goto [?= (branch)]"
+    "$r59 := @caughtexception"
+    "r68 = $r59"
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"
+    "$r58 := @caughtexception"
+    "r69 = $r58"
+    "r67 = r69"
+    "throw r69"
+    "$r57 := @caughtexception"
+    "r56 = $r57"
+    "if r66 == null goto throw r56"
+    "goto [?= throw r56]"
+    "$r54 := @caughtexception"
+    "r55 = $r54"
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r55)"
+    "throw r56"
+    "if r64 == null goto (branch)"
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"
+    "$r53 := @caughtexception"
+    "r70 = $r53"
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r70)"
+    "$r52 := @caughtexception"
+    "r71 = $r52"
+    "r65 = r71"
+    "throw r71"
+    "$r51 := @caughtexception"
+    "r50 = $r51"
+    "if r64 == null goto throw r50"
+    "goto [?= throw r50]"
+    "$r48 := @caughtexception"
+    "r49 = $r48"
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r49)"
+    "throw r50"
+    "if r62 == null goto (branch)"
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"
+    "$r47 := @caughtexception"
+    "r72 = $r47"
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"
+    "$r46 := @caughtexception"
+    "r73 = $r46"
+    "r63 = r73"
+    "throw r73"
+    "$r45 := @caughtexception"
+    "r44 = $r45"
+    "if r62 == null goto throw r44"
+    "goto [?= throw r44]"
+    "$r42 := @caughtexception"
+    "r43 = $r42"
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r43)"
+    "throw r44"
+    "if r60 == null goto (branch)"
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"
+    "$r41 := @caughtexception"
+    "r74 = $r41"
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"
+    "$r40 := @caughtexception"
+    "r75 = $r40"
+    "r61 = r75"
+    "throw r75"
+    "$r39 := @caughtexception"
+    "r38 = $r39"
+    "if r60 == null goto throw r38"
+    "goto [?= throw r38]"
+    "$r36 := @caughtexception"
+    "r37 = $r36"
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r37)"
+    "throw r38"
+    "goto [?= return]"
+    "$r34 := @caughtexception"
+    "r76 = $r34"
+    "$r35 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to convert stated relationships to OWL Axioms and reconcile\")"
+    "virtualinvoke r76.<java.lang.Exception: void printStackTrace()>()"
+    "throw r76"
+    "$r32 := @caughtexception"
+    "r77 = $r32"
+    "$r33 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to read from or write to files.\")"
+    "virtualinvoke r77.<java.io.IOException: void printStackTrace()>()"
+    "throw r77"
+    "return"
+    "r0 := @this: org.snomed.otf.owltoolkit.Application"->"r1 := @parameter0: java.util.List";
+    "r1 := @parameter0: java.util.List"->"r2 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.util.List getSnapshotFileAsList(java.util.List)>(r1)";
+    "r2 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.util.List getSnapshotFileAsList(java.util.List)>(r1)"->"$i0 = interfaceinvoke r2.<java.util.Collection: int size()>()";
+    "$i0 = interfaceinvoke r2.<java.util.Collection: int size()>()"->"if $i0 != 2 goto $z0 = 0";
+    "if $i0 != 2 goto $z0 = 0"->"$z0 = 1";
+    "if $i0 != 2 goto $z0 = 0"->"$z0 = 0";
+    "$z0 = 1"->"goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)]";
+    "goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)]"->"specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)";
+    "$z0 = 0"->"specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)";
+    "specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"Expecting two snapshot RF2 file.\", $z0)"->"r4 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.io.File getDeltaFiles(java.util.List)>(r1)";
+    "r4 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.io.File getDeltaFiles(java.util.List)>(r1)"->"if r4 == null goto $z1 = 0";
+    "if r4 == null goto $z1 = 0"->"$z1 = 1";
+    "if r4 == null goto $z1 = 0"->"$z1 = 0";
+    "$z1 = 1"->"goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)]";
+    "goto [?= specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)]"->"specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)";
+    "$z1 = 0"->"specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)";
+    "specialinvoke r0.<org.snomed.otf.owltoolkit.Application: void assertTrue(java.lang.String,boolean)>(\"RF2 delta can\'t be null\", $z1)"->"r5 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.lang.String getEffectiveDate(java.util.List)>(r1)";
+    "r5 = specialinvoke r0.<org.snomed.otf.owltoolkit.Application: java.lang.String getEffectiveDate(java.util.List)>(r1)"->"$r6 = new java.lang.StringBuilder";
+    "$r6 = new java.lang.StringBuilder"->"specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"complete-owl-axiom-delta-\")";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"complete-owl-axiom-delta-\")"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5)"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".zip\")";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".zip\")"->"r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r11 = new java.io.File";
+    "$r11 = new java.io.File"->"specialinvoke $r11.<java.io.File: void <init>(java.lang.String)>(r10)";
+    "specialinvoke $r11.<java.io.File: void <init>(java.lang.String)>(r10)"->"r12 = $r11";
+    "r12 = $r11"->"$r13 = new org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService";
+    "$r13 = new org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService"->"specialinvoke $r13.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void <init>()>()";
+    "specialinvoke $r13.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void <init>()>()"->"r14 = $r13";
+    "r14 = $r13"->"r15 = interfaceinvoke r2.<java.util.Collection: java.util.Iterator iterator()>()";
+    "r15 = interfaceinvoke r2.<java.util.Collection: java.util.Iterator iterator()>()"->"$r34 := @caughtexception";
+    "r15 = interfaceinvoke r2.<java.util.Collection: java.util.Iterator iterator()>()"->"$r32 := @caughtexception";
+    "r15 = interfaceinvoke r2.<java.util.Collection: java.util.Iterator iterator()>()"->"$r16 = new java.io.FileInputStream";
+    "$r16 = new java.io.FileInputStream"->"$r34 := @caughtexception";
+    "$r16 = new java.io.FileInputStream"->"$r32 := @caughtexception";
+    "$r16 = new java.io.FileInputStream"->"$r17 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()";
+    "$r17 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r34 := @caughtexception";
+    "$r17 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r32 := @caughtexception";
+    "$r17 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r18 = (java.io.File) $r17";
+    "$r18 = (java.io.File) $r17"->"$r34 := @caughtexception";
+    "$r18 = (java.io.File) $r17"->"$r32 := @caughtexception";
+    "$r18 = (java.io.File) $r17"->"specialinvoke $r16.<java.io.FileInputStream: void <init>(java.io.File)>($r18)";
+    "specialinvoke $r16.<java.io.FileInputStream: void <init>(java.io.File)>($r18)"->"$r34 := @caughtexception";
+    "specialinvoke $r16.<java.io.FileInputStream: void <init>(java.io.File)>($r18)"->"$r32 := @caughtexception";
+    "specialinvoke $r16.<java.io.FileInputStream: void <init>(java.io.File)>($r18)"->"r60 = $r16";
+    "r60 = $r16"->"$r34 := @caughtexception";
+    "r60 = $r16"->"$r32 := @caughtexception";
+    "r60 = $r16"->"r61 = null";
+    "r61 = null"->"$r40 := @caughtexception";
+    "r61 = null"->"$r34 := @caughtexception";
+    "r61 = null"->"$r32 := @caughtexception";
+    "r61 = null"->"$r39 := @caughtexception";
+    "r61 = null"->"$r19 = new java.io.FileInputStream";
+    "$r19 = new java.io.FileInputStream"->"$r40 := @caughtexception";
+    "$r19 = new java.io.FileInputStream"->"$r39 := @caughtexception";
+    "$r19 = new java.io.FileInputStream"->"specialinvoke $r19.<java.io.FileInputStream: void <init>(java.io.File)>(r4)";
+    "specialinvoke $r19.<java.io.FileInputStream: void <init>(java.io.File)>(r4)"->"$r40 := @caughtexception";
+    "specialinvoke $r19.<java.io.FileInputStream: void <init>(java.io.File)>(r4)"->"$r39 := @caughtexception";
+    "specialinvoke $r19.<java.io.FileInputStream: void <init>(java.io.File)>(r4)"->"r62 = $r19";
+    "r62 = $r19"->"$r40 := @caughtexception";
+    "r62 = $r19"->"$r39 := @caughtexception";
+    "r62 = $r19"->"r63 = null";
+    "r63 = null"->"$r46 := @caughtexception";
+    "r63 = null"->"$r40 := @caughtexception";
+    "r63 = null"->"$r45 := @caughtexception";
+    "r63 = null"->"$r39 := @caughtexception";
+    "r63 = null"->"$r20 = new java.io.FileInputStream";
+    "$r20 = new java.io.FileInputStream"->"$r46 := @caughtexception";
+    "$r20 = new java.io.FileInputStream"->"$r45 := @caughtexception";
+    "$r20 = new java.io.FileInputStream"->"$r21 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()";
+    "$r21 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r46 := @caughtexception";
+    "$r21 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r45 := @caughtexception";
+    "$r21 = interfaceinvoke r15.<java.util.Iterator: java.lang.Object next()>()"->"$r22 = (java.io.File) $r21";
+    "$r22 = (java.io.File) $r21"->"$r46 := @caughtexception";
+    "$r22 = (java.io.File) $r21"->"$r45 := @caughtexception";
+    "$r22 = (java.io.File) $r21"->"specialinvoke $r20.<java.io.FileInputStream: void <init>(java.io.File)>($r22)";
+    "specialinvoke $r20.<java.io.FileInputStream: void <init>(java.io.File)>($r22)"->"$r46 := @caughtexception";
+    "specialinvoke $r20.<java.io.FileInputStream: void <init>(java.io.File)>($r22)"->"$r45 := @caughtexception";
+    "specialinvoke $r20.<java.io.FileInputStream: void <init>(java.io.File)>($r22)"->"r64 = $r20";
+    "r64 = $r20"->"$r46 := @caughtexception";
+    "r64 = $r20"->"$r45 := @caughtexception";
+    "r64 = $r20"->"r65 = null";
+    "r65 = null"->"$r52 := @caughtexception";
+    "r65 = null"->"$r46 := @caughtexception";
+    "r65 = null"->"$r51 := @caughtexception";
+    "r65 = null"->"$r45 := @caughtexception";
+    "r65 = null"->"$r23 = new java.io.FileOutputStream";
+    "$r23 = new java.io.FileOutputStream"->"$r52 := @caughtexception";
+    "$r23 = new java.io.FileOutputStream"->"$r51 := @caughtexception";
+    "$r23 = new java.io.FileOutputStream"->"specialinvoke $r23.<java.io.FileOutputStream: void <init>(java.io.File)>(r12)";
+    "specialinvoke $r23.<java.io.FileOutputStream: void <init>(java.io.File)>(r12)"->"$r52 := @caughtexception";
+    "specialinvoke $r23.<java.io.FileOutputStream: void <init>(java.io.File)>(r12)"->"$r51 := @caughtexception";
+    "specialinvoke $r23.<java.io.FileOutputStream: void <init>(java.io.File)>(r12)"->"r66 = $r23";
+    "r66 = $r23"->"$r52 := @caughtexception";
+    "r66 = $r23"->"$r51 := @caughtexception";
+    "r66 = $r23"->"r67 = null";
+    "r67 = null"->"$r58 := @caughtexception";
+    "r67 = null"->"$r52 := @caughtexception";
+    "r67 = null"->"$r57 := @caughtexception";
+    "r67 = null"->"$r51 := @caughtexception";
+    "r67 = null"->"virtualinvoke r14.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void convertStatedRelationshipsToOwlReRefsetAndReconcileWithPublishedArchive(java.io.InputStream,java.io.InputStream,java.io.InputStream,java.io.OutputStream,java.lang.String)>(r60, r62, r64, r66, r5)";
+    "virtualinvoke r14.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void convertStatedRelationshipsToOwlReRefsetAndReconcileWithPublishedArchive(java.io.InputStream,java.io.InputStream,java.io.InputStream,java.io.OutputStream,java.lang.String)>(r60, r62, r64, r66, r5)"->"$r58 := @caughtexception";
+    "virtualinvoke r14.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void convertStatedRelationshipsToOwlReRefsetAndReconcileWithPublishedArchive(java.io.InputStream,java.io.InputStream,java.io.InputStream,java.io.OutputStream,java.lang.String)>(r60, r62, r64, r66, r5)"->"$r57 := @caughtexception";
+    "virtualinvoke r14.<org.snomed.otf.owltoolkit.conversion.StatedRelationshipToOwlRefsetService: void convertStatedRelationshipsToOwlReRefsetAndReconcileWithPublishedArchive(java.io.InputStream,java.io.InputStream,java.io.InputStream,java.io.OutputStream,java.lang.String)>(r60, r62, r64, r66, r5)"->"$r25 = <java.lang.System: java.io.PrintStream out>";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$r58 := @caughtexception";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$r57 := @caughtexception";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$r24 = new java.lang.StringBuilder";
+    "$r24 = new java.lang.StringBuilder"->"$r58 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"$r57 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r58 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r57 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Delta archive successfully written to \")";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Delta archive successfully written to \")"->"$r58 := @caughtexception";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Delta archive successfully written to \")"->"$r57 := @caughtexception";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Delta archive successfully written to \")"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10)";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10)"->"$r58 := @caughtexception";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10)"->"$r57 := @caughtexception";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10)"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r58 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r57 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"$r58 := @caughtexception";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"$r52 := @caughtexception";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"$r57 := @caughtexception";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"$r51 := @caughtexception";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"if r66 == null goto (branch)";
+    "if r66 == null goto (branch)"->"$r52 := @caughtexception";
+    "if r66 == null goto (branch)"->"$r46 := @caughtexception";
+    "if r66 == null goto (branch)"->"$r51 := @caughtexception";
+    "if r66 == null goto (branch)"->"$r45 := @caughtexception";
+    "if r66 == null goto (branch)"->"if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "if r66 == null goto (branch)"->"if r64 == null goto (branch)";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r59 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r59 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r52 := @caughtexception";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r51 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"if r64 == null goto (branch)";
+    "$r59 := @caughtexception"->"$r52 := @caughtexception";
+    "$r59 := @caughtexception"->"$r51 := @caughtexception";
+    "$r59 := @caughtexception"->"r68 = $r59";
+    "r68 = $r59"->"$r52 := @caughtexception";
+    "r68 = $r59"->"$r51 := @caughtexception";
+    "r68 = $r59"->"virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"$r52 := @caughtexception";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"$r51 := @caughtexception";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r68)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r52 := @caughtexception";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r51 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"if r64 == null goto (branch)";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r52 := @caughtexception";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r51 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"if r64 == null goto (branch)";
+    "$r58 := @caughtexception"->"r69 = $r58";
+    "$r58 := @caughtexception"->"$r57 := @caughtexception";
+    "r69 = $r58"->"r67 = r69";
+    "r69 = $r58"->"$r57 := @caughtexception";
+    "r67 = r69"->"throw r69";
+    "r67 = r69"->"$r57 := @caughtexception";
+    "throw r69"->"$r57 := @caughtexception";
+    "$r57 := @caughtexception"->"r56 = $r57";
+    "$r57 := @caughtexception"->"$r57 := @caughtexception";
+    "r56 = $r57"->"$r57 := @caughtexception";
+    "r56 = $r57"->"$r52 := @caughtexception";
+    "r56 = $r57"->"$r51 := @caughtexception";
+    "r56 = $r57"->"if r66 == null goto throw r56";
+    "if r66 == null goto throw r56"->"if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "if r66 == null goto throw r56"->"throw r56";
+    "if r66 == null goto throw r56"->"$r52 := @caughtexception";
+    "if r66 == null goto throw r56"->"$r51 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r54 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "if r67 == null goto virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r66.<java.io.FileOutputStream: void close()>()";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r54 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"goto [?= throw r56]";
+    "goto [?= throw r56]"->"$r52 := @caughtexception";
+    "goto [?= throw r56]"->"$r51 := @caughtexception";
+    "goto [?= throw r56]"->"throw r56";
+    "$r54 := @caughtexception"->"$r52 := @caughtexception";
+    "$r54 := @caughtexception"->"$r51 := @caughtexception";
+    "$r54 := @caughtexception"->"r55 = $r54";
+    "r55 = $r54"->"$r52 := @caughtexception";
+    "r55 = $r54"->"$r51 := @caughtexception";
+    "r55 = $r54"->"virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r55)";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r55)"->"$r52 := @caughtexception";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r55)"->"$r51 := @caughtexception";
+    "virtualinvoke r67.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r55)"->"goto [?= throw r56]";
+    "goto [?= throw r56]"->"$r52 := @caughtexception";
+    "goto [?= throw r56]"->"$r51 := @caughtexception";
+    "goto [?= throw r56]"->"throw r56";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r52 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"$r51 := @caughtexception";
+    "virtualinvoke r66.<java.io.FileOutputStream: void close()>()"->"throw r56";
+    "throw r56"->"$r52 := @caughtexception";
+    "throw r56"->"$r51 := @caughtexception";
+    "if r64 == null goto (branch)"->"$r46 := @caughtexception";
+    "if r64 == null goto (branch)"->"$r40 := @caughtexception";
+    "if r64 == null goto (branch)"->"$r45 := @caughtexception";
+    "if r64 == null goto (branch)"->"$r39 := @caughtexception";
+    "if r64 == null goto (branch)"->"if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "if r64 == null goto (branch)"->"if r62 == null goto (branch)";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r53 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r53 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r62 == null goto (branch)";
+    "$r53 := @caughtexception"->"$r46 := @caughtexception";
+    "$r53 := @caughtexception"->"$r45 := @caughtexception";
+    "$r53 := @caughtexception"->"r70 = $r53";
+    "r70 = $r53"->"$r46 := @caughtexception";
+    "r70 = $r53"->"$r45 := @caughtexception";
+    "r70 = $r53"->"virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r70)";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r70)"->"$r46 := @caughtexception";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r70)"->"$r45 := @caughtexception";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r70)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r62 == null goto (branch)";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r46 := @caughtexception";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r45 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r62 == null goto (branch)";
+    "$r52 := @caughtexception"->"r71 = $r52";
+    "$r52 := @caughtexception"->"$r51 := @caughtexception";
+    "r71 = $r52"->"r65 = r71";
+    "r71 = $r52"->"$r51 := @caughtexception";
+    "r65 = r71"->"throw r71";
+    "r65 = r71"->"$r51 := @caughtexception";
+    "throw r71"->"$r51 := @caughtexception";
+    "$r51 := @caughtexception"->"r50 = $r51";
+    "$r51 := @caughtexception"->"$r51 := @caughtexception";
+    "r50 = $r51"->"$r51 := @caughtexception";
+    "r50 = $r51"->"$r46 := @caughtexception";
+    "r50 = $r51"->"$r45 := @caughtexception";
+    "r50 = $r51"->"if r64 == null goto throw r50";
+    "if r64 == null goto throw r50"->"if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "if r64 == null goto throw r50"->"throw r50";
+    "if r64 == null goto throw r50"->"$r46 := @caughtexception";
+    "if r64 == null goto throw r50"->"$r45 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r48 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "if r65 == null goto virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"virtualinvoke r64.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r48 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"goto [?= throw r50]";
+    "goto [?= throw r50]"->"$r46 := @caughtexception";
+    "goto [?= throw r50]"->"$r45 := @caughtexception";
+    "goto [?= throw r50]"->"throw r50";
+    "$r48 := @caughtexception"->"$r46 := @caughtexception";
+    "$r48 := @caughtexception"->"$r45 := @caughtexception";
+    "$r48 := @caughtexception"->"r49 = $r48";
+    "r49 = $r48"->"$r46 := @caughtexception";
+    "r49 = $r48"->"$r45 := @caughtexception";
+    "r49 = $r48"->"virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r49)";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r49)"->"$r46 := @caughtexception";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r49)"->"$r45 := @caughtexception";
+    "virtualinvoke r65.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r49)"->"goto [?= throw r50]";
+    "goto [?= throw r50]"->"$r46 := @caughtexception";
+    "goto [?= throw r50]"->"$r45 := @caughtexception";
+    "goto [?= throw r50]"->"throw r50";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r46 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"$r45 := @caughtexception";
+    "virtualinvoke r64.<java.io.FileInputStream: void close()>()"->"throw r50";
+    "throw r50"->"$r46 := @caughtexception";
+    "throw r50"->"$r45 := @caughtexception";
+    "if r62 == null goto (branch)"->"$r40 := @caughtexception";
+    "if r62 == null goto (branch)"->"$r34 := @caughtexception";
+    "if r62 == null goto (branch)"->"$r32 := @caughtexception";
+    "if r62 == null goto (branch)"->"$r39 := @caughtexception";
+    "if r62 == null goto (branch)"->"if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "if r62 == null goto (branch)"->"if r60 == null goto (branch)";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r47 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r47 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r60 == null goto (branch)";
+    "$r47 := @caughtexception"->"$r40 := @caughtexception";
+    "$r47 := @caughtexception"->"$r39 := @caughtexception";
+    "$r47 := @caughtexception"->"r72 = $r47";
+    "r72 = $r47"->"$r40 := @caughtexception";
+    "r72 = $r47"->"$r39 := @caughtexception";
+    "r72 = $r47"->"virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"->"$r40 := @caughtexception";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"->"$r39 := @caughtexception";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r60 == null goto (branch)";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r40 := @caughtexception";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"$r39 := @caughtexception";
+    "goto [?= (branch)]"->"if r60 == null goto (branch)";
+    "$r46 := @caughtexception"->"r73 = $r46";
+    "$r46 := @caughtexception"->"$r45 := @caughtexception";
+    "r73 = $r46"->"r63 = r73";
+    "r73 = $r46"->"$r45 := @caughtexception";
+    "r63 = r73"->"throw r73";
+    "r63 = r73"->"$r45 := @caughtexception";
+    "throw r73"->"$r45 := @caughtexception";
+    "$r45 := @caughtexception"->"r44 = $r45";
+    "$r45 := @caughtexception"->"$r45 := @caughtexception";
+    "r44 = $r45"->"$r45 := @caughtexception";
+    "r44 = $r45"->"$r40 := @caughtexception";
+    "r44 = $r45"->"$r39 := @caughtexception";
+    "r44 = $r45"->"if r62 == null goto throw r44";
+    "if r62 == null goto throw r44"->"if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "if r62 == null goto throw r44"->"throw r44";
+    "if r62 == null goto throw r44"->"$r40 := @caughtexception";
+    "if r62 == null goto throw r44"->"$r39 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r42 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "if r63 == null goto virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"virtualinvoke r62.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r42 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"goto [?= throw r44]";
+    "goto [?= throw r44]"->"$r40 := @caughtexception";
+    "goto [?= throw r44]"->"$r39 := @caughtexception";
+    "goto [?= throw r44]"->"throw r44";
+    "$r42 := @caughtexception"->"$r40 := @caughtexception";
+    "$r42 := @caughtexception"->"$r39 := @caughtexception";
+    "$r42 := @caughtexception"->"r43 = $r42";
+    "r43 = $r42"->"$r40 := @caughtexception";
+    "r43 = $r42"->"$r39 := @caughtexception";
+    "r43 = $r42"->"virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r43)";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r43)"->"$r40 := @caughtexception";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r43)"->"$r39 := @caughtexception";
+    "virtualinvoke r63.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r43)"->"goto [?= throw r44]";
+    "goto [?= throw r44]"->"$r40 := @caughtexception";
+    "goto [?= throw r44]"->"$r39 := @caughtexception";
+    "goto [?= throw r44]"->"throw r44";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r40 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"$r39 := @caughtexception";
+    "virtualinvoke r62.<java.io.FileInputStream: void close()>()"->"throw r44";
+    "throw r44"->"$r40 := @caughtexception";
+    "throw r44"->"$r39 := @caughtexception";
+    "if r60 == null goto (branch)"->"if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "if r60 == null goto (branch)"->"goto [?= return]";
+    "if r60 == null goto (branch)"->"$r34 := @caughtexception";
+    "if r60 == null goto (branch)"->"$r32 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r41 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r41 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= return]";
+    "$r41 := @caughtexception"->"$r34 := @caughtexception";
+    "$r41 := @caughtexception"->"$r32 := @caughtexception";
+    "$r41 := @caughtexception"->"r74 = $r41";
+    "r74 = $r41"->"$r34 := @caughtexception";
+    "r74 = $r41"->"$r32 := @caughtexception";
+    "r74 = $r41"->"virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"$r34 := @caughtexception";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"$r32 := @caughtexception";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r74)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= return]";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r34 := @caughtexception";
+    "goto [?= (branch)]"->"$r32 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= return]";
+    "$r40 := @caughtexception"->"r75 = $r40";
+    "$r40 := @caughtexception"->"$r39 := @caughtexception";
+    "r75 = $r40"->"r61 = r75";
+    "r75 = $r40"->"$r39 := @caughtexception";
+    "r61 = r75"->"throw r75";
+    "r61 = r75"->"$r39 := @caughtexception";
+    "throw r75"->"$r39 := @caughtexception";
+    "$r39 := @caughtexception"->"r38 = $r39";
+    "$r39 := @caughtexception"->"$r39 := @caughtexception";
+    "r38 = $r39"->"$r39 := @caughtexception";
+    "r38 = $r39"->"$r34 := @caughtexception";
+    "r38 = $r39"->"$r32 := @caughtexception";
+    "r38 = $r39"->"if r60 == null goto throw r38";
+    "if r60 == null goto throw r38"->"if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "if r60 == null goto throw r38"->"throw r38";
+    "if r60 == null goto throw r38"->"$r34 := @caughtexception";
+    "if r60 == null goto throw r38"->"$r32 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r36 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "if r61 == null goto virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"virtualinvoke r60.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r36 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"goto [?= throw r38]";
+    "goto [?= throw r38]"->"$r34 := @caughtexception";
+    "goto [?= throw r38]"->"$r32 := @caughtexception";
+    "goto [?= throw r38]"->"throw r38";
+    "$r36 := @caughtexception"->"$r34 := @caughtexception";
+    "$r36 := @caughtexception"->"$r32 := @caughtexception";
+    "$r36 := @caughtexception"->"r37 = $r36";
+    "r37 = $r36"->"$r34 := @caughtexception";
+    "r37 = $r36"->"$r32 := @caughtexception";
+    "r37 = $r36"->"virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r37)";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r37)"->"$r34 := @caughtexception";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r37)"->"$r32 := @caughtexception";
+    "virtualinvoke r61.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r37)"->"goto [?= throw r38]";
+    "goto [?= throw r38]"->"$r34 := @caughtexception";
+    "goto [?= throw r38]"->"$r32 := @caughtexception";
+    "goto [?= throw r38]"->"throw r38";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r34 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"$r32 := @caughtexception";
+    "virtualinvoke r60.<java.io.FileInputStream: void close()>()"->"throw r38";
+    "throw r38"->"$r34 := @caughtexception";
+    "throw r38"->"$r32 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r34 := @caughtexception"->"r76 = $r34";
+    "r76 = $r34"->"$r35 = <java.lang.System: java.io.PrintStream out>";
+    "$r35 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to convert stated relationships to OWL Axioms and reconcile\")";
+    "virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to convert stated relationships to OWL Axioms and reconcile\")"->"virtualinvoke r76.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r76.<java.lang.Exception: void printStackTrace()>()"->"throw r76";
+    "$r32 := @caughtexception"->"r77 = $r32";
+    "r77 = $r32"->"$r33 = <java.lang.System: java.io.PrintStream err>";
+    "$r33 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to read from or write to files.\")";
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Failed to read from or write to files.\")"->"virtualinvoke r77.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r77.<java.io.IOException: void printStackTrace()>()"->"throw r77";
+}

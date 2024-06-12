@@ -1,0 +1,272 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i7 = 0;
+d8 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d8 cmpl d8;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+d8 = neg d8;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b1 = d8 cmpl d8;
+if $b1 != 0 goto return #NaN;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$b2 = d8 cmpl #Infinity;
+if $b2 != 0 goto d9 = 0.0;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: ]
+return #NaN;
+"
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+d9 = 0.0;
+$b3 = d8 cmpl 3294198.0;
+if $b3 <= 0 goto $b4 = d8 cmpl 1.5707963267948966;
+"
+    "Block 6:
+[preds: 5 ] [succs: 9 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d8, r1);
+$d7 = r1[0];
+$i6 = (int) $d7;
+i7 = $i6 & 3;
+d8 = r1[1];
+d9 = r1[2];
+goto [?= (branch)];
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$b4 = d8 cmpl 1.5707963267948966;
+if $b4 <= 0 goto (branch);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d8);
+r2 = $r0;
+$i5 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i7 = $i5 & 3;
+d8 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d9 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+"
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"
+    "Block 10:
+[preds: 9 ] [succs: ]
+$d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);
+return $d6;
+"
+    "Block 11:
+[preds: 9 ] [succs: ]
+$d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);
+$d5 = neg $d4;
+return $d5;
+"
+    "Block 12:
+[preds: 9 ] [succs: ]
+$d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);
+$d3 = neg $d2;
+return $d3;
+"
+    "Block 13:
+[preds: 9 ] [succs: ]
+$d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);
+return $d1;
+"
+    "Block 14:
+[preds: 9 ] [succs: ]
+return #NaN;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i7 = 0;
+d8 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d8 cmpl d8;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+d8 = neg d8;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i7 = 0;
+d8 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d8 cmpl d8;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b1 = d8 cmpl d8;
+if $b1 != 0 goto return #NaN;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+d8 = neg d8;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b1 = d8 cmpl d8;
+if $b1 != 0 goto return #NaN;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b1 = d8 cmpl d8;
+if $b1 != 0 goto return #NaN;
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$b2 = d8 cmpl #Infinity;
+if $b2 != 0 goto d9 = 0.0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b1 = d8 cmpl d8;
+if $b1 != 0 goto return #NaN;
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+return #NaN;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$b2 = d8 cmpl #Infinity;
+if $b2 != 0 goto d9 = 0.0;
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+return #NaN;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$b2 = d8 cmpl #Infinity;
+if $b2 != 0 goto d9 = 0.0;
+"->"Block 5:
+[preds: 3 ] [succs: 6 7 ]
+d9 = 0.0;
+$b3 = d8 cmpl 3294198.0;
+if $b3 <= 0 goto $b4 = d8 cmpl 1.5707963267948966;
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+d9 = 0.0;
+$b3 = d8 cmpl 3294198.0;
+if $b3 <= 0 goto $b4 = d8 cmpl 1.5707963267948966;
+"->"Block 6:
+[preds: 5 ] [succs: 9 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d8, r1);
+$d7 = r1[0];
+$i6 = (int) $d7;
+i7 = $i6 & 3;
+d8 = r1[1];
+d9 = r1[2];
+goto [?= (branch)];
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+d9 = 0.0;
+$b3 = d8 cmpl 3294198.0;
+if $b3 <= 0 goto $b4 = d8 cmpl 1.5707963267948966;
+"->"Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$b4 = d8 cmpl 1.5707963267948966;
+if $b4 <= 0 goto (branch);
+";
+    "Block 6:
+[preds: 5 ] [succs: 9 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d8, r1);
+$d7 = r1[0];
+$i6 = (int) $d7;
+i7 = $i6 & 3;
+d8 = r1[1];
+d9 = r1[2];
+goto [?= (branch)];
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$b4 = d8 cmpl 1.5707963267948966;
+if $b4 <= 0 goto (branch);
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d8);
+r2 = $r0;
+$i5 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i7 = $i5 & 3;
+d8 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d9 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$b4 = d8 cmpl 1.5707963267948966;
+if $b4 <= 0 goto (branch);
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d8);
+r2 = $r0;
+$i5 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i7 = $i5 & 3;
+d8 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d9 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"->"Block 10:
+[preds: 9 ] [succs: ]
+$d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);
+return $d6;
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"->"Block 11:
+[preds: 9 ] [succs: ]
+$d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);
+$d5 = neg $d4;
+return $d5;
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"->"Block 12:
+[preds: 9 ] [succs: ]
+$d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);
+$d3 = neg $d2;
+return $d3;
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"->"Block 13:
+[preds: 9 ] [succs: ]
+$d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);
+return $d1;
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 12 13 14 ]
+tableswitch(i7) {     case 0: goto $d6 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 1: goto $d4 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     case 2: goto $d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double cosQ(double,double)>(d8, d9);     case 3: goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double sinQ(double,double)>(d8, d9);     default: goto return #NaN; };
+"->"Block 14:
+[preds: 9 ] [succs: ]
+return #NaN;
+";
+}

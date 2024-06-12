@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.Object[]"
+    "i0 := @parameter1: int"
+    "i4 = i0"
+    "if i4 <= 1 goto return"
+    "$i1 = i4 - 1"
+    "r1 = r0[$i1]"
+    "$r2 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>"
+    "i2 = virtualinvoke $r2.<java.util.Random: int nextInt(int)>(i4)"
+    "$i3 = i4 - 1"
+    "$r3 = r0[i2]"
+    "r0[$i3] = $r3"
+    "r0[i2] = r1"
+    "i4 = i4 + -1"
+    "goto [?= (branch)]"
+    "return"
+    "r0 := @parameter0: java.lang.Object[]"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"i4 = i0";
+    "i4 = i0"->"if i4 <= 1 goto return";
+    "if i4 <= 1 goto return"->"$i1 = i4 - 1";
+    "if i4 <= 1 goto return"->"return";
+    "$i1 = i4 - 1"->"r1 = r0[$i1]";
+    "r1 = r0[$i1]"->"$r2 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>";
+    "$r2 = <jsr166tests.loops.MapMicroBenchmark: java.util.Random rng>"->"i2 = virtualinvoke $r2.<java.util.Random: int nextInt(int)>(i4)";
+    "i2 = virtualinvoke $r2.<java.util.Random: int nextInt(int)>(i4)"->"$i3 = i4 - 1";
+    "$i3 = i4 - 1"->"$r3 = r0[i2]";
+    "$r3 = r0[i2]"->"r0[$i3] = $r3";
+    "r0[$i3] = $r3"->"r0[i2] = r1";
+    "r0[i2] = r1"->"i4 = i4 + -1";
+    "i4 = i4 + -1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 <= 1 goto return";
+}

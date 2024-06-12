@@ -1,0 +1,70 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r4 := @parameter0: java.lang.String[];
+$i0 = <manual.Issue29Repro: int NUM_THREADS>;
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>($i0);
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r2 = new manual.Issue29Repro;
+specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1);
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2);
+i1 = i1 + 1;
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+$r1 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(2147483647L, $r1);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r4 := @parameter0: java.lang.String[];
+$i0 = <manual.Issue29Repro: int NUM_THREADS>;
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>($i0);
+i1 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+$r2 = new manual.Issue29Repro;
+specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1);
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2);
+i1 = i1 + 1;
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+"->"Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+$r1 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(2147483647L, $r1);
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r2 = new manual.Issue29Repro;
+specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1);
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2);
+i1 = i1 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>();
+";
+}

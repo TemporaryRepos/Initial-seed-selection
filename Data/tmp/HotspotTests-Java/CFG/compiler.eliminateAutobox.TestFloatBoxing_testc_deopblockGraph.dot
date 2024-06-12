@@ -1,0 +1,59 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$f2 = f1 + 1.0F;
+$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f0;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$f2 = f1 + 1.0F;
+$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$f2 = f1 + 1.0F;
+$f3 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f2);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3);
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f0;
+";
+}

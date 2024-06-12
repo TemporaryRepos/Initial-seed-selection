@@ -1,0 +1,34 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: byte[]"
+    "b5 = 1"
+    "r1 = r0"
+    "i0 = lengthof r0"
+    "i6 = 0"
+    "goto [?= (branch)]"
+    "$b1 = r1[i6]"
+    "r2 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)"
+    "$b2 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"
+    "$b3 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b2)"
+    "$i4 = b5 + $b3"
+    "b5 = (byte) $i4"
+    "i6 = i6 + 1"
+    "if i6 < i0 goto $b1 = r1[i6]"
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"
+    "return b5"
+    "r0 := @parameter0: byte[]"->"b5 = 1";
+    "b5 = 1"->"r1 = r0";
+    "r1 = r0"->"i0 = lengthof r0";
+    "i0 = lengthof r0"->"i6 = 0";
+    "i6 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 < i0 goto $b1 = r1[i6]";
+    "$b1 = r1[i6]"->"r2 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)";
+    "r2 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b1)"->"$b2 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()";
+    "$b2 = virtualinvoke r2.<java.lang.Byte: byte byteValue()>()"->"$b3 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b2)";
+    "$b3 = staticinvoke <compiler.eliminateAutobox.TestByteBoxing: byte foo(byte)>($b2)"->"$i4 = b5 + $b3";
+    "$i4 = b5 + $b3"->"b5 = (byte) $i4";
+    "b5 = (byte) $i4"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"if i6 < i0 goto $b1 = r1[i6]";
+    "if i6 < i0 goto $b1 = r1[i6]"->"staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()";
+    "if i6 < i0 goto $b1 = r1[i6]"->"$b1 = r1[i6]";
+    "staticinvoke <compiler.eliminateAutobox.TestByteBoxing: void dummy()>()"->"return b5";
+}

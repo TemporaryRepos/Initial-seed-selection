@@ -1,0 +1,137 @@
+digraph "unitGraph" {
+    "r0 := @this: org.xbill.DNS.tools.jnamed"
+    "r1 := @parameter0: org.xbill.DNS.Name"
+    "r8 := @parameter1: org.xbill.DNS.Message"
+    "r17 := @parameter2: org.xbill.DNS.TSIG"
+    "r23 := @parameter3: org.xbill.DNS.TSIGRecord"
+    "r6 := @parameter4: java.net.Socket"
+    "$r2 = r0.<org.xbill.DNS.tools.jnamed: java.util.Map znames>"
+    "$r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1)"
+    "r4 = (org.xbill.DNS.Zone) $r3"
+    "z1 = 1"
+    "if r4 != null goto $r5 = new java.io.DataOutputStream"
+    "$r19 = virtualinvoke r0.<org.xbill.DNS.tools.jnamed: byte[] errorMessage(org.xbill.DNS.Message,int)>(r8, 5)"
+    "return $r19"
+    "$r5 = new java.io.DataOutputStream"
+    "$r7 = virtualinvoke r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()"
+    "specialinvoke $r5.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r7)"
+    "r24 = $r5"
+    "$r9 = virtualinvoke r8.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"
+    "i0 = virtualinvoke $r9.<org.xbill.DNS.Header: int getID()>()"
+    "r10 = virtualinvoke r4.<org.xbill.DNS.Zone: java.util.Iterator AXFR()>()"
+    "$z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto (branch)"
+    "$r11 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"
+    "r12 = (org.xbill.DNS.RRset) $r11"
+    "$r13 = new org.xbill.DNS.Message"
+    "specialinvoke $r13.<org.xbill.DNS.Message: void <init>(int)>(i0)"
+    "r14 = $r13"
+    "r15 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(0)"
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(5)"
+    "$r16 = virtualinvoke r12.<org.xbill.DNS.RRset: org.xbill.DNS.Name getName()>()"
+    "virtualinvoke r0.<org.xbill.DNS.tools.jnamed: void addRRset(org.xbill.DNS.Name,org.xbill.DNS.Message,org.xbill.DNS.RRset,int,int)>($r16, r14, r12, 1, 1)"
+    "if r17 == null goto z1 = 0"
+    "virtualinvoke r17.<org.xbill.DNS.TSIG: void apply(org.xbill.DNS.Message,org.xbill.DNS.TSIGRecord,boolean)>(r14, r23, z1)"
+    "r23 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.TSIGRecord getTSIG()>()"
+    "z1 = 0"
+    "r18 = virtualinvoke r14.<org.xbill.DNS.Message: byte[] toWire()>()"
+    "$i1 = lengthof r18"
+    "virtualinvoke r24.<java.io.DataOutputStream: void writeShort(int)>($i1)"
+    "virtualinvoke r24.<java.io.DataOutputStream: void write(byte[])>(r18)"
+    "goto [?= $z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= virtualinvoke r6.<java.net.Socket: void close()>()]"
+    "$r21 := @caughtexception"
+    "r25 = $r21"
+    "$r22 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"AXFR failed\")"
+    "virtualinvoke r6.<java.net.Socket: void close()>()"
+    "goto [?= return null]"
+    "$r20 := @caughtexception"
+    "r26 = $r20"
+    "return null"
+    "r0 := @this: org.xbill.DNS.tools.jnamed"->"r1 := @parameter0: org.xbill.DNS.Name";
+    "r1 := @parameter0: org.xbill.DNS.Name"->"r8 := @parameter1: org.xbill.DNS.Message";
+    "r8 := @parameter1: org.xbill.DNS.Message"->"r17 := @parameter2: org.xbill.DNS.TSIG";
+    "r17 := @parameter2: org.xbill.DNS.TSIG"->"r23 := @parameter3: org.xbill.DNS.TSIGRecord";
+    "r23 := @parameter3: org.xbill.DNS.TSIGRecord"->"r6 := @parameter4: java.net.Socket";
+    "r6 := @parameter4: java.net.Socket"->"$r2 = r0.<org.xbill.DNS.tools.jnamed: java.util.Map znames>";
+    "$r2 = r0.<org.xbill.DNS.tools.jnamed: java.util.Map znames>"->"$r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1)";
+    "$r3 = interfaceinvoke $r2.<java.util.Map: java.lang.Object get(java.lang.Object)>(r1)"->"r4 = (org.xbill.DNS.Zone) $r3";
+    "r4 = (org.xbill.DNS.Zone) $r3"->"z1 = 1";
+    "z1 = 1"->"if r4 != null goto $r5 = new java.io.DataOutputStream";
+    "if r4 != null goto $r5 = new java.io.DataOutputStream"->"$r19 = virtualinvoke r0.<org.xbill.DNS.tools.jnamed: byte[] errorMessage(org.xbill.DNS.Message,int)>(r8, 5)";
+    "if r4 != null goto $r5 = new java.io.DataOutputStream"->"$r5 = new java.io.DataOutputStream";
+    "if r4 != null goto $r5 = new java.io.DataOutputStream"->"$r21 := @caughtexception";
+    "$r19 = virtualinvoke r0.<org.xbill.DNS.tools.jnamed: byte[] errorMessage(org.xbill.DNS.Message,int)>(r8, 5)"->"return $r19";
+    "$r5 = new java.io.DataOutputStream"->"$r7 = virtualinvoke r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()";
+    "$r5 = new java.io.DataOutputStream"->"$r21 := @caughtexception";
+    "$r7 = virtualinvoke r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()"->"specialinvoke $r5.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r7)";
+    "$r7 = virtualinvoke r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()"->"$r21 := @caughtexception";
+    "specialinvoke $r5.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r7)"->"r24 = $r5";
+    "specialinvoke $r5.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r7)"->"$r21 := @caughtexception";
+    "r24 = $r5"->"$r9 = virtualinvoke r8.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()";
+    "r24 = $r5"->"$r21 := @caughtexception";
+    "$r9 = virtualinvoke r8.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"->"i0 = virtualinvoke $r9.<org.xbill.DNS.Header: int getID()>()";
+    "$r9 = virtualinvoke r8.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"->"$r21 := @caughtexception";
+    "i0 = virtualinvoke $r9.<org.xbill.DNS.Header: int getID()>()"->"r10 = virtualinvoke r4.<org.xbill.DNS.Zone: java.util.Iterator AXFR()>()";
+    "i0 = virtualinvoke $r9.<org.xbill.DNS.Header: int getID()>()"->"$r21 := @caughtexception";
+    "r10 = virtualinvoke r4.<org.xbill.DNS.Zone: java.util.Iterator AXFR()>()"->"$z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "r10 = virtualinvoke r4.<org.xbill.DNS.Zone: java.util.Iterator AXFR()>()"->"$r21 := @caughtexception";
+    "$z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto (branch)";
+    "$z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()"->"$r21 := @caughtexception";
+    "if $z0 == 0 goto (branch)"->"$r11 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto (branch)"->"goto [?= virtualinvoke r6.<java.net.Socket: void close()>()]";
+    "if $z0 == 0 goto (branch)"->"$r21 := @caughtexception";
+    "$r11 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"->"r12 = (org.xbill.DNS.RRset) $r11";
+    "$r11 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>()"->"$r21 := @caughtexception";
+    "r12 = (org.xbill.DNS.RRset) $r11"->"$r13 = new org.xbill.DNS.Message";
+    "r12 = (org.xbill.DNS.RRset) $r11"->"$r21 := @caughtexception";
+    "$r13 = new org.xbill.DNS.Message"->"specialinvoke $r13.<org.xbill.DNS.Message: void <init>(int)>(i0)";
+    "$r13 = new org.xbill.DNS.Message"->"$r21 := @caughtexception";
+    "specialinvoke $r13.<org.xbill.DNS.Message: void <init>(int)>(i0)"->"r14 = $r13";
+    "specialinvoke $r13.<org.xbill.DNS.Message: void <init>(int)>(i0)"->"$r21 := @caughtexception";
+    "r14 = $r13"->"r15 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()";
+    "r14 = $r13"->"$r21 := @caughtexception";
+    "r15 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"->"virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(0)";
+    "r15 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.Header getHeader()>()"->"$r21 := @caughtexception";
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(0)"->"virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(5)";
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(0)"->"$r21 := @caughtexception";
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(5)"->"$r16 = virtualinvoke r12.<org.xbill.DNS.RRset: org.xbill.DNS.Name getName()>()";
+    "virtualinvoke r15.<org.xbill.DNS.Header: void setFlag(int)>(5)"->"$r21 := @caughtexception";
+    "$r16 = virtualinvoke r12.<org.xbill.DNS.RRset: org.xbill.DNS.Name getName()>()"->"virtualinvoke r0.<org.xbill.DNS.tools.jnamed: void addRRset(org.xbill.DNS.Name,org.xbill.DNS.Message,org.xbill.DNS.RRset,int,int)>($r16, r14, r12, 1, 1)";
+    "$r16 = virtualinvoke r12.<org.xbill.DNS.RRset: org.xbill.DNS.Name getName()>()"->"$r21 := @caughtexception";
+    "virtualinvoke r0.<org.xbill.DNS.tools.jnamed: void addRRset(org.xbill.DNS.Name,org.xbill.DNS.Message,org.xbill.DNS.RRset,int,int)>($r16, r14, r12, 1, 1)"->"if r17 == null goto z1 = 0";
+    "virtualinvoke r0.<org.xbill.DNS.tools.jnamed: void addRRset(org.xbill.DNS.Name,org.xbill.DNS.Message,org.xbill.DNS.RRset,int,int)>($r16, r14, r12, 1, 1)"->"$r21 := @caughtexception";
+    "if r17 == null goto z1 = 0"->"virtualinvoke r17.<org.xbill.DNS.TSIG: void apply(org.xbill.DNS.Message,org.xbill.DNS.TSIGRecord,boolean)>(r14, r23, z1)";
+    "if r17 == null goto z1 = 0"->"z1 = 0";
+    "if r17 == null goto z1 = 0"->"$r21 := @caughtexception";
+    "virtualinvoke r17.<org.xbill.DNS.TSIG: void apply(org.xbill.DNS.Message,org.xbill.DNS.TSIGRecord,boolean)>(r14, r23, z1)"->"r23 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.TSIGRecord getTSIG()>()";
+    "virtualinvoke r17.<org.xbill.DNS.TSIG: void apply(org.xbill.DNS.Message,org.xbill.DNS.TSIGRecord,boolean)>(r14, r23, z1)"->"$r21 := @caughtexception";
+    "r23 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.TSIGRecord getTSIG()>()"->"z1 = 0";
+    "r23 = virtualinvoke r14.<org.xbill.DNS.Message: org.xbill.DNS.TSIGRecord getTSIG()>()"->"$r21 := @caughtexception";
+    "z1 = 0"->"r18 = virtualinvoke r14.<org.xbill.DNS.Message: byte[] toWire()>()";
+    "z1 = 0"->"$r21 := @caughtexception";
+    "r18 = virtualinvoke r14.<org.xbill.DNS.Message: byte[] toWire()>()"->"$i1 = lengthof r18";
+    "r18 = virtualinvoke r14.<org.xbill.DNS.Message: byte[] toWire()>()"->"$r21 := @caughtexception";
+    "$i1 = lengthof r18"->"virtualinvoke r24.<java.io.DataOutputStream: void writeShort(int)>($i1)";
+    "$i1 = lengthof r18"->"$r21 := @caughtexception";
+    "virtualinvoke r24.<java.io.DataOutputStream: void writeShort(int)>($i1)"->"virtualinvoke r24.<java.io.DataOutputStream: void write(byte[])>(r18)";
+    "virtualinvoke r24.<java.io.DataOutputStream: void writeShort(int)>($i1)"->"$r21 := @caughtexception";
+    "virtualinvoke r24.<java.io.DataOutputStream: void write(byte[])>(r18)"->"goto [?= $z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]";
+    "virtualinvoke r24.<java.io.DataOutputStream: void write(byte[])>(r18)"->"$r21 := @caughtexception";
+    "goto [?= $z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z0 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()]"->"$r21 := @caughtexception";
+    "goto [?= virtualinvoke r6.<java.net.Socket: void close()>()]"->"virtualinvoke r6.<java.net.Socket: void close()>()";
+    "goto [?= virtualinvoke r6.<java.net.Socket: void close()>()]"->"$r20 := @caughtexception";
+    "$r21 := @caughtexception"->"r25 = $r21";
+    "r25 = $r21"->"$r22 = <java.lang.System: java.io.PrintStream out>";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"AXFR failed\")";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"AXFR failed\")"->"virtualinvoke r6.<java.net.Socket: void close()>()";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"AXFR failed\")"->"$r20 := @caughtexception";
+    "virtualinvoke r6.<java.net.Socket: void close()>()"->"goto [?= return null]";
+    "virtualinvoke r6.<java.net.Socket: void close()>()"->"$r20 := @caughtexception";
+    "goto [?= return null]"->"return null";
+    "$r20 := @caughtexception"->"r26 = $r20";
+    "r26 = $r20"->"return null";
+}

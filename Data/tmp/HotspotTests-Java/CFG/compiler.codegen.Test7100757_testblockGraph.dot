@@ -1,0 +1,422 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 6 ]
+r1 := @parameter0: long[];
+r0 := @parameter1: java.util.BitSet;
+virtualinvoke r0.<java.util.BitSet: void clear()>();
+i7 = 0;
+i8 = 0;
+i9 = 0;
+i10 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 6 ] [succs: 2 3 ]
+$i0 = i10;
+i10 = i10 + 1;
+l1 = 1L << $i0;
+$l2 = r1[i9];
+$l3 = $l2 & l1;
+$b4 = $l3 cmp 0L;
+if $b4 == 0 goto (branch);
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+virtualinvoke r0.<java.util.BitSet: void set(int)>(i8);
+i7 = i7 + 1;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 5 ]
+if i10 != 64 goto i8 = i8 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i9 = i9 + 1;
+i10 = 0;
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 ]
+i8 = i8 + 1;
+"
+    "Block 6:
+[preds: 0 5 ] [succs: 7 1 ]
+if i8 < 256 goto $i0 = i10;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+i11 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i11 == i7 goto i12 = 0;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+r16 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[3];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i11);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r11[1] = $r14;
+$r11[2] = r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"cardinality bits: %d != %d  bs: %s\n\", $r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 11 ]
+i12 = 0;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>(0);
+goto [?= (branch)];
+"
+    "Block 10:
+[preds: 11 ] [succs: 11 ]
+i12 = i12 + 1;
+$i5 = i13 + 1;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>($i5);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 12 10 ]
+if i13 >= 0 goto i12 = i12 + 1;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+if i12 == i7 goto i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+r17 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[3];
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i12);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r6[1] = $r9;
+$r6[2] = r17;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"nextSetBit bits: %d != %d  bs: %s\n\", $r6);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"
+    "Block 14:
+[preds: 12 13 ] [succs: 16 ]
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+goto [?= (branch)];
+"
+    "Block 15:
+[preds: 16 ] [succs: 16 ]
+$i6 = i14 - 1;
+virtualinvoke r0.<java.util.BitSet: void clear(int)>($i6);
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+"
+    "Block 16:
+[preds: 14 15 ] [succs: 17 15 ]
+if i14 > 0 goto $i6 = i14 - 1;
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 19 ]
+i15 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i15 == 0 goto return;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+r18 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r3 = <java.lang.System: java.io.PrintStream err>;
+$r2 = newarray (java.lang.Object)[2];
+$r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r2[0] = $r4;
+$r2[1] = r18;
+virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"after clear bits: %d != 0  bs: %s\n\", $r2);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"
+    "Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 6 ]
+r1 := @parameter0: long[];
+r0 := @parameter1: java.util.BitSet;
+virtualinvoke r0.<java.util.BitSet: void clear()>();
+i7 = 0;
+i8 = 0;
+i9 = 0;
+i10 = 0;
+goto [?= (branch)];
+"->"Block 6:
+[preds: 0 5 ] [succs: 7 1 ]
+if i8 < 256 goto $i0 = i10;
+";
+    "Block 1:
+[preds: 6 ] [succs: 2 3 ]
+$i0 = i10;
+i10 = i10 + 1;
+l1 = 1L << $i0;
+$l2 = r1[i9];
+$l3 = $l2 & l1;
+$b4 = $l3 cmp 0L;
+if $b4 == 0 goto (branch);
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+virtualinvoke r0.<java.util.BitSet: void set(int)>(i8);
+i7 = i7 + 1;
+";
+    "Block 1:
+[preds: 6 ] [succs: 2 3 ]
+$i0 = i10;
+i10 = i10 + 1;
+l1 = 1L << $i0;
+$l2 = r1[i9];
+$l3 = $l2 & l1;
+$b4 = $l3 cmp 0L;
+if $b4 == 0 goto (branch);
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 5 ]
+if i10 != 64 goto i8 = i8 + 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+virtualinvoke r0.<java.util.BitSet: void set(int)>(i8);
+i7 = i7 + 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 5 ]
+if i10 != 64 goto i8 = i8 + 1;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 5 ]
+if i10 != 64 goto i8 = i8 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+i9 = i9 + 1;
+i10 = 0;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 5 ]
+if i10 != 64 goto i8 = i8 + 1;
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 ]
+i8 = i8 + 1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i9 = i9 + 1;
+i10 = 0;
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 ]
+i8 = i8 + 1;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 ]
+i8 = i8 + 1;
+"->"Block 6:
+[preds: 0 5 ] [succs: 7 1 ]
+if i8 < 256 goto $i0 = i10;
+";
+    "Block 6:
+[preds: 0 5 ] [succs: 7 1 ]
+if i8 < 256 goto $i0 = i10;
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+i11 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i11 == i7 goto i12 = 0;
+";
+    "Block 6:
+[preds: 0 5 ] [succs: 7 1 ]
+if i8 < 256 goto $i0 = i10;
+"->"Block 1:
+[preds: 6 ] [succs: 2 3 ]
+$i0 = i10;
+i10 = i10 + 1;
+l1 = 1L << $i0;
+$l2 = r1[i9];
+$l3 = $l2 & l1;
+$b4 = $l3 cmp 0L;
+if $b4 == 0 goto (branch);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+i11 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i11 == i7 goto i12 = 0;
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+r16 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[3];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i11);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r11[1] = $r14;
+$r11[2] = r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"cardinality bits: %d != %d  bs: %s\n\", $r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+i11 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i11 == i7 goto i12 = 0;
+"->"Block 9:
+[preds: 7 8 ] [succs: 11 ]
+i12 = 0;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>(0);
+goto [?= (branch)];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+r16 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[3];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i11);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r11[1] = $r14;
+$r11[2] = r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"cardinality bits: %d != %d  bs: %s\n\", $r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"->"Block 9:
+[preds: 7 8 ] [succs: 11 ]
+i12 = 0;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>(0);
+goto [?= (branch)];
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 11 ]
+i12 = 0;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>(0);
+goto [?= (branch)];
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 10 ]
+if i13 >= 0 goto i12 = i12 + 1;
+";
+    "Block 10:
+[preds: 11 ] [succs: 11 ]
+i12 = i12 + 1;
+$i5 = i13 + 1;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>($i5);
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 10 ]
+if i13 >= 0 goto i12 = i12 + 1;
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 10 ]
+if i13 >= 0 goto i12 = i12 + 1;
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 ]
+if i12 == i7 goto i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 10 ]
+if i13 >= 0 goto i12 = i12 + 1;
+"->"Block 10:
+[preds: 11 ] [succs: 11 ]
+i12 = i12 + 1;
+$i5 = i13 + 1;
+i13 = virtualinvoke r0.<java.util.BitSet: int nextSetBit(int)>($i5);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+if i12 == i7 goto i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+"->"Block 13:
+[preds: 12 ] [succs: 14 ]
+r17 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[3];
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i12);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r6[1] = $r9;
+$r6[2] = r17;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"nextSetBit bits: %d != %d  bs: %s\n\", $r6);
+staticinvoke <java.lang.System: void exit(int)>(97);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+if i12 == i7 goto i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+"->"Block 14:
+[preds: 12 13 ] [succs: 16 ]
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+goto [?= (branch)];
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+r17 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[3];
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i12);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+$r6[1] = $r9;
+$r6[2] = r17;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"nextSetBit bits: %d != %d  bs: %s\n\", $r6);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"->"Block 14:
+[preds: 12 13 ] [succs: 16 ]
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+goto [?= (branch)];
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 16 ]
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+goto [?= (branch)];
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 15 ]
+if i14 > 0 goto $i6 = i14 - 1;
+";
+    "Block 15:
+[preds: 16 ] [succs: 16 ]
+$i6 = i14 - 1;
+virtualinvoke r0.<java.util.BitSet: void clear(int)>($i6);
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 15 ]
+if i14 > 0 goto $i6 = i14 - 1;
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 15 ]
+if i14 > 0 goto $i6 = i14 - 1;
+"->"Block 17:
+[preds: 16 ] [succs: 18 19 ]
+i15 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i15 == 0 goto return;
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 15 ]
+if i14 > 0 goto $i6 = i14 - 1;
+"->"Block 15:
+[preds: 16 ] [succs: 16 ]
+$i6 = i14 - 1;
+virtualinvoke r0.<java.util.BitSet: void clear(int)>($i6);
+i14 = virtualinvoke r0.<java.util.BitSet: int length()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 19 ]
+i15 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i15 == 0 goto return;
+"->"Block 18:
+[preds: 17 ] [succs: 19 ]
+r18 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r3 = <java.lang.System: java.io.PrintStream err>;
+$r2 = newarray (java.lang.Object)[2];
+$r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r2[0] = $r4;
+$r2[1] = r18;
+virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"after clear bits: %d != 0  bs: %s\n\", $r2);
+staticinvoke <java.lang.System: void exit(int)>(97);
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 19 ]
+i15 = virtualinvoke r0.<java.util.BitSet: int cardinality()>();
+if i15 == 0 goto return;
+"->"Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+r18 = virtualinvoke r0.<java.util.BitSet: java.lang.String toString()>();
+$r3 = <java.lang.System: java.io.PrintStream err>;
+$r2 = newarray (java.lang.Object)[2];
+$r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r2[0] = $r4;
+$r2[1] = r18;
+virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"after clear bits: %d != 0  bs: %s\n\", $r2);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"->"Block 19:
+[preds: 17 18 ] [succs: ]
+return;
+";
+}

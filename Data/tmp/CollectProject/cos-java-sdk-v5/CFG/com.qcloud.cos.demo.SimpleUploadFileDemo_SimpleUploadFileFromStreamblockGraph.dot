@@ -1,0 +1,259 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 4 5 1 ]
+$r0 = new com.qcloud.cos.auth.BasicCOSCredentials;
+specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"AKIDXXXXXXXX\", \"1A2Z3YYYYYYYYYY\");
+r1 = $r0;
+$r2 = new com.qcloud.cos.ClientConfig;
+$r3 = new com.qcloud.cos.region.Region;
+specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-beijing-1\");
+specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3);
+r4 = $r2;
+$r5 = new com.qcloud.cos.COSClient;
+specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4);
+r6 = $r5;
+r7 = \"mybucket-1251668577\";
+r8 = \"aaa/bbb.jpg\";
+$r9 = new java.io.File;
+specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"src/test/resources/len10M.txt\");
+r10 = $r9;
+$r11 = new java.io.ByteArrayInputStream;
+$r12 = newarray (byte)[10];
+specialinvoke $r11.<java.io.ByteArrayInputStream: void <init>(byte[])>($r12);
+r13 = $r11;
+$r14 = new com.qcloud.cos.model.ObjectMetadata;
+specialinvoke $r14.<com.qcloud.cos.model.ObjectMetadata: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentLength(long)>(10L);
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentType(java.lang.String)>(\"image/jpeg\");
+$r16 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r16.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.InputStream,com.qcloud.cos.model.ObjectMetadata)>(r7, r8, r13, r15);
+r17 = $r16;
+$r18 = <com.qcloud.cos.model.StorageClass: com.qcloud.cos.model.StorageClass Standard_IA>;
+virtualinvoke r17.<com.qcloud.cos.model.PutObjectRequest: void setStorageClass(com.qcloud.cos.model.StorageClass)>($r18);
+"
+    "Block 1:
+[preds: 0 ] [succs: 4 5 2 ]
+r22 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r17);
+"
+    "Block 2:
+[preds: 1 ] [succs: 4 5 3 ]
+r19 = virtualinvoke r22.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 6 ]
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+"
+    "Block 4:
+[preds: 0 1 2 ] [succs: 6 ]
+$r21 := @caughtexception;
+r23 = $r21;
+virtualinvoke r23.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+"
+    "Block 5:
+[preds: 0 1 2 ] [succs: 6 ]
+$r20 := @caughtexception;
+r24 = $r20;
+virtualinvoke r24.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+"
+    "Block 6:
+[preds: 3 4 5 ] [succs: ]
+virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 4 5 1 ]
+$r0 = new com.qcloud.cos.auth.BasicCOSCredentials;
+specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"AKIDXXXXXXXX\", \"1A2Z3YYYYYYYYYY\");
+r1 = $r0;
+$r2 = new com.qcloud.cos.ClientConfig;
+$r3 = new com.qcloud.cos.region.Region;
+specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-beijing-1\");
+specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3);
+r4 = $r2;
+$r5 = new com.qcloud.cos.COSClient;
+specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4);
+r6 = $r5;
+r7 = \"mybucket-1251668577\";
+r8 = \"aaa/bbb.jpg\";
+$r9 = new java.io.File;
+specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"src/test/resources/len10M.txt\");
+r10 = $r9;
+$r11 = new java.io.ByteArrayInputStream;
+$r12 = newarray (byte)[10];
+specialinvoke $r11.<java.io.ByteArrayInputStream: void <init>(byte[])>($r12);
+r13 = $r11;
+$r14 = new com.qcloud.cos.model.ObjectMetadata;
+specialinvoke $r14.<com.qcloud.cos.model.ObjectMetadata: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentLength(long)>(10L);
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentType(java.lang.String)>(\"image/jpeg\");
+$r16 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r16.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.InputStream,com.qcloud.cos.model.ObjectMetadata)>(r7, r8, r13, r15);
+r17 = $r16;
+$r18 = <com.qcloud.cos.model.StorageClass: com.qcloud.cos.model.StorageClass Standard_IA>;
+virtualinvoke r17.<com.qcloud.cos.model.PutObjectRequest: void setStorageClass(com.qcloud.cos.model.StorageClass)>($r18);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 6 ]
+$r21 := @caughtexception;
+r23 = $r21;
+virtualinvoke r23.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+";
+    "Block 0:
+[preds: ] [succs: 4 5 1 ]
+$r0 = new com.qcloud.cos.auth.BasicCOSCredentials;
+specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"AKIDXXXXXXXX\", \"1A2Z3YYYYYYYYYY\");
+r1 = $r0;
+$r2 = new com.qcloud.cos.ClientConfig;
+$r3 = new com.qcloud.cos.region.Region;
+specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-beijing-1\");
+specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3);
+r4 = $r2;
+$r5 = new com.qcloud.cos.COSClient;
+specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4);
+r6 = $r5;
+r7 = \"mybucket-1251668577\";
+r8 = \"aaa/bbb.jpg\";
+$r9 = new java.io.File;
+specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"src/test/resources/len10M.txt\");
+r10 = $r9;
+$r11 = new java.io.ByteArrayInputStream;
+$r12 = newarray (byte)[10];
+specialinvoke $r11.<java.io.ByteArrayInputStream: void <init>(byte[])>($r12);
+r13 = $r11;
+$r14 = new com.qcloud.cos.model.ObjectMetadata;
+specialinvoke $r14.<com.qcloud.cos.model.ObjectMetadata: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentLength(long)>(10L);
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentType(java.lang.String)>(\"image/jpeg\");
+$r16 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r16.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.InputStream,com.qcloud.cos.model.ObjectMetadata)>(r7, r8, r13, r15);
+r17 = $r16;
+$r18 = <com.qcloud.cos.model.StorageClass: com.qcloud.cos.model.StorageClass Standard_IA>;
+virtualinvoke r17.<com.qcloud.cos.model.PutObjectRequest: void setStorageClass(com.qcloud.cos.model.StorageClass)>($r18);
+"->"Block 5:
+[preds: 0 1 2 ] [succs: 6 ]
+$r20 := @caughtexception;
+r24 = $r20;
+virtualinvoke r24.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 0:
+[preds: ] [succs: 4 5 1 ]
+$r0 = new com.qcloud.cos.auth.BasicCOSCredentials;
+specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"AKIDXXXXXXXX\", \"1A2Z3YYYYYYYYYY\");
+r1 = $r0;
+$r2 = new com.qcloud.cos.ClientConfig;
+$r3 = new com.qcloud.cos.region.Region;
+specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-beijing-1\");
+specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3);
+r4 = $r2;
+$r5 = new com.qcloud.cos.COSClient;
+specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4);
+r6 = $r5;
+r7 = \"mybucket-1251668577\";
+r8 = \"aaa/bbb.jpg\";
+$r9 = new java.io.File;
+specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"src/test/resources/len10M.txt\");
+r10 = $r9;
+$r11 = new java.io.ByteArrayInputStream;
+$r12 = newarray (byte)[10];
+specialinvoke $r11.<java.io.ByteArrayInputStream: void <init>(byte[])>($r12);
+r13 = $r11;
+$r14 = new com.qcloud.cos.model.ObjectMetadata;
+specialinvoke $r14.<com.qcloud.cos.model.ObjectMetadata: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentLength(long)>(10L);
+virtualinvoke r15.<com.qcloud.cos.model.ObjectMetadata: void setContentType(java.lang.String)>(\"image/jpeg\");
+$r16 = new com.qcloud.cos.model.PutObjectRequest;
+specialinvoke $r16.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.InputStream,com.qcloud.cos.model.ObjectMetadata)>(r7, r8, r13, r15);
+r17 = $r16;
+$r18 = <com.qcloud.cos.model.StorageClass: com.qcloud.cos.model.StorageClass Standard_IA>;
+virtualinvoke r17.<com.qcloud.cos.model.PutObjectRequest: void setStorageClass(com.qcloud.cos.model.StorageClass)>($r18);
+"->"Block 1:
+[preds: 0 ] [succs: 4 5 2 ]
+r22 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r17);
+";
+    "Block 1:
+[preds: 0 ] [succs: 4 5 2 ]
+r22 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r17);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 6 ]
+$r21 := @caughtexception;
+r23 = $r21;
+virtualinvoke r23.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+";
+    "Block 1:
+[preds: 0 ] [succs: 4 5 2 ]
+r22 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r17);
+"->"Block 5:
+[preds: 0 1 2 ] [succs: 6 ]
+$r20 := @caughtexception;
+r24 = $r20;
+virtualinvoke r24.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 4 5 2 ]
+r22 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r17);
+"->"Block 2:
+[preds: 1 ] [succs: 4 5 3 ]
+r19 = virtualinvoke r22.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 5 3 ]
+r19 = virtualinvoke r22.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>();
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 6 ]
+$r21 := @caughtexception;
+r23 = $r21;
+virtualinvoke r23.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 5 3 ]
+r19 = virtualinvoke r22.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>();
+"->"Block 5:
+[preds: 0 1 2 ] [succs: 6 ]
+$r20 := @caughtexception;
+r24 = $r20;
+virtualinvoke r24.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 5 3 ]
+r19 = virtualinvoke r22.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>();
+"->"Block 3:
+[preds: 2 ] [succs: 6 ]
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+";
+    "Block 3:
+[preds: 2 ] [succs: 6 ]
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+"->"Block 6:
+[preds: 3 4 5 ] [succs: ]
+virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>();
+return;
+";
+    "Block 4:
+[preds: 0 1 2 ] [succs: 6 ]
+$r21 := @caughtexception;
+r23 = $r21;
+virtualinvoke r23.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>();
+goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()];
+"->"Block 6:
+[preds: 3 4 5 ] [succs: ]
+virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>();
+return;
+";
+    "Block 5:
+[preds: 0 1 2 ] [succs: 6 ]
+$r20 := @caughtexception;
+r24 = $r20;
+virtualinvoke r24.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>();
+"->"Block 6:
+[preds: 3 4 5 ] [succs: ]
+virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>();
+return;
+";
+}

@@ -1,0 +1,171 @@
+digraph "unitGraph" {
+    "r7 := @parameter0: java.lang.String[]"
+    "$r0 = new java.lang.StringBuilder"
+    "$r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")"
+    "$r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r1)"
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2)"
+    "$r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java\")"
+    "r31 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r4 = new java.io.File"
+    "specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>(r31)"
+    "$z0 = virtualinvoke $r4.<java.io.File: boolean exists()>()"
+    "if $z0 != 0 goto $r5 = new java.util.ArrayList"
+    "$r23 = new java.lang.StringBuilder"
+    "$r24 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")"
+    "$r25 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r24)"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>($r25)"
+    "$r26 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java.exe\")"
+    "r31 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r5 = new java.util.ArrayList"
+    "specialinvoke $r5.<java.util.ArrayList: void <init>()>()"
+    "r6 = $r5"
+    "virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r31)"
+    "r32 = r7"
+    "i1 = lengthof r7"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "r33 = r32[i2]"
+    "virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r33)"
+    "i2 = i2 + 1"
+    "if i2 < i1 goto r33 = r32[i2]"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"cmds=\")"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r6)"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11)"
+    "$r12 = new java.lang.ProcessBuilder"
+    "specialinvoke $r12.<java.lang.ProcessBuilder: void <init>(java.util.List)>(r6)"
+    "r34 = $r12"
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.util.Map environment()>()"
+    "$r14 = new java.io.File"
+    "specialinvoke $r14.<java.io.File: void <init>(java.lang.String)>(\".\")"
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder directory(java.io.File)>($r14)"
+    "$r16 = new java.util.ArrayList"
+    "specialinvoke $r16.<java.util.ArrayList: void <init>()>()"
+    "r35 = $r16"
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectErrorStream(boolean)>(1)"
+    "r36 = virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.Process start()>()"
+    "$r18 = new java.io.BufferedReader"
+    "$r19 = new java.io.InputStreamReader"
+    "$r20 = virtualinvoke r36.<java.lang.Process: java.io.InputStream getInputStream()>()"
+    "specialinvoke $r19.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r20)"
+    "specialinvoke $r18.<java.io.BufferedReader: void <init>(java.io.Reader,int)>($r19, 8192)"
+    "r37 = $r18"
+    "r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(r38)"
+    "if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"
+    "i0 = virtualinvoke r36.<java.lang.Process: int waitFor()>()"
+    "virtualinvoke r36.<java.lang.Process: void destroy()>()"
+    "if i0 == 0 goto return r35"
+    "$r22 = new java.lang.RuntimeException"
+    "specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: test returned non-zero value\")"
+    "throw $r22"
+    "return r35"
+    "$r28 := @caughtexception"
+    "r39 = $r28"
+    "virtualinvoke r39.<java.lang.Exception: void printStackTrace()>()"
+    "$r29 = new java.lang.RuntimeException"
+    "$r30 = virtualinvoke r39.<java.lang.Exception: java.lang.String getMessage()>()"
+    "specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r30)"
+    "throw $r29"
+    "r7 := @parameter0: java.lang.String[]"->"$r0 = new java.lang.StringBuilder";
+    "$r0 = new java.lang.StringBuilder"->"$r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")";
+    "$r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")"->"$r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r1)";
+    "$r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r1)"->"specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2)";
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2)"->"$r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java\")";
+    "$r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java\")"->"r31 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r31 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r4 = new java.io.File";
+    "$r4 = new java.io.File"->"specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>(r31)";
+    "specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>(r31)"->"$z0 = virtualinvoke $r4.<java.io.File: boolean exists()>()";
+    "$z0 = virtualinvoke $r4.<java.io.File: boolean exists()>()"->"if $z0 != 0 goto $r5 = new java.util.ArrayList";
+    "if $z0 != 0 goto $r5 = new java.util.ArrayList"->"$r23 = new java.lang.StringBuilder";
+    "if $z0 != 0 goto $r5 = new java.util.ArrayList"->"$r5 = new java.util.ArrayList";
+    "$r23 = new java.lang.StringBuilder"->"$r24 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")";
+    "$r24 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"java.home\")"->"$r25 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r24)";
+    "$r25 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r24)"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>($r25)";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>($r25)"->"$r26 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java.exe\")";
+    "$r26 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/bin/java.exe\")"->"r31 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r31 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r5 = new java.util.ArrayList";
+    "$r5 = new java.util.ArrayList"->"specialinvoke $r5.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r5.<java.util.ArrayList: void <init>()>()"->"r6 = $r5";
+    "r6 = $r5"->"virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r31)";
+    "virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r31)"->"r32 = r7";
+    "r32 = r7"->"i1 = lengthof r7";
+    "i1 = lengthof r7"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < i1 goto r33 = r32[i2]";
+    "r33 = r32[i2]"->"virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r33)";
+    "virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r33)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < i1 goto r33 = r32[i2]";
+    "if i2 < i1 goto r33 = r32[i2]"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "if i2 < i1 goto r33 = r32[i2]"->"r33 = r32[i2]";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"cmds=\")";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"cmds=\")"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r6)";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r6)"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11)";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$r12 = new java.lang.ProcessBuilder";
+    "$r12 = new java.lang.ProcessBuilder"->"specialinvoke $r12.<java.lang.ProcessBuilder: void <init>(java.util.List)>(r6)";
+    "specialinvoke $r12.<java.lang.ProcessBuilder: void <init>(java.util.List)>(r6)"->"r34 = $r12";
+    "r34 = $r12"->"virtualinvoke r34.<java.lang.ProcessBuilder: java.util.Map environment()>()";
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.util.Map environment()>()"->"$r14 = new java.io.File";
+    "$r14 = new java.io.File"->"specialinvoke $r14.<java.io.File: void <init>(java.lang.String)>(\".\")";
+    "specialinvoke $r14.<java.io.File: void <init>(java.lang.String)>(\".\")"->"virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder directory(java.io.File)>($r14)";
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder directory(java.io.File)>($r14)"->"$r16 = new java.util.ArrayList";
+    "$r16 = new java.util.ArrayList"->"specialinvoke $r16.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r16.<java.util.ArrayList: void <init>()>()"->"r35 = $r16";
+    "r35 = $r16"->"virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectErrorStream(boolean)>(1)";
+    "r35 = $r16"->"$r28 := @caughtexception";
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectErrorStream(boolean)>(1)"->"r36 = virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.Process start()>()";
+    "virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectErrorStream(boolean)>(1)"->"$r28 := @caughtexception";
+    "r36 = virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.Process start()>()"->"$r18 = new java.io.BufferedReader";
+    "r36 = virtualinvoke r34.<java.lang.ProcessBuilder: java.lang.Process start()>()"->"$r28 := @caughtexception";
+    "$r18 = new java.io.BufferedReader"->"$r19 = new java.io.InputStreamReader";
+    "$r18 = new java.io.BufferedReader"->"$r28 := @caughtexception";
+    "$r19 = new java.io.InputStreamReader"->"$r20 = virtualinvoke r36.<java.lang.Process: java.io.InputStream getInputStream()>()";
+    "$r19 = new java.io.InputStreamReader"->"$r28 := @caughtexception";
+    "$r20 = virtualinvoke r36.<java.lang.Process: java.io.InputStream getInputStream()>()"->"specialinvoke $r19.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r20)";
+    "$r20 = virtualinvoke r36.<java.lang.Process: java.io.InputStream getInputStream()>()"->"$r28 := @caughtexception";
+    "specialinvoke $r19.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r20)"->"specialinvoke $r18.<java.io.BufferedReader: void <init>(java.io.Reader,int)>($r19, 8192)";
+    "specialinvoke $r19.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r20)"->"$r28 := @caughtexception";
+    "specialinvoke $r18.<java.io.BufferedReader: void <init>(java.io.Reader,int)>($r19, 8192)"->"r37 = $r18";
+    "specialinvoke $r18.<java.io.BufferedReader: void <init>(java.io.Reader,int)>($r19, 8192)"->"$r28 := @caughtexception";
+    "r37 = $r18"->"r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "r37 = $r18"->"$r28 := @caughtexception";
+    "r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()"->"goto [?= (branch)]";
+    "r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r28 := @caughtexception";
+    "goto [?= (branch)]"->"if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)";
+    "goto [?= (branch)]"->"$r28 := @caughtexception";
+    "interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"->"$r28 := @caughtexception";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(r38)";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"$r28 := @caughtexception";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(r38)"->"r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(r38)"->"$r28 := @caughtexception";
+    "r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()"->"if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)";
+    "r38 = virtualinvoke r37.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r28 := @caughtexception";
+    "if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"->"i0 = virtualinvoke r36.<java.lang.Process: int waitFor()>()";
+    "if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"->"interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)";
+    "if r38 != null goto interfaceinvoke r35.<java.util.List: boolean add(java.lang.Object)>(r38)"->"$r28 := @caughtexception";
+    "i0 = virtualinvoke r36.<java.lang.Process: int waitFor()>()"->"virtualinvoke r36.<java.lang.Process: void destroy()>()";
+    "i0 = virtualinvoke r36.<java.lang.Process: int waitFor()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r36.<java.lang.Process: void destroy()>()"->"if i0 == 0 goto return r35";
+    "virtualinvoke r36.<java.lang.Process: void destroy()>()"->"$r28 := @caughtexception";
+    "if i0 == 0 goto return r35"->"$r22 = new java.lang.RuntimeException";
+    "if i0 == 0 goto return r35"->"return r35";
+    "if i0 == 0 goto return r35"->"$r28 := @caughtexception";
+    "$r22 = new java.lang.RuntimeException"->"specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: test returned non-zero value\")";
+    "$r22 = new java.lang.RuntimeException"->"$r28 := @caughtexception";
+    "specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: test returned non-zero value\")"->"throw $r22";
+    "specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: test returned non-zero value\")"->"$r28 := @caughtexception";
+    "throw $r22"->"$r28 := @caughtexception";
+    "$r28 := @caughtexception"->"r39 = $r28";
+    "r39 = $r28"->"virtualinvoke r39.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r39.<java.lang.Exception: void printStackTrace()>()"->"$r29 = new java.lang.RuntimeException";
+    "$r29 = new java.lang.RuntimeException"->"$r30 = virtualinvoke r39.<java.lang.Exception: java.lang.String getMessage()>()";
+    "$r30 = virtualinvoke r39.<java.lang.Exception: java.lang.String getMessage()>()"->"specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r30)";
+    "specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>($r30)"->"throw $r29";
+}

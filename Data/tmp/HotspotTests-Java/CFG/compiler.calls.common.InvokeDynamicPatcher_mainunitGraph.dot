@@ -1,0 +1,205 @@
+digraph "unitGraph" {
+    "r33 := @parameter0: java.lang.String[]"
+    "$r0 = class \"Lcompiler/calls/common/InvokeDynamic;\""
+    "$r1 = virtualinvoke $r0.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"
+    "$r2 = virtualinvoke $r1.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>()"
+    "$r3 = virtualinvoke $r2.<java.security.CodeSource: java.net.URL getLocation()>()"
+    "$r4 = virtualinvoke $r3.<java.net.URL: java.net.URI toURI()>()"
+    "$r5 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.net.URI)>($r4)"
+    "$r6 = new java.lang.StringBuilder"
+    "$r7 = <compiler.calls.common.InvokeDynamicPatcher: java.lang.String CLASS>"
+    "$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7)"
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)"
+    "$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r11 = interfaceinvoke $r5.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>($r10)"
+    "goto [?= r35 = null]"
+    "$r28 := @caughtexception"
+    "r34 = $r28"
+    "$r29 = new java.lang.Error"
+    "$r30 = new java.lang.StringBuilder"
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"TESTBUG: Can\'t get code source\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r34)"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r29.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r32, r34)"
+    "throw $r29"
+    "r35 = null"
+    "$r12 = new java.io.FileInputStream"
+    "$r13 = interfaceinvoke r11.<java.nio.file.Path: java.io.File toFile()>()"
+    "specialinvoke $r12.<java.io.FileInputStream: void <init>(java.io.File)>($r13)"
+    "r14 = $r12"
+    "$r15 = new jdk.internal.org.objectweb.asm.ClassReader"
+    "specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)"
+    "r16 = $r15"
+    "if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter"
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"
+    "goto [?= $r17 = new jdk.internal.org.objectweb.asm.ClassWriter]"
+    "$r27 := @caughtexception"
+    "r35 = $r27"
+    "if r14 == null goto throw r35"
+    "throw r35"
+    "$r26 := @caughtexception"
+    "r36 = $r26"
+    "if r35 != null goto (branch)"
+    "r35 = r36"
+    "goto [?= throw r35]"
+    "if r35 == r36 goto throw r35"
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"
+    "$r24 := @caughtexception"
+    "r37 = $r24"
+    "$r25 = new java.lang.Error"
+    "specialinvoke $r25.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"Error reading file\", r37)"
+    "throw $r25"
+    "$r17 = new jdk.internal.org.objectweb.asm.ClassWriter"
+    "specialinvoke $r17.<jdk.internal.org.objectweb.asm.ClassWriter: void <init>(jdk.internal.org.objectweb.asm.ClassReader,int)>(r16, 3)"
+    "r38 = $r17"
+    "$r18 = new compiler.calls.common.InvokeDynamicPatcher"
+    "specialinvoke $r18.<compiler.calls.common.InvokeDynamicPatcher: void <init>(int,jdk.internal.org.objectweb.asm.ClassWriter)>(327680, r38)"
+    "virtualinvoke r16.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r18, 0)"
+    "$r19 = virtualinvoke r38.<jdk.internal.org.objectweb.asm.ClassWriter: byte[] toByteArray()>()"
+    "$r20 = newarray (java.nio.file.OpenOption)[1]"
+    "$r21 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption WRITE>"
+    "$r20[0] = $r21"
+    "staticinvoke <java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>(r11, $r19, $r20)"
+    "goto [?= return]"
+    "$r22 := @caughtexception"
+    "r39 = $r22"
+    "$r23 = new java.lang.Error"
+    "specialinvoke $r23.<java.lang.Error: void <init>(java.lang.Throwable)>(r39)"
+    "throw $r23"
+    "return"
+    "r33 := @parameter0: java.lang.String[]"->"$r0 = class \"Lcompiler/calls/common/InvokeDynamic;\"";
+    "r33 := @parameter0: java.lang.String[]"->"$r28 := @caughtexception";
+    "$r0 = class \"Lcompiler/calls/common/InvokeDynamic;\""->"$r1 = virtualinvoke $r0.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()";
+    "$r0 = class \"Lcompiler/calls/common/InvokeDynamic;\""->"$r28 := @caughtexception";
+    "$r1 = virtualinvoke $r0.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r2 = virtualinvoke $r1.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>()";
+    "$r1 = virtualinvoke $r0.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>()"->"$r28 := @caughtexception";
+    "$r2 = virtualinvoke $r1.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>()"->"$r3 = virtualinvoke $r2.<java.security.CodeSource: java.net.URL getLocation()>()";
+    "$r2 = virtualinvoke $r1.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>()"->"$r28 := @caughtexception";
+    "$r3 = virtualinvoke $r2.<java.security.CodeSource: java.net.URL getLocation()>()"->"$r4 = virtualinvoke $r3.<java.net.URL: java.net.URI toURI()>()";
+    "$r3 = virtualinvoke $r2.<java.security.CodeSource: java.net.URL getLocation()>()"->"$r28 := @caughtexception";
+    "$r4 = virtualinvoke $r3.<java.net.URL: java.net.URI toURI()>()"->"$r5 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.net.URI)>($r4)";
+    "$r4 = virtualinvoke $r3.<java.net.URL: java.net.URI toURI()>()"->"$r28 := @caughtexception";
+    "$r5 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.net.URI)>($r4)"->"$r6 = new java.lang.StringBuilder";
+    "$r5 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.net.URI)>($r4)"->"$r28 := @caughtexception";
+    "$r6 = new java.lang.StringBuilder"->"$r7 = <compiler.calls.common.InvokeDynamicPatcher: java.lang.String CLASS>";
+    "$r6 = new java.lang.StringBuilder"->"$r28 := @caughtexception";
+    "$r7 = <compiler.calls.common.InvokeDynamicPatcher: java.lang.String CLASS>"->"$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7)";
+    "$r7 = <compiler.calls.common.InvokeDynamicPatcher: java.lang.String CLASS>"->"$r28 := @caughtexception";
+    "$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7)"->"specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)";
+    "$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7)"->"$r28 := @caughtexception";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)"->"$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)"->"$r28 := @caughtexception";
+    "$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")"->"$r28 := @caughtexception";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"r11 = interfaceinvoke $r5.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>($r10)";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r28 := @caughtexception";
+    "r11 = interfaceinvoke $r5.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>($r10)"->"goto [?= r35 = null]";
+    "r11 = interfaceinvoke $r5.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>($r10)"->"$r28 := @caughtexception";
+    "goto [?= r35 = null]"->"r35 = null";
+    "goto [?= r35 = null]"->"$r24 := @caughtexception";
+    "$r28 := @caughtexception"->"r34 = $r28";
+    "r34 = $r28"->"$r29 = new java.lang.Error";
+    "$r29 = new java.lang.Error"->"$r30 = new java.lang.StringBuilder";
+    "$r30 = new java.lang.StringBuilder"->"specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"TESTBUG: Can\'t get code source\")";
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"TESTBUG: Can\'t get code source\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r34)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r34)"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r29.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r32, r34)";
+    "specialinvoke $r29.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r32, r34)"->"throw $r29";
+    "r35 = null"->"$r26 := @caughtexception";
+    "r35 = null"->"$r24 := @caughtexception";
+    "r35 = null"->"$r12 = new java.io.FileInputStream";
+    "$r12 = new java.io.FileInputStream"->"$r26 := @caughtexception";
+    "$r12 = new java.io.FileInputStream"->"$r24 := @caughtexception";
+    "$r12 = new java.io.FileInputStream"->"$r13 = interfaceinvoke r11.<java.nio.file.Path: java.io.File toFile()>()";
+    "$r13 = interfaceinvoke r11.<java.nio.file.Path: java.io.File toFile()>()"->"$r26 := @caughtexception";
+    "$r13 = interfaceinvoke r11.<java.nio.file.Path: java.io.File toFile()>()"->"$r24 := @caughtexception";
+    "$r13 = interfaceinvoke r11.<java.nio.file.Path: java.io.File toFile()>()"->"specialinvoke $r12.<java.io.FileInputStream: void <init>(java.io.File)>($r13)";
+    "specialinvoke $r12.<java.io.FileInputStream: void <init>(java.io.File)>($r13)"->"$r26 := @caughtexception";
+    "specialinvoke $r12.<java.io.FileInputStream: void <init>(java.io.File)>($r13)"->"$r24 := @caughtexception";
+    "specialinvoke $r12.<java.io.FileInputStream: void <init>(java.io.File)>($r13)"->"r14 = $r12";
+    "r14 = $r12"->"$r27 := @caughtexception";
+    "r14 = $r12"->"$r26 := @caughtexception";
+    "r14 = $r12"->"$r24 := @caughtexception";
+    "r14 = $r12"->"$r15 = new jdk.internal.org.objectweb.asm.ClassReader";
+    "$r15 = new jdk.internal.org.objectweb.asm.ClassReader"->"$r27 := @caughtexception";
+    "$r15 = new jdk.internal.org.objectweb.asm.ClassReader"->"$r26 := @caughtexception";
+    "$r15 = new jdk.internal.org.objectweb.asm.ClassReader"->"$r24 := @caughtexception";
+    "$r15 = new jdk.internal.org.objectweb.asm.ClassReader"->"specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)";
+    "specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)"->"$r27 := @caughtexception";
+    "specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)"->"$r26 := @caughtexception";
+    "specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)"->"$r24 := @caughtexception";
+    "specialinvoke $r15.<jdk.internal.org.objectweb.asm.ClassReader: void <init>(java.io.InputStream)>(r14)"->"r16 = $r15";
+    "r16 = $r15"->"$r27 := @caughtexception";
+    "r16 = $r15"->"$r26 := @caughtexception";
+    "r16 = $r15"->"$r24 := @caughtexception";
+    "r16 = $r15"->"if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter";
+    "if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter"->"virtualinvoke r14.<java.io.FileInputStream: void close()>()";
+    "if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter"->"$r17 = new jdk.internal.org.objectweb.asm.ClassWriter";
+    "if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter"->"$r26 := @caughtexception";
+    "if r14 == null goto $r17 = new jdk.internal.org.objectweb.asm.ClassWriter"->"$r24 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"$r26 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"goto [?= $r17 = new jdk.internal.org.objectweb.asm.ClassWriter]";
+    "goto [?= $r17 = new jdk.internal.org.objectweb.asm.ClassWriter]"->"$r26 := @caughtexception";
+    "goto [?= $r17 = new jdk.internal.org.objectweb.asm.ClassWriter]"->"$r24 := @caughtexception";
+    "goto [?= $r17 = new jdk.internal.org.objectweb.asm.ClassWriter]"->"$r17 = new jdk.internal.org.objectweb.asm.ClassWriter";
+    "$r27 := @caughtexception"->"$r26 := @caughtexception";
+    "$r27 := @caughtexception"->"$r24 := @caughtexception";
+    "$r27 := @caughtexception"->"r35 = $r27";
+    "r35 = $r27"->"$r26 := @caughtexception";
+    "r35 = $r27"->"$r24 := @caughtexception";
+    "r35 = $r27"->"if r14 == null goto throw r35";
+    "if r14 == null goto throw r35"->"virtualinvoke r14.<java.io.FileInputStream: void close()>()";
+    "if r14 == null goto throw r35"->"throw r35";
+    "if r14 == null goto throw r35"->"$r26 := @caughtexception";
+    "if r14 == null goto throw r35"->"$r24 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"$r26 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r14.<java.io.FileInputStream: void close()>()"->"throw r35";
+    "throw r35"->"$r26 := @caughtexception";
+    "throw r35"->"$r24 := @caughtexception";
+    "$r26 := @caughtexception"->"r36 = $r26";
+    "$r26 := @caughtexception"->"$r24 := @caughtexception";
+    "r36 = $r26"->"if r35 != null goto (branch)";
+    "r36 = $r26"->"$r24 := @caughtexception";
+    "if r35 != null goto (branch)"->"r35 = r36";
+    "if r35 != null goto (branch)"->"if r35 == r36 goto throw r35";
+    "if r35 != null goto (branch)"->"$r24 := @caughtexception";
+    "r35 = r36"->"goto [?= throw r35]";
+    "r35 = r36"->"$r24 := @caughtexception";
+    "goto [?= throw r35]"->"throw r35";
+    "goto [?= throw r35]"->"$r24 := @caughtexception";
+    "if r35 == r36 goto throw r35"->"virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)";
+    "if r35 == r36 goto throw r35"->"throw r35";
+    "if r35 == r36 goto throw r35"->"$r24 := @caughtexception";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"->"throw r35";
+    "virtualinvoke r35.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r36)"->"$r24 := @caughtexception";
+    "throw r35"->"$r24 := @caughtexception";
+    "$r24 := @caughtexception"->"r37 = $r24";
+    "r37 = $r24"->"$r25 = new java.lang.Error";
+    "$r25 = new java.lang.Error"->"specialinvoke $r25.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"Error reading file\", r37)";
+    "specialinvoke $r25.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>(\"Error reading file\", r37)"->"throw $r25";
+    "$r17 = new jdk.internal.org.objectweb.asm.ClassWriter"->"specialinvoke $r17.<jdk.internal.org.objectweb.asm.ClassWriter: void <init>(jdk.internal.org.objectweb.asm.ClassReader,int)>(r16, 3)";
+    "specialinvoke $r17.<jdk.internal.org.objectweb.asm.ClassWriter: void <init>(jdk.internal.org.objectweb.asm.ClassReader,int)>(r16, 3)"->"r38 = $r17";
+    "r38 = $r17"->"$r18 = new compiler.calls.common.InvokeDynamicPatcher";
+    "$r18 = new compiler.calls.common.InvokeDynamicPatcher"->"specialinvoke $r18.<compiler.calls.common.InvokeDynamicPatcher: void <init>(int,jdk.internal.org.objectweb.asm.ClassWriter)>(327680, r38)";
+    "specialinvoke $r18.<compiler.calls.common.InvokeDynamicPatcher: void <init>(int,jdk.internal.org.objectweb.asm.ClassWriter)>(327680, r38)"->"virtualinvoke r16.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r18, 0)";
+    "virtualinvoke r16.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r18, 0)"->"$r19 = virtualinvoke r38.<jdk.internal.org.objectweb.asm.ClassWriter: byte[] toByteArray()>()";
+    "virtualinvoke r16.<jdk.internal.org.objectweb.asm.ClassReader: void accept(jdk.internal.org.objectweb.asm.ClassVisitor,int)>($r18, 0)"->"$r22 := @caughtexception";
+    "$r19 = virtualinvoke r38.<jdk.internal.org.objectweb.asm.ClassWriter: byte[] toByteArray()>()"->"$r20 = newarray (java.nio.file.OpenOption)[1]";
+    "$r19 = virtualinvoke r38.<jdk.internal.org.objectweb.asm.ClassWriter: byte[] toByteArray()>()"->"$r22 := @caughtexception";
+    "$r20 = newarray (java.nio.file.OpenOption)[1]"->"$r21 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption WRITE>";
+    "$r20 = newarray (java.nio.file.OpenOption)[1]"->"$r22 := @caughtexception";
+    "$r21 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption WRITE>"->"$r20[0] = $r21";
+    "$r21 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption WRITE>"->"$r22 := @caughtexception";
+    "$r20[0] = $r21"->"staticinvoke <java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>(r11, $r19, $r20)";
+    "$r20[0] = $r21"->"$r22 := @caughtexception";
+    "staticinvoke <java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>(r11, $r19, $r20)"->"goto [?= return]";
+    "staticinvoke <java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>(r11, $r19, $r20)"->"$r22 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r22 := @caughtexception"->"r39 = $r22";
+    "r39 = $r22"->"$r23 = new java.lang.Error";
+    "$r23 = new java.lang.Error"->"specialinvoke $r23.<java.lang.Error: void <init>(java.lang.Throwable)>(r39)";
+    "specialinvoke $r23.<java.lang.Error: void <init>(java.lang.Throwable)>(r39)"->"throw $r23";
+}

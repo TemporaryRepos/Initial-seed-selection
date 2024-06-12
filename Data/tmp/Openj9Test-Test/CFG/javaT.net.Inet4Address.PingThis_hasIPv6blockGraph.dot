@@ -1,0 +1,146 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+$r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+r1 = staticinvoke <java.util.Collections: java.util.ArrayList list(java.util.Enumeration)>($r0);
+r2 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return 0;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r3 = interfaceinvoke r2.<java.util.Iterator: java.lang.Object next()>();
+r4 = (java.net.NetworkInterface) $r3;
+$r5 = virtualinvoke r4.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+r6 = staticinvoke <java.util.Collections: java.util.ArrayList list(java.util.Enumeration)>($r5);
+r7 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+$z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>();
+r9 = (java.net.InetAddress) $r8;
+$z2 = r9 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+return 1;
+"
+    "Block 6:
+[preds: 4 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 7:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 8:
+[preds: 1 ] [succs: ]
+return 0;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+$r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+r1 = staticinvoke <java.util.Collections: java.util.ArrayList list(java.util.Enumeration)>($r0);
+r2 = interfaceinvoke r1.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return 0;
+";
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return 0;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r3 = interfaceinvoke r2.<java.util.Iterator: java.lang.Object next()>();
+r4 = (java.net.NetworkInterface) $r3;
+$r5 = virtualinvoke r4.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+r6 = staticinvoke <java.util.Collections: java.util.ArrayList list(java.util.Enumeration)>($r5);
+r7 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return 0;
+"->"Block 8:
+[preds: 1 ] [succs: ]
+return 0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r3 = interfaceinvoke r2.<java.util.Iterator: java.lang.Object next()>();
+r4 = (java.net.NetworkInterface) $r3;
+$r5 = virtualinvoke r4.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+r6 = staticinvoke <java.util.Collections: java.util.ArrayList list(java.util.Enumeration)>($r5);
+r7 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+$z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+$z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>();
+r9 = (java.net.InetAddress) $r8;
+$z2 = r9 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+$z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 7:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>();
+r9 = (java.net.InetAddress) $r8;
+$z2 = r9 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: ]
+return 1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>();
+r9 = (java.net.InetAddress) $r8;
+$z2 = r9 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"->"Block 6:
+[preds: 4 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 6:
+[preds: 4 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 3:
+[preds: 2 6 ] [succs: 4 7 ]
+$z1 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 7:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r2.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto return 0;
+";
+}

@@ -1,0 +1,89 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r10 := @this: com.doinb.jdbc.JDBCDemo;
+staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(\"com.mysql.jdbc.Driver\");
+r1 = staticinvoke <java.sql.DriverManager: java.sql.Connection getConnection(java.lang.String,java.lang.String,java.lang.String)>(\"jdbc:mysql://localhost:3306/sell?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false\", \"mysqldb\", \"123456\");
+r2 = interfaceinvoke r1.<java.sql.Connection: java.sql.Statement createStatement()>();
+r3 = interfaceinvoke r2.<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>(\"select * from order_detail\");
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>();
+if $z0 == 0 goto interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = <java.lang.System: java.io.PrintStream out>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u539f\u751fJDBC\u67e5\u8be2\uff1a\");
+$r7 = interfaceinvoke r3.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\");
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+goto [?= $z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>()];
+"
+    "Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+interfaceinvoke r2.<java.sql.Statement: void close()>();
+interfaceinvoke r1.<java.sql.Connection: void close()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r10 := @this: com.doinb.jdbc.JDBCDemo;
+staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(\"com.mysql.jdbc.Driver\");
+r1 = staticinvoke <java.sql.DriverManager: java.sql.Connection getConnection(java.lang.String,java.lang.String,java.lang.String)>(\"jdbc:mysql://localhost:3306/sell?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false\", \"mysqldb\", \"123456\");
+r2 = interfaceinvoke r1.<java.sql.Connection: java.sql.Statement createStatement()>();
+r3 = interfaceinvoke r2.<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>(\"select * from order_detail\");
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>();
+if $z0 == 0 goto interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>();
+if $z0 == 0 goto interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = <java.lang.System: java.io.PrintStream out>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u539f\u751fJDBC\u67e5\u8be2\uff1a\");
+$r7 = interfaceinvoke r3.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\");
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+goto [?= $z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>()];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>();
+if $z0 == 0 goto interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+"->"Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+interfaceinvoke r2.<java.sql.Statement: void close()>();
+interfaceinvoke r1.<java.sql.Connection: void close()>();
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r5 = <java.lang.System: java.io.PrintStream out>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u4f7f\u7528\u539f\u751fJDBC\u67e5\u8be2\uff1a\");
+$r7 = interfaceinvoke r3.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>(\"order_id\");
+$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+goto [?= $z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>()];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$z0 = interfaceinvoke r3.<java.sql.ResultSet: boolean next()>();
+if $z0 == 0 goto interfaceinvoke r3.<java.sql.ResultSet: void close()>();
+";
+}

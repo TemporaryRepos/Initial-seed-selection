@@ -1,0 +1,23 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: int[]"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "i0 = i0 + 1"
+    "if i0 < 2 goto i0 = i0 + 1"
+    "if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()"
+    "r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>"
+    "$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()"
+    "$r1 = (int[]) $r0"
+    "return $r1"
+    "r2 := @parameter0: int[]"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 2 goto i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 2 goto i0 = i0 + 1";
+    "if i0 < 2 goto i0 = i0 + 1"->"if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()";
+    "if i0 < 2 goto i0 = i0 + 1"->"i0 = i0 + 1";
+    "if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()"->"r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>";
+    "if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()"->"$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()";
+    "r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>"->"$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()";
+    "$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>()"->"$r1 = (int[]) $r0";
+    "$r1 = (int[]) $r0"->"return $r1";
+}

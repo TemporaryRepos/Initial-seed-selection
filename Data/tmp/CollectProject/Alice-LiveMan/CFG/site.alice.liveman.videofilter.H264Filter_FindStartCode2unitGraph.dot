@@ -1,0 +1,27 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "r0 := @parameter1: byte[]"
+    "$b1 = r0[i0]"
+    "if $b1 != 0 goto return 0"
+    "$i2 = i0 + 1"
+    "$b3 = r0[$i2]"
+    "if $b3 != 0 goto return 0"
+    "$i4 = i0 + 2"
+    "$b5 = r0[$i4]"
+    "if $b5 == 1 goto return 1"
+    "return 0"
+    "return 1"
+    "i0 := @parameter0: int"->"r0 := @parameter1: byte[]";
+    "r0 := @parameter1: byte[]"->"$b1 = r0[i0]";
+    "$b1 = r0[i0]"->"if $b1 != 0 goto return 0";
+    "if $b1 != 0 goto return 0"->"$i2 = i0 + 1";
+    "if $b1 != 0 goto return 0"->"return 0";
+    "$i2 = i0 + 1"->"$b3 = r0[$i2]";
+    "$b3 = r0[$i2]"->"if $b3 != 0 goto return 0";
+    "if $b3 != 0 goto return 0"->"$i4 = i0 + 2";
+    "if $b3 != 0 goto return 0"->"return 0";
+    "$i4 = i0 + 2"->"$b5 = r0[$i4]";
+    "$b5 = r0[$i4]"->"if $b5 == 1 goto return 1";
+    "if $b5 == 1 goto return 1"->"return 0";
+    "if $b5 == 1 goto return 1"->"return 1";
+}

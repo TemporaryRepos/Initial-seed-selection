@@ -1,0 +1,78 @@
+digraph "unitGraph" {
+    "$r0 = new com.qcloud.cos.auth.BasicCOSCredentials"
+    "specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"SECRET_ID\", \"SECRET_KEY\")"
+    "r1 = $r0"
+    "$r2 = new com.qcloud.cos.ClientConfig"
+    "$r3 = new com.qcloud.cos.region.Region"
+    "specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-guangzhou\")"
+    "specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3)"
+    "r4 = $r2"
+    "$r5 = new com.qcloud.cos.COSClient"
+    "specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4)"
+    "r6 = $r5"
+    "r7 = \"examplebucket-1250000000\""
+    "r8 = \"example.jpg\""
+    "$r9 = new java.io.File"
+    "specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"/data/example.jpg\")"
+    "r10 = $r9"
+    "$r11 = new com.qcloud.cos.model.ObjectMetadata"
+    "specialinvoke $r11.<com.qcloud.cos.model.ObjectMetadata: void <init>()>()"
+    "r12 = $r11"
+    "virtualinvoke r12.<com.qcloud.cos.model.ObjectMetadata: void setHeader(java.lang.String,java.lang.Object)>(\"Pic-Operations\", \"{\\\"is_pic_info\\\":1,\\\"rules\\\":[{\\\"fileid\\\":\\\"example.png\\\",\\\"rule\\\":\\\"imageView2/format/png\\\"}]}\")"
+    "$r13 = new com.qcloud.cos.model.PutObjectRequest"
+    "specialinvoke $r13.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r7, r8, r10)"
+    "r14 = $r13"
+    "virtualinvoke r14.<com.qcloud.cos.model.PutObjectRequest: void setMetadata(com.qcloud.cos.model.ObjectMetadata)>(r12)"
+    "r18 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r14)"
+    "r15 = virtualinvoke r18.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>()"
+    "goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()]"
+    "$r17 := @caughtexception"
+    "r19 = $r17"
+    "virtualinvoke r19.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>()"
+    "$r16 := @caughtexception"
+    "r20 = $r16"
+    "virtualinvoke r20.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>()"
+    "virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()"
+    "return"
+    "$r0 = new com.qcloud.cos.auth.BasicCOSCredentials"->"specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"SECRET_ID\", \"SECRET_KEY\")";
+    "specialinvoke $r0.<com.qcloud.cos.auth.BasicCOSCredentials: void <init>(java.lang.String,java.lang.String)>(\"SECRET_ID\", \"SECRET_KEY\")"->"r1 = $r0";
+    "r1 = $r0"->"$r2 = new com.qcloud.cos.ClientConfig";
+    "$r2 = new com.qcloud.cos.ClientConfig"->"$r3 = new com.qcloud.cos.region.Region";
+    "$r3 = new com.qcloud.cos.region.Region"->"specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-guangzhou\")";
+    "specialinvoke $r3.<com.qcloud.cos.region.Region: void <init>(java.lang.String)>(\"ap-guangzhou\")"->"specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3)";
+    "specialinvoke $r2.<com.qcloud.cos.ClientConfig: void <init>(com.qcloud.cos.region.Region)>($r3)"->"r4 = $r2";
+    "r4 = $r2"->"$r5 = new com.qcloud.cos.COSClient";
+    "$r5 = new com.qcloud.cos.COSClient"->"specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4)";
+    "specialinvoke $r5.<com.qcloud.cos.COSClient: void <init>(com.qcloud.cos.auth.COSCredentials,com.qcloud.cos.ClientConfig)>(r1, r4)"->"r6 = $r5";
+    "r6 = $r5"->"r7 = \"examplebucket-1250000000\"";
+    "r7 = \"examplebucket-1250000000\""->"r8 = \"example.jpg\"";
+    "r8 = \"example.jpg\""->"$r9 = new java.io.File";
+    "$r9 = new java.io.File"->"specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"/data/example.jpg\")";
+    "specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>(\"/data/example.jpg\")"->"r10 = $r9";
+    "r10 = $r9"->"$r11 = new com.qcloud.cos.model.ObjectMetadata";
+    "$r11 = new com.qcloud.cos.model.ObjectMetadata"->"specialinvoke $r11.<com.qcloud.cos.model.ObjectMetadata: void <init>()>()";
+    "specialinvoke $r11.<com.qcloud.cos.model.ObjectMetadata: void <init>()>()"->"r12 = $r11";
+    "r12 = $r11"->"virtualinvoke r12.<com.qcloud.cos.model.ObjectMetadata: void setHeader(java.lang.String,java.lang.Object)>(\"Pic-Operations\", \"{\\\"is_pic_info\\\":1,\\\"rules\\\":[{\\\"fileid\\\":\\\"example.png\\\",\\\"rule\\\":\\\"imageView2/format/png\\\"}]}\")";
+    "virtualinvoke r12.<com.qcloud.cos.model.ObjectMetadata: void setHeader(java.lang.String,java.lang.Object)>(\"Pic-Operations\", \"{\\\"is_pic_info\\\":1,\\\"rules\\\":[{\\\"fileid\\\":\\\"example.png\\\",\\\"rule\\\":\\\"imageView2/format/png\\\"}]}\")"->"$r13 = new com.qcloud.cos.model.PutObjectRequest";
+    "$r13 = new com.qcloud.cos.model.PutObjectRequest"->"specialinvoke $r13.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r7, r8, r10)";
+    "specialinvoke $r13.<com.qcloud.cos.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.File)>(r7, r8, r10)"->"r14 = $r13";
+    "r14 = $r13"->"virtualinvoke r14.<com.qcloud.cos.model.PutObjectRequest: void setMetadata(com.qcloud.cos.model.ObjectMetadata)>(r12)";
+    "virtualinvoke r14.<com.qcloud.cos.model.PutObjectRequest: void setMetadata(com.qcloud.cos.model.ObjectMetadata)>(r12)"->"$r17 := @caughtexception";
+    "virtualinvoke r14.<com.qcloud.cos.model.PutObjectRequest: void setMetadata(com.qcloud.cos.model.ObjectMetadata)>(r12)"->"$r16 := @caughtexception";
+    "virtualinvoke r14.<com.qcloud.cos.model.PutObjectRequest: void setMetadata(com.qcloud.cos.model.ObjectMetadata)>(r12)"->"r18 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r14)";
+    "r18 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r14)"->"$r17 := @caughtexception";
+    "r18 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r14)"->"$r16 := @caughtexception";
+    "r18 = virtualinvoke r6.<com.qcloud.cos.COSClient: com.qcloud.cos.model.PutObjectResult putObject(com.qcloud.cos.model.PutObjectRequest)>(r14)"->"r15 = virtualinvoke r18.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>()";
+    "r15 = virtualinvoke r18.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>()"->"$r17 := @caughtexception";
+    "r15 = virtualinvoke r18.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>()"->"$r16 := @caughtexception";
+    "r15 = virtualinvoke r18.<com.qcloud.cos.model.PutObjectResult: java.lang.String getETag()>()"->"goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()]";
+    "goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()]"->"virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()";
+    "$r17 := @caughtexception"->"r19 = $r17";
+    "r19 = $r17"->"virtualinvoke r19.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>()";
+    "virtualinvoke r19.<com.qcloud.cos.exception.CosServiceException: void printStackTrace()>()"->"goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()]";
+    "goto [?= virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()]"->"virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()";
+    "$r16 := @caughtexception"->"r20 = $r16";
+    "r20 = $r16"->"virtualinvoke r20.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>()";
+    "virtualinvoke r20.<com.qcloud.cos.exception.CosClientException: void printStackTrace()>()"->"virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()";
+    "virtualinvoke r6.<com.qcloud.cos.COSClient: void shutdown()>()"->"return";
+}

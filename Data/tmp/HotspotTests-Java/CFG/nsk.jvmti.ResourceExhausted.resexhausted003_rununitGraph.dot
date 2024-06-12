@@ -1,0 +1,156 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "r16 := @parameter1: java.io.PrintStream"
+    "if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>"
+    "$i0 = lengthof r0"
+    "if $i0 >= 1 goto r2 = r0[0]"
+    "$r1 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\")"
+    "return 2"
+    "r2 = r0[0]"
+    "$r3 = new nsk.share.test.Stresser"
+    "specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0)"
+    "r4 = $r3"
+    "$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\""
+    "r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>()"
+    "$r7 = new java.lang.StringBuilder"
+    "$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2)"
+    "specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)"
+    "$r9 = <java.io.File: java.lang.String separator>"
+    "$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"
+    "$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47)"
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14)"
+    "i2 = 0"
+    "staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>()"
+    "virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\")"
+    "virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L)"
+    "r31 = null"
+    "goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()]"
+    "$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"
+    "specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>()"
+    "r18 = $r17"
+    "r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31"
+    "r31 = r18"
+    "$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>"
+    "virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15)"
+    "i2 = i2 + 1"
+    "$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()"
+    "if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\")"
+    "virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()"
+    "return 0"
+    "$r24 := @caughtexception"
+    "goto [?= staticinvoke <java.lang.System: void gc()>()]"
+    "$r22 := @caughtexception"
+    "r23 = $r22"
+    "throw r23"
+    "staticinvoke <java.lang.System: void gc()>()"
+    "$r25 = new java.lang.StringBuilder"
+    "specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \")"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \")"
+    "$i1 = lengthof r15"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1)"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\")"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30)"
+    "if $z1 != 0 goto return 0"
+    "r0 := @parameter0: java.lang.String[]"->"r16 := @parameter1: java.io.PrintStream";
+    "r16 := @parameter1: java.io.PrintStream"->"if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>";
+    "if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>"->"$i0 = lengthof r0";
+    "if r0 == null goto $r1 = <java.lang.System: java.io.PrintStream err>"->"$r1 = <java.lang.System: java.io.PrintStream err>";
+    "$i0 = lengthof r0"->"if $i0 >= 1 goto r2 = r0[0]";
+    "if $i0 >= 1 goto r2 = r0[0]"->"$r1 = <java.lang.System: java.io.PrintStream err>";
+    "if $i0 >= 1 goto r2 = r0[0]"->"r2 = r0[0]";
+    "$r1 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\")";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"TEST BUG: Classes directory should be the first argument. Check .cfg file.\")"->"return 2";
+    "r2 = r0[0]"->"$r3 = new nsk.share.test.Stresser";
+    "$r3 = new nsk.share.test.Stresser"->"specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0)";
+    "specialinvoke $r3.<nsk.share.test.Stresser: void <init>(java.lang.String[])>(r0)"->"r4 = $r3";
+    "r4 = $r3"->"$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\"";
+    "$r5 = class \"Lnsk/jvmti/ResourceExhausted/Helper;\""->"r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>()";
+    "r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>()"->"$r7 = new java.lang.StringBuilder";
+    "$r7 = new java.lang.StringBuilder"->"$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2)";
+    "$r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2)"->"specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)";
+    "specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8)"->"$r9 = <java.io.File: java.lang.String separator>";
+    "$r9 = <java.io.File: java.lang.String separator>"->"$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)";
+    "$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"->"$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47)";
+    "$r11 = virtualinvoke r6.<java.lang.String: java.lang.String replace(char,char)>(46, 47)"->"$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)";
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".class\")"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"->"r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14)";
+    "r15 = staticinvoke <nsk.jvmti.ResourceExhausted.resexhausted003: byte[] fileBytes(java.lang.String)>($r14)"->"i2 = 0";
+    "i2 = 0"->"staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>()";
+    "staticinvoke <nsk.jvmti.ResourceExhausted.Helper: void resetExhaustedEvent()>()"->"virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\")";
+    "virtualinvoke r16.<java.io.PrintStream: void println(java.lang.String)>(\"Loading classes...\")"->"virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L)";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L)"->"$r24 := @caughtexception";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L)"->"$r22 := @caughtexception";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void start(long)>(9223372036854775807L)"->"r31 = null";
+    "r31 = null"->"$r24 := @caughtexception";
+    "r31 = null"->"$r22 := @caughtexception";
+    "r31 = null"->"goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()]";
+    "goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()]"->"$r24 := @caughtexception";
+    "goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()]"->"$r22 := @caughtexception";
+    "goto [?= $z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()]"->"$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()";
+    "$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r24 := @caughtexception";
+    "$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r22 := @caughtexception";
+    "$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>()";
+    "specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>()"->"$r24 := @caughtexception";
+    "specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>()"->"$r22 := @caughtexception";
+    "specialinvoke $r17.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: void <init>()>()"->"r18 = $r17";
+    "r18 = $r17"->"$r24 := @caughtexception";
+    "r18 = $r17"->"$r22 := @caughtexception";
+    "r18 = $r17"->"r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31";
+    "r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31"->"$r24 := @caughtexception";
+    "r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31"->"$r22 := @caughtexception";
+    "r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$Node next> = r31"->"r31 = r18";
+    "r31 = r18"->"$r24 := @caughtexception";
+    "r31 = r18"->"$r22 := @caughtexception";
+    "r31 = r18"->"$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>";
+    "$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>"->"$r24 := @caughtexception";
+    "$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>"->"$r22 := @caughtexception";
+    "$r19 = r18.<nsk.jvmti.ResourceExhausted.resexhausted003$Node: nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader loader>"->"virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15)";
+    "virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15)"->"$r24 := @caughtexception";
+    "virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15)"->"$r22 := @caughtexception";
+    "virtualinvoke $r19.<nsk.jvmti.ResourceExhausted.resexhausted003$MyClassLoader: java.lang.Class loadClass(java.lang.String,byte[])>(r6, r15)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"$r24 := @caughtexception";
+    "i2 = i2 + 1"->"$r22 := @caughtexception";
+    "i2 = i2 + 1"->"$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()";
+    "$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()"->"$r24 := @caughtexception";
+    "$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()"->"$r22 := @caughtexception";
+    "$z0 = virtualinvoke r4.<nsk.share.test.Stresser: boolean iteration()>()"->"if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node";
+    "if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node";
+    "if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r24 := @caughtexception";
+    "if $z0 != 0 goto $r17 = new nsk.jvmti.ResourceExhausted.resexhausted003$Node"->"$r22 := @caughtexception";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"$r24 := @caughtexception";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\")";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\")"->"$r24 := @caughtexception";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\")"->"$r22 := @caughtexception";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Can\'t reproduce OOME due to a limit on iterations/execution time. Test was useless.\")"->"virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()"->"return 0";
+    "$r24 := @caughtexception"->"virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()";
+    "$r24 := @caughtexception"->"$r22 := @caughtexception";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()"->"goto [?= staticinvoke <java.lang.System: void gc()>()]";
+    "goto [?= staticinvoke <java.lang.System: void gc()>()]"->"staticinvoke <java.lang.System: void gc()>()";
+    "$r22 := @caughtexception"->"r23 = $r22";
+    "r23 = $r22"->"virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()";
+    "virtualinvoke r4.<nsk.share.test.Stresser: void finish()>()"->"throw r23";
+    "staticinvoke <java.lang.System: void gc()>()"->"$r25 = new java.lang.StringBuilder";
+    "$r25 = new java.lang.StringBuilder"->"specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \")";
+    "specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"loading \")"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \")";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" classes of \")"->"$i1 = lengthof r15";
+    "$i1 = lengthof r15"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1)";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1)"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\")";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" bytes\")"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()"->"$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30)";
+    "$z1 = staticinvoke <nsk.jvmti.ResourceExhausted.Helper: boolean checkResult(java.lang.String)>($r30)"->"if $z1 != 0 goto return 0";
+    "if $z1 != 0 goto return 0"->"return 2";
+    "if $z1 != 0 goto return 0"->"return 0";
+}

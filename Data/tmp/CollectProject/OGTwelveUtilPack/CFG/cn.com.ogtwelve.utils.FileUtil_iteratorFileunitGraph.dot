@@ -1,0 +1,61 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.io.File"
+    "r3 := @parameter1: java.lang.String"
+    "$z0 = virtualinvoke r0.<java.io.File: boolean exists()>()"
+    "if $z0 != 0 goto $r1 = new java.util.ArrayList"
+    "return null"
+    "$r1 = new java.util.ArrayList"
+    "specialinvoke $r1.<java.util.ArrayList: void <init>()>()"
+    "r2 = $r1"
+    "$z1 = virtualinvoke r0.<java.io.File: boolean isDirectory()>()"
+    "if $z1 == 0 goto (branch)"
+    "r5 = virtualinvoke r0.<java.io.File: java.io.File[] listFiles()>()"
+    "r6 = r5"
+    "i0 = lengthof r6"
+    "i1 = 0"
+    "if i1 >= i0 goto (branch)"
+    "r7 = r6[i1]"
+    "$r8 = staticinvoke <cn.com.ogtwelve.utils.FileUtil: java.util.List iteratorFile(java.io.File,java.lang.String)>(r7, r3)"
+    "interfaceinvoke r2.<java.util.List: boolean addAll(java.util.Collection)>($r8)"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "goto [?= return r2]"
+    "if r3 != null goto $r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()"
+    "interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r0)"
+    "$r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()"
+    "$z2 = virtualinvoke $r4.<java.lang.String: boolean matches(java.lang.String)>(r3)"
+    "if $z2 == 0 goto return r2"
+    "return r2"
+    "r0 := @parameter0: java.io.File"->"r3 := @parameter1: java.lang.String";
+    "r3 := @parameter1: java.lang.String"->"$z0 = virtualinvoke r0.<java.io.File: boolean exists()>()";
+    "$z0 = virtualinvoke r0.<java.io.File: boolean exists()>()"->"if $z0 != 0 goto $r1 = new java.util.ArrayList";
+    "if $z0 != 0 goto $r1 = new java.util.ArrayList"->"return null";
+    "if $z0 != 0 goto $r1 = new java.util.ArrayList"->"$r1 = new java.util.ArrayList";
+    "$r1 = new java.util.ArrayList"->"specialinvoke $r1.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r1.<java.util.ArrayList: void <init>()>()"->"r2 = $r1";
+    "r2 = $r1"->"$z1 = virtualinvoke r0.<java.io.File: boolean isDirectory()>()";
+    "$z1 = virtualinvoke r0.<java.io.File: boolean isDirectory()>()"->"if $z1 == 0 goto (branch)";
+    "if $z1 == 0 goto (branch)"->"r5 = virtualinvoke r0.<java.io.File: java.io.File[] listFiles()>()";
+    "if $z1 == 0 goto (branch)"->"if r3 != null goto $r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()";
+    "r5 = virtualinvoke r0.<java.io.File: java.io.File[] listFiles()>()"->"r6 = r5";
+    "r6 = r5"->"i0 = lengthof r6";
+    "i0 = lengthof r6"->"i1 = 0";
+    "i1 = 0"->"if i1 >= i0 goto (branch)";
+    "if i1 >= i0 goto (branch)"->"r7 = r6[i1]";
+    "if i1 >= i0 goto (branch)"->"goto [?= return r2]";
+    "r7 = r6[i1]"->"$r8 = staticinvoke <cn.com.ogtwelve.utils.FileUtil: java.util.List iteratorFile(java.io.File,java.lang.String)>(r7, r3)";
+    "$r8 = staticinvoke <cn.com.ogtwelve.utils.FileUtil: java.util.List iteratorFile(java.io.File,java.lang.String)>(r7, r3)"->"interfaceinvoke r2.<java.util.List: boolean addAll(java.util.Collection)>($r8)";
+    "interfaceinvoke r2.<java.util.List: boolean addAll(java.util.Collection)>($r8)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= i0 goto (branch)";
+    "goto [?= return r2]"->"return r2";
+    "if r3 != null goto $r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()"->"interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r0)";
+    "if r3 != null goto $r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()"->"$r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()";
+    "interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r0)"->"goto [?= return r2]";
+    "goto [?= return r2]"->"return r2";
+    "$r4 = virtualinvoke r0.<java.io.File: java.lang.String getName()>()"->"$z2 = virtualinvoke $r4.<java.lang.String: boolean matches(java.lang.String)>(r3)";
+    "$z2 = virtualinvoke $r4.<java.lang.String: boolean matches(java.lang.String)>(r3)"->"if $z2 == 0 goto return r2";
+    "if $z2 == 0 goto return r2"->"interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r0)";
+    "if $z2 == 0 goto return r2"->"return r2";
+    "interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r0)"->"return r2";
+}

@@ -1,0 +1,83 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+z0 := @parameter3: boolean;
+if z0 == 0 goto return;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+if i0 <= i2 goto return;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+<compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+"
+    "Block 4:
+[preds: 0 2 3 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+z0 := @parameter3: boolean;
+if z0 == 0 goto return;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+";
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+i2 := @parameter2: int;
+z0 := @parameter3: boolean;
+if z0 == 0 goto return;
+"->"Block 4:
+[preds: 0 2 3 ] [succs: ]
+return;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+if i0 <= i2 goto return;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if i0 <= i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+<compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+if i0 <= i2 goto return;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+<compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+if i0 <= i2 goto return;
+"->"Block 4:
+[preds: 0 2 3 ] [succs: ]
+return;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+<compiler.rangechecks.TestBadFoldCompare: boolean test1_taken> = 1;
+"->"Block 4:
+[preds: 0 2 3 ] [succs: ]
+return;
+";
+}

@@ -1,0 +1,15 @@
+digraph "unitGraph" {
+    "c0 := @parameter0: char"
+    "i1 = c0 + 2147483647"
+    "if i1 != 65535 goto return"
+    "$r0 = new java.lang.RuntimeException"
+    "specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Should not reach here!\")"
+    "throw $r0"
+    "return"
+    "c0 := @parameter0: char"->"i1 = c0 + 2147483647";
+    "i1 = c0 + 2147483647"->"if i1 != 65535 goto return";
+    "if i1 != 65535 goto return"->"$r0 = new java.lang.RuntimeException";
+    "if i1 != 65535 goto return"->"return";
+    "$r0 = new java.lang.RuntimeException"->"specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Should not reach here!\")";
+    "specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Should not reach here!\")"->"throw $r0";
+}

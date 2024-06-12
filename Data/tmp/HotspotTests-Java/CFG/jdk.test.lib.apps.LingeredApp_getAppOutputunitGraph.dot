@@ -1,0 +1,39 @@
+digraph "unitGraph" {
+    "r0 := @this: jdk.test.lib.apps.LingeredApp"
+    "$r1 = r0.<jdk.test.lib.apps.LingeredApp: java.lang.Process appProcess>"
+    "$z0 = virtualinvoke $r1.<java.lang.Process: boolean isAlive()>()"
+    "if $z0 == 0 goto $r2 = new java.io.BufferedReader"
+    "$r11 = new java.lang.RuntimeException"
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Process is still alive. Can\'t get its output.\")"
+    "throw $r11"
+    "$r2 = new java.io.BufferedReader"
+    "$r3 = new java.io.StringReader"
+    "$r4 = r0.<jdk.test.lib.apps.LingeredApp: jdk.test.lib.process.OutputBuffer output>"
+    "$r5 = virtualinvoke $r4.<jdk.test.lib.process.OutputBuffer: java.lang.String getStdout()>()"
+    "specialinvoke $r3.<java.io.StringReader: void <init>(java.lang.String)>($r5)"
+    "specialinvoke $r2.<java.io.BufferedReader: void <init>(java.io.Reader)>($r3)"
+    "r6 = $r2"
+    "$r7 = virtualinvoke r6.<java.io.BufferedReader: java.util.stream.Stream lines()>()"
+    "$r8 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()"
+    "$r9 = interfaceinvoke $r7.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r8)"
+    "$r10 = (java.util.List) $r9"
+    "return $r10"
+    "r0 := @this: jdk.test.lib.apps.LingeredApp"->"$r1 = r0.<jdk.test.lib.apps.LingeredApp: java.lang.Process appProcess>";
+    "$r1 = r0.<jdk.test.lib.apps.LingeredApp: java.lang.Process appProcess>"->"$z0 = virtualinvoke $r1.<java.lang.Process: boolean isAlive()>()";
+    "$z0 = virtualinvoke $r1.<java.lang.Process: boolean isAlive()>()"->"if $z0 == 0 goto $r2 = new java.io.BufferedReader";
+    "if $z0 == 0 goto $r2 = new java.io.BufferedReader"->"$r11 = new java.lang.RuntimeException";
+    "if $z0 == 0 goto $r2 = new java.io.BufferedReader"->"$r2 = new java.io.BufferedReader";
+    "$r11 = new java.lang.RuntimeException"->"specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Process is still alive. Can\'t get its output.\")";
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Process is still alive. Can\'t get its output.\")"->"throw $r11";
+    "$r2 = new java.io.BufferedReader"->"$r3 = new java.io.StringReader";
+    "$r3 = new java.io.StringReader"->"$r4 = r0.<jdk.test.lib.apps.LingeredApp: jdk.test.lib.process.OutputBuffer output>";
+    "$r4 = r0.<jdk.test.lib.apps.LingeredApp: jdk.test.lib.process.OutputBuffer output>"->"$r5 = virtualinvoke $r4.<jdk.test.lib.process.OutputBuffer: java.lang.String getStdout()>()";
+    "$r5 = virtualinvoke $r4.<jdk.test.lib.process.OutputBuffer: java.lang.String getStdout()>()"->"specialinvoke $r3.<java.io.StringReader: void <init>(java.lang.String)>($r5)";
+    "specialinvoke $r3.<java.io.StringReader: void <init>(java.lang.String)>($r5)"->"specialinvoke $r2.<java.io.BufferedReader: void <init>(java.io.Reader)>($r3)";
+    "specialinvoke $r2.<java.io.BufferedReader: void <init>(java.io.Reader)>($r3)"->"r6 = $r2";
+    "r6 = $r2"->"$r7 = virtualinvoke r6.<java.io.BufferedReader: java.util.stream.Stream lines()>()";
+    "$r7 = virtualinvoke r6.<java.io.BufferedReader: java.util.stream.Stream lines()>()"->"$r8 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()";
+    "$r8 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()"->"$r9 = interfaceinvoke $r7.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r8)";
+    "$r9 = interfaceinvoke $r7.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r8)"->"$r10 = (java.util.List) $r9";
+    "$r10 = (java.util.List) $r9"->"return $r10";
+}

@@ -1,0 +1,16 @@
+digraph "unitGraph" {
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "$r0[i0] = -1L"
+    "i0 = i0 + 1"
+    "if i0 < 3 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "return"
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 3 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$r0[i0] = -1L";
+    "$r0[i0] = -1L"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 3 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "if i0 < 3 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"return";
+    "if i0 < 3 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+}

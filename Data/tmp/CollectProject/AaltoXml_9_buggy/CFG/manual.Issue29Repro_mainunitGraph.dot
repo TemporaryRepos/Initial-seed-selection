@@ -1,0 +1,30 @@
+digraph "unitGraph" {
+    "r4 := @parameter0: java.lang.String[]"
+    "$i0 = <manual.Issue29Repro: int NUM_THREADS>"
+    "r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>($i0)"
+    "i1 = 0"
+    "if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()"
+    "$r2 = new manual.Issue29Repro"
+    "specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1)"
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2)"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()"
+    "$r1 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(2147483647L, $r1)"
+    "return"
+    "r4 := @parameter0: java.lang.String[]"->"$i0 = <manual.Issue29Repro: int NUM_THREADS>";
+    "$i0 = <manual.Issue29Repro: int NUM_THREADS>"->"r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>($i0)";
+    "r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>($i0)"->"i1 = 0";
+    "i1 = 0"->"if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()";
+    "if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()"->"$r2 = new manual.Issue29Repro";
+    "if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()"->"interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()";
+    "$r2 = new manual.Issue29Repro"->"specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1)";
+    "specialinvoke $r2.<manual.Issue29Repro: void <init>(int)>(i1)"->"interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2)";
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r2)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= 100000 goto interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()";
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: void shutdown()>()"->"$r1 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>";
+    "$r1 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(2147483647L, $r1)";
+    "interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(2147483647L, $r1)"->"return";
+}

@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "$r0 = new jit.deoptimization.test07.A"
+    "specialinvoke $r0.<jit.deoptimization.test07.A: void <init>()>()"
+    "r1 = $r0"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()"
+    "i0 = i0 + 1"
+    "if i0 < 1 goto virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"$r0 = new jit.deoptimization.test07.A";
+    "$r0 = new jit.deoptimization.test07.A"->"specialinvoke $r0.<jit.deoptimization.test07.A: void <init>()>()";
+    "specialinvoke $r0.<jit.deoptimization.test07.A: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 1 goto virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()";
+    "virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 1 goto virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()";
+    "if i0 < 1 goto virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()"->"return";
+    "if i0 < 1 goto virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()"->"virtualinvoke r1.<jit.deoptimization.test07.A: void used_alot()>()";
+}

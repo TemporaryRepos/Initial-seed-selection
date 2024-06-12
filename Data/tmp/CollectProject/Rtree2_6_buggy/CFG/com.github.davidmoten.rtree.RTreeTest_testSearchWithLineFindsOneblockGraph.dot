@@ -1,0 +1,33 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r20 := @this: com.github.davidmoten.rtree.RTreeTest;
+$r0 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree create()>();
+$r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(1);
+$r2 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Point point(float,float)>(1.0F, 1.0F);
+$r3 = virtualinvoke $r0.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Object,com.github.davidmoten.rtree.geometry.Geometry)>($r1, $r2);
+$r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(2);
+$r5 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Point point(float,float)>(2.0F, 2.0F);
+$r6 = virtualinvoke $r3.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Object,com.github.davidmoten.rtree.geometry.Geometry)>($r4, $r5);
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(3);
+$r8 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Point point(float,float)>(3.0F, 3.0F);
+r9 = virtualinvoke $r6.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Object,com.github.davidmoten.rtree.geometry.Geometry)>($r7, $r8);
+$r10 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Line line(double,double,double,double)>(1.5, 1.5, 2.5, 2.5);
+$r11 = virtualinvoke r9.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Line)>($r10);
+$r12 = virtualinvoke $r11.<rx.Observable: rx.Observable toList()>();
+$r13 = virtualinvoke $r12.<rx.Observable: rx.observables.BlockingObservable toBlocking()>();
+$r14 = virtualinvoke $r13.<rx.observables.BlockingObservable: java.lang.Object single()>();
+r15 = (java.util.List) $r14;
+$i0 = interfaceinvoke r15.<java.util.List: int size()>();
+$l1 = (long) $i0;
+staticinvoke <org.junit.Assert: void assertEquals(long,long)>(1L, $l1);
+$r16 = interfaceinvoke r15.<java.util.List: java.lang.Object get(int)>(0);
+$r17 = (com.github.davidmoten.rtree.Entry) $r16;
+$r18 = interfaceinvoke $r17.<com.github.davidmoten.rtree.Entry: java.lang.Object value()>();
+$r19 = (java.lang.Integer) $r18;
+$i2 = virtualinvoke $r19.<java.lang.Integer: int intValue()>();
+$l3 = (long) $i2;
+staticinvoke <org.junit.Assert: void assertEquals(long,long)>(2L, $l3);
+return;
+"
+}

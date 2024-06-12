@@ -1,0 +1,21 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "$r0 = new java.util.StringTokenizer"
+    "specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String)>(\"ABCD\tEFG\fHIJKLM PQR\")"
+    "r1 = $r0"
+    "$i0 = virtualinvoke r1.<java.util.StringTokenizer: int countTokens()>()"
+    "if $i0 == 4 goto return"
+    "$r2 = new java.lang.RuntimeException"
+    "specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"StringTokenizer does not treat form feed as whitespace.\")"
+    "throw $r2"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"$r0 = new java.util.StringTokenizer";
+    "$r0 = new java.util.StringTokenizer"->"specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String)>(\"ABCD\tEFG\fHIJKLM PQR\")";
+    "specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String)>(\"ABCD\tEFG\fHIJKLM PQR\")"->"r1 = $r0";
+    "r1 = $r0"->"$i0 = virtualinvoke r1.<java.util.StringTokenizer: int countTokens()>()";
+    "$i0 = virtualinvoke r1.<java.util.StringTokenizer: int countTokens()>()"->"if $i0 == 4 goto return";
+    "if $i0 == 4 goto return"->"$r2 = new java.lang.RuntimeException";
+    "if $i0 == 4 goto return"->"return";
+    "$r2 = new java.lang.RuntimeException"->"specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"StringTokenizer does not treat form feed as whitespace.\")";
+    "specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"StringTokenizer does not treat form feed as whitespace.\")"->"throw $r2";
+}

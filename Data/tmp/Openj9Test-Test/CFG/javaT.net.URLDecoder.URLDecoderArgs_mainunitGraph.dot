@@ -1,0 +1,46 @@
+digraph "unitGraph" {
+    "r6 := @parameter0: java.lang.String[]"
+    "r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", null)"
+    "goto [?= $r0 = new java.lang.RuntimeException]"
+    "$r4 := @caughtexception"
+    "r8 = $r4"
+    "$r5 = new java.lang.RuntimeException"
+    "specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"NPE should have been thrown\")"
+    "throw $r5"
+    "$r2 := @caughtexception"
+    "r9 = $r2"
+    "r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", \"\")"
+    "goto [?= $r3 = new java.lang.RuntimeException]"
+    "$r1 := @caughtexception"
+    "r11 = $r1"
+    "return"
+    "$r3 = new java.lang.RuntimeException"
+    "specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"empty string was accepted as encoding name\")"
+    "throw $r3"
+    "$r0 = new java.lang.RuntimeException"
+    "specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"null reference was accepted as encoding name\")"
+    "throw $r0"
+    "r6 := @parameter0: java.lang.String[]"->"$r4 := @caughtexception";
+    "r6 := @parameter0: java.lang.String[]"->"$r2 := @caughtexception";
+    "r6 := @parameter0: java.lang.String[]"->"r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", null)";
+    "r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", null)"->"$r4 := @caughtexception";
+    "r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", null)"->"$r2 := @caughtexception";
+    "r7 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", null)"->"goto [?= $r0 = new java.lang.RuntimeException]";
+    "goto [?= $r0 = new java.lang.RuntimeException]"->"$r0 = new java.lang.RuntimeException";
+    "$r4 := @caughtexception"->"r8 = $r4";
+    "r8 = $r4"->"$r5 = new java.lang.RuntimeException";
+    "$r5 = new java.lang.RuntimeException"->"specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"NPE should have been thrown\")";
+    "specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"NPE should have been thrown\")"->"throw $r5";
+    "$r2 := @caughtexception"->"r9 = $r2";
+    "r9 = $r2"->"r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", \"\")";
+    "r9 = $r2"->"$r1 := @caughtexception";
+    "r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", \"\")"->"goto [?= $r3 = new java.lang.RuntimeException]";
+    "r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(\"Hello World\", \"\")"->"$r1 := @caughtexception";
+    "goto [?= $r3 = new java.lang.RuntimeException]"->"$r3 = new java.lang.RuntimeException";
+    "$r1 := @caughtexception"->"r11 = $r1";
+    "r11 = $r1"->"return";
+    "$r3 = new java.lang.RuntimeException"->"specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"empty string was accepted as encoding name\")";
+    "specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"empty string was accepted as encoding name\")"->"throw $r3";
+    "$r0 = new java.lang.RuntimeException"->"specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"null reference was accepted as encoding name\")";
+    "specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"null reference was accepted as encoding name\")"->"throw $r0";
+}

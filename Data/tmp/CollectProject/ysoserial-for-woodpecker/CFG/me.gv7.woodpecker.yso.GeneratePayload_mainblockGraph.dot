@@ -1,0 +1,780 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r9 := @parameter0: java.lang.String[];
+$r0 = new org.apache.commons.cli.Options;
+specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"gadget\", 1, \"java deserialization gadget\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"a\", \"args\", 1, \"gadget parameters\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"ddl\", \"dirt-data-length\", 1, \"Add the length of dirty data, used to bypass WAF\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"l\", \"list\", 0, \"List all gadgets\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"c\", \"compress\", 0, \"Zip the Templates gadgets\");
+$r7 = new org.apache.commons.cli.DefaultParser;
+specialinvoke $r7.<org.apache.commons.cli.DefaultParser: void <init>()>();
+r8 = $r7;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r10 = interfaceinvoke r8.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r9);
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+<me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine> = $r10;
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $i0 = lengthof r9];
+"
+    "Block 4:
+[preds: 0 1 2 ] [succs: 5 ]
+$r34 := @caughtexception;
+r36 = $r34;
+$r35 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"[*] Parameter input error, please use -h for more information\");
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$i0 = lengthof r9;
+if $i0 != 0 goto $r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+staticinvoke <java.lang.System: void exit(int)>(64);
+"
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z0 = virtualinvoke $r11.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"list\");
+if $z0 == 0 goto $r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"
+    "Block 8:
+[preds: 7 ] [succs: ]
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void listAllGadgets()>();
+return;
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z1 = virtualinvoke $r12.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"compress\");
+if $z1 == 0 goto $r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+"
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+$r31 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r31.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(1);
+goto [?= $r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>];
+"
+    "Block 11:
+[preds: 9 ] [succs: 12 ]
+$r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r13.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(0);
+"
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+$r26 = <java.lang.System: java.io.PrintStream err>;
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid payload type \'\");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r30);
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void listAllGadgets()>();
+staticinvoke <java.lang.System: void exit(int)>(64);
+return;
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 32 ]
+$r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 32 ]
+r38 = (me.gv7.woodpecker.yso.payloads.ObjectPayload) $r18;
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 32 ]
+r39 = interfaceinvoke r38.<me.gv7.woodpecker.yso.payloads.ObjectPayload: java.lang.Object getObject(java.lang.String)>(r16);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 32 ]
+$r19 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 32 ]
+$z2 = virtualinvoke $r19.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"dirt-data-length\");
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 28 32 ]
+if $z2 == 0 goto r40 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 32 ]
+$r20 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"
+    "Block 21:
+[preds: 20 ] [succs: 22 32 ]
+$r21 = virtualinvoke $r20.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dirt-data-length\");
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 32 ]
+$r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r21);
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 32 ]
+i1 = virtualinvoke $r22.<java.lang.Integer: int intValue()>();
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r23 = new me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r23.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: void <init>(java.lang.Object,int)>(r39, i1);
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+r24 = $r23;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+r39 = virtualinvoke r24.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: java.lang.Object doWrap()>();
+"
+    "Block 28:
+[preds: 19 27 ] [succs: 29 32 ]
+r40 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+staticinvoke <me.gv7.woodpecker.yso.Serializer: void serialize(java.lang.Object,java.io.OutputStream)>(r39, r40);
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: void releasePayload(me.gv7.woodpecker.yso.payloads.ObjectPayload,java.lang.Object)>(r38, r39);
+"
+    "Block 31:
+[preds: 30 ] [succs: 33 ]
+goto [?= staticinvoke <java.lang.System: void exit(int)>(0)];
+"
+    "Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+"
+    "Block 33:
+[preds: 31 32 ] [succs: ]
+staticinvoke <java.lang.System: void exit(int)>(0);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r9 := @parameter0: java.lang.String[];
+$r0 = new org.apache.commons.cli.Options;
+specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"gadget\", 1, \"java deserialization gadget\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"a\", \"args\", 1, \"gadget parameters\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"ddl\", \"dirt-data-length\", 1, \"Add the length of dirty data, used to bypass WAF\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"l\", \"list\", 0, \"List all gadgets\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"c\", \"compress\", 0, \"Zip the Templates gadgets\");
+$r7 = new org.apache.commons.cli.DefaultParser;
+specialinvoke $r7.<org.apache.commons.cli.DefaultParser: void <init>()>();
+r8 = $r7;
+"->"Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r10 = interfaceinvoke r8.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r9);
+";
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r9 := @parameter0: java.lang.String[];
+$r0 = new org.apache.commons.cli.Options;
+specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>();
+r1 = $r0;
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"gadget\", 1, \"java deserialization gadget\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"a\", \"args\", 1, \"gadget parameters\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"ddl\", \"dirt-data-length\", 1, \"Add the length of dirty data, used to bypass WAF\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"l\", \"list\", 0, \"List all gadgets\");
+virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"c\", \"compress\", 0, \"Zip the Templates gadgets\");
+$r7 = new org.apache.commons.cli.DefaultParser;
+specialinvoke $r7.<org.apache.commons.cli.DefaultParser: void <init>()>();
+r8 = $r7;
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 ]
+$r34 := @caughtexception;
+r36 = $r34;
+$r35 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"[*] Parameter input error, please use -h for more information\");
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r10 = interfaceinvoke r8.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r9);
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+<me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine> = $r10;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r10 = interfaceinvoke r8.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r9);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 ]
+$r34 := @caughtexception;
+r36 = $r34;
+$r35 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"[*] Parameter input error, please use -h for more information\");
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+<me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine> = $r10;
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $i0 = lengthof r9];
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+<me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine> = $r10;
+"->"Block 4:
+[preds: 0 1 2 ] [succs: 5 ]
+$r34 := @caughtexception;
+r36 = $r34;
+$r35 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"[*] Parameter input error, please use -h for more information\");
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $i0 = lengthof r9];
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$i0 = lengthof r9;
+if $i0 != 0 goto $r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 4:
+[preds: 0 1 2 ] [succs: 5 ]
+$r34 := @caughtexception;
+r36 = $r34;
+$r35 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>(\"[*] Parameter input error, please use -h for more information\");
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$i0 = lengthof r9;
+if $i0 != 0 goto $r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$i0 = lengthof r9;
+if $i0 != 0 goto $r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+staticinvoke <java.lang.System: void exit(int)>(64);
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+$i0 = lengthof r9;
+if $i0 != 0 goto $r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z0 = virtualinvoke $r11.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"list\");
+if $z0 == 0 goto $r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void printUsage(org.apache.commons.cli.Options)>(r1);
+staticinvoke <java.lang.System: void exit(int)>(64);
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z0 = virtualinvoke $r11.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"list\");
+if $z0 == 0 goto $r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z0 = virtualinvoke $r11.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"list\");
+if $z0 == 0 goto $r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 8:
+[preds: 7 ] [succs: ]
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void listAllGadgets()>();
+return;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r11 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z0 = virtualinvoke $r11.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"list\");
+if $z0 == 0 goto $r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z1 = virtualinvoke $r12.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"compress\");
+if $z1 == 0 goto $r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z1 = virtualinvoke $r12.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"compress\");
+if $z1 == 0 goto $r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+"->"Block 10:
+[preds: 9 ] [succs: 12 ]
+$r31 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r31.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(1);
+goto [?= $r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>];
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+$r12 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+$z1 = virtualinvoke $r12.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"compress\");
+if $z1 == 0 goto $r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+"->"Block 11:
+[preds: 9 ] [succs: 12 ]
+$r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r13.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(0);
+";
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+$r31 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r31.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(1);
+goto [?= $r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>];
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 ]
+$r13 = <me.gv7.woodpecker.yso.GeneratePayload: me.gv7.woodpecker.yso.YsoConfig ysoConfig>;
+virtualinvoke $r13.<me.gv7.woodpecker.yso.YsoConfig: void setCompress(boolean)>(0);
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"->"Block 13:
+[preds: 12 ] [succs: ]
+$r26 = <java.lang.System: java.io.PrintStream err>;
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid payload type \'\");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r30);
+staticinvoke <me.gv7.woodpecker.yso.GeneratePayload: void listAllGadgets()>();
+staticinvoke <java.lang.System: void exit(int)>(64);
+return;
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"->"Block 14:
+[preds: 12 ] [succs: 15 32 ]
+$r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 32 ]
+$r14 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r37 = virtualinvoke $r14.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"gadget\");
+$r15 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+r16 = virtualinvoke $r15.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"args\");
+r17 = staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: java.lang.Class getPayloadClass(java.lang.String)>(r37);
+if r17 != null goto $r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 32 ]
+$r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"->"Block 15:
+[preds: 14 ] [succs: 16 32 ]
+r38 = (me.gv7.woodpecker.yso.payloads.ObjectPayload) $r18;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 32 ]
+$r18 = virtualinvoke r17.<java.lang.Class: java.lang.Object newInstance()>();
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 32 ]
+r38 = (me.gv7.woodpecker.yso.payloads.ObjectPayload) $r18;
+"->"Block 16:
+[preds: 15 ] [succs: 17 32 ]
+r39 = interfaceinvoke r38.<me.gv7.woodpecker.yso.payloads.ObjectPayload: java.lang.Object getObject(java.lang.String)>(r16);
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 32 ]
+r38 = (me.gv7.woodpecker.yso.payloads.ObjectPayload) $r18;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 32 ]
+r39 = interfaceinvoke r38.<me.gv7.woodpecker.yso.payloads.ObjectPayload: java.lang.Object getObject(java.lang.String)>(r16);
+"->"Block 17:
+[preds: 16 ] [succs: 18 32 ]
+$r19 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 32 ]
+r39 = interfaceinvoke r38.<me.gv7.woodpecker.yso.payloads.ObjectPayload: java.lang.Object getObject(java.lang.String)>(r16);
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 32 ]
+$r19 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 18:
+[preds: 17 ] [succs: 19 32 ]
+$z2 = virtualinvoke $r19.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"dirt-data-length\");
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 32 ]
+$r19 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 32 ]
+$z2 = virtualinvoke $r19.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"dirt-data-length\");
+"->"Block 19:
+[preds: 18 ] [succs: 20 28 32 ]
+if $z2 == 0 goto r40 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 32 ]
+$z2 = virtualinvoke $r19.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"dirt-data-length\");
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 28 32 ]
+if $z2 == 0 goto r40 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 20:
+[preds: 19 ] [succs: 21 32 ]
+$r20 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 28 32 ]
+if $z2 == 0 goto r40 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 28:
+[preds: 19 27 ] [succs: 29 32 ]
+r40 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 28 32 ]
+if $z2 == 0 goto r40 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 32 ]
+$r20 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 21:
+[preds: 20 ] [succs: 22 32 ]
+$r21 = virtualinvoke $r20.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dirt-data-length\");
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 32 ]
+$r20 = <me.gv7.woodpecker.yso.GeneratePayload: org.apache.commons.cli.CommandLine cmdLine>;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 32 ]
+$r21 = virtualinvoke $r20.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dirt-data-length\");
+"->"Block 22:
+[preds: 21 ] [succs: 23 32 ]
+$r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r21);
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 32 ]
+$r21 = virtualinvoke $r20.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dirt-data-length\");
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 32 ]
+$r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r21);
+"->"Block 23:
+[preds: 22 ] [succs: 24 32 ]
+i1 = virtualinvoke $r22.<java.lang.Integer: int intValue()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 32 ]
+$r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r21);
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 32 ]
+i1 = virtualinvoke $r22.<java.lang.Integer: int intValue()>();
+"->"Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r23 = new me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 32 ]
+i1 = virtualinvoke $r22.<java.lang.Integer: int intValue()>();
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r23 = new me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper;
+"->"Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r23.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: void <init>(java.lang.Object,int)>(r39, i1);
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 32 ]
+$r23 = new me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r23.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: void <init>(java.lang.Object,int)>(r39, i1);
+"->"Block 26:
+[preds: 25 ] [succs: 27 32 ]
+r24 = $r23;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 ]
+specialinvoke $r23.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: void <init>(java.lang.Object,int)>(r39, i1);
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+r24 = $r23;
+"->"Block 27:
+[preds: 26 ] [succs: 28 32 ]
+r39 = virtualinvoke r24.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: java.lang.Object doWrap()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 32 ]
+r24 = $r23;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+r39 = virtualinvoke r24.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: java.lang.Object doWrap()>();
+"->"Block 28:
+[preds: 19 27 ] [succs: 29 32 ]
+r40 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 32 ]
+r39 = virtualinvoke r24.<me.gv7.woodpecker.yso.payloads.util.DirtyDataWrapper: java.lang.Object doWrap()>();
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 28:
+[preds: 19 27 ] [succs: 29 32 ]
+r40 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 29:
+[preds: 28 ] [succs: 30 32 ]
+staticinvoke <me.gv7.woodpecker.yso.Serializer: void serialize(java.lang.Object,java.io.OutputStream)>(r39, r40);
+";
+    "Block 28:
+[preds: 19 27 ] [succs: 29 32 ]
+r40 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+staticinvoke <me.gv7.woodpecker.yso.Serializer: void serialize(java.lang.Object,java.io.OutputStream)>(r39, r40);
+"->"Block 30:
+[preds: 29 ] [succs: 31 32 ]
+staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: void releasePayload(me.gv7.woodpecker.yso.payloads.ObjectPayload,java.lang.Object)>(r38, r39);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 32 ]
+staticinvoke <me.gv7.woodpecker.yso.Serializer: void serialize(java.lang.Object,java.io.OutputStream)>(r39, r40);
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: void releasePayload(me.gv7.woodpecker.yso.payloads.ObjectPayload,java.lang.Object)>(r38, r39);
+"->"Block 31:
+[preds: 30 ] [succs: 33 ]
+goto [?= staticinvoke <java.lang.System: void exit(int)>(0)];
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 32 ]
+staticinvoke <me.gv7.woodpecker.yso.payloads.ObjectPayload$Utils: void releasePayload(me.gv7.woodpecker.yso.payloads.ObjectPayload,java.lang.Object)>(r38, r39);
+"->"Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+";
+    "Block 31:
+[preds: 30 ] [succs: 33 ]
+goto [?= staticinvoke <java.lang.System: void exit(int)>(0)];
+"->"Block 33:
+[preds: 31 32 ] [succs: ]
+staticinvoke <java.lang.System: void exit(int)>(0);
+return;
+";
+    "Block 32:
+[preds: 12 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ] [succs: 33 ]
+$r32 := @caughtexception;
+r41 = $r32;
+$r33 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>(\"Error while generating or serializing payload\");
+virtualinvoke r41.<java.lang.Throwable: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(70);
+"->"Block 33:
+[preds: 31 32 ] [succs: ]
+staticinvoke <java.lang.System: void exit(int)>(0);
+return;
+";
+}

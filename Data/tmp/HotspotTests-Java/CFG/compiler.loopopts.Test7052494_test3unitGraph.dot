@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "i5 := @parameter0: int"
+    "i2 := @parameter1: int"
+    "r0 := @parameter2: int[]"
+    "goto [?= $i0 = i5]"
+    "$i1 = i5 - 1"
+    "$i3 = r0[$i1]"
+    "if $i3 < i2 goto $i4 = i5 * 2"
+    "goto [?= return]"
+    "$i4 = i5 * 2"
+    "r0[i5] = $i4"
+    "$i0 = i5"
+    "i5 = i5 + 1"
+    "if $i0 != 0 goto $i1 = i5 - 1"
+    "return"
+    "i5 := @parameter0: int"->"i2 := @parameter1: int";
+    "i2 := @parameter1: int"->"r0 := @parameter2: int[]";
+    "r0 := @parameter2: int[]"->"goto [?= $i0 = i5]";
+    "goto [?= $i0 = i5]"->"$i0 = i5";
+    "$i1 = i5 - 1"->"$i3 = r0[$i1]";
+    "$i3 = r0[$i1]"->"if $i3 < i2 goto $i4 = i5 * 2";
+    "if $i3 < i2 goto $i4 = i5 * 2"->"goto [?= return]";
+    "if $i3 < i2 goto $i4 = i5 * 2"->"$i4 = i5 * 2";
+    "goto [?= return]"->"return";
+    "$i4 = i5 * 2"->"r0[i5] = $i4";
+    "r0[i5] = $i4"->"$i0 = i5";
+    "$i0 = i5"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"if $i0 != 0 goto $i1 = i5 - 1";
+    "if $i0 != 0 goto $i1 = i5 - 1"->"return";
+    "if $i0 != 0 goto $i1 = i5 - 1"->"$i1 = i5 - 1";
+}

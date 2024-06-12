@@ -1,0 +1,59 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>(s0);
+$i1 = s0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+$s5 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s4);
+r0 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s5);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+$s2 = virtualinvoke r0.<java.lang.Short: short shortValue()>();
+return $s2;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>(s0);
+$i1 = s0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+$s5 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s4);
+r0 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s5);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>(s0);
+$i1 = s0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+$s2 = virtualinvoke r0.<java.lang.Short: short shortValue()>();
+return $s2;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+$s5 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s4);
+r0 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s5);
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+$s2 = virtualinvoke r0.<java.lang.Short: short shortValue()>();
+return $s2;
+";
+}

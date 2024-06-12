@@ -1,0 +1,231 @@
+digraph "unitGraph" {
+    "r27 := @parameter0: java.lang.String[]"
+    "$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver"
+    "specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>()"
+    "r28 = $r0"
+    "$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null)"
+    "<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1"
+    "$r2 = new java.io.InputStreamReader"
+    "$r3 = <java.lang.System: java.io.InputStream in>"
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"
+    "r4 = $r2"
+    "$r5 = new java.io.BufferedReader"
+    "specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4)"
+    "r6 = $r5"
+    "$r7 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \")"
+    "$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>()"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println()>()"
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"
+    "$r12 = r11[0]"
+    "r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>()"
+    "$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\")"
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\")"
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"
+    "goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]"
+    "$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"
+    "if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"
+    "$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\")"
+    "if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"
+    "goto [?= (branch)]"
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"
+    "goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]"
+    "$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "if $r14 == null goto (branch)"
+    "$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "interfaceinvoke $r15.<java.sql.Connection: void close()>()"
+    "goto [?= return]"
+    "$r26 := @caughtexception"
+    "r29 = $r26"
+    "virtualinvoke r29.<java.lang.Exception: void printStackTrace()>()"
+    "$r23 := @caughtexception"
+    "r30 = $r23"
+    "virtualinvoke r30.<java.lang.Exception: void printStackTrace()>()"
+    "$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "if $r24 == null goto (branch)"
+    "$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "interfaceinvoke $r25.<java.sql.Connection: void close()>()"
+    "$r22 := @caughtexception"
+    "r31 = $r22"
+    "virtualinvoke r31.<java.lang.Exception: void printStackTrace()>()"
+    "$r19 := @caughtexception"
+    "r18 = $r19"
+    "$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "if $r20 == null goto (branch)"
+    "$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"
+    "interfaceinvoke $r21.<java.sql.Connection: void close()>()"
+    "goto [?= throw r18]"
+    "$r16 := @caughtexception"
+    "r17 = $r16"
+    "virtualinvoke r17.<java.lang.Exception: void printStackTrace()>()"
+    "throw r18"
+    "return"
+    "r27 := @parameter0: java.lang.String[]"->"$r23 := @caughtexception";
+    "r27 := @parameter0: java.lang.String[]"->"$r19 := @caughtexception";
+    "r27 := @parameter0: java.lang.String[]"->"$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver";
+    "$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver"->"$r23 := @caughtexception";
+    "$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver"->"$r19 := @caughtexception";
+    "$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver"->"specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>()";
+    "specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>()"->"$r23 := @caughtexception";
+    "specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>()"->"$r19 := @caughtexception";
+    "specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>()"->"r28 = $r0";
+    "r28 = $r0"->"$r23 := @caughtexception";
+    "r28 = $r0"->"$r19 := @caughtexception";
+    "r28 = $r0"->"$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null)";
+    "$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null)"->"$r23 := @caughtexception";
+    "$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null)"->"$r19 := @caughtexception";
+    "$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null)"->"<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1";
+    "<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1"->"$r23 := @caughtexception";
+    "<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1"->"$r19 := @caughtexception";
+    "<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1"->"$r2 = new java.io.InputStreamReader";
+    "$r2 = new java.io.InputStreamReader"->"$r23 := @caughtexception";
+    "$r2 = new java.io.InputStreamReader"->"$r19 := @caughtexception";
+    "$r2 = new java.io.InputStreamReader"->"$r3 = <java.lang.System: java.io.InputStream in>";
+    "$r3 = <java.lang.System: java.io.InputStream in>"->"$r23 := @caughtexception";
+    "$r3 = <java.lang.System: java.io.InputStream in>"->"$r19 := @caughtexception";
+    "$r3 = <java.lang.System: java.io.InputStream in>"->"specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)";
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"->"$r23 := @caughtexception";
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"->"$r19 := @caughtexception";
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"->"r4 = $r2";
+    "r4 = $r2"->"$r23 := @caughtexception";
+    "r4 = $r2"->"$r19 := @caughtexception";
+    "r4 = $r2"->"$r5 = new java.io.BufferedReader";
+    "$r5 = new java.io.BufferedReader"->"$r23 := @caughtexception";
+    "$r5 = new java.io.BufferedReader"->"$r19 := @caughtexception";
+    "$r5 = new java.io.BufferedReader"->"specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4)";
+    "specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4)"->"$r23 := @caughtexception";
+    "specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4)"->"$r19 := @caughtexception";
+    "specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4)"->"r6 = $r5";
+    "r6 = $r5"->"$r23 := @caughtexception";
+    "r6 = $r5"->"$r19 := @caughtexception";
+    "r6 = $r5"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"$r23 := @caughtexception";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \")";
+    "virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \")"->"$r23 := @caughtexception";
+    "virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \")"->"$r19 := @caughtexception";
+    "virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \")"->"$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r23 := @caughtexception";
+    "$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r19 := @caughtexception";
+    "$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>()"->"r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>()";
+    "r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>()"->"$r23 := @caughtexception";
+    "r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>()"->"$r19 := @caughtexception";
+    "r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>()"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r23 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println()>()";
+    "virtualinvoke $r10.<java.io.PrintStream: void println()>()"->"$r23 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println()>()"->"$r19 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println()>()"->"r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")";
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"$r23 := @caughtexception";
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"$r19 := @caughtexception";
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"$r12 = r11[0]";
+    "$r12 = r11[0]"->"$r23 := @caughtexception";
+    "$r12 = r11[0]"->"$r19 := @caughtexception";
+    "$r12 = r11[0]"->"r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>()";
+    "r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>()"->"$r23 := @caughtexception";
+    "r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>()"->"$r19 := @caughtexception";
+    "r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>()"->"$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\")";
+    "$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\")"->"$r23 := @caughtexception";
+    "$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\")"->"$r19 := @caughtexception";
+    "$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\")"->"if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r26 := @caughtexception";
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r23 := @caughtexception";
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r19 := @caughtexception";
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\")";
+    "if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\")"->"$r23 := @caughtexception";
+    "$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\")"->"$r19 := @caughtexception";
+    "$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\")"->"if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"$r23 := @caughtexception";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"$r19 := @caughtexception";
+    "goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]"->"$r26 := @caughtexception";
+    "goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]"->"$r23 := @caughtexception";
+    "goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]"->"$r19 := @caughtexception";
+    "goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>]"->"$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"$r23 := @caughtexception";
+    "$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"$r19 := @caughtexception";
+    "$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\")"->"if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)";
+    "if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\")";
+    "if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)";
+    "if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"$r23 := @caughtexception";
+    "if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"$r19 := @caughtexception";
+    "$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\")"->"$r23 := @caughtexception";
+    "$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\")"->"$r19 := @caughtexception";
+    "$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\")"->"if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)";
+    "if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)";
+    "if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)";
+    "if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"$r23 := @caughtexception";
+    "if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"$r19 := @caughtexception";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"$r23 := @caughtexception";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"$r19 := @caughtexception";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r23 := @caughtexception";
+    "goto [?= (branch)]"->"$r19 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"$r23 := @caughtexception";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"$r19 := @caughtexception";
+    "staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9)"->"goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]"->"$r23 := @caughtexception";
+    "goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]"->"$r19 := @caughtexception";
+    "goto [?= $r7 = <java.lang.System: java.io.PrintStream out>]"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"if $r14 == null goto (branch)";
+    "$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r26 := @caughtexception";
+    "if $r14 == null goto (branch)"->"$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "if $r14 == null goto (branch)"->"goto [?= return]";
+    "if $r14 == null goto (branch)"->"$r26 := @caughtexception";
+    "$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"interfaceinvoke $r15.<java.sql.Connection: void close()>()";
+    "$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r26 := @caughtexception";
+    "interfaceinvoke $r15.<java.sql.Connection: void close()>()"->"goto [?= return]";
+    "interfaceinvoke $r15.<java.sql.Connection: void close()>()"->"$r26 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r26 := @caughtexception"->"r29 = $r26";
+    "r29 = $r26"->"virtualinvoke r29.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r29.<java.lang.Exception: void printStackTrace()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r23 := @caughtexception"->"r30 = $r23";
+    "$r23 := @caughtexception"->"$r19 := @caughtexception";
+    "r30 = $r23"->"virtualinvoke r30.<java.lang.Exception: void printStackTrace()>()";
+    "r30 = $r23"->"$r19 := @caughtexception";
+    "virtualinvoke r30.<java.lang.Exception: void printStackTrace()>()"->"$r22 := @caughtexception";
+    "virtualinvoke r30.<java.lang.Exception: void printStackTrace()>()"->"$r19 := @caughtexception";
+    "virtualinvoke r30.<java.lang.Exception: void printStackTrace()>()"->"$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"if $r24 == null goto (branch)";
+    "$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r22 := @caughtexception";
+    "if $r24 == null goto (branch)"->"$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "if $r24 == null goto (branch)"->"goto [?= return]";
+    "if $r24 == null goto (branch)"->"$r22 := @caughtexception";
+    "$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"interfaceinvoke $r25.<java.sql.Connection: void close()>()";
+    "$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r22 := @caughtexception";
+    "interfaceinvoke $r25.<java.sql.Connection: void close()>()"->"goto [?= return]";
+    "interfaceinvoke $r25.<java.sql.Connection: void close()>()"->"$r22 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r22 := @caughtexception"->"r31 = $r22";
+    "r31 = $r22"->"virtualinvoke r31.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r31.<java.lang.Exception: void printStackTrace()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r19 := @caughtexception"->"r18 = $r19";
+    "$r19 := @caughtexception"->"$r19 := @caughtexception";
+    "r18 = $r19"->"$r16 := @caughtexception";
+    "r18 = $r19"->"$r19 := @caughtexception";
+    "r18 = $r19"->"$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"if $r20 == null goto (branch)";
+    "$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r16 := @caughtexception";
+    "if $r20 == null goto (branch)"->"$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>";
+    "if $r20 == null goto (branch)"->"goto [?= throw r18]";
+    "if $r20 == null goto (branch)"->"$r16 := @caughtexception";
+    "$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"interfaceinvoke $r21.<java.sql.Connection: void close()>()";
+    "$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>"->"$r16 := @caughtexception";
+    "interfaceinvoke $r21.<java.sql.Connection: void close()>()"->"goto [?= throw r18]";
+    "interfaceinvoke $r21.<java.sql.Connection: void close()>()"->"$r16 := @caughtexception";
+    "goto [?= throw r18]"->"throw r18";
+    "$r16 := @caughtexception"->"r17 = $r16";
+    "r17 = $r16"->"virtualinvoke r17.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r17.<java.lang.Exception: void printStackTrace()>()"->"throw r18";
+}

@@ -1,0 +1,44 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "c2 := @parameter1: char"
+    "if i0 >= 0 goto r0 = newarray (char)[i0]"
+    "$r2 = new java.lang.IndexOutOfBoundsException"
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot pad a negative amount: \")"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r2.<java.lang.IndexOutOfBoundsException: void <init>(java.lang.String)>($r6)"
+    "throw $r2"
+    "r0 = newarray (char)[i0]"
+    "i3 = 0"
+    "$i1 = lengthof r0"
+    "if i3 >= $i1 goto $r1 = new java.lang.String"
+    "r0[i3] = c2"
+    "i3 = i3 + 1"
+    "goto [?= $i1 = lengthof r0]"
+    "$r1 = new java.lang.String"
+    "specialinvoke $r1.<java.lang.String: void <init>(char[])>(r0)"
+    "return $r1"
+    "i0 := @parameter0: int"->"c2 := @parameter1: char";
+    "c2 := @parameter1: char"->"if i0 >= 0 goto r0 = newarray (char)[i0]";
+    "if i0 >= 0 goto r0 = newarray (char)[i0]"->"$r2 = new java.lang.IndexOutOfBoundsException";
+    "if i0 >= 0 goto r0 = newarray (char)[i0]"->"r0 = newarray (char)[i0]";
+    "$r2 = new java.lang.IndexOutOfBoundsException"->"$r3 = new java.lang.StringBuilder";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot pad a negative amount: \")";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot pad a negative amount: \")"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r2.<java.lang.IndexOutOfBoundsException: void <init>(java.lang.String)>($r6)";
+    "specialinvoke $r2.<java.lang.IndexOutOfBoundsException: void <init>(java.lang.String)>($r6)"->"throw $r2";
+    "r0 = newarray (char)[i0]"->"i3 = 0";
+    "i3 = 0"->"$i1 = lengthof r0";
+    "$i1 = lengthof r0"->"if i3 >= $i1 goto $r1 = new java.lang.String";
+    "if i3 >= $i1 goto $r1 = new java.lang.String"->"r0[i3] = c2";
+    "if i3 >= $i1 goto $r1 = new java.lang.String"->"$r1 = new java.lang.String";
+    "r0[i3] = c2"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"goto [?= $i1 = lengthof r0]";
+    "goto [?= $i1 = lengthof r0]"->"$i1 = lengthof r0";
+    "$r1 = new java.lang.String"->"specialinvoke $r1.<java.lang.String: void <init>(char[])>(r0)";
+    "specialinvoke $r1.<java.lang.String: void <init>(char[])>(r0)"->"return $r1";
+}

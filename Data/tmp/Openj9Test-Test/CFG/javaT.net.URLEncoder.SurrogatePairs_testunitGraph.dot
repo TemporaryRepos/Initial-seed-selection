@@ -1,0 +1,103 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String"
+    "r13 := @parameter1: java.lang.String"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "$r0 = new java.lang.StringBuilder"
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes of test string are: \")"
+    "$r4 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r3)"
+    "$r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)"
+    "r7 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>(r3, \"UTF-8\")"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"URLEncoding is: \")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)"
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(r13)"
+    "if $z0 == 0 goto $r14 = new java.lang.Exception"
+    "$r19 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"The encoding is correct!\")"
+    "goto [?= r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")]"
+    "$r14 = new java.lang.Exception"
+    "$r15 = new java.lang.StringBuilder"
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The encoding is incorrect! It should be \")"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r13)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r14.<java.lang.Exception: void <init>(java.lang.String)>($r18)"
+    "throw $r14"
+    "r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")"
+    "$r22 = <java.lang.System: java.io.PrintStream out>"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes for URLDecoding are: \")"
+    "$r24 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r20)"
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r26)"
+    "$z1 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r20)"
+    "if $z1 == 0 goto $r27 = new java.lang.Exception"
+    "$r28 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"The decoding is correct\")"
+    "goto [?= $r29 = <java.lang.System: java.io.PrintStream out>]"
+    "$r27 = new java.lang.Exception"
+    "specialinvoke $r27.<java.lang.Exception: void <init>(java.lang.String)>(\"The decoded is not equal to the original\")"
+    "throw $r27"
+    "$r29 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>(\"---\")"
+    "return"
+    "r3 := @parameter0: java.lang.String"->"r13 := @parameter1: java.lang.String";
+    "r13 := @parameter1: java.lang.String"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"$r0 = new java.lang.StringBuilder";
+    "$r0 = new java.lang.StringBuilder"->"specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"->"$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes of test string are: \")";
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes of test string are: \")"->"$r4 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r3)";
+    "$r4 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r3)"->"$r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)";
+    "$r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6)"->"r7 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>(r3, \"UTF-8\")";
+    "r7 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>(r3, \"UTF-8\")"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"URLEncoding is: \")";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"URLEncoding is: \")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)"->"$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(r13)";
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(r13)"->"if $z0 == 0 goto $r14 = new java.lang.Exception";
+    "if $z0 == 0 goto $r14 = new java.lang.Exception"->"$r19 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto $r14 = new java.lang.Exception"->"$r14 = new java.lang.Exception";
+    "$r19 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"The encoding is correct!\")";
+    "virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"The encoding is correct!\")"->"goto [?= r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")]";
+    "goto [?= r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")]"->"r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")";
+    "$r14 = new java.lang.Exception"->"$r15 = new java.lang.StringBuilder";
+    "$r15 = new java.lang.StringBuilder"->"specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The encoding is incorrect! It should be \")";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"The encoding is incorrect! It should be \")"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r13)";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r13)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r14.<java.lang.Exception: void <init>(java.lang.String)>($r18)";
+    "specialinvoke $r14.<java.lang.Exception: void <init>(java.lang.String)>($r18)"->"throw $r14";
+    "r20 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r7, \"UTF-8\")"->"$r22 = <java.lang.System: java.io.PrintStream out>";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"$r21 = new java.lang.StringBuilder";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes for URLDecoding are: \")";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unicode bytes for URLDecoding are: \")"->"$r24 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r20)";
+    "$r24 = staticinvoke <javaT.net.URLEncoder.SurrogatePairs: java.lang.String getHexBytes(java.lang.String)>(r20)"->"$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)";
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r26)";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r26)"->"$z1 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r20)";
+    "$z1 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r20)"->"if $z1 == 0 goto $r27 = new java.lang.Exception";
+    "if $z1 == 0 goto $r27 = new java.lang.Exception"->"$r28 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r27 = new java.lang.Exception"->"$r27 = new java.lang.Exception";
+    "$r28 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"The decoding is correct\")";
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"The decoding is correct\")"->"goto [?= $r29 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r29 = <java.lang.System: java.io.PrintStream out>]"->"$r29 = <java.lang.System: java.io.PrintStream out>";
+    "$r27 = new java.lang.Exception"->"specialinvoke $r27.<java.lang.Exception: void <init>(java.lang.String)>(\"The decoded is not equal to the original\")";
+    "specialinvoke $r27.<java.lang.Exception: void <init>(java.lang.String)>(\"The decoded is not equal to the original\")"->"throw $r27";
+    "$r29 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>(\"---\")";
+    "virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>(\"---\")"->"return";
+}

@@ -1,0 +1,92 @@
+digraph "unitGraph" {
+    "r17 := @parameter0: java.lang.String[]"
+    "$r0 = newarray (java.lang.String)[4]"
+    "$r0[0] = \"rmi://[0000:0000:0000:0000:0000:0000:0000:0001]/foo\""
+    "$r0[1] = \"//[0:0:0:0:0:0:0:1]:88/foo\""
+    "$r0[2] = \"rmi://[0::0:0:0:1]/foo:bar\""
+    "$r0[3] = \"//[::1]:88\""
+    "r1 = $r0"
+    "i1 = 0"
+    "$i0 = lengthof r1"
+    "if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"
+    "$r11 = r1[i1]"
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r11)"
+    "goto [?= i1 = i1 + 1]"
+    "$r16 := @caughtexception"
+    "r18 = $r16"
+    "throw r18"
+    "$r15 := @caughtexception"
+    "r19 = $r15"
+    "i1 = i1 + 1"
+    "goto [?= $i0 = lengthof r1]"
+    "$r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"
+    "r20 = $r2[0]"
+    "$z0 = r20 instanceof java.net.Inet6Address"
+    "if $z0 == 0 goto return"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IPv6 detected\")"
+    "r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry createRegistry(int)>(1099)"
+    "goto [?= interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)]"
+    "$r13 := @caughtexception"
+    "r14 = $r13"
+    "r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry getRegistry()>()"
+    "interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"rmi://[\")"
+    "$r6 = virtualinvoke r20.<java.net.InetAddress: java.lang.String getHostAddress()>()"
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]/foo\")"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r9)"
+    "return"
+    "r17 := @parameter0: java.lang.String[]"->"$r0 = newarray (java.lang.String)[4]";
+    "$r0 = newarray (java.lang.String)[4]"->"$r0[0] = \"rmi://[0000:0000:0000:0000:0000:0000:0000:0001]/foo\"";
+    "$r0[0] = \"rmi://[0000:0000:0000:0000:0000:0000:0000:0001]/foo\""->"$r0[1] = \"//[0:0:0:0:0:0:0:1]:88/foo\"";
+    "$r0[1] = \"//[0:0:0:0:0:0:0:1]:88/foo\""->"$r0[2] = \"rmi://[0::0:0:0:1]/foo:bar\"";
+    "$r0[2] = \"rmi://[0::0:0:0:1]/foo:bar\""->"$r0[3] = \"//[::1]:88\"";
+    "$r0[3] = \"//[::1]:88\""->"r1 = $r0";
+    "r1 = $r0"->"i1 = 0";
+    "i1 = 0"->"$i0 = lengthof r1";
+    "$i0 = lengthof r1"->"if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)";
+    "if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"->"$r11 = r1[i1]";
+    "if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"->"$r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)";
+    "if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"->"$r16 := @caughtexception";
+    "if i1 >= $i0 goto $r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"->"$r15 := @caughtexception";
+    "$r11 = r1[i1]"->"$r16 := @caughtexception";
+    "$r11 = r1[i1]"->"$r15 := @caughtexception";
+    "$r11 = r1[i1]"->"staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r11)";
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r11)"->"$r16 := @caughtexception";
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r11)"->"$r15 := @caughtexception";
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r11)"->"goto [?= i1 = i1 + 1]";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$r16 := @caughtexception"->"r18 = $r16";
+    "r18 = $r16"->"throw r18";
+    "$r15 := @caughtexception"->"r19 = $r15";
+    "r19 = $r15"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= $i0 = lengthof r1]";
+    "goto [?= $i0 = lengthof r1]"->"$i0 = lengthof r1";
+    "$r2 = staticinvoke <java.net.InetAddress: java.net.InetAddress[] getAllByName(java.lang.String)>(null)"->"r20 = $r2[0]";
+    "r20 = $r2[0]"->"$z0 = r20 instanceof java.net.Inet6Address";
+    "$z0 = r20 instanceof java.net.Inet6Address"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto return"->"return";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IPv6 detected\")";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IPv6 detected\")"->"r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry createRegistry(int)>(1099)";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"IPv6 detected\")"->"$r13 := @caughtexception";
+    "r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry createRegistry(int)>(1099)"->"goto [?= interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)]";
+    "r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry createRegistry(int)>(1099)"->"$r13 := @caughtexception";
+    "goto [?= interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)]"->"interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)";
+    "$r13 := @caughtexception"->"r14 = $r13";
+    "r14 = $r13"->"r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry getRegistry()>()";
+    "r21 = staticinvoke <java.rmi.registry.LocateRegistry: java.rmi.registry.Registry getRegistry()>()"->"interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)";
+    "interfaceinvoke r21.<java.rmi.registry.Registry: void rebind(java.lang.String,java.rmi.Remote)>(\"foo\", r21)"->"$r4 = new java.lang.StringBuilder";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"rmi://[\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"rmi://[\")"->"$r6 = virtualinvoke r20.<java.net.InetAddress: java.lang.String getHostAddress()>()";
+    "$r6 = virtualinvoke r20.<java.net.InetAddress: java.lang.String getHostAddress()>()"->"$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)";
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]/foo\")";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]/foo\")"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r9)";
+    "staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r9)"->"return";
+}

@@ -1,0 +1,71 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String"
+    "r2 := @parameter1: java.lang.String"
+    "z1 := @parameter2: boolean"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "$r0 = newarray (java.lang.Object)[2]"
+    "$r0[0] = r1"
+    "$r0[1] = r2"
+    "virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"%s -> %s\", $r0)"
+    "$r5 = newarray (java.lang.String)[0]"
+    "r6 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(r1, $r5)"
+    "$r7 = interfaceinvoke r6.<java.nio.file.Path: java.nio.file.FileSystem getFileSystem()>()"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"glob:\")"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r12 = virtualinvoke $r7.<java.nio.file.FileSystem: java.nio.file.PathMatcher getPathMatcher(java.lang.String)>($r11)"
+    "z0 = interfaceinvoke $r12.<java.nio.file.PathMatcher: boolean matches(java.nio.file.Path)>(r6)"
+    "if z0 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r16.<java.io.PrintStream: void print(java.lang.String)>(\" (matched)\")"
+    "goto [?= (branch)]"
+    "$r13 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\" (no match)\")"
+    "if z0 == z1 goto $r14 = <java.lang.System: java.io.PrintStream out>"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" ==> UNEXPECTED RESULT!\")"
+    "$i0 = <javaT.nio.file.PathMatcher.Basic: int failures>"
+    "$i1 = $i0 + 1"
+    "<javaT.nio.file.PathMatcher.Basic: int failures> = $i1"
+    "goto [?= return]"
+    "$r14 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" OKAY\")"
+    "return"
+    "r1 := @parameter0: java.lang.String"->"r2 := @parameter1: java.lang.String";
+    "r2 := @parameter1: java.lang.String"->"z1 := @parameter2: boolean";
+    "z1 := @parameter2: boolean"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"$r0 = newarray (java.lang.Object)[2]";
+    "$r0 = newarray (java.lang.Object)[2]"->"$r0[0] = r1";
+    "$r0[0] = r1"->"$r0[1] = r2";
+    "$r0[1] = r2"->"virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"%s -> %s\", $r0)";
+    "virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"%s -> %s\", $r0)"->"$r5 = newarray (java.lang.String)[0]";
+    "$r5 = newarray (java.lang.String)[0]"->"r6 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(r1, $r5)";
+    "r6 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(r1, $r5)"->"$r7 = interfaceinvoke r6.<java.nio.file.Path: java.nio.file.FileSystem getFileSystem()>()";
+    "$r7 = interfaceinvoke r6.<java.nio.file.Path: java.nio.file.FileSystem getFileSystem()>()"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"glob:\")";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"glob:\")"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r12 = virtualinvoke $r7.<java.nio.file.FileSystem: java.nio.file.PathMatcher getPathMatcher(java.lang.String)>($r11)";
+    "$r12 = virtualinvoke $r7.<java.nio.file.FileSystem: java.nio.file.PathMatcher getPathMatcher(java.lang.String)>($r11)"->"z0 = interfaceinvoke $r12.<java.nio.file.PathMatcher: boolean matches(java.nio.file.Path)>(r6)";
+    "z0 = interfaceinvoke $r12.<java.nio.file.PathMatcher: boolean matches(java.nio.file.Path)>(r6)"->"if z0 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>";
+    "if z0 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "if z0 == 0 goto $r13 = <java.lang.System: java.io.PrintStream out>"->"$r13 = <java.lang.System: java.io.PrintStream out>";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r16.<java.io.PrintStream: void print(java.lang.String)>(\" (matched)\")";
+    "virtualinvoke $r16.<java.io.PrintStream: void print(java.lang.String)>(\" (matched)\")"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if z0 == z1 goto $r14 = <java.lang.System: java.io.PrintStream out>";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\" (no match)\")";
+    "virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\" (no match)\")"->"if z0 == z1 goto $r14 = <java.lang.System: java.io.PrintStream out>";
+    "if z0 == z1 goto $r14 = <java.lang.System: java.io.PrintStream out>"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "if z0 == z1 goto $r14 = <java.lang.System: java.io.PrintStream out>"->"$r14 = <java.lang.System: java.io.PrintStream out>";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" ==> UNEXPECTED RESULT!\")";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" ==> UNEXPECTED RESULT!\")"->"$i0 = <javaT.nio.file.PathMatcher.Basic: int failures>";
+    "$i0 = <javaT.nio.file.PathMatcher.Basic: int failures>"->"$i1 = $i0 + 1";
+    "$i1 = $i0 + 1"->"<javaT.nio.file.PathMatcher.Basic: int failures> = $i1";
+    "<javaT.nio.file.PathMatcher.Basic: int failures> = $i1"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r14 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" OKAY\")";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\" OKAY\")"->"return";
+}

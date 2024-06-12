@@ -1,0 +1,70 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+i5 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>();
+$i2 = $s0 + $s1;
+$s3 = (short) $i2;
+r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3);
+i5 = i5 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$s4 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+return $s4;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+i5 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>();
+$i2 = $s0 + $s1;
+$s3 = (short) $i2;
+r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3);
+i5 = i5 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$s4 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+return $s4;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$s0 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+$r0 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$s1 = virtualinvoke $r0.<java.lang.Short: short shortValue()>();
+$i2 = $s0 + $s1;
+$s3 = (short) $i2;
+r1 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s3);
+i5 = i5 + 1;
+";
+}

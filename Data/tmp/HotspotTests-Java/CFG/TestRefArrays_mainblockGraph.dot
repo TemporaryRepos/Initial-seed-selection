@@ -1,0 +1,332 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 5 ]
+r20 := @parameter0: java.lang.String[];
+$i0 = <TestRefArrays: int COUNT>;
+$i1 = $i0 * 100;
+$r0 = newarray (TestRefArrays$MyObject[])[$i1];
+<TestRefArrays: TestRefArrays$MyObject[][] arr> = $r0;
+i11 = 0;
+goto [?= $i2 = <TestRefArrays: int COUNT>];
+"
+    "Block 1:
+[preds: 5 ] [succs: 3 ]
+$r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$i3 = i11 * 100;
+$r1 = newarray (TestRefArrays$MyObject)[$i3];
+$r2[i11] = $r1;
+i12 = 0;
+goto [?= (branch)];
+"
+    "Block 2:
+[preds: 3 ] [succs: 3 ]
+$r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$r5 = $r3[i11];
+$r4 = new TestRefArrays$MyObject;
+specialinvoke $r4.<TestRefArrays$MyObject: void <init>(int)>(0);
+$r5[i12] = $r4;
+i12 = i12 + 1;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i12 < i11 goto $r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i11 = i11 + 1;
+"
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+$i2 = <TestRefArrays: int COUNT>;
+if i11 < $i2 goto $r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"
+    "Block 6:
+[preds: 5 ] [succs: 15 ]
+i13 = 0;
+goto [?= $i4 = <TestRefArrays: int COUNT>];
+"
+    "Block 7:
+[preds: 15 ] [succs: 8 9 ]
+$r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+r21 = $r6[i13];
+$i6 = lengthof r21;
+$i5 = i13 * 100;
+if $i6 == $i5 goto i14 = 0;
+"
+    "Block 8:
+[preds: 7 ] [succs: ]
+$r14 = new java.lang.IllegalStateException;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Failure: length = \");
+$i9 = lengthof r21;
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", need = \");
+$i10 = i13 * 100;
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r14.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r19);
+throw $r14;
+"
+    "Block 9:
+[preds: 7 ] [succs: 13 ]
+i14 = 0;
+goto [?= (branch)];
+"
+    "Block 10:
+[preds: 13 ] [succs: 11 12 ]
+$r7 = r21[i14];
+i7 = virtualinvoke $r7.<TestRefArrays$MyObject: int id()>();
+b8 = 0;
+if i7 == b8 goto i14 = i14 + 1;
+"
+    "Block 11:
+[preds: 10 ] [succs: ]
+$r8 = new java.lang.IllegalStateException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Failure: expected = \");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b8);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", actual = \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r8.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r13);
+throw $r8;
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+i14 = i14 + 1;
+"
+    "Block 13:
+[preds: 9 12 ] [succs: 14 10 ]
+if i14 < i13 goto $r7 = r21[i14];
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+i13 = i13 + 1;
+"
+    "Block 15:
+[preds: 6 14 ] [succs: 16 7 ]
+$i4 = <TestRefArrays: int COUNT>;
+if i13 < $i4 goto $r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"
+    "Block 16:
+[preds: 15 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 5 ]
+r20 := @parameter0: java.lang.String[];
+$i0 = <TestRefArrays: int COUNT>;
+$i1 = $i0 * 100;
+$r0 = newarray (TestRefArrays$MyObject[])[$i1];
+<TestRefArrays: TestRefArrays$MyObject[][] arr> = $r0;
+i11 = 0;
+goto [?= $i2 = <TestRefArrays: int COUNT>];
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+$i2 = <TestRefArrays: int COUNT>;
+if i11 < $i2 goto $r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 1:
+[preds: 5 ] [succs: 3 ]
+$r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$i3 = i11 * 100;
+$r1 = newarray (TestRefArrays$MyObject)[$i3];
+$r2[i11] = $r1;
+i12 = 0;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i12 < i11 goto $r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 2:
+[preds: 3 ] [succs: 3 ]
+$r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$r5 = $r3[i11];
+$r4 = new TestRefArrays$MyObject;
+specialinvoke $r4.<TestRefArrays$MyObject: void <init>(int)>(0);
+$r5[i12] = $r4;
+i12 = i12 + 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i12 < i11 goto $r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i12 < i11 goto $r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+i11 = i11 + 1;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i12 < i11 goto $r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 2:
+[preds: 3 ] [succs: 3 ]
+$r3 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$r5 = $r3[i11];
+$r4 = new TestRefArrays$MyObject;
+specialinvoke $r4.<TestRefArrays$MyObject: void <init>(int)>(0);
+$r5[i12] = $r4;
+i12 = i12 + 1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i11 = i11 + 1;
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+$i2 = <TestRefArrays: int COUNT>;
+if i11 < $i2 goto $r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+$i2 = <TestRefArrays: int COUNT>;
+if i11 < $i2 goto $r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 6:
+[preds: 5 ] [succs: 15 ]
+i13 = 0;
+goto [?= $i4 = <TestRefArrays: int COUNT>];
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+$i2 = <TestRefArrays: int COUNT>;
+if i11 < $i2 goto $r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 1:
+[preds: 5 ] [succs: 3 ]
+$r2 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+$i3 = i11 * 100;
+$r1 = newarray (TestRefArrays$MyObject)[$i3];
+$r2[i11] = $r1;
+i12 = 0;
+goto [?= (branch)];
+";
+    "Block 6:
+[preds: 5 ] [succs: 15 ]
+i13 = 0;
+goto [?= $i4 = <TestRefArrays: int COUNT>];
+"->"Block 15:
+[preds: 6 14 ] [succs: 16 7 ]
+$i4 = <TestRefArrays: int COUNT>;
+if i13 < $i4 goto $r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 7:
+[preds: 15 ] [succs: 8 9 ]
+$r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+r21 = $r6[i13];
+$i6 = lengthof r21;
+$i5 = i13 * 100;
+if $i6 == $i5 goto i14 = 0;
+"->"Block 8:
+[preds: 7 ] [succs: ]
+$r14 = new java.lang.IllegalStateException;
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Failure: length = \");
+$i9 = lengthof r21;
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", need = \");
+$i10 = i13 * 100;
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r14.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r19);
+throw $r14;
+";
+    "Block 7:
+[preds: 15 ] [succs: 8 9 ]
+$r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+r21 = $r6[i13];
+$i6 = lengthof r21;
+$i5 = i13 * 100;
+if $i6 == $i5 goto i14 = 0;
+"->"Block 9:
+[preds: 7 ] [succs: 13 ]
+i14 = 0;
+goto [?= (branch)];
+";
+    "Block 9:
+[preds: 7 ] [succs: 13 ]
+i14 = 0;
+goto [?= (branch)];
+"->"Block 13:
+[preds: 9 12 ] [succs: 14 10 ]
+if i14 < i13 goto $r7 = r21[i14];
+";
+    "Block 10:
+[preds: 13 ] [succs: 11 12 ]
+$r7 = r21[i14];
+i7 = virtualinvoke $r7.<TestRefArrays$MyObject: int id()>();
+b8 = 0;
+if i7 == b8 goto i14 = i14 + 1;
+"->"Block 11:
+[preds: 10 ] [succs: ]
+$r8 = new java.lang.IllegalStateException;
+$r9 = new java.lang.StringBuilder;
+specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Failure: expected = \");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b8);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", actual = \");
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r8.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r13);
+throw $r8;
+";
+    "Block 10:
+[preds: 13 ] [succs: 11 12 ]
+$r7 = r21[i14];
+i7 = virtualinvoke $r7.<TestRefArrays$MyObject: int id()>();
+b8 = 0;
+if i7 == b8 goto i14 = i14 + 1;
+"->"Block 12:
+[preds: 10 ] [succs: 13 ]
+i14 = i14 + 1;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+i14 = i14 + 1;
+"->"Block 13:
+[preds: 9 12 ] [succs: 14 10 ]
+if i14 < i13 goto $r7 = r21[i14];
+";
+    "Block 13:
+[preds: 9 12 ] [succs: 14 10 ]
+if i14 < i13 goto $r7 = r21[i14];
+"->"Block 14:
+[preds: 13 ] [succs: 15 ]
+i13 = i13 + 1;
+";
+    "Block 13:
+[preds: 9 12 ] [succs: 14 10 ]
+if i14 < i13 goto $r7 = r21[i14];
+"->"Block 10:
+[preds: 13 ] [succs: 11 12 ]
+$r7 = r21[i14];
+i7 = virtualinvoke $r7.<TestRefArrays$MyObject: int id()>();
+b8 = 0;
+if i7 == b8 goto i14 = i14 + 1;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+i13 = i13 + 1;
+"->"Block 15:
+[preds: 6 14 ] [succs: 16 7 ]
+$i4 = <TestRefArrays: int COUNT>;
+if i13 < $i4 goto $r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+";
+    "Block 15:
+[preds: 6 14 ] [succs: 16 7 ]
+$i4 = <TestRefArrays: int COUNT>;
+if i13 < $i4 goto $r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 16:
+[preds: 15 ] [succs: ]
+return;
+";
+    "Block 15:
+[preds: 6 14 ] [succs: 16 7 ]
+$i4 = <TestRefArrays: int COUNT>;
+if i13 < $i4 goto $r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+"->"Block 7:
+[preds: 15 ] [succs: 8 9 ]
+$r6 = <TestRefArrays: TestRefArrays$MyObject[][] arr>;
+r21 = $r6[i13];
+$i6 = lengthof r21;
+$i5 = i13 * 100;
+if $i6 == $i5 goto i14 = 0;
+";
+}

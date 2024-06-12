@@ -1,0 +1,87 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: short[];
+r4 := @parameter1: java.lang.Short;
+r1 = r0;
+i0 = lengthof r0;
+i8 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$s1 = r1[i8];
+r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1);
+$s2 = virtualinvoke r4.<java.lang.Short: short shortValue()>();
+$s3 = virtualinvoke r2.<java.lang.Short: short shortValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>($s3);
+$s4 = virtualinvoke $r3.<java.lang.Short: short shortValue()>();
+$i5 = $s2 + $s4;
+$s6 = (short) $i5;
+r4 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6);
+i8 = i8 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i8 < i0 goto $s1 = r1[i8];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+$s7 = virtualinvoke r4.<java.lang.Short: short shortValue()>();
+return $s7;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: short[];
+r4 := @parameter1: java.lang.Short;
+r1 = r0;
+i0 = lengthof r0;
+i8 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i8 < i0 goto $s1 = r1[i8];
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$s1 = r1[i8];
+r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1);
+$s2 = virtualinvoke r4.<java.lang.Short: short shortValue()>();
+$s3 = virtualinvoke r2.<java.lang.Short: short shortValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>($s3);
+$s4 = virtualinvoke $r3.<java.lang.Short: short shortValue()>();
+$i5 = $s2 + $s4;
+$s6 = (short) $i5;
+r4 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6);
+i8 = i8 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i8 < i0 goto $s1 = r1[i8];
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i8 < i0 goto $s1 = r1[i8];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>();
+$s7 = virtualinvoke r4.<java.lang.Short: short shortValue()>();
+return $s7;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i8 < i0 goto $s1 = r1[i8];
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$s1 = r1[i8];
+r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1);
+$s2 = virtualinvoke r4.<java.lang.Short: short shortValue()>();
+$s3 = virtualinvoke r2.<java.lang.Short: short shortValue()>();
+$r3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short foob(short)>($s3);
+$s4 = virtualinvoke $r3.<java.lang.Short: short shortValue()>();
+$i5 = $s2 + $s4;
+$s6 = (short) $i5;
+r4 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s6);
+i8 = i8 + 1;
+";
+}

@@ -1,0 +1,30 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "i2 = 0"
+    "i3 = 0"
+    "goto [?= (branch)]"
+    "$r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"
+    "$r0 = newarray (long)[10000]"
+    "$r1[i2] = $r0"
+    "$i1 = i2 + 1"
+    "$r2 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"
+    "$i0 = lengthof $r2"
+    "i2 = $i1 % $i0"
+    "i3 = i3 + 1"
+    "if i3 < 1000 goto $r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"i2 = 0";
+    "i2 = 0"->"i3 = 0";
+    "i3 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < 1000 goto $r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>";
+    "$r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"->"$r0 = newarray (long)[10000]";
+    "$r0 = newarray (long)[10000]"->"$r1[i2] = $r0";
+    "$r1[i2] = $r0"->"$i1 = i2 + 1";
+    "$i1 = i2 + 1"->"$r2 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>";
+    "$r2 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"->"$i0 = lengthof $r2";
+    "$i0 = lengthof $r2"->"i2 = $i1 % $i0";
+    "i2 = $i1 % $i0"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 < 1000 goto $r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>";
+    "if i3 < 1000 goto $r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"->"return";
+    "if i3 < 1000 goto $r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>"->"$r1 = <TestVerifyBeforeAndAfterGCFlags$GarbageProducer: long[][] garbage>";
+}

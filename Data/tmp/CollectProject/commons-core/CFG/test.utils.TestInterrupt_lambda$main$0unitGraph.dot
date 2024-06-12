@@ -1,0 +1,46 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.util.concurrent.locks.Lock"
+    "interfaceinvoke r0.<java.util.concurrent.locks.Lock: void lock()>()"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"t1 start..\")"
+    "staticinvoke <java.lang.Thread: void sleep(long)>(3000L)"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"t1 end..\")"
+    "goto [?= return]"
+    "$r5 := @caughtexception"
+    "r6 = $r5"
+    "virtualinvoke r6.<java.lang.InterruptedException: void printStackTrace()>()"
+    "$r3 := @caughtexception"
+    "r4 = $r3"
+    "throw r4"
+    "return"
+    "r0 := @parameter0: java.util.concurrent.locks.Lock"->"interfaceinvoke r0.<java.util.concurrent.locks.Lock: void lock()>()";
+    "interfaceinvoke r0.<java.util.concurrent.locks.Lock: void lock()>()"->"$r5 := @caughtexception";
+    "interfaceinvoke r0.<java.util.concurrent.locks.Lock: void lock()>()"->"$r3 := @caughtexception";
+    "interfaceinvoke r0.<java.util.concurrent.locks.Lock: void lock()>()"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"$r5 := @caughtexception";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"$r3 := @caughtexception";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"t1 start..\")";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"t1 start..\")"->"$r5 := @caughtexception";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"t1 start..\")"->"$r3 := @caughtexception";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"t1 start..\")"->"staticinvoke <java.lang.Thread: void sleep(long)>(3000L)";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(3000L)"->"$r5 := @caughtexception";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(3000L)"->"$r3 := @caughtexception";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(3000L)"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r5 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r3 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"t1 end..\")";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"t1 end..\")"->"$r5 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"t1 end..\")"->"$r3 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"t1 end..\")"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r5 := @caughtexception"->"r6 = $r5";
+    "$r5 := @caughtexception"->"$r3 := @caughtexception";
+    "r6 = $r5"->"virtualinvoke r6.<java.lang.InterruptedException: void printStackTrace()>()";
+    "r6 = $r5"->"$r3 := @caughtexception";
+    "virtualinvoke r6.<java.lang.InterruptedException: void printStackTrace()>()"->"goto [?= return]";
+    "virtualinvoke r6.<java.lang.InterruptedException: void printStackTrace()>()"->"$r3 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r3 := @caughtexception"->"r4 = $r3";
+    "r4 = $r3"->"throw r4";
+}

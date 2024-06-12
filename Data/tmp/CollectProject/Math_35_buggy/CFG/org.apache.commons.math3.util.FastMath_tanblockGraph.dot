@@ -1,0 +1,421 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i10 = 0;
+i11 = 0;
+d10 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d10 cmpl 0.0;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+i10 = 1;
+d10 = neg d10;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 6 ]
+$b1 = d10 cmpl 0.0;
+if $b1 != 0 goto $b2 = d10 cmpl d10;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+l12 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0);
+$b9 = l12 cmp 0L;
+if $b9 >= 0 goto return 0.0;
+"
+    "Block 4:
+[preds: 3 ] [succs: ]
+return -0.0;
+"
+    "Block 5:
+[preds: 3 ] [succs: ]
+return 0.0;
+"
+    "Block 6:
+[preds: 2 ] [succs: 7 8 ]
+$b2 = d10 cmpl d10;
+if $b2 != 0 goto return #NaN;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$b3 = d10 cmpl #Infinity;
+if $b3 != 0 goto d11 = 0.0;
+"
+    "Block 8:
+[preds: 6 7 ] [succs: ]
+return #NaN;
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+d11 = 0.0;
+$b4 = d10 cmpl 3294198.0;
+if $b4 <= 0 goto $b5 = d10 cmpl 1.5707963267948966;
+"
+    "Block 10:
+[preds: 9 ] [succs: 13 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d10, r1);
+$d9 = r1[0];
+$i8 = (int) $d9;
+i11 = $i8 & 3;
+d10 = r1[1];
+d11 = r1[2];
+goto [?= $b13 = d10 cmpl 1.5];
+"
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$b5 = d10 cmpl 1.5707963267948966;
+if $b5 <= 0 goto $b13 = d10 cmpl 1.5;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d10);
+r2 = $r0;
+$i7 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i11 = $i7 & 3;
+d10 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d11 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+"
+    "Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+d12 = 1.5707963267948966;
+d2 = 6.123233995736766E-17;
+d3 = 1.5707963267948966 - d10;
+$d4 = d3 - 1.5707963267948966;
+$d5 = $d4 + d10;
+d13 = neg $d5;
+$d6 = 6.123233995736766E-17 - d11;
+d14 = d13 + $d6;
+d10 = d3 + d14;
+$d7 = d10 - d3;
+$d8 = $d7 - d14;
+d11 = neg $d8;
+i11 = i11 ^ 1;
+i10 = i10 ^ 1;
+"
+    "Block 15:
+[preds: 13 14 ] [succs: 16 17 ]
+$i6 = i11 & 1;
+if $i6 != 0 goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+"
+    "Block 16:
+[preds: 15 ] [succs: 18 ]
+d15 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 0);
+goto [?= (branch)];
+"
+    "Block 17:
+[preds: 15 ] [succs: 18 ]
+$d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+d15 = neg $d1;
+"
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+if i10 == 0 goto return d15;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 ]
+d15 = neg d15;
+"
+    "Block 20:
+[preds: 18 19 ] [succs: ]
+return d15;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i10 = 0;
+i11 = 0;
+d10 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d10 cmpl 0.0;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+i10 = 1;
+d10 = neg d10;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+d0 := @parameter0: double;
+i10 = 0;
+i11 = 0;
+d10 = d0;
+$b0 = d0 cmpg 0.0;
+if $b0 >= 0 goto $b1 = d10 cmpl 0.0;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 6 ]
+$b1 = d10 cmpl 0.0;
+if $b1 != 0 goto $b2 = d10 cmpl d10;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+i10 = 1;
+d10 = neg d10;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 6 ]
+$b1 = d10 cmpl 0.0;
+if $b1 != 0 goto $b2 = d10 cmpl d10;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 6 ]
+$b1 = d10 cmpl 0.0;
+if $b1 != 0 goto $b2 = d10 cmpl d10;
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+l12 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0);
+$b9 = l12 cmp 0L;
+if $b9 >= 0 goto return 0.0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 6 ]
+$b1 = d10 cmpl 0.0;
+if $b1 != 0 goto $b2 = d10 cmpl d10;
+"->"Block 6:
+[preds: 2 ] [succs: 7 8 ]
+$b2 = d10 cmpl d10;
+if $b2 != 0 goto return #NaN;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+l12 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0);
+$b9 = l12 cmp 0L;
+if $b9 >= 0 goto return 0.0;
+"->"Block 4:
+[preds: 3 ] [succs: ]
+return -0.0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+l12 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0);
+$b9 = l12 cmp 0L;
+if $b9 >= 0 goto return 0.0;
+"->"Block 5:
+[preds: 3 ] [succs: ]
+return 0.0;
+";
+    "Block 6:
+[preds: 2 ] [succs: 7 8 ]
+$b2 = d10 cmpl d10;
+if $b2 != 0 goto return #NaN;
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$b3 = d10 cmpl #Infinity;
+if $b3 != 0 goto d11 = 0.0;
+";
+    "Block 6:
+[preds: 2 ] [succs: 7 8 ]
+$b2 = d10 cmpl d10;
+if $b2 != 0 goto return #NaN;
+"->"Block 8:
+[preds: 6 7 ] [succs: ]
+return #NaN;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$b3 = d10 cmpl #Infinity;
+if $b3 != 0 goto d11 = 0.0;
+"->"Block 8:
+[preds: 6 7 ] [succs: ]
+return #NaN;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$b3 = d10 cmpl #Infinity;
+if $b3 != 0 goto d11 = 0.0;
+"->"Block 9:
+[preds: 7 ] [succs: 10 11 ]
+d11 = 0.0;
+$b4 = d10 cmpl 3294198.0;
+if $b4 <= 0 goto $b5 = d10 cmpl 1.5707963267948966;
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+d11 = 0.0;
+$b4 = d10 cmpl 3294198.0;
+if $b4 <= 0 goto $b5 = d10 cmpl 1.5707963267948966;
+"->"Block 10:
+[preds: 9 ] [succs: 13 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d10, r1);
+$d9 = r1[0];
+$i8 = (int) $d9;
+i11 = $i8 & 3;
+d10 = r1[1];
+d11 = r1[2];
+goto [?= $b13 = d10 cmpl 1.5];
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 11 ]
+d11 = 0.0;
+$b4 = d10 cmpl 3294198.0;
+if $b4 <= 0 goto $b5 = d10 cmpl 1.5707963267948966;
+"->"Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$b5 = d10 cmpl 1.5707963267948966;
+if $b5 <= 0 goto $b13 = d10 cmpl 1.5;
+";
+    "Block 10:
+[preds: 9 ] [succs: 13 ]
+r1 = newarray (double)[3];
+staticinvoke <org.apache.commons.math3.util.FastMath: void reducePayneHanek(double,double[])>(d10, r1);
+$d9 = r1[0];
+$i8 = (int) $d9;
+i11 = $i8 & 3;
+d10 = r1[1];
+d11 = r1[2];
+goto [?= $b13 = d10 cmpl 1.5];
+"->"Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$b5 = d10 cmpl 1.5707963267948966;
+if $b5 <= 0 goto $b13 = d10 cmpl 1.5;
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d10);
+r2 = $r0;
+$i7 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i11 = $i7 & 3;
+d10 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d11 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+";
+    "Block 11:
+[preds: 9 ] [succs: 12 13 ]
+$b5 = d10 cmpl 1.5707963267948966;
+if $b5 <= 0 goto $b13 = d10 cmpl 1.5;
+"->"Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r0 = new org.apache.commons.math3.util.FastMath$CodyWaite;
+specialinvoke $r0.<org.apache.commons.math3.util.FastMath$CodyWaite: void <init>(double)>(d10);
+r2 = $r0;
+$i7 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: int getK()>();
+i11 = $i7 & 3;
+d10 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemA()>();
+d11 = virtualinvoke r2.<org.apache.commons.math3.util.FastMath$CodyWaite: double getRemB()>();
+"->"Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+";
+    "Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+"->"Block 14:
+[preds: 13 ] [succs: 15 ]
+d12 = 1.5707963267948966;
+d2 = 6.123233995736766E-17;
+d3 = 1.5707963267948966 - d10;
+$d4 = d3 - 1.5707963267948966;
+$d5 = $d4 + d10;
+d13 = neg $d5;
+$d6 = 6.123233995736766E-17 - d11;
+d14 = d13 + $d6;
+d10 = d3 + d14;
+$d7 = d10 - d3;
+$d8 = $d7 - d14;
+d11 = neg $d8;
+i11 = i11 ^ 1;
+i10 = i10 ^ 1;
+";
+    "Block 13:
+[preds: 10 11 12 ] [succs: 14 15 ]
+$b13 = d10 cmpl 1.5;
+if $b13 <= 0 goto $i6 = i11 & 1;
+"->"Block 15:
+[preds: 13 14 ] [succs: 16 17 ]
+$i6 = i11 & 1;
+if $i6 != 0 goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 ]
+d12 = 1.5707963267948966;
+d2 = 6.123233995736766E-17;
+d3 = 1.5707963267948966 - d10;
+$d4 = d3 - 1.5707963267948966;
+$d5 = $d4 + d10;
+d13 = neg $d5;
+$d6 = 6.123233995736766E-17 - d11;
+d14 = d13 + $d6;
+d10 = d3 + d14;
+$d7 = d10 - d3;
+$d8 = $d7 - d14;
+d11 = neg $d8;
+i11 = i11 ^ 1;
+i10 = i10 ^ 1;
+"->"Block 15:
+[preds: 13 14 ] [succs: 16 17 ]
+$i6 = i11 & 1;
+if $i6 != 0 goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+";
+    "Block 15:
+[preds: 13 14 ] [succs: 16 17 ]
+$i6 = i11 & 1;
+if $i6 != 0 goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+"->"Block 16:
+[preds: 15 ] [succs: 18 ]
+d15 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 0);
+goto [?= (branch)];
+";
+    "Block 15:
+[preds: 13 14 ] [succs: 16 17 ]
+$i6 = i11 & 1;
+if $i6 != 0 goto $d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+"->"Block 17:
+[preds: 15 ] [succs: 18 ]
+$d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+d15 = neg $d1;
+";
+    "Block 16:
+[preds: 15 ] [succs: 18 ]
+d15 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 0);
+goto [?= (branch)];
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+if i10 == 0 goto return d15;
+";
+    "Block 17:
+[preds: 15 ] [succs: 18 ]
+$d1 = staticinvoke <org.apache.commons.math3.util.FastMath: double tanQ(double,double,boolean)>(d10, d11, 1);
+d15 = neg $d1;
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+if i10 == 0 goto return d15;
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+if i10 == 0 goto return d15;
+"->"Block 19:
+[preds: 18 ] [succs: 20 ]
+d15 = neg d15;
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 19 20 ]
+if i10 == 0 goto return d15;
+"->"Block 20:
+[preds: 18 19 ] [succs: ]
+return d15;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 ]
+d15 = neg d15;
+"->"Block 20:
+[preds: 18 19 ] [succs: ]
+return d15;
+";
+}

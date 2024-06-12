@@ -1,0 +1,238 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r19 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"
+    "Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 9 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z1 = r5 instanceof java.net.Inet6Address;
+if $z1 == 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+r7 = virtualinvoke r6.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>();
+if r7 != null goto r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+r9 = virtualinvoke r6.<java.net.Inet6Address: java.lang.String getHostAddress()>();
+i0 = virtualinvoke r9.<java.lang.String: int indexOf(int)>(37);
+$i1 = i0 + 1;
+r10 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int)>($i1);
+$z2 = virtualinvoke r8.<java.lang.String: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto (branch);
+"
+    "Block 8:
+[preds: 7 ] [succs: ]
+$r11 = new java.lang.RuntimeException;
+$r12 = new java.lang.StringBuilder;
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Expected nifName [\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"], to equal i6adrScopeName [\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18);
+throw $r11;
+"
+    "Block 9:
+[preds: 4 7 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 10:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 11:
+[preds: 1 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r19 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return;
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return;
+"->"Block 11:
+[preds: 1 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"->"Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+"->"Block 4:
+[preds: 3 ] [succs: 5 9 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z1 = r5 instanceof java.net.Inet6Address;
+if $z1 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+"->"Block 10:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 9 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z1 = r5 instanceof java.net.Inet6Address;
+if $z1 == 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+r7 = virtualinvoke r6.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>();
+if r7 != null goto r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 9 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z1 = r5 instanceof java.net.Inet6Address;
+if $z1 == 0 goto (branch);
+"->"Block 9:
+[preds: 4 7 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+r7 = virtualinvoke r6.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>();
+if r7 != null goto r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+"->"Block 6:
+[preds: 5 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+r7 = virtualinvoke r6.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>();
+if r7 != null goto r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+"->"Block 7:
+[preds: 5 ] [succs: 8 9 ]
+r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+r9 = virtualinvoke r6.<java.net.Inet6Address: java.lang.String getHostAddress()>();
+i0 = virtualinvoke r9.<java.lang.String: int indexOf(int)>(37);
+$i1 = i0 + 1;
+r10 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int)>($i1);
+$z2 = virtualinvoke r8.<java.lang.String: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto (branch);
+";
+    "Block 6:
+[preds: 5 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+r9 = virtualinvoke r6.<java.net.Inet6Address: java.lang.String getHostAddress()>();
+i0 = virtualinvoke r9.<java.lang.String: int indexOf(int)>(37);
+$i1 = i0 + 1;
+r10 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int)>($i1);
+$z2 = virtualinvoke r8.<java.lang.String: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto (branch);
+"->"Block 8:
+[preds: 7 ] [succs: ]
+$r11 = new java.lang.RuntimeException;
+$r12 = new java.lang.StringBuilder;
+specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Expected nifName [\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"], to equal i6adrScopeName [\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r10);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18);
+throw $r11;
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+r8 = virtualinvoke r7.<java.net.NetworkInterface: java.lang.String getName()>();
+r9 = virtualinvoke r6.<java.net.Inet6Address: java.lang.String getHostAddress()>();
+i0 = virtualinvoke r9.<java.lang.String: int indexOf(int)>(37);
+$i1 = i0 + 1;
+r10 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int)>($i1);
+$z2 = virtualinvoke r8.<java.lang.String: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto (branch);
+"->"Block 9:
+[preds: 4 7 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 9:
+[preds: 4 7 ] [succs: 3 ]
+goto [?= $z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 3:
+[preds: 2 6 9 ] [succs: 4 10 ]
+$z3 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z3 == 0 goto (branch);
+";
+    "Block 10:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return;
+";
+}

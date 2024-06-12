@@ -1,0 +1,34 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: short[]"
+    "s5 = 1"
+    "r1 = r0"
+    "i0 = lengthof r0"
+    "i6 = 0"
+    "goto [?= (branch)]"
+    "$s1 = r1[i6]"
+    "r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1)"
+    "$s2 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"
+    "$s3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s2)"
+    "$i4 = s5 + $s3"
+    "s5 = (short) $i4"
+    "i6 = i6 + 1"
+    "if i6 < i0 goto $s1 = r1[i6]"
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"
+    "return s5"
+    "r0 := @parameter0: short[]"->"s5 = 1";
+    "s5 = 1"->"r1 = r0";
+    "r1 = r0"->"i0 = lengthof r0";
+    "i0 = lengthof r0"->"i6 = 0";
+    "i6 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 < i0 goto $s1 = r1[i6]";
+    "$s1 = r1[i6]"->"r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1)";
+    "r2 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>($s1)"->"$s2 = virtualinvoke r2.<java.lang.Short: short shortValue()>()";
+    "$s2 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"->"$s3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s2)";
+    "$s3 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s2)"->"$i4 = s5 + $s3";
+    "$i4 = s5 + $s3"->"s5 = (short) $i4";
+    "s5 = (short) $i4"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"if i6 < i0 goto $s1 = r1[i6]";
+    "if i6 < i0 goto $s1 = r1[i6]"->"staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()";
+    "if i6 < i0 goto $s1 = r1[i6]"->"$s1 = r1[i6]";
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"->"return s5";
+}

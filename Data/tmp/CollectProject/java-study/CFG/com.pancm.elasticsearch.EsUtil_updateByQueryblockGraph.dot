@@ -1,0 +1,708 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+r10 := @parameter2: org.elasticsearch.index.query.QueryBuilder[];
+if r0 == null goto return null;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $r2 = new java.util.HashMap;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 34 ]
+$r2 = new java.util.HashMap;
+specialinvoke $r2.<java.util.HashMap: void <init>()>();
+r3 = $r2;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 34 ]
+$r4 = new org.elasticsearch.index.reindex.UpdateByQueryRequest;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 34 ]
+specialinvoke $r4.<org.elasticsearch.index.reindex.UpdateByQueryRequest: void <init>()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 34 ]
+r5 = $r4;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 34 ]
+$r6 = newarray (java.lang.String)[1];
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 34 ]
+$r6[0] = r0;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.action.IndicesRequest indices(java.lang.String[])>($r6);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 34 ]
+$r8 = newarray (java.lang.String)[1];
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 34 ]
+$r8[0] = r1;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setDocTypes(java.lang.String[])>($r8);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 22 34 ]
+if r10 == null goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 34 ]
+r22 = r10;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 34 ]
+i2 = lengthof r22;
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 34 ]
+i3 = 0;
+"
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 34 ]
+r18 = r22[i3];
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setQuery(org.elasticsearch.index.query.QueryBuilder)>(r18);
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 34 ]
+i3 = i3 + 1;
+"
+    "Block 21:
+[preds: 20 ] [succs: 17 34 ]
+goto [?= (branch)];
+"
+    "Block 22:
+[preds: 13 17 ] [succs: 23 34 ]
+$r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 34 ]
+$r11 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 34 ]
+r23 = virtualinvoke $r12.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse updateByQuery(org.elasticsearch.index.reindex.UpdateByQueryRequest,org.elasticsearch.client.RequestOptions)>(r5, $r11);
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 34 ]
+$r13 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>();
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 34 ]
+$l0 = virtualinvoke $r13.<org.elasticsearch.common.unit.TimeValue: long getMillis()>();
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 34 ]
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r14);
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 34 ]
+$l1 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>();
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 34 ]
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r16);
+"
+    "Block 32:
+[preds: 31 ] [succs: 33 39 ]
+$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z0 == 0 goto return r3;
+"
+    "Block 33:
+[preds: 32 ] [succs: 39 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+goto [?= return r3];
+"
+    "Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+"
+    "Block 35:
+[preds: 34 ] [succs: 36 34 ]
+r21 = $r20;
+"
+    "Block 36:
+[preds: 35 ] [succs: 37 38 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto throw r21;
+"
+    "Block 37:
+[preds: 36 ] [succs: 38 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"
+    "Block 38:
+[preds: 36 37 ] [succs: ]
+throw r21;
+"
+    "Block 39:
+[preds: 32 33 ] [succs: ]
+return r3;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+r10 := @parameter2: org.elasticsearch.index.query.QueryBuilder[];
+if r0 == null goto return null;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $r2 = new java.util.HashMap;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String;
+r1 := @parameter1: java.lang.String;
+r10 := @parameter2: org.elasticsearch.index.query.QueryBuilder[];
+if r0 == null goto return null;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $r2 = new java.util.HashMap;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+return null;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+if r1 != null goto $r2 = new java.util.HashMap;
+"->"Block 3:
+[preds: 1 ] [succs: 4 34 ]
+$r2 = new java.util.HashMap;
+specialinvoke $r2.<java.util.HashMap: void <init>()>();
+r3 = $r2;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 34 ]
+$r2 = new java.util.HashMap;
+specialinvoke $r2.<java.util.HashMap: void <init>()>();
+r3 = $r2;
+"->"Block 4:
+[preds: 3 ] [succs: 5 34 ]
+$r4 = new org.elasticsearch.index.reindex.UpdateByQueryRequest;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 34 ]
+$r2 = new java.util.HashMap;
+specialinvoke $r2.<java.util.HashMap: void <init>()>();
+r3 = $r2;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 34 ]
+$r4 = new org.elasticsearch.index.reindex.UpdateByQueryRequest;
+"->"Block 5:
+[preds: 4 ] [succs: 6 34 ]
+specialinvoke $r4.<org.elasticsearch.index.reindex.UpdateByQueryRequest: void <init>()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 34 ]
+$r4 = new org.elasticsearch.index.reindex.UpdateByQueryRequest;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 34 ]
+specialinvoke $r4.<org.elasticsearch.index.reindex.UpdateByQueryRequest: void <init>()>();
+"->"Block 6:
+[preds: 5 ] [succs: 7 34 ]
+r5 = $r4;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 34 ]
+specialinvoke $r4.<org.elasticsearch.index.reindex.UpdateByQueryRequest: void <init>()>();
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 34 ]
+r5 = $r4;
+"->"Block 7:
+[preds: 6 ] [succs: 8 34 ]
+$r6 = newarray (java.lang.String)[1];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 34 ]
+r5 = $r4;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 34 ]
+$r6 = newarray (java.lang.String)[1];
+"->"Block 8:
+[preds: 7 ] [succs: 9 34 ]
+$r6[0] = r0;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 34 ]
+$r6 = newarray (java.lang.String)[1];
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 34 ]
+$r6[0] = r0;
+"->"Block 9:
+[preds: 8 ] [succs: 10 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.action.IndicesRequest indices(java.lang.String[])>($r6);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 34 ]
+$r6[0] = r0;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.action.IndicesRequest indices(java.lang.String[])>($r6);
+"->"Block 10:
+[preds: 9 ] [succs: 11 34 ]
+$r8 = newarray (java.lang.String)[1];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.action.IndicesRequest indices(java.lang.String[])>($r6);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 34 ]
+$r8 = newarray (java.lang.String)[1];
+"->"Block 11:
+[preds: 10 ] [succs: 12 34 ]
+$r8[0] = r1;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 34 ]
+$r8 = newarray (java.lang.String)[1];
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 34 ]
+$r8[0] = r1;
+"->"Block 12:
+[preds: 11 ] [succs: 13 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setDocTypes(java.lang.String[])>($r8);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 34 ]
+$r8[0] = r1;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setDocTypes(java.lang.String[])>($r8);
+"->"Block 13:
+[preds: 12 ] [succs: 14 22 34 ]
+if r10 == null goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setDocTypes(java.lang.String[])>($r8);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 22 34 ]
+if r10 == null goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 14:
+[preds: 13 ] [succs: 15 34 ]
+r22 = r10;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 22 34 ]
+if r10 == null goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 22:
+[preds: 13 17 ] [succs: 23 34 ]
+$r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 22 34 ]
+if r10 == null goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 34 ]
+r22 = r10;
+"->"Block 15:
+[preds: 14 ] [succs: 16 34 ]
+i2 = lengthof r22;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 34 ]
+r22 = r10;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 34 ]
+i2 = lengthof r22;
+"->"Block 16:
+[preds: 15 ] [succs: 17 34 ]
+i3 = 0;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 34 ]
+i2 = lengthof r22;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 34 ]
+i3 = 0;
+"->"Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 34 ]
+i3 = 0;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 18:
+[preds: 17 ] [succs: 19 34 ]
+r18 = r22[i3];
+";
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 22:
+[preds: 13 17 ] [succs: 23 34 ]
+$r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 34 ]
+r18 = r22[i3];
+"->"Block 19:
+[preds: 18 ] [succs: 20 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setQuery(org.elasticsearch.index.query.QueryBuilder)>(r18);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 34 ]
+r18 = r22[i3];
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setQuery(org.elasticsearch.index.query.QueryBuilder)>(r18);
+"->"Block 20:
+[preds: 19 ] [succs: 21 34 ]
+i3 = i3 + 1;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 34 ]
+virtualinvoke r5.<org.elasticsearch.index.reindex.UpdateByQueryRequest: org.elasticsearch.index.reindex.UpdateByQueryRequest setQuery(org.elasticsearch.index.query.QueryBuilder)>(r18);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 34 ]
+i3 = i3 + 1;
+"->"Block 21:
+[preds: 20 ] [succs: 17 34 ]
+goto [?= (branch)];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 34 ]
+i3 = i3 + 1;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 17 34 ]
+goto [?= (branch)];
+"->"Block 17:
+[preds: 16 21 ] [succs: 18 22 34 ]
+if i3 >= i2 goto $r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+";
+    "Block 21:
+[preds: 20 ] [succs: 17 34 ]
+goto [?= (branch)];
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 22:
+[preds: 13 17 ] [succs: 23 34 ]
+$r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 23:
+[preds: 22 ] [succs: 24 34 ]
+$r11 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+";
+    "Block 22:
+[preds: 13 17 ] [succs: 23 34 ]
+$r12 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 34 ]
+$r11 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"->"Block 24:
+[preds: 23 ] [succs: 25 34 ]
+r23 = virtualinvoke $r12.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse updateByQuery(org.elasticsearch.index.reindex.UpdateByQueryRequest,org.elasticsearch.client.RequestOptions)>(r5, $r11);
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 34 ]
+$r11 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 34 ]
+r23 = virtualinvoke $r12.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse updateByQuery(org.elasticsearch.index.reindex.UpdateByQueryRequest,org.elasticsearch.client.RequestOptions)>(r5, $r11);
+"->"Block 25:
+[preds: 24 ] [succs: 26 34 ]
+$r13 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 34 ]
+r23 = virtualinvoke $r12.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse updateByQuery(org.elasticsearch.index.reindex.UpdateByQueryRequest,org.elasticsearch.client.RequestOptions)>(r5, $r11);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 34 ]
+$r13 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>();
+"->"Block 26:
+[preds: 25 ] [succs: 27 34 ]
+$l0 = virtualinvoke $r13.<org.elasticsearch.common.unit.TimeValue: long getMillis()>();
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 34 ]
+$r13 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>();
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 34 ]
+$l0 = virtualinvoke $r13.<org.elasticsearch.common.unit.TimeValue: long getMillis()>();
+"->"Block 27:
+[preds: 26 ] [succs: 28 34 ]
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 34 ]
+$l0 = virtualinvoke $r13.<org.elasticsearch.common.unit.TimeValue: long getMillis()>();
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 34 ]
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+"->"Block 28:
+[preds: 27 ] [succs: 29 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r14);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 34 ]
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r14);
+"->"Block 29:
+[preds: 28 ] [succs: 30 34 ]
+$l1 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>();
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r14);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 34 ]
+$l1 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>();
+"->"Block 30:
+[preds: 29 ] [succs: 31 34 ]
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 34 ]
+$l1 = virtualinvoke r23.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>();
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 34 ]
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+"->"Block 31:
+[preds: 30 ] [succs: 32 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r16);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 34 ]
+$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r16);
+"->"Block 32:
+[preds: 31 ] [succs: 33 39 ]
+$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z0 == 0 goto return r3;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 34 ]
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r16);
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 39 ]
+$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z0 == 0 goto return r3;
+"->"Block 33:
+[preds: 32 ] [succs: 39 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+goto [?= return r3];
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 39 ]
+$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z0 == 0 goto return r3;
+"->"Block 39:
+[preds: 32 33 ] [succs: ]
+return r3;
+";
+    "Block 33:
+[preds: 32 ] [succs: 39 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+goto [?= return r3];
+"->"Block 39:
+[preds: 32 33 ] [succs: ]
+return r3;
+";
+    "Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+"->"Block 35:
+[preds: 34 ] [succs: 36 34 ]
+r21 = $r20;
+";
+    "Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 34 ]
+r21 = $r20;
+"->"Block 36:
+[preds: 35 ] [succs: 37 38 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto throw r21;
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 34 ]
+r21 = $r20;
+"->"Block 34:
+[preds: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 21 17 18 19 20 22 23 24 25 26 27 28 29 30 31 34 35 ] [succs: 35 34 ]
+$r20 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 38 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto throw r21;
+"->"Block 37:
+[preds: 36 ] [succs: 38 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 38 ]
+$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>;
+if $z1 == 0 goto throw r21;
+"->"Block 38:
+[preds: 36 37 ] [succs: ]
+throw r21;
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 ]
+staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>();
+"->"Block 38:
+[preds: 36 37 ] [succs: ]
+throw r21;
+";
+}

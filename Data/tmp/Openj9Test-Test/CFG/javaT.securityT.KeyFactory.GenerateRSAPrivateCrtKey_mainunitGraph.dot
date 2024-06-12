@@ -1,0 +1,244 @@
+digraph "unitGraph" {
+    "r60 := @parameter0: java.lang.String[]"
+    "$r0 = new java.security.spec.RSAPrivateCrtKeySpec"
+    "$r1 = new java.math.BigInteger"
+    "$r2 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] modulus>"
+    "specialinvoke $r1.<java.math.BigInteger: void <init>(int,byte[])>(1, $r2)"
+    "$r3 = new java.math.BigInteger"
+    "$r4 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] pubExpo>"
+    "specialinvoke $r3.<java.math.BigInteger: void <init>(int,byte[])>(1, $r4)"
+    "$r5 = new java.math.BigInteger"
+    "$r6 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] priExpo>"
+    "specialinvoke $r5.<java.math.BigInteger: void <init>(int,byte[])>(1, $r6)"
+    "$r7 = new java.math.BigInteger"
+    "$r8 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeP>"
+    "specialinvoke $r7.<java.math.BigInteger: void <init>(int,byte[])>(1, $r8)"
+    "$r9 = new java.math.BigInteger"
+    "$r10 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeQ>"
+    "specialinvoke $r9.<java.math.BigInteger: void <init>(int,byte[])>(1, $r10)"
+    "$r11 = new java.math.BigInteger"
+    "$r12 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoP>"
+    "specialinvoke $r11.<java.math.BigInteger: void <init>(int,byte[])>(1, $r12)"
+    "$r13 = new java.math.BigInteger"
+    "$r14 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoQ>"
+    "specialinvoke $r13.<java.math.BigInteger: void <init>(int,byte[])>(1, $r14)"
+    "$r15 = new java.math.BigInteger"
+    "$r16 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] coeff>"
+    "specialinvoke $r15.<java.math.BigInteger: void <init>(int,byte[])>(1, $r16)"
+    "specialinvoke $r0.<java.security.spec.RSAPrivateCrtKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger)>($r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15)"
+    "r17 = $r0"
+    "r18 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")"
+    "$r19 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r17)"
+    "r20 = (java.security.interfaces.RSAPrivateCrtKey) $r19"
+    "$r21 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getCrtCoefficient()>()"
+    "$r22 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getCrtCoefficient()>()"
+    "$z0 = virtualinvoke $r21.<java.math.BigInteger: boolean equals(java.lang.Object)>($r22)"
+    "if $z0 != 0 goto $r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()"
+    "$r59 = new java.lang.Exception"
+    "specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"coefficients not equal\")"
+    "throw $r59"
+    "$r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()"
+    "$r24 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentP()>()"
+    "$z1 = virtualinvoke $r23.<java.math.BigInteger: boolean equals(java.lang.Object)>($r24)"
+    "if $z1 != 0 goto $r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()"
+    "$r58 = new java.lang.Exception"
+    "specialinvoke $r58.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentPs not equal\")"
+    "throw $r58"
+    "$r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()"
+    "$r26 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentQ()>()"
+    "$z2 = virtualinvoke $r25.<java.math.BigInteger: boolean equals(java.lang.Object)>($r26)"
+    "if $z2 != 0 goto $r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()"
+    "$r57 = new java.lang.Exception"
+    "specialinvoke $r57.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentQs not equal\")"
+    "throw $r57"
+    "$r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()"
+    "$r28 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeP()>()"
+    "$z3 = virtualinvoke $r27.<java.math.BigInteger: boolean equals(java.lang.Object)>($r28)"
+    "if $z3 != 0 goto $r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()"
+    "$r56 = new java.lang.Exception"
+    "specialinvoke $r56.<java.lang.Exception: void <init>(java.lang.String)>(\"primePs not equal\")"
+    "throw $r56"
+    "$r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()"
+    "$r30 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeQ()>()"
+    "$z4 = virtualinvoke $r29.<java.math.BigInteger: boolean equals(java.lang.Object)>($r30)"
+    "if $z4 != 0 goto $r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()"
+    "$r55 = new java.lang.Exception"
+    "specialinvoke $r55.<java.lang.Exception: void <init>(java.lang.String)>(\"primeQs not equal\")"
+    "throw $r55"
+    "$r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()"
+    "$r32 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPublicExponent()>()"
+    "$z5 = virtualinvoke $r31.<java.math.BigInteger: boolean equals(java.lang.Object)>($r32)"
+    "if $z5 != 0 goto $r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()"
+    "$r54 = new java.lang.Exception"
+    "specialinvoke $r54.<java.lang.Exception: void <init>(java.lang.String)>(\"public exponents not equal\")"
+    "throw $r54"
+    "$r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()"
+    "$r34 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrivateExponent()>()"
+    "$z6 = virtualinvoke $r33.<java.math.BigInteger: boolean equals(java.lang.Object)>($r34)"
+    "if $z6 != 0 goto $r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()"
+    "$r53 = new java.lang.Exception"
+    "specialinvoke $r53.<java.lang.Exception: void <init>(java.lang.String)>(\"private exponents not equal\")"
+    "throw $r53"
+    "$r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()"
+    "$r36 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getModulus()>()"
+    "$z7 = virtualinvoke $r35.<java.math.BigInteger: boolean equals(java.lang.Object)>($r36)"
+    "if $z7 != 0 goto $r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"
+    "$r52 = new java.lang.Exception"
+    "specialinvoke $r52.<java.lang.Exception: void <init>(java.lang.String)>(\"modulus not equal\")"
+    "throw $r52"
+    "$r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"
+    "$z8 = virtualinvoke $r37.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS#8\")"
+    "if $z8 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"
+    "$r50 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"
+    "$z11 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS8\")"
+    "if $z11 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"
+    "$r51 = new java.lang.Exception"
+    "specialinvoke $r51.<java.lang.Exception: void <init>(java.lang.String)>(\"format not PKCS#8\")"
+    "throw $r51"
+    "$r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"
+    "$z9 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>(\"RSA\")"
+    "if $z9 != 0 goto $r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"
+    "$r49 = new java.lang.Exception"
+    "specialinvoke $r49.<java.lang.Exception: void <init>(java.lang.String)>(\"algorithm not RSA\")"
+    "throw $r49"
+    "$r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"
+    "if $r39 != null goto $r40 = new java.security.spec.PKCS8EncodedKeySpec"
+    "$r48 = new java.lang.Exception"
+    "specialinvoke $r48.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded key is null\")"
+    "throw $r48"
+    "$r40 = new java.security.spec.PKCS8EncodedKeySpec"
+    "$r41 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"
+    "specialinvoke $r40.<java.security.spec.PKCS8EncodedKeySpec: void <init>(byte[])>($r41)"
+    "r42 = $r40"
+    "$r43 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r42)"
+    "r44 = (java.security.interfaces.RSAPrivateCrtKey) $r43"
+    "$r45 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"
+    "$r46 = interfaceinvoke r44.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"
+    "$z10 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r45, $r46)"
+    "if $z10 != 0 goto return"
+    "$r47 = new java.lang.Exception"
+    "specialinvoke $r47.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded keys not equal\")"
+    "throw $r47"
+    "return"
+    "r60 := @parameter0: java.lang.String[]"->"$r0 = new java.security.spec.RSAPrivateCrtKeySpec";
+    "$r0 = new java.security.spec.RSAPrivateCrtKeySpec"->"$r1 = new java.math.BigInteger";
+    "$r1 = new java.math.BigInteger"->"$r2 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] modulus>";
+    "$r2 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] modulus>"->"specialinvoke $r1.<java.math.BigInteger: void <init>(int,byte[])>(1, $r2)";
+    "specialinvoke $r1.<java.math.BigInteger: void <init>(int,byte[])>(1, $r2)"->"$r3 = new java.math.BigInteger";
+    "$r3 = new java.math.BigInteger"->"$r4 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] pubExpo>";
+    "$r4 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] pubExpo>"->"specialinvoke $r3.<java.math.BigInteger: void <init>(int,byte[])>(1, $r4)";
+    "specialinvoke $r3.<java.math.BigInteger: void <init>(int,byte[])>(1, $r4)"->"$r5 = new java.math.BigInteger";
+    "$r5 = new java.math.BigInteger"->"$r6 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] priExpo>";
+    "$r6 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] priExpo>"->"specialinvoke $r5.<java.math.BigInteger: void <init>(int,byte[])>(1, $r6)";
+    "specialinvoke $r5.<java.math.BigInteger: void <init>(int,byte[])>(1, $r6)"->"$r7 = new java.math.BigInteger";
+    "$r7 = new java.math.BigInteger"->"$r8 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeP>";
+    "$r8 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeP>"->"specialinvoke $r7.<java.math.BigInteger: void <init>(int,byte[])>(1, $r8)";
+    "specialinvoke $r7.<java.math.BigInteger: void <init>(int,byte[])>(1, $r8)"->"$r9 = new java.math.BigInteger";
+    "$r9 = new java.math.BigInteger"->"$r10 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeQ>";
+    "$r10 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] primeQ>"->"specialinvoke $r9.<java.math.BigInteger: void <init>(int,byte[])>(1, $r10)";
+    "specialinvoke $r9.<java.math.BigInteger: void <init>(int,byte[])>(1, $r10)"->"$r11 = new java.math.BigInteger";
+    "$r11 = new java.math.BigInteger"->"$r12 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoP>";
+    "$r12 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoP>"->"specialinvoke $r11.<java.math.BigInteger: void <init>(int,byte[])>(1, $r12)";
+    "specialinvoke $r11.<java.math.BigInteger: void <init>(int,byte[])>(1, $r12)"->"$r13 = new java.math.BigInteger";
+    "$r13 = new java.math.BigInteger"->"$r14 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoQ>";
+    "$r14 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] expoQ>"->"specialinvoke $r13.<java.math.BigInteger: void <init>(int,byte[])>(1, $r14)";
+    "specialinvoke $r13.<java.math.BigInteger: void <init>(int,byte[])>(1, $r14)"->"$r15 = new java.math.BigInteger";
+    "$r15 = new java.math.BigInteger"->"$r16 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] coeff>";
+    "$r16 = <javaT.securityT.KeyFactory.GenerateRSAPrivateCrtKey: byte[] coeff>"->"specialinvoke $r15.<java.math.BigInteger: void <init>(int,byte[])>(1, $r16)";
+    "specialinvoke $r15.<java.math.BigInteger: void <init>(int,byte[])>(1, $r16)"->"specialinvoke $r0.<java.security.spec.RSAPrivateCrtKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger)>($r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15)";
+    "specialinvoke $r0.<java.security.spec.RSAPrivateCrtKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger,java.math.BigInteger)>($r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15)"->"r17 = $r0";
+    "r17 = $r0"->"r18 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")";
+    "r18 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\")"->"$r19 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r17)";
+    "$r19 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r17)"->"r20 = (java.security.interfaces.RSAPrivateCrtKey) $r19";
+    "r20 = (java.security.interfaces.RSAPrivateCrtKey) $r19"->"$r21 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getCrtCoefficient()>()";
+    "$r21 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getCrtCoefficient()>()"->"$r22 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getCrtCoefficient()>()";
+    "$r22 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getCrtCoefficient()>()"->"$z0 = virtualinvoke $r21.<java.math.BigInteger: boolean equals(java.lang.Object)>($r22)";
+    "$z0 = virtualinvoke $r21.<java.math.BigInteger: boolean equals(java.lang.Object)>($r22)"->"if $z0 != 0 goto $r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()";
+    "if $z0 != 0 goto $r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()"->"$r59 = new java.lang.Exception";
+    "if $z0 != 0 goto $r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()"->"$r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()";
+    "$r59 = new java.lang.Exception"->"specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"coefficients not equal\")";
+    "specialinvoke $r59.<java.lang.Exception: void <init>(java.lang.String)>(\"coefficients not equal\")"->"throw $r59";
+    "$r23 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentP()>()"->"$r24 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentP()>()";
+    "$r24 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentP()>()"->"$z1 = virtualinvoke $r23.<java.math.BigInteger: boolean equals(java.lang.Object)>($r24)";
+    "$z1 = virtualinvoke $r23.<java.math.BigInteger: boolean equals(java.lang.Object)>($r24)"->"if $z1 != 0 goto $r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()";
+    "if $z1 != 0 goto $r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()"->"$r58 = new java.lang.Exception";
+    "if $z1 != 0 goto $r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()"->"$r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()";
+    "$r58 = new java.lang.Exception"->"specialinvoke $r58.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentPs not equal\")";
+    "specialinvoke $r58.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentPs not equal\")"->"throw $r58";
+    "$r25 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeExponentQ()>()"->"$r26 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentQ()>()";
+    "$r26 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeExponentQ()>()"->"$z2 = virtualinvoke $r25.<java.math.BigInteger: boolean equals(java.lang.Object)>($r26)";
+    "$z2 = virtualinvoke $r25.<java.math.BigInteger: boolean equals(java.lang.Object)>($r26)"->"if $z2 != 0 goto $r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()";
+    "if $z2 != 0 goto $r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()"->"$r57 = new java.lang.Exception";
+    "if $z2 != 0 goto $r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()"->"$r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()";
+    "$r57 = new java.lang.Exception"->"specialinvoke $r57.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentQs not equal\")";
+    "specialinvoke $r57.<java.lang.Exception: void <init>(java.lang.String)>(\"primeExponentQs not equal\")"->"throw $r57";
+    "$r27 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeP()>()"->"$r28 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeP()>()";
+    "$r28 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeP()>()"->"$z3 = virtualinvoke $r27.<java.math.BigInteger: boolean equals(java.lang.Object)>($r28)";
+    "$z3 = virtualinvoke $r27.<java.math.BigInteger: boolean equals(java.lang.Object)>($r28)"->"if $z3 != 0 goto $r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()";
+    "if $z3 != 0 goto $r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()"->"$r56 = new java.lang.Exception";
+    "if $z3 != 0 goto $r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()"->"$r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()";
+    "$r56 = new java.lang.Exception"->"specialinvoke $r56.<java.lang.Exception: void <init>(java.lang.String)>(\"primePs not equal\")";
+    "specialinvoke $r56.<java.lang.Exception: void <init>(java.lang.String)>(\"primePs not equal\")"->"throw $r56";
+    "$r29 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrimeQ()>()"->"$r30 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeQ()>()";
+    "$r30 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrimeQ()>()"->"$z4 = virtualinvoke $r29.<java.math.BigInteger: boolean equals(java.lang.Object)>($r30)";
+    "$z4 = virtualinvoke $r29.<java.math.BigInteger: boolean equals(java.lang.Object)>($r30)"->"if $z4 != 0 goto $r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()";
+    "if $z4 != 0 goto $r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()"->"$r55 = new java.lang.Exception";
+    "if $z4 != 0 goto $r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()"->"$r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()";
+    "$r55 = new java.lang.Exception"->"specialinvoke $r55.<java.lang.Exception: void <init>(java.lang.String)>(\"primeQs not equal\")";
+    "specialinvoke $r55.<java.lang.Exception: void <init>(java.lang.String)>(\"primeQs not equal\")"->"throw $r55";
+    "$r31 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPublicExponent()>()"->"$r32 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPublicExponent()>()";
+    "$r32 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPublicExponent()>()"->"$z5 = virtualinvoke $r31.<java.math.BigInteger: boolean equals(java.lang.Object)>($r32)";
+    "$z5 = virtualinvoke $r31.<java.math.BigInteger: boolean equals(java.lang.Object)>($r32)"->"if $z5 != 0 goto $r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()";
+    "if $z5 != 0 goto $r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()"->"$r54 = new java.lang.Exception";
+    "if $z5 != 0 goto $r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()"->"$r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()";
+    "$r54 = new java.lang.Exception"->"specialinvoke $r54.<java.lang.Exception: void <init>(java.lang.String)>(\"public exponents not equal\")";
+    "specialinvoke $r54.<java.lang.Exception: void <init>(java.lang.String)>(\"public exponents not equal\")"->"throw $r54";
+    "$r33 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getPrivateExponent()>()"->"$r34 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrivateExponent()>()";
+    "$r34 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getPrivateExponent()>()"->"$z6 = virtualinvoke $r33.<java.math.BigInteger: boolean equals(java.lang.Object)>($r34)";
+    "$z6 = virtualinvoke $r33.<java.math.BigInteger: boolean equals(java.lang.Object)>($r34)"->"if $z6 != 0 goto $r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()";
+    "if $z6 != 0 goto $r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()"->"$r53 = new java.lang.Exception";
+    "if $z6 != 0 goto $r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()"->"$r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()";
+    "$r53 = new java.lang.Exception"->"specialinvoke $r53.<java.lang.Exception: void <init>(java.lang.String)>(\"private exponents not equal\")";
+    "specialinvoke $r53.<java.lang.Exception: void <init>(java.lang.String)>(\"private exponents not equal\")"->"throw $r53";
+    "$r35 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.math.BigInteger getModulus()>()"->"$r36 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getModulus()>()";
+    "$r36 = virtualinvoke r17.<java.security.spec.RSAPrivateCrtKeySpec: java.math.BigInteger getModulus()>()"->"$z7 = virtualinvoke $r35.<java.math.BigInteger: boolean equals(java.lang.Object)>($r36)";
+    "$z7 = virtualinvoke $r35.<java.math.BigInteger: boolean equals(java.lang.Object)>($r36)"->"if $z7 != 0 goto $r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()";
+    "if $z7 != 0 goto $r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"->"$r52 = new java.lang.Exception";
+    "if $z7 != 0 goto $r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"->"$r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()";
+    "$r52 = new java.lang.Exception"->"specialinvoke $r52.<java.lang.Exception: void <init>(java.lang.String)>(\"modulus not equal\")";
+    "specialinvoke $r52.<java.lang.Exception: void <init>(java.lang.String)>(\"modulus not equal\")"->"throw $r52";
+    "$r37 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"->"$z8 = virtualinvoke $r37.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS#8\")";
+    "$z8 = virtualinvoke $r37.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS#8\")"->"if $z8 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()";
+    "if $z8 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"->"$r50 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()";
+    "if $z8 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"->"$r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()";
+    "$r50 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getFormat()>()"->"$z11 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS8\")";
+    "$z11 = virtualinvoke $r50.<java.lang.String: boolean equals(java.lang.Object)>(\"PKCS8\")"->"if $z11 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()";
+    "if $z11 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"->"$r51 = new java.lang.Exception";
+    "if $z11 != 0 goto $r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"->"$r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()";
+    "$r51 = new java.lang.Exception"->"specialinvoke $r51.<java.lang.Exception: void <init>(java.lang.String)>(\"format not PKCS#8\")";
+    "specialinvoke $r51.<java.lang.Exception: void <init>(java.lang.String)>(\"format not PKCS#8\")"->"throw $r51";
+    "$r38 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: java.lang.String getAlgorithm()>()"->"$z9 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>(\"RSA\")";
+    "$z9 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>(\"RSA\")"->"if $z9 != 0 goto $r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()";
+    "if $z9 != 0 goto $r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"$r49 = new java.lang.Exception";
+    "if $z9 != 0 goto $r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"$r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()";
+    "$r49 = new java.lang.Exception"->"specialinvoke $r49.<java.lang.Exception: void <init>(java.lang.String)>(\"algorithm not RSA\")";
+    "specialinvoke $r49.<java.lang.Exception: void <init>(java.lang.String)>(\"algorithm not RSA\")"->"throw $r49";
+    "$r39 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"if $r39 != null goto $r40 = new java.security.spec.PKCS8EncodedKeySpec";
+    "if $r39 != null goto $r40 = new java.security.spec.PKCS8EncodedKeySpec"->"$r48 = new java.lang.Exception";
+    "if $r39 != null goto $r40 = new java.security.spec.PKCS8EncodedKeySpec"->"$r40 = new java.security.spec.PKCS8EncodedKeySpec";
+    "$r48 = new java.lang.Exception"->"specialinvoke $r48.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded key is null\")";
+    "specialinvoke $r48.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded key is null\")"->"throw $r48";
+    "$r40 = new java.security.spec.PKCS8EncodedKeySpec"->"$r41 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()";
+    "$r41 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"specialinvoke $r40.<java.security.spec.PKCS8EncodedKeySpec: void <init>(byte[])>($r41)";
+    "specialinvoke $r40.<java.security.spec.PKCS8EncodedKeySpec: void <init>(byte[])>($r41)"->"r42 = $r40";
+    "r42 = $r40"->"$r43 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r42)";
+    "$r43 = virtualinvoke r18.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r42)"->"r44 = (java.security.interfaces.RSAPrivateCrtKey) $r43";
+    "r44 = (java.security.interfaces.RSAPrivateCrtKey) $r43"->"$r45 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()";
+    "$r45 = interfaceinvoke r20.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"$r46 = interfaceinvoke r44.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()";
+    "$r46 = interfaceinvoke r44.<java.security.interfaces.RSAPrivateCrtKey: byte[] getEncoded()>()"->"$z10 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r45, $r46)";
+    "$z10 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r45, $r46)"->"if $z10 != 0 goto return";
+    "if $z10 != 0 goto return"->"$r47 = new java.lang.Exception";
+    "if $z10 != 0 goto return"->"return";
+    "$r47 = new java.lang.Exception"->"specialinvoke $r47.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded keys not equal\")";
+    "specialinvoke $r47.<java.lang.Exception: void <init>(java.lang.String)>(\"encoded keys not equal\")"->"throw $r47";
+}

@@ -1,0 +1,175 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.io.File"
+    "r26 := @parameter1: java.io.File"
+    "r6 := @parameter2: java.io.File"
+    "r13 := @parameter3: at.favre.tools.apksigner.signing.ZipAlignExecutor"
+    "r0 := @parameter4: at.favre.tools.apksigner.ui.Arg"
+    "r22 := @parameter5: java.util.List"
+    "$z0 = r0.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"
+    "if $z0 != 0 goto return r1"
+    "r32 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileNameWithoutExtension(java.io.File)>(r1)"
+    "r33 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"-unaligned\", \"\")"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r33)"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-aligned\")"
+    "r34 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r5 = new java.io.File"
+    "if r6 == null goto $r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()"
+    "$r35 = r6"
+    "goto [?= $r7 = new java.lang.StringBuilder]"
+    "$r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()"
+    "$r7 = new java.lang.StringBuilder"
+    "specialinvoke $r7.<java.lang.StringBuilder: void <init>()>()"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34)"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\")"
+    "$r10 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileExtension(java.io.File)>(r1)"
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r5.<java.io.File: void <init>(java.io.File,java.lang.String)>($r35, $r12)"
+    "r36 = $r5"
+    "$z1 = virtualinvoke r36.<java.io.File: boolean exists()>()"
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()"
+    "virtualinvoke r36.<java.io.File: boolean delete()>()"
+    "$z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()"
+    "if $z2 == 0 goto $r14 = new java.lang.IllegalArgumentException"
+    "r37 = \"\t- \""
+    "$r15 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String[] getZipAlignExecutable()>()"
+    "$r16 = newarray (java.lang.String)[5]"
+    "$r16[0] = \"-p\""
+    "$r16[1] = \"-v\""
+    "$r16[2] = \"4\""
+    "$r17 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"
+    "$r16[3] = $r17"
+    "$r18 = virtualinvoke r36.<java.io.File: java.lang.String getAbsolutePath()>()"
+    "$r16[4] = $r18"
+    "$r19 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.Object[] concat(java.lang.Object[],java.lang.Object[])>($r15, $r16)"
+    "$r20 = (java.lang.String[]) $r19"
+    "r21 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: at.favre.tools.apksigner.util.CmdUtil$Result runCmd(java.lang.String[])>($r20)"
+    "interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>(r21)"
+    "$z4 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"
+    "if $z4 == 0 goto $r23 = new java.lang.StringBuilder"
+    "$r29 = new java.lang.StringBuilder"
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"zipalign success\")"
+    "r38 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "goto [?= $r27 = r38]"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not align \")"
+    "r38 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r27 = r38"
+    "$r28 = r36"
+    "$z5 = virtualinvoke r26.<java.io.File: boolean equals(java.lang.Object)>(r36)"
+    "if $z5 != 0 goto $z11 = 0"
+    "$z11 = 1"
+    "goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)]"
+    "$z11 = 0"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)"
+    "$z6 = r0.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"
+    "if $z6 == 0 goto $z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"
+    "virtualinvoke r1.<java.io.File: boolean delete()>()"
+    "virtualinvoke r36.<java.io.File: boolean renameTo(java.io.File)>(r1)"
+    "r36 = r1"
+    "$z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"
+    "if $z7 == 0 goto $r39 = null"
+    "$r39 = r36"
+    "goto [?= return $r39]"
+    "$r39 = null"
+    "return $r39"
+    "$r14 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r14.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"could not find zipalign - either skip it or provide a proper location\")"
+    "throw $r14"
+    "return r1"
+    "r1 := @parameter0: java.io.File"->"r26 := @parameter1: java.io.File";
+    "r26 := @parameter1: java.io.File"->"r6 := @parameter2: java.io.File";
+    "r6 := @parameter2: java.io.File"->"r13 := @parameter3: at.favre.tools.apksigner.signing.ZipAlignExecutor";
+    "r13 := @parameter3: at.favre.tools.apksigner.signing.ZipAlignExecutor"->"r0 := @parameter4: at.favre.tools.apksigner.ui.Arg";
+    "r0 := @parameter4: at.favre.tools.apksigner.ui.Arg"->"r22 := @parameter5: java.util.List";
+    "r22 := @parameter5: java.util.List"->"$z0 = r0.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>";
+    "$z0 = r0.<at.favre.tools.apksigner.ui.Arg: boolean skipZipAlign>"->"if $z0 != 0 goto return r1";
+    "if $z0 != 0 goto return r1"->"r32 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileNameWithoutExtension(java.io.File)>(r1)";
+    "if $z0 != 0 goto return r1"->"return r1";
+    "r32 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileNameWithoutExtension(java.io.File)>(r1)"->"r33 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"-unaligned\", \"\")";
+    "r33 = virtualinvoke r32.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"-unaligned\", \"\")"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r33)";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r33)"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-aligned\")";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-aligned\")"->"r34 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r34 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r5 = new java.io.File";
+    "$r5 = new java.io.File"->"if r6 == null goto $r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()";
+    "if r6 == null goto $r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()"->"$r35 = r6";
+    "if r6 == null goto $r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()"->"$r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()";
+    "$r35 = r6"->"goto [?= $r7 = new java.lang.StringBuilder]";
+    "goto [?= $r7 = new java.lang.StringBuilder]"->"$r7 = new java.lang.StringBuilder";
+    "$r35 = virtualinvoke r1.<java.io.File: java.io.File getParentFile()>()"->"$r7 = new java.lang.StringBuilder";
+    "$r7 = new java.lang.StringBuilder"->"specialinvoke $r7.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r7.<java.lang.StringBuilder: void <init>()>()"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r34)"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\")";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\")"->"$r10 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileExtension(java.io.File)>(r1)";
+    "$r10 = staticinvoke <at.favre.tools.apksigner.util.FileUtil: java.lang.String getFileExtension(java.io.File)>(r1)"->"$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10)";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r5.<java.io.File: void <init>(java.io.File,java.lang.String)>($r35, $r12)";
+    "specialinvoke $r5.<java.io.File: void <init>(java.io.File,java.lang.String)>($r35, $r12)"->"r36 = $r5";
+    "r36 = $r5"->"$z1 = virtualinvoke r36.<java.io.File: boolean exists()>()";
+    "$z1 = virtualinvoke r36.<java.io.File: boolean exists()>()"->"if $z1 == 0 goto $z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()"->"virtualinvoke r36.<java.io.File: boolean delete()>()";
+    "if $z1 == 0 goto $z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()"->"$z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()";
+    "virtualinvoke r36.<java.io.File: boolean delete()>()"->"$z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()";
+    "$z2 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: boolean isExecutableFound()>()"->"if $z2 == 0 goto $r14 = new java.lang.IllegalArgumentException";
+    "if $z2 == 0 goto $r14 = new java.lang.IllegalArgumentException"->"r37 = \"\t- \"";
+    "if $z2 == 0 goto $r14 = new java.lang.IllegalArgumentException"->"$r14 = new java.lang.IllegalArgumentException";
+    "r37 = \"\t- \""->"$r15 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String[] getZipAlignExecutable()>()";
+    "$r15 = virtualinvoke r13.<at.favre.tools.apksigner.signing.ZipAlignExecutor: java.lang.String[] getZipAlignExecutable()>()"->"$r16 = newarray (java.lang.String)[5]";
+    "$r16 = newarray (java.lang.String)[5]"->"$r16[0] = \"-p\"";
+    "$r16[0] = \"-p\""->"$r16[1] = \"-v\"";
+    "$r16[1] = \"-v\""->"$r16[2] = \"4\"";
+    "$r16[2] = \"4\""->"$r17 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r17 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"->"$r16[3] = $r17";
+    "$r16[3] = $r17"->"$r18 = virtualinvoke r36.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r18 = virtualinvoke r36.<java.io.File: java.lang.String getAbsolutePath()>()"->"$r16[4] = $r18";
+    "$r16[4] = $r18"->"$r19 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.Object[] concat(java.lang.Object[],java.lang.Object[])>($r15, $r16)";
+    "$r19 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: java.lang.Object[] concat(java.lang.Object[],java.lang.Object[])>($r15, $r16)"->"$r20 = (java.lang.String[]) $r19";
+    "$r20 = (java.lang.String[]) $r19"->"r21 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: at.favre.tools.apksigner.util.CmdUtil$Result runCmd(java.lang.String[])>($r20)";
+    "r21 = staticinvoke <at.favre.tools.apksigner.util.CmdUtil: at.favre.tools.apksigner.util.CmdUtil$Result runCmd(java.lang.String[])>($r20)"->"interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>(r21)";
+    "interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>(r21)"->"$z4 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()";
+    "$z4 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"->"if $z4 == 0 goto $r23 = new java.lang.StringBuilder";
+    "if $z4 == 0 goto $r23 = new java.lang.StringBuilder"->"$r29 = new java.lang.StringBuilder";
+    "if $z4 == 0 goto $r23 = new java.lang.StringBuilder"->"$r23 = new java.lang.StringBuilder";
+    "$r29 = new java.lang.StringBuilder"->"specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"zipalign success\")";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"zipalign success\")"->"r38 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r38 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"->"goto [?= $r27 = r38]";
+    "goto [?= $r27 = r38]"->"$r27 = r38";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r37)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not align \")";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not align \")"->"r38 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r38 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r27 = r38";
+    "$r27 = r38"->"$r28 = r36";
+    "$r28 = r36"->"$z5 = virtualinvoke r26.<java.io.File: boolean equals(java.lang.Object)>(r36)";
+    "$z5 = virtualinvoke r26.<java.io.File: boolean equals(java.lang.Object)>(r36)"->"if $z5 != 0 goto $z11 = 0";
+    "if $z5 != 0 goto $z11 = 0"->"$z11 = 1";
+    "if $z5 != 0 goto $z11 = 0"->"$z11 = 0";
+    "$z11 = 1"->"goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)]";
+    "goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)]"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)";
+    "$z11 = 0"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r27, $r28, $z11, 0)"->"$z6 = r0.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>";
+    "$z6 = r0.<at.favre.tools.apksigner.ui.Arg: boolean overwrite>"->"if $z6 == 0 goto $z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()";
+    "if $z6 == 0 goto $z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"->"virtualinvoke r1.<java.io.File: boolean delete()>()";
+    "if $z6 == 0 goto $z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"->"$z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()";
+    "virtualinvoke r1.<java.io.File: boolean delete()>()"->"virtualinvoke r36.<java.io.File: boolean renameTo(java.io.File)>(r1)";
+    "virtualinvoke r36.<java.io.File: boolean renameTo(java.io.File)>(r1)"->"r36 = r1";
+    "r36 = r1"->"$z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()";
+    "$z7 = virtualinvoke r21.<at.favre.tools.apksigner.util.CmdUtil$Result: boolean success()>()"->"if $z7 == 0 goto $r39 = null";
+    "if $z7 == 0 goto $r39 = null"->"$r39 = r36";
+    "if $z7 == 0 goto $r39 = null"->"$r39 = null";
+    "$r39 = r36"->"goto [?= return $r39]";
+    "goto [?= return $r39]"->"return $r39";
+    "$r39 = null"->"return $r39";
+    "$r14 = new java.lang.IllegalArgumentException"->"specialinvoke $r14.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"could not find zipalign - either skip it or provide a proper location\")";
+    "specialinvoke $r14.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"could not find zipalign - either skip it or provide a proper location\")"->"throw $r14";
+}

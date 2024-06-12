@@ -1,0 +1,63 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 := @parameter0: java.lang.String[];
+i1 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+i1 = i1 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i1 < 42 goto staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.loopopts.TestOverunrolling: void test2()>();
+r2 = newarray (int)[8];
+staticinvoke <compiler.loopopts.TestOverunrolling: void test3(int[])>(r2);
+staticinvoke <compiler.loopopts.TestOverunrolling: void test4(int[],boolean)>(r2, 0);
+staticinvoke <compiler.loopopts.TestOverunrolling: int test5(int[])>(r2);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r1 := @parameter0: java.lang.String[];
+i1 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i1 < 42 goto staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+i1 = i1 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i1 < 42 goto staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i1 < 42 goto staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.loopopts.TestOverunrolling: void test2()>();
+r2 = newarray (int)[8];
+staticinvoke <compiler.loopopts.TestOverunrolling: void test3(int[])>(r2);
+staticinvoke <compiler.loopopts.TestOverunrolling: void test4(int[],boolean)>(r2, 0);
+staticinvoke <compiler.loopopts.TestOverunrolling: int test5(int[])>(r2);
+return;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i1 < 42 goto staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+staticinvoke <compiler.loopopts.TestOverunrolling: java.lang.Object test1(int)>(i1);
+i1 = i1 + 1;
+";
+}

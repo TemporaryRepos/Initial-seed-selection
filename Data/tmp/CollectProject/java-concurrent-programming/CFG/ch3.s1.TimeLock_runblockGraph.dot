@@ -1,0 +1,476 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 11 16 1 ]
+r13 := @this: ch3.s1.TimeLock;
+"
+    "Block 1:
+[preds: 0 ] [succs: 11 16 2 ]
+$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 11 16 3 ]
+$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+"
+    "Block 3:
+[preds: 2 ] [succs: 11 16 4 ]
+$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 11 16 6 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+"
+    "Block 6:
+[preds: 5 ] [succs: 11 16 9 ]
+goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>];
+"
+    "Block 7:
+[preds: 4 ] [succs: 11 16 8 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 11 16 9 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\");
+"
+    "Block 9:
+[preds: 6 8 ] [succs: 10 19 ]
+$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z1 == 0 goto return;
+"
+    "Block 10:
+[preds: 9 ] [succs: 19 ]
+$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+"
+    "Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 16 ]
+r10 = $r9;
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 16 ]
+virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>();
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z3 == 0 goto return;
+"
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+"
+    "Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+"
+    "Block 18:
+[preds: 16 17 ] [succs: ]
+throw r6;
+"
+    "Block 19:
+[preds: 9 10 14 15 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 11 16 1 ]
+r13 := @this: ch3.s1.TimeLock;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 0:
+[preds: ] [succs: 11 16 1 ]
+r13 := @this: ch3.s1.TimeLock;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 0:
+[preds: ] [succs: 11 16 1 ]
+r13 := @this: ch3.s1.TimeLock;
+"->"Block 1:
+[preds: 0 ] [succs: 11 16 2 ]
+$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+";
+    "Block 1:
+[preds: 0 ] [succs: 11 16 2 ]
+$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 1:
+[preds: 0 ] [succs: 11 16 2 ]
+$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 1:
+[preds: 0 ] [succs: 11 16 2 ]
+$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+"->"Block 2:
+[preds: 1 ] [succs: 11 16 3 ]
+$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+";
+    "Block 2:
+[preds: 1 ] [succs: 11 16 3 ]
+$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 2:
+[preds: 1 ] [succs: 11 16 3 ]
+$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 2:
+[preds: 1 ] [succs: 11 16 3 ]
+$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+"->"Block 3:
+[preds: 2 ] [succs: 11 16 4 ]
+$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0);
+";
+    "Block 3:
+[preds: 2 ] [succs: 11 16 4 ]
+$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0);
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 11 16 4 ]
+$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0);
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 3:
+[preds: 2 ] [succs: 11 16 4 ]
+$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0);
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 5:
+[preds: 4 ] [succs: 11 16 6 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 7:
+[preds: 4 ] [succs: 11 16 8 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 11 16 ]
+if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 5:
+[preds: 4 ] [succs: 11 16 6 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 11 16 6 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 5:
+[preds: 4 ] [succs: 11 16 6 ]
+staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+"->"Block 6:
+[preds: 5 ] [succs: 11 16 9 ]
+goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>];
+";
+    "Block 6:
+[preds: 5 ] [succs: 11 16 9 ]
+goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>];
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 11 16 9 ]
+goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>];
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 6:
+[preds: 5 ] [succs: 11 16 9 ]
+goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>];
+"->"Block 9:
+[preds: 6 8 ] [succs: 10 19 ]
+$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z1 == 0 goto return;
+";
+    "Block 7:
+[preds: 4 ] [succs: 11 16 8 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 7:
+[preds: 4 ] [succs: 11 16 8 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 7:
+[preds: 4 ] [succs: 11 16 8 ]
+$r2 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 8:
+[preds: 7 ] [succs: 11 16 9 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\");
+";
+    "Block 8:
+[preds: 7 ] [succs: 11 16 9 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\");
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 11 16 9 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\");
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 8:
+[preds: 7 ] [succs: 11 16 9 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\");
+"->"Block 9:
+[preds: 6 8 ] [succs: 10 19 ]
+$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z1 == 0 goto return;
+";
+    "Block 9:
+[preds: 6 8 ] [succs: 10 19 ]
+$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z1 == 0 goto return;
+"->"Block 10:
+[preds: 9 ] [succs: 19 ]
+$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+";
+    "Block 9:
+[preds: 6 8 ] [succs: 10 19 ]
+$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z1 == 0 goto return;
+"->"Block 19:
+[preds: 9 10 14 15 ] [succs: ]
+return;
+";
+    "Block 10:
+[preds: 9 ] [succs: 19 ]
+$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+"->"Block 19:
+[preds: 9 10 14 15 ] [succs: ]
+return;
+";
+    "Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+"->"Block 12:
+[preds: 11 ] [succs: 13 16 ]
+r10 = $r9;
+";
+    "Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 ] [succs: 12 16 ]
+$r9 := @caughtexception;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 16 ]
+r10 = $r9;
+"->"Block 13:
+[preds: 12 ] [succs: 14 16 ]
+virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 16 ]
+r10 = $r9;
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 16 ]
+virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>();
+"->"Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z3 == 0 goto return;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 16 ]
+virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>();
+"->"Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z3 == 0 goto return;
+"->"Block 15:
+[preds: 14 ] [succs: 19 ]
+$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 19 ]
+$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z3 == 0 goto return;
+"->"Block 19:
+[preds: 9 10 14 15 ] [succs: ]
+return;
+";
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+goto [?= return];
+"->"Block 19:
+[preds: 9 10 14 15 ] [succs: ]
+return;
+";
+    "Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+";
+    "Block 16:
+[preds: 0 1 2 3 4 5 6 7 8 11 12 13 ] [succs: 17 18 ]
+$r5 := @caughtexception;
+r6 = $r5;
+$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>();
+if $z2 == 0 goto throw r6;
+"->"Block 18:
+[preds: 16 17 ] [succs: ]
+throw r6;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>;
+virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>();
+"->"Block 18:
+[preds: 16 17 ] [succs: ]
+throw r6;
+";
+}

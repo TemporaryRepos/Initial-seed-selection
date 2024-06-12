@@ -1,0 +1,67 @@
+digraph "unitGraph" {
+    "z0 := @parameter0: boolean"
+    "r0 = \"\u3042\u3043\u3044\""
+    "$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(\"ISO-2022-JP\")"
+    "r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetEncoder newEncoder()>()"
+    "if z0 == 0 goto r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"
+    "$r16 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)"
+    "$r17 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r16, $r17, 1)"
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CharsetEncoder reset()>()"
+    "r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"
+    "$r4 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)"
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r4, r3, 1)"
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult flush(java.nio.ByteBuffer)>(r3)"
+    "virtualinvoke r3.<java.nio.ByteBuffer: java.nio.Buffer flip()>()"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "r9 = $r8"
+    "i1 = 0"
+    "$i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()"
+    "if i1 >= $i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r12 = newarray (java.lang.Object)[1]"
+    "$b0 = virtualinvoke r3.<java.nio.ByteBuffer: byte get(int)>(i1)"
+    "$r13 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b0)"
+    "$r12[0] = $r13"
+    "$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02x \", $r12)"
+    "virtualinvoke r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"
+    "i1 = i1 + 1"
+    "goto [?= $i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()]"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.Object)>(r9)"
+    "$r11 = virtualinvoke r9.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "return $r11"
+    "z0 := @parameter0: boolean"->"r0 = \"\u3042\u3043\u3044\"";
+    "r0 = \"\u3042\u3043\u3044\""->"$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(\"ISO-2022-JP\")";
+    "$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(\"ISO-2022-JP\")"->"r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetEncoder newEncoder()>()";
+    "r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetEncoder newEncoder()>()"->"if z0 == 0 goto r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)";
+    "if z0 == 0 goto r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"->"$r16 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)";
+    "if z0 == 0 goto r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"->"r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)";
+    "$r16 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)"->"$r17 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)";
+    "$r17 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"->"virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r16, $r17, 1)";
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r16, $r17, 1)"->"virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CharsetEncoder reset()>()";
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CharsetEncoder reset()>()"->"r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)";
+    "r3 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(64)"->"$r4 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)";
+    "$r4 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer wrap(java.lang.CharSequence)>(r0)"->"virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r4, r3, 1)";
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult encode(java.nio.CharBuffer,java.nio.ByteBuffer,boolean)>($r4, r3, 1)"->"virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult flush(java.nio.ByteBuffer)>(r3)";
+    "virtualinvoke r2.<java.nio.charset.CharsetEncoder: java.nio.charset.CoderResult flush(java.nio.ByteBuffer)>(r3)"->"virtualinvoke r3.<java.nio.ByteBuffer: java.nio.Buffer flip()>()";
+    "virtualinvoke r3.<java.nio.ByteBuffer: java.nio.Buffer flip()>()"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"r9 = $r8";
+    "r9 = $r8"->"i1 = 0";
+    "i1 = 0"->"$i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()";
+    "$i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()"->"if i1 >= $i2 goto $r10 = <java.lang.System: java.io.PrintStream out>";
+    "if i1 >= $i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r12 = newarray (java.lang.Object)[1]";
+    "if i1 >= $i2 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r12 = newarray (java.lang.Object)[1]"->"$b0 = virtualinvoke r3.<java.nio.ByteBuffer: byte get(int)>(i1)";
+    "$b0 = virtualinvoke r3.<java.nio.ByteBuffer: byte get(int)>(i1)"->"$r13 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b0)";
+    "$r13 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b0)"->"$r12[0] = $r13";
+    "$r12[0] = $r13"->"$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02x \", $r12)";
+    "$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%02x \", $r12)"->"virtualinvoke r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)";
+    "virtualinvoke r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= $i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()]";
+    "goto [?= $i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()]"->"$i2 = virtualinvoke r3.<java.nio.ByteBuffer: int limit()>()";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.Object)>(r9)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.Object)>(r9)"->"$r11 = virtualinvoke r9.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r11 = virtualinvoke r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"return $r11";
+}

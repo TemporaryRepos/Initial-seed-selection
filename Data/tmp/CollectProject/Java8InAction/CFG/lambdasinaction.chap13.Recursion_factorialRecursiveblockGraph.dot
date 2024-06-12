@@ -1,0 +1,61 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 1L;
+if $b1 != 0 goto $l2 = l0 - 1L;
+"
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$l4 = 1L;
+goto [?= return $l4];
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$l2 = l0 - 1L;
+$l3 = staticinvoke <lambdasinaction.chap13.Recursion: long factorialRecursive(long)>($l2);
+$l4 = l0 * $l3;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: ]
+return $l4;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 1L;
+if $b1 != 0 goto $l2 = l0 - 1L;
+"->"Block 1:
+[preds: 0 ] [succs: 3 ]
+$l4 = 1L;
+goto [?= return $l4];
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 1L;
+if $b1 != 0 goto $l2 = l0 - 1L;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$l2 = l0 - 1L;
+$l3 = staticinvoke <lambdasinaction.chap13.Recursion: long factorialRecursive(long)>($l2);
+$l4 = l0 * $l3;
+";
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$l4 = 1L;
+goto [?= return $l4];
+"->"Block 3:
+[preds: 1 2 ] [succs: ]
+return $l4;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$l2 = l0 - 1L;
+$l3 = staticinvoke <lambdasinaction.chap13.Recursion: long factorialRecursive(long)>($l2);
+$l4 = l0 * $l3;
+"->"Block 3:
+[preds: 1 2 ] [succs: ]
+return $l4;
+";
+}

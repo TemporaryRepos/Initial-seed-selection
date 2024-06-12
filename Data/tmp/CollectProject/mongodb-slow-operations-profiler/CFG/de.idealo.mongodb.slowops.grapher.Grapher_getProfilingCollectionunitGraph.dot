@@ -1,0 +1,91 @@
+digraph "unitGraph" {
+    "r20 := @this: de.idealo.mongodb.slowops.grapher.Grapher"
+    "r0 = staticinvoke <de.idealo.mongodb.slowops.util.ConfigReader: de.idealo.mongodb.slowops.dto.CollectorServerDto getCollectorServer()>()"
+    "$r1 = new de.idealo.mongodb.slowops.monitor.MongoDbAccessor"
+    "$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminUser()>()"
+    "$r3 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminPw()>()"
+    "$z0 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: boolean getSsl()>()"
+    "$r4 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"
+    "specialinvoke $r1.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: void <init>(int,int,boolean,java.lang.String,java.lang.String,boolean,com.mongodb.ServerAddress[])>(60000, -1, 1, $r2, $r3, $z0, $r4)"
+    "r21 = $r1"
+    "$r5 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getDb()>()"
+    "r6 = virtualinvoke r21.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.DB getMongoDB(java.lang.String)>($r5)"
+    "$r7 = new org.jongo.Jongo"
+    "specialinvoke $r7.<org.jongo.Jongo: void <init>(com.mongodb.DB)>(r6)"
+    "r8 = $r7"
+    "$r9 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getCollection()>()"
+    "r10 = virtualinvoke r8.<org.jongo.Jongo: org.jongo.MongoCollection getCollection(java.lang.String)>($r9)"
+    "if r10 != null goto return r10"
+    "$r11 = new java.lang.IllegalArgumentException"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can\'t continue without profile collection for \")"
+    "$r14 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r14)"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r16)"
+    "throw $r11"
+    "return r10"
+    "$r17 := @caughtexception"
+    "r22 = $r17"
+    "$r18 = <de.idealo.mongodb.slowops.grapher.Grapher: org.slf4j.Logger LOG>"
+    "$r19 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"
+    "interfaceinvoke $r18.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object,java.lang.Object)>(\"Exception while connecting to: {}\", $r19, r22)"
+    "return null"
+    "r20 := @this: de.idealo.mongodb.slowops.grapher.Grapher"->"r0 = staticinvoke <de.idealo.mongodb.slowops.util.ConfigReader: de.idealo.mongodb.slowops.dto.CollectorServerDto getCollectorServer()>()";
+    "r0 = staticinvoke <de.idealo.mongodb.slowops.util.ConfigReader: de.idealo.mongodb.slowops.dto.CollectorServerDto getCollectorServer()>()"->"$r1 = new de.idealo.mongodb.slowops.monitor.MongoDbAccessor";
+    "r0 = staticinvoke <de.idealo.mongodb.slowops.util.ConfigReader: de.idealo.mongodb.slowops.dto.CollectorServerDto getCollectorServer()>()"->"$r17 := @caughtexception";
+    "$r1 = new de.idealo.mongodb.slowops.monitor.MongoDbAccessor"->"$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminUser()>()";
+    "$r1 = new de.idealo.mongodb.slowops.monitor.MongoDbAccessor"->"$r17 := @caughtexception";
+    "$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminUser()>()"->"$r3 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminPw()>()";
+    "$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminUser()>()"->"$r17 := @caughtexception";
+    "$r3 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminPw()>()"->"$z0 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: boolean getSsl()>()";
+    "$r3 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getAdminPw()>()"->"$r17 := @caughtexception";
+    "$z0 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: boolean getSsl()>()"->"$r4 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()";
+    "$z0 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: boolean getSsl()>()"->"$r17 := @caughtexception";
+    "$r4 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"->"specialinvoke $r1.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: void <init>(int,int,boolean,java.lang.String,java.lang.String,boolean,com.mongodb.ServerAddress[])>(60000, -1, 1, $r2, $r3, $z0, $r4)";
+    "$r4 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"->"$r17 := @caughtexception";
+    "specialinvoke $r1.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: void <init>(int,int,boolean,java.lang.String,java.lang.String,boolean,com.mongodb.ServerAddress[])>(60000, -1, 1, $r2, $r3, $z0, $r4)"->"r21 = $r1";
+    "specialinvoke $r1.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: void <init>(int,int,boolean,java.lang.String,java.lang.String,boolean,com.mongodb.ServerAddress[])>(60000, -1, 1, $r2, $r3, $z0, $r4)"->"$r17 := @caughtexception";
+    "r21 = $r1"->"$r5 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getDb()>()";
+    "r21 = $r1"->"$r17 := @caughtexception";
+    "$r5 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getDb()>()"->"r6 = virtualinvoke r21.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.DB getMongoDB(java.lang.String)>($r5)";
+    "$r5 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getDb()>()"->"$r17 := @caughtexception";
+    "r6 = virtualinvoke r21.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.DB getMongoDB(java.lang.String)>($r5)"->"$r7 = new org.jongo.Jongo";
+    "r6 = virtualinvoke r21.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.DB getMongoDB(java.lang.String)>($r5)"->"$r17 := @caughtexception";
+    "$r7 = new org.jongo.Jongo"->"specialinvoke $r7.<org.jongo.Jongo: void <init>(com.mongodb.DB)>(r6)";
+    "$r7 = new org.jongo.Jongo"->"$r17 := @caughtexception";
+    "specialinvoke $r7.<org.jongo.Jongo: void <init>(com.mongodb.DB)>(r6)"->"r8 = $r7";
+    "specialinvoke $r7.<org.jongo.Jongo: void <init>(com.mongodb.DB)>(r6)"->"$r17 := @caughtexception";
+    "r8 = $r7"->"$r9 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getCollection()>()";
+    "r8 = $r7"->"$r17 := @caughtexception";
+    "$r9 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getCollection()>()"->"r10 = virtualinvoke r8.<org.jongo.Jongo: org.jongo.MongoCollection getCollection(java.lang.String)>($r9)";
+    "$r9 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: java.lang.String getCollection()>()"->"$r17 := @caughtexception";
+    "r10 = virtualinvoke r8.<org.jongo.Jongo: org.jongo.MongoCollection getCollection(java.lang.String)>($r9)"->"if r10 != null goto return r10";
+    "r10 = virtualinvoke r8.<org.jongo.Jongo: org.jongo.MongoCollection getCollection(java.lang.String)>($r9)"->"$r17 := @caughtexception";
+    "if r10 != null goto return r10"->"$r11 = new java.lang.IllegalArgumentException";
+    "if r10 != null goto return r10"->"return r10";
+    "if r10 != null goto return r10"->"$r17 := @caughtexception";
+    "$r11 = new java.lang.IllegalArgumentException"->"$r12 = new java.lang.StringBuilder";
+    "$r11 = new java.lang.IllegalArgumentException"->"$r17 := @caughtexception";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "$r12 = new java.lang.StringBuilder"->"$r17 := @caughtexception";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can\'t continue without profile collection for \")";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r17 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can\'t continue without profile collection for \")"->"$r14 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can\'t continue without profile collection for \")"->"$r17 := @caughtexception";
+    "$r14 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"->"$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r14)";
+    "$r14 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"->"$r17 := @caughtexception";
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r14)"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r14)"->"$r17 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r16)";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r17 := @caughtexception";
+    "specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r16)"->"throw $r11";
+    "specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r16)"->"$r17 := @caughtexception";
+    "throw $r11"->"$r17 := @caughtexception";
+    "$r17 := @caughtexception"->"r22 = $r17";
+    "r22 = $r17"->"$r18 = <de.idealo.mongodb.slowops.grapher.Grapher: org.slf4j.Logger LOG>";
+    "$r18 = <de.idealo.mongodb.slowops.grapher.Grapher: org.slf4j.Logger LOG>"->"$r19 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()";
+    "$r19 = virtualinvoke r0.<de.idealo.mongodb.slowops.dto.CollectorServerDto: com.mongodb.ServerAddress[] getHosts()>()"->"interfaceinvoke $r18.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object,java.lang.Object)>(\"Exception while connecting to: {}\", $r19, r22)";
+    "interfaceinvoke $r18.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object,java.lang.Object)>(\"Exception while connecting to: {}\", $r19, r22)"->"return null";
+}

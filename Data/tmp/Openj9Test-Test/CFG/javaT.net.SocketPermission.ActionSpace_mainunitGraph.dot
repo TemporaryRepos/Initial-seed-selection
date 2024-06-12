@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "$r0 = new java.net.SocketPermission"
+    "specialinvoke $r0.<java.net.SocketPermission: void <init>(java.lang.String,java.lang.String)>(\"*\", \"connect , accept\")"
+    "r4 = $r0"
+    "goto [?= return]"
+    "$r1 := @caughtexception"
+    "r5 = $r1"
+    "$r2 = new java.lang.Exception"
+    "specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"should not have caught an exception\")"
+    "throw $r2"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"$r0 = new java.net.SocketPermission";
+    "r3 := @parameter0: java.lang.String[]"->"$r1 := @caughtexception";
+    "$r0 = new java.net.SocketPermission"->"specialinvoke $r0.<java.net.SocketPermission: void <init>(java.lang.String,java.lang.String)>(\"*\", \"connect , accept\")";
+    "$r0 = new java.net.SocketPermission"->"$r1 := @caughtexception";
+    "specialinvoke $r0.<java.net.SocketPermission: void <init>(java.lang.String,java.lang.String)>(\"*\", \"connect , accept\")"->"r4 = $r0";
+    "specialinvoke $r0.<java.net.SocketPermission: void <init>(java.lang.String,java.lang.String)>(\"*\", \"connect , accept\")"->"$r1 := @caughtexception";
+    "r4 = $r0"->"goto [?= return]";
+    "r4 = $r0"->"$r1 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r1 := @caughtexception"->"r5 = $r1";
+    "r5 = $r1"->"$r2 = new java.lang.Exception";
+    "$r2 = new java.lang.Exception"->"specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"should not have caught an exception\")";
+    "specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"should not have caught an exception\")"->"throw $r2";
+}

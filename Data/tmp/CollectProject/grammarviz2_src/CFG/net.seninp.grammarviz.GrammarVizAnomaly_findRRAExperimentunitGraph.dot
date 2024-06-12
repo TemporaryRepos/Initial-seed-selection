@@ -1,0 +1,450 @@
+digraph "unitGraph" {
+    "r6 := @parameter0: double[]"
+    "r125 := @parameter1: java.lang.String"
+    "r36 := @parameter2: net.seninp.jmotif.sax.NumerosityReductionStrategy"
+    "i2 := @parameter3: int"
+    "r37 := @parameter4: net.seninp.gi.GIAlgorithm"
+    "r38 := @parameter5: java.lang.String"
+    "d3 := @parameter6: double"
+    "$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with experiment sampling algorithm...\")"
+    "$r1 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.String GRID_BOUNDARIES>"
+    "r2 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: int[] toBoundaries(java.lang.String)>($r1)"
+    "$r3 = new java.util.ArrayList"
+    "specialinvoke $r3.<java.util.ArrayList: void <init>()>()"
+    "r4 = $r3"
+    "$r5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>"
+    "$z0 = virtualinvoke $r5.<java.lang.Double: boolean isNaN()>()"
+    "if $z0 == 0 goto b14 = 0"
+    "$r123 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r123.<org.slf4j.Logger: void info(java.lang.String)>(\"sampling on full time series length\")"
+    "$r124 = new net.seninp.gi.rulepruner.RulePruner"
+    "specialinvoke $r124.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>(r6)"
+    "r126 = $r124"
+    "goto [?= i16 = r2[0]]"
+    "b14 = 0"
+    "$i0 = lengthof r6"
+    "$d0 = (double) $i0"
+    "$r7 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>"
+    "$d1 = virtualinvoke $r7.<java.lang.Double: double doubleValue()>()"
+    "$d2 = $d0 * $d1"
+    "$l1 = staticinvoke <java.lang.Math: long round(double)>($d2)"
+    "i15 = (int) $l1"
+    "$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"sampling parameters on interval [\")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b14)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", \")"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i15)"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]\")"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r15)"
+    "$r16 = new net.seninp.gi.rulepruner.RulePruner"
+    "$r17 = staticinvoke <java.util.Arrays: double[] copyOfRange(double[],int,int)>(r6, b14, i15)"
+    "specialinvoke $r16.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>($r17)"
+    "r126 = $r16"
+    "i16 = r2[0]"
+    "$i17 = r2[1]"
+    "if i16 >= $i17 goto $r18 = new net.seninp.grammarviz.GrammarSizeSorter"
+    "i18 = r2[3]"
+    "$i4 = r2[4]"
+    "if i18 >= $i4 goto $i5 = r2[2]"
+    "if i18 <= i16 goto i19 = r2[6]"
+    "goto [?= $i7 = r2[5]]"
+    "i19 = r2[6]"
+    "$i6 = r2[7]"
+    "if i19 >= $i6 goto $i7 = r2[5]"
+    "$r99 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm REPAIR>"
+    "$r98 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: net.seninp.jmotif.sax.NumerosityReductionStrategy SAX_NR_STRATEGY>"
+    "$d5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: double SAX_NORM_THRESHOLD>"
+    "r127 = virtualinvoke r126.<net.seninp.gi.rulepruner.RulePruner: net.seninp.gi.rulepruner.SampledPoint sample(int,int,int,net.seninp.gi.GIAlgorithm,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(i16, i18, i19, $r99, $r98, $d5)"
+    "virtualinvoke r4.<java.util.ArrayList: boolean add(java.lang.Object)>(r127)"
+    "$r101 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"
+    "$r100 = new java.lang.StringBuilder"
+    "specialinvoke $r100.<java.lang.StringBuilder: void <init>()>()"
+    "$r102 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"# \")"
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i16)"
+    "$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i18)"
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)"
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$d6 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getApproxDist()>()"
+    "$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d6)"
+    "$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i8 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarSize()>()"
+    "$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"
+    "$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i9 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getCompressedGrammarSize()>()"
+    "$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)"
+    "$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i10 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarRules()>()"
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10)"
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i11 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getPrunedRules()>()"
+    "$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11)"
+    "$r118 = virtualinvoke $r117.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$d7 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()"
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d7)"
+    "$r120 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i12 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getMaxFrequency()>()"
+    "$r121 = virtualinvoke $r120.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)"
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r101.<org.slf4j.Logger: void info(java.lang.String)>($r122)"
+    "$i13 = r2[8]"
+    "i19 = i19 + $i13"
+    "goto [?= $i6 = r2[7]]"
+    "$i7 = r2[5]"
+    "i18 = i18 + $i7"
+    "goto [?= $i4 = r2[4]]"
+    "$i5 = r2[2]"
+    "i16 = i16 + $i5"
+    "goto [?= $i17 = r2[1]]"
+    "$r18 = new net.seninp.grammarviz.GrammarSizeSorter"
+    "specialinvoke $r18.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r18)"
+    "$r20 = <java.lang.System: java.io.PrintStream out>"
+    "$r19 = new java.lang.StringBuilder"
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()"
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN GRAMMAR size is \")"
+    "$r22 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r23 = (net.seninp.gi.rulepruner.SampledPoint) $r22"
+    "$r24 = virtualinvoke $r23.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"
+    "$r25 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r29)"
+    "$r30 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r31 = (net.seninp.gi.rulepruner.SampledPoint) $r30"
+    "i20 = virtualinvoke $r31.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"
+    "$r32 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r33 = (net.seninp.gi.rulepruner.SampledPoint) $r32"
+    "i21 = virtualinvoke $r33.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"
+    "$r34 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r35 = (net.seninp.gi.rulepruner.SampledPoint) $r34"
+    "i22 = virtualinvoke $r35.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i20, i22, i21, r36, i2, r37, r38, d3)"
+    "$r39 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter"
+    "specialinvoke $r39.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r39)"
+    "$r41 = <java.lang.System: java.io.PrintStream out>"
+    "$r40 = new java.lang.StringBuilder"
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN PRUNED grammar size: \")"
+    "$r43 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r44 = (net.seninp.gi.rulepruner.SampledPoint) $r43"
+    "$r45 = virtualinvoke $r44.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"
+    "$r46 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r50)"
+    "$r51 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r52 = (net.seninp.gi.rulepruner.SampledPoint) $r51"
+    "i23 = virtualinvoke $r52.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"
+    "$r53 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r54 = (net.seninp.gi.rulepruner.SampledPoint) $r53"
+    "i24 = virtualinvoke $r54.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"
+    "$r55 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r56 = (net.seninp.gi.rulepruner.SampledPoint) $r55"
+    "i25 = virtualinvoke $r56.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i23, i25, i24, r36, i2, r37, r38, d3)"
+    "d8 = 0.99"
+    "$r57 = new java.util.ArrayList"
+    "specialinvoke $r57.<java.util.ArrayList: void <init>()>()"
+    "r58 = $r57"
+    "r59 = virtualinvoke r4.<java.util.ArrayList: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto $r60 = new net.seninp.grammarviz.GrammarSizeSorter"
+    "$r96 = interfaceinvoke r59.<java.util.Iterator: java.lang.Object next()>()"
+    "r97 = (net.seninp.gi.rulepruner.SampledPoint) $r96"
+    "$d4 = virtualinvoke r97.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()"
+    "$b3 = $d4 cmpl d8"
+    "if $b3 < 0 goto (branch)"
+    "virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>(r97)"
+    "goto [?= $z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()]"
+    "$r60 = new net.seninp.grammarviz.GrammarSizeSorter"
+    "specialinvoke $r60.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r60)"
+    "$r62 = <java.lang.System: java.io.PrintStream out>"
+    "$r61 = new java.lang.StringBuilder"
+    "specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()"
+    "$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN GRAMMAR parameters are \")"
+    "$r64 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r65 = (net.seninp.gi.rulepruner.SampledPoint) $r64"
+    "$r66 = virtualinvoke $r65.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"
+    "$r67 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r66)"
+    "$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"
+    "$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r71)"
+    "$r72 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r73 = (net.seninp.gi.rulepruner.SampledPoint) $r72"
+    "i26 = virtualinvoke $r73.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"
+    "$r74 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r75 = (net.seninp.gi.rulepruner.SampledPoint) $r74"
+    "i27 = virtualinvoke $r75.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"
+    "$r76 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r77 = (net.seninp.gi.rulepruner.SampledPoint) $r76"
+    "i28 = virtualinvoke $r77.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i26, i28, i27, r36, i2, r37, r38, d3)"
+    "$r78 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter"
+    "specialinvoke $r78.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r78)"
+    "$r80 = <java.lang.System: java.io.PrintStream out>"
+    "$r79 = new java.lang.StringBuilder"
+    "specialinvoke $r79.<java.lang.StringBuilder: void <init>()>()"
+    "$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN PRUNED GRAMMAR : \")"
+    "$r82 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r83 = (net.seninp.gi.rulepruner.SampledPoint) $r82"
+    "$r84 = virtualinvoke $r83.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"
+    "$r85 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r84)"
+    "$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r89)"
+    "$r90 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r91 = (net.seninp.gi.rulepruner.SampledPoint) $r90"
+    "i29 = virtualinvoke $r91.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"
+    "$r92 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r93 = (net.seninp.gi.rulepruner.SampledPoint) $r92"
+    "i30 = virtualinvoke $r93.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"
+    "$r94 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"
+    "$r95 = (net.seninp.gi.rulepruner.SampledPoint) $r94"
+    "i31 = virtualinvoke $r95.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i29, i31, i30, r36, i2, r37, r38, d3)"
+    "return"
+    "r6 := @parameter0: double[]"->"r125 := @parameter1: java.lang.String";
+    "r125 := @parameter1: java.lang.String"->"r36 := @parameter2: net.seninp.jmotif.sax.NumerosityReductionStrategy";
+    "r36 := @parameter2: net.seninp.jmotif.sax.NumerosityReductionStrategy"->"i2 := @parameter3: int";
+    "i2 := @parameter3: int"->"r37 := @parameter4: net.seninp.gi.GIAlgorithm";
+    "r37 := @parameter4: net.seninp.gi.GIAlgorithm"->"r38 := @parameter5: java.lang.String";
+    "r38 := @parameter5: java.lang.String"->"d3 := @parameter6: double";
+    "d3 := @parameter6: double"->"$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r0 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with experiment sampling algorithm...\")";
+    "interfaceinvoke $r0.<org.slf4j.Logger: void info(java.lang.String)>(\"running RRA with experiment sampling algorithm...\")"->"$r1 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.String GRID_BOUNDARIES>";
+    "$r1 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.String GRID_BOUNDARIES>"->"r2 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: int[] toBoundaries(java.lang.String)>($r1)";
+    "r2 = staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: int[] toBoundaries(java.lang.String)>($r1)"->"$r3 = new java.util.ArrayList";
+    "$r3 = new java.util.ArrayList"->"specialinvoke $r3.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r3.<java.util.ArrayList: void <init>()>()"->"r4 = $r3";
+    "r4 = $r3"->"$r5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>";
+    "$r5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>"->"$z0 = virtualinvoke $r5.<java.lang.Double: boolean isNaN()>()";
+    "$z0 = virtualinvoke $r5.<java.lang.Double: boolean isNaN()>()"->"if $z0 == 0 goto b14 = 0";
+    "if $z0 == 0 goto b14 = 0"->"$r123 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "if $z0 == 0 goto b14 = 0"->"b14 = 0";
+    "$r123 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r123.<org.slf4j.Logger: void info(java.lang.String)>(\"sampling on full time series length\")";
+    "interfaceinvoke $r123.<org.slf4j.Logger: void info(java.lang.String)>(\"sampling on full time series length\")"->"$r124 = new net.seninp.gi.rulepruner.RulePruner";
+    "$r124 = new net.seninp.gi.rulepruner.RulePruner"->"specialinvoke $r124.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>(r6)";
+    "specialinvoke $r124.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>(r6)"->"r126 = $r124";
+    "r126 = $r124"->"goto [?= i16 = r2[0]]";
+    "goto [?= i16 = r2[0]]"->"i16 = r2[0]";
+    "b14 = 0"->"$i0 = lengthof r6";
+    "$i0 = lengthof r6"->"$d0 = (double) $i0";
+    "$d0 = (double) $i0"->"$r7 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>";
+    "$r7 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: java.lang.Double SUBSAMPLING_FRACTION>"->"$d1 = virtualinvoke $r7.<java.lang.Double: double doubleValue()>()";
+    "$d1 = virtualinvoke $r7.<java.lang.Double: double doubleValue()>()"->"$d2 = $d0 * $d1";
+    "$d2 = $d0 * $d1"->"$l1 = staticinvoke <java.lang.Math: long round(double)>($d2)";
+    "$l1 = staticinvoke <java.lang.Math: long round(double)>($d2)"->"i15 = (int) $l1";
+    "i15 = (int) $l1"->"$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r9 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"sampling parameters on interval [\")";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"sampling parameters on interval [\")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b14)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b14)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", \")";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", \")"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i15)";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i15)"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]\")";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]\")"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r15)";
+    "interfaceinvoke $r9.<org.slf4j.Logger: void info(java.lang.String)>($r15)"->"$r16 = new net.seninp.gi.rulepruner.RulePruner";
+    "$r16 = new net.seninp.gi.rulepruner.RulePruner"->"$r17 = staticinvoke <java.util.Arrays: double[] copyOfRange(double[],int,int)>(r6, b14, i15)";
+    "$r17 = staticinvoke <java.util.Arrays: double[] copyOfRange(double[],int,int)>(r6, b14, i15)"->"specialinvoke $r16.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>($r17)";
+    "specialinvoke $r16.<net.seninp.gi.rulepruner.RulePruner: void <init>(double[])>($r17)"->"r126 = $r16";
+    "r126 = $r16"->"i16 = r2[0]";
+    "i16 = r2[0]"->"$i17 = r2[1]";
+    "$i17 = r2[1]"->"if i16 >= $i17 goto $r18 = new net.seninp.grammarviz.GrammarSizeSorter";
+    "if i16 >= $i17 goto $r18 = new net.seninp.grammarviz.GrammarSizeSorter"->"i18 = r2[3]";
+    "if i16 >= $i17 goto $r18 = new net.seninp.grammarviz.GrammarSizeSorter"->"$r18 = new net.seninp.grammarviz.GrammarSizeSorter";
+    "i18 = r2[3]"->"$i4 = r2[4]";
+    "$i4 = r2[4]"->"if i18 >= $i4 goto $i5 = r2[2]";
+    "if i18 >= $i4 goto $i5 = r2[2]"->"if i18 <= i16 goto i19 = r2[6]";
+    "if i18 >= $i4 goto $i5 = r2[2]"->"$i5 = r2[2]";
+    "if i18 <= i16 goto i19 = r2[6]"->"goto [?= $i7 = r2[5]]";
+    "if i18 <= i16 goto i19 = r2[6]"->"i19 = r2[6]";
+    "goto [?= $i7 = r2[5]]"->"$i7 = r2[5]";
+    "i19 = r2[6]"->"$i6 = r2[7]";
+    "$i6 = r2[7]"->"if i19 >= $i6 goto $i7 = r2[5]";
+    "if i19 >= $i6 goto $i7 = r2[5]"->"$r99 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm REPAIR>";
+    "if i19 >= $i6 goto $i7 = r2[5]"->"$i7 = r2[5]";
+    "$r99 = <net.seninp.gi.GIAlgorithm: net.seninp.gi.GIAlgorithm REPAIR>"->"$r98 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: net.seninp.jmotif.sax.NumerosityReductionStrategy SAX_NR_STRATEGY>";
+    "$r98 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: net.seninp.jmotif.sax.NumerosityReductionStrategy SAX_NR_STRATEGY>"->"$d5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: double SAX_NORM_THRESHOLD>";
+    "$d5 = <net.seninp.grammarviz.GrammarVizAnomalyParameters: double SAX_NORM_THRESHOLD>"->"r127 = virtualinvoke r126.<net.seninp.gi.rulepruner.RulePruner: net.seninp.gi.rulepruner.SampledPoint sample(int,int,int,net.seninp.gi.GIAlgorithm,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(i16, i18, i19, $r99, $r98, $d5)";
+    "r127 = virtualinvoke r126.<net.seninp.gi.rulepruner.RulePruner: net.seninp.gi.rulepruner.SampledPoint sample(int,int,int,net.seninp.gi.GIAlgorithm,net.seninp.jmotif.sax.NumerosityReductionStrategy,double)>(i16, i18, i19, $r99, $r98, $d5)"->"virtualinvoke r4.<java.util.ArrayList: boolean add(java.lang.Object)>(r127)";
+    "virtualinvoke r4.<java.util.ArrayList: boolean add(java.lang.Object)>(r127)"->"$r101 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>";
+    "$r101 = <net.seninp.grammarviz.GrammarVizAnomaly: org.slf4j.Logger LOGGER>"->"$r100 = new java.lang.StringBuilder";
+    "$r100 = new java.lang.StringBuilder"->"specialinvoke $r100.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r100.<java.lang.StringBuilder: void <init>()>()"->"$r102 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"# \")";
+    "$r102 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"# \")"->"$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i16)";
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i16)"->"$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i18)";
+    "$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i18)"->"$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)";
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)"->"$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$d6 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getApproxDist()>()";
+    "$d6 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getApproxDist()>()"->"$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d6)";
+    "$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d6)"->"$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i8 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarSize()>()";
+    "$i8 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarSize()>()"->"$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)";
+    "$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"->"$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i9 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getCompressedGrammarSize()>()";
+    "$i9 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getCompressedGrammarSize()>()"->"$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)";
+    "$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)"->"$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i10 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarRules()>()";
+    "$i10 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getGrammarRules()>()"->"$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10)";
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10)"->"$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i11 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getPrunedRules()>()";
+    "$i11 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getPrunedRules()>()"->"$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11)";
+    "$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11)"->"$r118 = virtualinvoke $r117.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r118 = virtualinvoke $r117.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$d7 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()";
+    "$d7 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()"->"$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d7)";
+    "$r119 = virtualinvoke $r118.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d7)"->"$r120 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r120 = virtualinvoke $r119.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i12 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getMaxFrequency()>()";
+    "$i12 = virtualinvoke r127.<net.seninp.gi.rulepruner.SampledPoint: int getMaxFrequency()>()"->"$r121 = virtualinvoke $r120.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)";
+    "$r121 = virtualinvoke $r120.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)"->"$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r122 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r101.<org.slf4j.Logger: void info(java.lang.String)>($r122)";
+    "interfaceinvoke $r101.<org.slf4j.Logger: void info(java.lang.String)>($r122)"->"$i13 = r2[8]";
+    "$i13 = r2[8]"->"i19 = i19 + $i13";
+    "i19 = i19 + $i13"->"goto [?= $i6 = r2[7]]";
+    "goto [?= $i6 = r2[7]]"->"$i6 = r2[7]";
+    "$i7 = r2[5]"->"i18 = i18 + $i7";
+    "i18 = i18 + $i7"->"goto [?= $i4 = r2[4]]";
+    "goto [?= $i4 = r2[4]]"->"$i4 = r2[4]";
+    "$i5 = r2[2]"->"i16 = i16 + $i5";
+    "i16 = i16 + $i5"->"goto [?= $i17 = r2[1]]";
+    "goto [?= $i17 = r2[1]]"->"$i17 = r2[1]";
+    "$r18 = new net.seninp.grammarviz.GrammarSizeSorter"->"specialinvoke $r18.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()";
+    "specialinvoke $r18.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r18)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r18)"->"$r20 = <java.lang.System: java.io.PrintStream out>";
+    "$r20 = <java.lang.System: java.io.PrintStream out>"->"$r19 = new java.lang.StringBuilder";
+    "$r19 = new java.lang.StringBuilder"->"specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()"->"$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN GRAMMAR size is \")";
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN GRAMMAR size is \")"->"$r22 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r22 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r23 = (net.seninp.gi.rulepruner.SampledPoint) $r22";
+    "$r23 = (net.seninp.gi.rulepruner.SampledPoint) $r22"->"$r24 = virtualinvoke $r23.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()";
+    "$r24 = virtualinvoke $r23.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"->"$r25 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)";
+    "$r25 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r29)";
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r29)"->"$r30 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r30 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r31 = (net.seninp.gi.rulepruner.SampledPoint) $r30";
+    "$r31 = (net.seninp.gi.rulepruner.SampledPoint) $r30"->"i20 = virtualinvoke $r31.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()";
+    "i20 = virtualinvoke $r31.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"->"$r32 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r32 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r33 = (net.seninp.gi.rulepruner.SampledPoint) $r32";
+    "$r33 = (net.seninp.gi.rulepruner.SampledPoint) $r32"->"i21 = virtualinvoke $r33.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()";
+    "i21 = virtualinvoke $r33.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"->"$r34 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r34 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r35 = (net.seninp.gi.rulepruner.SampledPoint) $r34";
+    "$r35 = (net.seninp.gi.rulepruner.SampledPoint) $r34"->"i22 = virtualinvoke $r35.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()";
+    "i22 = virtualinvoke $r35.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"->"staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i20, i22, i21, r36, i2, r37, r38, d3)";
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i20, i22, i21, r36, i2, r37, r38, d3)"->"$r39 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter";
+    "$r39 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter"->"specialinvoke $r39.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()";
+    "specialinvoke $r39.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r39)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r4, $r39)"->"$r41 = <java.lang.System: java.io.PrintStream out>";
+    "$r41 = <java.lang.System: java.io.PrintStream out>"->"$r40 = new java.lang.StringBuilder";
+    "$r40 = new java.lang.StringBuilder"->"specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"->"$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN PRUNED grammar size: \")";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# GLOBALLY MIN PRUNED grammar size: \")"->"$r43 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r43 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r44 = (net.seninp.gi.rulepruner.SampledPoint) $r43";
+    "$r44 = (net.seninp.gi.rulepruner.SampledPoint) $r43"->"$r45 = virtualinvoke $r44.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()";
+    "$r45 = virtualinvoke $r44.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"->"$r46 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)";
+    "$r46 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"->"$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r50)";
+    "virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r50)"->"$r51 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r51 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r52 = (net.seninp.gi.rulepruner.SampledPoint) $r51";
+    "$r52 = (net.seninp.gi.rulepruner.SampledPoint) $r51"->"i23 = virtualinvoke $r52.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()";
+    "i23 = virtualinvoke $r52.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"->"$r53 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r53 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r54 = (net.seninp.gi.rulepruner.SampledPoint) $r53";
+    "$r54 = (net.seninp.gi.rulepruner.SampledPoint) $r53"->"i24 = virtualinvoke $r54.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()";
+    "i24 = virtualinvoke $r54.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"->"$r55 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r55 = virtualinvoke r4.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r56 = (net.seninp.gi.rulepruner.SampledPoint) $r55";
+    "$r56 = (net.seninp.gi.rulepruner.SampledPoint) $r55"->"i25 = virtualinvoke $r56.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()";
+    "i25 = virtualinvoke $r56.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"->"staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i23, i25, i24, r36, i2, r37, r38, d3)";
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i23, i25, i24, r36, i2, r37, r38, d3)"->"d8 = 0.99";
+    "d8 = 0.99"->"$r57 = new java.util.ArrayList";
+    "$r57 = new java.util.ArrayList"->"specialinvoke $r57.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r57.<java.util.ArrayList: void <init>()>()"->"r58 = $r57";
+    "r58 = $r57"->"r59 = virtualinvoke r4.<java.util.ArrayList: java.util.Iterator iterator()>()";
+    "r59 = virtualinvoke r4.<java.util.ArrayList: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto $r60 = new net.seninp.grammarviz.GrammarSizeSorter";
+    "if $z1 == 0 goto $r60 = new net.seninp.grammarviz.GrammarSizeSorter"->"$r96 = interfaceinvoke r59.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z1 == 0 goto $r60 = new net.seninp.grammarviz.GrammarSizeSorter"->"$r60 = new net.seninp.grammarviz.GrammarSizeSorter";
+    "$r96 = interfaceinvoke r59.<java.util.Iterator: java.lang.Object next()>()"->"r97 = (net.seninp.gi.rulepruner.SampledPoint) $r96";
+    "r97 = (net.seninp.gi.rulepruner.SampledPoint) $r96"->"$d4 = virtualinvoke r97.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()";
+    "$d4 = virtualinvoke r97.<net.seninp.gi.rulepruner.SampledPoint: double getCoverage()>()"->"$b3 = $d4 cmpl d8";
+    "$b3 = $d4 cmpl d8"->"if $b3 < 0 goto (branch)";
+    "if $b3 < 0 goto (branch)"->"virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>(r97)";
+    "if $b3 < 0 goto (branch)"->"goto [?= $z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()]";
+    "virtualinvoke r58.<java.util.ArrayList: boolean add(java.lang.Object)>(r97)"->"goto [?= $z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r59.<java.util.Iterator: boolean hasNext()>()";
+    "$r60 = new net.seninp.grammarviz.GrammarSizeSorter"->"specialinvoke $r60.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()";
+    "specialinvoke $r60.<net.seninp.grammarviz.GrammarSizeSorter: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r60)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r60)"->"$r62 = <java.lang.System: java.io.PrintStream out>";
+    "$r62 = <java.lang.System: java.io.PrintStream out>"->"$r61 = new java.lang.StringBuilder";
+    "$r61 = new java.lang.StringBuilder"->"specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r61.<java.lang.StringBuilder: void <init>()>()"->"$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN GRAMMAR parameters are \")";
+    "$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN GRAMMAR parameters are \")"->"$r64 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r64 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r65 = (net.seninp.gi.rulepruner.SampledPoint) $r64";
+    "$r65 = (net.seninp.gi.rulepruner.SampledPoint) $r64"->"$r66 = virtualinvoke $r65.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()";
+    "$r66 = virtualinvoke $r65.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"->"$r67 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r66)";
+    "$r67 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r66)"->"$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"->"$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r71)";
+    "virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r71)"->"$r72 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r72 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r73 = (net.seninp.gi.rulepruner.SampledPoint) $r72";
+    "$r73 = (net.seninp.gi.rulepruner.SampledPoint) $r72"->"i26 = virtualinvoke $r73.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()";
+    "i26 = virtualinvoke $r73.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"->"$r74 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r74 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r75 = (net.seninp.gi.rulepruner.SampledPoint) $r74";
+    "$r75 = (net.seninp.gi.rulepruner.SampledPoint) $r74"->"i27 = virtualinvoke $r75.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()";
+    "i27 = virtualinvoke $r75.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"->"$r76 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r76 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r77 = (net.seninp.gi.rulepruner.SampledPoint) $r76";
+    "$r77 = (net.seninp.gi.rulepruner.SampledPoint) $r76"->"i28 = virtualinvoke $r77.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()";
+    "i28 = virtualinvoke $r77.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"->"staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i26, i28, i27, r36, i2, r37, r38, d3)";
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i26, i28, i27, r36, i2, r37, r38, d3)"->"$r78 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter";
+    "$r78 = new net.seninp.gi.rulepruner.ReducedGrammarSizeSorter"->"specialinvoke $r78.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()";
+    "specialinvoke $r78.<net.seninp.gi.rulepruner.ReducedGrammarSizeSorter: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r78)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r58, $r78)"->"$r80 = <java.lang.System: java.io.PrintStream out>";
+    "$r80 = <java.lang.System: java.io.PrintStream out>"->"$r79 = new java.lang.StringBuilder";
+    "$r79 = new java.lang.StringBuilder"->"specialinvoke $r79.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r79.<java.lang.StringBuilder: void <init>()>()"->"$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN PRUNED GRAMMAR : \")";
+    "$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n# COVERED ABOVE THRESHOLD MIN PRUNED GRAMMAR : \")"->"$r82 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r82 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r83 = (net.seninp.gi.rulepruner.SampledPoint) $r82";
+    "$r83 = (net.seninp.gi.rulepruner.SampledPoint) $r82"->"$r84 = virtualinvoke $r83.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()";
+    "$r84 = virtualinvoke $r83.<net.seninp.gi.rulepruner.SampledPoint: java.lang.String toString()>()"->"$r85 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r84)";
+    "$r85 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r84)"->"$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")";
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running RRAPruned ...\")"->"$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r89)";
+    "virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r89)"->"$r90 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r90 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r91 = (net.seninp.gi.rulepruner.SampledPoint) $r90";
+    "$r91 = (net.seninp.gi.rulepruner.SampledPoint) $r90"->"i29 = virtualinvoke $r91.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()";
+    "i29 = virtualinvoke $r91.<net.seninp.gi.rulepruner.SampledPoint: int getWindow()>()"->"$r92 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r92 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r93 = (net.seninp.gi.rulepruner.SampledPoint) $r92";
+    "$r93 = (net.seninp.gi.rulepruner.SampledPoint) $r92"->"i30 = virtualinvoke $r93.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()";
+    "i30 = virtualinvoke $r93.<net.seninp.gi.rulepruner.SampledPoint: int getPAA()>()"->"$r94 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)";
+    "$r94 = virtualinvoke r58.<java.util.ArrayList: java.lang.Object get(int)>(0)"->"$r95 = (net.seninp.gi.rulepruner.SampledPoint) $r94";
+    "$r95 = (net.seninp.gi.rulepruner.SampledPoint) $r94"->"i31 = virtualinvoke $r95.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()";
+    "i31 = virtualinvoke $r95.<net.seninp.gi.rulepruner.SampledPoint: int getAlphabet()>()"->"staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i29, i31, i30, r36, i2, r37, r38, d3)";
+    "staticinvoke <net.seninp.grammarviz.GrammarVizAnomaly: void findRRAPruned(double[],int,int,int,net.seninp.jmotif.sax.NumerosityReductionStrategy,int,net.seninp.gi.GIAlgorithm,java.lang.String,double)>(r6, i29, i31, i30, r36, i2, r37, r38, d3)"->"return";
+}

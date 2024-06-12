@@ -1,0 +1,94 @@
+digraph "unitGraph" {
+    "r18 := @parameter0: java.lang.String"
+    "r0 := @parameter1: java.lang.instrument.Instrumentation"
+    "$z0 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isRetransformClassesSupported()>()"
+    "if $z0 != 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Class retransformation is not supported.\")"
+    "return"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"Calling lambda to ensure that lambda forms were created\")"
+    "$r2 = <Agent: java.lang.Runnable lambda>"
+    "interfaceinvoke $r2.<java.lang.Runnable: void run()>()"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"Registering class file transformer\")"
+    "$r4 = new Agent"
+    "specialinvoke $r4.<Agent: void <init>()>()"
+    "interfaceinvoke r0.<java.lang.instrument.Instrumentation: void addTransformer(java.lang.instrument.ClassFileTransformer)>($r4)"
+    "$r5 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: java.lang.Class[] getAllLoadedClasses()>()"
+    "r6 = $r5"
+    "i0 = lengthof $r5"
+    "i1 = 0"
+    "goto [?= (branch)]"
+    "r7 = r6[i1]"
+    "$r8 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()"
+    "$z1 = virtualinvoke $r8.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"LambdaForm\")"
+    "if $z1 == 0 goto i1 = i1 + 1"
+    "$z2 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isModifiableClass(java.lang.Class)>(r7)"
+    "if $z2 == 0 goto i1 = i1 + 1"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r9 = newarray (java.lang.Object)[1]"
+    "$r11 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()"
+    "$r9[0] = $r11"
+    "virtualinvoke $r10.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"We\'ve found a modifiable lambda form: %s%n\", $r9)"
+    "$r13 = newarray (java.lang.Class)[1]"
+    "$r13[0] = r7"
+    "interfaceinvoke r0.<java.lang.instrument.Instrumentation: void retransformClasses(java.lang.Class[])>($r13)"
+    "goto [?= i1 = i1 + 1]"
+    "$r15 := @caughtexception"
+    "r16 = $r15"
+    "$r17 = new java.lang.AssertionError"
+    "specialinvoke $r17.<java.lang.AssertionError: void <init>(java.lang.String,java.lang.Throwable)>(\"Modification of modifiable class caused UnmodifiableClassException\", r16)"
+    "throw $r17"
+    "i1 = i1 + 1"
+    "if i1 < i0 goto r7 = r6[i1]"
+    "r18 := @parameter0: java.lang.String"->"r0 := @parameter1: java.lang.instrument.Instrumentation";
+    "r0 := @parameter1: java.lang.instrument.Instrumentation"->"$z0 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isRetransformClassesSupported()>()";
+    "$z0 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isRetransformClassesSupported()>()"->"if $z0 != 0 goto $r1 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 != 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"->"$r14 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 != 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "$r14 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Class retransformation is not supported.\")";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Class retransformation is not supported.\")"->"return";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"Calling lambda to ensure that lambda forms were created\")";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"Calling lambda to ensure that lambda forms were created\")"->"$r2 = <Agent: java.lang.Runnable lambda>";
+    "$r2 = <Agent: java.lang.Runnable lambda>"->"interfaceinvoke $r2.<java.lang.Runnable: void run()>()";
+    "interfaceinvoke $r2.<java.lang.Runnable: void run()>()"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"Registering class file transformer\")";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(\"Registering class file transformer\")"->"$r4 = new Agent";
+    "$r4 = new Agent"->"specialinvoke $r4.<Agent: void <init>()>()";
+    "specialinvoke $r4.<Agent: void <init>()>()"->"interfaceinvoke r0.<java.lang.instrument.Instrumentation: void addTransformer(java.lang.instrument.ClassFileTransformer)>($r4)";
+    "interfaceinvoke r0.<java.lang.instrument.Instrumentation: void addTransformer(java.lang.instrument.ClassFileTransformer)>($r4)"->"$r5 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: java.lang.Class[] getAllLoadedClasses()>()";
+    "$r5 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: java.lang.Class[] getAllLoadedClasses()>()"->"r6 = $r5";
+    "r6 = $r5"->"i0 = lengthof $r5";
+    "i0 = lengthof $r5"->"i1 = 0";
+    "i1 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < i0 goto r7 = r6[i1]";
+    "r7 = r6[i1]"->"$r8 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()";
+    "$r8 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()"->"$z1 = virtualinvoke $r8.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"LambdaForm\")";
+    "$z1 = virtualinvoke $r8.<java.lang.String: boolean contains(java.lang.CharSequence)>(\"LambdaForm\")"->"if $z1 == 0 goto i1 = i1 + 1";
+    "if $z1 == 0 goto i1 = i1 + 1"->"$z2 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isModifiableClass(java.lang.Class)>(r7)";
+    "if $z1 == 0 goto i1 = i1 + 1"->"i1 = i1 + 1";
+    "$z2 = interfaceinvoke r0.<java.lang.instrument.Instrumentation: boolean isModifiableClass(java.lang.Class)>(r7)"->"if $z2 == 0 goto i1 = i1 + 1";
+    "if $z2 == 0 goto i1 = i1 + 1"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "if $z2 == 0 goto i1 = i1 + 1"->"i1 = i1 + 1";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r9 = newarray (java.lang.Object)[1]";
+    "$r9 = newarray (java.lang.Object)[1]"->"$r11 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()";
+    "$r11 = virtualinvoke r7.<java.lang.Class: java.lang.String getName()>()"->"$r9[0] = $r11";
+    "$r9[0] = $r11"->"virtualinvoke $r10.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"We\'ve found a modifiable lambda form: %s%n\", $r9)";
+    "virtualinvoke $r10.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"We\'ve found a modifiable lambda form: %s%n\", $r9)"->"$r13 = newarray (java.lang.Class)[1]";
+    "virtualinvoke $r10.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>(\"We\'ve found a modifiable lambda form: %s%n\", $r9)"->"$r15 := @caughtexception";
+    "$r13 = newarray (java.lang.Class)[1]"->"$r13[0] = r7";
+    "$r13 = newarray (java.lang.Class)[1]"->"$r15 := @caughtexception";
+    "$r13[0] = r7"->"interfaceinvoke r0.<java.lang.instrument.Instrumentation: void retransformClasses(java.lang.Class[])>($r13)";
+    "$r13[0] = r7"->"$r15 := @caughtexception";
+    "interfaceinvoke r0.<java.lang.instrument.Instrumentation: void retransformClasses(java.lang.Class[])>($r13)"->"goto [?= i1 = i1 + 1]";
+    "interfaceinvoke r0.<java.lang.instrument.Instrumentation: void retransformClasses(java.lang.Class[])>($r13)"->"$r15 := @caughtexception";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$r15 := @caughtexception"->"r16 = $r15";
+    "r16 = $r15"->"$r17 = new java.lang.AssertionError";
+    "$r17 = new java.lang.AssertionError"->"specialinvoke $r17.<java.lang.AssertionError: void <init>(java.lang.String,java.lang.Throwable)>(\"Modification of modifiable class caused UnmodifiableClassException\", r16)";
+    "specialinvoke $r17.<java.lang.AssertionError: void <init>(java.lang.String,java.lang.Throwable)>(\"Modification of modifiable class caused UnmodifiableClassException\", r16)"->"throw $r17";
+    "i1 = i1 + 1"->"if i1 < i0 goto r7 = r6[i1]";
+    "if i1 < i0 goto r7 = r6[i1]"->"return";
+    "if i1 < i0 goto r7 = r6[i1]"->"r7 = r6[i1]";
+}

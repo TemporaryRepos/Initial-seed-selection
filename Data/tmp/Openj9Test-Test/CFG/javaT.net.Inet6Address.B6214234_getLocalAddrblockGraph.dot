@@ -1,0 +1,162 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"
+    "Block 1:
+[preds: 0 8 ] [succs: 2 9 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return null;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"
+    "Block 3:
+[preds: 2 7 ] [succs: 4 8 ]
+$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z1 == 0 goto (branch);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z2 = r5 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+$z3 = virtualinvoke r6.<java.net.Inet6Address: boolean isLinkLocalAddress()>();
+if $z3 == 0 goto (branch);
+"
+    "Block 6:
+[preds: 5 ] [succs: ]
+return r6;
+"
+    "Block 7:
+[preds: 4 5 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 8:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 9:
+[preds: 1 ] [succs: ]
+return null;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>();
+"->"Block 1:
+[preds: 0 8 ] [succs: 2 9 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return null;
+";
+    "Block 1:
+[preds: 0 8 ] [succs: 2 9 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return null;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+";
+    "Block 1:
+[preds: 0 8 ] [succs: 2 9 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return null;
+"->"Block 9:
+[preds: 1 ] [succs: ]
+return null;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>();
+r2 = (java.net.NetworkInterface) $r1;
+r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"->"Block 3:
+[preds: 2 7 ] [succs: 4 8 ]
+$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 7 ] [succs: 4 8 ]
+$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z1 == 0 goto (branch);
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z2 = r5 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 7 ] [succs: 4 8 ]
+$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z1 == 0 goto (branch);
+"->"Block 8:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z2 = r5 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+$z3 = virtualinvoke r6.<java.net.Inet6Address: boolean isLinkLocalAddress()>();
+if $z3 == 0 goto (branch);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r4 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+r5 = (java.net.InetAddress) $r4;
+$z2 = r5 instanceof java.net.Inet6Address;
+if $z2 == 0 goto (branch);
+"->"Block 7:
+[preds: 4 5 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+$z3 = virtualinvoke r6.<java.net.Inet6Address: boolean isLinkLocalAddress()>();
+if $z3 == 0 goto (branch);
+"->"Block 6:
+[preds: 5 ] [succs: ]
+return r6;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r6 = (java.net.Inet6Address) r5;
+$z3 = virtualinvoke r6.<java.net.Inet6Address: boolean isLinkLocalAddress()>();
+if $z3 == 0 goto (branch);
+"->"Block 7:
+[preds: 4 5 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 7:
+[preds: 4 5 ] [succs: 3 ]
+goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 3:
+[preds: 2 7 ] [succs: 4 8 ]
+$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 8:
+[preds: 3 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 1:
+[preds: 0 8 ] [succs: 2 9 ]
+$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>();
+if $z0 == 0 goto return null;
+";
+}

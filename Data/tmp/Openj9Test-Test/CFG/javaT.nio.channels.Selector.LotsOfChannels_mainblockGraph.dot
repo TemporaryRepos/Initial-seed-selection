@@ -1,0 +1,230 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r24 := @parameter0: java.lang.String[];
+r0 = newarray (java.nio.channels.Pipe)[256];
+r1 = staticinvoke <java.nio.channels.Pipe: java.nio.channels.Pipe open()>();
+r2 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+r3 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+r4 = staticinvoke <java.nio.channels.Selector: java.nio.channels.Selector open()>();
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 1);
+i2 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 256 goto i3 = 0;
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r16 = staticinvoke <java.nio.channels.Pipe: java.nio.channels.Pipe open()>();
+r0[i2] = $r16;
+$r17 = r0[i2];
+r25 = virtualinvoke $r17.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 1);
+$r20 = r0[i2];
+r21 = virtualinvoke $r20.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 4);
+i2 = i2 + 1;
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+i3 = 0;
+"
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i3 >= 10 goto i5 = 0;
+"
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r13 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>($r13);
+virtualinvoke r4.<java.nio.channels.Selector: int selectNow()>();
+$r14 = virtualinvoke r4.<java.nio.channels.Selector: java.util.Set selectedKeys()>();
+interfaceinvoke $r14.<java.util.Set: void clear()>();
+$r15 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>($r15);
+i3 = i3 + 1;
+goto [?= (branch)];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+i5 = 0;
+"
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+if i5 >= 256 goto $r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r9 = r0[i5];
+$r10 = virtualinvoke $r9.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke $r10.<java.nio.channels.Pipe$SinkChannel: void close()>();
+$r11 = r0[i5];
+$r12 = virtualinvoke $r11.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke $r12.<java.nio.channels.Pipe$SourceChannel: void close()>();
+i5 = i5 + 1;
+goto [?= (branch)];
+"
+    "Block 9:
+[preds: 7 ] [succs: ]
+$r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke $r7.<java.nio.channels.Pipe$SinkChannel: void close()>();
+$r8 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke $r8.<java.nio.channels.Pipe$SourceChannel: void close()>();
+virtualinvoke r4.<java.nio.channels.Selector: void close()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r24 := @parameter0: java.lang.String[];
+r0 = newarray (java.nio.channels.Pipe)[256];
+r1 = staticinvoke <java.nio.channels.Pipe: java.nio.channels.Pipe open()>();
+r2 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+r3 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+r4 = staticinvoke <java.nio.channels.Selector: java.nio.channels.Selector open()>();
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 1);
+i2 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 256 goto i3 = 0;
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 256 goto i3 = 0;
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+$r16 = staticinvoke <java.nio.channels.Pipe: java.nio.channels.Pipe open()>();
+r0[i2] = $r16;
+$r17 = r0[i2];
+r25 = virtualinvoke $r17.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 1);
+$r20 = r0[i2];
+r21 = virtualinvoke $r20.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 4);
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 256 goto i3 = 0;
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+i3 = 0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r16 = staticinvoke <java.nio.channels.Pipe: java.nio.channels.Pipe open()>();
+r0[i2] = $r16;
+$r17 = r0[i2];
+r25 = virtualinvoke $r17.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r25.<java.nio.channels.Pipe$SourceChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 1);
+$r20 = r0[i2];
+r21 = virtualinvoke $r20.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0);
+virtualinvoke r21.<java.nio.channels.Pipe$SinkChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r4, 4);
+i2 = i2 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i2 >= 256 goto i3 = 0;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+i3 = 0;
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i3 >= 10 goto i5 = 0;
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i3 >= 10 goto i5 = 0;
+"->"Block 5:
+[preds: 4 ] [succs: 4 ]
+$r13 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>($r13);
+virtualinvoke r4.<java.nio.channels.Selector: int selectNow()>();
+$r14 = virtualinvoke r4.<java.nio.channels.Selector: java.util.Set selectedKeys()>();
+interfaceinvoke $r14.<java.util.Set: void clear()>();
+$r15 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>($r15);
+i3 = i3 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i3 >= 10 goto i5 = 0;
+"->"Block 6:
+[preds: 4 ] [succs: 7 ]
+i5 = 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r13 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>($r13);
+virtualinvoke r4.<java.nio.channels.Selector: int selectNow()>();
+$r14 = virtualinvoke r4.<java.nio.channels.Selector: java.util.Set selectedKeys()>();
+interfaceinvoke $r14.<java.util.Set: void clear()>();
+$r15 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>(8192);
+virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>($r15);
+i3 = i3 + 1;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i3 >= 10 goto i5 = 0;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+i5 = 0;
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+if i5 >= 256 goto $r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+if i5 >= 256 goto $r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+"->"Block 8:
+[preds: 7 ] [succs: 7 ]
+$r9 = r0[i5];
+$r10 = virtualinvoke $r9.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke $r10.<java.nio.channels.Pipe$SinkChannel: void close()>();
+$r11 = r0[i5];
+$r12 = virtualinvoke $r11.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke $r12.<java.nio.channels.Pipe$SourceChannel: void close()>();
+i5 = i5 + 1;
+goto [?= (branch)];
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+if i5 >= 256 goto $r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+"->"Block 9:
+[preds: 7 ] [succs: ]
+$r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke $r7.<java.nio.channels.Pipe$SinkChannel: void close()>();
+$r8 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke $r8.<java.nio.channels.Pipe$SourceChannel: void close()>();
+virtualinvoke r4.<java.nio.channels.Selector: void close()>();
+return;
+";
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r9 = r0[i5];
+$r10 = virtualinvoke $r9.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+virtualinvoke $r10.<java.nio.channels.Pipe$SinkChannel: void close()>();
+$r11 = r0[i5];
+$r12 = virtualinvoke $r11.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>();
+virtualinvoke $r12.<java.nio.channels.Pipe$SourceChannel: void close()>();
+i5 = i5 + 1;
+goto [?= (branch)];
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+if i5 >= 256 goto $r7 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>();
+";
+}

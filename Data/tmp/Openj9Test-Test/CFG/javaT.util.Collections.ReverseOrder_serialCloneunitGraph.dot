@@ -1,0 +1,36 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.Object"
+    "$r0 = new java.io.ObjectInputStream"
+    "$r1 = new java.io.ByteArrayInputStream"
+    "$r3 = staticinvoke <javaT.util.Collections.ReverseOrder: byte[] serialBytes(java.lang.Object)>(r2)"
+    "specialinvoke $r1.<java.io.ByteArrayInputStream: void <init>(byte[])>($r3)"
+    "specialinvoke $r0.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r1)"
+    "r7 = $r0"
+    "r4 = virtualinvoke r7.<java.io.ObjectInputStream: java.lang.Object readObject()>()"
+    "return r4"
+    "$r5 := @caughtexception"
+    "r8 = $r5"
+    "$r6 = new java.lang.Error"
+    "specialinvoke $r6.<java.lang.Error: void <init>(java.lang.Throwable)>(r8)"
+    "throw $r6"
+    "r2 := @parameter0: java.lang.Object"->"$r0 = new java.io.ObjectInputStream";
+    "r2 := @parameter0: java.lang.Object"->"$r5 := @caughtexception";
+    "$r0 = new java.io.ObjectInputStream"->"$r1 = new java.io.ByteArrayInputStream";
+    "$r0 = new java.io.ObjectInputStream"->"$r5 := @caughtexception";
+    "$r1 = new java.io.ByteArrayInputStream"->"$r3 = staticinvoke <javaT.util.Collections.ReverseOrder: byte[] serialBytes(java.lang.Object)>(r2)";
+    "$r1 = new java.io.ByteArrayInputStream"->"$r5 := @caughtexception";
+    "$r3 = staticinvoke <javaT.util.Collections.ReverseOrder: byte[] serialBytes(java.lang.Object)>(r2)"->"specialinvoke $r1.<java.io.ByteArrayInputStream: void <init>(byte[])>($r3)";
+    "$r3 = staticinvoke <javaT.util.Collections.ReverseOrder: byte[] serialBytes(java.lang.Object)>(r2)"->"$r5 := @caughtexception";
+    "specialinvoke $r1.<java.io.ByteArrayInputStream: void <init>(byte[])>($r3)"->"specialinvoke $r0.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r1)";
+    "specialinvoke $r1.<java.io.ByteArrayInputStream: void <init>(byte[])>($r3)"->"$r5 := @caughtexception";
+    "specialinvoke $r0.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r1)"->"r7 = $r0";
+    "specialinvoke $r0.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r1)"->"$r5 := @caughtexception";
+    "r7 = $r0"->"r4 = virtualinvoke r7.<java.io.ObjectInputStream: java.lang.Object readObject()>()";
+    "r7 = $r0"->"$r5 := @caughtexception";
+    "r4 = virtualinvoke r7.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"return r4";
+    "r4 = virtualinvoke r7.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"$r5 := @caughtexception";
+    "$r5 := @caughtexception"->"r8 = $r5";
+    "r8 = $r5"->"$r6 = new java.lang.Error";
+    "$r6 = new java.lang.Error"->"specialinvoke $r6.<java.lang.Error: void <init>(java.lang.Throwable)>(r8)";
+    "specialinvoke $r6.<java.lang.Error: void <init>(java.lang.Throwable)>(r8)"->"throw $r6";
+}

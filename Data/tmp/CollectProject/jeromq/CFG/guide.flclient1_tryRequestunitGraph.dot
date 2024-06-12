@@ -1,0 +1,46 @@
+digraph "unitGraph" {
+    "r4 := @parameter0: org.zeromq.ZContext"
+    "r1 := @parameter1: java.lang.String"
+    "r7 := @parameter2: org.zeromq.ZMsg"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "$r0 = newarray (java.lang.Object)[1]"
+    "$r0[0] = r1"
+    "virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: trying echo service at %s...\n\", $r0)"
+    "$r5 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"
+    "r6 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r5)"
+    "virtualinvoke r6.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(r1)"
+    "r8 = virtualinvoke r7.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>()"
+    "virtualinvoke r8.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>(r6)"
+    "r9 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r6, 1)"
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: int poll(long)>(1000L)"
+    "r10 = null"
+    "$z2 = virtualinvoke r9.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"
+    "if $z2 == 0 goto virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()"
+    "r10 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>(r6)"
+    "virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()"
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: void close()>()"
+    "return r10"
+    "r4 := @parameter0: org.zeromq.ZContext"->"r1 := @parameter1: java.lang.String";
+    "r1 := @parameter1: java.lang.String"->"r7 := @parameter2: org.zeromq.ZMsg";
+    "r7 := @parameter2: org.zeromq.ZMsg"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r0 = newarray (java.lang.Object)[1]";
+    "$r0 = newarray (java.lang.Object)[1]"->"$r0[0] = r1";
+    "$r0[0] = r1"->"virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: trying echo service at %s...\n\", $r0)";
+    "virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"I: trying echo service at %s...\n\", $r0)"->"$r5 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>";
+    "$r5 = <org.zeromq.SocketType: org.zeromq.SocketType REQ>"->"r6 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r5)";
+    "r6 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Socket createSocket(org.zeromq.SocketType)>($r5)"->"virtualinvoke r6.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(r1)";
+    "virtualinvoke r6.<org.zeromq.ZMQ$Socket: boolean connect(java.lang.String)>(r1)"->"r8 = virtualinvoke r7.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>()";
+    "r8 = virtualinvoke r7.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>()"->"virtualinvoke r8.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>(r6)";
+    "virtualinvoke r8.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>(r6)"->"r9 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)";
+    "r9 = virtualinvoke r4.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1)"->"virtualinvoke r9.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r6, 1)";
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>(r6, 1)"->"virtualinvoke r9.<org.zeromq.ZMQ$Poller: int poll(long)>(1000L)";
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: int poll(long)>(1000L)"->"r10 = null";
+    "r10 = null"->"$z2 = virtualinvoke r9.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)";
+    "$z2 = virtualinvoke r9.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0)"->"if $z2 == 0 goto virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()";
+    "if $z2 == 0 goto virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()"->"r10 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>(r6)";
+    "if $z2 == 0 goto virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()"->"virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()";
+    "r10 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>(r6)"->"virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()";
+    "virtualinvoke r6.<org.zeromq.ZMQ$Socket: void close()>()"->"virtualinvoke r9.<org.zeromq.ZMQ$Poller: void close()>()";
+    "virtualinvoke r9.<org.zeromq.ZMQ$Poller: void close()>()"->"return r10";
+}

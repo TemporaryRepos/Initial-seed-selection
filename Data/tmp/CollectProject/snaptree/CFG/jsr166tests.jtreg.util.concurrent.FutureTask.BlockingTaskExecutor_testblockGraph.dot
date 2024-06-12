@@ -1,0 +1,154 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newCachedThreadPool()>();
+$r1 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r1.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r2 = $r1;
+$r3 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r3.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+$r7 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r7.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r2);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r7);
+$r8 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r8.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r4);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r8);
+$r9 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask;
+specialinvoke $r9.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask: void <init>()>();
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r9);
+$r10 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1;
+specialinvoke $r10.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1: void <init>(java.util.concurrent.ExecutorService,java.util.Collection)>(r0, r6);
+r11 = $r10;
+virtualinvoke r11.<java.lang.Thread: void start()>();
+virtualinvoke r2.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+virtualinvoke r4.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.List shutdownNow()>();
+$r13 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+$z3 = interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(5L, $r13);
+if $z3 != 0 goto virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r15 = new java.lang.Error;
+specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String)>(\"Executor stuck\");
+throw $r15;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$z4 = virtualinvoke r11.<java.lang.Thread: boolean isAlive()>();
+if $z4 == 0 goto return;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+virtualinvoke r11.<java.lang.Thread: void interrupt()>();
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$r14 = new java.lang.Error;
+specialinvoke $r14.<java.lang.Error: void <init>(java.lang.String)>(\"invokeAll stuck\");
+throw $r14;
+"
+    "Block 4:
+[preds: 2 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newCachedThreadPool()>();
+$r1 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r1.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r2 = $r1;
+$r3 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r3.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+$r7 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r7.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r2);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r7);
+$r8 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r8.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r4);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r8);
+$r9 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask;
+specialinvoke $r9.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask: void <init>()>();
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r9);
+$r10 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1;
+specialinvoke $r10.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1: void <init>(java.util.concurrent.ExecutorService,java.util.Collection)>(r0, r6);
+r11 = $r10;
+virtualinvoke r11.<java.lang.Thread: void start()>();
+virtualinvoke r2.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+virtualinvoke r4.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.List shutdownNow()>();
+$r13 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+$z3 = interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(5L, $r13);
+if $z3 != 0 goto virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r15 = new java.lang.Error;
+specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String)>(\"Executor stuck\");
+throw $r15;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newCachedThreadPool()>();
+$r1 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r1.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r2 = $r1;
+$r3 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver;
+specialinvoke $r3.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.ArrayList;
+specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+r6 = $r5;
+$r7 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r7.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r2);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r7);
+$r8 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask;
+specialinvoke $r8.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$BlockingTask: void <init>(jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver)>(r4);
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r8);
+$r9 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask;
+specialinvoke $r9.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NonBlockingTask: void <init>()>();
+interfaceinvoke r6.<java.util.Collection: boolean add(java.lang.Object)>($r9);
+$r10 = new jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1;
+specialinvoke $r10.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$1: void <init>(java.util.concurrent.ExecutorService,java.util.Collection)>(r0, r6);
+r11 = $r10;
+virtualinvoke r11.<java.lang.Thread: void start()>();
+virtualinvoke r2.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+virtualinvoke r4.<jsr166tests.jtreg.util.concurrent.FutureTask.BlockingTaskExecutor$NotificationReceiver: void waitForNotification()>();
+interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.List shutdownNow()>();
+$r13 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+$z3 = interfaceinvoke r0.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(5L, $r13);
+if $z3 != 0 goto virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$z4 = virtualinvoke r11.<java.lang.Thread: boolean isAlive()>();
+if $z4 == 0 goto return;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$z4 = virtualinvoke r11.<java.lang.Thread: boolean isAlive()>();
+if $z4 == 0 goto return;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+virtualinvoke r11.<java.lang.Thread: void interrupt()>();
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$r14 = new java.lang.Error;
+specialinvoke $r14.<java.lang.Error: void <init>(java.lang.String)>(\"invokeAll stuck\");
+throw $r14;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+virtualinvoke r11.<java.lang.Thread: void join(long)>(1000L);
+$z4 = virtualinvoke r11.<java.lang.Thread: boolean isAlive()>();
+if $z4 == 0 goto return;
+"->"Block 4:
+[preds: 2 ] [succs: ]
+return;
+";
+}

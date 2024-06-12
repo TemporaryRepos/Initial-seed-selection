@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "r1 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>"
+    "i1 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i1 & 1"
+    "if $i0 != 0 goto i1 = i1 + 1"
+    "$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>()"
+    "$r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>"
+    "$f1 = virtualinvoke $r0.<java.lang.Float: float floatValue()>()"
+    "$f2 = $f0 + $f1"
+    "r1 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2)"
+    "i1 = i1 + 1"
+    "if i1 < 1000 goto $i0 = i1 & 1"
+    "$f3 = virtualinvoke r1.<java.lang.Float: float floatValue()>()"
+    "return $f3"
+    "r1 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>"->"i1 = 0";
+    "i1 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < 1000 goto $i0 = i1 & 1";
+    "$i0 = i1 & 1"->"if $i0 != 0 goto i1 = i1 + 1";
+    "if $i0 != 0 goto i1 = i1 + 1"->"$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>()";
+    "if $i0 != 0 goto i1 = i1 + 1"->"i1 = i1 + 1";
+    "$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>()"->"$r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>";
+    "$r0 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>"->"$f1 = virtualinvoke $r0.<java.lang.Float: float floatValue()>()";
+    "$f1 = virtualinvoke $r0.<java.lang.Float: float floatValue()>()"->"$f2 = $f0 + $f1";
+    "$f2 = $f0 + $f1"->"r1 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2)";
+    "r1 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"if i1 < 1000 goto $i0 = i1 & 1";
+    "if i1 < 1000 goto $i0 = i1 & 1"->"$f3 = virtualinvoke r1.<java.lang.Float: float floatValue()>()";
+    "if i1 < 1000 goto $i0 = i1 & 1"->"$i0 = i1 & 1";
+    "$f3 = virtualinvoke r1.<java.lang.Float: float floatValue()>()"->"return $f3";
+}

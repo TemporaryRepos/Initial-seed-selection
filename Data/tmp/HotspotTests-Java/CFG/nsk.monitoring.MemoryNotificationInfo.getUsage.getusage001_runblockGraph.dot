@@ -1,0 +1,420 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r32 := @parameter0: java.lang.String[];
+r7 := @parameter1: java.io.PrintStream;
+$r0 = new java.lang.management.MemoryUsage;
+specialinvoke $r0.<java.lang.management.MemoryUsage: void <init>(long,long,long,long)>(1L, 2L, 3L, 4L);
+r1 = $r0;
+$r2 = new java.lang.management.MemoryNotificationInfo;
+specialinvoke $r2.<java.lang.management.MemoryNotificationInfo: void <init>(java.lang.String,java.lang.management.MemoryUsage,long)>(\"poolName\", r1, 1L);
+r3 = $r2;
+r4 = virtualinvoke r3.<java.lang.management.MemoryNotificationInfo: java.lang.management.MemoryUsage getUsage()>();
+l0 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+l1 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getInit()>();
+l2 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getMax()>();
+l3 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getUsed()>();
+r5 = virtualinvoke r4.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$b4 = l0 cmp 3L;
+if $b4 == 0 goto $b5 = l1 cmp 1L;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 1.\");
+$r27 = new java.lang.StringBuilder;
+specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong committed value: \");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: \");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"3\");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r31);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b5 = l1 cmp 1L;
+if $b5 == 0 goto $b6 = l2 cmp 4L;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 2.\");
+$r23 = new java.lang.StringBuilder;
+specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong init value: \");
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 1\");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r26);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$b6 = l2 cmp 4L;
+if $b6 == 0 goto $b7 = l3 cmp 2L;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 3.\");
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong max value: \");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 4\");
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r22);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$b7 = l3 cmp 2L;
+if $b7 == 0 goto $r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 4.\");
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong used value: \");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l3);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 2\");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r18);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto $z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 5.\");
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong toString() value: \\\"\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\", expected: \\\"\");
+$r11 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r14);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z1 == 0 goto $z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILED\");
+"
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z2 == 0 goto $b8 = 0;
+"
+    "Block 13:
+[preds: 12 ] [succs: 15 ]
+$b8 = 2;
+goto [?= return $b8];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+$b8 = 0;
+"
+    "Block 15:
+[preds: 13 14 ] [succs: ]
+return $b8;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r32 := @parameter0: java.lang.String[];
+r7 := @parameter1: java.io.PrintStream;
+$r0 = new java.lang.management.MemoryUsage;
+specialinvoke $r0.<java.lang.management.MemoryUsage: void <init>(long,long,long,long)>(1L, 2L, 3L, 4L);
+r1 = $r0;
+$r2 = new java.lang.management.MemoryNotificationInfo;
+specialinvoke $r2.<java.lang.management.MemoryNotificationInfo: void <init>(java.lang.String,java.lang.management.MemoryUsage,long)>(\"poolName\", r1, 1L);
+r3 = $r2;
+r4 = virtualinvoke r3.<java.lang.management.MemoryNotificationInfo: java.lang.management.MemoryUsage getUsage()>();
+l0 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+l1 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getInit()>();
+l2 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getMax()>();
+l3 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getUsed()>();
+r5 = virtualinvoke r4.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$b4 = l0 cmp 3L;
+if $b4 == 0 goto $b5 = l1 cmp 1L;
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 1.\");
+$r27 = new java.lang.StringBuilder;
+specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong committed value: \");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: \");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"3\");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r31);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r32 := @parameter0: java.lang.String[];
+r7 := @parameter1: java.io.PrintStream;
+$r0 = new java.lang.management.MemoryUsage;
+specialinvoke $r0.<java.lang.management.MemoryUsage: void <init>(long,long,long,long)>(1L, 2L, 3L, 4L);
+r1 = $r0;
+$r2 = new java.lang.management.MemoryNotificationInfo;
+specialinvoke $r2.<java.lang.management.MemoryNotificationInfo: void <init>(java.lang.String,java.lang.management.MemoryUsage,long)>(\"poolName\", r1, 1L);
+r3 = $r2;
+r4 = virtualinvoke r3.<java.lang.management.MemoryNotificationInfo: java.lang.management.MemoryUsage getUsage()>();
+l0 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+l1 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getInit()>();
+l2 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getMax()>();
+l3 = virtualinvoke r4.<java.lang.management.MemoryUsage: long getUsed()>();
+r5 = virtualinvoke r4.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$b4 = l0 cmp 3L;
+if $b4 == 0 goto $b5 = l1 cmp 1L;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b5 = l1 cmp 1L;
+if $b5 == 0 goto $b6 = l2 cmp 4L;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 1.\");
+$r27 = new java.lang.StringBuilder;
+specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong committed value: \");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: \");
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"3\");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r31);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b5 = l1 cmp 1L;
+if $b5 == 0 goto $b6 = l2 cmp 4L;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b5 = l1 cmp 1L;
+if $b5 == 0 goto $b6 = l2 cmp 4L;
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 2.\");
+$r23 = new java.lang.StringBuilder;
+specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong init value: \");
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 1\");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r26);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 4 ]
+$b5 = l1 cmp 1L;
+if $b5 == 0 goto $b6 = l2 cmp 4L;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$b6 = l2 cmp 4L;
+if $b6 == 0 goto $b7 = l3 cmp 2L;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 2.\");
+$r23 = new java.lang.StringBuilder;
+specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong init value: \");
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 1\");
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r26);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$b6 = l2 cmp 4L;
+if $b6 == 0 goto $b7 = l3 cmp 2L;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$b6 = l2 cmp 4L;
+if $b6 == 0 goto $b7 = l3 cmp 2L;
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 3.\");
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong max value: \");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 4\");
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r22);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$b6 = l2 cmp 4L;
+if $b6 == 0 goto $b7 = l3 cmp 2L;
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$b7 = l3 cmp 2L;
+if $b7 == 0 goto $r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 3.\");
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong max value: \");
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 4\");
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r22);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$b7 = l3 cmp 2L;
+if $b7 == 0 goto $r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$b7 = l3 cmp 2L;
+if $b7 == 0 goto $r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 4.\");
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong used value: \");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l3);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 2\");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r18);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$b7 = l3 cmp 2L;
+if $b7 == 0 goto $r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto $z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 4.\");
+$r15 = new java.lang.StringBuilder;
+specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong used value: \");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l3);
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected: 2\");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r18);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto $z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto $z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"->"Block 9:
+[preds: 8 ] [succs: 10 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 5.\");
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong toString() value: \\\"\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\", expected: \\\"\");
+$r11 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r14);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$r6 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto $z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z1 == 0 goto $z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"FAILURE 5.\");
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Wrong toString() value: \\\"\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\", expected: \\\"\");
+$r11 = virtualinvoke r1.<java.lang.management.MemoryUsage: java.lang.String toString()>();
+$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\");
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>($r14);
+<nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed> = 1;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z1 == 0 goto $z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z1 == 0 goto $z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"->"Block 11:
+[preds: 10 ] [succs: 12 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILED\");
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z1 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z1 == 0 goto $z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z2 == 0 goto $b8 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+virtualinvoke r7.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILED\");
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z2 == 0 goto $b8 = 0;
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z2 == 0 goto $b8 = 0;
+"->"Block 13:
+[preds: 12 ] [succs: 15 ]
+$b8 = 2;
+goto [?= return $b8];
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z2 = <nsk.monitoring.MemoryNotificationInfo.getUsage.getusage001: boolean testFailed>;
+if $z2 == 0 goto $b8 = 0;
+"->"Block 14:
+[preds: 12 ] [succs: 15 ]
+$b8 = 0;
+";
+    "Block 13:
+[preds: 12 ] [succs: 15 ]
+$b8 = 2;
+goto [?= return $b8];
+"->"Block 15:
+[preds: 13 14 ] [succs: ]
+return $b8;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+$b8 = 0;
+"->"Block 15:
+[preds: 13 14 ] [succs: ]
+return $b8;
+";
+}

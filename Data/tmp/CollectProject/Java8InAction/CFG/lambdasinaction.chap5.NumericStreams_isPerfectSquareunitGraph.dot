@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "$d0 = (double) i0"
+    "$d1 = staticinvoke <java.lang.Math: double sqrt(double)>($d0)"
+    "$d2 = $d1 % 1.0"
+    "$b1 = $d2 cmpl 0.0"
+    "if $b1 != 0 goto $z0 = 0"
+    "$z0 = 1"
+    "goto [?= return $z0]"
+    "$z0 = 0"
+    "return $z0"
+    "i0 := @parameter0: int"->"$d0 = (double) i0";
+    "$d0 = (double) i0"->"$d1 = staticinvoke <java.lang.Math: double sqrt(double)>($d0)";
+    "$d1 = staticinvoke <java.lang.Math: double sqrt(double)>($d0)"->"$d2 = $d1 % 1.0";
+    "$d2 = $d1 % 1.0"->"$b1 = $d2 cmpl 0.0";
+    "$b1 = $d2 cmpl 0.0"->"if $b1 != 0 goto $z0 = 0";
+    "if $b1 != 0 goto $z0 = 0"->"$z0 = 1";
+    "if $b1 != 0 goto $z0 = 0"->"$z0 = 0";
+    "$z0 = 1"->"goto [?= return $z0]";
+    "goto [?= return $z0]"->"return $z0";
+    "$z0 = 0"->"return $z0";
+}

@@ -1,0 +1,88 @@
+digraph "unitGraph" {
+    "i9 = 0"
+    "goto [?= (branch)]"
+    "r0 = newarray (byte)[16]"
+    "i0 = i9 & 7"
+    "$i1 = i9 >> 4"
+    "$i2 = $i1 & 7"
+    "i3 = i0 + $i2"
+    "b10 = (byte) i9"
+    "$i4 = i9 & 1"
+    "if $i4 != 1 goto staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)"
+    "$b8 = neg b10"
+    "b10 = (byte) $b8"
+    "staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)"
+    "z0 = 0"
+    "i11 = i0"
+    "$b5 = r0[i11]"
+    "if $b5 == b10 goto i11 = i11 + 1"
+    "$r2 = <java.lang.System: java.io.PrintStream err>"
+    "$r1 = new java.lang.StringBuilder"
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"a[\")"
+    "$r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \")"
+    "$b6 = r0[i11]"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($b6)"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b10)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for \")"
+    "$i7 = lengthof r0"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r10)"
+    "z0 = 1"
+    "i11 = i11 + 1"
+    "if i11 < i3 goto $b5 = r0[i11]"
+    "if z0 == 0 goto i9 = i9 + 1"
+    "$r11 = new java.lang.InternalError"
+    "specialinvoke $r11.<java.lang.InternalError: void <init>()>()"
+    "throw $r11"
+    "i9 = i9 + 1"
+    "if i9 < 200000 goto r0 = newarray (byte)[16]"
+    "return"
+    "i9 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i9 < 200000 goto r0 = newarray (byte)[16]";
+    "r0 = newarray (byte)[16]"->"i0 = i9 & 7";
+    "i0 = i9 & 7"->"$i1 = i9 >> 4";
+    "$i1 = i9 >> 4"->"$i2 = $i1 & 7";
+    "$i2 = $i1 & 7"->"i3 = i0 + $i2";
+    "i3 = i0 + $i2"->"b10 = (byte) i9";
+    "b10 = (byte) i9"->"$i4 = i9 & 1";
+    "$i4 = i9 & 1"->"if $i4 != 1 goto staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)";
+    "if $i4 != 1 goto staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)"->"$b8 = neg b10";
+    "if $i4 != 1 goto staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)"->"staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)";
+    "$b8 = neg b10"->"b10 = (byte) $b8";
+    "b10 = (byte) $b8"->"staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)";
+    "staticinvoke <java.util.Arrays: void fill(byte[],int,int,byte)>(r0, i0, i3, b10)"->"z0 = 0";
+    "z0 = 0"->"i11 = i0";
+    "i11 = i0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i11 < i3 goto $b5 = r0[i11]";
+    "$b5 = r0[i11]"->"if $b5 == b10 goto i11 = i11 + 1";
+    "if $b5 == b10 goto i11 = i11 + 1"->"$r2 = <java.lang.System: java.io.PrintStream err>";
+    "if $b5 == b10 goto i11 = i11 + 1"->"i11 = i11 + 1";
+    "$r2 = <java.lang.System: java.io.PrintStream err>"->"$r1 = new java.lang.StringBuilder";
+    "$r1 = new java.lang.StringBuilder"->"specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"a[\")";
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"a[\")"->"$r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)";
+    "$r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \")";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"] = \")"->"$b6 = r0[i11]";
+    "$b6 = r0[i11]"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($b6)";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($b6)"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b10)";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b10)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for \")";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for \")"->"$i7 = lengthof r0";
+    "$i7 = lengthof r0"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r10)";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r10)"->"z0 = 1";
+    "z0 = 1"->"i11 = i11 + 1";
+    "i11 = i11 + 1"->"if i11 < i3 goto $b5 = r0[i11]";
+    "if i11 < i3 goto $b5 = r0[i11]"->"if z0 == 0 goto i9 = i9 + 1";
+    "if i11 < i3 goto $b5 = r0[i11]"->"$b5 = r0[i11]";
+    "if z0 == 0 goto i9 = i9 + 1"->"$r11 = new java.lang.InternalError";
+    "if z0 == 0 goto i9 = i9 + 1"->"i9 = i9 + 1";
+    "$r11 = new java.lang.InternalError"->"specialinvoke $r11.<java.lang.InternalError: void <init>()>()";
+    "specialinvoke $r11.<java.lang.InternalError: void <init>()>()"->"throw $r11";
+    "i9 = i9 + 1"->"if i9 < 200000 goto r0 = newarray (byte)[16]";
+    "if i9 < 200000 goto r0 = newarray (byte)[16]"->"return";
+    "if i9 < 200000 goto r0 = newarray (byte)[16]"->"r0 = newarray (byte)[16]";
+}

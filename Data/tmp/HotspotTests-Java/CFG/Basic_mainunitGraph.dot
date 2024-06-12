@@ -1,0 +1,36 @@
+digraph "unitGraph" {
+    "r4 := @parameter0: java.lang.String[]"
+    "i1 = 0"
+    "goto [?= (branch)]"
+    "$r0 = new Basic$MyObject"
+    "specialinvoke $r0.<Basic$MyObject: void <init>()>()"
+    "r1 = $r0"
+    "r1.<Basic$MyObject: int x> = i1"
+    "staticinvoke <Basic: void doStore(Basic$MyObject)>(r1)"
+    "i1 = i1 + 1"
+    "if i1 < 10000000 goto $r0 = new Basic$MyObject"
+    "$r2 = <Basic: Basic$MyObject sink>"
+    "$i0 = $r2.<Basic$MyObject: int x>"
+    "if $i0 == 9999999 goto return"
+    "$r3 = new java.lang.IllegalStateException"
+    "specialinvoke $r3.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"Failed\")"
+    "throw $r3"
+    "return"
+    "r4 := @parameter0: java.lang.String[]"->"i1 = 0";
+    "i1 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < 10000000 goto $r0 = new Basic$MyObject";
+    "$r0 = new Basic$MyObject"->"specialinvoke $r0.<Basic$MyObject: void <init>()>()";
+    "specialinvoke $r0.<Basic$MyObject: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"r1.<Basic$MyObject: int x> = i1";
+    "r1.<Basic$MyObject: int x> = i1"->"staticinvoke <Basic: void doStore(Basic$MyObject)>(r1)";
+    "staticinvoke <Basic: void doStore(Basic$MyObject)>(r1)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"if i1 < 10000000 goto $r0 = new Basic$MyObject";
+    "if i1 < 10000000 goto $r0 = new Basic$MyObject"->"$r2 = <Basic: Basic$MyObject sink>";
+    "if i1 < 10000000 goto $r0 = new Basic$MyObject"->"$r0 = new Basic$MyObject";
+    "$r2 = <Basic: Basic$MyObject sink>"->"$i0 = $r2.<Basic$MyObject: int x>";
+    "$i0 = $r2.<Basic$MyObject: int x>"->"if $i0 == 9999999 goto return";
+    "if $i0 == 9999999 goto return"->"$r3 = new java.lang.IllegalStateException";
+    "if $i0 == 9999999 goto return"->"return";
+    "$r3 = new java.lang.IllegalStateException"->"specialinvoke $r3.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"Failed\")";
+    "specialinvoke $r3.<java.lang.IllegalStateException: void <init>(java.lang.String)>(\"Failed\")"->"throw $r3";
+}

@@ -1,0 +1,790 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r65 := @parameter0: java.lang.String[];
+r66 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+virtualinvoke r66.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r0 = virtualinvoke r66.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r83 = new java.io.ByteArrayOutputStream;
+specialinvoke $r83.<java.io.ByteArrayOutputStream: void <init>()>();
+r2 = $r83;
+$r84 = new java.io.ObjectOutputStream;
+specialinvoke $r84.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r67 = $r84;
+virtualinvoke r67.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r0);
+virtualinvoke r67.<java.io.ObjectOutputStream: void close()>();
+$r86 = new java.io.ObjectInputStream;
+$r85 = new java.io.ByteArrayInputStream;
+$r6 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r85.<java.io.ByteArrayInputStream: void <init>(byte[])>($r6);
+specialinvoke $r86.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r85);
+r68 = $r86;
+$r7 = virtualinvoke r68.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r8 = (java.security.KeyPair) $r7;
+virtualinvoke r68.<java.io.ObjectInputStream: void close()>();
+$r9 = virtualinvoke r8.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r10 = virtualinvoke r0.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke $r9.<java.lang.Object: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r87 = new java.lang.SecurityException;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r12 = virtualinvoke r8.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r13 = virtualinvoke r0.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z1 = virtualinvoke $r12.<java.lang.Object: boolean equals(java.lang.Object)>($r13);
+if $z1 != 0 goto r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+$r87 = new java.lang.SecurityException;
+specialinvoke $r87.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DSA test failed\");
+throw $r87;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+virtualinvoke r69.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r14 = virtualinvoke r69.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r88 = new java.io.ObjectOutputStream;
+specialinvoke $r88.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r70 = $r88;
+virtualinvoke r70.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r14);
+virtualinvoke r70.<java.io.ObjectOutputStream: void close()>();
+$r90 = new java.io.ObjectInputStream;
+$r89 = new java.io.ByteArrayInputStream;
+$r18 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r89.<java.io.ByteArrayInputStream: void <init>(byte[])>($r18);
+specialinvoke $r90.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r89);
+r71 = $r90;
+$r19 = virtualinvoke r71.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r20 = (java.security.KeyPair) $r19;
+virtualinvoke r71.<java.io.ObjectInputStream: void close()>();
+$r21 = virtualinvoke r20.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r22 = virtualinvoke r14.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z2 = virtualinvoke $r21.<java.lang.Object: boolean equals(java.lang.Object)>($r22);
+if $z2 == 0 goto $r91 = new java.lang.SecurityException;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r24 = virtualinvoke r20.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r25 = virtualinvoke r14.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z3 = virtualinvoke $r24.<java.lang.Object: boolean equals(java.lang.Object)>($r25);
+if $z3 != 0 goto $r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+$r91 = new java.lang.SecurityException;
+specialinvoke $r91.<java.lang.SecurityException: void <init>(java.lang.String)>(\"RSA test failed\");
+throw $r91;
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+$r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+if $r26 != null goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r72 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DiffieHellman\", \"SunJCE\");
+$r92 = new javax.crypto.spec.DHParameterSpec;
+$r54 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Modulus>;
+$r53 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Base>;
+specialinvoke $r92.<javax.crypto.spec.DHParameterSpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r54, $r53);
+$r108 = (java.security.spec.AlgorithmParameterSpec) $r92;
+virtualinvoke r72.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>($r108);
+r73 = virtualinvoke r72.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r93 = new java.io.ObjectOutputStream;
+specialinvoke $r93.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r74 = $r93;
+virtualinvoke r74.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r73);
+virtualinvoke r74.<java.io.ObjectOutputStream: void close()>();
+$r95 = new java.io.ObjectInputStream;
+$r94 = new java.io.ByteArrayInputStream;
+$r58 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r94.<java.io.ByteArrayInputStream: void <init>(byte[])>($r58);
+specialinvoke $r95.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r94);
+r75 = $r95;
+$r59 = virtualinvoke r75.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r76 = (java.security.KeyPair) $r59;
+virtualinvoke r75.<java.io.ObjectInputStream: void close()>();
+$r60 = virtualinvoke r76.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r61 = virtualinvoke r73.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z6 = virtualinvoke $r60.<java.lang.Object: boolean equals(java.lang.Object)>($r61);
+if $z6 == 0 goto $r96 = new java.lang.SecurityException;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$r63 = virtualinvoke r76.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r64 = virtualinvoke r73.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z7 = virtualinvoke $r63.<java.lang.Object: boolean equals(java.lang.Object)>($r64);
+if $z7 != 0 goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"
+    "Block 9:
+[preds: 7 8 ] [succs: ]
+$r96 = new java.lang.SecurityException;
+specialinvoke $r96.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DH test failed\");
+throw $r96;
+"
+    "Block 10:
+[preds: 6 8 ] [succs: 11 12 ]
+$r97 = new javax.crypto.spec.SecretKeySpec;
+$r28 = newarray (byte)[128];
+specialinvoke $r97.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r28, \"RC5\");
+r77 = $r97;
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r98 = new java.io.ObjectOutputStream;
+specialinvoke $r98.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r78 = $r98;
+virtualinvoke r78.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r77);
+virtualinvoke r78.<java.io.ObjectOutputStream: void close()>();
+$r100 = new java.io.ObjectInputStream;
+$r99 = new java.io.ByteArrayInputStream;
+$r32 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r99.<java.io.ByteArrayInputStream: void <init>(byte[])>($r32);
+specialinvoke $r100.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r99);
+r79 = $r100;
+$r33 = virtualinvoke r79.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r80 = (javax.crypto.SecretKey) $r33;
+virtualinvoke r79.<java.io.ObjectInputStream: void close()>();
+$z4 = virtualinvoke r77.<javax.crypto.spec.SecretKeySpec: boolean equals(java.lang.Object)>(r80);
+if $z4 != 0 goto $r34 = newarray (byte)[8];
+"
+    "Block 11:
+[preds: 10 ] [succs: ]
+$r101 = new java.lang.SecurityException;
+specialinvoke $r101.<java.lang.SecurityException: void <init>(java.lang.String)>(\"RC5 test failed\");
+throw $r101;
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$r34 = newarray (byte)[8];
+$r34[0] = -57;
+$r34[1] = 115;
+$r34[2] = 33;
+$r34[3] = -116;
+$r34[4] = 126;
+$r34[5] = -56;
+$r34[6] = -18;
+$r34[7] = -103;
+r35 = $r34;
+b0 = 20;
+$r102 = new javax.crypto.spec.PBEParameterSpec;
+specialinvoke $r102.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>(r35, b0);
+r37 = $r102;
+$r38 = newarray (char)[3];
+$r38[0] = 102;
+$r38[1] = 111;
+$r38[2] = 111;
+r39 = $r38;
+$r103 = new javax.crypto.spec.PBEKeySpec;
+specialinvoke $r103.<javax.crypto.spec.PBEKeySpec: void <init>(char[])>(r39);
+r41 = $r103;
+r42 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String,java.lang.String)>(\"PBEWithMD5AndDES\", \"SunJCE\");
+$r109 = (java.security.spec.KeySpec) r41;
+r43 = virtualinvoke r42.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>($r109);
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r104 = new java.io.ObjectOutputStream;
+specialinvoke $r104.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r81 = $r104;
+virtualinvoke r81.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r43);
+virtualinvoke r81.<java.io.ObjectOutputStream: void close()>();
+$r106 = new java.io.ObjectInputStream;
+$r105 = new java.io.ByteArrayInputStream;
+$r47 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r105.<java.io.ByteArrayInputStream: void <init>(byte[])>($r47);
+specialinvoke $r106.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r105);
+r82 = $r106;
+$r48 = virtualinvoke r82.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r49 = (javax.crypto.SecretKey) $r48;
+virtualinvoke r82.<java.io.ObjectInputStream: void close()>();
+$z5 = virtualinvoke r43.<java.lang.Object: boolean equals(java.lang.Object)>(r49);
+if $z5 != 0 goto staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+$r107 = new java.lang.SecurityException;
+specialinvoke $r107.<java.lang.SecurityException: void <init>(java.lang.String)>(\"PBE test failed\");
+throw $r107;
+"
+    "Block 14:
+[preds: 12 ] [succs: ]
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"Blowfish\", -1);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"DES\", 56);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"DESede\", 168);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"HmacMD5\", -1);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"HmacSHA1\", -1);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r65 := @parameter0: java.lang.String[];
+r66 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+virtualinvoke r66.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r0 = virtualinvoke r66.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r83 = new java.io.ByteArrayOutputStream;
+specialinvoke $r83.<java.io.ByteArrayOutputStream: void <init>()>();
+r2 = $r83;
+$r84 = new java.io.ObjectOutputStream;
+specialinvoke $r84.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r67 = $r84;
+virtualinvoke r67.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r0);
+virtualinvoke r67.<java.io.ObjectOutputStream: void close()>();
+$r86 = new java.io.ObjectInputStream;
+$r85 = new java.io.ByteArrayInputStream;
+$r6 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r85.<java.io.ByteArrayInputStream: void <init>(byte[])>($r6);
+specialinvoke $r86.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r85);
+r68 = $r86;
+$r7 = virtualinvoke r68.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r8 = (java.security.KeyPair) $r7;
+virtualinvoke r68.<java.io.ObjectInputStream: void close()>();
+$r9 = virtualinvoke r8.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r10 = virtualinvoke r0.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke $r9.<java.lang.Object: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r87 = new java.lang.SecurityException;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r12 = virtualinvoke r8.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r13 = virtualinvoke r0.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z1 = virtualinvoke $r12.<java.lang.Object: boolean equals(java.lang.Object)>($r13);
+if $z1 != 0 goto r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r65 := @parameter0: java.lang.String[];
+r66 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DSA\", \"SUN\");
+virtualinvoke r66.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r0 = virtualinvoke r66.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+$r83 = new java.io.ByteArrayOutputStream;
+specialinvoke $r83.<java.io.ByteArrayOutputStream: void <init>()>();
+r2 = $r83;
+$r84 = new java.io.ObjectOutputStream;
+specialinvoke $r84.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r67 = $r84;
+virtualinvoke r67.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r0);
+virtualinvoke r67.<java.io.ObjectOutputStream: void close()>();
+$r86 = new java.io.ObjectInputStream;
+$r85 = new java.io.ByteArrayInputStream;
+$r6 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r85.<java.io.ByteArrayInputStream: void <init>(byte[])>($r6);
+specialinvoke $r86.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r85);
+r68 = $r86;
+$r7 = virtualinvoke r68.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r8 = (java.security.KeyPair) $r7;
+virtualinvoke r68.<java.io.ObjectInputStream: void close()>();
+$r9 = virtualinvoke r8.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r10 = virtualinvoke r0.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z0 = virtualinvoke $r9.<java.lang.Object: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r87 = new java.lang.SecurityException;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r87 = new java.lang.SecurityException;
+specialinvoke $r87.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DSA test failed\");
+throw $r87;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r12 = virtualinvoke r8.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r13 = virtualinvoke r0.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z1 = virtualinvoke $r12.<java.lang.Object: boolean equals(java.lang.Object)>($r13);
+if $z1 != 0 goto r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$r87 = new java.lang.SecurityException;
+specialinvoke $r87.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DSA test failed\");
+throw $r87;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r12 = virtualinvoke r8.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r13 = virtualinvoke r0.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z1 = virtualinvoke $r12.<java.lang.Object: boolean equals(java.lang.Object)>($r13);
+if $z1 != 0 goto r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+virtualinvoke r69.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r14 = virtualinvoke r69.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r88 = new java.io.ObjectOutputStream;
+specialinvoke $r88.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r70 = $r88;
+virtualinvoke r70.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r14);
+virtualinvoke r70.<java.io.ObjectOutputStream: void close()>();
+$r90 = new java.io.ObjectInputStream;
+$r89 = new java.io.ByteArrayInputStream;
+$r18 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r89.<java.io.ByteArrayInputStream: void <init>(byte[])>($r18);
+specialinvoke $r90.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r89);
+r71 = $r90;
+$r19 = virtualinvoke r71.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r20 = (java.security.KeyPair) $r19;
+virtualinvoke r71.<java.io.ObjectInputStream: void close()>();
+$r21 = virtualinvoke r20.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r22 = virtualinvoke r14.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z2 = virtualinvoke $r21.<java.lang.Object: boolean equals(java.lang.Object)>($r22);
+if $z2 == 0 goto $r91 = new java.lang.SecurityException;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+virtualinvoke r69.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r14 = virtualinvoke r69.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r88 = new java.io.ObjectOutputStream;
+specialinvoke $r88.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r70 = $r88;
+virtualinvoke r70.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r14);
+virtualinvoke r70.<java.io.ObjectOutputStream: void close()>();
+$r90 = new java.io.ObjectInputStream;
+$r89 = new java.io.ByteArrayInputStream;
+$r18 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r89.<java.io.ByteArrayInputStream: void <init>(byte[])>($r18);
+specialinvoke $r90.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r89);
+r71 = $r90;
+$r19 = virtualinvoke r71.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r20 = (java.security.KeyPair) $r19;
+virtualinvoke r71.<java.io.ObjectInputStream: void close()>();
+$r21 = virtualinvoke r20.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r22 = virtualinvoke r14.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z2 = virtualinvoke $r21.<java.lang.Object: boolean equals(java.lang.Object)>($r22);
+if $z2 == 0 goto $r91 = new java.lang.SecurityException;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r24 = virtualinvoke r20.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r25 = virtualinvoke r14.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z3 = virtualinvoke $r24.<java.lang.Object: boolean equals(java.lang.Object)>($r25);
+if $z3 != 0 goto $r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+r69 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"RSA\", \"SunRsaSign\");
+virtualinvoke r69.<java.security.KeyPairGenerator: void initialize(int)>(512);
+r14 = virtualinvoke r69.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r88 = new java.io.ObjectOutputStream;
+specialinvoke $r88.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r70 = $r88;
+virtualinvoke r70.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r14);
+virtualinvoke r70.<java.io.ObjectOutputStream: void close()>();
+$r90 = new java.io.ObjectInputStream;
+$r89 = new java.io.ByteArrayInputStream;
+$r18 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r89.<java.io.ByteArrayInputStream: void <init>(byte[])>($r18);
+specialinvoke $r90.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r89);
+r71 = $r90;
+$r19 = virtualinvoke r71.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r20 = (java.security.KeyPair) $r19;
+virtualinvoke r71.<java.io.ObjectInputStream: void close()>();
+$r21 = virtualinvoke r20.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r22 = virtualinvoke r14.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z2 = virtualinvoke $r21.<java.lang.Object: boolean equals(java.lang.Object)>($r22);
+if $z2 == 0 goto $r91 = new java.lang.SecurityException;
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r91 = new java.lang.SecurityException;
+specialinvoke $r91.<java.lang.SecurityException: void <init>(java.lang.String)>(\"RSA test failed\");
+throw $r91;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r24 = virtualinvoke r20.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r25 = virtualinvoke r14.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z3 = virtualinvoke $r24.<java.lang.Object: boolean equals(java.lang.Object)>($r25);
+if $z3 != 0 goto $r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r91 = new java.lang.SecurityException;
+specialinvoke $r91.<java.lang.SecurityException: void <init>(java.lang.String)>(\"RSA test failed\");
+throw $r91;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+$r24 = virtualinvoke r20.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r25 = virtualinvoke r14.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z3 = virtualinvoke $r24.<java.lang.Object: boolean equals(java.lang.Object)>($r25);
+if $z3 != 0 goto $r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+"->"Block 6:
+[preds: 4 ] [succs: 7 10 ]
+$r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+if $r26 != null goto $r97 = new javax.crypto.spec.SecretKeySpec;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+$r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+if $r26 != null goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r72 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DiffieHellman\", \"SunJCE\");
+$r92 = new javax.crypto.spec.DHParameterSpec;
+$r54 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Modulus>;
+$r53 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Base>;
+specialinvoke $r92.<javax.crypto.spec.DHParameterSpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r54, $r53);
+$r108 = (java.security.spec.AlgorithmParameterSpec) $r92;
+virtualinvoke r72.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>($r108);
+r73 = virtualinvoke r72.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r93 = new java.io.ObjectOutputStream;
+specialinvoke $r93.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r74 = $r93;
+virtualinvoke r74.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r73);
+virtualinvoke r74.<java.io.ObjectOutputStream: void close()>();
+$r95 = new java.io.ObjectInputStream;
+$r94 = new java.io.ByteArrayInputStream;
+$r58 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r94.<java.io.ByteArrayInputStream: void <init>(byte[])>($r58);
+specialinvoke $r95.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r94);
+r75 = $r95;
+$r59 = virtualinvoke r75.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r76 = (java.security.KeyPair) $r59;
+virtualinvoke r75.<java.io.ObjectInputStream: void close()>();
+$r60 = virtualinvoke r76.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r61 = virtualinvoke r73.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z6 = virtualinvoke $r60.<java.lang.Object: boolean equals(java.lang.Object)>($r61);
+if $z6 == 0 goto $r96 = new java.lang.SecurityException;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 10 ]
+$r26 = staticinvoke <java.security.Security: java.security.Provider getProvider(java.lang.String)>(\"SunPKCS11-Solaris\");
+if $r26 != null goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"->"Block 10:
+[preds: 6 8 ] [succs: 11 12 ]
+$r97 = new javax.crypto.spec.SecretKeySpec;
+$r28 = newarray (byte)[128];
+specialinvoke $r97.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r28, \"RC5\");
+r77 = $r97;
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r98 = new java.io.ObjectOutputStream;
+specialinvoke $r98.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r78 = $r98;
+virtualinvoke r78.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r77);
+virtualinvoke r78.<java.io.ObjectOutputStream: void close()>();
+$r100 = new java.io.ObjectInputStream;
+$r99 = new java.io.ByteArrayInputStream;
+$r32 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r99.<java.io.ByteArrayInputStream: void <init>(byte[])>($r32);
+specialinvoke $r100.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r99);
+r79 = $r100;
+$r33 = virtualinvoke r79.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r80 = (javax.crypto.SecretKey) $r33;
+virtualinvoke r79.<java.io.ObjectInputStream: void close()>();
+$z4 = virtualinvoke r77.<javax.crypto.spec.SecretKeySpec: boolean equals(java.lang.Object)>(r80);
+if $z4 != 0 goto $r34 = newarray (byte)[8];
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r72 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DiffieHellman\", \"SunJCE\");
+$r92 = new javax.crypto.spec.DHParameterSpec;
+$r54 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Modulus>;
+$r53 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Base>;
+specialinvoke $r92.<javax.crypto.spec.DHParameterSpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r54, $r53);
+$r108 = (java.security.spec.AlgorithmParameterSpec) $r92;
+virtualinvoke r72.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>($r108);
+r73 = virtualinvoke r72.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r93 = new java.io.ObjectOutputStream;
+specialinvoke $r93.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r74 = $r93;
+virtualinvoke r74.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r73);
+virtualinvoke r74.<java.io.ObjectOutputStream: void close()>();
+$r95 = new java.io.ObjectInputStream;
+$r94 = new java.io.ByteArrayInputStream;
+$r58 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r94.<java.io.ByteArrayInputStream: void <init>(byte[])>($r58);
+specialinvoke $r95.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r94);
+r75 = $r95;
+$r59 = virtualinvoke r75.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r76 = (java.security.KeyPair) $r59;
+virtualinvoke r75.<java.io.ObjectInputStream: void close()>();
+$r60 = virtualinvoke r76.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r61 = virtualinvoke r73.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z6 = virtualinvoke $r60.<java.lang.Object: boolean equals(java.lang.Object)>($r61);
+if $z6 == 0 goto $r96 = new java.lang.SecurityException;
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$r63 = virtualinvoke r76.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r64 = virtualinvoke r73.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z7 = virtualinvoke $r63.<java.lang.Object: boolean equals(java.lang.Object)>($r64);
+if $z7 != 0 goto $r97 = new javax.crypto.spec.SecretKeySpec;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r72 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String,java.lang.String)>(\"DiffieHellman\", \"SunJCE\");
+$r92 = new javax.crypto.spec.DHParameterSpec;
+$r54 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Modulus>;
+$r53 = <javaT.securityT.KeyRep.Serial: java.math.BigInteger skip1024Base>;
+specialinvoke $r92.<javax.crypto.spec.DHParameterSpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r54, $r53);
+$r108 = (java.security.spec.AlgorithmParameterSpec) $r92;
+virtualinvoke r72.<java.security.KeyPairGenerator: void initialize(java.security.spec.AlgorithmParameterSpec)>($r108);
+r73 = virtualinvoke r72.<java.security.KeyPairGenerator: java.security.KeyPair genKeyPair()>();
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r93 = new java.io.ObjectOutputStream;
+specialinvoke $r93.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r74 = $r93;
+virtualinvoke r74.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r73);
+virtualinvoke r74.<java.io.ObjectOutputStream: void close()>();
+$r95 = new java.io.ObjectInputStream;
+$r94 = new java.io.ByteArrayInputStream;
+$r58 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r94.<java.io.ByteArrayInputStream: void <init>(byte[])>($r58);
+specialinvoke $r95.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r94);
+r75 = $r95;
+$r59 = virtualinvoke r75.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r76 = (java.security.KeyPair) $r59;
+virtualinvoke r75.<java.io.ObjectInputStream: void close()>();
+$r60 = virtualinvoke r76.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$r61 = virtualinvoke r73.<java.security.KeyPair: java.security.PublicKey getPublic()>();
+$z6 = virtualinvoke $r60.<java.lang.Object: boolean equals(java.lang.Object)>($r61);
+if $z6 == 0 goto $r96 = new java.lang.SecurityException;
+"->"Block 9:
+[preds: 7 8 ] [succs: ]
+$r96 = new java.lang.SecurityException;
+specialinvoke $r96.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DH test failed\");
+throw $r96;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$r63 = virtualinvoke r76.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r64 = virtualinvoke r73.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z7 = virtualinvoke $r63.<java.lang.Object: boolean equals(java.lang.Object)>($r64);
+if $z7 != 0 goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"->"Block 9:
+[preds: 7 8 ] [succs: ]
+$r96 = new java.lang.SecurityException;
+specialinvoke $r96.<java.lang.SecurityException: void <init>(java.lang.String)>(\"DH test failed\");
+throw $r96;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+$r63 = virtualinvoke r76.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$r64 = virtualinvoke r73.<java.security.KeyPair: java.security.PrivateKey getPrivate()>();
+$z7 = virtualinvoke $r63.<java.lang.Object: boolean equals(java.lang.Object)>($r64);
+if $z7 != 0 goto $r97 = new javax.crypto.spec.SecretKeySpec;
+"->"Block 10:
+[preds: 6 8 ] [succs: 11 12 ]
+$r97 = new javax.crypto.spec.SecretKeySpec;
+$r28 = newarray (byte)[128];
+specialinvoke $r97.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r28, \"RC5\");
+r77 = $r97;
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r98 = new java.io.ObjectOutputStream;
+specialinvoke $r98.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r78 = $r98;
+virtualinvoke r78.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r77);
+virtualinvoke r78.<java.io.ObjectOutputStream: void close()>();
+$r100 = new java.io.ObjectInputStream;
+$r99 = new java.io.ByteArrayInputStream;
+$r32 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r99.<java.io.ByteArrayInputStream: void <init>(byte[])>($r32);
+specialinvoke $r100.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r99);
+r79 = $r100;
+$r33 = virtualinvoke r79.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r80 = (javax.crypto.SecretKey) $r33;
+virtualinvoke r79.<java.io.ObjectInputStream: void close()>();
+$z4 = virtualinvoke r77.<javax.crypto.spec.SecretKeySpec: boolean equals(java.lang.Object)>(r80);
+if $z4 != 0 goto $r34 = newarray (byte)[8];
+";
+    "Block 10:
+[preds: 6 8 ] [succs: 11 12 ]
+$r97 = new javax.crypto.spec.SecretKeySpec;
+$r28 = newarray (byte)[128];
+specialinvoke $r97.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r28, \"RC5\");
+r77 = $r97;
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r98 = new java.io.ObjectOutputStream;
+specialinvoke $r98.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r78 = $r98;
+virtualinvoke r78.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r77);
+virtualinvoke r78.<java.io.ObjectOutputStream: void close()>();
+$r100 = new java.io.ObjectInputStream;
+$r99 = new java.io.ByteArrayInputStream;
+$r32 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r99.<java.io.ByteArrayInputStream: void <init>(byte[])>($r32);
+specialinvoke $r100.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r99);
+r79 = $r100;
+$r33 = virtualinvoke r79.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r80 = (javax.crypto.SecretKey) $r33;
+virtualinvoke r79.<java.io.ObjectInputStream: void close()>();
+$z4 = virtualinvoke r77.<javax.crypto.spec.SecretKeySpec: boolean equals(java.lang.Object)>(r80);
+if $z4 != 0 goto $r34 = newarray (byte)[8];
+"->"Block 11:
+[preds: 10 ] [succs: ]
+$r101 = new java.lang.SecurityException;
+specialinvoke $r101.<java.lang.SecurityException: void <init>(java.lang.String)>(\"RC5 test failed\");
+throw $r101;
+";
+    "Block 10:
+[preds: 6 8 ] [succs: 11 12 ]
+$r97 = new javax.crypto.spec.SecretKeySpec;
+$r28 = newarray (byte)[128];
+specialinvoke $r97.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r28, \"RC5\");
+r77 = $r97;
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r98 = new java.io.ObjectOutputStream;
+specialinvoke $r98.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r78 = $r98;
+virtualinvoke r78.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r77);
+virtualinvoke r78.<java.io.ObjectOutputStream: void close()>();
+$r100 = new java.io.ObjectInputStream;
+$r99 = new java.io.ByteArrayInputStream;
+$r32 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r99.<java.io.ByteArrayInputStream: void <init>(byte[])>($r32);
+specialinvoke $r100.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r99);
+r79 = $r100;
+$r33 = virtualinvoke r79.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r80 = (javax.crypto.SecretKey) $r33;
+virtualinvoke r79.<java.io.ObjectInputStream: void close()>();
+$z4 = virtualinvoke r77.<javax.crypto.spec.SecretKeySpec: boolean equals(java.lang.Object)>(r80);
+if $z4 != 0 goto $r34 = newarray (byte)[8];
+"->"Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$r34 = newarray (byte)[8];
+$r34[0] = -57;
+$r34[1] = 115;
+$r34[2] = 33;
+$r34[3] = -116;
+$r34[4] = 126;
+$r34[5] = -56;
+$r34[6] = -18;
+$r34[7] = -103;
+r35 = $r34;
+b0 = 20;
+$r102 = new javax.crypto.spec.PBEParameterSpec;
+specialinvoke $r102.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>(r35, b0);
+r37 = $r102;
+$r38 = newarray (char)[3];
+$r38[0] = 102;
+$r38[1] = 111;
+$r38[2] = 111;
+r39 = $r38;
+$r103 = new javax.crypto.spec.PBEKeySpec;
+specialinvoke $r103.<javax.crypto.spec.PBEKeySpec: void <init>(char[])>(r39);
+r41 = $r103;
+r42 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String,java.lang.String)>(\"PBEWithMD5AndDES\", \"SunJCE\");
+$r109 = (java.security.spec.KeySpec) r41;
+r43 = virtualinvoke r42.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>($r109);
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r104 = new java.io.ObjectOutputStream;
+specialinvoke $r104.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r81 = $r104;
+virtualinvoke r81.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r43);
+virtualinvoke r81.<java.io.ObjectOutputStream: void close()>();
+$r106 = new java.io.ObjectInputStream;
+$r105 = new java.io.ByteArrayInputStream;
+$r47 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r105.<java.io.ByteArrayInputStream: void <init>(byte[])>($r47);
+specialinvoke $r106.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r105);
+r82 = $r106;
+$r48 = virtualinvoke r82.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r49 = (javax.crypto.SecretKey) $r48;
+virtualinvoke r82.<java.io.ObjectInputStream: void close()>();
+$z5 = virtualinvoke r43.<java.lang.Object: boolean equals(java.lang.Object)>(r49);
+if $z5 != 0 goto staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$r34 = newarray (byte)[8];
+$r34[0] = -57;
+$r34[1] = 115;
+$r34[2] = 33;
+$r34[3] = -116;
+$r34[4] = 126;
+$r34[5] = -56;
+$r34[6] = -18;
+$r34[7] = -103;
+r35 = $r34;
+b0 = 20;
+$r102 = new javax.crypto.spec.PBEParameterSpec;
+specialinvoke $r102.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>(r35, b0);
+r37 = $r102;
+$r38 = newarray (char)[3];
+$r38[0] = 102;
+$r38[1] = 111;
+$r38[2] = 111;
+r39 = $r38;
+$r103 = new javax.crypto.spec.PBEKeySpec;
+specialinvoke $r103.<javax.crypto.spec.PBEKeySpec: void <init>(char[])>(r39);
+r41 = $r103;
+r42 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String,java.lang.String)>(\"PBEWithMD5AndDES\", \"SunJCE\");
+$r109 = (java.security.spec.KeySpec) r41;
+r43 = virtualinvoke r42.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>($r109);
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r104 = new java.io.ObjectOutputStream;
+specialinvoke $r104.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r81 = $r104;
+virtualinvoke r81.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r43);
+virtualinvoke r81.<java.io.ObjectOutputStream: void close()>();
+$r106 = new java.io.ObjectInputStream;
+$r105 = new java.io.ByteArrayInputStream;
+$r47 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r105.<java.io.ByteArrayInputStream: void <init>(byte[])>($r47);
+specialinvoke $r106.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r105);
+r82 = $r106;
+$r48 = virtualinvoke r82.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r49 = (javax.crypto.SecretKey) $r48;
+virtualinvoke r82.<java.io.ObjectInputStream: void close()>();
+$z5 = virtualinvoke r43.<java.lang.Object: boolean equals(java.lang.Object)>(r49);
+if $z5 != 0 goto staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+"->"Block 13:
+[preds: 12 ] [succs: ]
+$r107 = new java.lang.SecurityException;
+specialinvoke $r107.<java.lang.SecurityException: void <init>(java.lang.String)>(\"PBE test failed\");
+throw $r107;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$r34 = newarray (byte)[8];
+$r34[0] = -57;
+$r34[1] = 115;
+$r34[2] = 33;
+$r34[3] = -116;
+$r34[4] = 126;
+$r34[5] = -56;
+$r34[6] = -18;
+$r34[7] = -103;
+r35 = $r34;
+b0 = 20;
+$r102 = new javax.crypto.spec.PBEParameterSpec;
+specialinvoke $r102.<javax.crypto.spec.PBEParameterSpec: void <init>(byte[],int)>(r35, b0);
+r37 = $r102;
+$r38 = newarray (char)[3];
+$r38[0] = 102;
+$r38[1] = 111;
+$r38[2] = 111;
+r39 = $r38;
+$r103 = new javax.crypto.spec.PBEKeySpec;
+specialinvoke $r103.<javax.crypto.spec.PBEKeySpec: void <init>(char[])>(r39);
+r41 = $r103;
+r42 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String,java.lang.String)>(\"PBEWithMD5AndDES\", \"SunJCE\");
+$r109 = (java.security.spec.KeySpec) r41;
+r43 = virtualinvoke r42.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>($r109);
+virtualinvoke r2.<java.io.ByteArrayOutputStream: void reset()>();
+$r104 = new java.io.ObjectOutputStream;
+specialinvoke $r104.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r2);
+r81 = $r104;
+virtualinvoke r81.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r43);
+virtualinvoke r81.<java.io.ObjectOutputStream: void close()>();
+$r106 = new java.io.ObjectInputStream;
+$r105 = new java.io.ByteArrayInputStream;
+$r47 = virtualinvoke r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+specialinvoke $r105.<java.io.ByteArrayInputStream: void <init>(byte[])>($r47);
+specialinvoke $r106.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r105);
+r82 = $r106;
+$r48 = virtualinvoke r82.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+r49 = (javax.crypto.SecretKey) $r48;
+virtualinvoke r82.<java.io.ObjectInputStream: void close()>();
+$z5 = virtualinvoke r43.<java.lang.Object: boolean equals(java.lang.Object)>(r49);
+if $z5 != 0 goto staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+"->"Block 14:
+[preds: 12 ] [succs: ]
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"AES\", 128);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"Blowfish\", -1);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"DES\", 56);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"DESede\", 168);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"HmacMD5\", -1);
+staticinvoke <javaT.securityT.KeyRep.Serial: void checkKey(java.lang.String,int)>(\"HmacSHA1\", -1);
+return;
+";
+}

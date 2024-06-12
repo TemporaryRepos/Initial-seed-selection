@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "r0 = newarray (int)[20]"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i2 - 1"
+    "$i1 = i2 * $i0"
+    "r0[i2] = $i1"
+    "i2 = i2 + 1"
+    "if i2 < 20 goto $i0 = i2 - 1"
+    "i3 = 0"
+    "staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)"
+    "i3 = i3 + 1"
+    "if i3 < 20000 goto staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"r0 = newarray (int)[20]";
+    "r0 = newarray (int)[20]"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 20 goto $i0 = i2 - 1";
+    "$i0 = i2 - 1"->"$i1 = i2 * $i0";
+    "$i1 = i2 * $i0"->"r0[i2] = $i1";
+    "r0[i2] = $i1"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 20 goto $i0 = i2 - 1";
+    "if i2 < 20 goto $i0 = i2 - 1"->"i3 = 0";
+    "if i2 < 20 goto $i0 = i2 - 1"->"$i0 = i2 - 1";
+    "i3 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < 20000 goto staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)";
+    "staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 < 20000 goto staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)";
+    "if i3 < 20000 goto staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)"->"return";
+    "if i3 < 20000 goto staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)"->"staticinvoke <compiler.arraycopy.TestArrayCopyOverflowArguments: int[] m1(java.lang.Object)>(r0)";
+}

@@ -1,0 +1,91 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 4 ]
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(1.0F);
+i1 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto i1 = i1 + 1;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f1);
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i1 = i1 + 1;
+"
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+$f2 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f2;
+"
+    "Block 0:
+[preds: ] [succs: 4 ]
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(1.0F);
+i1 = 0;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto i1 = i1 + 1;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f1);
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto i1 = i1 + 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i1 = i1 + 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f1);
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i1 = i1 + 1;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+i1 = i1 + 1;
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"->"Block 5:
+[preds: 4 ] [succs: ]
+$f2 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f2;
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"->"Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto i1 = i1 + 1;
+";
+}

@@ -1,0 +1,507 @@
+digraph "unitGraph" {
+    "r115 := @parameter0: java.lang.String[]"
+    "$r0 = new javaT.securityT.Provider.MyProvider"
+    "specialinvoke $r0.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name1\", 1.0, \"\")"
+    "r1 = $r0"
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r1)"
+    "$r2 = new javaT.securityT.Provider.MyProvider"
+    "specialinvoke $r2.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name2\", 1.0, \"\")"
+    "r3 = $r2"
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r3)"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"// List all providers\")"
+    "r116 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()"
+    "i4 = 0"
+    "$i2 = lengthof r116"
+    "if i4 >= $i2 goto $r5 = <java.lang.System: java.io.PrintStream out>"
+    "$r30 = <java.lang.System: java.io.PrintStream out>"
+    "$r29 = r116[i4]"
+    "$r31 = virtualinvoke $r29.<java.security.Provider: java.lang.String toString()>()"
+    "virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r31)"
+    "i4 = i4 + 1"
+    "goto [?= $i2 = lengthof r116]"
+    "$r5 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r6 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove one provider\")"
+    "staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"name1\")"
+    "r117 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()"
+    "i5 = 0"
+    "$i3 = lengthof r117"
+    "if i5 >= $i3 goto $r7 = <java.lang.System: java.io.PrintStream out>"
+    "$r27 = <java.lang.System: java.io.PrintStream out>"
+    "$r26 = r117[i5]"
+    "$r28 = virtualinvoke $r26.<java.security.Provider: java.lang.String toString()>()"
+    "virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r28)"
+    "i5 = i5 + 1"
+    "goto [?= $i3 = lengthof r117]"
+    "$r7 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r8 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over entrySet\")"
+    "r118 = null"
+    "r119 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"
+    "r120 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"
+    "$r11 = interfaceinvoke r120.<java.util.Iterator: java.lang.Object next()>()"
+    "r118 = (java.util.Map$Entry) $r11"
+    "$r13 = <java.lang.System: java.io.PrintStream out>"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"
+    "$r15 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r16 = (java.lang.String) $r15"
+    "$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"
+    "$r20 = <java.lang.System: java.io.PrintStream out>"
+    "$r19 = new java.lang.StringBuilder"
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()"
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"
+    "$r22 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"
+    "$r23 = (java.lang.String) $r22"
+    "$r24 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r25)"
+    "goto [?= $z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()]"
+    "interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"
+    "$r10 = new java.lang.Exception"
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"
+    "throw $r10"
+    "$r108 := @caughtexception"
+    "r121 = $r108"
+    "$r109 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r109.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")"
+    "$r110 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r110.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r111 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over keySet\")"
+    "r122 = null"
+    "r41 = virtualinvoke r1.<java.security.Provider: java.util.Set keySet()>()"
+    "r123 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()"
+    "if $z9 == 0 goto interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"
+    "r122 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()"
+    "$r114 = <java.lang.System: java.io.PrintStream out>"
+    "$r113 = (java.lang.String) r122"
+    "virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r113)"
+    "goto [?= $z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]"
+    "interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"
+    "$r112 = new java.lang.Exception"
+    "specialinvoke $r112.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"
+    "throw $r112"
+    "$r35 := @caughtexception"
+    "r124 = $r35"
+    "$r36 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r37 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over values\")"
+    "r125 = virtualinvoke r1.<java.security.Provider: java.util.Collection values()>()"
+    "r126 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto $r38 = <java.lang.System: java.io.PrintStream out>"
+    "$r105 = <java.lang.System: java.io.PrintStream out>"
+    "$r106 = interfaceinvoke r126.<java.util.Iterator: java.lang.Object next()>()"
+    "$r107 = (java.lang.String) $r106"
+    "virtualinvoke $r105.<java.io.PrintStream: void println(java.lang.String)>($r107)"
+    "goto [?= $z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()]"
+    "$r38 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r39 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>(\"// Add \'Cipher\' entry to provider\")"
+    "virtualinvoke r1.<java.security.Provider: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Cipher\", \"name1.des\")"
+    "r127 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"
+    "z11 = 0"
+    "$z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()"
+    "if $z12 == 0 goto (branch)"
+    "$r88 = interfaceinvoke r127.<java.util.Iterator: java.lang.Object next()>()"
+    "r118 = (java.util.Map$Entry) $r88"
+    "$r90 = <java.lang.System: java.io.PrintStream out>"
+    "$r89 = new java.lang.StringBuilder"
+    "specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()"
+    "$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"
+    "$r92 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r93 = (java.lang.String) $r92"
+    "$r94 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r93)"
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r90.<java.io.PrintStream: void println(java.lang.String)>($r95)"
+    "$r97 = <java.lang.System: java.io.PrintStream out>"
+    "$r96 = new java.lang.StringBuilder"
+    "specialinvoke $r96.<java.lang.StringBuilder: void <init>()>()"
+    "$r98 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"
+    "$r99 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"
+    "$r100 = (java.lang.String) $r99"
+    "$r101 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r100)"
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r97.<java.io.PrintStream: void println(java.lang.String)>($r102)"
+    "$r103 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r104 = (java.lang.String) $r103"
+    "$z8 = virtualinvoke $r104.<java.lang.String: boolean equals(java.lang.Object)>(\"Cipher\")"
+    "if $z8 == 0 goto $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()"
+    "z11 = 1"
+    "goto [?= $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()]"
+    "if z11 != 0 goto r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"
+    "$r87 = new java.lang.Exception"
+    "specialinvoke $r87.<java.lang.Exception: void <init>(java.lang.String)>(\"EntrySet not live\")"
+    "throw $r87"
+    "r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"
+    "r129 = interfaceinvoke r128.<java.util.Iterator: java.lang.Object next()>()"
+    "$r86 = <java.lang.System: java.io.PrintStream out>"
+    "$r85 = (java.lang.String) r129"
+    "virtualinvoke $r86.<java.io.PrintStream: void println(java.lang.String)>($r85)"
+    "goto [?= $z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()]"
+    "r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"
+    "$z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()"
+    "if $z3 == 0 goto $r42 = <java.lang.System: java.io.PrintStream out>"
+    "$r82 = <java.lang.System: java.io.PrintStream out>"
+    "$r83 = interfaceinvoke r130.<java.util.Iterator: java.lang.Object next()>()"
+    "$r84 = (java.lang.String) $r83"
+    "virtualinvoke $r82.<java.io.PrintStream: void println(java.lang.String)>($r84)"
+    "goto [?= $z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()]"
+    "$r42 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>(\"\")"
+    "$r43 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove \'Digest\' entry from provider\")"
+    "virtualinvoke r1.<java.security.Provider: java.lang.Object remove(java.lang.Object)>(\"Digest\")"
+    "r131 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()"
+    "if $z4 == 0 goto r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"
+    "$r67 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()"
+    "r118 = (java.util.Map$Entry) $r67"
+    "$r69 = <java.lang.System: java.io.PrintStream out>"
+    "$r68 = new java.lang.StringBuilder"
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"
+    "$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"
+    "$r71 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r72 = (java.lang.String) $r71"
+    "$r73 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)"
+    "$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r69.<java.io.PrintStream: void println(java.lang.String)>($r74)"
+    "$r76 = <java.lang.System: java.io.PrintStream out>"
+    "$r75 = new java.lang.StringBuilder"
+    "specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()"
+    "$r77 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"
+    "$r78 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"
+    "$r79 = (java.lang.String) $r78"
+    "$r80 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r76.<java.io.PrintStream: void println(java.lang.String)>($r81)"
+    "goto [?= $z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]"
+    "r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()"
+    "if $z5 == 0 goto r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"
+    "r133 = interfaceinvoke r132.<java.util.Iterator: java.lang.Object next()>()"
+    "$r66 = <java.lang.System: java.io.PrintStream out>"
+    "$r65 = (java.lang.String) r133"
+    "virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>($r65)"
+    "goto [?= $z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()]"
+    "r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"
+    "$z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()"
+    "if $z6 == 0 goto r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"
+    "$r62 = <java.lang.System: java.io.PrintStream out>"
+    "$r63 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>()"
+    "$r64 = (java.lang.String) $r63"
+    "virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r64)"
+    "goto [?= $z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()]"
+    "r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"
+    "r136 = interfaceinvoke r135.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()"
+    "if $z7 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"
+    "$r47 = interfaceinvoke r136.<java.util.Iterator: java.lang.Object next()>()"
+    "r118 = (java.util.Map$Entry) $r47"
+    "$r49 = <java.lang.System: java.io.PrintStream out>"
+    "$r48 = new java.lang.StringBuilder"
+    "specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()"
+    "$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"
+    "$r51 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r52 = (java.lang.String) $r51"
+    "$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)"
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r54)"
+    "$r56 = <java.lang.System: java.io.PrintStream out>"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"
+    "$r58 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"
+    "$r59 = (java.lang.String) $r58"
+    "$r60 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r61)"
+    "goto [?= $z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()]"
+    "$r46 = new java.lang.Exception"
+    "specialinvoke $r46.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"
+    "throw $r46"
+    "$r32 := @caughtexception"
+    "r33 = $r32"
+    "$r34 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")"
+    "return"
+    "r115 := @parameter0: java.lang.String[]"->"$r0 = new javaT.securityT.Provider.MyProvider";
+    "$r0 = new javaT.securityT.Provider.MyProvider"->"specialinvoke $r0.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name1\", 1.0, \"\")";
+    "specialinvoke $r0.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name1\", 1.0, \"\")"->"r1 = $r0";
+    "r1 = $r0"->"staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r1)";
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r1)"->"$r2 = new javaT.securityT.Provider.MyProvider";
+    "$r2 = new javaT.securityT.Provider.MyProvider"->"specialinvoke $r2.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name2\", 1.0, \"\")";
+    "specialinvoke $r2.<javaT.securityT.Provider.MyProvider: void <init>(java.lang.String,double,java.lang.String)>(\"name2\", 1.0, \"\")"->"r3 = $r2";
+    "r3 = $r2"->"staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r3)";
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>(r3)"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"// List all providers\")";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"// List all providers\")"->"r116 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()";
+    "r116 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()"->"i4 = 0";
+    "i4 = 0"->"$i2 = lengthof r116";
+    "$i2 = lengthof r116"->"if i4 >= $i2 goto $r5 = <java.lang.System: java.io.PrintStream out>";
+    "if i4 >= $i2 goto $r5 = <java.lang.System: java.io.PrintStream out>"->"$r30 = <java.lang.System: java.io.PrintStream out>";
+    "if i4 >= $i2 goto $r5 = <java.lang.System: java.io.PrintStream out>"->"$r5 = <java.lang.System: java.io.PrintStream out>";
+    "$r30 = <java.lang.System: java.io.PrintStream out>"->"$r29 = r116[i4]";
+    "$r29 = r116[i4]"->"$r31 = virtualinvoke $r29.<java.security.Provider: java.lang.String toString()>()";
+    "$r31 = virtualinvoke $r29.<java.security.Provider: java.lang.String toString()>()"->"virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r31)";
+    "virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r31)"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"goto [?= $i2 = lengthof r116]";
+    "goto [?= $i2 = lengthof r116]"->"$i2 = lengthof r116";
+    "$r5 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove one provider\")";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove one provider\")"->"staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"name1\")";
+    "staticinvoke <java.security.Security: void removeProvider(java.lang.String)>(\"name1\")"->"r117 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()";
+    "r117 = staticinvoke <java.security.Security: java.security.Provider[] getProviders()>()"->"i5 = 0";
+    "i5 = 0"->"$i3 = lengthof r117";
+    "$i3 = lengthof r117"->"if i5 >= $i3 goto $r7 = <java.lang.System: java.io.PrintStream out>";
+    "if i5 >= $i3 goto $r7 = <java.lang.System: java.io.PrintStream out>"->"$r27 = <java.lang.System: java.io.PrintStream out>";
+    "if i5 >= $i3 goto $r7 = <java.lang.System: java.io.PrintStream out>"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "$r27 = <java.lang.System: java.io.PrintStream out>"->"$r26 = r117[i5]";
+    "$r26 = r117[i5]"->"$r28 = virtualinvoke $r26.<java.security.Provider: java.lang.String toString()>()";
+    "$r28 = virtualinvoke $r26.<java.security.Provider: java.lang.String toString()>()"->"virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r28)";
+    "virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r28)"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"goto [?= $i3 = lengthof r117]";
+    "goto [?= $i3 = lengthof r117]"->"$i3 = lengthof r117";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r8 = <java.lang.System: java.io.PrintStream out>";
+    "$r8 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over entrySet\")";
+    "virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over entrySet\")"->"r118 = null";
+    "r118 = null"->"r119 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()";
+    "r119 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"->"r120 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()";
+    "r120 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"->"$z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")";
+    "if $z0 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r11 = interfaceinvoke r120.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")";
+    "if $z0 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r108 := @caughtexception";
+    "$r11 = interfaceinvoke r120.<java.util.Iterator: java.lang.Object next()>()"->"r118 = (java.util.Map$Entry) $r11";
+    "r118 = (java.util.Map$Entry) $r11"->"$r13 = <java.lang.System: java.io.PrintStream out>";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"$r12 = new java.lang.StringBuilder";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")";
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"->"$r15 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r15 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r16 = (java.lang.String) $r15";
+    "$r16 = (java.lang.String) $r15"->"$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)";
+    "$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"->"$r20 = <java.lang.System: java.io.PrintStream out>";
+    "$r20 = <java.lang.System: java.io.PrintStream out>"->"$r19 = new java.lang.StringBuilder";
+    "$r19 = new java.lang.StringBuilder"->"specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>()>()"->"$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")";
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"->"$r22 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()";
+    "$r22 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r23 = (java.lang.String) $r22";
+    "$r23 = (java.lang.String) $r22"->"$r24 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23)";
+    "$r24 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r25)";
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r25)"->"goto [?= $z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r120.<java.util.Iterator: boolean hasNext()>()";
+    "interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r10 = new java.lang.Exception";
+    "interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r108 := @caughtexception";
+    "$r10 = new java.lang.Exception"->"specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")";
+    "$r10 = new java.lang.Exception"->"$r108 := @caughtexception";
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"throw $r10";
+    "specialinvoke $r10.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"$r108 := @caughtexception";
+    "throw $r10"->"$r108 := @caughtexception";
+    "$r108 := @caughtexception"->"r121 = $r108";
+    "r121 = $r108"->"$r109 = <java.lang.System: java.io.PrintStream out>";
+    "$r109 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r109.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")";
+    "virtualinvoke $r109.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")"->"$r110 = <java.lang.System: java.io.PrintStream out>";
+    "$r110 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r110.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r110.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r111 = <java.lang.System: java.io.PrintStream out>";
+    "$r111 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over keySet\")";
+    "virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over keySet\")"->"r122 = null";
+    "r122 = null"->"r41 = virtualinvoke r1.<java.security.Provider: java.util.Set keySet()>()";
+    "r41 = virtualinvoke r1.<java.security.Provider: java.util.Set keySet()>()"->"r123 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()";
+    "r123 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"$z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()";
+    "$z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()"->"if $z9 == 0 goto interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)";
+    "if $z9 == 0 goto interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"->"r122 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z9 == 0 goto interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"->"interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)";
+    "if $z9 == 0 goto interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"->"$r35 := @caughtexception";
+    "r122 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()"->"$r114 = <java.lang.System: java.io.PrintStream out>";
+    "$r114 = <java.lang.System: java.io.PrintStream out>"->"$r113 = (java.lang.String) r122";
+    "$r113 = (java.lang.String) r122"->"virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r113)";
+    "virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r113)"->"goto [?= $z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]"->"$z9 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()";
+    "interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"->"$r112 = new java.lang.Exception";
+    "interfaceinvoke r41.<java.util.Set: boolean remove(java.lang.Object)>(r122)"->"$r35 := @caughtexception";
+    "$r112 = new java.lang.Exception"->"specialinvoke $r112.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")";
+    "$r112 = new java.lang.Exception"->"$r35 := @caughtexception";
+    "specialinvoke $r112.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"throw $r112";
+    "specialinvoke $r112.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"$r35 := @caughtexception";
+    "throw $r112"->"$r35 := @caughtexception";
+    "$r35 := @caughtexception"->"r124 = $r35";
+    "r124 = $r35"->"$r36 = <java.lang.System: java.io.PrintStream out>";
+    "$r36 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r37 = <java.lang.System: java.io.PrintStream out>";
+    "$r37 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over values\")";
+    "virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\"// Iterate over values\")"->"r125 = virtualinvoke r1.<java.security.Provider: java.util.Collection values()>()";
+    "r125 = virtualinvoke r1.<java.security.Provider: java.util.Collection values()>()"->"r126 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()";
+    "r126 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto $r38 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r38 = <java.lang.System: java.io.PrintStream out>"->"$r105 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r38 = <java.lang.System: java.io.PrintStream out>"->"$r38 = <java.lang.System: java.io.PrintStream out>";
+    "$r105 = <java.lang.System: java.io.PrintStream out>"->"$r106 = interfaceinvoke r126.<java.util.Iterator: java.lang.Object next()>()";
+    "$r106 = interfaceinvoke r126.<java.util.Iterator: java.lang.Object next()>()"->"$r107 = (java.lang.String) $r106";
+    "$r107 = (java.lang.String) $r106"->"virtualinvoke $r105.<java.io.PrintStream: void println(java.lang.String)>($r107)";
+    "virtualinvoke $r105.<java.io.PrintStream: void println(java.lang.String)>($r107)"->"goto [?= $z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r126.<java.util.Iterator: boolean hasNext()>()";
+    "$r38 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r39 = <java.lang.System: java.io.PrintStream out>";
+    "$r39 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>(\"// Add \'Cipher\' entry to provider\")";
+    "virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>(\"// Add \'Cipher\' entry to provider\")"->"virtualinvoke r1.<java.security.Provider: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Cipher\", \"name1.des\")";
+    "virtualinvoke r1.<java.security.Provider: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Cipher\", \"name1.des\")"->"r127 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()";
+    "r127 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"->"z11 = 0";
+    "z11 = 0"->"$z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()";
+    "$z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()"->"if $z12 == 0 goto (branch)";
+    "if $z12 == 0 goto (branch)"->"$r88 = interfaceinvoke r127.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z12 == 0 goto (branch)"->"if z11 != 0 goto r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()";
+    "$r88 = interfaceinvoke r127.<java.util.Iterator: java.lang.Object next()>()"->"r118 = (java.util.Map$Entry) $r88";
+    "r118 = (java.util.Map$Entry) $r88"->"$r90 = <java.lang.System: java.io.PrintStream out>";
+    "$r90 = <java.lang.System: java.io.PrintStream out>"->"$r89 = new java.lang.StringBuilder";
+    "$r89 = new java.lang.StringBuilder"->"specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()"->"$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")";
+    "$r91 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"->"$r92 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r92 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r93 = (java.lang.String) $r92";
+    "$r93 = (java.lang.String) $r92"->"$r94 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r93)";
+    "$r94 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r93)"->"$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r95 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r90.<java.io.PrintStream: void println(java.lang.String)>($r95)";
+    "virtualinvoke $r90.<java.io.PrintStream: void println(java.lang.String)>($r95)"->"$r97 = <java.lang.System: java.io.PrintStream out>";
+    "$r97 = <java.lang.System: java.io.PrintStream out>"->"$r96 = new java.lang.StringBuilder";
+    "$r96 = new java.lang.StringBuilder"->"specialinvoke $r96.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r96.<java.lang.StringBuilder: void <init>()>()"->"$r98 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")";
+    "$r98 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"->"$r99 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()";
+    "$r99 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r100 = (java.lang.String) $r99";
+    "$r100 = (java.lang.String) $r99"->"$r101 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r100)";
+    "$r101 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r100)"->"$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r97.<java.io.PrintStream: void println(java.lang.String)>($r102)";
+    "virtualinvoke $r97.<java.io.PrintStream: void println(java.lang.String)>($r102)"->"$r103 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r103 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r104 = (java.lang.String) $r103";
+    "$r104 = (java.lang.String) $r103"->"$z8 = virtualinvoke $r104.<java.lang.String: boolean equals(java.lang.Object)>(\"Cipher\")";
+    "$z8 = virtualinvoke $r104.<java.lang.String: boolean equals(java.lang.Object)>(\"Cipher\")"->"if $z8 == 0 goto $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()";
+    "if $z8 == 0 goto $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()"->"z11 = 1";
+    "if $z8 == 0 goto $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()"->"$z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()";
+    "z11 = 1"->"goto [?= $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()]"->"$z12 = interfaceinvoke r127.<java.util.Iterator: boolean hasNext()>()";
+    "if z11 != 0 goto r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"$r87 = new java.lang.Exception";
+    "if z11 != 0 goto r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()";
+    "$r87 = new java.lang.Exception"->"specialinvoke $r87.<java.lang.Exception: void <init>(java.lang.String)>(\"EntrySet not live\")";
+    "specialinvoke $r87.<java.lang.Exception: void <init>(java.lang.String)>(\"EntrySet not live\")"->"throw $r87";
+    "r128 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()";
+    "if $z2 == 0 goto r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"r129 = interfaceinvoke r128.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()";
+    "r129 = interfaceinvoke r128.<java.util.Iterator: java.lang.Object next()>()"->"$r86 = <java.lang.System: java.io.PrintStream out>";
+    "$r86 = <java.lang.System: java.io.PrintStream out>"->"$r85 = (java.lang.String) r129";
+    "$r85 = (java.lang.String) r129"->"virtualinvoke $r86.<java.io.PrintStream: void println(java.lang.String)>($r85)";
+    "virtualinvoke $r86.<java.io.PrintStream: void println(java.lang.String)>($r85)"->"goto [?= $z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r128.<java.util.Iterator: boolean hasNext()>()";
+    "r130 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"$z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()";
+    "$z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()"->"if $z3 == 0 goto $r42 = <java.lang.System: java.io.PrintStream out>";
+    "if $z3 == 0 goto $r42 = <java.lang.System: java.io.PrintStream out>"->"$r82 = <java.lang.System: java.io.PrintStream out>";
+    "if $z3 == 0 goto $r42 = <java.lang.System: java.io.PrintStream out>"->"$r42 = <java.lang.System: java.io.PrintStream out>";
+    "$r82 = <java.lang.System: java.io.PrintStream out>"->"$r83 = interfaceinvoke r130.<java.util.Iterator: java.lang.Object next()>()";
+    "$r83 = interfaceinvoke r130.<java.util.Iterator: java.lang.Object next()>()"->"$r84 = (java.lang.String) $r83";
+    "$r84 = (java.lang.String) $r83"->"virtualinvoke $r82.<java.io.PrintStream: void println(java.lang.String)>($r84)";
+    "virtualinvoke $r82.<java.io.PrintStream: void println(java.lang.String)>($r84)"->"goto [?= $z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()]"->"$z3 = interfaceinvoke r130.<java.util.Iterator: boolean hasNext()>()";
+    "$r42 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>(\"\")";
+    "virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>(\"\")"->"$r43 = <java.lang.System: java.io.PrintStream out>";
+    "$r43 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove \'Digest\' entry from provider\")";
+    "virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>(\"// Remove \'Digest\' entry from provider\")"->"virtualinvoke r1.<java.security.Provider: java.lang.Object remove(java.lang.Object)>(\"Digest\")";
+    "virtualinvoke r1.<java.security.Provider: java.lang.Object remove(java.lang.Object)>(\"Digest\")"->"r131 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()";
+    "r131 = interfaceinvoke r119.<java.util.Set: java.util.Iterator iterator()>()"->"$z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()";
+    "$z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()"->"if $z4 == 0 goto r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()";
+    "if $z4 == 0 goto r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"$r67 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z4 == 0 goto r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()";
+    "$r67 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()"->"r118 = (java.util.Map$Entry) $r67";
+    "r118 = (java.util.Map$Entry) $r67"->"$r69 = <java.lang.System: java.io.PrintStream out>";
+    "$r69 = <java.lang.System: java.io.PrintStream out>"->"$r68 = new java.lang.StringBuilder";
+    "$r68 = new java.lang.StringBuilder"->"specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")";
+    "$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"->"$r71 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r71 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r72 = (java.lang.String) $r71";
+    "$r72 = (java.lang.String) $r71"->"$r73 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)";
+    "$r73 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)"->"$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r69.<java.io.PrintStream: void println(java.lang.String)>($r74)";
+    "virtualinvoke $r69.<java.io.PrintStream: void println(java.lang.String)>($r74)"->"$r76 = <java.lang.System: java.io.PrintStream out>";
+    "$r76 = <java.lang.System: java.io.PrintStream out>"->"$r75 = new java.lang.StringBuilder";
+    "$r75 = new java.lang.StringBuilder"->"specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()"->"$r77 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")";
+    "$r77 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"->"$r78 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()";
+    "$r78 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r79 = (java.lang.String) $r78";
+    "$r79 = (java.lang.String) $r78"->"$r80 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)";
+    "$r80 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r79)"->"$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r76.<java.io.PrintStream: void println(java.lang.String)>($r81)";
+    "virtualinvoke $r76.<java.io.PrintStream: void println(java.lang.String)>($r81)"->"goto [?= $z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]"->"$z4 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()";
+    "r132 = interfaceinvoke r41.<java.util.Set: java.util.Iterator iterator()>()"->"$z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()";
+    "$z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()"->"if $z5 == 0 goto r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()";
+    "if $z5 == 0 goto r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"r133 = interfaceinvoke r132.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z5 == 0 goto r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()";
+    "r133 = interfaceinvoke r132.<java.util.Iterator: java.lang.Object next()>()"->"$r66 = <java.lang.System: java.io.PrintStream out>";
+    "$r66 = <java.lang.System: java.io.PrintStream out>"->"$r65 = (java.lang.String) r133";
+    "$r65 = (java.lang.String) r133"->"virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>($r65)";
+    "virtualinvoke $r66.<java.io.PrintStream: void println(java.lang.String)>($r65)"->"goto [?= $z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()]"->"$z5 = interfaceinvoke r132.<java.util.Iterator: boolean hasNext()>()";
+    "r134 = interfaceinvoke r125.<java.util.Collection: java.util.Iterator iterator()>()"->"$z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()";
+    "$z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()"->"if $z6 == 0 goto r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()";
+    "if $z6 == 0 goto r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"->"$r62 = <java.lang.System: java.io.PrintStream out>";
+    "if $z6 == 0 goto r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"->"r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()";
+    "$r62 = <java.lang.System: java.io.PrintStream out>"->"$r63 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>()";
+    "$r63 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>()"->"$r64 = (java.lang.String) $r63";
+    "$r64 = (java.lang.String) $r63"->"virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r64)";
+    "virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>($r64)"->"goto [?= $z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()]"->"$z6 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()";
+    "r135 = virtualinvoke r1.<java.security.Provider: java.util.Set entrySet()>()"->"r136 = interfaceinvoke r135.<java.util.Set: java.util.Iterator iterator()>()";
+    "r136 = interfaceinvoke r135.<java.util.Set: java.util.Iterator iterator()>()"->"$z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()";
+    "$z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()"->"if $z7 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")";
+    "if $z7 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r47 = interfaceinvoke r136.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z7 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")";
+    "if $z7 == 0 goto interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r32 := @caughtexception";
+    "$r47 = interfaceinvoke r136.<java.util.Iterator: java.lang.Object next()>()"->"r118 = (java.util.Map$Entry) $r47";
+    "r118 = (java.util.Map$Entry) $r47"->"$r49 = <java.lang.System: java.io.PrintStream out>";
+    "$r49 = <java.lang.System: java.io.PrintStream out>"->"$r48 = new java.lang.StringBuilder";
+    "$r48 = new java.lang.StringBuilder"->"specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()"->"$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")";
+    "$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Key: \")"->"$r51 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r51 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r52 = (java.lang.String) $r51";
+    "$r52 = (java.lang.String) $r51"->"$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)";
+    "$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)"->"$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r54)";
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r54)"->"$r56 = <java.lang.System: java.io.PrintStream out>";
+    "$r56 = <java.lang.System: java.io.PrintStream out>"->"$r55 = new java.lang.StringBuilder";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")";
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Value: \")"->"$r58 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()";
+    "$r58 = interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r59 = (java.lang.String) $r58";
+    "$r59 = (java.lang.String) $r58"->"$r60 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)";
+    "$r60 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r61)";
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r61)"->"goto [?= $z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()]"->"$z7 = interfaceinvoke r136.<java.util.Iterator: boolean hasNext()>()";
+    "interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r46 = new java.lang.Exception";
+    "interfaceinvoke r118.<java.util.Map$Entry: java.lang.Object setValue(java.lang.Object)>(\"name1.mac\")"->"$r32 := @caughtexception";
+    "$r46 = new java.lang.Exception"->"specialinvoke $r46.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")";
+    "$r46 = new java.lang.Exception"->"$r32 := @caughtexception";
+    "specialinvoke $r46.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"throw $r46";
+    "specialinvoke $r46.<java.lang.Exception: void <init>(java.lang.String)>(\"Expected exception not thrown\")"->"$r32 := @caughtexception";
+    "throw $r46"->"$r32 := @caughtexception";
+    "$r32 := @caughtexception"->"r33 = $r32";
+    "r33 = $r32"->"$r34 = <java.lang.System: java.io.PrintStream out>";
+    "$r34 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")";
+    "virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>(\"Expected exception caught\")"->"return";
+}

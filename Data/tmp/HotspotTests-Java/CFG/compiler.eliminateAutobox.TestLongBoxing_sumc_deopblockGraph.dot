@@ -1,0 +1,81 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: long[];
+r3 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+r1 = r0;
+i0 = lengthof r0;
+i7 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$l1 = r1[i7];
+r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+$l2 = virtualinvoke r3.<java.lang.Long: long longValue()>();
+$l3 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l4 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l3);
+$l5 = $l2 + $l4;
+r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+i7 = i7 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $l1 = r1[i7];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>();
+$l6 = virtualinvoke r3.<java.lang.Long: long longValue()>();
+return $l6;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 := @parameter0: long[];
+r3 = <compiler.eliminateAutobox.TestLongBoxing: java.lang.Long ibc>;
+r1 = r0;
+i0 = lengthof r0;
+i7 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $l1 = r1[i7];
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$l1 = r1[i7];
+r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+$l2 = virtualinvoke r3.<java.lang.Long: long longValue()>();
+$l3 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l4 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l3);
+$l5 = $l2 + $l4;
+r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+i7 = i7 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $l1 = r1[i7];
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $l1 = r1[i7];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>();
+$l6 = virtualinvoke r3.<java.lang.Long: long longValue()>();
+return $l6;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i7 < i0 goto $l1 = r1[i7];
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$l1 = r1[i7];
+r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+$l2 = virtualinvoke r3.<java.lang.Long: long longValue()>();
+$l3 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l4 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l3);
+$l5 = $l2 + $l4;
+r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+i7 = i7 + 1;
+";
+}

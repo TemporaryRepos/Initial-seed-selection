@@ -1,0 +1,142 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "l1 := @parameter1: long"
+    "r1 := @parameter2: java.lang.Object"
+    "r0 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doFloorMod(long,long)>(l0, l1)"
+    "$z0 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r0, r1)"
+    "if $z0 != 0 goto r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)"
+    "$r15 = newarray (java.lang.Object)[4]"
+    "$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"
+    "$r15[0] = $r16"
+    "$r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"
+    "$r15[1] = $r17"
+    "$r15[2] = r0"
+    "$r15[3] = r1"
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d) = %s; expected %s%n\", $r15)"
+    "r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)"
+    "$z1 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r2, r1)"
+    "if $z1 != 0 goto $r3 = new java.math.BigDecimal"
+    "$r12 = newarray (java.lang.Object)[4]"
+    "$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"
+    "$r12[0] = $r13"
+    "$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"
+    "$r12[1] = $r14"
+    "$r12[2] = r2"
+    "$r12[3] = r1"
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long StrictMath.floorMod(%d, %d) = %s; expected %s%n\", $r12)"
+    "$r3 = new java.math.BigDecimal"
+    "specialinvoke $r3.<java.math.BigDecimal: void <init>(long)>(l0)"
+    "r20 = $r3"
+    "$r4 = new java.math.BigDecimal"
+    "specialinvoke $r4.<java.math.BigDecimal: void <init>(long)>(l1)"
+    "r5 = $r4"
+    "$r6 = <java.math.RoundingMode: java.math.RoundingMode FLOOR>"
+    "r21 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal divide(java.math.BigDecimal,java.math.RoundingMode)>(r5, $r6)"
+    "r22 = virtualinvoke r21.<java.math.BigDecimal: java.math.BigDecimal multiply(java.math.BigDecimal)>(r5)"
+    "r23 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal subtract(java.math.BigDecimal)>(r22)"
+    "l2 = virtualinvoke r23.<java.math.BigDecimal: long longValue()>()"
+    "$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"
+    "$z2 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>($r7)"
+    "if $z2 != 0 goto (branch)"
+    "$r8 = newarray (java.lang.Object)[4]"
+    "$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"
+    "$r8[0] = $r9"
+    "$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"
+    "$r8[1] = $r10"
+    "$r8[2] = r0"
+    "$r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"
+    "$r8[3] = $r11"
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: Long.floorMod(%d, %d) = %d is different than BigDecimal result: %d%n\", $r8)"
+    "goto [?= return]"
+    "$r18 := @caughtexception"
+    "r24 = $r18"
+    "$b3 = l1 cmp 0L"
+    "if $b3 == 0 goto return"
+    "$r19 = newarray (java.lang.Object)[0]"
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d); unexpected ArithmeticException from bigdecimal\", $r19)"
+    "return"
+    "l0 := @parameter0: long"->"l1 := @parameter1: long";
+    "l1 := @parameter1: long"->"r1 := @parameter2: java.lang.Object";
+    "r1 := @parameter2: java.lang.Object"->"r0 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doFloorMod(long,long)>(l0, l1)";
+    "r0 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doFloorMod(long,long)>(l0, l1)"->"$z0 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r0, r1)";
+    "$z0 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r0, r1)"->"if $z0 != 0 goto r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)";
+    "if $z0 != 0 goto r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)"->"$r15 = newarray (java.lang.Object)[4]";
+    "if $z0 != 0 goto r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)"->"r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)";
+    "$r15 = newarray (java.lang.Object)[4]"->"$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)";
+    "$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"->"$r15[0] = $r16";
+    "$r15[0] = $r16"->"$r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)";
+    "$r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"->"$r15[1] = $r17";
+    "$r15[1] = $r17"->"$r15[2] = r0";
+    "$r15[2] = r0"->"$r15[3] = r1";
+    "$r15[3] = r1"->"staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d) = %s; expected %s%n\", $r15)";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d) = %s; expected %s%n\", $r15)"->"r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)";
+    "r2 = staticinvoke <javaT.lang.Math.DivModTests: java.lang.Object doStrictFloorMod(long,long)>(l0, l1)"->"$z1 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r2, r1)";
+    "$z1 = staticinvoke <javaT.lang.Math.DivModTests: boolean resultEquals(java.lang.Object,java.lang.Object)>(r2, r1)"->"if $z1 != 0 goto $r3 = new java.math.BigDecimal";
+    "if $z1 != 0 goto $r3 = new java.math.BigDecimal"->"$r12 = newarray (java.lang.Object)[4]";
+    "if $z1 != 0 goto $r3 = new java.math.BigDecimal"->"$r3 = new java.math.BigDecimal";
+    "if $z1 != 0 goto $r3 = new java.math.BigDecimal"->"$r18 := @caughtexception";
+    "$r12 = newarray (java.lang.Object)[4]"->"$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)";
+    "$r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"->"$r12[0] = $r13";
+    "$r12[0] = $r13"->"$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)";
+    "$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"->"$r12[1] = $r14";
+    "$r12[1] = $r14"->"$r12[2] = r2";
+    "$r12[2] = r2"->"$r12[3] = r1";
+    "$r12[3] = r1"->"staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long StrictMath.floorMod(%d, %d) = %s; expected %s%n\", $r12)";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long StrictMath.floorMod(%d, %d) = %s; expected %s%n\", $r12)"->"$r3 = new java.math.BigDecimal";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long StrictMath.floorMod(%d, %d) = %s; expected %s%n\", $r12)"->"$r18 := @caughtexception";
+    "$r3 = new java.math.BigDecimal"->"specialinvoke $r3.<java.math.BigDecimal: void <init>(long)>(l0)";
+    "$r3 = new java.math.BigDecimal"->"$r18 := @caughtexception";
+    "specialinvoke $r3.<java.math.BigDecimal: void <init>(long)>(l0)"->"r20 = $r3";
+    "specialinvoke $r3.<java.math.BigDecimal: void <init>(long)>(l0)"->"$r18 := @caughtexception";
+    "r20 = $r3"->"$r4 = new java.math.BigDecimal";
+    "r20 = $r3"->"$r18 := @caughtexception";
+    "$r4 = new java.math.BigDecimal"->"specialinvoke $r4.<java.math.BigDecimal: void <init>(long)>(l1)";
+    "$r4 = new java.math.BigDecimal"->"$r18 := @caughtexception";
+    "specialinvoke $r4.<java.math.BigDecimal: void <init>(long)>(l1)"->"r5 = $r4";
+    "specialinvoke $r4.<java.math.BigDecimal: void <init>(long)>(l1)"->"$r18 := @caughtexception";
+    "r5 = $r4"->"$r6 = <java.math.RoundingMode: java.math.RoundingMode FLOOR>";
+    "r5 = $r4"->"$r18 := @caughtexception";
+    "$r6 = <java.math.RoundingMode: java.math.RoundingMode FLOOR>"->"r21 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal divide(java.math.BigDecimal,java.math.RoundingMode)>(r5, $r6)";
+    "$r6 = <java.math.RoundingMode: java.math.RoundingMode FLOOR>"->"$r18 := @caughtexception";
+    "r21 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal divide(java.math.BigDecimal,java.math.RoundingMode)>(r5, $r6)"->"r22 = virtualinvoke r21.<java.math.BigDecimal: java.math.BigDecimal multiply(java.math.BigDecimal)>(r5)";
+    "r21 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal divide(java.math.BigDecimal,java.math.RoundingMode)>(r5, $r6)"->"$r18 := @caughtexception";
+    "r22 = virtualinvoke r21.<java.math.BigDecimal: java.math.BigDecimal multiply(java.math.BigDecimal)>(r5)"->"r23 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal subtract(java.math.BigDecimal)>(r22)";
+    "r22 = virtualinvoke r21.<java.math.BigDecimal: java.math.BigDecimal multiply(java.math.BigDecimal)>(r5)"->"$r18 := @caughtexception";
+    "r23 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal subtract(java.math.BigDecimal)>(r22)"->"l2 = virtualinvoke r23.<java.math.BigDecimal: long longValue()>()";
+    "r23 = virtualinvoke r20.<java.math.BigDecimal: java.math.BigDecimal subtract(java.math.BigDecimal)>(r22)"->"$r18 := @caughtexception";
+    "l2 = virtualinvoke r23.<java.math.BigDecimal: long longValue()>()"->"$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)";
+    "l2 = virtualinvoke r23.<java.math.BigDecimal: long longValue()>()"->"$r18 := @caughtexception";
+    "$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"->"$z2 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>($r7)";
+    "$r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"->"$r18 := @caughtexception";
+    "$z2 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>($r7)"->"if $z2 != 0 goto (branch)";
+    "$z2 = virtualinvoke r0.<java.lang.Object: boolean equals(java.lang.Object)>($r7)"->"$r18 := @caughtexception";
+    "if $z2 != 0 goto (branch)"->"$r8 = newarray (java.lang.Object)[4]";
+    "if $z2 != 0 goto (branch)"->"goto [?= return]";
+    "if $z2 != 0 goto (branch)"->"$r18 := @caughtexception";
+    "$r8 = newarray (java.lang.Object)[4]"->"$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)";
+    "$r8 = newarray (java.lang.Object)[4]"->"$r18 := @caughtexception";
+    "$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"->"$r8[0] = $r9";
+    "$r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0)"->"$r18 := @caughtexception";
+    "$r8[0] = $r9"->"$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)";
+    "$r8[0] = $r9"->"$r18 := @caughtexception";
+    "$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"->"$r8[1] = $r10";
+    "$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1)"->"$r18 := @caughtexception";
+    "$r8[1] = $r10"->"$r8[2] = r0";
+    "$r8[1] = $r10"->"$r18 := @caughtexception";
+    "$r8[2] = r0"->"$r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)";
+    "$r8[2] = r0"->"$r18 := @caughtexception";
+    "$r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"->"$r8[3] = $r11";
+    "$r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l2)"->"$r18 := @caughtexception";
+    "$r8[3] = $r11"->"staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: Long.floorMod(%d, %d) = %d is different than BigDecimal result: %d%n\", $r8)";
+    "$r8[3] = $r11"->"$r18 := @caughtexception";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: Long.floorMod(%d, %d) = %d is different than BigDecimal result: %d%n\", $r8)"->"goto [?= return]";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: Long.floorMod(%d, %d) = %d is different than BigDecimal result: %d%n\", $r8)"->"$r18 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r18 := @caughtexception"->"r24 = $r18";
+    "r24 = $r18"->"$b3 = l1 cmp 0L";
+    "$b3 = l1 cmp 0L"->"if $b3 == 0 goto return";
+    "if $b3 == 0 goto return"->"$r19 = newarray (java.lang.Object)[0]";
+    "if $b3 == 0 goto return"->"return";
+    "$r19 = newarray (java.lang.Object)[0]"->"staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d); unexpected ArithmeticException from bigdecimal\", $r19)";
+    "staticinvoke <javaT.lang.Math.DivModTests: void fail(java.lang.String,java.lang.Object[])>(\"FAIL: long Math.floorMod(%d, %d); unexpected ArithmeticException from bigdecimal\", $r19)"->"return";
+}

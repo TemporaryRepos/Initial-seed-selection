@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "b0 = 0"
+    "b1 = 0"
+    "if b1 >= b0 goto $z1 = 0"
+    "if b0 > b1 goto $z1 = 1"
+    "if b0 != 4 goto $z1 = 0"
+    "$z1 = 1"
+    "goto [?= z0 = $z1]"
+    "$z1 = 0"
+    "z0 = $z1"
+    "return"
+    "b0 = 0"->"b1 = 0";
+    "b1 = 0"->"if b1 >= b0 goto $z1 = 0";
+    "if b1 >= b0 goto $z1 = 0"->"if b0 > b1 goto $z1 = 1";
+    "if b1 >= b0 goto $z1 = 0"->"$z1 = 0";
+    "if b0 > b1 goto $z1 = 1"->"if b0 != 4 goto $z1 = 0";
+    "if b0 > b1 goto $z1 = 1"->"$z1 = 1";
+    "if b0 != 4 goto $z1 = 0"->"$z1 = 1";
+    "if b0 != 4 goto $z1 = 0"->"$z1 = 0";
+    "$z1 = 1"->"goto [?= z0 = $z1]";
+    "goto [?= z0 = $z1]"->"z0 = $z1";
+    "$z1 = 0"->"z0 = $z1";
+    "z0 = $z1"->"return";
+}

@@ -1,0 +1,359 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 7 ]
+r0 := @this: vm.compiler.jbe.subcommon.subcommon02.subcommon02;
+z0 = 1;
+i10 = 0;
+goto [?= $i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>];
+"
+    "Block 1:
+[preds: 7 ] [succs: 5 ]
+i11 = 0;
+goto [?= $i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>];
+"
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r2 = $r1[i10];
+$d1 = $r2[i11];
+$r3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r4 = $r3[i10];
+$d0 = $r4[i11];
+$d2 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double ulpDiff(double,double)>($d1, $d0);
+$b1 = $d2 cmpl 1.0;
+if $b1 <= 0 goto i11 = i11 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result: a[\");
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r11 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r12 = $r11[i10];
+$d3 = $r12[i11];
+$r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"; aopt[\");
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r19 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r20 = $r19[i10];
+$d4 = $r20[i11];
+$r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r22);
+z0 = 0;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i11 = i11 + 1;
+"
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+$i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>;
+if i11 < $i12 goto $r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+"
+    "Block 7:
+[preds: 0 6 ] [succs: 8 1 ]
+$i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>;
+if i10 < $i0 goto i11 = 0;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+$i3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt10000>;
+$i2 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO10000>;
+if $i3 != $i2 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$i5 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt1000>;
+$i4 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO1000>;
+if $i5 != $i4 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$i7 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt100>;
+$i6 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO100>;
+if $i7 != $i6 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$i9 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+$i8 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+if $i9 == $i8 goto return z0;
+"
+    "Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+"
+    "Block 13:
+[preds: 11 12 ] [succs: ]
+return z0;
+"
+    "Block 0:
+[preds: ] [succs: 7 ]
+r0 := @this: vm.compiler.jbe.subcommon.subcommon02.subcommon02;
+z0 = 1;
+i10 = 0;
+goto [?= $i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>];
+"->"Block 7:
+[preds: 0 6 ] [succs: 8 1 ]
+$i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>;
+if i10 < $i0 goto i11 = 0;
+";
+    "Block 1:
+[preds: 7 ] [succs: 5 ]
+i11 = 0;
+goto [?= $i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>];
+"->"Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+$i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>;
+if i11 < $i12 goto $r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+";
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r2 = $r1[i10];
+$d1 = $r2[i11];
+$r3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r4 = $r3[i10];
+$d0 = $r4[i11];
+$d2 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double ulpDiff(double,double)>($d1, $d0);
+$b1 = $d2 cmpl 1.0;
+if $b1 <= 0 goto i11 = i11 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result: a[\");
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r11 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r12 = $r11[i10];
+$d3 = $r12[i11];
+$r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"; aopt[\");
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r19 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r20 = $r19[i10];
+$d4 = $r20[i11];
+$r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r22);
+z0 = 0;
+";
+    "Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r2 = $r1[i10];
+$d1 = $r2[i11];
+$r3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r4 = $r3[i10];
+$d0 = $r4[i11];
+$d2 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double ulpDiff(double,double)>($d1, $d0);
+$b1 = $d2 cmpl 1.0;
+if $b1 <= 0 goto i11 = i11 + 1;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i11 = i11 + 1;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Bad result: a[\");
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r11 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r12 = $r11[i10];
+$d3 = $r12[i11];
+$r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"; aopt[\");
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\");
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]=\");
+$r19 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r20 = $r19[i10];
+$d4 = $r20[i11];
+$r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r22);
+z0 = 0;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i11 = i11 + 1;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i11 = i11 + 1;
+"->"Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+$i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>;
+if i11 < $i12 goto $r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+";
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+$i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>;
+if i11 < $i12 goto $r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+";
+    "Block 5:
+[preds: 1 4 ] [succs: 6 2 ]
+$i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>;
+if i11 < $i12 goto $r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+"->"Block 2:
+[preds: 5 ] [succs: 3 4 ]
+$r1 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] a>;
+$r2 = $r1[i10];
+$d1 = $r2[i11];
+$r3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: double[][] aopt>;
+$r4 = $r3[i10];
+$d0 = $r4[i11];
+$d2 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double ulpDiff(double,double)>($d1, $d0);
+$b1 = $d2 cmpl 1.0;
+if $b1 <= 0 goto i11 = i11 + 1;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+"->"Block 7:
+[preds: 0 6 ] [succs: 8 1 ]
+$i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>;
+if i10 < $i0 goto i11 = 0;
+";
+    "Block 7:
+[preds: 0 6 ] [succs: 8 1 ]
+$i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>;
+if i10 < $i0 goto i11 = 0;
+"->"Block 8:
+[preds: 7 ] [succs: 9 12 ]
+$i3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt10000>;
+$i2 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO10000>;
+if $i3 != $i2 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 7:
+[preds: 0 6 ] [succs: 8 1 ]
+$i0 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int LEN>;
+if i10 < $i0 goto i11 = 0;
+"->"Block 1:
+[preds: 7 ] [succs: 5 ]
+i11 = 0;
+goto [?= $i12 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int WIDTH>];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+$i3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt10000>;
+$i2 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO10000>;
+if $i3 != $i2 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$i5 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt1000>;
+$i4 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO1000>;
+if $i5 != $i4 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+$i3 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt10000>;
+$i2 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO10000>;
+if $i3 != $i2 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$i5 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt1000>;
+$i4 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO1000>;
+if $i5 != $i4 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$i7 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt100>;
+$i6 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO100>;
+if $i7 != $i6 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$i5 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt1000>;
+$i4 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO1000>;
+if $i5 != $i4 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$i7 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt100>;
+$i6 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO100>;
+if $i7 != $i6 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$i9 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+$i8 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+if $i9 == $i8 goto return z0;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+$i7 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrt100>;
+$i6 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int ngrtO100>;
+if $i7 != $i6 goto $r23 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$i9 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+$i8 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+if $i9 == $i8 goto return z0;
+"->"Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$i9 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+$i8 = r0.<vm.compiler.jbe.subcommon.subcommon02.subcommon02: int nsmetO100>;
+if $i9 == $i8 goto return z0;
+"->"Block 13:
+[preds: 11 12 ] [succs: ]
+return z0;
+";
+    "Block 12:
+[preds: 8 9 10 11 ] [succs: 13 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Bad result: number of elements found is not matching\");
+z0 = 0;
+"->"Block 13:
+[preds: 11 12 ] [succs: ]
+return z0;
+";
+}

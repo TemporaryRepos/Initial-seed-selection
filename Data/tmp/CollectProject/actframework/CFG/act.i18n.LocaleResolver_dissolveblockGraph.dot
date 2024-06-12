@@ -1,0 +1,307 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: act.i18n.LocaleResolver;
+$z0 = specialinvoke r0.<act.i18n.LocaleResolver: boolean shouldWriteLocaleCookie()>();
+if $z0 != 0 goto $r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+r2 = virtualinvoke $r1.<act.conf.AppConfig: java.lang.String localeCookieName()>();
+$r3 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r20 = virtualinvoke $r3.<act.app.ActionContext: java.util.Locale locale()>();
+if null != r20 goto r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+r20 = r0.<act.i18n.LocaleResolver: java.util.Locale locale>;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 8 ]
+r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+$r5 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r6 = virtualinvoke $r5.<act.app.ActionContext: org.osgl.http.H$Session session()>();
+if null == r6 goto $r21 = new org.osgl.http.H$Cookie;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$z2 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z2 == 0 goto virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+"
+    "Block 6:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV remove(java.lang.String)>(\"__locale__\");
+goto [?= $r21 = new org.osgl.http.H$Cookie];
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+"
+    "Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+"
+    "Block 9:
+[preds: 8 ] [succs: 11 ]
+$i0 = -1;
+goto [?= virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0)];
+"
+    "Block 10:
+[preds: 8 ] [succs: 11 ]
+$i0 = 604800;
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0);
+$z1 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z1 == 0 goto $r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r13 = staticinvoke <org.joda.time.DateTime: org.joda.time.DateTime now()>();
+$r14 = virtualinvoke $r13.<org.joda.time.DateTime: org.joda.time.DateTime minusDays(int)>(1);
+$r15 = virtualinvoke $r14.<org.joda.time.DateTime: java.util.Date toDate()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie expires(java.util.Date)>($r15);
+"
+    "Block 13:
+[preds: 11 12 ] [succs: ]
+$r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+$r12 = virtualinvoke $r11.<act.app.ActionContext: act.ActResponse resp()>();
+virtualinvoke $r12.<act.ActResponse: void addCookie(org.osgl.http.H$Cookie)>(r7);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: act.i18n.LocaleResolver;
+$z0 = specialinvoke r0.<act.i18n.LocaleResolver: boolean shouldWriteLocaleCookie()>();
+if $z0 != 0 goto $r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @this: act.i18n.LocaleResolver;
+$z0 = specialinvoke r0.<act.i18n.LocaleResolver: boolean shouldWriteLocaleCookie()>();
+if $z0 != 0 goto $r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+r2 = virtualinvoke $r1.<act.conf.AppConfig: java.lang.String localeCookieName()>();
+$r3 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r20 = virtualinvoke $r3.<act.app.ActionContext: java.util.Locale locale()>();
+if null != r20 goto r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+r2 = virtualinvoke $r1.<act.conf.AppConfig: java.lang.String localeCookieName()>();
+$r3 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r20 = virtualinvoke $r3.<act.app.ActionContext: java.util.Locale locale()>();
+if null != r20 goto r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+r20 = r0.<act.i18n.LocaleResolver: java.util.Locale locale>;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+r2 = virtualinvoke $r1.<act.conf.AppConfig: java.lang.String localeCookieName()>();
+$r3 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r20 = virtualinvoke $r3.<act.app.ActionContext: java.util.Locale locale()>();
+if null != r20 goto r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 8 ]
+r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+$r5 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r6 = virtualinvoke $r5.<act.app.ActionContext: org.osgl.http.H$Session session()>();
+if null == r6 goto $r21 = new org.osgl.http.H$Cookie;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+r20 = r0.<act.i18n.LocaleResolver: java.util.Locale locale>;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 8 ]
+r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+$r5 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r6 = virtualinvoke $r5.<act.app.ActionContext: org.osgl.http.H$Session session()>();
+if null == r6 goto $r21 = new org.osgl.http.H$Cookie;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 8 ]
+r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+$r5 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r6 = virtualinvoke $r5.<act.app.ActionContext: org.osgl.http.H$Session session()>();
+if null == r6 goto $r21 = new org.osgl.http.H$Cookie;
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$z2 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z2 == 0 goto virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 8 ]
+r4 = virtualinvoke r20.<java.util.Locale: java.lang.String toString()>();
+$r5 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+r6 = virtualinvoke $r5.<act.app.ActionContext: org.osgl.http.H$Session session()>();
+if null == r6 goto $r21 = new org.osgl.http.H$Cookie;
+"->"Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$z2 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z2 == 0 goto virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+"->"Block 6:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV remove(java.lang.String)>(\"__locale__\");
+goto [?= $r21 = new org.osgl.http.H$Cookie];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$z2 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z2 == 0 goto virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+"->"Block 7:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+";
+    "Block 6:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV remove(java.lang.String)>(\"__locale__\");
+goto [?= $r21 = new org.osgl.http.H$Cookie];
+"->"Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 ]
+virtualinvoke r6.<org.osgl.http.H$Session: org.osgl.http.H$KV put(java.lang.String,java.lang.String)>(\"__locale__\", r4);
+"->"Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+";
+    "Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+"->"Block 9:
+[preds: 8 ] [succs: 11 ]
+$i0 = -1;
+goto [?= virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0)];
+";
+    "Block 8:
+[preds: 4 6 7 ] [succs: 9 10 ]
+$r21 = new org.osgl.http.H$Cookie;
+specialinvoke $r21.<org.osgl.http.H$Cookie: void <init>(java.lang.String,java.lang.String)>(r2, r4);
+r7 = $r21;
+$r22 = r0.<act.i18n.LocaleResolver: act.conf.AppConfig config>;
+$r23 = virtualinvoke $r22.<act.conf.AppConfig: java.lang.String cookieDomain()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie domain(java.lang.String)>($r23);
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie path(java.lang.String)>(\"/\");
+$z3 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z3 == 0 goto $i0 = 604800;
+"->"Block 10:
+[preds: 8 ] [succs: 11 ]
+$i0 = 604800;
+";
+    "Block 9:
+[preds: 8 ] [succs: 11 ]
+$i0 = -1;
+goto [?= virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0)];
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0);
+$z1 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z1 == 0 goto $r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 ]
+$i0 = 604800;
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0);
+$z1 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z1 == 0 goto $r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0);
+$z1 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z1 == 0 goto $r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+$r13 = staticinvoke <org.joda.time.DateTime: org.joda.time.DateTime now()>();
+$r14 = virtualinvoke $r13.<org.joda.time.DateTime: org.joda.time.DateTime minusDays(int)>(1);
+$r15 = virtualinvoke $r14.<org.joda.time.DateTime: java.util.Date toDate()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie expires(java.util.Date)>($r15);
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 13 ]
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie maxAge(int)>($i0);
+$z1 = r0.<act.i18n.LocaleResolver: boolean reset>;
+if $z1 == 0 goto $r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+"->"Block 13:
+[preds: 11 12 ] [succs: ]
+$r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+$r12 = virtualinvoke $r11.<act.app.ActionContext: act.ActResponse resp()>();
+virtualinvoke $r12.<act.ActResponse: void addCookie(org.osgl.http.H$Cookie)>(r7);
+return;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$r13 = staticinvoke <org.joda.time.DateTime: org.joda.time.DateTime now()>();
+$r14 = virtualinvoke $r13.<org.joda.time.DateTime: org.joda.time.DateTime minusDays(int)>(1);
+$r15 = virtualinvoke $r14.<org.joda.time.DateTime: java.util.Date toDate()>();
+virtualinvoke r7.<org.osgl.http.H$Cookie: org.osgl.http.H$Cookie expires(java.util.Date)>($r15);
+"->"Block 13:
+[preds: 11 12 ] [succs: ]
+$r11 = r0.<act.i18n.LocaleResolver: act.app.ActionContext context>;
+$r12 = virtualinvoke $r11.<act.app.ActionContext: act.ActResponse resp()>();
+virtualinvoke $r12.<act.ActResponse: void addCookie(org.osgl.http.H$Cookie)>(r7);
+return;
+";
+}

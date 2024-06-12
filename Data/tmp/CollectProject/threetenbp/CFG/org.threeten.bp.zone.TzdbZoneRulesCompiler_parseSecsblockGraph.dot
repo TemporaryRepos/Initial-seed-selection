@@ -1,0 +1,428 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r13 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler;
+r0 := @parameter0: java.lang.String;
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(\"-\");
+if $z0 == 0 goto b9 = 0;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return 0;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+b9 = 0;
+$z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z1 == 0 goto $r1 = new java.text.ParsePosition;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+b9 = 1;
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$r1 = new java.text.ParsePosition;
+specialinvoke $r1.<java.text.ParsePosition: void <init>(int)>(b9);
+r2 = $r1;
+$r3 = <org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.format.DateTimeFormatter TIME_PARSER>;
+r4 = virtualinvoke $r3.<org.threeten.bp.format.DateTimeFormatter: org.threeten.bp.temporal.TemporalAccessor parseUnresolved(java.lang.CharSequence,java.text.ParsePosition)>(r0, r2);
+if r4 == null goto $r5 = new java.lang.IllegalArgumentException;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$i0 = virtualinvoke r2.<java.text.ParsePosition: int getErrorIndex()>();
+if $i0 < 0 goto $r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+"
+    "Block 6:
+[preds: 4 5 ] [succs: ]
+$r5 = new java.lang.IllegalArgumentException;
+specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(r0);
+throw $r5;
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+l1 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r6);
+$r7 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$z2 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r7);
+if $z2 == 0 goto $r14 = null;
+"
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r12 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$l8 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r12);
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+goto [?= r8 = $r14];
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+$r14 = null;
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+r8 = $r14;
+$r9 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$z3 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r9);
+if $z3 == 0 goto $r15 = null;
+"
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+$r11 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$l7 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r11);
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+goto [?= r10 = $r15];
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+$r15 = null;
+"
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r10 = $r15;
+$l2 = l1 * 60L;
+$l4 = $l2 * 60L;
+if r8 == null goto $l10 = 0L;
+"
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+$l10 = virtualinvoke r8.<java.lang.Long: long longValue()>();
+goto [?= $l3 = $l10 * 60L];
+"
+    "Block 15:
+[preds: 13 ] [succs: 16 ]
+$l10 = 0L;
+"
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$l3 = $l10 * 60L;
+$l5 = $l4 + $l3;
+if r10 == null goto $l11 = 0L;
+"
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$l11 = virtualinvoke r10.<java.lang.Long: long longValue()>();
+goto [?= $l6 = $l5 + $l11];
+"
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$l11 = 0L;
+"
+    "Block 19:
+[preds: 17 18 ] [succs: 20 21 ]
+$l6 = $l5 + $l11;
+i12 = (int) $l6;
+if b9 != 1 goto return i12;
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 ]
+i12 = neg i12;
+"
+    "Block 21:
+[preds: 19 20 ] [succs: ]
+return i12;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r13 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler;
+r0 := @parameter0: java.lang.String;
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(\"-\");
+if $z0 == 0 goto b9 = 0;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return 0;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r13 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler;
+r0 := @parameter0: java.lang.String;
+$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(\"-\");
+if $z0 == 0 goto b9 = 0;
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+b9 = 0;
+$z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z1 == 0 goto $r1 = new java.text.ParsePosition;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+b9 = 0;
+$z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z1 == 0 goto $r1 = new java.text.ParsePosition;
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+b9 = 1;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+b9 = 0;
+$z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z1 == 0 goto $r1 = new java.text.ParsePosition;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$r1 = new java.text.ParsePosition;
+specialinvoke $r1.<java.text.ParsePosition: void <init>(int)>(b9);
+r2 = $r1;
+$r3 = <org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.format.DateTimeFormatter TIME_PARSER>;
+r4 = virtualinvoke $r3.<org.threeten.bp.format.DateTimeFormatter: org.threeten.bp.temporal.TemporalAccessor parseUnresolved(java.lang.CharSequence,java.text.ParsePosition)>(r0, r2);
+if r4 == null goto $r5 = new java.lang.IllegalArgumentException;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+b9 = 1;
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$r1 = new java.text.ParsePosition;
+specialinvoke $r1.<java.text.ParsePosition: void <init>(int)>(b9);
+r2 = $r1;
+$r3 = <org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.format.DateTimeFormatter TIME_PARSER>;
+r4 = virtualinvoke $r3.<org.threeten.bp.format.DateTimeFormatter: org.threeten.bp.temporal.TemporalAccessor parseUnresolved(java.lang.CharSequence,java.text.ParsePosition)>(r0, r2);
+if r4 == null goto $r5 = new java.lang.IllegalArgumentException;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$r1 = new java.text.ParsePosition;
+specialinvoke $r1.<java.text.ParsePosition: void <init>(int)>(b9);
+r2 = $r1;
+$r3 = <org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.format.DateTimeFormatter TIME_PARSER>;
+r4 = virtualinvoke $r3.<org.threeten.bp.format.DateTimeFormatter: org.threeten.bp.temporal.TemporalAccessor parseUnresolved(java.lang.CharSequence,java.text.ParsePosition)>(r0, r2);
+if r4 == null goto $r5 = new java.lang.IllegalArgumentException;
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$i0 = virtualinvoke r2.<java.text.ParsePosition: int getErrorIndex()>();
+if $i0 < 0 goto $r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$r1 = new java.text.ParsePosition;
+specialinvoke $r1.<java.text.ParsePosition: void <init>(int)>(b9);
+r2 = $r1;
+$r3 = <org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.format.DateTimeFormatter TIME_PARSER>;
+r4 = virtualinvoke $r3.<org.threeten.bp.format.DateTimeFormatter: org.threeten.bp.temporal.TemporalAccessor parseUnresolved(java.lang.CharSequence,java.text.ParsePosition)>(r0, r2);
+if r4 == null goto $r5 = new java.lang.IllegalArgumentException;
+"->"Block 6:
+[preds: 4 5 ] [succs: ]
+$r5 = new java.lang.IllegalArgumentException;
+specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(r0);
+throw $r5;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$i0 = virtualinvoke r2.<java.text.ParsePosition: int getErrorIndex()>();
+if $i0 < 0 goto $r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+"->"Block 6:
+[preds: 4 5 ] [succs: ]
+$r5 = new java.lang.IllegalArgumentException;
+specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(r0);
+throw $r5;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$i0 = virtualinvoke r2.<java.text.ParsePosition: int getErrorIndex()>();
+if $i0 < 0 goto $r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+"->"Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+l1 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r6);
+$r7 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$z2 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r7);
+if $z2 == 0 goto $r14 = null;
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+l1 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r6);
+$r7 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$z2 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r7);
+if $z2 == 0 goto $r14 = null;
+"->"Block 8:
+[preds: 7 ] [succs: 10 ]
+$r12 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$l8 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r12);
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+goto [?= r8 = $r14];
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$r6 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField HOUR_OF_DAY>;
+l1 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r6);
+$r7 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$z2 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r7);
+if $z2 == 0 goto $r14 = null;
+"->"Block 9:
+[preds: 7 ] [succs: 10 ]
+$r14 = null;
+";
+    "Block 8:
+[preds: 7 ] [succs: 10 ]
+$r12 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR>;
+$l8 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r12);
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+goto [?= r8 = $r14];
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+r8 = $r14;
+$r9 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$z3 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r9);
+if $z3 == 0 goto $r15 = null;
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+$r14 = null;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+r8 = $r14;
+$r9 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$z3 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r9);
+if $z3 == 0 goto $r15 = null;
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+r8 = $r14;
+$r9 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$z3 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r9);
+if $z3 == 0 goto $r15 = null;
+"->"Block 11:
+[preds: 10 ] [succs: 13 ]
+$r11 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$l7 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r11);
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+goto [?= r10 = $r15];
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+r8 = $r14;
+$r9 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$z3 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: boolean isSupported(org.threeten.bp.temporal.TemporalField)>($r9);
+if $z3 == 0 goto $r15 = null;
+"->"Block 12:
+[preds: 10 ] [succs: 13 ]
+$r15 = null;
+";
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+$r11 = <org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE>;
+$l7 = interfaceinvoke r4.<org.threeten.bp.temporal.TemporalAccessor: long getLong(org.threeten.bp.temporal.TemporalField)>($r11);
+$r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+goto [?= r10 = $r15];
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r10 = $r15;
+$l2 = l1 * 60L;
+$l4 = $l2 * 60L;
+if r8 == null goto $l10 = 0L;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+$r15 = null;
+"->"Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r10 = $r15;
+$l2 = l1 * 60L;
+$l4 = $l2 * 60L;
+if r8 == null goto $l10 = 0L;
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r10 = $r15;
+$l2 = l1 * 60L;
+$l4 = $l2 * 60L;
+if r8 == null goto $l10 = 0L;
+"->"Block 14:
+[preds: 13 ] [succs: 16 ]
+$l10 = virtualinvoke r8.<java.lang.Long: long longValue()>();
+goto [?= $l3 = $l10 * 60L];
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 14 15 ]
+r10 = $r15;
+$l2 = l1 * 60L;
+$l4 = $l2 * 60L;
+if r8 == null goto $l10 = 0L;
+"->"Block 15:
+[preds: 13 ] [succs: 16 ]
+$l10 = 0L;
+";
+    "Block 14:
+[preds: 13 ] [succs: 16 ]
+$l10 = virtualinvoke r8.<java.lang.Long: long longValue()>();
+goto [?= $l3 = $l10 * 60L];
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$l3 = $l10 * 60L;
+$l5 = $l4 + $l3;
+if r10 == null goto $l11 = 0L;
+";
+    "Block 15:
+[preds: 13 ] [succs: 16 ]
+$l10 = 0L;
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$l3 = $l10 * 60L;
+$l5 = $l4 + $l3;
+if r10 == null goto $l11 = 0L;
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$l3 = $l10 * 60L;
+$l5 = $l4 + $l3;
+if r10 == null goto $l11 = 0L;
+"->"Block 17:
+[preds: 16 ] [succs: 19 ]
+$l11 = virtualinvoke r10.<java.lang.Long: long longValue()>();
+goto [?= $l6 = $l5 + $l11];
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$l3 = $l10 * 60L;
+$l5 = $l4 + $l3;
+if r10 == null goto $l11 = 0L;
+"->"Block 18:
+[preds: 16 ] [succs: 19 ]
+$l11 = 0L;
+";
+    "Block 17:
+[preds: 16 ] [succs: 19 ]
+$l11 = virtualinvoke r10.<java.lang.Long: long longValue()>();
+goto [?= $l6 = $l5 + $l11];
+"->"Block 19:
+[preds: 17 18 ] [succs: 20 21 ]
+$l6 = $l5 + $l11;
+i12 = (int) $l6;
+if b9 != 1 goto return i12;
+";
+    "Block 18:
+[preds: 16 ] [succs: 19 ]
+$l11 = 0L;
+"->"Block 19:
+[preds: 17 18 ] [succs: 20 21 ]
+$l6 = $l5 + $l11;
+i12 = (int) $l6;
+if b9 != 1 goto return i12;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 21 ]
+$l6 = $l5 + $l11;
+i12 = (int) $l6;
+if b9 != 1 goto return i12;
+"->"Block 20:
+[preds: 19 ] [succs: 21 ]
+i12 = neg i12;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 21 ]
+$l6 = $l5 + $l11;
+i12 = (int) $l6;
+if b9 != 1 goto return i12;
+"->"Block 21:
+[preds: 19 20 ] [succs: ]
+return i12;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 ]
+i12 = neg i12;
+"->"Block 21:
+[preds: 19 20 ] [succs: ]
+return i12;
+";
+}

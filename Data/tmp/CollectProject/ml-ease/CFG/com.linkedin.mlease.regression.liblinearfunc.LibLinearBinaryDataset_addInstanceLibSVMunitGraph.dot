@@ -1,0 +1,277 @@
+digraph "unitGraph" {
+    "r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset"
+    "r2 := @parameter0: java.lang.String"
+    "$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>"
+    "if $z0 == 0 goto $r1 = new java.util.StringTokenizer"
+    "$r20 = new java.io.IOException"
+    "specialinvoke $r20.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")"
+    "throw $r20"
+    "$r1 = new java.util.StringTokenizer"
+    "specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r2, \" \t\n\r\f:\")"
+    "r3 = $r1"
+    "r41 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "goto [?= $r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>]"
+    "$r39 := @caughtexception"
+    "r42 = $r39"
+    "$r40 = new java.io.IOException"
+    "specialinvoke $r40.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>(\"Empty line\", r42)"
+    "throw $r40"
+    "$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>"
+    "$i0 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r41)"
+    "$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)"
+    "virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>($r5)"
+    "goto [?= $i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()]"
+    "$r33 := @caughtexception"
+    "r43 = $r33"
+    "$r34 = new java.io.IOException"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid label: \")"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r41)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r34.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r38, r43)"
+    "throw $r34"
+    "$i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()"
+    "i14 = $i1 / 2"
+    "$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>"
+    "$b2 = $d0 cmpl 0.0"
+    "if $b2 <= 0 goto r44 = newarray (int)[i14]"
+    "$i13 = i14 + 1"
+    "r44 = newarray (int)[$i13]"
+    "r44[i14] = -1"
+    "goto [?= i15 = 0]"
+    "r44 = newarray (int)[i14]"
+    "i15 = 0"
+    "i16 = 0"
+    "if i16 >= i14 goto (branch)"
+    "r45 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "i17 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r45)"
+    "goto [?= (branch)]"
+    "$r27 := @caughtexception"
+    "r46 = $r27"
+    "$r28 = new java.io.IOException"
+    "$r29 = new java.lang.StringBuilder"
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r45)"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r28.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r32, r46)"
+    "throw $r28"
+    "if i17 >= 0 goto (branch)"
+    "$r15 = new java.io.IOException"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i17)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r15.<java.io.IOException: void <init>(java.lang.String)>($r19)"
+    "throw $r15"
+    "if i17 > i15 goto i15 = i17"
+    "$r14 = new java.io.IOException"
+    "specialinvoke $r14.<java.io.IOException: void <init>(java.lang.String)>(\"Indices must be sorted in ascending order\")"
+    "throw $r14"
+    "i15 = i17"
+    "r47 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "d1 = staticinvoke <com.linkedin.mlease.utils.Util: double atof(java.lang.String)>(r47)"
+    "$b12 = d1 cmpl 1.0"
+    "if $b12 == 0 goto r44[i16] = i17"
+    "$r9 = new java.io.IOException"
+    "$r10 = new java.lang.StringBuilder"
+    "specialinvoke $r10.<java.lang.StringBuilder: void <init>()>()"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot handle non-binary features (all feature values have to be 1): \")"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r9.<java.io.IOException: void <init>(java.lang.String)>($r13)"
+    "throw $r9"
+    "r44[i16] = i17"
+    "goto [?= i16 = i16 + 1]"
+    "$r21 := @caughtexception"
+    "r48 = $r21"
+    "$r22 = new java.io.IOException"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid value: \")"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r47)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r22.<java.io.IOException: void <init>(java.lang.String)>($r26)"
+    "throw $r22"
+    "i16 = i16 + 1"
+    "if i14 <= 0 goto $z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>"
+    "$i10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>"
+    "$i8 = i14 - 1"
+    "$i9 = r44[$i8]"
+    "$i11 = staticinvoke <java.lang.Math: int max(int,int)>($i10, $i9)"
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex> = $i11"
+    "$z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>"
+    "if $z2 == 0 goto $r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>"
+    "$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>"
+    "if $i3 < 32767 goto $i4 = lengthof r44"
+    "$r8 = new java.io.IOException"
+    "specialinvoke $r8.<java.io.IOException: void <init>(java.lang.String)>(\"When using short to store feature indices, you cannot have more than 32766 features!!\")"
+    "throw $r8"
+    "$i4 = lengthof r44"
+    "r49 = newarray (short)[$i4]"
+    "i18 = 0"
+    "$i5 = lengthof r49"
+    "if i18 >= $i5 goto $r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>"
+    "$i6 = r44[i18]"
+    "$s7 = (short) $i6"
+    "r49[i18] = $s7"
+    "i18 = i18 + 1"
+    "goto [?= $i5 = lengthof r49]"
+    "$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>"
+    "virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>(r49)"
+    "goto [?= return]"
+    "$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>"
+    "virtualinvoke $r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r44)"
+    "return"
+    "r0 := @this: com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset"->"r2 := @parameter0: java.lang.String";
+    "r2 := @parameter0: java.lang.String"->"$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>";
+    "$z0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean finished>"->"if $z0 == 0 goto $r1 = new java.util.StringTokenizer";
+    "if $z0 == 0 goto $r1 = new java.util.StringTokenizer"->"$r20 = new java.io.IOException";
+    "if $z0 == 0 goto $r1 = new java.util.StringTokenizer"->"$r1 = new java.util.StringTokenizer";
+    "$r20 = new java.io.IOException"->"specialinvoke $r20.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")";
+    "specialinvoke $r20.<java.io.IOException: void <init>(java.lang.String)>(\"Cannot add instances to a finished dataset.\")"->"throw $r20";
+    "$r1 = new java.util.StringTokenizer"->"specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r2, \" \t\n\r\f:\")";
+    "specialinvoke $r1.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r2, \" \t\n\r\f:\")"->"r3 = $r1";
+    "r3 = $r1"->"r41 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r3 = $r1"->"$r39 := @caughtexception";
+    "r41 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"goto [?= $r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>]";
+    "r41 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "goto [?= $r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>]"->"$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>";
+    "goto [?= $r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>]"->"$r33 := @caughtexception";
+    "$r39 := @caughtexception"->"r42 = $r39";
+    "r42 = $r39"->"$r40 = new java.io.IOException";
+    "$r40 = new java.io.IOException"->"specialinvoke $r40.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>(\"Empty line\", r42)";
+    "specialinvoke $r40.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>(\"Empty line\", r42)"->"throw $r40";
+    "$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>"->"$i0 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r41)";
+    "$r4 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList y_temp>"->"$r33 := @caughtexception";
+    "$i0 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r41)"->"$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)";
+    "$i0 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r41)"->"$r33 := @caughtexception";
+    "$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)"->"virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>($r5)";
+    "$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)"->"$r33 := @caughtexception";
+    "virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>($r5)"->"goto [?= $i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()]";
+    "virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>($r5)"->"$r33 := @caughtexception";
+    "goto [?= $i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()]"->"$i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()";
+    "$r33 := @caughtexception"->"r43 = $r33";
+    "r43 = $r33"->"$r34 = new java.io.IOException";
+    "$r34 = new java.io.IOException"->"$r35 = new java.lang.StringBuilder";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid label: \")";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid label: \")"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r41)";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r41)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r34.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r38, r43)";
+    "specialinvoke $r34.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r38, r43)"->"throw $r34";
+    "$i1 = virtualinvoke r3.<java.util.StringTokenizer: int countTokens()>()"->"i14 = $i1 / 2";
+    "i14 = $i1 / 2"->"$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>";
+    "$d0 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: double bias>"->"$b2 = $d0 cmpl 0.0";
+    "$b2 = $d0 cmpl 0.0"->"if $b2 <= 0 goto r44 = newarray (int)[i14]";
+    "if $b2 <= 0 goto r44 = newarray (int)[i14]"->"$i13 = i14 + 1";
+    "if $b2 <= 0 goto r44 = newarray (int)[i14]"->"r44 = newarray (int)[i14]";
+    "$i13 = i14 + 1"->"r44 = newarray (int)[$i13]";
+    "r44 = newarray (int)[$i13]"->"r44[i14] = -1";
+    "r44[i14] = -1"->"goto [?= i15 = 0]";
+    "goto [?= i15 = 0]"->"i15 = 0";
+    "r44 = newarray (int)[i14]"->"i15 = 0";
+    "i15 = 0"->"i16 = 0";
+    "i16 = 0"->"if i16 >= i14 goto (branch)";
+    "if i16 >= i14 goto (branch)"->"r45 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if i16 >= i14 goto (branch)"->"if i14 <= 0 goto $z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>";
+    "r45 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"i17 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r45)";
+    "r45 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r27 := @caughtexception";
+    "i17 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r45)"->"goto [?= (branch)]";
+    "i17 = staticinvoke <com.linkedin.mlease.utils.Util: int atoi(java.lang.String)>(r45)"->"$r27 := @caughtexception";
+    "goto [?= (branch)]"->"if i17 >= 0 goto (branch)";
+    "$r27 := @caughtexception"->"r46 = $r27";
+    "r46 = $r27"->"$r28 = new java.io.IOException";
+    "$r28 = new java.io.IOException"->"$r29 = new java.lang.StringBuilder";
+    "$r29 = new java.lang.StringBuilder"->"specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r45)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r45)"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r28.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r32, r46)";
+    "specialinvoke $r28.<java.io.IOException: void <init>(java.lang.String,java.lang.Throwable)>($r32, r46)"->"throw $r28";
+    "if i17 >= 0 goto (branch)"->"$r15 = new java.io.IOException";
+    "if i17 >= 0 goto (branch)"->"if i17 > i15 goto i15 = i17";
+    "$r15 = new java.io.IOException"->"$r16 = new java.lang.StringBuilder";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid index: \")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i17)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i17)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r15.<java.io.IOException: void <init>(java.lang.String)>($r19)";
+    "specialinvoke $r15.<java.io.IOException: void <init>(java.lang.String)>($r19)"->"throw $r15";
+    "if i17 > i15 goto i15 = i17"->"$r14 = new java.io.IOException";
+    "if i17 > i15 goto i15 = i17"->"i15 = i17";
+    "$r14 = new java.io.IOException"->"specialinvoke $r14.<java.io.IOException: void <init>(java.lang.String)>(\"Indices must be sorted in ascending order\")";
+    "specialinvoke $r14.<java.io.IOException: void <init>(java.lang.String)>(\"Indices must be sorted in ascending order\")"->"throw $r14";
+    "i15 = i17"->"r47 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r47 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"d1 = staticinvoke <com.linkedin.mlease.utils.Util: double atof(java.lang.String)>(r47)";
+    "r47 = virtualinvoke r3.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r21 := @caughtexception";
+    "d1 = staticinvoke <com.linkedin.mlease.utils.Util: double atof(java.lang.String)>(r47)"->"$b12 = d1 cmpl 1.0";
+    "d1 = staticinvoke <com.linkedin.mlease.utils.Util: double atof(java.lang.String)>(r47)"->"$r21 := @caughtexception";
+    "$b12 = d1 cmpl 1.0"->"if $b12 == 0 goto r44[i16] = i17";
+    "$b12 = d1 cmpl 1.0"->"$r21 := @caughtexception";
+    "if $b12 == 0 goto r44[i16] = i17"->"$r9 = new java.io.IOException";
+    "if $b12 == 0 goto r44[i16] = i17"->"r44[i16] = i17";
+    "if $b12 == 0 goto r44[i16] = i17"->"$r21 := @caughtexception";
+    "$r9 = new java.io.IOException"->"$r10 = new java.lang.StringBuilder";
+    "$r9 = new java.io.IOException"->"$r21 := @caughtexception";
+    "$r10 = new java.lang.StringBuilder"->"specialinvoke $r10.<java.lang.StringBuilder: void <init>()>()";
+    "$r10 = new java.lang.StringBuilder"->"$r21 := @caughtexception";
+    "specialinvoke $r10.<java.lang.StringBuilder: void <init>()>()"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot handle non-binary features (all feature values have to be 1): \")";
+    "specialinvoke $r10.<java.lang.StringBuilder: void <init>()>()"->"$r21 := @caughtexception";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot handle non-binary features (all feature values have to be 1): \")"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot handle non-binary features (all feature values have to be 1): \")"->"$r21 := @caughtexception";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2)"->"$r21 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r9.<java.io.IOException: void <init>(java.lang.String)>($r13)";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r21 := @caughtexception";
+    "specialinvoke $r9.<java.io.IOException: void <init>(java.lang.String)>($r13)"->"throw $r9";
+    "specialinvoke $r9.<java.io.IOException: void <init>(java.lang.String)>($r13)"->"$r21 := @caughtexception";
+    "throw $r9"->"$r21 := @caughtexception";
+    "r44[i16] = i17"->"goto [?= i16 = i16 + 1]";
+    "r44[i16] = i17"->"$r21 := @caughtexception";
+    "goto [?= i16 = i16 + 1]"->"i16 = i16 + 1";
+    "$r21 := @caughtexception"->"r48 = $r21";
+    "r48 = $r21"->"$r22 = new java.io.IOException";
+    "$r22 = new java.io.IOException"->"$r23 = new java.lang.StringBuilder";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid value: \")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid value: \")"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r47)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r47)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r22.<java.io.IOException: void <init>(java.lang.String)>($r26)";
+    "specialinvoke $r22.<java.io.IOException: void <init>(java.lang.String)>($r26)"->"throw $r22";
+    "i16 = i16 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i16 >= i14 goto (branch)";
+    "if i14 <= 0 goto $z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>"->"$i10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>";
+    "if i14 <= 0 goto $z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>"->"$z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>";
+    "$i10 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>"->"$i8 = i14 - 1";
+    "$i8 = i14 - 1"->"$i9 = r44[$i8]";
+    "$i9 = r44[$i8]"->"$i11 = staticinvoke <java.lang.Math: int max(int,int)>($i10, $i9)";
+    "$i11 = staticinvoke <java.lang.Math: int max(int,int)>($i10, $i9)"->"r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex> = $i11";
+    "r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex> = $i11"->"$z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>";
+    "$z2 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: boolean useShort>"->"if $z2 == 0 goto $r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>";
+    "if $z2 == 0 goto $r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>"->"$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>";
+    "if $z2 == 0 goto $r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>"->"$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>";
+    "$i3 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: int maxFeatureIndex>"->"if $i3 < 32767 goto $i4 = lengthof r44";
+    "if $i3 < 32767 goto $i4 = lengthof r44"->"$r8 = new java.io.IOException";
+    "if $i3 < 32767 goto $i4 = lengthof r44"->"$i4 = lengthof r44";
+    "$r8 = new java.io.IOException"->"specialinvoke $r8.<java.io.IOException: void <init>(java.lang.String)>(\"When using short to store feature indices, you cannot have more than 32766 features!!\")";
+    "specialinvoke $r8.<java.io.IOException: void <init>(java.lang.String)>(\"When using short to store feature indices, you cannot have more than 32766 features!!\")"->"throw $r8";
+    "$i4 = lengthof r44"->"r49 = newarray (short)[$i4]";
+    "r49 = newarray (short)[$i4]"->"i18 = 0";
+    "i18 = 0"->"$i5 = lengthof r49";
+    "$i5 = lengthof r49"->"if i18 >= $i5 goto $r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>";
+    "if i18 >= $i5 goto $r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>"->"$i6 = r44[i18]";
+    "if i18 >= $i5 goto $r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>"->"$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>";
+    "$i6 = r44[i18]"->"$s7 = (short) $i6";
+    "$s7 = (short) $i6"->"r49[i18] = $s7";
+    "r49[i18] = $s7"->"i18 = i18 + 1";
+    "i18 = i18 + 1"->"goto [?= $i5 = lengthof r49]";
+    "goto [?= $i5 = lengthof r49]"->"$i5 = lengthof r49";
+    "$r7 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_short>"->"virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>(r49)";
+    "virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>(r49)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r6 = r0.<com.linkedin.mlease.regression.liblinearfunc.LibLinearBinaryDataset: java.util.ArrayList x_int>"->"virtualinvoke $r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r44)";
+    "virtualinvoke $r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r44)"->"return";
+}

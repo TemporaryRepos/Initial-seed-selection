@@ -1,0 +1,56 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+r0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>(i0);
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = i0 + 1;
+$i4 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i3);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i2 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+return $i2;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+r0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>(i0);
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = i0 + 1;
+$i4 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i3);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+i0 := @parameter0: int;
+r0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>(i0);
+$i1 = i0 & 1;
+if $i1 != 0 goto staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i2 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+return $i2;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$i3 = i0 + 1;
+$i4 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i3);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i2 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+return $i2;
+";
+}

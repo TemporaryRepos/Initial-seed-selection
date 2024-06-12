@@ -1,0 +1,252 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String"
+    "r3 := @parameter1: java.lang.String"
+    "z0 := @parameter2: boolean"
+    "r34 := @parameter3: java.lang.String"
+    "z1 := @parameter4: boolean"
+    "i0 := @parameter5: int"
+    "i1 := @parameter6: int"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating PushNotificationManager and AppleNotificationServer\")"
+    "$r1 = new javapns.notification.AppleNotificationServerBasicImpl"
+    "specialinvoke $r1.<javapns.notification.AppleNotificationServerBasicImpl: void <init>(java.lang.Object,java.lang.String,boolean)>(r2, r3, z0)"
+    "r39 = $r1"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Creating payload (simulation mode)\")"
+    "r5 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>()"
+    "$r7 = <java.lang.System: java.io.PrintStream out>"
+    "$r6 = new java.lang.StringBuilder"
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"
+    "$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Generating \")"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" fake devices\")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11)"
+    "$r12 = new java.util.ArrayList"
+    "specialinvoke $r12.<java.util.ArrayList: void <init>(int)>(i0)"
+    "r13 = $r12"
+    "i6 = 0"
+    "if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>"
+    "r40 = r34"
+    "if r40 == null goto $r35 = new java.lang.StringBuilder"
+    "$i5 = virtualinvoke r40.<java.lang.String: int length()>()"
+    "if $i5 == 64 goto $r41 = new javapns.devices.implementations.basic.BasicDevice"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"123456789012345678901234567890123456789012345678901234567\")"
+    "$i4 = 1000000 + i6"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"
+    "r40 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r41 = new javapns.devices.implementations.basic.BasicDevice"
+    "specialinvoke $r41.<javapns.devices.implementations.basic.BasicDevice: void <init>(java.lang.String)>(r40)"
+    "interfaceinvoke r13.<java.util.List: boolean add(java.lang.Object)>($r41)"
+    "i6 = i6 + 1"
+    "goto [?= (branch)]"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Creating \")"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" notification threads\")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19)"
+    "$r20 = new javapns.notification.transmission.NotificationThreads"
+    "if z1 == 0 goto $r42 = r5"
+    "$r42 = virtualinvoke r5.<javapns.notification.Payload: javapns.notification.Payload asSimulationOnly()>()"
+    "goto [?= specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)]"
+    "$r42 = r5"
+    "specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)"
+    "r43 = $r20"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Linking notification work debugging listener\")"
+    "$r22 = <javapns.test.NotificationTest: javapns.notification.transmission.NotificationProgressListener DEBUGGING_PROGRESS_LISTENER>"
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void setListener(javapns.notification.transmission.NotificationProgressListener)>($r22)"
+    "$r23 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Starting all threads...\")"
+    "l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.transmission.NotificationThreads start()>()"
+    "$r25 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"All threads started, waiting for them...\")"
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void waitForAllThreads()>()"
+    "l2 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$r27 = <java.lang.System: java.io.PrintStream out>"
+    "$r26 = new java.lang.StringBuilder"
+    "specialinvoke $r26.<java.lang.StringBuilder: void <init>()>()"
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"All threads finished in \")"
+    "$l3 = l2 - l7"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31)"
+    "$r32 = virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.PushedNotifications getPushedNotifications()>()"
+    "staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.util.List)>($r32)"
+    "goto [?= return]"
+    "$r38 := @caughtexception"
+    "r44 = $r38"
+    "virtualinvoke r44.<java.lang.Exception: void printStackTrace()>()"
+    "return"
+    "r2 := @parameter0: java.lang.String"->"r3 := @parameter1: java.lang.String";
+    "r3 := @parameter1: java.lang.String"->"z0 := @parameter2: boolean";
+    "z0 := @parameter2: boolean"->"r34 := @parameter3: java.lang.String";
+    "r34 := @parameter3: java.lang.String"->"z1 := @parameter4: boolean";
+    "z1 := @parameter4: boolean"->"i0 := @parameter5: int";
+    "i0 := @parameter5: int"->"i1 := @parameter6: int";
+    "i1 := @parameter6: int"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "i1 := @parameter6: int"->"$r38 := @caughtexception";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating PushNotificationManager and AppleNotificationServer\")";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating PushNotificationManager and AppleNotificationServer\")"->"$r1 = new javapns.notification.AppleNotificationServerBasicImpl";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating PushNotificationManager and AppleNotificationServer\")"->"$r38 := @caughtexception";
+    "$r1 = new javapns.notification.AppleNotificationServerBasicImpl"->"specialinvoke $r1.<javapns.notification.AppleNotificationServerBasicImpl: void <init>(java.lang.Object,java.lang.String,boolean)>(r2, r3, z0)";
+    "$r1 = new javapns.notification.AppleNotificationServerBasicImpl"->"$r38 := @caughtexception";
+    "specialinvoke $r1.<javapns.notification.AppleNotificationServerBasicImpl: void <init>(java.lang.Object,java.lang.String,boolean)>(r2, r3, z0)"->"r39 = $r1";
+    "specialinvoke $r1.<javapns.notification.AppleNotificationServerBasicImpl: void <init>(java.lang.Object,java.lang.String,boolean)>(r2, r3, z0)"->"$r38 := @caughtexception";
+    "r39 = $r1"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "r39 = $r1"->"$r38 := @caughtexception";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Creating payload (simulation mode)\")";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Creating payload (simulation mode)\")"->"r5 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>()";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Creating payload (simulation mode)\")"->"$r38 := @caughtexception";
+    "r5 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>()"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "r5 = staticinvoke <javapns.notification.PushNotificationPayload: javapns.notification.PushNotificationPayload test()>()"->"$r38 := @caughtexception";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"$r6 = new java.lang.StringBuilder";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "$r6 = new java.lang.StringBuilder"->"specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()";
+    "$r6 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"->"$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Generating \")";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Generating \")"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)";
+    "$r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Generating \")"->"$r38 := @caughtexception";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" fake devices\")";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r38 := @caughtexception";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" fake devices\")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" fake devices\")"->"$r38 := @caughtexception";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r38 := @caughtexception";
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$r12 = new java.util.ArrayList";
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$r38 := @caughtexception";
+    "$r12 = new java.util.ArrayList"->"specialinvoke $r12.<java.util.ArrayList: void <init>(int)>(i0)";
+    "$r12 = new java.util.ArrayList"->"$r38 := @caughtexception";
+    "specialinvoke $r12.<java.util.ArrayList: void <init>(int)>(i0)"->"r13 = $r12";
+    "specialinvoke $r12.<java.util.ArrayList: void <init>(int)>(i0)"->"$r38 := @caughtexception";
+    "r13 = $r12"->"i6 = 0";
+    "r13 = $r12"->"$r38 := @caughtexception";
+    "i6 = 0"->"if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>";
+    "i6 = 0"->"$r38 := @caughtexception";
+    "if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"r40 = r34";
+    "if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "r40 = r34"->"if r40 == null goto $r35 = new java.lang.StringBuilder";
+    "r40 = r34"->"$r38 := @caughtexception";
+    "if r40 == null goto $r35 = new java.lang.StringBuilder"->"$i5 = virtualinvoke r40.<java.lang.String: int length()>()";
+    "if r40 == null goto $r35 = new java.lang.StringBuilder"->"$r35 = new java.lang.StringBuilder";
+    "if r40 == null goto $r35 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "$i5 = virtualinvoke r40.<java.lang.String: int length()>()"->"if $i5 == 64 goto $r41 = new javapns.devices.implementations.basic.BasicDevice";
+    "$i5 = virtualinvoke r40.<java.lang.String: int length()>()"->"$r38 := @caughtexception";
+    "if $i5 == 64 goto $r41 = new javapns.devices.implementations.basic.BasicDevice"->"$r35 = new java.lang.StringBuilder";
+    "if $i5 == 64 goto $r41 = new javapns.devices.implementations.basic.BasicDevice"->"$r41 = new javapns.devices.implementations.basic.BasicDevice";
+    "if $i5 == 64 goto $r41 = new javapns.devices.implementations.basic.BasicDevice"->"$r38 := @caughtexception";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "$r35 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"123456789012345678901234567890123456789012345678901234567\")";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"123456789012345678901234567890123456789012345678901234567\")"->"$i4 = 1000000 + i6";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"123456789012345678901234567890123456789012345678901234567\")"->"$r38 := @caughtexception";
+    "$i4 = 1000000 + i6"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)";
+    "$i4 = 1000000 + i6"->"$r38 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"->"r40 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"->"$r38 := @caughtexception";
+    "r40 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 = new javapns.devices.implementations.basic.BasicDevice";
+    "r40 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r38 := @caughtexception";
+    "$r41 = new javapns.devices.implementations.basic.BasicDevice"->"specialinvoke $r41.<javapns.devices.implementations.basic.BasicDevice: void <init>(java.lang.String)>(r40)";
+    "$r41 = new javapns.devices.implementations.basic.BasicDevice"->"$r38 := @caughtexception";
+    "specialinvoke $r41.<javapns.devices.implementations.basic.BasicDevice: void <init>(java.lang.String)>(r40)"->"interfaceinvoke r13.<java.util.List: boolean add(java.lang.Object)>($r41)";
+    "specialinvoke $r41.<javapns.devices.implementations.basic.BasicDevice: void <init>(java.lang.String)>(r40)"->"$r38 := @caughtexception";
+    "interfaceinvoke r13.<java.util.List: boolean add(java.lang.Object)>($r41)"->"i6 = i6 + 1";
+    "interfaceinvoke r13.<java.util.List: boolean add(java.lang.Object)>($r41)"->"$r38 := @caughtexception";
+    "i6 = i6 + 1"->"goto [?= (branch)]";
+    "i6 = i6 + 1"->"$r38 := @caughtexception";
+    "goto [?= (branch)]"->"if i6 >= i0 goto $r15 = <java.lang.System: java.io.PrintStream out>";
+    "goto [?= (branch)]"->"$r38 := @caughtexception";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r14 = new java.lang.StringBuilder";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "$r14 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Creating \")";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Creating \")"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Creating \")"->"$r38 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" notification threads\")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"->"$r38 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" notification threads\")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" notification threads\")"->"$r38 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19)";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r38 := @caughtexception";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19)"->"$r20 = new javapns.notification.transmission.NotificationThreads";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r19)"->"$r38 := @caughtexception";
+    "$r20 = new javapns.notification.transmission.NotificationThreads"->"if z1 == 0 goto $r42 = r5";
+    "$r20 = new javapns.notification.transmission.NotificationThreads"->"$r38 := @caughtexception";
+    "if z1 == 0 goto $r42 = r5"->"$r42 = virtualinvoke r5.<javapns.notification.Payload: javapns.notification.Payload asSimulationOnly()>()";
+    "if z1 == 0 goto $r42 = r5"->"$r42 = r5";
+    "if z1 == 0 goto $r42 = r5"->"$r38 := @caughtexception";
+    "$r42 = virtualinvoke r5.<javapns.notification.Payload: javapns.notification.Payload asSimulationOnly()>()"->"goto [?= specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)]";
+    "$r42 = virtualinvoke r5.<javapns.notification.Payload: javapns.notification.Payload asSimulationOnly()>()"->"$r38 := @caughtexception";
+    "goto [?= specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)]"->"specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)";
+    "goto [?= specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)]"->"$r38 := @caughtexception";
+    "$r42 = r5"->"specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)";
+    "$r42 = r5"->"$r38 := @caughtexception";
+    "specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)"->"r43 = $r20";
+    "specialinvoke $r20.<javapns.notification.transmission.NotificationThreads: void <init>(javapns.notification.AppleNotificationServer,javapns.notification.Payload,java.util.List,int)>(r39, $r42, r13, i1)"->"$r38 := @caughtexception";
+    "r43 = $r20"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "r43 = $r20"->"$r38 := @caughtexception";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Linking notification work debugging listener\")";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Linking notification work debugging listener\")"->"$r22 = <javapns.test.NotificationTest: javapns.notification.transmission.NotificationProgressListener DEBUGGING_PROGRESS_LISTENER>";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Linking notification work debugging listener\")"->"$r38 := @caughtexception";
+    "$r22 = <javapns.test.NotificationTest: javapns.notification.transmission.NotificationProgressListener DEBUGGING_PROGRESS_LISTENER>"->"virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void setListener(javapns.notification.transmission.NotificationProgressListener)>($r22)";
+    "$r22 = <javapns.test.NotificationTest: javapns.notification.transmission.NotificationProgressListener DEBUGGING_PROGRESS_LISTENER>"->"$r38 := @caughtexception";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void setListener(javapns.notification.transmission.NotificationProgressListener)>($r22)"->"$r23 = <java.lang.System: java.io.PrintStream out>";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void setListener(javapns.notification.transmission.NotificationProgressListener)>($r22)"->"$r38 := @caughtexception";
+    "$r23 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Starting all threads...\")";
+    "$r23 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Starting all threads...\")"->"l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Starting all threads...\")"->"$r38 := @caughtexception";
+    "l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.transmission.NotificationThreads start()>()";
+    "l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.transmission.NotificationThreads start()>()"->"$r25 = <java.lang.System: java.io.PrintStream out>";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.transmission.NotificationThreads start()>()"->"$r38 := @caughtexception";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"All threads started, waiting for them...\")";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"All threads started, waiting for them...\")"->"virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void waitForAllThreads()>()";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>(\"All threads started, waiting for them...\")"->"$r38 := @caughtexception";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void waitForAllThreads()>()"->"l2 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: void waitForAllThreads()>()"->"$r38 := @caughtexception";
+    "l2 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r27 = <java.lang.System: java.io.PrintStream out>";
+    "l2 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r38 := @caughtexception";
+    "$r27 = <java.lang.System: java.io.PrintStream out>"->"$r26 = new java.lang.StringBuilder";
+    "$r27 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "$r26 = new java.lang.StringBuilder"->"specialinvoke $r26.<java.lang.StringBuilder: void <init>()>()";
+    "$r26 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r26.<java.lang.StringBuilder: void <init>()>()"->"$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"All threads finished in \")";
+    "specialinvoke $r26.<java.lang.StringBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"All threads finished in \")"->"$l3 = l2 - l7";
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"All threads finished in \")"->"$r38 := @caughtexception";
+    "$l3 = l2 - l7"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3)";
+    "$l3 = l2 - l7"->"$r38 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds\")";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3)"->"$r38 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds\")"->"$r38 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r38 := @caughtexception";
+    "virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31)"->"$r32 = virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.PushedNotifications getPushedNotifications()>()";
+    "virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31)"->"$r38 := @caughtexception";
+    "$r32 = virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.PushedNotifications getPushedNotifications()>()"->"staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.util.List)>($r32)";
+    "$r32 = virtualinvoke r43.<javapns.notification.transmission.NotificationThreads: javapns.notification.PushedNotifications getPushedNotifications()>()"->"$r38 := @caughtexception";
+    "staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.util.List)>($r32)"->"goto [?= return]";
+    "staticinvoke <javapns.test.NotificationTest: void printPushedNotifications(java.util.List)>($r32)"->"$r38 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r38 := @caughtexception"->"r44 = $r38";
+    "r44 = $r38"->"virtualinvoke r44.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r44.<java.lang.Exception: void printStackTrace()>()"->"return";
+}

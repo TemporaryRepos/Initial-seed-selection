@@ -1,0 +1,25 @@
+digraph "unitGraph" {
+    "f0 := @parameter0: float"
+    "f1 := @parameter1: float"
+    "b4 = 0"
+    "$i0 = staticinvoke <java.lang.Math: int round(float)>(f0)"
+    "$f2 = (float) $i0"
+    "$i1 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"Math.round\", f0, $f2, f1)"
+    "i5 = b4 + $i1"
+    "$i2 = staticinvoke <java.lang.StrictMath: int round(float)>(f0)"
+    "$f3 = (float) $i2"
+    "$i3 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"StrictMath.round\", f0, $f3, f1)"
+    "i6 = i5 + $i3"
+    "return i6"
+    "f0 := @parameter0: float"->"f1 := @parameter1: float";
+    "f1 := @parameter1: float"->"b4 = 0";
+    "b4 = 0"->"$i0 = staticinvoke <java.lang.Math: int round(float)>(f0)";
+    "$i0 = staticinvoke <java.lang.Math: int round(float)>(f0)"->"$f2 = (float) $i0";
+    "$f2 = (float) $i0"->"$i1 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"Math.round\", f0, $f2, f1)";
+    "$i1 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"Math.round\", f0, $f2, f1)"->"i5 = b4 + $i1";
+    "i5 = b4 + $i1"->"$i2 = staticinvoke <java.lang.StrictMath: int round(float)>(f0)";
+    "$i2 = staticinvoke <java.lang.StrictMath: int round(float)>(f0)"->"$f3 = (float) $i2";
+    "$f3 = (float) $i2"->"$i3 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"StrictMath.round\", f0, $f3, f1)";
+    "$i3 = staticinvoke <javaT.lang.Math.Tests: int test(java.lang.String,float,float,float)>(\"StrictMath.round\", f0, $f3, f1)"->"i6 = i5 + $i3";
+    "i6 = i5 + $i3"->"return i6";
+}

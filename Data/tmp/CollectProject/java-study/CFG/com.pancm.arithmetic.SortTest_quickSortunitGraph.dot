@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: int[]"
+    "i0 := @parameter1: int"
+    "i1 := @parameter2: int"
+    "if i0 >= i1 goto return"
+    "i2 = staticinvoke <com.pancm.arithmetic.SortTest: int getMiddle(int[],int,int)>(r0, i0, i1)"
+    "$i3 = i2 - 1"
+    "staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, 0, $i3)"
+    "$i4 = i2 + 1"
+    "staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, $i4, i1)"
+    "return"
+    "r0 := @parameter0: int[]"->"i0 := @parameter1: int";
+    "i0 := @parameter1: int"->"i1 := @parameter2: int";
+    "i1 := @parameter2: int"->"if i0 >= i1 goto return";
+    "if i0 >= i1 goto return"->"i2 = staticinvoke <com.pancm.arithmetic.SortTest: int getMiddle(int[],int,int)>(r0, i0, i1)";
+    "if i0 >= i1 goto return"->"return";
+    "i2 = staticinvoke <com.pancm.arithmetic.SortTest: int getMiddle(int[],int,int)>(r0, i0, i1)"->"$i3 = i2 - 1";
+    "$i3 = i2 - 1"->"staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, 0, $i3)";
+    "staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, 0, $i3)"->"$i4 = i2 + 1";
+    "$i4 = i2 + 1"->"staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, $i4, i1)";
+    "staticinvoke <com.pancm.arithmetic.SortTest: void quickSort(int[],int,int)>(r0, $i4, i1)"->"return";
+}

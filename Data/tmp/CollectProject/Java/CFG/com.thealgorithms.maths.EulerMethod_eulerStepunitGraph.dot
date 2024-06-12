@@ -1,0 +1,35 @@
+digraph "unitGraph" {
+    "d2 := @parameter0: double"
+    "d0 := @parameter1: double"
+    "d1 := @parameter2: double"
+    "r0 := @parameter3: java.util.function.BiFunction"
+    "$b0 = d0 cmpg 0.0"
+    "if $b0 > 0 goto $r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"
+    "$r5 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"stepSize should be greater than zero\")"
+    "throw $r5"
+    "$r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"
+    "$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1)"
+    "$r3 = interfaceinvoke r0.<java.util.function.BiFunction: java.lang.Object apply(java.lang.Object,java.lang.Object)>($r1, $r2)"
+    "$r4 = (java.lang.Double) $r3"
+    "$d3 = virtualinvoke $r4.<java.lang.Double: double doubleValue()>()"
+    "$d4 = d0 * $d3"
+    "$d5 = d1 + $d4"
+    "return $d5"
+    "d2 := @parameter0: double"->"d0 := @parameter1: double";
+    "d0 := @parameter1: double"->"d1 := @parameter2: double";
+    "d1 := @parameter2: double"->"r0 := @parameter3: java.util.function.BiFunction";
+    "r0 := @parameter3: java.util.function.BiFunction"->"$b0 = d0 cmpg 0.0";
+    "$b0 = d0 cmpg 0.0"->"if $b0 > 0 goto $r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)";
+    "if $b0 > 0 goto $r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"->"$r5 = new java.lang.IllegalArgumentException";
+    "if $b0 > 0 goto $r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"->"$r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)";
+    "$r5 = new java.lang.IllegalArgumentException"->"specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"stepSize should be greater than zero\")";
+    "specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"stepSize should be greater than zero\")"->"throw $r5";
+    "$r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d2)"->"$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1)";
+    "$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1)"->"$r3 = interfaceinvoke r0.<java.util.function.BiFunction: java.lang.Object apply(java.lang.Object,java.lang.Object)>($r1, $r2)";
+    "$r3 = interfaceinvoke r0.<java.util.function.BiFunction: java.lang.Object apply(java.lang.Object,java.lang.Object)>($r1, $r2)"->"$r4 = (java.lang.Double) $r3";
+    "$r4 = (java.lang.Double) $r3"->"$d3 = virtualinvoke $r4.<java.lang.Double: double doubleValue()>()";
+    "$d3 = virtualinvoke $r4.<java.lang.Double: double doubleValue()>()"->"$d4 = d0 * $d3";
+    "$d4 = d0 * $d3"->"$d5 = d1 + $d4";
+    "$d5 = d1 + $d4"->"return $d5";
+}

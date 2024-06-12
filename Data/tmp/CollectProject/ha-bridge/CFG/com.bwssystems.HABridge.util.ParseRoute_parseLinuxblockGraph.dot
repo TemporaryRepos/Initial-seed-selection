@@ -1,0 +1,1727 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 74 ]
+r9 := @this: com.bwssystems.HABridge.util.ParseRoute;
+r38 = null;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 74 ]
+$r0 = new java.io.BufferedReader;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 74 ]
+$r1 = new java.io.FileReader;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 74 ]
+specialinvoke $r1.<java.io.FileReader: void <init>(java.lang.String)>(\"/proc/net/route\");
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 74 ]
+specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 74 ]
+r38 = $r0;
+"
+    "Block 6:
+[preds: 5 72 ] [succs: 7 74 ]
+$r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 74 ]
+r39 = $r2;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 73 74 ]
+if $r2 == null goto (branch);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 74 ]
+r40 = virtualinvoke r39.<java.lang.String: java.lang.String trim()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 74 ]
+r3 = staticinvoke <com.bwssystems.HABridge.util.Tokenizer: java.lang.String[] parse(java.lang.String,char,boolean,boolean)>(r40, 9, 1, 1);
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 74 ]
+$i0 = lengthof r3;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 72 74 ]
+if $i0 <= 1 goto (branch);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 74 ]
+$r4 = r3[1];
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 74 ]
+$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"00000000\");
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 72 74 ]
+if $z0 == 0 goto (branch);
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 74 ]
+r5 = r3[2];
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 74 ]
+$i1 = virtualinvoke r5.<java.lang.String: int length()>();
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 51 74 ]
+if $i1 != 8 goto r42 = r3[0];
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 74 ]
+r41 = newarray (java.lang.String)[4];
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 74 ]
+$r14 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(0, 2);
+"
+    "Block 21:
+[preds: 20 ] [succs: 22 74 ]
+$i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r14, 16);
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 74 ]
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i2);
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 74 ]
+r41[3] = $r15;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 74 ]
+$r16 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(2, 4);
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 74 ]
+$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r16, 16);
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 74 ]
+$r17 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i3);
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 74 ]
+r41[2] = $r17;
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 74 ]
+$r18 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(4, 6);
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 74 ]
+$i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r18, 16);
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 74 ]
+$r19 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i4);
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 74 ]
+r41[1] = $r19;
+"
+    "Block 32:
+[preds: 31 ] [succs: 33 74 ]
+$r20 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(6, 8);
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 74 ]
+$i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r20, 16);
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 74 ]
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i5);
+"
+    "Block 35:
+[preds: 34 ] [succs: 36 74 ]
+r41[0] = $r21;
+"
+    "Block 36:
+[preds: 35 ] [succs: 37 74 ]
+$r22 = new java.lang.StringBuilder;
+"
+    "Block 37:
+[preds: 36 ] [succs: 38 74 ]
+specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 38:
+[preds: 37 ] [succs: 39 74 ]
+$r23 = r41[0];
+"
+    "Block 39:
+[preds: 38 ] [succs: 40 74 ]
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+"
+    "Block 40:
+[preds: 39 ] [succs: 41 74 ]
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"
+    "Block 41:
+[preds: 40 ] [succs: 42 74 ]
+$r26 = r41[1];
+"
+    "Block 42:
+[preds: 41 ] [succs: 43 74 ]
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+"
+    "Block 43:
+[preds: 42 ] [succs: 44 74 ]
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"
+    "Block 44:
+[preds: 43 ] [succs: 45 74 ]
+$r29 = r41[2];
+"
+    "Block 45:
+[preds: 44 ] [succs: 46 74 ]
+$r30 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+"
+    "Block 46:
+[preds: 45 ] [succs: 47 74 ]
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"
+    "Block 47:
+[preds: 46 ] [succs: 48 74 ]
+$r32 = r41[3];
+"
+    "Block 48:
+[preds: 47 ] [succs: 49 74 ]
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+"
+    "Block 49:
+[preds: 48 ] [succs: 50 74 ]
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 50:
+[preds: 49 ] [succs: 51 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _gateway> = $r34;
+"
+    "Block 51:
+[preds: 18 50 ] [succs: 52 74 ]
+r42 = r3[0];
+"
+    "Block 52:
+[preds: 51 ] [succs: 53 74 ]
+r6 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(r42);
+"
+    "Block 53:
+[preds: 52 ] [succs: 54 74 ]
+r7 = virtualinvoke r6.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"
+    "Block 54:
+[preds: 53 69 ] [succs: 55 74 ]
+$z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>();
+"
+    "Block 55:
+[preds: 54 ] [succs: 56 70 74 ]
+if $z3 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"
+    "Block 56:
+[preds: 55 ] [succs: 57 74 ]
+r8 = interfaceinvoke r7.<java.util.Enumeration: java.lang.Object nextElement()>();
+"
+    "Block 57:
+[preds: 56 ] [succs: 58 74 ]
+$z1 = r8 instanceof java.net.Inet4Address;
+"
+    "Block 58:
+[preds: 57 ] [succs: 59 69 74 ]
+if $z1 == 0 goto (branch);
+"
+    "Block 59:
+[preds: 58 ] [succs: 60 74 ]
+$r10 = virtualinvoke r8.<java.lang.Object: java.lang.String toString()>();
+"
+    "Block 60:
+[preds: 59 ] [succs: 61 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r10;
+"
+    "Block 61:
+[preds: 60 ] [succs: 62 74 ]
+$r11 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"
+    "Block 62:
+[preds: 61 ] [succs: 63 74 ]
+$z2 = virtualinvoke $r11.<java.lang.String: boolean startsWith(java.lang.String)>(\"/\");
+"
+    "Block 63:
+[preds: 62 ] [succs: 64 67 74 ]
+if $z2 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"
+    "Block 64:
+[preds: 63 ] [succs: 65 74 ]
+$r12 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"
+    "Block 65:
+[preds: 64 ] [succs: 66 74 ]
+$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String substring(int)>(1);
+"
+    "Block 66:
+[preds: 65 ] [succs: 67 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r13;
+"
+    "Block 67:
+[preds: 63 66 ] [succs: 68 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"
+    "Block 68:
+[preds: 67 ] [succs: ]
+return;
+"
+    "Block 69:
+[preds: 58 ] [succs: 54 74 ]
+goto [?= $z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>()];
+"
+    "Block 70:
+[preds: 55 ] [succs: 71 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"
+    "Block 71:
+[preds: 70 ] [succs: ]
+return;
+"
+    "Block 72:
+[preds: 12 15 ] [succs: 6 74 ]
+goto [?= $r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>()];
+"
+    "Block 73:
+[preds: 8 ] [succs: 75 ]
+goto [?= (branch)];
+"
+    "Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+"
+    "Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+"
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"
+    "Block 77:
+[preds: 76 ] [succs: 79 ]
+goto [?= return];
+"
+    "Block 78:
+[preds: 75 76 ] [succs: 79 ]
+$r35 := @caughtexception;
+r44 = $r35;
+"
+    "Block 79:
+[preds: 75 77 78 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 74 ]
+r9 := @this: com.bwssystems.HABridge.util.ParseRoute;
+r38 = null;
+"->"Block 1:
+[preds: 0 ] [succs: 2 74 ]
+$r0 = new java.io.BufferedReader;
+";
+    "Block 0:
+[preds: ] [succs: 1 74 ]
+r9 := @this: com.bwssystems.HABridge.util.ParseRoute;
+r38 = null;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 74 ]
+$r0 = new java.io.BufferedReader;
+"->"Block 2:
+[preds: 1 ] [succs: 3 74 ]
+$r1 = new java.io.FileReader;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 74 ]
+$r0 = new java.io.BufferedReader;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 74 ]
+$r1 = new java.io.FileReader;
+"->"Block 3:
+[preds: 2 ] [succs: 4 74 ]
+specialinvoke $r1.<java.io.FileReader: void <init>(java.lang.String)>(\"/proc/net/route\");
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 74 ]
+$r1 = new java.io.FileReader;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 74 ]
+specialinvoke $r1.<java.io.FileReader: void <init>(java.lang.String)>(\"/proc/net/route\");
+"->"Block 4:
+[preds: 3 ] [succs: 5 74 ]
+specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 74 ]
+specialinvoke $r1.<java.io.FileReader: void <init>(java.lang.String)>(\"/proc/net/route\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 74 ]
+specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+"->"Block 5:
+[preds: 4 ] [succs: 6 74 ]
+r38 = $r0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 74 ]
+specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 74 ]
+r38 = $r0;
+"->"Block 6:
+[preds: 5 72 ] [succs: 7 74 ]
+$r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 74 ]
+r38 = $r0;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 6:
+[preds: 5 72 ] [succs: 7 74 ]
+$r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 74 ]
+r39 = $r2;
+";
+    "Block 6:
+[preds: 5 72 ] [succs: 7 74 ]
+$r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 74 ]
+r39 = $r2;
+"->"Block 8:
+[preds: 7 ] [succs: 9 73 74 ]
+if $r2 == null goto (branch);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 74 ]
+r39 = $r2;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 73 74 ]
+if $r2 == null goto (branch);
+"->"Block 9:
+[preds: 8 ] [succs: 10 74 ]
+r40 = virtualinvoke r39.<java.lang.String: java.lang.String trim()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 73 74 ]
+if $r2 == null goto (branch);
+"->"Block 73:
+[preds: 8 ] [succs: 75 ]
+goto [?= (branch)];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 73 74 ]
+if $r2 == null goto (branch);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 74 ]
+r40 = virtualinvoke r39.<java.lang.String: java.lang.String trim()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 74 ]
+r3 = staticinvoke <com.bwssystems.HABridge.util.Tokenizer: java.lang.String[] parse(java.lang.String,char,boolean,boolean)>(r40, 9, 1, 1);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 74 ]
+r40 = virtualinvoke r39.<java.lang.String: java.lang.String trim()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 74 ]
+r3 = staticinvoke <com.bwssystems.HABridge.util.Tokenizer: java.lang.String[] parse(java.lang.String,char,boolean,boolean)>(r40, 9, 1, 1);
+"->"Block 11:
+[preds: 10 ] [succs: 12 74 ]
+$i0 = lengthof r3;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 74 ]
+r3 = staticinvoke <com.bwssystems.HABridge.util.Tokenizer: java.lang.String[] parse(java.lang.String,char,boolean,boolean)>(r40, 9, 1, 1);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 74 ]
+$i0 = lengthof r3;
+"->"Block 12:
+[preds: 11 ] [succs: 13 72 74 ]
+if $i0 <= 1 goto (branch);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 74 ]
+$i0 = lengthof r3;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 72 74 ]
+if $i0 <= 1 goto (branch);
+"->"Block 13:
+[preds: 12 ] [succs: 14 74 ]
+$r4 = r3[1];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 72 74 ]
+if $i0 <= 1 goto (branch);
+"->"Block 72:
+[preds: 12 15 ] [succs: 6 74 ]
+goto [?= $r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 72 74 ]
+if $i0 <= 1 goto (branch);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 74 ]
+$r4 = r3[1];
+"->"Block 14:
+[preds: 13 ] [succs: 15 74 ]
+$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"00000000\");
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 74 ]
+$r4 = r3[1];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 74 ]
+$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"00000000\");
+"->"Block 15:
+[preds: 14 ] [succs: 16 72 74 ]
+if $z0 == 0 goto (branch);
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 74 ]
+$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"00000000\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 72 74 ]
+if $z0 == 0 goto (branch);
+"->"Block 16:
+[preds: 15 ] [succs: 17 74 ]
+r5 = r3[2];
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 72 74 ]
+if $z0 == 0 goto (branch);
+"->"Block 72:
+[preds: 12 15 ] [succs: 6 74 ]
+goto [?= $r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>()];
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 72 74 ]
+if $z0 == 0 goto (branch);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 74 ]
+r5 = r3[2];
+"->"Block 17:
+[preds: 16 ] [succs: 18 74 ]
+$i1 = virtualinvoke r5.<java.lang.String: int length()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 74 ]
+r5 = r3[2];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 74 ]
+$i1 = virtualinvoke r5.<java.lang.String: int length()>();
+"->"Block 18:
+[preds: 17 ] [succs: 19 51 74 ]
+if $i1 != 8 goto r42 = r3[0];
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 74 ]
+$i1 = virtualinvoke r5.<java.lang.String: int length()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 51 74 ]
+if $i1 != 8 goto r42 = r3[0];
+"->"Block 19:
+[preds: 18 ] [succs: 20 74 ]
+r41 = newarray (java.lang.String)[4];
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 51 74 ]
+if $i1 != 8 goto r42 = r3[0];
+"->"Block 51:
+[preds: 18 50 ] [succs: 52 74 ]
+r42 = r3[0];
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 51 74 ]
+if $i1 != 8 goto r42 = r3[0];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 74 ]
+r41 = newarray (java.lang.String)[4];
+"->"Block 20:
+[preds: 19 ] [succs: 21 74 ]
+$r14 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(0, 2);
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 74 ]
+r41 = newarray (java.lang.String)[4];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 74 ]
+$r14 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(0, 2);
+"->"Block 21:
+[preds: 20 ] [succs: 22 74 ]
+$i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r14, 16);
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 74 ]
+$r14 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(0, 2);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 74 ]
+$i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r14, 16);
+"->"Block 22:
+[preds: 21 ] [succs: 23 74 ]
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i2);
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 74 ]
+$i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r14, 16);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 74 ]
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i2);
+"->"Block 23:
+[preds: 22 ] [succs: 24 74 ]
+r41[3] = $r15;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 74 ]
+$r15 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i2);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 74 ]
+r41[3] = $r15;
+"->"Block 24:
+[preds: 23 ] [succs: 25 74 ]
+$r16 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(2, 4);
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 74 ]
+r41[3] = $r15;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 74 ]
+$r16 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(2, 4);
+"->"Block 25:
+[preds: 24 ] [succs: 26 74 ]
+$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r16, 16);
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 74 ]
+$r16 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(2, 4);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 74 ]
+$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r16, 16);
+"->"Block 26:
+[preds: 25 ] [succs: 27 74 ]
+$r17 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i3);
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 74 ]
+$i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r16, 16);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 74 ]
+$r17 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i3);
+"->"Block 27:
+[preds: 26 ] [succs: 28 74 ]
+r41[2] = $r17;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 74 ]
+$r17 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i3);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 74 ]
+r41[2] = $r17;
+"->"Block 28:
+[preds: 27 ] [succs: 29 74 ]
+$r18 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(4, 6);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 74 ]
+r41[2] = $r17;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 74 ]
+$r18 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(4, 6);
+"->"Block 29:
+[preds: 28 ] [succs: 30 74 ]
+$i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r18, 16);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 74 ]
+$r18 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(4, 6);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 74 ]
+$i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r18, 16);
+"->"Block 30:
+[preds: 29 ] [succs: 31 74 ]
+$r19 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i4);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 74 ]
+$i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r18, 16);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 74 ]
+$r19 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i4);
+"->"Block 31:
+[preds: 30 ] [succs: 32 74 ]
+r41[1] = $r19;
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 74 ]
+$r19 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i4);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 74 ]
+r41[1] = $r19;
+"->"Block 32:
+[preds: 31 ] [succs: 33 74 ]
+$r20 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(6, 8);
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 74 ]
+r41[1] = $r19;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 74 ]
+$r20 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(6, 8);
+"->"Block 33:
+[preds: 32 ] [succs: 34 74 ]
+$i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r20, 16);
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 74 ]
+$r20 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(6, 8);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 74 ]
+$i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r20, 16);
+"->"Block 34:
+[preds: 33 ] [succs: 35 74 ]
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i5);
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 74 ]
+$i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r20, 16);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 74 ]
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i5);
+"->"Block 35:
+[preds: 34 ] [succs: 36 74 ]
+r41[0] = $r21;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 74 ]
+$r21 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i5);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 74 ]
+r41[0] = $r21;
+"->"Block 36:
+[preds: 35 ] [succs: 37 74 ]
+$r22 = new java.lang.StringBuilder;
+";
+    "Block 35:
+[preds: 34 ] [succs: 36 74 ]
+r41[0] = $r21;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 74 ]
+$r22 = new java.lang.StringBuilder;
+"->"Block 37:
+[preds: 36 ] [succs: 38 74 ]
+specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 74 ]
+$r22 = new java.lang.StringBuilder;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 74 ]
+specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+"->"Block 38:
+[preds: 37 ] [succs: 39 74 ]
+$r23 = r41[0];
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 74 ]
+specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 74 ]
+$r23 = r41[0];
+"->"Block 39:
+[preds: 38 ] [succs: 40 74 ]
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 74 ]
+$r23 = r41[0];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 74 ]
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+"->"Block 40:
+[preds: 39 ] [succs: 41 74 ]
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 74 ]
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 74 ]
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 41:
+[preds: 40 ] [succs: 42 74 ]
+$r26 = r41[1];
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 74 ]
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 74 ]
+$r26 = r41[1];
+"->"Block 42:
+[preds: 41 ] [succs: 43 74 ]
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 74 ]
+$r26 = r41[1];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 74 ]
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+"->"Block 43:
+[preds: 42 ] [succs: 44 74 ]
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 74 ]
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 43:
+[preds: 42 ] [succs: 44 74 ]
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 44:
+[preds: 43 ] [succs: 45 74 ]
+$r29 = r41[2];
+";
+    "Block 43:
+[preds: 42 ] [succs: 44 74 ]
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 44:
+[preds: 43 ] [succs: 45 74 ]
+$r29 = r41[2];
+"->"Block 45:
+[preds: 44 ] [succs: 46 74 ]
+$r30 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+";
+    "Block 44:
+[preds: 43 ] [succs: 45 74 ]
+$r29 = r41[2];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 74 ]
+$r30 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+"->"Block 46:
+[preds: 45 ] [succs: 47 74 ]
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 74 ]
+$r30 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 74 ]
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 47:
+[preds: 46 ] [succs: 48 74 ]
+$r32 = r41[3];
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 74 ]
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 74 ]
+$r32 = r41[3];
+"->"Block 48:
+[preds: 47 ] [succs: 49 74 ]
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 74 ]
+$r32 = r41[3];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 48:
+[preds: 47 ] [succs: 49 74 ]
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+"->"Block 49:
+[preds: 48 ] [succs: 50 74 ]
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 48:
+[preds: 47 ] [succs: 49 74 ]
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 74 ]
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 50:
+[preds: 49 ] [succs: 51 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _gateway> = $r34;
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 74 ]
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _gateway> = $r34;
+"->"Block 51:
+[preds: 18 50 ] [succs: 52 74 ]
+r42 = r3[0];
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _gateway> = $r34;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 51:
+[preds: 18 50 ] [succs: 52 74 ]
+r42 = r3[0];
+"->"Block 52:
+[preds: 51 ] [succs: 53 74 ]
+r6 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(r42);
+";
+    "Block 51:
+[preds: 18 50 ] [succs: 52 74 ]
+r42 = r3[0];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 74 ]
+r6 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(r42);
+"->"Block 53:
+[preds: 52 ] [succs: 54 74 ]
+r7 = virtualinvoke r6.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 74 ]
+r6 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(r42);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 74 ]
+r7 = virtualinvoke r6.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"->"Block 54:
+[preds: 53 69 ] [succs: 55 74 ]
+$z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>();
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 74 ]
+r7 = virtualinvoke r6.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 54:
+[preds: 53 69 ] [succs: 55 74 ]
+$z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>();
+"->"Block 55:
+[preds: 54 ] [succs: 56 70 74 ]
+if $z3 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 54:
+[preds: 53 69 ] [succs: 55 74 ]
+$z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 70 74 ]
+if $z3 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 56:
+[preds: 55 ] [succs: 57 74 ]
+r8 = interfaceinvoke r7.<java.util.Enumeration: java.lang.Object nextElement()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 70 74 ]
+if $z3 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 70:
+[preds: 55 ] [succs: 71 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 70 74 ]
+if $z3 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 74 ]
+r8 = interfaceinvoke r7.<java.util.Enumeration: java.lang.Object nextElement()>();
+"->"Block 57:
+[preds: 56 ] [succs: 58 74 ]
+$z1 = r8 instanceof java.net.Inet4Address;
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 74 ]
+r8 = interfaceinvoke r7.<java.util.Enumeration: java.lang.Object nextElement()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 74 ]
+$z1 = r8 instanceof java.net.Inet4Address;
+"->"Block 58:
+[preds: 57 ] [succs: 59 69 74 ]
+if $z1 == 0 goto (branch);
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 74 ]
+$z1 = r8 instanceof java.net.Inet4Address;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 58:
+[preds: 57 ] [succs: 59 69 74 ]
+if $z1 == 0 goto (branch);
+"->"Block 59:
+[preds: 58 ] [succs: 60 74 ]
+$r10 = virtualinvoke r8.<java.lang.Object: java.lang.String toString()>();
+";
+    "Block 58:
+[preds: 57 ] [succs: 59 69 74 ]
+if $z1 == 0 goto (branch);
+"->"Block 69:
+[preds: 58 ] [succs: 54 74 ]
+goto [?= $z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>()];
+";
+    "Block 58:
+[preds: 57 ] [succs: 59 69 74 ]
+if $z1 == 0 goto (branch);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 59:
+[preds: 58 ] [succs: 60 74 ]
+$r10 = virtualinvoke r8.<java.lang.Object: java.lang.String toString()>();
+"->"Block 60:
+[preds: 59 ] [succs: 61 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r10;
+";
+    "Block 59:
+[preds: 58 ] [succs: 60 74 ]
+$r10 = virtualinvoke r8.<java.lang.Object: java.lang.String toString()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r10;
+"->"Block 61:
+[preds: 60 ] [succs: 62 74 ]
+$r11 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r10;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 74 ]
+$r11 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"->"Block 62:
+[preds: 61 ] [succs: 63 74 ]
+$z2 = virtualinvoke $r11.<java.lang.String: boolean startsWith(java.lang.String)>(\"/\");
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 74 ]
+$r11 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 62:
+[preds: 61 ] [succs: 63 74 ]
+$z2 = virtualinvoke $r11.<java.lang.String: boolean startsWith(java.lang.String)>(\"/\");
+"->"Block 63:
+[preds: 62 ] [succs: 64 67 74 ]
+if $z2 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 62:
+[preds: 61 ] [succs: 63 74 ]
+$z2 = virtualinvoke $r11.<java.lang.String: boolean startsWith(java.lang.String)>(\"/\");
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 63:
+[preds: 62 ] [succs: 64 67 74 ]
+if $z2 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 64:
+[preds: 63 ] [succs: 65 74 ]
+$r12 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+";
+    "Block 63:
+[preds: 62 ] [succs: 64 67 74 ]
+if $z2 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 67:
+[preds: 63 66 ] [succs: 68 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 63:
+[preds: 62 ] [succs: 64 67 74 ]
+if $z2 == 0 goto virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 64:
+[preds: 63 ] [succs: 65 74 ]
+$r12 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"->"Block 65:
+[preds: 64 ] [succs: 66 74 ]
+$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String substring(int)>(1);
+";
+    "Block 64:
+[preds: 63 ] [succs: 65 74 ]
+$r12 = r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip>;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 ]
+$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String substring(int)>(1);
+"->"Block 66:
+[preds: 65 ] [succs: 67 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r13;
+";
+    "Block 65:
+[preds: 64 ] [succs: 66 74 ]
+$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String substring(int)>(1);
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r13;
+"->"Block 67:
+[preds: 63 66 ] [succs: 68 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 74 ]
+r9.<com.bwssystems.HABridge.util.ParseRoute: java.lang.String _ip> = $r13;
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 67:
+[preds: 63 66 ] [succs: 68 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 68:
+[preds: 67 ] [succs: ]
+return;
+";
+    "Block 67:
+[preds: 63 66 ] [succs: 68 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 69:
+[preds: 58 ] [succs: 54 74 ]
+goto [?= $z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 54:
+[preds: 53 69 ] [succs: 55 74 ]
+$z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>();
+";
+    "Block 69:
+[preds: 58 ] [succs: 54 74 ]
+goto [?= $z3 = interfaceinvoke r7.<java.util.Enumeration: boolean hasMoreElements()>()];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 70:
+[preds: 55 ] [succs: 71 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 71:
+[preds: 70 ] [succs: ]
+return;
+";
+    "Block 70:
+[preds: 55 ] [succs: 71 74 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 72:
+[preds: 12 15 ] [succs: 6 74 ]
+goto [?= $r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 6:
+[preds: 5 72 ] [succs: 7 74 ]
+$r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 72:
+[preds: 12 15 ] [succs: 6 74 ]
+goto [?= $r2 = virtualinvoke r38.<java.io.BufferedReader: java.lang.String readLine()>()];
+"->"Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 73:
+[preds: 8 ] [succs: 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+";
+    "Block 74:
+[preds: 0 1 2 3 4 5 72 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 69 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 ] [succs: 75 ]
+$r36 := @caughtexception;
+r43 = $r36;
+$r37 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.Object)>(r43);
+virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+"->"Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+";
+    "Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+"->"Block 76:
+[preds: 75 ] [succs: 77 78 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+";
+    "Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+"->"Block 79:
+[preds: 75 77 78 ] [succs: ]
+return;
+";
+    "Block 75:
+[preds: 73 74 ] [succs: 76 79 78 ]
+if r38 == null goto return;
+"->"Block 78:
+[preds: 75 76 ] [succs: 79 ]
+$r35 := @caughtexception;
+r44 = $r35;
+";
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 77:
+[preds: 76 ] [succs: 79 ]
+goto [?= return];
+";
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+virtualinvoke r38.<java.io.BufferedReader: void close()>();
+"->"Block 78:
+[preds: 75 76 ] [succs: 79 ]
+$r35 := @caughtexception;
+r44 = $r35;
+";
+    "Block 77:
+[preds: 76 ] [succs: 79 ]
+goto [?= return];
+"->"Block 79:
+[preds: 75 77 78 ] [succs: ]
+return;
+";
+    "Block 78:
+[preds: 75 76 ] [succs: 79 ]
+$r35 := @caughtexception;
+r44 = $r35;
+"->"Block 79:
+[preds: 75 77 78 ] [succs: ]
+return;
+";
+}

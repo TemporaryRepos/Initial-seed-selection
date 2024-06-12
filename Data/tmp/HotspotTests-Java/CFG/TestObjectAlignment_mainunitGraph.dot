@@ -1,0 +1,25 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String[]"
+    "$z0 = staticinvoke <TestObjectAlignment: boolean runsOn32bit()>()"
+    "if $z0 == 0 goto i0 = 0"
+    "return"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "$r0 = newarray (byte)[1000]"
+    "<TestObjectAlignment: byte[] garbage> = $r0"
+    "staticinvoke <java.lang.System: void gc()>()"
+    "i0 = i0 + 1"
+    "if i0 < 10 goto $r0 = newarray (byte)[1000]"
+    "r1 := @parameter0: java.lang.String[]"->"$z0 = staticinvoke <TestObjectAlignment: boolean runsOn32bit()>()";
+    "$z0 = staticinvoke <TestObjectAlignment: boolean runsOn32bit()>()"->"if $z0 == 0 goto i0 = 0";
+    "if $z0 == 0 goto i0 = 0"->"return";
+    "if $z0 == 0 goto i0 = 0"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 10 goto $r0 = newarray (byte)[1000]";
+    "$r0 = newarray (byte)[1000]"->"<TestObjectAlignment: byte[] garbage> = $r0";
+    "<TestObjectAlignment: byte[] garbage> = $r0"->"staticinvoke <java.lang.System: void gc()>()";
+    "staticinvoke <java.lang.System: void gc()>()"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 10 goto $r0 = newarray (byte)[1000]";
+    "if i0 < 10 goto $r0 = newarray (byte)[1000]"->"return";
+    "if i0 < 10 goto $r0 = newarray (byte)[1000]"->"$r0 = newarray (byte)[1000]";
+}

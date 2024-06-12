@@ -1,0 +1,41 @@
+digraph "unitGraph" {
+    "r0 := @this: de.idealo.mongodb.slowops.monitor.MongoDbAccessor"
+    "r1 := @parameter0: java.lang.String"
+    "r3 := @parameter1: java.lang.String"
+    "i0 := @parameter2: int"
+    "$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.client.MongoDatabase getMongoDatabase(java.lang.String)>(r1)"
+    "$r4 = interfaceinvoke $r2.<com.mongodb.client.MongoDatabase: com.mongodb.client.MongoCollection getCollection(java.lang.String)>(r3)"
+    "$r5 = interfaceinvoke $r4.<com.mongodb.client.MongoCollection: com.mongodb.client.FindIterable find()>()"
+    "r6 = interfaceinvoke $r5.<com.mongodb.client.FindIterable: com.mongodb.client.FindIterable limit(int)>(i0)"
+    "if r6 == null goto return"
+    "r7 = interfaceinvoke r6.<com.mongodb.client.MongoIterable: com.mongodb.client.MongoCursor iterator()>()"
+    "$z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto return"
+    "$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>()"
+    "r9 = (org.bson.Document) $r8"
+    "$r10 = <de.idealo.mongodb.slowops.monitor.MongoDbAccessor: org.slf4j.Logger LOG>"
+    "$r11 = staticinvoke <com.mongodb.util.JSON: java.lang.String serialize(java.lang.Object)>(r9)"
+    "interfaceinvoke $r10.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object)>(\"doc: {}\", $r11)"
+    "goto [?= $z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()]"
+    "return"
+    "r0 := @this: de.idealo.mongodb.slowops.monitor.MongoDbAccessor"->"r1 := @parameter0: java.lang.String";
+    "r1 := @parameter0: java.lang.String"->"r3 := @parameter1: java.lang.String";
+    "r3 := @parameter1: java.lang.String"->"i0 := @parameter2: int";
+    "i0 := @parameter2: int"->"$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.client.MongoDatabase getMongoDatabase(java.lang.String)>(r1)";
+    "$r2 = virtualinvoke r0.<de.idealo.mongodb.slowops.monitor.MongoDbAccessor: com.mongodb.client.MongoDatabase getMongoDatabase(java.lang.String)>(r1)"->"$r4 = interfaceinvoke $r2.<com.mongodb.client.MongoDatabase: com.mongodb.client.MongoCollection getCollection(java.lang.String)>(r3)";
+    "$r4 = interfaceinvoke $r2.<com.mongodb.client.MongoDatabase: com.mongodb.client.MongoCollection getCollection(java.lang.String)>(r3)"->"$r5 = interfaceinvoke $r4.<com.mongodb.client.MongoCollection: com.mongodb.client.FindIterable find()>()";
+    "$r5 = interfaceinvoke $r4.<com.mongodb.client.MongoCollection: com.mongodb.client.FindIterable find()>()"->"r6 = interfaceinvoke $r5.<com.mongodb.client.FindIterable: com.mongodb.client.FindIterable limit(int)>(i0)";
+    "r6 = interfaceinvoke $r5.<com.mongodb.client.FindIterable: com.mongodb.client.FindIterable limit(int)>(i0)"->"if r6 == null goto return";
+    "if r6 == null goto return"->"r7 = interfaceinvoke r6.<com.mongodb.client.MongoIterable: com.mongodb.client.MongoCursor iterator()>()";
+    "if r6 == null goto return"->"return";
+    "r7 = interfaceinvoke r6.<com.mongodb.client.MongoIterable: com.mongodb.client.MongoCursor iterator()>()"->"$z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto return"->"return";
+    "$r8 = interfaceinvoke r7.<java.util.Iterator: java.lang.Object next()>()"->"r9 = (org.bson.Document) $r8";
+    "r9 = (org.bson.Document) $r8"->"$r10 = <de.idealo.mongodb.slowops.monitor.MongoDbAccessor: org.slf4j.Logger LOG>";
+    "$r10 = <de.idealo.mongodb.slowops.monitor.MongoDbAccessor: org.slf4j.Logger LOG>"->"$r11 = staticinvoke <com.mongodb.util.JSON: java.lang.String serialize(java.lang.Object)>(r9)";
+    "$r11 = staticinvoke <com.mongodb.util.JSON: java.lang.String serialize(java.lang.Object)>(r9)"->"interfaceinvoke $r10.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object)>(\"doc: {}\", $r11)";
+    "interfaceinvoke $r10.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object)>(\"doc: {}\", $r11)"->"goto [?= $z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r7.<java.util.Iterator: boolean hasNext()>()";
+}

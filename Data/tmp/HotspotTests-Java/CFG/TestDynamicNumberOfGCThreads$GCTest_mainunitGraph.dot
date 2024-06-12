@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating garbage\")"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "$r1 = newarray (byte)[131072]"
+    "<TestDynamicNumberOfGCThreads$GCTest: byte[] garbage> = $r1"
+    "i0 = i0 + 1"
+    "if i0 < 1024 goto $r1 = newarray (byte)[131072]"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Done\")"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating garbage\")";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating garbage\")"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 1024 goto $r1 = newarray (byte)[131072]";
+    "$r1 = newarray (byte)[131072]"->"<TestDynamicNumberOfGCThreads$GCTest: byte[] garbage> = $r1";
+    "<TestDynamicNumberOfGCThreads$GCTest: byte[] garbage> = $r1"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 1024 goto $r1 = newarray (byte)[131072]";
+    "if i0 < 1024 goto $r1 = newarray (byte)[131072]"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "if i0 < 1024 goto $r1 = newarray (byte)[131072]"->"$r1 = newarray (byte)[131072]";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Done\")";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Done\")"->"return";
+}

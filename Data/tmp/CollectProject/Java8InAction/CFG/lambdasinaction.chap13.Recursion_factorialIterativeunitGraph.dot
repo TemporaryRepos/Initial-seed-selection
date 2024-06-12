@@ -1,0 +1,18 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 = 1"
+    "i2 = 1"
+    "if i2 > i0 goto return i1"
+    "i1 = i1 * i2"
+    "i2 = i2 + 1"
+    "goto [?= (branch)]"
+    "return i1"
+    "i0 := @parameter0: int"->"i1 = 1";
+    "i1 = 1"->"i2 = 1";
+    "i2 = 1"->"if i2 > i0 goto return i1";
+    "if i2 > i0 goto return i1"->"i1 = i1 * i2";
+    "if i2 > i0 goto return i1"->"return i1";
+    "i1 = i1 * i2"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 > i0 goto return i1";
+}

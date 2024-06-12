@@ -1,0 +1,179 @@
+digraph "unitGraph" {
+    "r0 := @this: com.yahoo.semsearch.fastlinking.utils.ExtractLinks"
+    "r5 := @parameter0: info.bliki.wiki.dump.WikiArticle"
+    "r52 := @parameter1: info.bliki.wiki.dump.Siteinfo"
+    "$r1 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"
+    "virtualinvoke $r1.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"
+    "$r3 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString html>"
+    "virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"
+    "$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"
+    "$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>()"
+    "$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95)"
+    "$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r8, \"UTF-8\")"
+    "virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9)"
+    "goto [?= $r11 = new info.bliki.wiki.model.WikiModel]"
+    "$r51 := @caughtexception"
+    "r53 = $r51"
+    "virtualinvoke r53.<java.io.UnsupportedEncodingException: void printStackTrace()>()"
+    "$r11 = new info.bliki.wiki.model.WikiModel"
+    "$r13 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String imageBaseURL>"
+    "$r12 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String linkBaseURL>"
+    "specialinvoke $r11.<info.bliki.wiki.model.WikiModel: void <init>(java.lang.String,java.lang.String)>($r13, $r12)"
+    "r54 = $r11"
+    "$r14 = new info.bliki.wiki.filter.PlainTextConverter"
+    "specialinvoke $r14.<info.bliki.wiki.filter.PlainTextConverter: void <init>()>()"
+    "$r15 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getText()>()"
+    "r16 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.lang.String render(info.bliki.wiki.filter.ITextConverter,java.lang.String)>($r14, $r15)"
+    "r17 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.util.Set getLinks()>()"
+    "$r18 = new java.lang.StringBuilder"
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"
+    "r19 = $r18"
+    "r55 = interfaceinvoke r17.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r45 = interfaceinvoke r55.<java.util.Iterator: java.lang.Object next()>()"
+    "r56 = (java.lang.String) $r45"
+    "$r46 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"
+    "$r47 = virtualinvoke r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String processLink(java.lang.String)>(r56)"
+    "virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"
+    "goto [?= $z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()]"
+    "virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "r57 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r21 = new it.unimi.dsi.lang.MutableString"
+    "specialinvoke $r21.<it.unimi.dsi.lang.MutableString: void <init>(java.lang.String)>(r16)"
+    "r58 = $r21"
+    "$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"
+    "virtualinvoke $r22.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"
+    "$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>"
+    "virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"
+    "$r27 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>"
+    "$r26 = new it.unimi.dsi.io.FastBufferedReader"
+    "specialinvoke $r26.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>(r58)"
+    "virtualinvoke $r27.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r26)"
+    "$r30 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"
+    "$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"
+    "$r31 = virtualinvoke $r30.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r29)"
+    "virtualinvoke $r31.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\")"
+    "$r33 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"
+    "virtualinvoke $r33.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(r57)"
+    "$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>"
+    "$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"
+    "$r35 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>"
+    "$z0 = virtualinvoke $r37.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r36, $r35)"
+    "if $z0 == 0 goto $r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"
+    "$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"
+    "$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"
+    "$r42 = virtualinvoke $r40.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>()"
+    "$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42)"
+    "virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \")"
+    "goto [?= $r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>]"
+    "$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"
+    "virtualinvoke $r38.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\")"
+    "goto [?= return]"
+    "$r49 := @caughtexception"
+    "r50 = $r49"
+    "virtualinvoke r50.<java.io.IOException: void printStackTrace()>()"
+    "return"
+    "r0 := @this: com.yahoo.semsearch.fastlinking.utils.ExtractLinks"->"r5 := @parameter0: info.bliki.wiki.dump.WikiArticle";
+    "r5 := @parameter0: info.bliki.wiki.dump.WikiArticle"->"r52 := @parameter1: info.bliki.wiki.dump.Siteinfo";
+    "r52 := @parameter1: info.bliki.wiki.dump.Siteinfo"->"$r1 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>";
+    "$r1 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"->"virtualinvoke $r1.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)";
+    "virtualinvoke $r1.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"->"$r3 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString html>";
+    "$r3 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString html>"->"virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)";
+    "virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"->"$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>";
+    "virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"->"$r51 := @caughtexception";
+    "$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"->"$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>()";
+    "$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"->"$r51 := @caughtexception";
+    "$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>()"->"$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95)";
+    "$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>()"->"$r51 := @caughtexception";
+    "$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95)"->"$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r8, \"UTF-8\")";
+    "$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95)"->"$r51 := @caughtexception";
+    "$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r8, \"UTF-8\")"->"virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9)";
+    "$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r8, \"UTF-8\")"->"$r51 := @caughtexception";
+    "virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9)"->"goto [?= $r11 = new info.bliki.wiki.model.WikiModel]";
+    "virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9)"->"$r51 := @caughtexception";
+    "goto [?= $r11 = new info.bliki.wiki.model.WikiModel]"->"$r11 = new info.bliki.wiki.model.WikiModel";
+    "$r51 := @caughtexception"->"r53 = $r51";
+    "r53 = $r51"->"virtualinvoke r53.<java.io.UnsupportedEncodingException: void printStackTrace()>()";
+    "virtualinvoke r53.<java.io.UnsupportedEncodingException: void printStackTrace()>()"->"$r11 = new info.bliki.wiki.model.WikiModel";
+    "$r11 = new info.bliki.wiki.model.WikiModel"->"$r13 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String imageBaseURL>";
+    "$r13 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String imageBaseURL>"->"$r12 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String linkBaseURL>";
+    "$r12 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String linkBaseURL>"->"specialinvoke $r11.<info.bliki.wiki.model.WikiModel: void <init>(java.lang.String,java.lang.String)>($r13, $r12)";
+    "specialinvoke $r11.<info.bliki.wiki.model.WikiModel: void <init>(java.lang.String,java.lang.String)>($r13, $r12)"->"r54 = $r11";
+    "r54 = $r11"->"$r14 = new info.bliki.wiki.filter.PlainTextConverter";
+    "$r14 = new info.bliki.wiki.filter.PlainTextConverter"->"specialinvoke $r14.<info.bliki.wiki.filter.PlainTextConverter: void <init>()>()";
+    "specialinvoke $r14.<info.bliki.wiki.filter.PlainTextConverter: void <init>()>()"->"$r15 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getText()>()";
+    "$r15 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getText()>()"->"r16 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.lang.String render(info.bliki.wiki.filter.ITextConverter,java.lang.String)>($r14, $r15)";
+    "r16 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.lang.String render(info.bliki.wiki.filter.ITextConverter,java.lang.String)>($r14, $r15)"->"r17 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.util.Set getLinks()>()";
+    "r17 = virtualinvoke r54.<info.bliki.wiki.model.WikiModel: java.util.Set getLinks()>()"->"$r18 = new java.lang.StringBuilder";
+    "$r18 = new java.lang.StringBuilder"->"specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"r19 = $r18";
+    "r19 = $r18"->"r55 = interfaceinvoke r17.<java.util.Set: java.util.Iterator iterator()>()";
+    "r55 = interfaceinvoke r17.<java.util.Set: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "if $z1 == 0 goto virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r45 = interfaceinvoke r55.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z1 == 0 goto virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r45 = interfaceinvoke r55.<java.util.Iterator: java.lang.Object next()>()"->"r56 = (java.lang.String) $r45";
+    "r56 = (java.lang.String) $r45"->"$r46 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")";
+    "$r46 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"->"$r47 = virtualinvoke r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String processLink(java.lang.String)>(r56)";
+    "$r47 = virtualinvoke r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.lang.String processLink(java.lang.String)>(r56)"->"virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)";
+    "virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47)"->"goto [?= $z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r55.<java.util.Iterator: boolean hasNext()>()";
+    "virtualinvoke r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"r57 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r57 = virtualinvoke r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r21 = new it.unimi.dsi.lang.MutableString";
+    "$r21 = new it.unimi.dsi.lang.MutableString"->"specialinvoke $r21.<it.unimi.dsi.lang.MutableString: void <init>(java.lang.String)>(r16)";
+    "specialinvoke $r21.<it.unimi.dsi.lang.MutableString: void <init>(java.lang.String)>(r16)"->"r58 = $r21";
+    "r58 = $r21"->"$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>";
+    "$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"->"virtualinvoke $r22.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)";
+    "virtualinvoke $r22.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"->"$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>";
+    "$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>"->"virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)";
+    "virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0)"->"$r27 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>";
+    "$r27 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>"->"$r26 = new it.unimi.dsi.io.FastBufferedReader";
+    "$r26 = new it.unimi.dsi.io.FastBufferedReader"->"specialinvoke $r26.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>(r58)";
+    "specialinvoke $r26.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>(r58)"->"virtualinvoke $r27.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r26)";
+    "virtualinvoke $r27.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r26)"->"$r30 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>";
+    "virtualinvoke $r27.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r26)"->"$r49 := @caughtexception";
+    "$r30 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>";
+    "$r30 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r49 := @caughtexception";
+    "$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"->"$r31 = virtualinvoke $r30.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r29)";
+    "$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString title>"->"$r49 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r29)"->"virtualinvoke $r31.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\")";
+    "$r31 = virtualinvoke $r30.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r29)"->"$r49 := @caughtexception";
+    "virtualinvoke $r31.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\")"->"$r33 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>";
+    "virtualinvoke $r31.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\")"->"$r49 := @caughtexception";
+    "$r33 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"virtualinvoke $r33.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(r57)";
+    "$r33 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r49 := @caughtexception";
+    "virtualinvoke $r33.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(r57)"->"$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>";
+    "virtualinvoke $r33.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(r57)"->"$r49 := @caughtexception";
+    "$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>"->"$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>";
+    "$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>"->"$r49 := @caughtexception";
+    "$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"->"$r35 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>";
+    "$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"->"$r49 := @caughtexception";
+    "$r35 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>"->"$z0 = virtualinvoke $r37.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r36, $r35)";
+    "$r35 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString nonWord>"->"$r49 := @caughtexception";
+    "$z0 = virtualinvoke $r37.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r36, $r35)"->"if $z0 == 0 goto $r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>";
+    "$z0 = virtualinvoke $r37.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r36, $r35)"->"$r49 := @caughtexception";
+    "if $z0 == 0 goto $r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>";
+    "if $z0 == 0 goto $r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>";
+    "if $z0 == 0 goto $r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r49 := @caughtexception";
+    "$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>";
+    "$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r49 := @caughtexception";
+    "$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"->"$r42 = virtualinvoke $r40.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>()";
+    "$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.lang.MutableString word>"->"$r49 := @caughtexception";
+    "$r42 = virtualinvoke $r40.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>()"->"$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42)";
+    "$r42 = virtualinvoke $r40.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>()"->"$r49 := @caughtexception";
+    "$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42)"->"virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \")";
+    "$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42)"->"$r49 := @caughtexception";
+    "virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \")"->"goto [?= $r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>]";
+    "virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \")"->"$r49 := @caughtexception";
+    "goto [?= $r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>]"->"$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>";
+    "goto [?= $r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: it.unimi.dsi.io.FastBufferedReader wordReader>]"->"$r49 := @caughtexception";
+    "$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"virtualinvoke $r38.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\")";
+    "$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractLinks: java.io.FileWriter writer>"->"$r49 := @caughtexception";
+    "virtualinvoke $r38.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\")"->"goto [?= return]";
+    "virtualinvoke $r38.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\")"->"$r49 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r49 := @caughtexception"->"r50 = $r49";
+    "r50 = $r49"->"virtualinvoke r50.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r50.<java.io.IOException: void printStackTrace()>()"->"return";
+}

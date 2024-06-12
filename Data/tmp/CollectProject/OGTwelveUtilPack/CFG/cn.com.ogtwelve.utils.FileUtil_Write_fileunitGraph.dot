@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String"
+    "r1 := @parameter1: java.io.File"
+    "z0 := @parameter2: boolean"
+    "$r0 = new java.io.FileWriter"
+    "if z0 != 0 goto $z1 = 0"
+    "$z1 = 1"
+    "goto [?= specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)]"
+    "$z1 = 0"
+    "specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)"
+    "r2 = $r0"
+    "virtualinvoke r2.<java.io.FileWriter: void write(java.lang.String)>(r3)"
+    "virtualinvoke r2.<java.io.FileWriter: void close()>()"
+    "return"
+    "r3 := @parameter0: java.lang.String"->"r1 := @parameter1: java.io.File";
+    "r1 := @parameter1: java.io.File"->"z0 := @parameter2: boolean";
+    "z0 := @parameter2: boolean"->"$r0 = new java.io.FileWriter";
+    "$r0 = new java.io.FileWriter"->"if z0 != 0 goto $z1 = 0";
+    "if z0 != 0 goto $z1 = 0"->"$z1 = 1";
+    "if z0 != 0 goto $z1 = 0"->"$z1 = 0";
+    "$z1 = 1"->"goto [?= specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)]";
+    "goto [?= specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)]"->"specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)";
+    "$z1 = 0"->"specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)";
+    "specialinvoke $r0.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r1, $z1)"->"r2 = $r0";
+    "r2 = $r0"->"virtualinvoke r2.<java.io.FileWriter: void write(java.lang.String)>(r3)";
+    "virtualinvoke r2.<java.io.FileWriter: void write(java.lang.String)>(r3)"->"virtualinvoke r2.<java.io.FileWriter: void close()>()";
+    "virtualinvoke r2.<java.io.FileWriter: void close()>()"->"return";
+}

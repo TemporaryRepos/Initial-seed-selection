@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r9 := @parameter0: java.lang.String[];
+r0 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int)>(3);
+staticinvoke <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: void expandThreadPool(java.util.concurrent.ExecutorService)>(r0);
+$r1 = <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: com.alibaba.mtc.MtContextThreadLocal stringMtContextThreadLocal>;
+virtualinvoke $r1.<com.alibaba.mtc.MtContextThreadLocal: void set(java.lang.Object)>(\"foo - main\");
+$r3 = <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: com.alibaba.mtc.MtContextThreadLocal personReferenceMtContextThreadLocal>;
+$r2 = new com.alibaba.mtc.threadpool.agent.demo.AgentDemo$Person;
+specialinvoke $r2.<com.alibaba.mtc.threadpool.agent.demo.AgentDemo$Person: void <init>(java.lang.String,int)>(\"jerry - reference\", 1);
+virtualinvoke $r3.<com.alibaba.mtc.MtContextThreadLocal: void set(java.lang.Object)>($r2);
+$r5 = <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: com.alibaba.mtc.MtContextThreadLocal personCopyMtContextThreadLocal>;
+$r4 = new com.alibaba.mtc.threadpool.agent.demo.AgentDemo$Person;
+specialinvoke $r4.<com.alibaba.mtc.threadpool.agent.demo.AgentDemo$Person: void <init>(java.lang.String,int)>(\"Tom - value\", 2);
+virtualinvoke $r5.<com.alibaba.mtc.MtContextThreadLocal: void set(java.lang.Object)>($r4);
+staticinvoke <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: void printMtContextInfo(java.lang.String)>(\"Main - Before execution of thread pool\");
+$r6 = new com.alibaba.mtc.threadpool.agent.demo.AgentDemo$3;
+specialinvoke $r6.<com.alibaba.mtc.threadpool.agent.demo.AgentDemo$3: void <init>()>();
+r7 = interfaceinvoke r0.<java.util.concurrent.ExecutorService: java.util.concurrent.Future submit(java.lang.Runnable)>($r6);
+interfaceinvoke r7.<java.util.concurrent.Future: java.lang.Object get()>();
+staticinvoke <com.alibaba.mtc.threadpool.agent.demo.AgentDemo: void printMtContextInfo(java.lang.String)>(\"Main - After execution of thread pool\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+return;
+"
+}

@@ -1,0 +1,65 @@
+digraph "unitGraph" {
+    "r9 := @parameter0: java.lang.String[]"
+    "b0 = 4"
+    "$r0 = new java.util.concurrent.CyclicBarrier"
+    "specialinvoke $r0.<java.util.concurrent.CyclicBarrier: void <init>(int)>(9)"
+    "r1 = $r0"
+    "$r2 = new java.util.concurrent.ThreadPoolExecutor"
+    "$r4 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"
+    "$r3 = new java.util.concurrent.SynchronousQueue"
+    "specialinvoke $r3.<java.util.concurrent.SynchronousQueue: void <init>()>()"
+    "specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(4, 8, 1L, $r4, $r3)"
+    "r5 = $r2"
+    "$r6 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1"
+    "specialinvoke $r6.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1: void <init>(java.util.concurrent.CyclicBarrier)>(r1)"
+    "r7 = $r6"
+    "i4 = 0"
+    "if i4 >= 8 goto virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void execute(java.lang.Runnable)>(r7)"
+    "i4 = i4 + 1"
+    "goto [?= (branch)]"
+    "virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"
+    "staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 8, 4, 8)"
+    "$i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()"
+    "if $i3 <= 4 goto staticinvoke <java.lang.Thread: void sleep(long)>(100L)"
+    "staticinvoke <java.lang.Thread: void sleep(long)>(100L)"
+    "goto [?= $i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()]"
+    "staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 4, 4, 8)"
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>()"
+    "$r8 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(9223372036854775807L, $r8)"
+    "return"
+    "r9 := @parameter0: java.lang.String[]"->"b0 = 4";
+    "b0 = 4"->"$r0 = new java.util.concurrent.CyclicBarrier";
+    "$r0 = new java.util.concurrent.CyclicBarrier"->"specialinvoke $r0.<java.util.concurrent.CyclicBarrier: void <init>(int)>(9)";
+    "specialinvoke $r0.<java.util.concurrent.CyclicBarrier: void <init>(int)>(9)"->"r1 = $r0";
+    "r1 = $r0"->"$r2 = new java.util.concurrent.ThreadPoolExecutor";
+    "$r2 = new java.util.concurrent.ThreadPoolExecutor"->"$r4 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>";
+    "$r4 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"$r3 = new java.util.concurrent.SynchronousQueue";
+    "$r3 = new java.util.concurrent.SynchronousQueue"->"specialinvoke $r3.<java.util.concurrent.SynchronousQueue: void <init>()>()";
+    "specialinvoke $r3.<java.util.concurrent.SynchronousQueue: void <init>()>()"->"specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(4, 8, 1L, $r4, $r3)";
+    "specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(4, 8, 1L, $r4, $r3)"->"r5 = $r2";
+    "r5 = $r2"->"$r6 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1";
+    "$r6 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1"->"specialinvoke $r6.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1: void <init>(java.util.concurrent.CyclicBarrier)>(r1)";
+    "specialinvoke $r6.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink$1: void <init>(java.util.concurrent.CyclicBarrier)>(r1)"->"r7 = $r6";
+    "r7 = $r6"->"i4 = 0";
+    "i4 = 0"->"if i4 >= 8 goto virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()";
+    "if i4 >= 8 goto virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"->"virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void execute(java.lang.Runnable)>(r7)";
+    "if i4 >= 8 goto virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"->"virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()";
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void execute(java.lang.Runnable)>(r7)"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 >= 8 goto virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()";
+    "virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"->"staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 8, 4, 8)";
+    "staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 8, 4, 8)"->"virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()";
+    "virtualinvoke r1.<java.util.concurrent.CyclicBarrier: int await()>()"->"$i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()";
+    "$i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()"->"if $i3 <= 4 goto staticinvoke <java.lang.Thread: void sleep(long)>(100L)";
+    "if $i3 <= 4 goto staticinvoke <java.lang.Thread: void sleep(long)>(100L)"->"staticinvoke <java.lang.Thread: void sleep(long)>(100L)";
+    "if $i3 <= 4 goto staticinvoke <java.lang.Thread: void sleep(long)>(100L)"->"staticinvoke <java.lang.Thread: void sleep(long)>(100L)";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(100L)"->"goto [?= $i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()]";
+    "goto [?= $i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()]"->"$i3 = virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: int getPoolSize()>()";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(100L)"->"staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 4, 4, 8)";
+    "staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.TimeOutShrink: void checkPoolSizes(java.util.concurrent.ThreadPoolExecutor,int,int,int)>(r5, 4, 4, 8)"->"virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>()";
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>()"->"$r8 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>";
+    "$r8 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(9223372036854775807L, $r8)";
+    "virtualinvoke r5.<java.util.concurrent.ThreadPoolExecutor: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(9223372036854775807L, $r8)"->"return";
+}

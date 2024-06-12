@@ -1,0 +1,103 @@
+digraph "unitGraph" {
+    "r29 := @parameter0: java.lang.String[]"
+    "r0 = \"sample/HelloWorld.class\""
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"
+    "r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)"
+    "$r3 = new org.objectweb.asm.ClassReader"
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"
+    "r4 = $r3"
+    "i0 = 589824"
+    "$r5 = new org.objectweb.asm.tree.ClassNode"
+    "specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()"
+    "r6 = $r5"
+    "b1 = 6"
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b1)"
+    "$r7 = new lsieun.asm.analysis.MockAnalyzer"
+    "$r8 = new org.objectweb.asm.tree.analysis.SimpleVerifier"
+    "specialinvoke $r8.<org.objectweb.asm.tree.analysis.SimpleVerifier: void <init>()>()"
+    "specialinvoke $r7.<lsieun.asm.analysis.MockAnalyzer: void <init>(org.objectweb.asm.tree.analysis.Interpreter)>($r8)"
+    "r9 = $r7"
+    "r10 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>"
+    "r11 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>()"
+    "$z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto return"
+    "$r12 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>()"
+    "r13 = (org.objectweb.asm.tree.MethodNode) $r12"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Method Name: \")"
+    "$r17 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")"
+    "$r20 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>"
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20)"
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r22)"
+    "$r23 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"
+    "r24 = virtualinvoke r9.<lsieun.asm.analysis.MockAnalyzer: org.objectweb.asm.tree.analysis.Frame[] analyze(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r23, r13)"
+    "r25 = r24"
+    "i2 = lengthof r25"
+    "i3 = 0"
+    "if i3 >= i2 goto $r26 = <java.lang.System: java.io.PrintStream out>"
+    "r27 = r25[i3]"
+    "$r28 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.Object)>(r27)"
+    "i3 = i3 + 1"
+    "goto [?= (branch)]"
+    "$r26 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>(\"================================================================\")"
+    "goto [?= $z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()]"
+    "return"
+    "r29 := @parameter0: java.lang.String[]"->"r0 = \"sample/HelloWorld.class\"";
+    "r0 = \"sample/HelloWorld.class\""->"r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)";
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"->"r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)";
+    "r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)"->"$r3 = new org.objectweb.asm.ClassReader";
+    "$r3 = new org.objectweb.asm.ClassReader"->"specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)";
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"->"r4 = $r3";
+    "r4 = $r3"->"i0 = 589824";
+    "i0 = 589824"->"$r5 = new org.objectweb.asm.tree.ClassNode";
+    "$r5 = new org.objectweb.asm.tree.ClassNode"->"specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()";
+    "specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()"->"r6 = $r5";
+    "r6 = $r5"->"b1 = 6";
+    "b1 = 6"->"virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b1)";
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b1)"->"$r7 = new lsieun.asm.analysis.MockAnalyzer";
+    "$r7 = new lsieun.asm.analysis.MockAnalyzer"->"$r8 = new org.objectweb.asm.tree.analysis.SimpleVerifier";
+    "$r8 = new org.objectweb.asm.tree.analysis.SimpleVerifier"->"specialinvoke $r8.<org.objectweb.asm.tree.analysis.SimpleVerifier: void <init>()>()";
+    "specialinvoke $r8.<org.objectweb.asm.tree.analysis.SimpleVerifier: void <init>()>()"->"specialinvoke $r7.<lsieun.asm.analysis.MockAnalyzer: void <init>(org.objectweb.asm.tree.analysis.Interpreter)>($r8)";
+    "specialinvoke $r7.<lsieun.asm.analysis.MockAnalyzer: void <init>(org.objectweb.asm.tree.analysis.Interpreter)>($r8)"->"r9 = $r7";
+    "r9 = $r7"->"r10 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>";
+    "r10 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>"->"r11 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>()";
+    "r11 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>()"->"$z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r12 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto return"->"return";
+    "$r12 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>()"->"r13 = (org.objectweb.asm.tree.MethodNode) $r12";
+    "r13 = (org.objectweb.asm.tree.MethodNode) $r12"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r14 = new java.lang.StringBuilder";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Method Name: \")";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Method Name: \")"->"$r17 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String name>";
+    "$r17 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"->"$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\":\")"->"$r20 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>";
+    "$r20 = r13.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>"->"$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20)";
+    "$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20)"->"$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r22)";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r22)"->"$r23 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>";
+    "$r23 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"->"r24 = virtualinvoke r9.<lsieun.asm.analysis.MockAnalyzer: org.objectweb.asm.tree.analysis.Frame[] analyze(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r23, r13)";
+    "r24 = virtualinvoke r9.<lsieun.asm.analysis.MockAnalyzer: org.objectweb.asm.tree.analysis.Frame[] analyze(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r23, r13)"->"r25 = r24";
+    "r25 = r24"->"i2 = lengthof r25";
+    "i2 = lengthof r25"->"i3 = 0";
+    "i3 = 0"->"if i3 >= i2 goto $r26 = <java.lang.System: java.io.PrintStream out>";
+    "if i3 >= i2 goto $r26 = <java.lang.System: java.io.PrintStream out>"->"r27 = r25[i3]";
+    "if i3 >= i2 goto $r26 = <java.lang.System: java.io.PrintStream out>"->"$r26 = <java.lang.System: java.io.PrintStream out>";
+    "r27 = r25[i3]"->"$r28 = <java.lang.System: java.io.PrintStream out>";
+    "$r28 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.Object)>(r27)";
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.Object)>(r27)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 >= i2 goto $r26 = <java.lang.System: java.io.PrintStream out>";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>(\"================================================================\")";
+    "virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>(\"================================================================\")"->"goto [?= $z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()";
+}

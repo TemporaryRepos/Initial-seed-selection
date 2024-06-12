@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.util.concurrent.atomic.AtomicIntegerArray"
+    "r1 := @parameter1: java.util.concurrent.atomic.AtomicIntegerArray"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i2 + 5"
+    "$i1 = virtualinvoke r1.<java.util.concurrent.atomic.AtomicIntegerArray: int get(int)>(i2)"
+    "virtualinvoke r0.<java.util.concurrent.atomic.AtomicIntegerArray: boolean compareAndSet(int,int,int)>($i0, -1, $i1)"
+    "i2 = i2 + 1"
+    "if i2 < 92 goto $i0 = i2 + 5"
+    "return"
+    "r0 := @parameter0: java.util.concurrent.atomic.AtomicIntegerArray"->"r1 := @parameter1: java.util.concurrent.atomic.AtomicIntegerArray";
+    "r1 := @parameter1: java.util.concurrent.atomic.AtomicIntegerArray"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 92 goto $i0 = i2 + 5";
+    "$i0 = i2 + 5"->"$i1 = virtualinvoke r1.<java.util.concurrent.atomic.AtomicIntegerArray: int get(int)>(i2)";
+    "$i1 = virtualinvoke r1.<java.util.concurrent.atomic.AtomicIntegerArray: int get(int)>(i2)"->"virtualinvoke r0.<java.util.concurrent.atomic.AtomicIntegerArray: boolean compareAndSet(int,int,int)>($i0, -1, $i1)";
+    "virtualinvoke r0.<java.util.concurrent.atomic.AtomicIntegerArray: boolean compareAndSet(int,int,int)>($i0, -1, $i1)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 92 goto $i0 = i2 + 5";
+    "if i2 < 92 goto $i0 = i2 + 5"->"return";
+    "if i2 < 92 goto $i0 = i2 + 5"->"$i0 = i2 + 5";
+}

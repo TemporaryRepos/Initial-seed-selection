@@ -1,0 +1,161 @@
+digraph "unitGraph" {
+    "r1 := @this: test.extract.XLSX2CSV"
+    "$r0 = new org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable"
+    "$r2 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>"
+    "specialinvoke $r0.<org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r2)"
+    "r3 = $r0"
+    "$r4 = new org.apache.poi.xssf.eventusermodel.XSSFReader"
+    "$r5 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>"
+    "specialinvoke $r4.<org.apache.poi.xssf.eventusermodel.XSSFReader: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r5)"
+    "r6 = $r4"
+    "r7 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: org.apache.poi.xssf.model.StylesTable getStylesTable()>()"
+    "$r8 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: java.util.Iterator getSheetsData()>()"
+    "r9 = (org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator) $r8"
+    "i0 = 0"
+    "$z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()"
+    "if $z0 == 0 goto return"
+    "r10 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.io.InputStream next()>()"
+    "r26 = null"
+    "r27 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.lang.String getSheetName()>()"
+    "$r11 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"
+    "virtualinvoke $r11.<java.io.PrintStream: void println()>()"
+    "$r13 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r27)"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" [index=\")"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]:\")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"
+    "$r19 = new test.extract.XLSX2CSV$SheetToCSV"
+    "specialinvoke $r19.<test.extract.XLSX2CSV$SheetToCSV: void <init>(test.extract.XLSX2CSV,test.extract.XLSX2CSV$1)>(r1, null)"
+    "virtualinvoke r1.<test.extract.XLSX2CSV: void processSheet(org.apache.poi.xssf.model.Styles,org.apache.poi.xssf.model.SharedStrings,org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler$SheetContentsHandler,java.io.InputStream)>(r7, r3, $r19, r10)"
+    "if r10 == null goto i0 = i0 + 1"
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"
+    "goto [?= i0 = i0 + 1]"
+    "$r25 := @caughtexception"
+    "r28 = $r25"
+    "virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r28)"
+    "$r24 := @caughtexception"
+    "r29 = $r24"
+    "r26 = r29"
+    "throw r29"
+    "$r23 := @caughtexception"
+    "r22 = $r23"
+    "if r10 == null goto throw r22"
+    "goto [?= throw r22]"
+    "$r20 := @caughtexception"
+    "r21 = $r20"
+    "virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)"
+    "throw r22"
+    "i0 = i0 + 1"
+    "goto [?= $z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()]"
+    "return"
+    "r1 := @this: test.extract.XLSX2CSV"->"$r0 = new org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable";
+    "$r0 = new org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable"->"$r2 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>";
+    "$r2 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>"->"specialinvoke $r0.<org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r2)";
+    "specialinvoke $r0.<org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r2)"->"r3 = $r0";
+    "r3 = $r0"->"$r4 = new org.apache.poi.xssf.eventusermodel.XSSFReader";
+    "$r4 = new org.apache.poi.xssf.eventusermodel.XSSFReader"->"$r5 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>";
+    "$r5 = r1.<test.extract.XLSX2CSV: org.apache.poi.openxml4j.opc.OPCPackage xlsxPackage>"->"specialinvoke $r4.<org.apache.poi.xssf.eventusermodel.XSSFReader: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r5)";
+    "specialinvoke $r4.<org.apache.poi.xssf.eventusermodel.XSSFReader: void <init>(org.apache.poi.openxml4j.opc.OPCPackage)>($r5)"->"r6 = $r4";
+    "r6 = $r4"->"r7 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: org.apache.poi.xssf.model.StylesTable getStylesTable()>()";
+    "r7 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: org.apache.poi.xssf.model.StylesTable getStylesTable()>()"->"$r8 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: java.util.Iterator getSheetsData()>()";
+    "$r8 = virtualinvoke r6.<org.apache.poi.xssf.eventusermodel.XSSFReader: java.util.Iterator getSheetsData()>()"->"r9 = (org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator) $r8";
+    "r9 = (org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator) $r8"->"i0 = 0";
+    "i0 = 0"->"$z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()";
+    "$z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"r10 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.io.InputStream next()>()";
+    "if $z0 == 0 goto return"->"return";
+    "r10 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.io.InputStream next()>()"->"r26 = null";
+    "r26 = null"->"$r24 := @caughtexception";
+    "r26 = null"->"$r23 := @caughtexception";
+    "r26 = null"->"r27 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.lang.String getSheetName()>()";
+    "r27 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.lang.String getSheetName()>()"->"$r24 := @caughtexception";
+    "r27 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.lang.String getSheetName()>()"->"$r23 := @caughtexception";
+    "r27 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: java.lang.String getSheetName()>()"->"$r11 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>";
+    "$r11 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"$r24 := @caughtexception";
+    "$r11 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"$r23 := @caughtexception";
+    "$r11 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"virtualinvoke $r11.<java.io.PrintStream: void println()>()";
+    "virtualinvoke $r11.<java.io.PrintStream: void println()>()"->"$r24 := @caughtexception";
+    "virtualinvoke $r11.<java.io.PrintStream: void println()>()"->"$r23 := @caughtexception";
+    "virtualinvoke $r11.<java.io.PrintStream: void println()>()"->"$r13 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>";
+    "$r13 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"$r24 := @caughtexception";
+    "$r13 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"$r23 := @caughtexception";
+    "$r13 = r1.<test.extract.XLSX2CSV: java.io.PrintStream output>"->"$r12 = new java.lang.StringBuilder";
+    "$r12 = new java.lang.StringBuilder"->"$r24 := @caughtexception";
+    "$r12 = new java.lang.StringBuilder"->"$r23 := @caughtexception";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r24 := @caughtexception";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r23 := @caughtexception";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r27)";
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r27)"->"$r24 := @caughtexception";
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r27)"->"$r23 := @caughtexception";
+    "$r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r27)"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" [index=\")";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" [index=\")"->"$r24 := @caughtexception";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" [index=\")"->"$r23 := @caughtexception";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" [index=\")"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r24 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r23 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]:\")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]:\")"->"$r24 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]:\")"->"$r23 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"]:\")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r24 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r23 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"->"$r24 := @caughtexception";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"->"$r23 := @caughtexception";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r18)"->"$r19 = new test.extract.XLSX2CSV$SheetToCSV";
+    "$r19 = new test.extract.XLSX2CSV$SheetToCSV"->"$r24 := @caughtexception";
+    "$r19 = new test.extract.XLSX2CSV$SheetToCSV"->"$r23 := @caughtexception";
+    "$r19 = new test.extract.XLSX2CSV$SheetToCSV"->"specialinvoke $r19.<test.extract.XLSX2CSV$SheetToCSV: void <init>(test.extract.XLSX2CSV,test.extract.XLSX2CSV$1)>(r1, null)";
+    "specialinvoke $r19.<test.extract.XLSX2CSV$SheetToCSV: void <init>(test.extract.XLSX2CSV,test.extract.XLSX2CSV$1)>(r1, null)"->"$r24 := @caughtexception";
+    "specialinvoke $r19.<test.extract.XLSX2CSV$SheetToCSV: void <init>(test.extract.XLSX2CSV,test.extract.XLSX2CSV$1)>(r1, null)"->"$r23 := @caughtexception";
+    "specialinvoke $r19.<test.extract.XLSX2CSV$SheetToCSV: void <init>(test.extract.XLSX2CSV,test.extract.XLSX2CSV$1)>(r1, null)"->"virtualinvoke r1.<test.extract.XLSX2CSV: void processSheet(org.apache.poi.xssf.model.Styles,org.apache.poi.xssf.model.SharedStrings,org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler$SheetContentsHandler,java.io.InputStream)>(r7, r3, $r19, r10)";
+    "virtualinvoke r1.<test.extract.XLSX2CSV: void processSheet(org.apache.poi.xssf.model.Styles,org.apache.poi.xssf.model.SharedStrings,org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler$SheetContentsHandler,java.io.InputStream)>(r7, r3, $r19, r10)"->"$r24 := @caughtexception";
+    "virtualinvoke r1.<test.extract.XLSX2CSV: void processSheet(org.apache.poi.xssf.model.Styles,org.apache.poi.xssf.model.SharedStrings,org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler$SheetContentsHandler,java.io.InputStream)>(r7, r3, $r19, r10)"->"$r23 := @caughtexception";
+    "virtualinvoke r1.<test.extract.XLSX2CSV: void processSheet(org.apache.poi.xssf.model.Styles,org.apache.poi.xssf.model.SharedStrings,org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler$SheetContentsHandler,java.io.InputStream)>(r7, r3, $r19, r10)"->"if r10 == null goto i0 = i0 + 1";
+    "if r10 == null goto i0 = i0 + 1"->"if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r10 == null goto i0 = i0 + 1"->"i0 = i0 + 1";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"$r25 := @caughtexception";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"goto [?= i0 = i0 + 1]";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"$r25 := @caughtexception";
+    "goto [?= i0 = i0 + 1]"->"i0 = i0 + 1";
+    "$r25 := @caughtexception"->"r28 = $r25";
+    "r28 = $r25"->"virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r28)";
+    "virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r28)"->"goto [?= i0 = i0 + 1]";
+    "goto [?= i0 = i0 + 1]"->"i0 = i0 + 1";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"goto [?= i0 = i0 + 1]";
+    "goto [?= i0 = i0 + 1]"->"i0 = i0 + 1";
+    "$r24 := @caughtexception"->"r29 = $r24";
+    "$r24 := @caughtexception"->"$r23 := @caughtexception";
+    "r29 = $r24"->"r26 = r29";
+    "r29 = $r24"->"$r23 := @caughtexception";
+    "r26 = r29"->"throw r29";
+    "r26 = r29"->"$r23 := @caughtexception";
+    "throw r29"->"$r23 := @caughtexception";
+    "$r23 := @caughtexception"->"r22 = $r23";
+    "$r23 := @caughtexception"->"$r23 := @caughtexception";
+    "r22 = $r23"->"if r10 == null goto throw r22";
+    "r22 = $r23"->"$r23 := @caughtexception";
+    "if r10 == null goto throw r22"->"if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r10 == null goto throw r22"->"throw r22";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"virtualinvoke r10.<java.io.InputStream: void close()>()";
+    "if r26 == null goto virtualinvoke r10.<java.io.InputStream: void close()>()"->"$r20 := @caughtexception";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"goto [?= throw r22]";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"$r20 := @caughtexception";
+    "goto [?= throw r22]"->"throw r22";
+    "$r20 := @caughtexception"->"r21 = $r20";
+    "r21 = $r20"->"virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)";
+    "virtualinvoke r26.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r21)"->"goto [?= throw r22]";
+    "goto [?= throw r22]"->"throw r22";
+    "virtualinvoke r10.<java.io.InputStream: void close()>()"->"throw r22";
+    "i0 = i0 + 1"->"goto [?= $z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()]";
+    "goto [?= $z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()]"->"$z0 = virtualinvoke r9.<org.apache.poi.xssf.eventusermodel.XSSFReader$SheetIterator: boolean hasNext()>()";
+}

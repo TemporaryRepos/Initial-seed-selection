@@ -1,0 +1,17 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.ref.ReferenceQueue"
+    "r0 := @parameter1: java.lang.ref.Reference"
+    "$z0 = virtualinvoke r0.<java.lang.ref.Reference: boolean enqueue()>()"
+    "if $z0 != 0 goto return"
+    "$r1 = new java.lang.RuntimeException"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Enqueue operation failed\")"
+    "throw $r1"
+    "return"
+    "r2 := @parameter0: java.lang.ref.ReferenceQueue"->"r0 := @parameter1: java.lang.ref.Reference";
+    "r0 := @parameter1: java.lang.ref.Reference"->"$z0 = virtualinvoke r0.<java.lang.ref.Reference: boolean enqueue()>()";
+    "$z0 = virtualinvoke r0.<java.lang.ref.Reference: boolean enqueue()>()"->"if $z0 != 0 goto return";
+    "if $z0 != 0 goto return"->"$r1 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto return"->"return";
+    "$r1 = new java.lang.RuntimeException"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Enqueue operation failed\")";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Enqueue operation failed\")"->"throw $r1";
+}

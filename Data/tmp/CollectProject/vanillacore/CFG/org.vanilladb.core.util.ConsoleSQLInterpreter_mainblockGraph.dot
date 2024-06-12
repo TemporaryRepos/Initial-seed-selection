@@ -1,0 +1,1393 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 41 50 1 ]
+r27 := @parameter0: java.lang.String[];
+"
+    "Block 1:
+[preds: 0 ] [succs: 41 50 2 ]
+$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver;
+"
+    "Block 2:
+[preds: 1 ] [succs: 41 50 3 ]
+specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 41 50 4 ]
+r28 = $r0;
+"
+    "Block 4:
+[preds: 3 ] [succs: 41 50 5 ]
+$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null);
+"
+    "Block 5:
+[preds: 4 ] [succs: 41 50 6 ]
+<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1;
+"
+    "Block 6:
+[preds: 5 ] [succs: 41 50 7 ]
+$r2 = new java.io.InputStreamReader;
+"
+    "Block 7:
+[preds: 6 ] [succs: 41 50 8 ]
+$r3 = <java.lang.System: java.io.InputStream in>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 41 50 9 ]
+specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+"
+    "Block 9:
+[preds: 8 ] [succs: 41 50 10 ]
+r4 = $r2;
+"
+    "Block 10:
+[preds: 9 ] [succs: 41 50 11 ]
+$r5 = new java.io.BufferedReader;
+"
+    "Block 11:
+[preds: 10 ] [succs: 41 50 12 ]
+specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+"
+    "Block 12:
+[preds: 11 ] [succs: 41 50 13 ]
+r6 = $r5;
+"
+    "Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 14:
+[preds: 13 ] [succs: 41 50 15 ]
+virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \");
+"
+    "Block 15:
+[preds: 14 ] [succs: 41 50 16 ]
+$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 16:
+[preds: 15 ] [succs: 41 50 17 ]
+r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+"
+    "Block 17:
+[preds: 16 ] [succs: 41 50 18 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 18:
+[preds: 17 ] [succs: 41 50 19 ]
+virtualinvoke $r10.<java.io.PrintStream: void println()>();
+"
+    "Block 19:
+[preds: 18 ] [succs: 41 50 20 ]
+r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"
+    "Block 20:
+[preds: 19 ] [succs: 41 50 21 ]
+$r12 = r11[0];
+"
+    "Block 21:
+[preds: 20 ] [succs: 41 50 22 ]
+r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+"
+    "Block 22:
+[preds: 21 ] [succs: 41 50 23 ]
+$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\");
+"
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 24:
+[preds: 23 ] [succs: 41 50 25 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\");
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"
+    "Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+"
+    "Block 27:
+[preds: 25 ] [succs: 41 50 28 ]
+$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"
+    "Block 29:
+[preds: 28 ] [succs: 41 50 30 ]
+$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\");
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"
+    "Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"
+    "Block 32:
+[preds: 31 ] [succs: 41 50 34 ]
+goto [?= (branch)];
+"
+    "Block 33:
+[preds: 30 ] [succs: 41 50 34 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"
+    "Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+"
+    "Block 35:
+[preds: 23 26 ] [succs: 36 40 ]
+$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 36:
+[preds: 35 ] [succs: 37 39 40 ]
+if $r14 == null goto (branch);
+"
+    "Block 37:
+[preds: 36 ] [succs: 38 40 ]
+$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 38:
+[preds: 37 ] [succs: 39 40 ]
+interfaceinvoke $r15.<java.sql.Connection: void close()>();
+"
+    "Block 39:
+[preds: 36 38 ] [succs: 59 ]
+goto [?= return];
+"
+    "Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+"
+    "Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+"
+    "Block 42:
+[preds: 41 ] [succs: 43 50 ]
+r30 = $r23;
+"
+    "Block 43:
+[preds: 42 ] [succs: 49 50 44 ]
+virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+"
+    "Block 44:
+[preds: 43 ] [succs: 45 49 ]
+$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 45:
+[preds: 44 ] [succs: 46 48 49 ]
+if $r24 == null goto (branch);
+"
+    "Block 46:
+[preds: 45 ] [succs: 47 49 ]
+$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 47:
+[preds: 46 ] [succs: 48 49 ]
+interfaceinvoke $r25.<java.sql.Connection: void close()>();
+"
+    "Block 48:
+[preds: 45 47 ] [succs: 59 ]
+goto [?= return];
+"
+    "Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+"
+    "Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+"
+    "Block 51:
+[preds: 50 ] [succs: 57 50 52 ]
+r18 = $r19;
+"
+    "Block 52:
+[preds: 51 ] [succs: 53 57 ]
+$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 53:
+[preds: 52 ] [succs: 54 56 57 ]
+if $r20 == null goto (branch);
+"
+    "Block 54:
+[preds: 53 ] [succs: 55 57 ]
+$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"
+    "Block 55:
+[preds: 54 ] [succs: 56 57 ]
+interfaceinvoke $r21.<java.sql.Connection: void close()>();
+"
+    "Block 56:
+[preds: 53 55 ] [succs: 58 ]
+goto [?= throw r18];
+"
+    "Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+"
+    "Block 58:
+[preds: 56 57 ] [succs: ]
+throw r18;
+"
+    "Block 59:
+[preds: 39 40 48 49 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 41 50 1 ]
+r27 := @parameter0: java.lang.String[];
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 0:
+[preds: ] [succs: 41 50 1 ]
+r27 := @parameter0: java.lang.String[];
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 0:
+[preds: ] [succs: 41 50 1 ]
+r27 := @parameter0: java.lang.String[];
+"->"Block 1:
+[preds: 0 ] [succs: 41 50 2 ]
+$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver;
+";
+    "Block 1:
+[preds: 0 ] [succs: 41 50 2 ]
+$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 1:
+[preds: 0 ] [succs: 41 50 2 ]
+$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 1:
+[preds: 0 ] [succs: 41 50 2 ]
+$r0 = new org.vanilladb.core.remote.jdbc.JdbcDriver;
+"->"Block 2:
+[preds: 1 ] [succs: 41 50 3 ]
+specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 41 50 3 ]
+specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>();
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 2:
+[preds: 1 ] [succs: 41 50 3 ]
+specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 2:
+[preds: 1 ] [succs: 41 50 3 ]
+specialinvoke $r0.<org.vanilladb.core.remote.jdbc.JdbcDriver: void <init>()>();
+"->"Block 3:
+[preds: 2 ] [succs: 41 50 4 ]
+r28 = $r0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 41 50 4 ]
+r28 = $r0;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 41 50 4 ]
+r28 = $r0;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 41 50 4 ]
+r28 = $r0;
+"->"Block 4:
+[preds: 3 ] [succs: 41 50 5 ]
+$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null);
+";
+    "Block 4:
+[preds: 3 ] [succs: 41 50 5 ]
+$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 41 50 5 ]
+$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 41 50 5 ]
+$r1 = interfaceinvoke r28.<java.sql.Driver: java.sql.Connection connect(java.lang.String,java.util.Properties)>(\"jdbc:vanilladb://localhost\", null);
+"->"Block 5:
+[preds: 4 ] [succs: 41 50 6 ]
+<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1;
+";
+    "Block 5:
+[preds: 4 ] [succs: 41 50 6 ]
+<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 41 50 6 ]
+<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 41 50 6 ]
+<org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn> = $r1;
+"->"Block 6:
+[preds: 5 ] [succs: 41 50 7 ]
+$r2 = new java.io.InputStreamReader;
+";
+    "Block 6:
+[preds: 5 ] [succs: 41 50 7 ]
+$r2 = new java.io.InputStreamReader;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 41 50 7 ]
+$r2 = new java.io.InputStreamReader;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 41 50 7 ]
+$r2 = new java.io.InputStreamReader;
+"->"Block 7:
+[preds: 6 ] [succs: 41 50 8 ]
+$r3 = <java.lang.System: java.io.InputStream in>;
+";
+    "Block 7:
+[preds: 6 ] [succs: 41 50 8 ]
+$r3 = <java.lang.System: java.io.InputStream in>;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 41 50 8 ]
+$r3 = <java.lang.System: java.io.InputStream in>;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 41 50 8 ]
+$r3 = <java.lang.System: java.io.InputStream in>;
+"->"Block 8:
+[preds: 7 ] [succs: 41 50 9 ]
+specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+";
+    "Block 8:
+[preds: 7 ] [succs: 41 50 9 ]
+specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 41 50 9 ]
+specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 41 50 9 ]
+specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+"->"Block 9:
+[preds: 8 ] [succs: 41 50 10 ]
+r4 = $r2;
+";
+    "Block 9:
+[preds: 8 ] [succs: 41 50 10 ]
+r4 = $r2;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 41 50 10 ]
+r4 = $r2;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 41 50 10 ]
+r4 = $r2;
+"->"Block 10:
+[preds: 9 ] [succs: 41 50 11 ]
+$r5 = new java.io.BufferedReader;
+";
+    "Block 10:
+[preds: 9 ] [succs: 41 50 11 ]
+$r5 = new java.io.BufferedReader;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 41 50 11 ]
+$r5 = new java.io.BufferedReader;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 41 50 11 ]
+$r5 = new java.io.BufferedReader;
+"->"Block 11:
+[preds: 10 ] [succs: 41 50 12 ]
+specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+";
+    "Block 11:
+[preds: 10 ] [succs: 41 50 12 ]
+specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 41 50 12 ]
+specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 41 50 12 ]
+specialinvoke $r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+"->"Block 12:
+[preds: 11 ] [succs: 41 50 13 ]
+r6 = $r5;
+";
+    "Block 12:
+[preds: 11 ] [succs: 41 50 13 ]
+r6 = $r5;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 41 50 13 ]
+r6 = $r5;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 41 50 13 ]
+r6 = $r5;
+"->"Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 14:
+[preds: 13 ] [succs: 41 50 15 ]
+virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \");
+";
+    "Block 14:
+[preds: 13 ] [succs: 41 50 15 ]
+virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 41 50 15 ]
+virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 41 50 15 ]
+virtualinvoke $r7.<java.io.PrintStream: void print(java.lang.String)>(\"\nSQL> \");
+"->"Block 15:
+[preds: 14 ] [succs: 41 50 16 ]
+$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 41 50 16 ]
+$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 41 50 16 ]
+$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 41 50 16 ]
+$r8 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 16:
+[preds: 15 ] [succs: 41 50 17 ]
+r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+";
+    "Block 16:
+[preds: 15 ] [succs: 41 50 17 ]
+r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 41 50 17 ]
+r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 41 50 17 ]
+r9 = virtualinvoke $r8.<java.lang.String: java.lang.String trim()>();
+"->"Block 17:
+[preds: 16 ] [succs: 41 50 18 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 17:
+[preds: 16 ] [succs: 41 50 18 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 41 50 18 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 41 50 18 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 18:
+[preds: 17 ] [succs: 41 50 19 ]
+virtualinvoke $r10.<java.io.PrintStream: void println()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 41 50 19 ]
+virtualinvoke $r10.<java.io.PrintStream: void println()>();
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 41 50 19 ]
+virtualinvoke $r10.<java.io.PrintStream: void println()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 41 50 19 ]
+virtualinvoke $r10.<java.io.PrintStream: void println()>();
+"->"Block 19:
+[preds: 18 ] [succs: 41 50 20 ]
+r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+";
+    "Block 19:
+[preds: 18 ] [succs: 41 50 20 ]
+r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 41 50 20 ]
+r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 41 50 20 ]
+r11 = virtualinvoke r9.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 20:
+[preds: 19 ] [succs: 41 50 21 ]
+$r12 = r11[0];
+";
+    "Block 20:
+[preds: 19 ] [succs: 41 50 21 ]
+$r12 = r11[0];
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 41 50 21 ]
+$r12 = r11[0];
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 41 50 21 ]
+$r12 = r11[0];
+"->"Block 21:
+[preds: 20 ] [succs: 41 50 22 ]
+r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+";
+    "Block 21:
+[preds: 20 ] [succs: 41 50 22 ]
+r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 41 50 22 ]
+r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 41 50 22 ]
+r13 = virtualinvoke $r12.<java.lang.String: java.lang.String toUpperCase()>();
+"->"Block 22:
+[preds: 21 ] [succs: 41 50 23 ]
+$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\");
+";
+    "Block 22:
+[preds: 21 ] [succs: 41 50 23 ]
+$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 41 50 23 ]
+$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 41 50 23 ]
+$z0 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"exit\");
+"->"Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 24:
+[preds: 23 ] [succs: 41 50 25 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\");
+";
+    "Block 23:
+[preds: 22 ] [succs: 40 41 50 24 35 ]
+if $z0 != 0 goto $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 35:
+[preds: 23 26 ] [succs: 36 40 ]
+$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 24:
+[preds: 23 ] [succs: 41 50 25 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 41 50 25 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 41 50 25 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXIT\");
+"->"Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 27:
+[preds: 25 ] [succs: 41 50 28 ]
+$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 41 50 ]
+if $z1 == 0 goto $z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 40 41 50 35 ]
+goto [?= $r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>];
+"->"Block 35:
+[preds: 23 26 ] [succs: 36 40 ]
+$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 27:
+[preds: 25 ] [succs: 41 50 28 ]
+$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 27:
+[preds: 25 ] [succs: 41 50 28 ]
+$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 27:
+[preds: 25 ] [succs: 41 50 28 ]
+$z2 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"SELECT\");
+"->"Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 29:
+[preds: 28 ] [succs: 41 50 30 ]
+$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\");
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 31 41 50 ]
+if $z2 != 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 41 50 30 ]
+$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\");
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 41 50 30 ]
+$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\");
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 41 50 30 ]
+$z3 = virtualinvoke r13.<java.lang.String: boolean startsWith(java.lang.String)>(\"EXPLAIN\");
+"->"Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 33:
+[preds: 30 ] [succs: 41 50 34 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 33 41 50 ]
+if $z3 == 0 goto staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 31:
+[preds: 28 30 ] [succs: 41 50 32 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doQuery(java.lang.String,java.lang.String)>(r9, r13);
+"->"Block 32:
+[preds: 31 ] [succs: 41 50 34 ]
+goto [?= (branch)];
+";
+    "Block 32:
+[preds: 31 ] [succs: 41 50 34 ]
+goto [?= (branch)];
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 41 50 34 ]
+goto [?= (branch)];
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 41 50 34 ]
+goto [?= (branch)];
+"->"Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+";
+    "Block 33:
+[preds: 30 ] [succs: 41 50 34 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 33:
+[preds: 30 ] [succs: 41 50 34 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 33:
+[preds: 30 ] [succs: 41 50 34 ]
+staticinvoke <org.vanilladb.core.util.ConsoleSQLInterpreter: void doUpdate(java.lang.String)>(r9);
+"->"Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+";
+    "Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+";
+    "Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 34:
+[preds: 32 33 ] [succs: 41 50 13 ]
+goto [?= $r7 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 13:
+[preds: 12 34 ] [succs: 41 50 14 ]
+$r7 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 35:
+[preds: 23 26 ] [succs: 36 40 ]
+$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 36:
+[preds: 35 ] [succs: 37 39 40 ]
+if $r14 == null goto (branch);
+";
+    "Block 35:
+[preds: 23 26 ] [succs: 36 40 ]
+$r14 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 39 40 ]
+if $r14 == null goto (branch);
+"->"Block 37:
+[preds: 36 ] [succs: 38 40 ]
+$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 39 40 ]
+if $r14 == null goto (branch);
+"->"Block 39:
+[preds: 36 38 ] [succs: 59 ]
+goto [?= return];
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 39 40 ]
+if $r14 == null goto (branch);
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 40 ]
+$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 38:
+[preds: 37 ] [succs: 39 40 ]
+interfaceinvoke $r15.<java.sql.Connection: void close()>();
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 40 ]
+$r15 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 40 ]
+interfaceinvoke $r15.<java.sql.Connection: void close()>();
+"->"Block 39:
+[preds: 36 38 ] [succs: 59 ]
+goto [?= return];
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 40 ]
+interfaceinvoke $r15.<java.sql.Connection: void close()>();
+"->"Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 39:
+[preds: 36 38 ] [succs: 59 ]
+goto [?= return];
+"->"Block 59:
+[preds: 39 40 48 49 ] [succs: ]
+return;
+";
+    "Block 40:
+[preds: 23 26 35 36 37 38 ] [succs: 59 ]
+$r26 := @caughtexception;
+r29 = $r26;
+virtualinvoke r29.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+"->"Block 59:
+[preds: 39 40 48 49 ] [succs: ]
+return;
+";
+    "Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+"->"Block 42:
+[preds: 41 ] [succs: 43 50 ]
+r30 = $r23;
+";
+    "Block 41:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ] [succs: 42 50 ]
+$r23 := @caughtexception;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 50 ]
+r30 = $r23;
+"->"Block 43:
+[preds: 42 ] [succs: 49 50 44 ]
+virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 50 ]
+r30 = $r23;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 49 50 44 ]
+virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+"->"Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 43:
+[preds: 42 ] [succs: 49 50 44 ]
+virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 49 50 44 ]
+virtualinvoke r30.<java.lang.Exception: void printStackTrace()>();
+"->"Block 44:
+[preds: 43 ] [succs: 45 49 ]
+$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 44:
+[preds: 43 ] [succs: 45 49 ]
+$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 45:
+[preds: 44 ] [succs: 46 48 49 ]
+if $r24 == null goto (branch);
+";
+    "Block 44:
+[preds: 43 ] [succs: 45 49 ]
+$r24 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 48 49 ]
+if $r24 == null goto (branch);
+"->"Block 46:
+[preds: 45 ] [succs: 47 49 ]
+$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 48 49 ]
+if $r24 == null goto (branch);
+"->"Block 48:
+[preds: 45 47 ] [succs: 59 ]
+goto [?= return];
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 48 49 ]
+if $r24 == null goto (branch);
+"->"Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 49 ]
+$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 47:
+[preds: 46 ] [succs: 48 49 ]
+interfaceinvoke $r25.<java.sql.Connection: void close()>();
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 49 ]
+$r25 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 49 ]
+interfaceinvoke $r25.<java.sql.Connection: void close()>();
+"->"Block 48:
+[preds: 45 47 ] [succs: 59 ]
+goto [?= return];
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 49 ]
+interfaceinvoke $r25.<java.sql.Connection: void close()>();
+"->"Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+";
+    "Block 48:
+[preds: 45 47 ] [succs: 59 ]
+goto [?= return];
+"->"Block 59:
+[preds: 39 40 48 49 ] [succs: ]
+return;
+";
+    "Block 49:
+[preds: 43 44 45 46 47 ] [succs: 59 ]
+$r22 := @caughtexception;
+r31 = $r22;
+virtualinvoke r31.<java.lang.Exception: void printStackTrace()>();
+goto [?= return];
+"->"Block 59:
+[preds: 39 40 48 49 ] [succs: ]
+return;
+";
+    "Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+"->"Block 51:
+[preds: 50 ] [succs: 57 50 52 ]
+r18 = $r19;
+";
+    "Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 57 50 52 ]
+r18 = $r19;
+"->"Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 51:
+[preds: 50 ] [succs: 57 50 52 ]
+r18 = $r19;
+"->"Block 50:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 34 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42 43 50 51 ] [succs: 51 50 ]
+$r19 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 57 50 52 ]
+r18 = $r19;
+"->"Block 52:
+[preds: 51 ] [succs: 53 57 ]
+$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 57 ]
+$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 53:
+[preds: 52 ] [succs: 54 56 57 ]
+if $r20 == null goto (branch);
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 57 ]
+$r20 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 56 57 ]
+if $r20 == null goto (branch);
+"->"Block 54:
+[preds: 53 ] [succs: 55 57 ]
+$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 56 57 ]
+if $r20 == null goto (branch);
+"->"Block 56:
+[preds: 53 55 ] [succs: 58 ]
+goto [?= throw r18];
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 56 57 ]
+if $r20 == null goto (branch);
+"->"Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 57 ]
+$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 55:
+[preds: 54 ] [succs: 56 57 ]
+interfaceinvoke $r21.<java.sql.Connection: void close()>();
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 57 ]
+$r21 = <org.vanilladb.core.util.ConsoleSQLInterpreter: java.sql.Connection conn>;
+"->"Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 57 ]
+interfaceinvoke $r21.<java.sql.Connection: void close()>();
+"->"Block 56:
+[preds: 53 55 ] [succs: 58 ]
+goto [?= throw r18];
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 57 ]
+interfaceinvoke $r21.<java.sql.Connection: void close()>();
+"->"Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+";
+    "Block 56:
+[preds: 53 55 ] [succs: 58 ]
+goto [?= throw r18];
+"->"Block 58:
+[preds: 56 57 ] [succs: ]
+throw r18;
+";
+    "Block 57:
+[preds: 51 52 53 54 55 ] [succs: 58 ]
+$r16 := @caughtexception;
+r17 = $r16;
+virtualinvoke r17.<java.lang.Exception: void printStackTrace()>();
+"->"Block 58:
+[preds: 56 57 ] [succs: ]
+throw r18;
+";
+}

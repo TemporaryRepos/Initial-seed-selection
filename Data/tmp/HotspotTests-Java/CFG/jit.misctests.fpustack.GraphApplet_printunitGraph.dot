@@ -1,0 +1,51 @@
+digraph "unitGraph" {
+    "r0 := @this: jit.misctests.fpustack.GraphApplet"
+    "r1 = virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: java.awt.Toolkit getToolkit()>()"
+    "$r2 = new java.awt.Frame"
+    "specialinvoke $r2.<java.awt.Frame: void <init>(java.lang.String)>(\"x\")"
+    "r9 = virtualinvoke r1.<java.awt.Toolkit: java.awt.PrintJob getPrintJob(java.awt.Frame,java.lang.String,java.util.Properties)>($r2, \"PrintableFrame print job\", null)"
+    "if r9 == null goto return"
+    "r3 = virtualinvoke r9.<java.awt.PrintJob: java.awt.Graphics getGraphics()>()"
+    "virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: void printAll(java.awt.Graphics)>(r3)"
+    "virtualinvoke r3.<java.awt.Graphics: void dispose()>()"
+    "virtualinvoke r9.<java.awt.PrintJob: void end()>()"
+    "goto [?= return]"
+    "$r4 := @caughtexception"
+    "r10 = $r4"
+    "$r6 = <java.lang.System: java.io.PrintStream out>"
+    "$r5 = new java.lang.StringBuilder"
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"print exception \")"
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8)"
+    "return"
+    "r0 := @this: jit.misctests.fpustack.GraphApplet"->"r1 = virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: java.awt.Toolkit getToolkit()>()";
+    "r1 = virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: java.awt.Toolkit getToolkit()>()"->"$r2 = new java.awt.Frame";
+    "r1 = virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: java.awt.Toolkit getToolkit()>()"->"$r4 := @caughtexception";
+    "$r2 = new java.awt.Frame"->"specialinvoke $r2.<java.awt.Frame: void <init>(java.lang.String)>(\"x\")";
+    "$r2 = new java.awt.Frame"->"$r4 := @caughtexception";
+    "specialinvoke $r2.<java.awt.Frame: void <init>(java.lang.String)>(\"x\")"->"r9 = virtualinvoke r1.<java.awt.Toolkit: java.awt.PrintJob getPrintJob(java.awt.Frame,java.lang.String,java.util.Properties)>($r2, \"PrintableFrame print job\", null)";
+    "specialinvoke $r2.<java.awt.Frame: void <init>(java.lang.String)>(\"x\")"->"$r4 := @caughtexception";
+    "r9 = virtualinvoke r1.<java.awt.Toolkit: java.awt.PrintJob getPrintJob(java.awt.Frame,java.lang.String,java.util.Properties)>($r2, \"PrintableFrame print job\", null)"->"if r9 == null goto return";
+    "r9 = virtualinvoke r1.<java.awt.Toolkit: java.awt.PrintJob getPrintJob(java.awt.Frame,java.lang.String,java.util.Properties)>($r2, \"PrintableFrame print job\", null)"->"$r4 := @caughtexception";
+    "if r9 == null goto return"->"r3 = virtualinvoke r9.<java.awt.PrintJob: java.awt.Graphics getGraphics()>()";
+    "if r9 == null goto return"->"return";
+    "if r9 == null goto return"->"$r4 := @caughtexception";
+    "r3 = virtualinvoke r9.<java.awt.PrintJob: java.awt.Graphics getGraphics()>()"->"virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: void printAll(java.awt.Graphics)>(r3)";
+    "r3 = virtualinvoke r9.<java.awt.PrintJob: java.awt.Graphics getGraphics()>()"->"$r4 := @caughtexception";
+    "virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: void printAll(java.awt.Graphics)>(r3)"->"virtualinvoke r3.<java.awt.Graphics: void dispose()>()";
+    "virtualinvoke r0.<jit.misctests.fpustack.GraphApplet: void printAll(java.awt.Graphics)>(r3)"->"$r4 := @caughtexception";
+    "virtualinvoke r3.<java.awt.Graphics: void dispose()>()"->"virtualinvoke r9.<java.awt.PrintJob: void end()>()";
+    "virtualinvoke r3.<java.awt.Graphics: void dispose()>()"->"$r4 := @caughtexception";
+    "virtualinvoke r9.<java.awt.PrintJob: void end()>()"->"goto [?= return]";
+    "virtualinvoke r9.<java.awt.PrintJob: void end()>()"->"$r4 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r4 := @caughtexception"->"r10 = $r4";
+    "r10 = $r4"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"$r5 = new java.lang.StringBuilder";
+    "$r5 = new java.lang.StringBuilder"->"specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"print exception \")";
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"print exception \")"->"$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)";
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8)";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8)"->"return";
+}

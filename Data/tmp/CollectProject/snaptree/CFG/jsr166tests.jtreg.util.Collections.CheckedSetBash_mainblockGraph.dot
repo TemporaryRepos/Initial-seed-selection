@@ -1,0 +1,701 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r9 := @parameter0: java.lang.String[];
+b0 = 100;
+b1 = 100;
+i4 = 0;
+"
+    "Block 1:
+[preds: 0 35 ] [succs: 2 36 ]
+if i4 >= b0 goto return;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+r0 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r0, b1);
+r1 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r1, b1);
+r2 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r2.<java.util.Set: boolean retainAll(java.util.Collection)>(r1);
+r3 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r1);
+r4 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r1);
+interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r0);
+r5 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r1);
+$z4 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r4);
+if $z4 == 0 goto $z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 2 failed\");
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z5 == 0 goto $z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 3 failed\");
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z6 == 0 goto $z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 4 failed\");
+"
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z7 == 0 goto $z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 5 failed\");
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z8 == 0 goto $z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 6 failed\");
+"
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z9 == 0 goto interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 7 failed\");
+"
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r4);
+$z12 = interfaceinvoke r2.<java.util.Set: boolean equals(java.lang.Object)>(r5);
+if $z12 != 0 goto $r6 = new java.util.HashSet;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 1 failed\");
+"
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$r6 = new java.util.HashSet;
+specialinvoke $r6.<java.util.HashSet: void <init>(java.util.Collection)>(r5);
+$i2 = virtualinvoke $r6.<java.util.HashSet: int hashCode()>();
+$i3 = interfaceinvoke r5.<java.util.Set: int hashCode()>();
+if $i2 == $i3 goto r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Incorrect hashCode computation.\");
+"
+    "Block 18:
+[preds: 16 17 ] [succs: 19 ]
+r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r8 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+$z18 = interfaceinvoke r2.<java.util.Set: boolean remove(java.lang.Object)>($r8);
+if $z18 != 0 goto $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 21:
+[preds: 20 ] [succs: 19 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Couldn\'t remove element from copy.\");
+goto [?= $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 22:
+[preds: 19 ] [succs: 23 24 ]
+$z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+if $z13 != 0 goto r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Copy nonempty after deleting all elements.\");
+"
+    "Block 24:
+[preds: 22 23 ] [succs: 25 ]
+r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 25:
+[preds: 24 30 ] [succs: 26 31 ]
+$z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+if $z20 == 0 goto $z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 28 ]
+r7 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>();
+$z16 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z16 != 0 goto interfaceinvoke r11.<java.util.Iterator: void remove()>();
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set doesn\'t contain one of its elements.\");
+"
+    "Block 28:
+[preds: 26 27 ] [succs: 29 30 ]
+interfaceinvoke r11.<java.util.Iterator: void remove()>();
+$z17 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z17 == 0 goto (branch);
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set contains element after deletion.\");
+"
+    "Block 30:
+[preds: 28 29 ] [succs: 25 ]
+goto [?= $z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 31:
+[preds: 25 ] [succs: 32 33 ]
+$z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+if $z14 != 0 goto interfaceinvoke r0.<java.util.Set: void clear()>();
+"
+    "Block 32:
+[preds: 31 ] [succs: 33 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after deleting all elements.\");
+"
+    "Block 33:
+[preds: 31 32 ] [succs: 34 35 ]
+interfaceinvoke r0.<java.util.Set: void clear()>();
+$z15 = interfaceinvoke r0.<java.util.Set: boolean isEmpty()>();
+if $z15 != 0 goto i4 = i4 + 1;
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after clear.\");
+"
+    "Block 35:
+[preds: 33 34 ] [succs: 1 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+"
+    "Block 36:
+[preds: 1 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r9 := @parameter0: java.lang.String[];
+b0 = 100;
+b1 = 100;
+i4 = 0;
+"->"Block 1:
+[preds: 0 35 ] [succs: 2 36 ]
+if i4 >= b0 goto return;
+";
+    "Block 1:
+[preds: 0 35 ] [succs: 2 36 ]
+if i4 >= b0 goto return;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+r0 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r0, b1);
+r1 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r1, b1);
+r2 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r2.<java.util.Set: boolean retainAll(java.util.Collection)>(r1);
+r3 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r1);
+r4 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r1);
+interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r0);
+r5 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r1);
+$z4 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r4);
+if $z4 == 0 goto $z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+";
+    "Block 1:
+[preds: 0 35 ] [succs: 2 36 ]
+if i4 >= b0 goto return;
+"->"Block 36:
+[preds: 1 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+r0 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r0, b1);
+r1 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r1, b1);
+r2 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r2.<java.util.Set: boolean retainAll(java.util.Collection)>(r1);
+r3 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r1);
+r4 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r1);
+interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r0);
+r5 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r1);
+$z4 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r4);
+if $z4 == 0 goto $z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 2 failed\");
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+r0 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r0, b1);
+r1 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set newSet()>();
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void AddRandoms(java.util.Set,int)>(r1, b1);
+r2 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r2.<java.util.Set: boolean retainAll(java.util.Collection)>(r1);
+r3 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r1);
+r4 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r1);
+interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r0);
+r5 = staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: java.util.Set clone(java.util.Set)>(r0);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r1);
+$z4 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r4);
+if $z4 == 0 goto $z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z5 == 0 goto $z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 2 failed\");
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z5 == 0 goto $z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z5 == 0 goto $z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 3 failed\");
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 6 ]
+$z5 = interfaceinvoke r3.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z5 == 0 goto $z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z6 == 0 goto $z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 3 failed\");
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z6 == 0 goto $z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z6 == 0 goto $z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"->"Block 7:
+[preds: 6 ] [succs: 8 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 4 failed\");
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+$z6 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z6 == 0 goto $z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z7 == 0 goto $z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 4 failed\");
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z7 == 0 goto $z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z7 == 0 goto $z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 9:
+[preds: 8 ] [succs: 10 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 5 failed\");
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+$z7 = interfaceinvoke r4.<java.util.Set: boolean removeAll(java.util.Collection)>(r2);
+if $z7 == 0 goto $z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z8 == 0 goto $z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 5 failed\");
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z8 == 0 goto $z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z8 == 0 goto $z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 11:
+[preds: 10 ] [succs: 12 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 6 failed\");
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 12 ]
+$z8 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z8 == 0 goto $z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z9 == 0 goto interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 6 failed\");
+"->"Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z9 == 0 goto interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z9 == 0 goto interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+"->"Block 13:
+[preds: 12 ] [succs: 14 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 7 failed\");
+";
+    "Block 12:
+[preds: 10 11 ] [succs: 13 14 ]
+$z9 = interfaceinvoke r2.<java.util.Set: boolean removeAll(java.util.Collection)>(r3);
+if $z9 == 0 goto interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+"->"Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r4);
+$z12 = interfaceinvoke r2.<java.util.Set: boolean equals(java.lang.Object)>(r5);
+if $z12 != 0 goto $r6 = new java.util.HashSet;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 7 failed\");
+"->"Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r4);
+$z12 = interfaceinvoke r2.<java.util.Set: boolean equals(java.lang.Object)>(r5);
+if $z12 != 0 goto $r6 = new java.util.HashSet;
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r4);
+$z12 = interfaceinvoke r2.<java.util.Set: boolean equals(java.lang.Object)>(r5);
+if $z12 != 0 goto $r6 = new java.util.HashSet;
+"->"Block 15:
+[preds: 14 ] [succs: 16 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 1 failed\");
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+interfaceinvoke r2.<java.util.Set: boolean addAll(java.util.Collection)>(r4);
+$z12 = interfaceinvoke r2.<java.util.Set: boolean equals(java.lang.Object)>(r5);
+if $z12 != 0 goto $r6 = new java.util.HashSet;
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$r6 = new java.util.HashSet;
+specialinvoke $r6.<java.util.HashSet: void <init>(java.util.Collection)>(r5);
+$i2 = virtualinvoke $r6.<java.util.HashSet: int hashCode()>();
+$i3 = interfaceinvoke r5.<java.util.Set: int hashCode()>();
+if $i2 == $i3 goto r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set algebra identity 1 failed\");
+"->"Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$r6 = new java.util.HashSet;
+specialinvoke $r6.<java.util.HashSet: void <init>(java.util.Collection)>(r5);
+$i2 = virtualinvoke $r6.<java.util.HashSet: int hashCode()>();
+$i3 = interfaceinvoke r5.<java.util.Set: int hashCode()>();
+if $i2 == $i3 goto r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$r6 = new java.util.HashSet;
+specialinvoke $r6.<java.util.HashSet: void <init>(java.util.Collection)>(r5);
+$i2 = virtualinvoke $r6.<java.util.HashSet: int hashCode()>();
+$i3 = interfaceinvoke r5.<java.util.Set: int hashCode()>();
+if $i2 == $i3 goto r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Incorrect hashCode computation.\");
+";
+    "Block 16:
+[preds: 14 15 ] [succs: 17 18 ]
+$r6 = new java.util.HashSet;
+specialinvoke $r6.<java.util.HashSet: void <init>(java.util.Collection)>(r5);
+$i2 = virtualinvoke $r6.<java.util.HashSet: int hashCode()>();
+$i3 = interfaceinvoke r5.<java.util.Set: int hashCode()>();
+if $i2 == $i3 goto r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 ]
+r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Incorrect hashCode computation.\");
+"->"Block 18:
+[preds: 16 17 ] [succs: 19 ]
+r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 19 ]
+r10 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+";
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+"->"Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r8 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+$z18 = interfaceinvoke r2.<java.util.Set: boolean remove(java.lang.Object)>($r8);
+if $z18 != 0 goto $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+"->"Block 22:
+[preds: 19 ] [succs: 23 24 ]
+$z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+if $z13 != 0 goto r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r8 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+$z18 = interfaceinvoke r2.<java.util.Set: boolean remove(java.lang.Object)>($r8);
+if $z18 != 0 goto $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+"->"Block 21:
+[preds: 20 ] [succs: 19 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Couldn\'t remove element from copy.\");
+goto [?= $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 19 ]
+$r8 = interfaceinvoke r10.<java.util.Iterator: java.lang.Object next()>();
+$z18 = interfaceinvoke r2.<java.util.Set: boolean remove(java.lang.Object)>($r8);
+if $z18 != 0 goto $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+";
+    "Block 21:
+[preds: 20 ] [succs: 19 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Couldn\'t remove element from copy.\");
+goto [?= $z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 19:
+[preds: 18 20 21 ] [succs: 20 22 ]
+$z19 = interfaceinvoke r10.<java.util.Iterator: boolean hasNext()>();
+if $z19 == 0 goto $z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+";
+    "Block 22:
+[preds: 19 ] [succs: 23 24 ]
+$z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+if $z13 != 0 goto r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Copy nonempty after deleting all elements.\");
+";
+    "Block 22:
+[preds: 19 ] [succs: 23 24 ]
+$z13 = interfaceinvoke r2.<java.util.Set: boolean isEmpty()>();
+if $z13 != 0 goto r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 24:
+[preds: 22 23 ] [succs: 25 ]
+r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Copy nonempty after deleting all elements.\");
+"->"Block 24:
+[preds: 22 23 ] [succs: 25 ]
+r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 24:
+[preds: 22 23 ] [succs: 25 ]
+r11 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 25:
+[preds: 24 30 ] [succs: 26 31 ]
+$z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+if $z20 == 0 goto $z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+";
+    "Block 25:
+[preds: 24 30 ] [succs: 26 31 ]
+$z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+if $z20 == 0 goto $z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+"->"Block 26:
+[preds: 25 ] [succs: 27 28 ]
+r7 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>();
+$z16 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z16 != 0 goto interfaceinvoke r11.<java.util.Iterator: void remove()>();
+";
+    "Block 25:
+[preds: 24 30 ] [succs: 26 31 ]
+$z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+if $z20 == 0 goto $z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+"->"Block 31:
+[preds: 25 ] [succs: 32 33 ]
+$z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+if $z14 != 0 goto interfaceinvoke r0.<java.util.Set: void clear()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 28 ]
+r7 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>();
+$z16 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z16 != 0 goto interfaceinvoke r11.<java.util.Iterator: void remove()>();
+"->"Block 27:
+[preds: 26 ] [succs: 28 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set doesn\'t contain one of its elements.\");
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 28 ]
+r7 = interfaceinvoke r11.<java.util.Iterator: java.lang.Object next()>();
+$z16 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z16 != 0 goto interfaceinvoke r11.<java.util.Iterator: void remove()>();
+"->"Block 28:
+[preds: 26 27 ] [succs: 29 30 ]
+interfaceinvoke r11.<java.util.Iterator: void remove()>();
+$z17 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z17 == 0 goto (branch);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set doesn\'t contain one of its elements.\");
+"->"Block 28:
+[preds: 26 27 ] [succs: 29 30 ]
+interfaceinvoke r11.<java.util.Iterator: void remove()>();
+$z17 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z17 == 0 goto (branch);
+";
+    "Block 28:
+[preds: 26 27 ] [succs: 29 30 ]
+interfaceinvoke r11.<java.util.Iterator: void remove()>();
+$z17 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z17 == 0 goto (branch);
+"->"Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set contains element after deletion.\");
+";
+    "Block 28:
+[preds: 26 27 ] [succs: 29 30 ]
+interfaceinvoke r11.<java.util.Iterator: void remove()>();
+$z17 = interfaceinvoke r5.<java.util.Set: boolean contains(java.lang.Object)>(r7);
+if $z17 == 0 goto (branch);
+"->"Block 30:
+[preds: 28 29 ] [succs: 25 ]
+goto [?= $z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set contains element after deletion.\");
+"->"Block 30:
+[preds: 28 29 ] [succs: 25 ]
+goto [?= $z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 30:
+[preds: 28 29 ] [succs: 25 ]
+goto [?= $z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 25:
+[preds: 24 30 ] [succs: 26 31 ]
+$z20 = interfaceinvoke r11.<java.util.Iterator: boolean hasNext()>();
+if $z20 == 0 goto $z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+";
+    "Block 31:
+[preds: 25 ] [succs: 32 33 ]
+$z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+if $z14 != 0 goto interfaceinvoke r0.<java.util.Set: void clear()>();
+"->"Block 32:
+[preds: 31 ] [succs: 33 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after deleting all elements.\");
+";
+    "Block 31:
+[preds: 25 ] [succs: 32 33 ]
+$z14 = interfaceinvoke r5.<java.util.Set: boolean isEmpty()>();
+if $z14 != 0 goto interfaceinvoke r0.<java.util.Set: void clear()>();
+"->"Block 33:
+[preds: 31 32 ] [succs: 34 35 ]
+interfaceinvoke r0.<java.util.Set: void clear()>();
+$z15 = interfaceinvoke r0.<java.util.Set: boolean isEmpty()>();
+if $z15 != 0 goto i4 = i4 + 1;
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after deleting all elements.\");
+"->"Block 33:
+[preds: 31 32 ] [succs: 34 35 ]
+interfaceinvoke r0.<java.util.Set: void clear()>();
+$z15 = interfaceinvoke r0.<java.util.Set: boolean isEmpty()>();
+if $z15 != 0 goto i4 = i4 + 1;
+";
+    "Block 33:
+[preds: 31 32 ] [succs: 34 35 ]
+interfaceinvoke r0.<java.util.Set: void clear()>();
+$z15 = interfaceinvoke r0.<java.util.Set: boolean isEmpty()>();
+if $z15 != 0 goto i4 = i4 + 1;
+"->"Block 34:
+[preds: 33 ] [succs: 35 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after clear.\");
+";
+    "Block 33:
+[preds: 31 32 ] [succs: 34 35 ]
+interfaceinvoke r0.<java.util.Set: void clear()>();
+$z15 = interfaceinvoke r0.<java.util.Set: boolean isEmpty()>();
+if $z15 != 0 goto i4 = i4 + 1;
+"->"Block 35:
+[preds: 33 34 ] [succs: 1 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 ]
+staticinvoke <jsr166tests.jtreg.util.Collections.CheckedSetBash: void fail(java.lang.String)>(\"Set nonempty after clear.\");
+"->"Block 35:
+[preds: 33 34 ] [succs: 1 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+";
+    "Block 35:
+[preds: 33 34 ] [succs: 1 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 35 ] [succs: 2 36 ]
+if i4 >= b0 goto return;
+";
+}

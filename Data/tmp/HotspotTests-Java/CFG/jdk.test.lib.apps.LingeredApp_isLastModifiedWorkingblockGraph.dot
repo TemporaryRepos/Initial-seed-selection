@@ -1,0 +1,611 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 22 ]
+z0 = 1;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 22 ]
+l6 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 22 ]
+$b0 = l6 cmp 0L;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 7 22 ]
+if $b0 != 0 goto l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 22 ]
+$r2 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 22 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The lastModifiedTime() doesn\'t work on this system, it returns 0\");
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 22 ]
+z0 = 0;
+"
+    "Block 7:
+[preds: 3 6 ] [succs: 8 22 ]
+l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 22 ]
+$b2 = l6 cmp l1;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 13 22 ]
+if $b2 <= 0 goto $l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 22 ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 22 ]
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The Clock is wrong on this system lastModifiedTime() > getTime()\");
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 22 ]
+z0 = 0;
+"
+    "Block 13:
+[preds: 9 12 ] [succs: 14 22 ]
+$l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 22 ]
+staticinvoke <jdk.test.lib.apps.LingeredApp: void setLastModified(java.lang.String,long)>(\".\", $l3);
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 22 ]
+l4 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 22 ]
+$b5 = l4 cmp l6;
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 23 22 ]
+if $b5 > 0 goto return z0;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 22 ]
+$r0 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 22 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The setLastModified doesn\'t work on this system\");
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 22 ]
+z0 = 0;
+"
+    "Block 21:
+[preds: 20 ] [succs: 23 ]
+goto [?= return z0];
+"
+    "Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+"
+    "Block 23:
+[preds: 17 21 22 ] [succs: ]
+return z0;
+"
+    "Block 0:
+[preds: ] [succs: 1 22 ]
+z0 = 1;
+"->"Block 1:
+[preds: 0 ] [succs: 2 22 ]
+l6 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+";
+    "Block 0:
+[preds: ] [succs: 1 22 ]
+z0 = 1;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 22 ]
+l6 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"->"Block 2:
+[preds: 1 ] [succs: 3 22 ]
+$b0 = l6 cmp 0L;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 22 ]
+l6 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 22 ]
+$b0 = l6 cmp 0L;
+"->"Block 3:
+[preds: 2 ] [succs: 4 7 22 ]
+if $b0 != 0 goto l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 22 ]
+$b0 = l6 cmp 0L;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 7 22 ]
+if $b0 != 0 goto l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 22 ]
+$r2 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 7 22 ]
+if $b0 != 0 goto l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 7:
+[preds: 3 6 ] [succs: 8 22 ]
+l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 7 22 ]
+if $b0 != 0 goto l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 22 ]
+$r2 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 5:
+[preds: 4 ] [succs: 6 22 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The lastModifiedTime() doesn\'t work on this system, it returns 0\");
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 22 ]
+$r2 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 22 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The lastModifiedTime() doesn\'t work on this system, it returns 0\");
+"->"Block 6:
+[preds: 5 ] [succs: 7 22 ]
+z0 = 0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 22 ]
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The lastModifiedTime() doesn\'t work on this system, it returns 0\");
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 22 ]
+z0 = 0;
+"->"Block 7:
+[preds: 3 6 ] [succs: 8 22 ]
+l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 22 ]
+z0 = 0;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 7:
+[preds: 3 6 ] [succs: 8 22 ]
+l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 8:
+[preds: 7 ] [succs: 9 22 ]
+$b2 = l6 cmp l1;
+";
+    "Block 7:
+[preds: 3 6 ] [succs: 8 22 ]
+l1 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 22 ]
+$b2 = l6 cmp l1;
+"->"Block 9:
+[preds: 8 ] [succs: 10 13 22 ]
+if $b2 <= 0 goto $l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 22 ]
+$b2 = l6 cmp l1;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 22 ]
+if $b2 <= 0 goto $l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 10:
+[preds: 9 ] [succs: 11 22 ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 22 ]
+if $b2 <= 0 goto $l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 13:
+[preds: 9 12 ] [succs: 14 22 ]
+$l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 22 ]
+if $b2 <= 0 goto $l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 22 ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 11:
+[preds: 10 ] [succs: 12 22 ]
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The Clock is wrong on this system lastModifiedTime() > getTime()\");
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 22 ]
+$r1 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 22 ]
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The Clock is wrong on this system lastModifiedTime() > getTime()\");
+"->"Block 12:
+[preds: 11 ] [succs: 13 22 ]
+z0 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 22 ]
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The Clock is wrong on this system lastModifiedTime() > getTime()\");
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 22 ]
+z0 = 0;
+"->"Block 13:
+[preds: 9 12 ] [succs: 14 22 ]
+$l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 22 ]
+z0 = 0;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 13:
+[preds: 9 12 ] [succs: 14 22 ]
+$l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 14:
+[preds: 13 ] [succs: 15 22 ]
+staticinvoke <jdk.test.lib.apps.LingeredApp: void setLastModified(java.lang.String,long)>(\".\", $l3);
+";
+    "Block 13:
+[preds: 9 12 ] [succs: 14 22 ]
+$l3 = staticinvoke <jdk.test.lib.apps.LingeredApp: long epoch()>();
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 22 ]
+staticinvoke <jdk.test.lib.apps.LingeredApp: void setLastModified(java.lang.String,long)>(\".\", $l3);
+"->"Block 15:
+[preds: 14 ] [succs: 16 22 ]
+l4 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 22 ]
+staticinvoke <jdk.test.lib.apps.LingeredApp: void setLastModified(java.lang.String,long)>(\".\", $l3);
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 22 ]
+l4 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"->"Block 16:
+[preds: 15 ] [succs: 17 22 ]
+$b5 = l4 cmp l6;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 22 ]
+l4 = staticinvoke <jdk.test.lib.apps.LingeredApp: long lastModified(java.lang.String)>(\".\");
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 22 ]
+$b5 = l4 cmp l6;
+"->"Block 17:
+[preds: 16 ] [succs: 18 23 22 ]
+if $b5 > 0 goto return z0;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 22 ]
+$b5 = l4 cmp l6;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 23 22 ]
+if $b5 > 0 goto return z0;
+"->"Block 18:
+[preds: 17 ] [succs: 19 22 ]
+$r0 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 23 22 ]
+if $b5 > 0 goto return z0;
+"->"Block 23:
+[preds: 17 21 22 ] [succs: ]
+return z0;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 23 22 ]
+if $b5 > 0 goto return z0;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 22 ]
+$r0 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 19:
+[preds: 18 ] [succs: 20 22 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The setLastModified doesn\'t work on this system\");
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 22 ]
+$r0 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 22 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The setLastModified doesn\'t work on this system\");
+"->"Block 20:
+[preds: 19 ] [succs: 21 22 ]
+z0 = 0;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 22 ]
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"SANITY Warning! The setLastModified doesn\'t work on this system\");
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 ]
+z0 = 0;
+"->"Block 21:
+[preds: 20 ] [succs: 23 ]
+goto [?= return z0];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 22 ]
+z0 = 0;
+"->"Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+";
+    "Block 21:
+[preds: 20 ] [succs: 23 ]
+goto [?= return z0];
+"->"Block 23:
+[preds: 17 21 22 ] [succs: ]
+return z0;
+";
+    "Block 22:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ] [succs: 23 ]
+$r3 := @caughtexception;
+r8 = $r3;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = new java.lang.StringBuilder;
+specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"SANITY Warning! IOException during sanity check \");
+$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r8);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+z0 = 0;
+"->"Block 23:
+[preds: 17 21 22 ] [succs: ]
+return z0;
+";
+}

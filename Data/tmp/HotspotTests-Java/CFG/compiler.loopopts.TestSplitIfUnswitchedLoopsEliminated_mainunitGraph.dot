@@ -1,0 +1,40 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "i5 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i5 % 2"
+    "if $i0 != 0 goto $z0 = 0"
+    "$z0 = 1"
+    "goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)]"
+    "$z0 = 0"
+    "staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)"
+    "$i2 = i5 % 2"
+    "if $i2 != 0 goto $z1 = 0"
+    "$z1 = 1"
+    "goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)]"
+    "$z1 = 0"
+    "staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)"
+    "i5 = i5 + 1"
+    "if i5 < 20000 goto $i0 = i5 % 2"
+    "return"
+    "r0 := @parameter0: java.lang.String[]"->"i5 = 0";
+    "i5 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 < 20000 goto $i0 = i5 % 2";
+    "$i0 = i5 % 2"->"if $i0 != 0 goto $z0 = 0";
+    "if $i0 != 0 goto $z0 = 0"->"$z0 = 1";
+    "if $i0 != 0 goto $z0 = 0"->"$z0 = 0";
+    "$z0 = 1"->"goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)]";
+    "goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)]"->"staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)";
+    "$z0 = 0"->"staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)";
+    "staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test_helper(int,boolean)>(10, $z0)"->"$i2 = i5 % 2";
+    "$i2 = i5 % 2"->"if $i2 != 0 goto $z1 = 0";
+    "if $i2 != 0 goto $z1 = 0"->"$z1 = 1";
+    "if $i2 != 0 goto $z1 = 0"->"$z1 = 0";
+    "$z1 = 1"->"goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)]";
+    "goto [?= staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)]"->"staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)";
+    "$z1 = 0"->"staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)";
+    "staticinvoke <compiler.loopopts.TestSplitIfUnswitchedLoopsEliminated: int test(boolean)>($z1)"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"if i5 < 20000 goto $i0 = i5 % 2";
+    "if i5 < 20000 goto $i0 = i5 % 2"->"return";
+    "if i5 < 20000 goto $i0 = i5 % 2"->"$i0 = i5 % 2";
+}

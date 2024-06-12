@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+i2 := @parameter0: int;
+r1 := @parameter1: int[];
+i0 := @parameter2: int;
+r0 = newarray (int)[i0];
+i3 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i3 >= i0 goto return r0;
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r0[i3] = i2;
+$i1 = r1[i3];
+i2 = i2 + $i1;
+i3 = i3 + 1;
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: ]
+return r0;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+i2 := @parameter0: int;
+r1 := @parameter1: int[];
+i0 := @parameter2: int;
+r0 = newarray (int)[i0];
+i3 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i3 >= i0 goto return r0;
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i3 >= i0 goto return r0;
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+r0[i3] = i2;
+$i1 = r1[i3];
+i2 = i2 + $i1;
+i3 = i3 + 1;
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i3 >= i0 goto return r0;
+"->"Block 3:
+[preds: 1 ] [succs: ]
+return r0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r0[i3] = i2;
+$i1 = r1[i3];
+i2 = i2 + $i1;
+i3 = i3 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i3 >= i0 goto return r0;
+";
+}

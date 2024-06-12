@@ -1,0 +1,16 @@
+digraph "unitGraph" {
+    "r0 := @this: ch2.AccountingSyncBad"
+    "i0 = 0"
+    "if i0 >= 10000000 goto return"
+    "staticinvoke <ch2.AccountingSyncBad: void increase()>()"
+    "i0 = i0 + 1"
+    "goto [?= (branch)]"
+    "return"
+    "r0 := @this: ch2.AccountingSyncBad"->"i0 = 0";
+    "i0 = 0"->"if i0 >= 10000000 goto return";
+    "if i0 >= 10000000 goto return"->"staticinvoke <ch2.AccountingSyncBad: void increase()>()";
+    "if i0 >= 10000000 goto return"->"return";
+    "staticinvoke <ch2.AccountingSyncBad: void increase()>()"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 >= 10000000 goto return";
+}

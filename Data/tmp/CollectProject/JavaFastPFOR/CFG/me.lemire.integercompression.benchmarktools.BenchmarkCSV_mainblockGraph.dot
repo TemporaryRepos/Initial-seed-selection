@@ -1,0 +1,657 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r2 := @parameter0: java.lang.String[];
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+r31 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+$r0 = new java.util.ArrayList;
+specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+r1 = $r0;
+r32 = r2;
+i1 = lengthof r32;
+i2 = 0;
+"
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+if i2 >= i1 goto $r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r33 = r32[i2];
+$z3 = virtualinvoke r33.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z3 == 0 goto virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z5 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--onearrayperfile\");
+if $z5 == 0 goto $z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+"
+    "Block 4:
+[preds: 3 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+goto [?= i2 = i2 + 1];
+"
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+if $z6 == 0 goto $z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+"
+    "Block 6:
+[preds: 5 ] [succs: 11 ]
+r31 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+goto [?= i2 = i2 + 1];
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+if $z7 == 0 goto $r25 = new java.lang.RuntimeException;
+"
+    "Block 8:
+[preds: 7 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+goto [?= i2 = i2 + 1];
+"
+    "Block 9:
+[preds: 7 ] [succs: ]
+$r25 = new java.lang.RuntimeException;
+$r26 = new java.lang.StringBuilder;
+specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"I don\'t understand: \");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r33);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r25.<java.lang.RuntimeException: void <init>(java.lang.String)>($r29);
+throw $r25;
+"
+    "Block 10:
+[preds: 2 ] [succs: 11 ]
+virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+"
+    "Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+if r30 != $r3 goto $r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+"
+    "Block 13:
+[preds: 12 ] [succs: 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+if r30 != $r4 goto $r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+"
+    "Block 15:
+[preds: 14 ] [succs: 18 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Each line of each file is an array: use --onearrayperfile or --oneintperline to change.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+if r30 != $r5 goto $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r22 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array, with one integer per line.\");
+"
+    "Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 19:
+[preds: 18 ] [succs: 21 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Compressing the integers \'as is\' (no differential coding)\");
+goto [?= $r7 = new java.util.ArrayList];
+"
+    "Block 20:
+[preds: 18 ] [succs: 21 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Using differential coding (arrays will be sorted): use --nodelta to prevent sorting\");
+"
+    "Block 21:
+[preds: 19 20 ] [succs: 22 ]
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r35 = $r7;
+r36 = virtualinvoke r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+"
+    "Block 22:
+[preds: 21 26 ] [succs: 23 27 ]
+$z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>();
+if $z8 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+$r17 = interfaceinvoke r36.<java.util.Iterator: java.lang.Object next()>();
+r37 = (java.lang.String) $r17;
+$r18 = staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: java.util.ArrayList loadIntegers(java.lang.String,me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format)>(r37, r30);
+r38 = virtualinvoke $r18.<java.util.ArrayList: java.util.Iterator iterator()>();
+"
+    "Block 24:
+[preds: 23 25 ] [succs: 25 26 ]
+$z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"
+    "Block 25:
+[preds: 24 ] [succs: 24 ]
+$r19 = interfaceinvoke r38.<java.util.Iterator: java.lang.Object next()>();
+r20 = (int[]) $r19;
+virtualinvoke r35.<java.util.ArrayList: boolean add(java.lang.Object)>(r20);
+goto [?= $z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 26:
+[preds: 24 ] [succs: 22 ]
+goto [?= $z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 27:
+[preds: 22 ] [succs: 28 31 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Loaded \");
+$i0 = virtualinvoke r35.<java.util.ArrayList: int size()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" array(s)\");
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+$r14 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+if r31 != $r14 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Sorting the arrray(s) because you are using differential coding\");
+r39 = virtualinvoke r35.<java.util.ArrayList: java.util.Iterator iterator()>();
+"
+    "Block 29:
+[preds: 28 30 ] [succs: 30 31 ]
+$z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"
+    "Block 30:
+[preds: 29 ] [succs: 29 ]
+$r16 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (int[]) $r16;
+staticinvoke <java.util.Arrays: void sort(int[])>(r40);
+goto [?= $z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 31:
+[preds: 27 29 ] [succs: ]
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r2 := @parameter0: java.lang.String[];
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+r31 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+$r0 = new java.util.ArrayList;
+specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+r1 = $r0;
+r32 = r2;
+i1 = lengthof r32;
+i2 = 0;
+"->"Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+if i2 >= i1 goto $r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+";
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+if i2 >= i1 goto $r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r33 = r32[i2];
+$z3 = virtualinvoke r33.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z3 == 0 goto virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+";
+    "Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+if i2 >= i1 goto $r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+"->"Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+if r30 != $r3 goto $r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r33 = r32[i2];
+$z3 = virtualinvoke r33.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z3 == 0 goto virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z5 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--onearrayperfile\");
+if $z5 == 0 goto $z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r33 = r32[i2];
+$z3 = virtualinvoke r33.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\");
+if $z3 == 0 goto virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+"->"Block 10:
+[preds: 2 ] [succs: 11 ]
+virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z5 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--onearrayperfile\");
+if $z5 == 0 goto $z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+"->"Block 4:
+[preds: 3 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+goto [?= i2 = i2 + 1];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+$z5 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--onearrayperfile\");
+if $z5 == 0 goto $z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+"->"Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+if $z6 == 0 goto $z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+";
+    "Block 4:
+[preds: 3 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+goto [?= i2 = i2 + 1];
+"->"Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+if $z6 == 0 goto $z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+"->"Block 6:
+[preds: 5 ] [succs: 11 ]
+r31 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+goto [?= i2 = i2 + 1];
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z6 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--nodelta\");
+if $z6 == 0 goto $z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+"->"Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+if $z7 == 0 goto $r25 = new java.lang.RuntimeException;
+";
+    "Block 6:
+[preds: 5 ] [succs: 11 ]
+r31 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+goto [?= i2 = i2 + 1];
+"->"Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+if $z7 == 0 goto $r25 = new java.lang.RuntimeException;
+"->"Block 8:
+[preds: 7 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+goto [?= i2 = i2 + 1];
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 9 ]
+$z7 = virtualinvoke r33.<java.lang.String: boolean equals(java.lang.Object)>(\"--oneintperline\");
+if $z7 == 0 goto $r25 = new java.lang.RuntimeException;
+"->"Block 9:
+[preds: 7 ] [succs: ]
+$r25 = new java.lang.RuntimeException;
+$r26 = new java.lang.StringBuilder;
+specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"I don\'t understand: \");
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r33);
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r25.<java.lang.RuntimeException: void <init>(java.lang.String)>($r29);
+throw $r25;
+";
+    "Block 8:
+[preds: 7 ] [succs: 11 ]
+r30 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+goto [?= i2 = i2 + 1];
+"->"Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 2 ] [succs: 11 ]
+virtualinvoke r1.<java.util.ArrayList: boolean add(java.lang.Object)>(r33);
+"->"Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 11:
+[preds: 4 6 8 10 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 11 ] [succs: 2 12 ]
+if i2 >= i1 goto $r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+";
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+if r30 != $r3 goto $r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+"->"Block 13:
+[preds: 12 ] [succs: 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+";
+    "Block 12:
+[preds: 1 ] [succs: 13 14 ]
+$r3 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERFILE>;
+if r30 != $r3 goto $r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+if r30 != $r4 goto $r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+";
+    "Block 13:
+[preds: 12 ] [succs: 18 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+"->"Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+if r30 != $r4 goto $r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+"->"Block 15:
+[preds: 14 ] [succs: 18 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Each line of each file is an array: use --onearrayperfile or --oneintperline to change.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r4 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEARRAYPERLINE>;
+if r30 != $r4 goto $r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+"->"Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+if r30 != $r5 goto $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+";
+    "Block 15:
+[preds: 14 ] [succs: 18 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"Each line of each file is an array: use --onearrayperfile or --oneintperline to change.\");
+goto [?= $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>];
+"->"Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+if r30 != $r5 goto $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+$r22 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array, with one integer per line.\");
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$r5 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format: me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format ONEINTPERLINE>;
+if r30 != $r5 goto $r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+"->"Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+$r22 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"Treating each file as one array, with one integer per line.\");
+"->"Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 19:
+[preds: 18 ] [succs: 21 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Compressing the integers \'as is\' (no differential coding)\");
+goto [?= $r7 = new java.util.ArrayList];
+";
+    "Block 18:
+[preds: 13 15 16 17 ] [succs: 19 20 ]
+$r34 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode AS_IS>;
+if r31 != $r34 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 20:
+[preds: 18 ] [succs: 21 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Using differential coding (arrays will be sorted): use --nodelta to prevent sorting\");
+";
+    "Block 19:
+[preds: 18 ] [succs: 21 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Compressing the integers \'as is\' (no differential coding)\");
+goto [?= $r7 = new java.util.ArrayList];
+"->"Block 21:
+[preds: 19 20 ] [succs: 22 ]
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r35 = $r7;
+r36 = virtualinvoke r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+";
+    "Block 20:
+[preds: 18 ] [succs: 21 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Using differential coding (arrays will be sorted): use --nodelta to prevent sorting\");
+"->"Block 21:
+[preds: 19 20 ] [succs: 22 ]
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r35 = $r7;
+r36 = virtualinvoke r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+";
+    "Block 21:
+[preds: 19 20 ] [succs: 22 ]
+$r7 = new java.util.ArrayList;
+specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+r35 = $r7;
+r36 = virtualinvoke r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+"->"Block 22:
+[preds: 21 26 ] [succs: 23 27 ]
+$z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>();
+if $z8 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 22:
+[preds: 21 26 ] [succs: 23 27 ]
+$z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>();
+if $z8 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 23:
+[preds: 22 ] [succs: 24 ]
+$r17 = interfaceinvoke r36.<java.util.Iterator: java.lang.Object next()>();
+r37 = (java.lang.String) $r17;
+$r18 = staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: java.util.ArrayList loadIntegers(java.lang.String,me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format)>(r37, r30);
+r38 = virtualinvoke $r18.<java.util.ArrayList: java.util.Iterator iterator()>();
+";
+    "Block 22:
+[preds: 21 26 ] [succs: 23 27 ]
+$z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>();
+if $z8 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 27:
+[preds: 22 ] [succs: 28 31 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Loaded \");
+$i0 = virtualinvoke r35.<java.util.ArrayList: int size()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" array(s)\");
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+$r14 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+if r31 != $r14 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 ]
+$r17 = interfaceinvoke r36.<java.util.Iterator: java.lang.Object next()>();
+r37 = (java.lang.String) $r17;
+$r18 = staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: java.util.ArrayList loadIntegers(java.lang.String,me.lemire.integercompression.benchmarktools.BenchmarkCSV$Format)>(r37, r30);
+r38 = virtualinvoke $r18.<java.util.ArrayList: java.util.Iterator iterator()>();
+"->"Block 24:
+[preds: 23 25 ] [succs: 25 26 ]
+$z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 24:
+[preds: 23 25 ] [succs: 25 26 ]
+$z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 25:
+[preds: 24 ] [succs: 24 ]
+$r19 = interfaceinvoke r38.<java.util.Iterator: java.lang.Object next()>();
+r20 = (int[]) $r19;
+virtualinvoke r35.<java.util.ArrayList: boolean add(java.lang.Object)>(r20);
+goto [?= $z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 24:
+[preds: 23 25 ] [succs: 25 26 ]
+$z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+"->"Block 26:
+[preds: 24 ] [succs: 22 ]
+goto [?= $z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 25:
+[preds: 24 ] [succs: 24 ]
+$r19 = interfaceinvoke r38.<java.util.Iterator: java.lang.Object next()>();
+r20 = (int[]) $r19;
+virtualinvoke r35.<java.util.ArrayList: boolean add(java.lang.Object)>(r20);
+goto [?= $z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 24:
+[preds: 23 25 ] [succs: 25 26 ]
+$z1 = interfaceinvoke r38.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 26:
+[preds: 24 ] [succs: 22 ]
+goto [?= $z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 22:
+[preds: 21 26 ] [succs: 23 27 ]
+$z8 = interfaceinvoke r36.<java.util.Iterator: boolean hasNext()>();
+if $z8 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 27:
+[preds: 22 ] [succs: 28 31 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Loaded \");
+$i0 = virtualinvoke r35.<java.util.ArrayList: int size()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" array(s)\");
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+$r14 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+if r31 != $r14 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"->"Block 28:
+[preds: 27 ] [succs: 29 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Sorting the arrray(s) because you are using differential coding\");
+r39 = virtualinvoke r35.<java.util.ArrayList: java.util.Iterator iterator()>();
+";
+    "Block 27:
+[preds: 22 ] [succs: 28 31 ]
+$r9 = <java.lang.System: java.io.PrintStream out>;
+$r8 = new java.lang.StringBuilder;
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Loaded \");
+$i0 = virtualinvoke r35.<java.util.ArrayList: int size()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" array(s)\");
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+$r14 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>;
+if r31 != $r14 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"->"Block 31:
+[preds: 27 29 ] [succs: ]
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+return;
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Sorting the arrray(s) because you are using differential coding\");
+r39 = virtualinvoke r35.<java.util.ArrayList: java.util.Iterator iterator()>();
+"->"Block 29:
+[preds: 28 30 ] [succs: 30 31 ]
+$z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+";
+    "Block 29:
+[preds: 28 30 ] [succs: 30 31 ]
+$z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"->"Block 30:
+[preds: 29 ] [succs: 29 ]
+$r16 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (int[]) $r16;
+staticinvoke <java.util.Arrays: void sort(int[])>(r40);
+goto [?= $z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 29:
+[preds: 28 30 ] [succs: 30 31 ]
+$z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+"->"Block 31:
+[preds: 27 29 ] [succs: ]
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bytebench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 1);
+return;
+";
+    "Block 30:
+[preds: 29 ] [succs: 29 ]
+$r16 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (int[]) $r16;
+staticinvoke <java.util.Arrays: void sort(int[])>(r40);
+goto [?= $z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 29:
+[preds: 28 30 ] [succs: 30 31 ]
+$z0 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto staticinvoke <me.lemire.integercompression.benchmarktools.BenchmarkCSV: void bench(java.util.ArrayList,me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode,boolean)>(r35, r31, 0);
+";
+}

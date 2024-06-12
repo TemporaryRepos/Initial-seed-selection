@@ -1,0 +1,307 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 3 goto r1 = r0[0];
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"usage: local_lat <bind-to> <message-size> <roundtrip-count>\n\");
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r1 = r0[0];
+$r2 = r0[1];
+i1 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r2);
+$r3 = r0[2];
+i2 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r3);
+r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1);
+if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"error in init: %s\n\");
+return;
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+$r13 = newarray (java.lang.Object)[1];
+$r14 = virtualinvoke r4.<zmq.Ctx: zmq.util.Errno errno()>();
+$i8 = virtualinvoke $r14.<zmq.util.Errno: int get()>();
+$r15 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i8);
+$r13[0] = $r15;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in socket: %s\n\", $r13);
+return;
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+if z0 != 0 goto i9 = 0;
+"
+    "Block 7:
+[preds: 6 ] [succs: ]
+$r11 = newarray (java.lang.Object)[1];
+$i7 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r12 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i7);
+$r11[0] = $r12;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in bind: %s\n\", $r11);
+return;
+"
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+i9 = 0;
+"
+    "Block 9:
+[preds: 8 16 ] [succs: 10 17 ]
+if i9 == i2 goto staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+r6 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0);
+if r6 != null goto $i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+"
+    "Block 11:
+[preds: 10 ] [succs: ]
+$r9 = newarray (java.lang.Object)[1];
+$i6 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r10 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i6);
+$r9[0] = $r10;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in recvmsg: %s\n\", $r9);
+return;
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+if $i3 == i1 goto i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"message of incorrect size received\n\");
+return;
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+if i4 >= 0 goto i9 = i9 + 1;
+"
+    "Block 15:
+[preds: 14 ] [succs: ]
+$r7 = newarray (java.lang.Object)[1];
+$i5 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r8 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i5);
+$r7[0] = $r8;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in sendmsg: %s\n\", $r7);
+return;
+"
+    "Block 16:
+[preds: 14 ] [succs: 9 ]
+i9 = i9 + 1;
+goto [?= (branch)];
+"
+    "Block 17:
+[preds: 9 ] [succs: ]
+staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+staticinvoke <zmq.ZMQ: void close(zmq.SocketBase)>(r5);
+staticinvoke <zmq.ZMQ: void term(zmq.Ctx)>(r4);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 3 goto r1 = r0[0];
+"->"Block 1:
+[preds: 0 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"usage: local_lat <bind-to> <message-size> <roundtrip-count>\n\");
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 3 goto r1 = r0[0];
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r1 = r0[0];
+$r2 = r0[1];
+i1 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r2);
+$r3 = r0[2];
+i2 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r3);
+r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1);
+if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r1 = r0[0];
+$r2 = r0[1];
+i1 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r2);
+$r3 = r0[2];
+i2 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r3);
+r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1);
+if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"error in init: %s\n\");
+return;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+r1 = r0[0];
+$r2 = r0[1];
+i1 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r2);
+$r3 = r0[2];
+i2 = staticinvoke <perf.LocalLat: int atoi(java.lang.String)>($r3);
+r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1);
+if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+"->"Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+"->"Block 5:
+[preds: 4 ] [succs: ]
+$r13 = newarray (java.lang.Object)[1];
+$r14 = virtualinvoke r4.<zmq.Ctx: zmq.util.Errno errno()>();
+$i8 = virtualinvoke $r14.<zmq.util.Errno: int get()>();
+$r15 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i8);
+$r13[0] = $r15;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in socket: %s\n\", $r13);
+return;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 4);
+if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+if z0 != 0 goto i9 = 0;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+if z0 != 0 goto i9 = 0;
+"->"Block 7:
+[preds: 6 ] [succs: ]
+$r11 = newarray (java.lang.Object)[1];
+$i7 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r12 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i7);
+$r11[0] = $r12;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in bind: %s\n\", $r11);
+return;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1);
+if z0 != 0 goto i9 = 0;
+"->"Block 8:
+[preds: 6 ] [succs: 9 ]
+i9 = 0;
+";
+    "Block 8:
+[preds: 6 ] [succs: 9 ]
+i9 = 0;
+"->"Block 9:
+[preds: 8 16 ] [succs: 10 17 ]
+if i9 == i2 goto staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+";
+    "Block 9:
+[preds: 8 16 ] [succs: 10 17 ]
+if i9 == i2 goto staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+"->"Block 10:
+[preds: 9 ] [succs: 11 12 ]
+r6 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0);
+if r6 != null goto $i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+";
+    "Block 9:
+[preds: 8 16 ] [succs: 10 17 ]
+if i9 == i2 goto staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+"->"Block 17:
+[preds: 9 ] [succs: ]
+staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+staticinvoke <zmq.ZMQ: void close(zmq.SocketBase)>(r5);
+staticinvoke <zmq.ZMQ: void term(zmq.Ctx)>(r4);
+return;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+r6 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0);
+if r6 != null goto $i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+"->"Block 11:
+[preds: 10 ] [succs: ]
+$r9 = newarray (java.lang.Object)[1];
+$i6 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r10 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i6);
+$r9[0] = $r10;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in recvmsg: %s\n\", $r9);
+return;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+r6 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0);
+if r6 != null goto $i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+"->"Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+if $i3 == i1 goto i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+if $i3 == i1 goto i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+"->"Block 13:
+[preds: 12 ] [succs: ]
+staticinvoke <perf.LocalLat: void printf(java.lang.String)>(\"message of incorrect size received\n\");
+return;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+$i3 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r6);
+if $i3 == i1 goto i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+if i4 >= 0 goto i9 = i9 + 1;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+if i4 >= 0 goto i9 = i9 + 1;
+"->"Block 15:
+[preds: 14 ] [succs: ]
+$r7 = newarray (java.lang.Object)[1];
+$i5 = virtualinvoke r5.<zmq.SocketBase: int errno()>();
+$r8 = staticinvoke <zmq.ZMQ: java.lang.String strerror(int)>($i5);
+$r7[0] = $r8;
+staticinvoke <perf.LocalLat: void printf(java.lang.String,java.lang.Object[])>(\"error in sendmsg: %s\n\", $r7);
+return;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+i4 = staticinvoke <zmq.ZMQ: int sendMsg(zmq.SocketBase,zmq.Msg,int)>(r5, r6, 0);
+if i4 >= 0 goto i9 = i9 + 1;
+"->"Block 16:
+[preds: 14 ] [succs: 9 ]
+i9 = i9 + 1;
+goto [?= (branch)];
+";
+    "Block 16:
+[preds: 14 ] [succs: 9 ]
+i9 = i9 + 1;
+goto [?= (branch)];
+"->"Block 9:
+[preds: 8 16 ] [succs: 10 17 ]
+if i9 == i2 goto staticinvoke <zmq.ZMQ: void sleep(long)>(1000L);
+";
+}

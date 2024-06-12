@@ -1,0 +1,13 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "$i1 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>(i0)"
+    "$i2 = i0 + 1"
+    "$i3 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>($i2)"
+    "$i4 = $i1 + $i3"
+    "return $i4"
+    "i0 := @parameter0: int"->"$i1 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>(i0)";
+    "$i1 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>(i0)"->"$i2 = i0 + 1";
+    "$i2 = i0 + 1"->"$i3 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>($i2)";
+    "$i3 = staticinvoke <jit.CondExpr.CondExpr: int test_int1(int)>($i2)"->"$i4 = $i1 + $i3";
+    "$i4 = $i1 + $i3"->"return $i4";
+}

@@ -1,0 +1,78 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+$r0 = new java.lang.Long;
+$l0 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>(1L);
+specialinvoke $r0.<java.lang.Long: void <init>(long)>($l0);
+r2 = $r0;
+i5 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Long;
+$l1 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l2 = $l1 + 1L;
+$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2);
+specialinvoke $r1.<java.lang.Long: void <init>(long)>($l3);
+r2 = $r1;
+i5 = i5 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $r1 = new java.lang.Long;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>();
+$l4 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+return $l4;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+$r0 = new java.lang.Long;
+$l0 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>(1L);
+specialinvoke $r0.<java.lang.Long: void <init>(long)>($l0);
+r2 = $r0;
+i5 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $r1 = new java.lang.Long;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Long;
+$l1 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l2 = $l1 + 1L;
+$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2);
+specialinvoke $r1.<java.lang.Long: void <init>(long)>($l3);
+r2 = $r1;
+i5 = i5 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $r1 = new java.lang.Long;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $r1 = new java.lang.Long;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>();
+$l4 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+return $l4;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i5 < 1000 goto $r1 = new java.lang.Long;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = new java.lang.Long;
+$l1 = virtualinvoke r2.<java.lang.Long: long longValue()>();
+$l2 = $l1 + 1L;
+$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2);
+specialinvoke $r1.<java.lang.Long: void <init>(long)>($l3);
+r2 = $r1;
+i5 = i5 + 1;
+";
+}

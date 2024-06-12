@@ -1,0 +1,25 @@
+digraph "unitGraph" {
+    "r0 = \"abcdefg\""
+    "c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6)"
+    "if c0 == 103 goto return"
+    "$r1 = new java.lang.RuntimeException"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"failed: charAt(6) returned \'\")"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c0)"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' instead of \'g\'\")"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5)"
+    "throw $r1"
+    "return"
+    "r0 = \"abcdefg\""->"c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6)";
+    "c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6)"->"if c0 == 103 goto return";
+    "if c0 == 103 goto return"->"$r1 = new java.lang.RuntimeException";
+    "if c0 == 103 goto return"->"return";
+    "$r1 = new java.lang.RuntimeException"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"failed: charAt(6) returned \'\")";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"failed: charAt(6) returned \'\")"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c0)";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c0)"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' instead of \'g\'\")";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' instead of \'g\'\")"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5)";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5)"->"throw $r1";
+}

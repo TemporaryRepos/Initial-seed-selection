@@ -1,0 +1,38 @@
+digraph "unitGraph" {
+    "$r0 = new java.lang.Short"
+    "$s0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(1)"
+    "specialinvoke $r0.<java.lang.Short: void <init>(short)>($s0)"
+    "r2 = $r0"
+    "i6 = 0"
+    "goto [?= (branch)]"
+    "$r1 = new java.lang.Short"
+    "$s1 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"
+    "$i2 = $s1 + 1"
+    "$s3 = (short) $i2"
+    "$s4 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s3)"
+    "specialinvoke $r1.<java.lang.Short: void <init>(short)>($s4)"
+    "r2 = $r1"
+    "i6 = i6 + 1"
+    "if i6 < 1000 goto $r1 = new java.lang.Short"
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"
+    "$s5 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"
+    "return $s5"
+    "$r0 = new java.lang.Short"->"$s0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(1)";
+    "$s0 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>(1)"->"specialinvoke $r0.<java.lang.Short: void <init>(short)>($s0)";
+    "specialinvoke $r0.<java.lang.Short: void <init>(short)>($s0)"->"r2 = $r0";
+    "r2 = $r0"->"i6 = 0";
+    "i6 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i6 < 1000 goto $r1 = new java.lang.Short";
+    "$r1 = new java.lang.Short"->"$s1 = virtualinvoke r2.<java.lang.Short: short shortValue()>()";
+    "$s1 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"->"$i2 = $s1 + 1";
+    "$i2 = $s1 + 1"->"$s3 = (short) $i2";
+    "$s3 = (short) $i2"->"$s4 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s3)";
+    "$s4 = staticinvoke <compiler.eliminateAutobox.TestShortBoxing: short foo(short)>($s3)"->"specialinvoke $r1.<java.lang.Short: void <init>(short)>($s4)";
+    "specialinvoke $r1.<java.lang.Short: void <init>(short)>($s4)"->"r2 = $r1";
+    "r2 = $r1"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"if i6 < 1000 goto $r1 = new java.lang.Short";
+    "if i6 < 1000 goto $r1 = new java.lang.Short"->"staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()";
+    "if i6 < 1000 goto $r1 = new java.lang.Short"->"$r1 = new java.lang.Short";
+    "staticinvoke <compiler.eliminateAutobox.TestShortBoxing: void dummy()>()"->"$s5 = virtualinvoke r2.<java.lang.Short: short shortValue()>()";
+    "$s5 = virtualinvoke r2.<java.lang.Short: short shortValue()>()"->"return $s5";
+}

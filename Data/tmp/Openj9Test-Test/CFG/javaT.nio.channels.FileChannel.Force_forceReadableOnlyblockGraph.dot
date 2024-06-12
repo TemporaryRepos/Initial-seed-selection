@@ -1,0 +1,15 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null);
+virtualinvoke r0.<java.io.File: void deleteOnExit()>();
+$r1 = new java.io.FileInputStream;
+specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(r0);
+r2 = $r1;
+r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>();
+virtualinvoke r3.<java.nio.channels.FileChannel: void force(boolean)>(1);
+virtualinvoke r3.<java.nio.channels.FileChannel: void close()>();
+virtualinvoke r2.<java.io.FileInputStream: void close()>();
+return;
+"
+}

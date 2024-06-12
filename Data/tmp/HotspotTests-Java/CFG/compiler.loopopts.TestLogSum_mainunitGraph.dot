@@ -1,0 +1,40 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "i1 = 2"
+    "i2 = 1"
+    "i3 = 1"
+    "staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)"
+    "i3 = i3 + 1"
+    "if i3 <= i2 goto staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)"
+    "i2 = i2 + 1"
+    "if i2 <= i1 goto i3 = 1"
+    "i1 = i1 + 1"
+    "if i1 < 30 goto i2 = 1"
+    "i0 = i0 + 1"
+    "if i0 < 6 goto i1 = 2"
+    "return"
+    "r0 := @parameter0: java.lang.String[]"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 6 goto i1 = 2";
+    "i1 = 2"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < 30 goto i2 = 1";
+    "i2 = 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 <= i1 goto i3 = 1";
+    "i3 = 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 <= i2 goto staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)";
+    "staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 <= i2 goto staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)";
+    "if i3 <= i2 goto staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)"->"i2 = i2 + 1";
+    "if i3 <= i2 goto staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)"->"staticinvoke <compiler.loopopts.TestLogSum: double computeSum(int,int)>(i3, i2)";
+    "i2 = i2 + 1"->"if i2 <= i1 goto i3 = 1";
+    "if i2 <= i1 goto i3 = 1"->"i1 = i1 + 1";
+    "if i2 <= i1 goto i3 = 1"->"i3 = 1";
+    "i1 = i1 + 1"->"if i1 < 30 goto i2 = 1";
+    "if i1 < 30 goto i2 = 1"->"i0 = i0 + 1";
+    "if i1 < 30 goto i2 = 1"->"i2 = 1";
+    "i0 = i0 + 1"->"if i0 < 6 goto i1 = 2";
+    "if i0 < 6 goto i1 = 2"->"return";
+    "if i0 < 6 goto i1 = 2"->"i1 = 2";
+}

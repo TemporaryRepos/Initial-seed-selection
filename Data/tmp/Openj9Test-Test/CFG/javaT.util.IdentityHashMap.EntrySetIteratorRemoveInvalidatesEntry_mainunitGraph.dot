@@ -1,0 +1,43 @@
+digraph "unitGraph" {
+    "r13 := @parameter0: java.lang.String[]"
+    "$r0 = new java.util.IdentityHashMap"
+    "specialinvoke $r0.<java.util.IdentityHashMap: void <init>()>()"
+    "r1 = $r0"
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"One\", \"Un\")"
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Two\", \"Deux\")"
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Three\", \"Trois\")"
+    "$r5 = virtualinvoke r1.<java.util.IdentityHashMap: java.util.Set entrySet()>()"
+    "r6 = interfaceinvoke $r5.<java.util.Set: java.util.Iterator iterator()>()"
+    "$r7 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>()"
+    "r8 = (java.util.Map$Entry) $r7"
+    "interfaceinvoke r6.<java.util.Iterator: void remove()>()"
+    "interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r10 = new java.lang.RuntimeException"
+    "specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test FAILED: Entry not invalidated by removal.\")"
+    "throw $r10"
+    "$r11 := @caughtexception"
+    "r12 = $r11"
+    "return"
+    "r13 := @parameter0: java.lang.String[]"->"$r0 = new java.util.IdentityHashMap";
+    "$r0 = new java.util.IdentityHashMap"->"specialinvoke $r0.<java.util.IdentityHashMap: void <init>()>()";
+    "specialinvoke $r0.<java.util.IdentityHashMap: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"One\", \"Un\")";
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"One\", \"Un\")"->"virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Two\", \"Deux\")";
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Two\", \"Deux\")"->"virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Three\", \"Trois\")";
+    "virtualinvoke r1.<java.util.IdentityHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"Three\", \"Trois\")"->"$r5 = virtualinvoke r1.<java.util.IdentityHashMap: java.util.Set entrySet()>()";
+    "$r5 = virtualinvoke r1.<java.util.IdentityHashMap: java.util.Set entrySet()>()"->"r6 = interfaceinvoke $r5.<java.util.Set: java.util.Iterator iterator()>()";
+    "r6 = interfaceinvoke $r5.<java.util.Set: java.util.Iterator iterator()>()"->"$r7 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>()";
+    "$r7 = interfaceinvoke r6.<java.util.Iterator: java.lang.Object next()>()"->"r8 = (java.util.Map$Entry) $r7";
+    "r8 = (java.util.Map$Entry) $r7"->"interfaceinvoke r6.<java.util.Iterator: void remove()>()";
+    "interfaceinvoke r6.<java.util.Iterator: void remove()>()"->"interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "interfaceinvoke r6.<java.util.Iterator: void remove()>()"->"$r11 := @caughtexception";
+    "interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r10 = new java.lang.RuntimeException";
+    "interfaceinvoke r8.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r11 := @caughtexception";
+    "$r10 = new java.lang.RuntimeException"->"specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test FAILED: Entry not invalidated by removal.\")";
+    "$r10 = new java.lang.RuntimeException"->"$r11 := @caughtexception";
+    "specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test FAILED: Entry not invalidated by removal.\")"->"throw $r10";
+    "specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test FAILED: Entry not invalidated by removal.\")"->"$r11 := @caughtexception";
+    "throw $r10"->"$r11 := @caughtexception";
+    "$r11 := @caughtexception"->"r12 = $r11";
+    "r12 = $r11"->"return";
+}

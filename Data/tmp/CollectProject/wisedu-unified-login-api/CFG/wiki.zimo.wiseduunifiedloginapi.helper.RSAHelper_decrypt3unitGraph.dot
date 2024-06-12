@@ -1,0 +1,53 @@
+digraph "unitGraph" {
+    "r11 := @parameter0: java.lang.String"
+    "r0 = \"RSA/ECB/NoPadding\""
+    "r1 = \"010001\""
+    "r2 = \"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\""
+    "r3 = \"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\""
+    "$r4 = new java.security.spec.RSAPrivateKeySpec"
+    "$r5 = new java.math.BigInteger"
+    "specialinvoke $r5.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\", 16)"
+    "$r6 = new java.math.BigInteger"
+    "specialinvoke $r6.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\", 16)"
+    "specialinvoke $r4.<java.security.spec.RSAPrivateKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r5, $r6)"
+    "r7 = $r4"
+    "$r8 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String)>(\"RSA\")"
+    "r9 = virtualinvoke $r8.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r7)"
+    "r10 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"RSA/ECB/NoPadding\")"
+    "virtualinvoke r10.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, r9)"
+    "r12 = staticinvoke <org.apache.commons.codec.binary.Hex: byte[] decodeHex(java.lang.String)>(r11)"
+    "r13 = virtualinvoke r10.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r12)"
+    "$r14 = new java.lang.StringBuffer"
+    "$r15 = new java.lang.String"
+    "specialinvoke $r15.<java.lang.String: void <init>(byte[])>(r13)"
+    "specialinvoke $r14.<java.lang.StringBuffer: void <init>(java.lang.String)>($r15)"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuffer: java.lang.StringBuffer reverse()>()"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuffer: java.lang.String toString()>()"
+    "$r18 = staticinvoke <wiki.zimo.wiseduunifiedloginapi.helper.RSAHelper: java.lang.String decodeURIComponent(java.lang.String)>($r17)"
+    "return $r18"
+    "r11 := @parameter0: java.lang.String"->"r0 = \"RSA/ECB/NoPadding\"";
+    "r0 = \"RSA/ECB/NoPadding\""->"r1 = \"010001\"";
+    "r1 = \"010001\""->"r2 = \"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\"";
+    "r2 = \"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\""->"r3 = \"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\"";
+    "r3 = \"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\""->"$r4 = new java.security.spec.RSAPrivateKeySpec";
+    "$r4 = new java.security.spec.RSAPrivateKeySpec"->"$r5 = new java.math.BigInteger";
+    "$r5 = new java.math.BigInteger"->"specialinvoke $r5.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\", 16)";
+    "specialinvoke $r5.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"00b5eeb166e069920e80bebd1fea4829d3d1f3216f2aabe79b6c47a3c18dcee5fd22c2e7ac519cab59198ece036dcf289ea8201e2a0b9ded307f8fb704136eaeb670286f5ad44e691005ba9ea5af04ada5367cd724b5a26fdb5120cc95b6431604bd219c6b7d83a6f8f24b43918ea988a76f93c333aa5a20991493d4eb1117e7b1\", 16)"->"$r6 = new java.math.BigInteger";
+    "$r6 = new java.math.BigInteger"->"specialinvoke $r6.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\", 16)";
+    "specialinvoke $r6.<java.math.BigInteger: void <init>(java.lang.String,int)>(\"413798867d69babed22e0dd3d4031c635f3e9dbca0fa50a32974a0e230787b7f7ba78caefbee828a051c690357a8cc31dba8efc738b4db22e887571ef1ec5a5a55b6d866f6a67527f6a7d78a127c9f687008bb540228b50aa2d1ca5a4ff71107234f936b611ac46432a26da9c302eaa7180820df70593353b3f8c0247fe97a45\", 16)"->"specialinvoke $r4.<java.security.spec.RSAPrivateKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r5, $r6)";
+    "specialinvoke $r4.<java.security.spec.RSAPrivateKeySpec: void <init>(java.math.BigInteger,java.math.BigInteger)>($r5, $r6)"->"r7 = $r4";
+    "r7 = $r4"->"$r8 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String)>(\"RSA\")";
+    "$r8 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String)>(\"RSA\")"->"r9 = virtualinvoke $r8.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r7)";
+    "r9 = virtualinvoke $r8.<java.security.KeyFactory: java.security.PrivateKey generatePrivate(java.security.spec.KeySpec)>(r7)"->"r10 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"RSA/ECB/NoPadding\")";
+    "r10 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"RSA/ECB/NoPadding\")"->"virtualinvoke r10.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, r9)";
+    "virtualinvoke r10.<javax.crypto.Cipher: void init(int,java.security.Key)>(2, r9)"->"r12 = staticinvoke <org.apache.commons.codec.binary.Hex: byte[] decodeHex(java.lang.String)>(r11)";
+    "r12 = staticinvoke <org.apache.commons.codec.binary.Hex: byte[] decodeHex(java.lang.String)>(r11)"->"r13 = virtualinvoke r10.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r12)";
+    "r13 = virtualinvoke r10.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r12)"->"$r14 = new java.lang.StringBuffer";
+    "$r14 = new java.lang.StringBuffer"->"$r15 = new java.lang.String";
+    "$r15 = new java.lang.String"->"specialinvoke $r15.<java.lang.String: void <init>(byte[])>(r13)";
+    "specialinvoke $r15.<java.lang.String: void <init>(byte[])>(r13)"->"specialinvoke $r14.<java.lang.StringBuffer: void <init>(java.lang.String)>($r15)";
+    "specialinvoke $r14.<java.lang.StringBuffer: void <init>(java.lang.String)>($r15)"->"$r16 = virtualinvoke $r14.<java.lang.StringBuffer: java.lang.StringBuffer reverse()>()";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuffer: java.lang.StringBuffer reverse()>()"->"$r17 = virtualinvoke $r16.<java.lang.StringBuffer: java.lang.String toString()>()";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuffer: java.lang.String toString()>()"->"$r18 = staticinvoke <wiki.zimo.wiseduunifiedloginapi.helper.RSAHelper: java.lang.String decodeURIComponent(java.lang.String)>($r17)";
+    "$r18 = staticinvoke <wiki.zimo.wiseduunifiedloginapi.helper.RSAHelper: java.lang.String decodeURIComponent(java.lang.String)>($r17)"->"return $r18";
+}

@@ -1,0 +1,59 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$i1 = s0 & 1;
+if $i1 != 0 goto $s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Short;
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+specialinvoke $r0.<java.lang.Short: void <init>(short)>($s4);
+r1 = $r0;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+$s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+return $s2;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$i1 = s0 & 1;
+if $i1 != 0 goto $s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Short;
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+specialinvoke $r0.<java.lang.Short: void <init>(short)>($s4);
+r1 = $r0;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+s0 := @parameter0: short;
+r1 = <compiler.eliminateAutobox.TestShortBoxing: java.lang.Short ibc>;
+$i1 = s0 & 1;
+if $i1 != 0 goto $s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+return $s2;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Short;
+$i3 = s0 + 1;
+$s4 = (short) $i3;
+specialinvoke $r0.<java.lang.Short: void <init>(short)>($s4);
+r1 = $r0;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$s2 = virtualinvoke r1.<java.lang.Short: short shortValue()>();
+return $s2;
+";
+}

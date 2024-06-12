@@ -1,0 +1,33 @@
+digraph "unitGraph" {
+    "i2 = 0"
+    "i3 = 0"
+    "goto [?= (branch)]"
+    "$i1 = i2"
+    "$i0 = i3 % 4"
+    "if $i0 == 0 goto $b4 = 2"
+    "$b4 = 1"
+    "goto [?= i2 = $i1 + $b4]"
+    "$b4 = 2"
+    "i2 = $i1 + $b4"
+    "i3 = i3 + 1"
+    "if i3 < 10000 goto $i1 = i2"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(int)>(i2)"
+    "return"
+    "i2 = 0"->"i3 = 0";
+    "i3 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < 10000 goto $i1 = i2";
+    "$i1 = i2"->"$i0 = i3 % 4";
+    "$i0 = i3 % 4"->"if $i0 == 0 goto $b4 = 2";
+    "if $i0 == 0 goto $b4 = 2"->"$b4 = 1";
+    "if $i0 == 0 goto $b4 = 2"->"$b4 = 2";
+    "$b4 = 1"->"goto [?= i2 = $i1 + $b4]";
+    "goto [?= i2 = $i1 + $b4]"->"i2 = $i1 + $b4";
+    "$b4 = 2"->"i2 = $i1 + $b4";
+    "i2 = $i1 + $b4"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 < 10000 goto $i1 = i2";
+    "if i3 < 10000 goto $i1 = i2"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "if i3 < 10000 goto $i1 = i2"->"$i1 = i2";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(int)>(i2)";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(int)>(i2)"->"return";
+}

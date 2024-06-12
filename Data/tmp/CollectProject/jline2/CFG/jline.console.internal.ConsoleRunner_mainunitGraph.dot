@@ -1,0 +1,205 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String[]"
+    "$r0 = new java.util.ArrayList"
+    "$r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1)"
+    "specialinvoke $r0.<java.util.ArrayList: void <init>(java.util.Collection)>($r2)"
+    "r3 = $r0"
+    "$i0 = interfaceinvoke r3.<java.util.List: int size()>()"
+    "if $i0 != 0 goto r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)"
+    "staticinvoke <jline.console.internal.ConsoleRunner: void usage()>()"
+    "return"
+    "r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)"
+    "$r5 = interfaceinvoke r3.<java.util.List: java.lang.Object remove(int)>(0)"
+    "r6 = (java.lang.String) $r5"
+    "$r7 = new jline.console.ConsoleReader"
+    "specialinvoke $r7.<jline.console.ConsoleReader: void <init>()>()"
+    "r8 = $r7"
+    "if r4 == null goto $r9 = new jline.console.history.FileHistory"
+    "$r37 = new jline.console.history.FileHistory"
+    "$r38 = new java.io.File"
+    "$r39 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()"
+    "$r40 = newarray (java.lang.Object)[2]"
+    "$r40[0] = r6"
+    "$r40[1] = r4"
+    "$r41 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.%s.history\", $r40)"
+    "specialinvoke $r38.<java.io.File: void <init>(java.io.File,java.lang.String)>($r39, $r41)"
+    "specialinvoke $r37.<jline.console.history.FileHistory: void <init>(java.io.File)>($r38)"
+    "virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r37)"
+    "goto [?= $r14 = new java.lang.StringBuilder]"
+    "$r9 = new jline.console.history.FileHistory"
+    "$r10 = new java.io.File"
+    "$r11 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()"
+    "$r12 = newarray (java.lang.Object)[1]"
+    "$r12[0] = r6"
+    "$r13 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.history\", $r12)"
+    "specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>($r11, $r13)"
+    "specialinvoke $r9.<jline.console.history.FileHistory: void <init>(java.io.File)>($r10)"
+    "virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r9)"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r15 = class \"Ljline/console/internal/ConsoleRunner;\""
+    "$r16 = virtualinvoke $r15.<java.lang.Class: java.lang.String getName()>()"
+    "$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".completers\")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r20 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>($r19, \"\")"
+    "$r21 = new java.util.ArrayList"
+    "specialinvoke $r21.<java.util.ArrayList: void <init>()>()"
+    "r22 = $r21"
+    "$r23 = new java.util.StringTokenizer"
+    "specialinvoke $r23.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r20, \",\")"
+    "r47 = $r23"
+    "$z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "if $z4 == 0 goto $i1 = interfaceinvoke r22.<java.util.List: int size()>()"
+    "$r34 = virtualinvoke r47.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$r35 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r34)"
+    "r48 = virtualinvoke $r35.<java.lang.Class: java.lang.Object newInstance()>()"
+    "$r36 = (jline.console.completer.Completer) r48"
+    "interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>($r36)"
+    "goto [?= $z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()]"
+    "$i1 = interfaceinvoke r22.<java.util.List: int size()>()"
+    "if $i1 <= 0 goto staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"
+    "$r33 = new jline.console.completer.ArgumentCompleter"
+    "specialinvoke $r33.<jline.console.completer.ArgumentCompleter: void <init>(java.util.List)>(r22)"
+    "virtualinvoke r8.<jline.console.ConsoleReader: boolean addCompleter(jline.console.completer.Completer)>($r33)"
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"
+    "r49 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(r6)"
+    "$r24 = newarray (java.lang.Class)[1]"
+    "$r24[0] = class \"[Ljava/lang/String;\""
+    "r50 = virtualinvoke r49.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"main\", $r24)"
+    "$i2 = interfaceinvoke r3.<java.util.List: int size()>()"
+    "$r25 = newarray (java.lang.String)[$i2]"
+    "$r26 = interfaceinvoke r3.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r25)"
+    "r27 = (java.lang.String[]) $r26"
+    "$r28 = newarray (java.lang.Object)[1]"
+    "$r28[0] = r27"
+    "virtualinvoke r50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r28)"
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void restoreIn()>()"
+    "$r30 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"
+    "$z0 = $r30 instanceof jline.console.history.PersistentHistory"
+    "if $z0 == 0 goto return"
+    "$r31 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"
+    "$r32 = (jline.console.history.PersistentHistory) $r31"
+    "interfaceinvoke $r32.<jline.console.history.PersistentHistory: void flush()>()"
+    "goto [?= return]"
+    "$r42 := @caughtexception"
+    "r43 = $r42"
+    "$r44 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"
+    "$z3 = $r44 instanceof jline.console.history.PersistentHistory"
+    "if $z3 == 0 goto throw r43"
+    "$r45 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"
+    "$r46 = (jline.console.history.PersistentHistory) $r45"
+    "interfaceinvoke $r46.<jline.console.history.PersistentHistory: void flush()>()"
+    "throw r43"
+    "r1 := @parameter0: java.lang.String[]"->"$r0 = new java.util.ArrayList";
+    "$r0 = new java.util.ArrayList"->"$r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1)";
+    "$r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1)"->"specialinvoke $r0.<java.util.ArrayList: void <init>(java.util.Collection)>($r2)";
+    "specialinvoke $r0.<java.util.ArrayList: void <init>(java.util.Collection)>($r2)"->"r3 = $r0";
+    "r3 = $r0"->"$i0 = interfaceinvoke r3.<java.util.List: int size()>()";
+    "$i0 = interfaceinvoke r3.<java.util.List: int size()>()"->"if $i0 != 0 goto r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)";
+    "if $i0 != 0 goto r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)"->"staticinvoke <jline.console.internal.ConsoleRunner: void usage()>()";
+    "if $i0 != 0 goto r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)"->"r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)";
+    "staticinvoke <jline.console.internal.ConsoleRunner: void usage()>()"->"return";
+    "r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>(\"jline.history\", null)"->"$r5 = interfaceinvoke r3.<java.util.List: java.lang.Object remove(int)>(0)";
+    "$r5 = interfaceinvoke r3.<java.util.List: java.lang.Object remove(int)>(0)"->"r6 = (java.lang.String) $r5";
+    "r6 = (java.lang.String) $r5"->"$r7 = new jline.console.ConsoleReader";
+    "$r7 = new jline.console.ConsoleReader"->"specialinvoke $r7.<jline.console.ConsoleReader: void <init>()>()";
+    "specialinvoke $r7.<jline.console.ConsoleReader: void <init>()>()"->"r8 = $r7";
+    "r8 = $r7"->"if r4 == null goto $r9 = new jline.console.history.FileHistory";
+    "if r4 == null goto $r9 = new jline.console.history.FileHistory"->"$r37 = new jline.console.history.FileHistory";
+    "if r4 == null goto $r9 = new jline.console.history.FileHistory"->"$r9 = new jline.console.history.FileHistory";
+    "$r37 = new jline.console.history.FileHistory"->"$r38 = new java.io.File";
+    "$r38 = new java.io.File"->"$r39 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()";
+    "$r39 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()"->"$r40 = newarray (java.lang.Object)[2]";
+    "$r40 = newarray (java.lang.Object)[2]"->"$r40[0] = r6";
+    "$r40[0] = r6"->"$r40[1] = r4";
+    "$r40[1] = r4"->"$r41 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.%s.history\", $r40)";
+    "$r41 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.%s.history\", $r40)"->"specialinvoke $r38.<java.io.File: void <init>(java.io.File,java.lang.String)>($r39, $r41)";
+    "specialinvoke $r38.<java.io.File: void <init>(java.io.File,java.lang.String)>($r39, $r41)"->"specialinvoke $r37.<jline.console.history.FileHistory: void <init>(java.io.File)>($r38)";
+    "specialinvoke $r37.<jline.console.history.FileHistory: void <init>(java.io.File)>($r38)"->"virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r37)";
+    "virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r37)"->"goto [?= $r14 = new java.lang.StringBuilder]";
+    "goto [?= $r14 = new java.lang.StringBuilder]"->"$r14 = new java.lang.StringBuilder";
+    "$r9 = new jline.console.history.FileHistory"->"$r10 = new java.io.File";
+    "$r10 = new java.io.File"->"$r11 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()";
+    "$r11 = staticinvoke <jline.internal.Configuration: java.io.File getUserHome()>()"->"$r12 = newarray (java.lang.Object)[1]";
+    "$r12 = newarray (java.lang.Object)[1]"->"$r12[0] = r6";
+    "$r12[0] = r6"->"$r13 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.history\", $r12)";
+    "$r13 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\".jline-%s.history\", $r12)"->"specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>($r11, $r13)";
+    "specialinvoke $r10.<java.io.File: void <init>(java.io.File,java.lang.String)>($r11, $r13)"->"specialinvoke $r9.<jline.console.history.FileHistory: void <init>(java.io.File)>($r10)";
+    "specialinvoke $r9.<jline.console.history.FileHistory: void <init>(java.io.File)>($r10)"->"virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r9)";
+    "virtualinvoke r8.<jline.console.ConsoleReader: void setHistory(jline.console.history.History)>($r9)"->"$r14 = new java.lang.StringBuilder";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r15 = class \"Ljline/console/internal/ConsoleRunner;\"";
+    "$r15 = class \"Ljline/console/internal/ConsoleRunner;\""->"$r16 = virtualinvoke $r15.<java.lang.Class: java.lang.String getName()>()";
+    "$r16 = virtualinvoke $r15.<java.lang.Class: java.lang.String getName()>()"->"$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)";
+    "$r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".completers\")";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".completers\")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"r20 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>($r19, \"\")";
+    "r20 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>($r19, \"\")"->"$r21 = new java.util.ArrayList";
+    "$r21 = new java.util.ArrayList"->"specialinvoke $r21.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r21.<java.util.ArrayList: void <init>()>()"->"r22 = $r21";
+    "r22 = $r21"->"$r23 = new java.util.StringTokenizer";
+    "$r23 = new java.util.StringTokenizer"->"specialinvoke $r23.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r20, \",\")";
+    "specialinvoke $r23.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r20, \",\")"->"r47 = $r23";
+    "r47 = $r23"->"$z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "$z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"if $z4 == 0 goto $i1 = interfaceinvoke r22.<java.util.List: int size()>()";
+    "if $z4 == 0 goto $i1 = interfaceinvoke r22.<java.util.List: int size()>()"->"$r34 = virtualinvoke r47.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if $z4 == 0 goto $i1 = interfaceinvoke r22.<java.util.List: int size()>()"->"$i1 = interfaceinvoke r22.<java.util.List: int size()>()";
+    "$r34 = virtualinvoke r47.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r35 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r34)";
+    "$r35 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r34)"->"r48 = virtualinvoke $r35.<java.lang.Class: java.lang.Object newInstance()>()";
+    "r48 = virtualinvoke $r35.<java.lang.Class: java.lang.Object newInstance()>()"->"$r36 = (jline.console.completer.Completer) r48";
+    "$r36 = (jline.console.completer.Completer) r48"->"interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>($r36)";
+    "interfaceinvoke r22.<java.util.List: boolean add(java.lang.Object)>($r36)"->"goto [?= $z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()]";
+    "goto [?= $z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()]"->"$z4 = virtualinvoke r47.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "$i1 = interfaceinvoke r22.<java.util.List: int size()>()"->"if $i1 <= 0 goto staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)";
+    "if $i1 <= 0 goto staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"->"$r33 = new jline.console.completer.ArgumentCompleter";
+    "if $i1 <= 0 goto staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"->"staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)";
+    "$r33 = new jline.console.completer.ArgumentCompleter"->"specialinvoke $r33.<jline.console.completer.ArgumentCompleter: void <init>(java.util.List)>(r22)";
+    "specialinvoke $r33.<jline.console.completer.ArgumentCompleter: void <init>(java.util.List)>(r22)"->"virtualinvoke r8.<jline.console.ConsoleReader: boolean addCompleter(jline.console.completer.Completer)>($r33)";
+    "virtualinvoke r8.<jline.console.ConsoleReader: boolean addCompleter(jline.console.completer.Completer)>($r33)"->"staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)";
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"->"r49 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(r6)";
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void setIn(jline.console.ConsoleReader)>(r8)"->"$r42 := @caughtexception";
+    "r49 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(r6)"->"$r24 = newarray (java.lang.Class)[1]";
+    "r49 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(r6)"->"$r42 := @caughtexception";
+    "$r24 = newarray (java.lang.Class)[1]"->"$r24[0] = class \"[Ljava/lang/String;\"";
+    "$r24 = newarray (java.lang.Class)[1]"->"$r42 := @caughtexception";
+    "$r24[0] = class \"[Ljava/lang/String;\""->"r50 = virtualinvoke r49.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"main\", $r24)";
+    "$r24[0] = class \"[Ljava/lang/String;\""->"$r42 := @caughtexception";
+    "r50 = virtualinvoke r49.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"main\", $r24)"->"$i2 = interfaceinvoke r3.<java.util.List: int size()>()";
+    "r50 = virtualinvoke r49.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(\"main\", $r24)"->"$r42 := @caughtexception";
+    "$i2 = interfaceinvoke r3.<java.util.List: int size()>()"->"$r25 = newarray (java.lang.String)[$i2]";
+    "$i2 = interfaceinvoke r3.<java.util.List: int size()>()"->"$r42 := @caughtexception";
+    "$r25 = newarray (java.lang.String)[$i2]"->"$r26 = interfaceinvoke r3.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r25)";
+    "$r25 = newarray (java.lang.String)[$i2]"->"$r42 := @caughtexception";
+    "$r26 = interfaceinvoke r3.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r25)"->"r27 = (java.lang.String[]) $r26";
+    "$r26 = interfaceinvoke r3.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r25)"->"$r42 := @caughtexception";
+    "r27 = (java.lang.String[]) $r26"->"$r28 = newarray (java.lang.Object)[1]";
+    "r27 = (java.lang.String[]) $r26"->"$r42 := @caughtexception";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r28[0] = r27";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r42 := @caughtexception";
+    "$r28[0] = r27"->"virtualinvoke r50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r28)";
+    "$r28[0] = r27"->"$r42 := @caughtexception";
+    "virtualinvoke r50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r28)"->"staticinvoke <jline.console.internal.ConsoleReaderInputStream: void restoreIn()>()";
+    "virtualinvoke r50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r28)"->"$r42 := @caughtexception";
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void restoreIn()>()"->"$r30 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()";
+    "$r30 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"->"$z0 = $r30 instanceof jline.console.history.PersistentHistory";
+    "$z0 = $r30 instanceof jline.console.history.PersistentHistory"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r31 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()";
+    "if $z0 == 0 goto return"->"return";
+    "$r31 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"->"$r32 = (jline.console.history.PersistentHistory) $r31";
+    "$r32 = (jline.console.history.PersistentHistory) $r31"->"interfaceinvoke $r32.<jline.console.history.PersistentHistory: void flush()>()";
+    "interfaceinvoke $r32.<jline.console.history.PersistentHistory: void flush()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r42 := @caughtexception"->"r43 = $r42";
+    "$r42 := @caughtexception"->"$r42 := @caughtexception";
+    "r43 = $r42"->"staticinvoke <jline.console.internal.ConsoleReaderInputStream: void restoreIn()>()";
+    "r43 = $r42"->"$r42 := @caughtexception";
+    "staticinvoke <jline.console.internal.ConsoleReaderInputStream: void restoreIn()>()"->"$r44 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()";
+    "$r44 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"->"$z3 = $r44 instanceof jline.console.history.PersistentHistory";
+    "$z3 = $r44 instanceof jline.console.history.PersistentHistory"->"if $z3 == 0 goto throw r43";
+    "if $z3 == 0 goto throw r43"->"$r45 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()";
+    "if $z3 == 0 goto throw r43"->"throw r43";
+    "$r45 = virtualinvoke r8.<jline.console.ConsoleReader: jline.console.history.History getHistory()>()"->"$r46 = (jline.console.history.PersistentHistory) $r45";
+    "$r46 = (jline.console.history.PersistentHistory) $r45"->"interfaceinvoke $r46.<jline.console.history.PersistentHistory: void flush()>()";
+    "interfaceinvoke $r46.<jline.console.history.PersistentHistory: void flush()>()"->"throw r43";
+}

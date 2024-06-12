@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float foob(float)>(1.0F);
+i0 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+$f2 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f1);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2);
+i0 = i0 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+$f3 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f3;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float foob(float)>(1.0F);
+i0 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+$f2 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f1);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2);
+i0 = i0 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: void dummy()>();
+$f3 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+return $f3;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1000 goto $f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$f0 = virtualinvoke r0.<java.lang.Float: float floatValue()>();
+$f1 = $f0 + 1.0F;
+$f2 = staticinvoke <compiler.eliminateAutobox.TestFloatBoxing: float foo(float)>($f1);
+r0 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f2);
+i0 = i0 + 1;
+";
+}

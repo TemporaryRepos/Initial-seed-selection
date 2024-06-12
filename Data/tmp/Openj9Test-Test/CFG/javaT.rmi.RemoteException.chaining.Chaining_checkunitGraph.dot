@@ -1,0 +1,69 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.Throwable"
+    "r2 := @parameter1: java.lang.String"
+    "r6 := @parameter2: java.lang.Throwable"
+    "r1 = virtualinvoke r0.<java.lang.Throwable: java.lang.String getMessage()>()"
+    "if r2 != null goto $z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)"
+    "if r1 == null goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"
+    "goto [?= $r12 = new java.lang.RuntimeException]"
+    "$z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)"
+    "if $z0 != 0 goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"
+    "$r12 = new java.lang.RuntimeException"
+    "specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"message does not match\")"
+    "throw $r12"
+    "$r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"
+    "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>(\"detail\")"
+    "$r5 = virtualinvoke $r4.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(r0)"
+    "if $r5 == r6 goto $r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()"
+    "$r11 = new java.lang.RuntimeException"
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"detail field does not match\")"
+    "throw $r11"
+    "$r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()"
+    "if $r7 == r6 goto virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"
+    "$r10 = new java.lang.RuntimeException"
+    "specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"getCause value does not match\")"
+    "throw $r10"
+    "virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"
+    "$r9 = new java.lang.RuntimeException"
+    "specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"initCause succeeded\")"
+    "throw $r9"
+    "$r13 := @caughtexception"
+    "r14 = $r13"
+    "return"
+    "r0 := @parameter0: java.lang.Throwable"->"r2 := @parameter1: java.lang.String";
+    "r2 := @parameter1: java.lang.String"->"r6 := @parameter2: java.lang.Throwable";
+    "r6 := @parameter2: java.lang.Throwable"->"r1 = virtualinvoke r0.<java.lang.Throwable: java.lang.String getMessage()>()";
+    "r1 = virtualinvoke r0.<java.lang.Throwable: java.lang.String getMessage()>()"->"if r2 != null goto $z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)";
+    "if r2 != null goto $z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)"->"if r1 == null goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()";
+    "if r2 != null goto $z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)"->"$z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)";
+    "if r1 == null goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"->"goto [?= $r12 = new java.lang.RuntimeException]";
+    "if r1 == null goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"->"$r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()";
+    "goto [?= $r12 = new java.lang.RuntimeException]"->"$r12 = new java.lang.RuntimeException";
+    "$z0 = virtualinvoke r2.<java.lang.String: boolean equals(java.lang.Object)>(r1)"->"if $z0 != 0 goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()";
+    "if $z0 != 0 goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"->"$r12 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"->"$r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()";
+    "$r12 = new java.lang.RuntimeException"->"specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"message does not match\")";
+    "specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"message does not match\")"->"throw $r12";
+    "$r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>()"->"$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>(\"detail\")";
+    "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>(\"detail\")"->"$r5 = virtualinvoke $r4.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(r0)";
+    "$r5 = virtualinvoke $r4.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(r0)"->"if $r5 == r6 goto $r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()";
+    "if $r5 == r6 goto $r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()"->"$r11 = new java.lang.RuntimeException";
+    "if $r5 == r6 goto $r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()"->"$r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()";
+    "$r11 = new java.lang.RuntimeException"->"specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"detail field does not match\")";
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"detail field does not match\")"->"throw $r11";
+    "$r7 = virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable getCause()>()"->"if $r7 == r6 goto virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)";
+    "if $r7 == r6 goto virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"->"$r10 = new java.lang.RuntimeException";
+    "if $r7 == r6 goto virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"->"virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)";
+    "if $r7 == r6 goto virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"->"$r13 := @caughtexception";
+    "$r10 = new java.lang.RuntimeException"->"specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"getCause value does not match\")";
+    "specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"getCause value does not match\")"->"throw $r10";
+    "virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"->"$r9 = new java.lang.RuntimeException";
+    "virtualinvoke r0.<java.lang.Throwable: java.lang.Throwable initCause(java.lang.Throwable)>(r6)"->"$r13 := @caughtexception";
+    "$r9 = new java.lang.RuntimeException"->"specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"initCause succeeded\")";
+    "$r9 = new java.lang.RuntimeException"->"$r13 := @caughtexception";
+    "specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"initCause succeeded\")"->"throw $r9";
+    "specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"initCause succeeded\")"->"$r13 := @caughtexception";
+    "throw $r9"->"$r13 := @caughtexception";
+    "$r13 := @caughtexception"->"r14 = $r13";
+    "r14 = $r13"->"return";
+}

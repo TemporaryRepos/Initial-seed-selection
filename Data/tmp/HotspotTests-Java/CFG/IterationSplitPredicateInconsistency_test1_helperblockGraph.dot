@@ -1,0 +1,91 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 4 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+r0 := @parameter2: double[];
+r1 := @parameter3: double[];
+i2 := @parameter4: int;
+i3 = i0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$d0 = r1[i3];
+r0[i3] = $d0;
+if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66;
+"
+    "Block 2:
+[preds: 1 ] [succs: ]
+return 1;
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+<IterationSplitPredicateInconsistency: int barrier> = 66;
+i3 = i3 + 1;
+"
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i3 < i1 goto $d0 = r1[i3];
+"
+    "Block 5:
+[preds: 4 ] [succs: ]
+return 0;
+"
+    "Block 0:
+[preds: ] [succs: 4 ]
+i0 := @parameter0: int;
+i1 := @parameter1: int;
+r0 := @parameter2: double[];
+r1 := @parameter3: double[];
+i2 := @parameter4: int;
+i3 = i0;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i3 < i1 goto $d0 = r1[i3];
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$d0 = r1[i3];
+r0[i3] = $d0;
+if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66;
+"->"Block 2:
+[preds: 1 ] [succs: ]
+return 1;
+";
+    "Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$d0 = r1[i3];
+r0[i3] = $d0;
+if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66;
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+<IterationSplitPredicateInconsistency: int barrier> = 66;
+i3 = i3 + 1;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+<IterationSplitPredicateInconsistency: int barrier> = 66;
+i3 = i3 + 1;
+"->"Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i3 < i1 goto $d0 = r1[i3];
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i3 < i1 goto $d0 = r1[i3];
+"->"Block 5:
+[preds: 4 ] [succs: ]
+return 0;
+";
+    "Block 4:
+[preds: 0 3 ] [succs: 5 1 ]
+if i3 < i1 goto $d0 = r1[i3];
+"->"Block 1:
+[preds: 4 ] [succs: 2 3 ]
+$d0 = r1[i3];
+r0[i3] = $d0;
+if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66;
+";
+}

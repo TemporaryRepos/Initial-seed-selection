@@ -1,0 +1,76 @@
+digraph "unitGraph" {
+    "r23 := @this: io.github.mayhewsw.controllers.DocumentController"
+    "r11 := @parameter0: java.lang.String"
+    "r0 := @parameter1: io.github.mayhewsw.SessionData"
+    "r1 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$r2 = new java.util.TreeMap"
+    "$r3 = new io.github.mayhewsw.KeyComparator"
+    "specialinvoke $r3.<io.github.mayhewsw.KeyComparator: void <init>()>()"
+    "specialinvoke $r2.<java.util.TreeMap: void <init>(java.util.Comparator)>($r3)"
+    "r4 = $r2"
+    "$r5 = new org.apache.lucene.search.IndexSearcher"
+    "$r6 = r0.<io.github.mayhewsw.SessionData: org.apache.lucene.store.RAMDirectory ramDirectory>"
+    "$r7 = staticinvoke <org.apache.lucene.index.DirectoryReader: org.apache.lucene.index.DirectoryReader open(org.apache.lucene.store.Directory)>($r6)"
+    "specialinvoke $r5.<org.apache.lucene.search.IndexSearcher: void <init>(org.apache.lucene.index.IndexReader)>($r7)"
+    "r8 = $r5"
+    "$r9 = new org.apache.lucene.search.PrefixQuery"
+    "$r10 = new org.apache.lucene.index.Term"
+    "specialinvoke $r10.<org.apache.lucene.index.Term: void <init>(java.lang.String,java.lang.String)>(\"body\", r11)"
+    "specialinvoke $r9.<org.apache.lucene.search.PrefixQuery: void <init>(org.apache.lucene.index.Term)>($r10)"
+    "r12 = $r9"
+    "r13 = staticinvoke <org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopScoreDocCollector create(int)>(20)"
+    "virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: void search(org.apache.lucene.search.Query,org.apache.lucene.search.Collector)>(r12, r13)"
+    "$r14 = virtualinvoke r13.<org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopDocs topDocs()>()"
+    "r15 = $r14.<org.apache.lucene.search.TopDocs: org.apache.lucene.search.ScoreDoc[] scoreDocs>"
+    "i2 = 0"
+    "$i0 = lengthof r15"
+    "if i2 >= $i0 goto return r4"
+    "$r16 = r15[i2]"
+    "i1 = $r16.<org.apache.lucene.search.ScoreDoc: int doc>"
+    "r17 = virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: org.apache.lucene.document.Document doc(int)>(i1)"
+    "r18 = virtualinvoke r17.<org.apache.lucene.document.Document: java.lang.String get(java.lang.String)>(\"filename\")"
+    "$r19 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$r20 = virtualinvoke $r19.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r18)"
+    "r21 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r20"
+    "virtualinvoke r4.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r18, r21)"
+    "i2 = i2 + 1"
+    "goto [?= $i0 = lengthof r15]"
+    "return r4"
+    "r23 := @this: io.github.mayhewsw.controllers.DocumentController"->"r11 := @parameter0: java.lang.String";
+    "r11 := @parameter0: java.lang.String"->"r0 := @parameter1: io.github.mayhewsw.SessionData";
+    "r0 := @parameter1: io.github.mayhewsw.SessionData"->"r1 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "r1 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r2 = new java.util.TreeMap";
+    "$r2 = new java.util.TreeMap"->"$r3 = new io.github.mayhewsw.KeyComparator";
+    "$r3 = new io.github.mayhewsw.KeyComparator"->"specialinvoke $r3.<io.github.mayhewsw.KeyComparator: void <init>()>()";
+    "specialinvoke $r3.<io.github.mayhewsw.KeyComparator: void <init>()>()"->"specialinvoke $r2.<java.util.TreeMap: void <init>(java.util.Comparator)>($r3)";
+    "specialinvoke $r2.<java.util.TreeMap: void <init>(java.util.Comparator)>($r3)"->"r4 = $r2";
+    "r4 = $r2"->"$r5 = new org.apache.lucene.search.IndexSearcher";
+    "$r5 = new org.apache.lucene.search.IndexSearcher"->"$r6 = r0.<io.github.mayhewsw.SessionData: org.apache.lucene.store.RAMDirectory ramDirectory>";
+    "$r6 = r0.<io.github.mayhewsw.SessionData: org.apache.lucene.store.RAMDirectory ramDirectory>"->"$r7 = staticinvoke <org.apache.lucene.index.DirectoryReader: org.apache.lucene.index.DirectoryReader open(org.apache.lucene.store.Directory)>($r6)";
+    "$r7 = staticinvoke <org.apache.lucene.index.DirectoryReader: org.apache.lucene.index.DirectoryReader open(org.apache.lucene.store.Directory)>($r6)"->"specialinvoke $r5.<org.apache.lucene.search.IndexSearcher: void <init>(org.apache.lucene.index.IndexReader)>($r7)";
+    "specialinvoke $r5.<org.apache.lucene.search.IndexSearcher: void <init>(org.apache.lucene.index.IndexReader)>($r7)"->"r8 = $r5";
+    "r8 = $r5"->"$r9 = new org.apache.lucene.search.PrefixQuery";
+    "$r9 = new org.apache.lucene.search.PrefixQuery"->"$r10 = new org.apache.lucene.index.Term";
+    "$r10 = new org.apache.lucene.index.Term"->"specialinvoke $r10.<org.apache.lucene.index.Term: void <init>(java.lang.String,java.lang.String)>(\"body\", r11)";
+    "specialinvoke $r10.<org.apache.lucene.index.Term: void <init>(java.lang.String,java.lang.String)>(\"body\", r11)"->"specialinvoke $r9.<org.apache.lucene.search.PrefixQuery: void <init>(org.apache.lucene.index.Term)>($r10)";
+    "specialinvoke $r9.<org.apache.lucene.search.PrefixQuery: void <init>(org.apache.lucene.index.Term)>($r10)"->"r12 = $r9";
+    "r12 = $r9"->"r13 = staticinvoke <org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopScoreDocCollector create(int)>(20)";
+    "r13 = staticinvoke <org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopScoreDocCollector create(int)>(20)"->"virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: void search(org.apache.lucene.search.Query,org.apache.lucene.search.Collector)>(r12, r13)";
+    "virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: void search(org.apache.lucene.search.Query,org.apache.lucene.search.Collector)>(r12, r13)"->"$r14 = virtualinvoke r13.<org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopDocs topDocs()>()";
+    "$r14 = virtualinvoke r13.<org.apache.lucene.search.TopScoreDocCollector: org.apache.lucene.search.TopDocs topDocs()>()"->"r15 = $r14.<org.apache.lucene.search.TopDocs: org.apache.lucene.search.ScoreDoc[] scoreDocs>";
+    "r15 = $r14.<org.apache.lucene.search.TopDocs: org.apache.lucene.search.ScoreDoc[] scoreDocs>"->"i2 = 0";
+    "i2 = 0"->"$i0 = lengthof r15";
+    "$i0 = lengthof r15"->"if i2 >= $i0 goto return r4";
+    "if i2 >= $i0 goto return r4"->"$r16 = r15[i2]";
+    "if i2 >= $i0 goto return r4"->"return r4";
+    "$r16 = r15[i2]"->"i1 = $r16.<org.apache.lucene.search.ScoreDoc: int doc>";
+    "i1 = $r16.<org.apache.lucene.search.ScoreDoc: int doc>"->"r17 = virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: org.apache.lucene.document.Document doc(int)>(i1)";
+    "r17 = virtualinvoke r8.<org.apache.lucene.search.IndexSearcher: org.apache.lucene.document.Document doc(int)>(i1)"->"r18 = virtualinvoke r17.<org.apache.lucene.document.Document: java.lang.String get(java.lang.String)>(\"filename\")";
+    "r18 = virtualinvoke r17.<org.apache.lucene.document.Document: java.lang.String get(java.lang.String)>(\"filename\")"->"$r19 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "$r19 = r0.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r20 = virtualinvoke $r19.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r18)";
+    "$r20 = virtualinvoke $r19.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r18)"->"r21 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r20";
+    "r21 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r20"->"virtualinvoke r4.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r18, r21)";
+    "virtualinvoke r4.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r18, r21)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"goto [?= $i0 = lengthof r15]";
+    "goto [?= $i0 = lengthof r15]"->"$i0 = lengthof r15";
+}

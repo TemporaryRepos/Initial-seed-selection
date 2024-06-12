@@ -1,0 +1,49 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+$r0 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r0.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r1 = $r0;
+$r2 = newarray (java.lang.String)[1];
+$r2[0] = \"test1\";
+virtualinvoke r1.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest indices(java.lang.String[])>($r2);
+$r4 = newarray (java.lang.String)[1];
+$r4[0] = \"_doc\";
+virtualinvoke r1.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest types(java.lang.String[])>($r4);
+$r6 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r6.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r7 = $r6;
+$r8 = new org.elasticsearch.index.query.BoolQueryBuilder;
+specialinvoke $r8.<org.elasticsearch.index.query.BoolQueryBuilder: void <init>()>();
+r9 = $r8;
+$r10 = new org.elasticsearch.index.query.BoolQueryBuilder;
+specialinvoke $r10.<org.elasticsearch.index.query.BoolQueryBuilder: void <init>()>();
+r11 = $r10;
+$r12 = staticinvoke <org.elasticsearch.index.query.QueryBuilders: org.elasticsearch.index.query.TermQueryBuilder termQuery(java.lang.String,int)>(\"uid\", 1234);
+virtualinvoke r11.<org.elasticsearch.index.query.BoolQueryBuilder: org.elasticsearch.index.query.BoolQueryBuilder should(org.elasticsearch.index.query.QueryBuilder)>($r12);
+$r14 = staticinvoke <org.elasticsearch.index.query.QueryBuilders: org.elasticsearch.index.query.TermQueryBuilder termQuery(java.lang.String,int)>(\"uid\", 12345);
+virtualinvoke r11.<org.elasticsearch.index.query.BoolQueryBuilder: org.elasticsearch.index.query.BoolQueryBuilder should(org.elasticsearch.index.query.QueryBuilder)>($r14);
+virtualinvoke r9.<org.elasticsearch.index.query.BoolQueryBuilder: org.elasticsearch.index.query.BoolQueryBuilder must(org.elasticsearch.index.query.QueryBuilder)>(r11);
+$r17 = staticinvoke <org.elasticsearch.index.query.QueryBuilders: org.elasticsearch.index.query.TermQueryBuilder termQuery(java.lang.String,java.lang.String)>(\"phone\", \"12345678909\");
+virtualinvoke r9.<org.elasticsearch.index.query.BoolQueryBuilder: org.elasticsearch.index.query.BoolQueryBuilder must(org.elasticsearch.index.query.QueryBuilder)>($r17);
+virtualinvoke r7.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r9);
+$r21 = <java.lang.System: java.io.PrintStream out>;
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6216\u67e5\u8be2\u8bed\u53e5:\");
+$r23 = virtualinvoke r7.<org.elasticsearch.search.builder.SearchSourceBuilder: java.lang.String toString()>();
+$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r25);
+virtualinvoke r1.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r7);
+$r28 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r27 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r29 = virtualinvoke $r28.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r1, $r27);
+$r30 = virtualinvoke r29.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>();
+$r31 = staticinvoke <com.pancm.elasticsearch.EsHighLevelRestSearchTest$lambda_orSearch_7__164: java.util.function.Consumer bootstrap$()>();
+virtualinvoke $r30.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r31);
+$r32 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>(\"\n=================\n\");
+return;
+"
+}

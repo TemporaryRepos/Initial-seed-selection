@@ -1,0 +1,71 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+i0 := @parameter0: int;
+i4 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$l1 = (long) i4;
+$r0[i0] = $l1;
+$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array2>;
+$i3 = i4 % 10;
+$l2 = (long) i4;
+$r1[$i3] = $l2;
+i4 = i4 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+i0 := @parameter0: int;
+i4 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$l1 = (long) i4;
+$r0[i0] = $l1;
+$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array2>;
+$i3 = i4 % 10;
+$l2 = (long) i4;
+$r1[$i3] = $l2;
+i4 = i4 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>;
+$l1 = (long) i4;
+$r0[i0] = $l1;
+$r1 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array2>;
+$i3 = i4 % 10;
+$l2 = (long) i4;
+$r1[$i3] = $l2;
+i4 = i4 + 1;
+";
+}

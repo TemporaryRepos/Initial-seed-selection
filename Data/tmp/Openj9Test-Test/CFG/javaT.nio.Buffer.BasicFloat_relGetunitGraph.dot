@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.nio.FloatBuffer"
+    "i1 := @parameter1: int"
+    "i0 = virtualinvoke r0.<java.nio.FloatBuffer: int remaining()>()"
+    "i5 = i1"
+    "if i5 >= i0 goto virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()"
+    "$f0 = virtualinvoke r0.<java.nio.FloatBuffer: float get()>()"
+    "$l2 = (long) $f0"
+    "$l3 = staticinvoke <javaT.nio.Buffer.BasicFloat: long ic(int)>(i5)"
+    "$f1 = (float) $l3"
+    "$l4 = (long) $f1"
+    "staticinvoke <javaT.nio.Buffer.BasicFloat: void ck(java.nio.Buffer,long,long)>(r0, $l2, $l4)"
+    "i5 = i5 + 1"
+    "goto [?= (branch)]"
+    "virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()"
+    "return"
+    "r0 := @parameter0: java.nio.FloatBuffer"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"i0 = virtualinvoke r0.<java.nio.FloatBuffer: int remaining()>()";
+    "i0 = virtualinvoke r0.<java.nio.FloatBuffer: int remaining()>()"->"i5 = i1";
+    "i5 = i1"->"if i5 >= i0 goto virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()";
+    "if i5 >= i0 goto virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()"->"$f0 = virtualinvoke r0.<java.nio.FloatBuffer: float get()>()";
+    "if i5 >= i0 goto virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()"->"virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()";
+    "$f0 = virtualinvoke r0.<java.nio.FloatBuffer: float get()>()"->"$l2 = (long) $f0";
+    "$l2 = (long) $f0"->"$l3 = staticinvoke <javaT.nio.Buffer.BasicFloat: long ic(int)>(i5)";
+    "$l3 = staticinvoke <javaT.nio.Buffer.BasicFloat: long ic(int)>(i5)"->"$f1 = (float) $l3";
+    "$f1 = (float) $l3"->"$l4 = (long) $f1";
+    "$l4 = (long) $f1"->"staticinvoke <javaT.nio.Buffer.BasicFloat: void ck(java.nio.Buffer,long,long)>(r0, $l2, $l4)";
+    "staticinvoke <javaT.nio.Buffer.BasicFloat: void ck(java.nio.Buffer,long,long)>(r0, $l2, $l4)"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 >= i0 goto virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()";
+    "virtualinvoke r0.<java.nio.FloatBuffer: java.nio.Buffer rewind()>()"->"return";
+}

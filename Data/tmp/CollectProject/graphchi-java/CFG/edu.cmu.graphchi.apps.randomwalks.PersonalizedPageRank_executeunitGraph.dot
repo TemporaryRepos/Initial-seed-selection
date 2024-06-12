@@ -1,0 +1,176 @@
+digraph "unitGraph" {
+    "r1 := @this: edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank"
+    "i3 := @parameter0: int"
+    "$r0 = new java.io.File"
+    "$r2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>"
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r2)"
+    "r3 = $r0"
+    "$r4 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"
+    "$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"local\")"
+    "if $z0 == 0 goto $r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"
+    "$r41 = new edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion"
+    "$r42 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"
+    "$l18 = virtualinvoke $r42.<java.lang.Runtime: long maxMemory()>()"
+    "$l19 = $l18 / 3L"
+    "specialinvoke $r41.<edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion: void <init>(int,long)>(4, $l19)"
+    "r43 = $r41"
+    "goto [?= $r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>]"
+    "$r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"
+    "$r6 = staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r5)"
+    "r43 = (edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion) $r6"
+    "$r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"
+    "$r7 = <edu.cmu.graphchi.EdgeDirection: edu.cmu.graphchi.EdgeDirection OUT_EDGES>"
+    "r9 = virtualinvoke $r8.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.walks.DrunkardJob addJob(java.lang.String,edu.cmu.graphchi.EdgeDirection,edu.cmu.graphchi.walks.WalkUpdateFunction,edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion)>(\"personalizedPageRank\", $r7, r1, r43)"
+    "$i2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "$i1 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>"
+    "$i0 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numWalksPerSource>"
+    "virtualinvoke r9.<edu.cmu.graphchi.walks.DrunkardJob: void configureSourceRangeInternalIds(int,int,int)>($i2, $i1, $i0)"
+    "$r10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"
+    "virtualinvoke $r10.<edu.cmu.graphchi.walks.DrunkardMobEngine: void run(int)>(i3)"
+    "b4 = 100"
+    "$r11 = new java.lang.StringBuilder"
+    "specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()"
+    "$r12 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>"
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_ppr_\")"
+    "$i5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")"
+    "$i7 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "$i6 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>"
+    "$i8 = $i7 + $i6"
+    "$i9 = $i8 - 1"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".top\")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b4)"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: void outputDistributions(java.lang.String,int)>($r20, b4)"
+    "$r21 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"
+    "r22 = virtualinvoke $r21.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.preprocessing.VertexIdTranslate getVertexIdTranslate()>()"
+    "$i10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "r23 = interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: edu.cmu.graphchi.util.IdCount[] getTop(int,int)>($i10, 10)"
+    "$r25 = <java.lang.System: java.io.PrintStream out>"
+    "$r24 = new java.lang.StringBuilder"
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Top visits from source vertex \")"
+    "$i11 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "$i12 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int forward(int)>($i11)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (internal id=\")"
+    "$i13 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r31)"
+    "r32 = r23"
+    "i14 = lengthof r32"
+    "i20 = 0"
+    "if i20 >= i14 goto $z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion"
+    "r34 = r32[i20]"
+    "$r36 = <java.lang.System: java.io.PrintStream out>"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$i15 = r34.<edu.cmu.graphchi.util.IdCount: int id>"
+    "$i16 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int backward(int)>($i15)"
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i16)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"
+    "$i17 = r34.<edu.cmu.graphchi.util.IdCount: int count>"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i17)"
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>($r40)"
+    "i20 = i20 + 1"
+    "goto [?= (branch)]"
+    "$z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion"
+    "if $z1 == 0 goto return"
+    "$r33 = (edu.cmu.graphchi.walks.distributions.DrunkardCompanion) r43"
+    "virtualinvoke $r33.<edu.cmu.graphchi.walks.distributions.DrunkardCompanion: void close()>()"
+    "return"
+    "r1 := @this: edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank"->"i3 := @parameter0: int";
+    "i3 := @parameter0: int"->"$r0 = new java.io.File";
+    "$r0 = new java.io.File"->"$r2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>";
+    "$r2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>"->"specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r2)";
+    "specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r2)"->"r3 = $r0";
+    "r3 = $r0"->"$r4 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>";
+    "$r4 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"->"$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"local\")";
+    "$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(\"local\")"->"if $z0 == 0 goto $r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>";
+    "if $z0 == 0 goto $r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"->"$r41 = new edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion";
+    "if $z0 == 0 goto $r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"->"$r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>";
+    "$r41 = new edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion"->"$r42 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()";
+    "$r42 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"->"$l18 = virtualinvoke $r42.<java.lang.Runtime: long maxMemory()>()";
+    "$l18 = virtualinvoke $r42.<java.lang.Runtime: long maxMemory()>()"->"$l19 = $l18 / 3L";
+    "$l19 = $l18 / 3L"->"specialinvoke $r41.<edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion: void <init>(int,long)>(4, $l19)";
+    "specialinvoke $r41.<edu.cmu.graphchi.walks.distributions.IntDrunkardCompanion: void <init>(int,long)>(4, $l19)"->"r43 = $r41";
+    "r43 = $r41"->"goto [?= $r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>]";
+    "goto [?= $r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>]"->"$r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>";
+    "$r5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String companionUrl>"->"$r6 = staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r5)";
+    "$r6 = staticinvoke <java.rmi.Naming: java.rmi.Remote lookup(java.lang.String)>($r5)"->"r43 = (edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion) $r6";
+    "r43 = (edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion) $r6"->"$r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>";
+    "$r8 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"->"$r7 = <edu.cmu.graphchi.EdgeDirection: edu.cmu.graphchi.EdgeDirection OUT_EDGES>";
+    "$r7 = <edu.cmu.graphchi.EdgeDirection: edu.cmu.graphchi.EdgeDirection OUT_EDGES>"->"r9 = virtualinvoke $r8.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.walks.DrunkardJob addJob(java.lang.String,edu.cmu.graphchi.EdgeDirection,edu.cmu.graphchi.walks.WalkUpdateFunction,edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion)>(\"personalizedPageRank\", $r7, r1, r43)";
+    "r9 = virtualinvoke $r8.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.walks.DrunkardJob addJob(java.lang.String,edu.cmu.graphchi.EdgeDirection,edu.cmu.graphchi.walks.WalkUpdateFunction,edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion)>(\"personalizedPageRank\", $r7, r1, r43)"->"$i2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i2 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"$i1 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>";
+    "$i1 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>"->"$i0 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numWalksPerSource>";
+    "$i0 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numWalksPerSource>"->"virtualinvoke r9.<edu.cmu.graphchi.walks.DrunkardJob: void configureSourceRangeInternalIds(int,int,int)>($i2, $i1, $i0)";
+    "virtualinvoke r9.<edu.cmu.graphchi.walks.DrunkardJob: void configureSourceRangeInternalIds(int,int,int)>($i2, $i1, $i0)"->"$r10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>";
+    "$r10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"->"virtualinvoke $r10.<edu.cmu.graphchi.walks.DrunkardMobEngine: void run(int)>(i3)";
+    "virtualinvoke $r10.<edu.cmu.graphchi.walks.DrunkardMobEngine: void run(int)>(i3)"->"b4 = 100";
+    "b4 = 100"->"$r11 = new java.lang.StringBuilder";
+    "$r11 = new java.lang.StringBuilder"->"specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()"->"$r12 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>";
+    "$r12 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: java.lang.String baseFilename>"->"$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_ppr_\")";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_ppr_\")"->"$i5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i5 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")"->"$i7 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i7 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"$i6 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>";
+    "$i6 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int numSources>"->"$i8 = $i7 + $i6";
+    "$i8 = $i7 + $i6"->"$i9 = $i8 - 1";
+    "$i9 = $i8 - 1"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".top\")";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".top\")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b4)";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(b4)"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: void outputDistributions(java.lang.String,int)>($r20, b4)";
+    "interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: void outputDistributions(java.lang.String,int)>($r20, b4)"->"$r21 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>";
+    "$r21 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: edu.cmu.graphchi.walks.DrunkardMobEngine drunkardMobEngine>"->"r22 = virtualinvoke $r21.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.preprocessing.VertexIdTranslate getVertexIdTranslate()>()";
+    "r22 = virtualinvoke $r21.<edu.cmu.graphchi.walks.DrunkardMobEngine: edu.cmu.graphchi.preprocessing.VertexIdTranslate getVertexIdTranslate()>()"->"$i10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i10 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"r23 = interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: edu.cmu.graphchi.util.IdCount[] getTop(int,int)>($i10, 10)";
+    "r23 = interfaceinvoke r43.<edu.cmu.graphchi.walks.distributions.RemoteDrunkardCompanion: edu.cmu.graphchi.util.IdCount[] getTop(int,int)>($i10, 10)"->"$r25 = <java.lang.System: java.io.PrintStream out>";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$r24 = new java.lang.StringBuilder";
+    "$r24 = new java.lang.StringBuilder"->"specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Top visits from source vertex \")";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Top visits from source vertex \")"->"$i11 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i11 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"$i12 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int forward(int)>($i11)";
+    "$i12 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int forward(int)>($i11)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12)"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (internal id=\")";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (internal id=\")"->"$i13 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>";
+    "$i13 = r1.<edu.cmu.graphchi.apps.randomwalks.PersonalizedPageRank: int firstSource>"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13)";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r31)";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r31)"->"r32 = r23";
+    "r32 = r23"->"i14 = lengthof r32";
+    "i14 = lengthof r32"->"i20 = 0";
+    "i20 = 0"->"if i20 >= i14 goto $z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion";
+    "if i20 >= i14 goto $z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion"->"r34 = r32[i20]";
+    "if i20 >= i14 goto $z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion"->"$z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion";
+    "r34 = r32[i20]"->"$r36 = <java.lang.System: java.io.PrintStream out>";
+    "$r36 = <java.lang.System: java.io.PrintStream out>"->"$r35 = new java.lang.StringBuilder";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$i15 = r34.<edu.cmu.graphchi.util.IdCount: int id>";
+    "$i15 = r34.<edu.cmu.graphchi.util.IdCount: int id>"->"$i16 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int backward(int)>($i15)";
+    "$i16 = virtualinvoke r22.<edu.cmu.graphchi.preprocessing.VertexIdTranslate: int backward(int)>($i15)"->"$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i16)";
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i16)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"->"$i17 = r34.<edu.cmu.graphchi.util.IdCount: int count>";
+    "$i17 = r34.<edu.cmu.graphchi.util.IdCount: int count>"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i17)";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i17)"->"$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>($r40)";
+    "virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>($r40)"->"i20 = i20 + 1";
+    "i20 = i20 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i20 >= i14 goto $z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion";
+    "$z1 = r43 instanceof edu.cmu.graphchi.walks.distributions.DrunkardCompanion"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"$r33 = (edu.cmu.graphchi.walks.distributions.DrunkardCompanion) r43";
+    "if $z1 == 0 goto return"->"return";
+    "$r33 = (edu.cmu.graphchi.walks.distributions.DrunkardCompanion) r43"->"virtualinvoke $r33.<edu.cmu.graphchi.walks.distributions.DrunkardCompanion: void close()>()";
+    "virtualinvoke $r33.<edu.cmu.graphchi.walks.distributions.DrunkardCompanion: void close()>()"->"return";
+}

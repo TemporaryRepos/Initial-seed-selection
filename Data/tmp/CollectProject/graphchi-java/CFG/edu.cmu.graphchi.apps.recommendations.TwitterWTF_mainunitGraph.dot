@@ -1,0 +1,262 @@
+digraph "unitGraph" {
+    "r11 := @parameter0: java.lang.String[]"
+    "l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$r0 = new org.apache.commons.cli.Options"
+    "specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>()"
+    "r1 = $r0"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"graph\", 1, \"graph file name\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"n\", \"nshards\", 1, \"number of shards\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"t\", \"filetype\", 1, \"filetype (edgelist|adjlist)\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"f\", \"firstsource\", 1, \"id of the first source vertex (internal id)\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"s\", \"nsources\", 1, \"number of sources\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"w\", \"walkspersource\", 1, \"number of walks to start from each source\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"i\", \"niters\", 1, \"number of iterations\")"
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"u\", \"companion\", 1, \"RMI url to the DrunkardCompanion or \'local\' (default)\")"
+    "$r10 = new org.apache.commons.cli.PosixParser"
+    "specialinvoke $r10.<org.apache.commons.cli.PosixParser: void <init>()>()"
+    "r39 = $r10"
+    "r40 = interfaceinvoke r39.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r11)"
+    "r12 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"graph\")"
+    "$r13 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nshards\")"
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13)"
+    "$z0 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"filetype\")"
+    "if $z0 == 0 goto $r41 = null"
+    "$r41 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"filetype\")"
+    "goto [?= r14 = $r41]"
+    "$r41 = null"
+    "r14 = $r41"
+    "$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"pipein\")"
+    "if $z1 == 0 goto r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"
+    "r42 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"
+    "$r36 = <java.lang.System: java.io.InputStream in>"
+    "virtualinvoke r42.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r36, r14)"
+    "goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]"
+    "r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"
+    "$r15 = new java.io.File"
+    "$r16 = staticinvoke <edu.cmu.graphchi.ChiFilenames: java.lang.String getFilenameIntervals(java.lang.String,int)>(r12, i1)"
+    "specialinvoke $r15.<java.io.File: void <init>(java.lang.String)>($r16)"
+    "$z2 = virtualinvoke $r15.<java.io.File: boolean exists()>()"
+    "if $z2 != 0 goto $r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"
+    "$r34 = new java.io.FileInputStream"
+    "$r35 = new java.io.File"
+    "specialinvoke $r35.<java.io.File: void <init>(java.lang.String)>(r12)"
+    "specialinvoke $r34.<java.io.FileInputStream: void <init>(java.io.File)>($r35)"
+    "virtualinvoke r43.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r34, r14)"
+    "$r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"
+    "virtualinvoke $r17.<java.util.logging.Logger: void info(java.lang.String)>(\"Found shards -- no need to pre-process\")"
+    "$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")"
+    "i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r44)"
+    "$r45 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nsources\")"
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"
+    "$r46 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"walkspersource\")"
+    "i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r46)"
+    "$r47 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"niters\")"
+    "i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r47)"
+    "$z3 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"companion\")"
+    "if $z3 == 0 goto $r48 = \"local\""
+    "$r48 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"companion\")"
+    "goto [?= r18 = $r48]"
+    "$r48 = \"local\""
+    "r18 = $r48"
+    "$r19 = new edu.cmu.graphchi.apps.recommendations.TwitterWTF"
+    "specialinvoke $r19.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void <init>(java.lang.String,java.lang.String,int,int,int,int)>(r18, r12, i1, i9, i2, i3)"
+    "r20 = $r19"
+    "specialinvoke r20.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void execute(int)>(i4)"
+    "$r22 = <java.lang.System: java.io.PrintStream out>"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"WTF-log,\")"
+    "$l5 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l6 = $l5 - l0"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$i7 = i9 + i2"
+    "$i8 = $i7 - 1"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r33)"
+    "staticinvoke <java.lang.System: void exit(int)>(0)"
+    "goto [?= return]"
+    "$r37 := @caughtexception"
+    "r49 = $r37"
+    "virtualinvoke r49.<java.lang.Exception: void printStackTrace()>()"
+    "$r38 = new org.apache.commons.cli.HelpFormatter"
+    "specialinvoke $r38.<org.apache.commons.cli.HelpFormatter: void <init>()>()"
+    "r50 = $r38"
+    "virtualinvoke r50.<org.apache.commons.cli.HelpFormatter: void printHelp(java.lang.String,org.apache.commons.cli.Options)>(\"TwitterWTF\", r1)"
+    "return"
+    "r11 := @parameter0: java.lang.String[]"->"l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "l0 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r0 = new org.apache.commons.cli.Options";
+    "$r0 = new org.apache.commons.cli.Options"->"specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>()";
+    "specialinvoke $r0.<org.apache.commons.cli.Options: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"graph\", 1, \"graph file name\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"g\", \"graph\", 1, \"graph file name\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"n\", \"nshards\", 1, \"number of shards\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"n\", \"nshards\", 1, \"number of shards\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"t\", \"filetype\", 1, \"filetype (edgelist|adjlist)\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"t\", \"filetype\", 1, \"filetype (edgelist|adjlist)\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"f\", \"firstsource\", 1, \"id of the first source vertex (internal id)\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"f\", \"firstsource\", 1, \"id of the first source vertex (internal id)\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"s\", \"nsources\", 1, \"number of sources\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"s\", \"nsources\", 1, \"number of sources\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"w\", \"walkspersource\", 1, \"number of walks to start from each source\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"w\", \"walkspersource\", 1, \"number of walks to start from each source\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"i\", \"niters\", 1, \"number of iterations\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"i\", \"niters\", 1, \"number of iterations\")"->"virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"u\", \"companion\", 1, \"RMI url to the DrunkardCompanion or \'local\' (default)\")";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"u\", \"companion\", 1, \"RMI url to the DrunkardCompanion or \'local\' (default)\")"->"$r10 = new org.apache.commons.cli.PosixParser";
+    "virtualinvoke r1.<org.apache.commons.cli.Options: org.apache.commons.cli.Options addOption(java.lang.String,java.lang.String,boolean,java.lang.String)>(\"u\", \"companion\", 1, \"RMI url to the DrunkardCompanion or \'local\' (default)\")"->"$r37 := @caughtexception";
+    "$r10 = new org.apache.commons.cli.PosixParser"->"specialinvoke $r10.<org.apache.commons.cli.PosixParser: void <init>()>()";
+    "$r10 = new org.apache.commons.cli.PosixParser"->"$r37 := @caughtexception";
+    "specialinvoke $r10.<org.apache.commons.cli.PosixParser: void <init>()>()"->"r39 = $r10";
+    "specialinvoke $r10.<org.apache.commons.cli.PosixParser: void <init>()>()"->"$r37 := @caughtexception";
+    "r39 = $r10"->"r40 = interfaceinvoke r39.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r11)";
+    "r39 = $r10"->"$r37 := @caughtexception";
+    "r40 = interfaceinvoke r39.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r11)"->"r12 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"graph\")";
+    "r40 = interfaceinvoke r39.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>(r1, r11)"->"$r37 := @caughtexception";
+    "r12 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"graph\")"->"$r13 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nshards\")";
+    "r12 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"graph\")"->"$r37 := @caughtexception";
+    "$r13 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nshards\")"->"i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13)";
+    "$r13 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nshards\")"->"$r37 := @caughtexception";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13)"->"$z0 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"filetype\")";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13)"->"$r37 := @caughtexception";
+    "$z0 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"filetype\")"->"if $z0 == 0 goto $r41 = null";
+    "$z0 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"filetype\")"->"$r37 := @caughtexception";
+    "if $z0 == 0 goto $r41 = null"->"$r41 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"filetype\")";
+    "if $z0 == 0 goto $r41 = null"->"$r41 = null";
+    "if $z0 == 0 goto $r41 = null"->"$r37 := @caughtexception";
+    "$r41 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"filetype\")"->"goto [?= r14 = $r41]";
+    "$r41 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"filetype\")"->"$r37 := @caughtexception";
+    "goto [?= r14 = $r41]"->"r14 = $r41";
+    "goto [?= r14 = $r41]"->"$r37 := @caughtexception";
+    "$r41 = null"->"r14 = $r41";
+    "$r41 = null"->"$r37 := @caughtexception";
+    "r14 = $r41"->"$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"pipein\")";
+    "r14 = $r41"->"$r37 := @caughtexception";
+    "$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"pipein\")"->"if $z1 == 0 goto r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)";
+    "$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"pipein\")"->"$r37 := @caughtexception";
+    "if $z1 == 0 goto r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"r42 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)";
+    "if $z1 == 0 goto r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)";
+    "if $z1 == 0 goto r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"$r37 := @caughtexception";
+    "r42 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"$r36 = <java.lang.System: java.io.InputStream in>";
+    "r42 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"$r37 := @caughtexception";
+    "$r36 = <java.lang.System: java.io.InputStream in>"->"virtualinvoke r42.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r36, r14)";
+    "$r36 = <java.lang.System: java.io.InputStream in>"->"$r37 := @caughtexception";
+    "virtualinvoke r42.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r36, r14)"->"goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]";
+    "virtualinvoke r42.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r36, r14)"->"$r37 := @caughtexception";
+    "goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]"->"$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")";
+    "goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]"->"$r37 := @caughtexception";
+    "r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"$r15 = new java.io.File";
+    "r43 = staticinvoke <edu.cmu.graphchi.apps.recommendations.TwitterWTF: edu.cmu.graphchi.preprocessing.FastSharder createSharder(java.lang.String,int)>(r12, i1)"->"$r37 := @caughtexception";
+    "$r15 = new java.io.File"->"$r16 = staticinvoke <edu.cmu.graphchi.ChiFilenames: java.lang.String getFilenameIntervals(java.lang.String,int)>(r12, i1)";
+    "$r15 = new java.io.File"->"$r37 := @caughtexception";
+    "$r16 = staticinvoke <edu.cmu.graphchi.ChiFilenames: java.lang.String getFilenameIntervals(java.lang.String,int)>(r12, i1)"->"specialinvoke $r15.<java.io.File: void <init>(java.lang.String)>($r16)";
+    "$r16 = staticinvoke <edu.cmu.graphchi.ChiFilenames: java.lang.String getFilenameIntervals(java.lang.String,int)>(r12, i1)"->"$r37 := @caughtexception";
+    "specialinvoke $r15.<java.io.File: void <init>(java.lang.String)>($r16)"->"$z2 = virtualinvoke $r15.<java.io.File: boolean exists()>()";
+    "specialinvoke $r15.<java.io.File: void <init>(java.lang.String)>($r16)"->"$r37 := @caughtexception";
+    "$z2 = virtualinvoke $r15.<java.io.File: boolean exists()>()"->"if $z2 != 0 goto $r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>";
+    "$z2 = virtualinvoke $r15.<java.io.File: boolean exists()>()"->"$r37 := @caughtexception";
+    "if $z2 != 0 goto $r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"->"$r34 = new java.io.FileInputStream";
+    "if $z2 != 0 goto $r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"->"$r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>";
+    "if $z2 != 0 goto $r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"->"$r37 := @caughtexception";
+    "$r34 = new java.io.FileInputStream"->"$r35 = new java.io.File";
+    "$r34 = new java.io.FileInputStream"->"$r37 := @caughtexception";
+    "$r35 = new java.io.File"->"specialinvoke $r35.<java.io.File: void <init>(java.lang.String)>(r12)";
+    "$r35 = new java.io.File"->"$r37 := @caughtexception";
+    "specialinvoke $r35.<java.io.File: void <init>(java.lang.String)>(r12)"->"specialinvoke $r34.<java.io.FileInputStream: void <init>(java.io.File)>($r35)";
+    "specialinvoke $r35.<java.io.File: void <init>(java.lang.String)>(r12)"->"$r37 := @caughtexception";
+    "specialinvoke $r34.<java.io.FileInputStream: void <init>(java.io.File)>($r35)"->"virtualinvoke r43.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r34, r14)";
+    "specialinvoke $r34.<java.io.FileInputStream: void <init>(java.io.File)>($r35)"->"$r37 := @caughtexception";
+    "virtualinvoke r43.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r34, r14)"->"goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]";
+    "virtualinvoke r43.<edu.cmu.graphchi.preprocessing.FastSharder: void shard(java.io.InputStream,java.lang.String)>($r34, r14)"->"$r37 := @caughtexception";
+    "goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]"->"$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")";
+    "goto [?= $r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")]"->"$r37 := @caughtexception";
+    "$r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"->"virtualinvoke $r17.<java.util.logging.Logger: void info(java.lang.String)>(\"Found shards -- no need to pre-process\")";
+    "$r17 = <edu.cmu.graphchi.apps.recommendations.TwitterWTF: java.util.logging.Logger logger>"->"$r37 := @caughtexception";
+    "virtualinvoke $r17.<java.util.logging.Logger: void info(java.lang.String)>(\"Found shards -- no need to pre-process\")"->"$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")";
+    "virtualinvoke $r17.<java.util.logging.Logger: void info(java.lang.String)>(\"Found shards -- no need to pre-process\")"->"$r37 := @caughtexception";
+    "$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")"->"i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r44)";
+    "$r44 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"firstsource\")"->"$r37 := @caughtexception";
+    "i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r44)"->"$r45 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nsources\")";
+    "i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r44)"->"$r37 := @caughtexception";
+    "$r45 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nsources\")"->"i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)";
+    "$r45 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"nsources\")"->"$r37 := @caughtexception";
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"->"$r46 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"walkspersource\")";
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r45)"->"$r37 := @caughtexception";
+    "$r46 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"walkspersource\")"->"i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r46)";
+    "$r46 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"walkspersource\")"->"$r37 := @caughtexception";
+    "i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r46)"->"$r47 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"niters\")";
+    "i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r46)"->"$r37 := @caughtexception";
+    "$r47 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"niters\")"->"i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r47)";
+    "$r47 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"niters\")"->"$r37 := @caughtexception";
+    "i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r47)"->"$z3 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"companion\")";
+    "i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r47)"->"$r37 := @caughtexception";
+    "$z3 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"companion\")"->"if $z3 == 0 goto $r48 = \"local\"";
+    "$z3 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"companion\")"->"$r37 := @caughtexception";
+    "if $z3 == 0 goto $r48 = \"local\""->"$r48 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"companion\")";
+    "if $z3 == 0 goto $r48 = \"local\""->"$r48 = \"local\"";
+    "if $z3 == 0 goto $r48 = \"local\""->"$r37 := @caughtexception";
+    "$r48 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"companion\")"->"goto [?= r18 = $r48]";
+    "$r48 = virtualinvoke r40.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"companion\")"->"$r37 := @caughtexception";
+    "goto [?= r18 = $r48]"->"r18 = $r48";
+    "goto [?= r18 = $r48]"->"$r37 := @caughtexception";
+    "$r48 = \"local\""->"r18 = $r48";
+    "$r48 = \"local\""->"$r37 := @caughtexception";
+    "r18 = $r48"->"$r19 = new edu.cmu.graphchi.apps.recommendations.TwitterWTF";
+    "r18 = $r48"->"$r37 := @caughtexception";
+    "$r19 = new edu.cmu.graphchi.apps.recommendations.TwitterWTF"->"specialinvoke $r19.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void <init>(java.lang.String,java.lang.String,int,int,int,int)>(r18, r12, i1, i9, i2, i3)";
+    "$r19 = new edu.cmu.graphchi.apps.recommendations.TwitterWTF"->"$r37 := @caughtexception";
+    "specialinvoke $r19.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void <init>(java.lang.String,java.lang.String,int,int,int,int)>(r18, r12, i1, i9, i2, i3)"->"r20 = $r19";
+    "specialinvoke $r19.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void <init>(java.lang.String,java.lang.String,int,int,int,int)>(r18, r12, i1, i9, i2, i3)"->"$r37 := @caughtexception";
+    "r20 = $r19"->"specialinvoke r20.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void execute(int)>(i4)";
+    "r20 = $r19"->"$r37 := @caughtexception";
+    "specialinvoke r20.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void execute(int)>(i4)"->"$r22 = <java.lang.System: java.io.PrintStream out>";
+    "specialinvoke r20.<edu.cmu.graphchi.apps.recommendations.TwitterWTF: void execute(int)>(i4)"->"$r37 := @caughtexception";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"$r21 = new java.lang.StringBuilder";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"$r37 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "$r21 = new java.lang.StringBuilder"->"$r37 := @caughtexception";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"WTF-log,\")";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r37 := @caughtexception";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"WTF-log,\")"->"$l5 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"WTF-log,\")"->"$r37 := @caughtexception";
+    "$l5 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l6 = $l5 - l0";
+    "$l5 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r37 := @caughtexception";
+    "$l6 = $l5 - l0"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6)";
+    "$l6 = $l5 - l0"->"$r37 := @caughtexception";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6)"->"$r37 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r37 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9)"->"$r37 := @caughtexception";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$i7 = i9 + i2";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r37 := @caughtexception";
+    "$i7 = i9 + i2"->"$i8 = $i7 - 1";
+    "$i7 = i9 + i2"->"$r37 := @caughtexception";
+    "$i8 = $i7 - 1"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)";
+    "$i8 = $i7 - 1"->"$r37 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"->"$r37 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r37 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)"->"$r37 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")"->"$r37 := @caughtexception";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r37 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r33)";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r37 := @caughtexception";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r33)"->"staticinvoke <java.lang.System: void exit(int)>(0)";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r33)"->"$r37 := @caughtexception";
+    "staticinvoke <java.lang.System: void exit(int)>(0)"->"goto [?= return]";
+    "staticinvoke <java.lang.System: void exit(int)>(0)"->"$r37 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r37 := @caughtexception"->"r49 = $r37";
+    "r49 = $r37"->"virtualinvoke r49.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r49.<java.lang.Exception: void printStackTrace()>()"->"$r38 = new org.apache.commons.cli.HelpFormatter";
+    "$r38 = new org.apache.commons.cli.HelpFormatter"->"specialinvoke $r38.<org.apache.commons.cli.HelpFormatter: void <init>()>()";
+    "specialinvoke $r38.<org.apache.commons.cli.HelpFormatter: void <init>()>()"->"r50 = $r38";
+    "r50 = $r38"->"virtualinvoke r50.<org.apache.commons.cli.HelpFormatter: void printHelp(java.lang.String,org.apache.commons.cli.Options)>(\"TwitterWTF\", r1)";
+    "virtualinvoke r50.<org.apache.commons.cli.HelpFormatter: void printHelp(java.lang.String,org.apache.commons.cli.Options)>(\"TwitterWTF\", r1)"->"return";
+}

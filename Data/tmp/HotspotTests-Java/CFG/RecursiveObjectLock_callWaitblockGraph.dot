@@ -1,0 +1,75 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @this: RecursiveObjectLock;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r0.<java.lang.Object: void wait(long)>(1L);
+"
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()];
+"
+    "Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r1 := @caughtexception;
+r2 = $r1;
+virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>();
+"
+    "Block 4:
+[preds: 2 3 ] [succs: ]
+staticinvoke <RecursiveObjectLock: void breakpoint1()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @this: RecursiveObjectLock;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r0.<java.lang.Object: void wait(long)>(1L);
+";
+    "Block 0:
+[preds: ] [succs: 1 3 ]
+r0 := @this: RecursiveObjectLock;
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r1 := @caughtexception;
+r2 = $r1;
+virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r0.<java.lang.Object: void wait(long)>(1L);
+"->"Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+virtualinvoke r0.<java.lang.Object: void wait(long)>(1L);
+"->"Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r1 := @caughtexception;
+r2 = $r1;
+virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+goto [?= staticinvoke <RecursiveObjectLock: void breakpoint1()>()];
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+staticinvoke <RecursiveObjectLock: void breakpoint1()>();
+return;
+";
+    "Block 3:
+[preds: 0 1 ] [succs: 4 ]
+$r1 := @caughtexception;
+r2 = $r1;
+virtualinvoke r2.<java.lang.InterruptedException: void printStackTrace()>();
+"->"Block 4:
+[preds: 2 3 ] [succs: ]
+staticinvoke <RecursiveObjectLock: void breakpoint1()>();
+return;
+";
+}

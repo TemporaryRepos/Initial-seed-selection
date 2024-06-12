@@ -1,0 +1,28 @@
+digraph "unitGraph" {
+    "$i0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>(1)"
+    "r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)"
+    "i5 = 0"
+    "goto [?= (branch)]"
+    "$i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"
+    "$i2 = $i1 + 1"
+    "$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2)"
+    "r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"
+    "i5 = i5 + 1"
+    "if i5 < 1000 goto $i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"
+    "staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>()"
+    "$i4 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"
+    "return $i4"
+    "$i0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>(1)"->"r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)";
+    "r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0)"->"i5 = 0";
+    "i5 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 < 1000 goto $i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()";
+    "$i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"->"$i2 = $i1 + 1";
+    "$i2 = $i1 + 1"->"$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2)";
+    "$i3 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i2)"->"r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)";
+    "r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3)"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"if i5 < 1000 goto $i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()";
+    "if i5 < 1000 goto $i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"->"staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>()";
+    "if i5 < 1000 goto $i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"->"$i1 = virtualinvoke r0.<java.lang.Integer: int intValue()>()";
+    "staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>()"->"$i4 = virtualinvoke r0.<java.lang.Integer: int intValue()>()";
+    "$i4 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"->"return $i4";
+}

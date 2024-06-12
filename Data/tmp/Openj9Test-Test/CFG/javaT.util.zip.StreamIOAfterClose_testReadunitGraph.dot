@@ -1,0 +1,23 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.io.InputStream"
+    "virtualinvoke r0.<java.io.InputStream: void close()>()"
+    "virtualinvoke r0.<java.io.InputStream: int read()>()"
+    "$r1 = new java.lang.Exception"
+    "specialinvoke $r1.<java.lang.Exception: void <init>(java.lang.String)>(\"read allowed after stream is closed\")"
+    "throw $r1"
+    "$r2 := @caughtexception"
+    "r3 = $r2"
+    "return"
+    "r0 := @parameter0: java.io.InputStream"->"virtualinvoke r0.<java.io.InputStream: void close()>()";
+    "virtualinvoke r0.<java.io.InputStream: void close()>()"->"virtualinvoke r0.<java.io.InputStream: int read()>()";
+    "virtualinvoke r0.<java.io.InputStream: void close()>()"->"$r2 := @caughtexception";
+    "virtualinvoke r0.<java.io.InputStream: int read()>()"->"$r1 = new java.lang.Exception";
+    "virtualinvoke r0.<java.io.InputStream: int read()>()"->"$r2 := @caughtexception";
+    "$r1 = new java.lang.Exception"->"specialinvoke $r1.<java.lang.Exception: void <init>(java.lang.String)>(\"read allowed after stream is closed\")";
+    "$r1 = new java.lang.Exception"->"$r2 := @caughtexception";
+    "specialinvoke $r1.<java.lang.Exception: void <init>(java.lang.String)>(\"read allowed after stream is closed\")"->"throw $r1";
+    "specialinvoke $r1.<java.lang.Exception: void <init>(java.lang.String)>(\"read allowed after stream is closed\")"->"$r2 := @caughtexception";
+    "throw $r1"->"$r2 := @caughtexception";
+    "$r2 := @caughtexception"->"r3 = $r2";
+    "r3 = $r2"->"return";
+}

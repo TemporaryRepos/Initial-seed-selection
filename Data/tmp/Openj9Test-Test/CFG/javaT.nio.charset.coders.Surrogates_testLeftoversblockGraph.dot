@@ -1,0 +1,361 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+z0 := @parameter0: boolean;
+$r1 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+$r0 = new java.lang.StringBuilder;
+specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leftover surrogates, doMalformed = \");
+$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>($r4);
+$r5 = new java.io.ByteArrayOutputStream;
+specialinvoke $r5.<java.io.ByteArrayOutputStream: void <init>()>();
+r6 = $r5;
+$r7 = new java.io.OutputStreamWriter;
+$r8 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(\"UTF-8\");
+specialinvoke $r7.<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.nio.charset.Charset)>(r6, $r8);
+r9 = $r7;
+i11 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$r10 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i0 = lengthof $r10;
+if i11 >= $i0 goto (branch);
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r30 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$r29 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i8 = lengthof $r29;
+$i9 = $i8 - i11;
+$i10 = staticinvoke <java.lang.Math: int min(int,int)>($i9, 7);
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r30, i11, $i10);
+i11 = i11 + 7;
+goto [?= $r10 = <javaT.nio.charset.coders.Surrogates: char[] input>];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if z0 == 0 goto virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+$r28 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r28, 0, 1);
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+r31 = virtualinvoke r6.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+$i1 = lengthof r31;
+if z0 == 0 goto $b12 = 0;
+"
+    "Block 6:
+[preds: 5 ] [succs: 8 ]
+$b12 = -1;
+goto [?= i2 = $i1 + $b12];
+"
+    "Block 7:
+[preds: 5 ] [succs: 8 ]
+$b12 = 0;
+"
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+i2 = $i1 + $b12;
+$r11 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i3 = lengthof $r11;
+if i2 == $i3 goto i13 = 0;
+"
+    "Block 9:
+[preds: 8 ] [succs: ]
+$r20 = new java.lang.Exception;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Incorrect result length \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected \");
+$r25 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i7 = lengthof $r25;
+$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>($r27);
+throw $r20;
+"
+    "Block 10:
+[preds: 8 ] [succs: 11 ]
+i13 = 0;
+"
+    "Block 11:
+[preds: 10 14 ] [succs: 12 15 ]
+$r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i4 = lengthof $r12;
+if i13 >= $i4 goto $r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$b6 = r31[i13];
+$r14 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$b5 = $r14[i13];
+if $b6 == $b5 goto i13 = i13 + 1;
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+$r15 = new java.lang.Exception;
+$r16 = new java.lang.StringBuilder;
+specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected result value at index \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r15.<java.lang.Exception: void <init>(java.lang.String)>($r19);
+throw $r15;
+"
+    "Block 14:
+[preds: 12 ] [succs: 11 ]
+i13 = i13 + 1;
+goto [?= $r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>];
+"
+    "Block 15:
+[preds: 11 ] [succs: ]
+$r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\": Passed\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+z0 := @parameter0: boolean;
+$r1 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+$r0 = new java.lang.StringBuilder;
+specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leftover surrogates, doMalformed = \");
+$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r1.<java.io.PrintStream: void print(java.lang.String)>($r4);
+$r5 = new java.io.ByteArrayOutputStream;
+specialinvoke $r5.<java.io.ByteArrayOutputStream: void <init>()>();
+r6 = $r5;
+$r7 = new java.io.OutputStreamWriter;
+$r8 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(\"UTF-8\");
+specialinvoke $r7.<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.nio.charset.Charset)>(r6, $r8);
+r9 = $r7;
+i11 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$r10 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i0 = lengthof $r10;
+if i11 >= $i0 goto (branch);
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$r10 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i0 = lengthof $r10;
+if i11 >= $i0 goto (branch);
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+$r30 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$r29 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i8 = lengthof $r29;
+$i9 = $i8 - i11;
+$i10 = staticinvoke <java.lang.Math: int min(int,int)>($i9, 7);
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r30, i11, $i10);
+i11 = i11 + 7;
+goto [?= $r10 = <javaT.nio.charset.coders.Surrogates: char[] input>];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$r10 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i0 = lengthof $r10;
+if i11 >= $i0 goto (branch);
+"->"Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if z0 == 0 goto virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+$r30 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$r29 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i8 = lengthof $r29;
+$i9 = $i8 - i11;
+$i10 = staticinvoke <java.lang.Math: int min(int,int)>($i9, 7);
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r30, i11, $i10);
+i11 = i11 + 7;
+goto [?= $r10 = <javaT.nio.charset.coders.Surrogates: char[] input>];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$r10 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+$i0 = lengthof $r10;
+if i11 >= $i0 goto (branch);
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if z0 == 0 goto virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+$r28 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r28, 0, 1);
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 5 ]
+if z0 == 0 goto virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+r31 = virtualinvoke r6.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+$i1 = lengthof r31;
+if z0 == 0 goto $b12 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+$r28 = <javaT.nio.charset.coders.Surrogates: char[] input>;
+virtualinvoke r9.<java.io.OutputStreamWriter: void write(char[],int,int)>($r28, 0, 1);
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+r31 = virtualinvoke r6.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+$i1 = lengthof r31;
+if z0 == 0 goto $b12 = 0;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+r31 = virtualinvoke r6.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+$i1 = lengthof r31;
+if z0 == 0 goto $b12 = 0;
+"->"Block 6:
+[preds: 5 ] [succs: 8 ]
+$b12 = -1;
+goto [?= i2 = $i1 + $b12];
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 7 ]
+virtualinvoke r9.<java.io.OutputStreamWriter: void close()>();
+r31 = virtualinvoke r6.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+$i1 = lengthof r31;
+if z0 == 0 goto $b12 = 0;
+"->"Block 7:
+[preds: 5 ] [succs: 8 ]
+$b12 = 0;
+";
+    "Block 6:
+[preds: 5 ] [succs: 8 ]
+$b12 = -1;
+goto [?= i2 = $i1 + $b12];
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+i2 = $i1 + $b12;
+$r11 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i3 = lengthof $r11;
+if i2 == $i3 goto i13 = 0;
+";
+    "Block 7:
+[preds: 5 ] [succs: 8 ]
+$b12 = 0;
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+i2 = $i1 + $b12;
+$r11 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i3 = lengthof $r11;
+if i2 == $i3 goto i13 = 0;
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+i2 = $i1 + $b12;
+$r11 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i3 = lengthof $r11;
+if i2 == $i3 goto i13 = 0;
+"->"Block 9:
+[preds: 8 ] [succs: ]
+$r20 = new java.lang.Exception;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Incorrect result length \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected \");
+$r25 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i7 = lengthof $r25;
+$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>($r27);
+throw $r20;
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+i2 = $i1 + $b12;
+$r11 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i3 = lengthof $r11;
+if i2 == $i3 goto i13 = 0;
+"->"Block 10:
+[preds: 8 ] [succs: 11 ]
+i13 = 0;
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 ]
+i13 = 0;
+"->"Block 11:
+[preds: 10 14 ] [succs: 12 15 ]
+$r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i4 = lengthof $r12;
+if i13 >= $i4 goto $r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+";
+    "Block 11:
+[preds: 10 14 ] [succs: 12 15 ]
+$r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i4 = lengthof $r12;
+if i13 >= $i4 goto $r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$b6 = r31[i13];
+$r14 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$b5 = $r14[i13];
+if $b6 == $b5 goto i13 = i13 + 1;
+";
+    "Block 11:
+[preds: 10 14 ] [succs: 12 15 ]
+$r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i4 = lengthof $r12;
+if i13 >= $i4 goto $r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+"->"Block 15:
+[preds: 11 ] [succs: ]
+$r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\": Passed\");
+return;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$b6 = r31[i13];
+$r14 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$b5 = $r14[i13];
+if $b6 == $b5 goto i13 = i13 + 1;
+"->"Block 13:
+[preds: 12 ] [succs: ]
+$r15 = new java.lang.Exception;
+$r16 = new java.lang.StringBuilder;
+specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected result value at index \");
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r15.<java.lang.Exception: void <init>(java.lang.String)>($r19);
+throw $r15;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$b6 = r31[i13];
+$r14 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$b5 = $r14[i13];
+if $b6 == $b5 goto i13 = i13 + 1;
+"->"Block 14:
+[preds: 12 ] [succs: 11 ]
+i13 = i13 + 1;
+goto [?= $r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>];
+";
+    "Block 14:
+[preds: 12 ] [succs: 11 ]
+i13 = i13 + 1;
+goto [?= $r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>];
+"->"Block 11:
+[preds: 10 14 ] [succs: 12 15 ]
+$r12 = <javaT.nio.charset.coders.Surrogates: byte[] output>;
+$i4 = lengthof $r12;
+if i13 >= $i4 goto $r13 = <javaT.nio.charset.coders.Surrogates: java.io.PrintStream log>;
+";
+}

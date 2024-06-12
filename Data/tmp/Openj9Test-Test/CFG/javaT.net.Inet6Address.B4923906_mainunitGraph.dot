@@ -1,0 +1,84 @@
+digraph "unitGraph" {
+    "r22 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>()"
+    "$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()"
+    "if $z0 == 0 goto return"
+    "$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>()"
+    "r2 = (java.net.NetworkInterface) $r1"
+    "r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>()"
+    "$r5 = <java.lang.System: java.io.PrintStream out>"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r6 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getName()>()"
+    "$r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"
+    "$r9 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getDisplayName()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r11)"
+    "$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()"
+    "if $z1 == 0 goto (branch)"
+    "$r12 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>()"
+    "r13 = (java.net.InetAddress) $r12"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r13)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18)"
+    "$z2 = r13 instanceof java.net.Inet6Address"
+    "if $z2 == 0 goto (branch)"
+    "r19 = (java.net.Inet6Address) r13"
+    "r20 = virtualinvoke r19.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>()"
+    "$z3 = r20 instanceof java.lang.String"
+    "if $z3 == 0 goto (branch)"
+    "$r21 = new java.lang.RuntimeException"
+    "specialinvoke $r21.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Oops! This should be a NetworkInterface\")"
+    "throw $r21"
+    "goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()]"
+    "goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()]"
+    "return"
+    "r22 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>()";
+    "r0 = staticinvoke <java.net.NetworkInterface: java.util.Enumeration getNetworkInterfaces()>()"->"$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()";
+    "$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>()";
+    "if $z0 == 0 goto return"->"return";
+    "$r1 = interfaceinvoke r0.<java.util.Enumeration: java.lang.Object nextElement()>()"->"r2 = (java.net.NetworkInterface) $r1";
+    "r2 = (java.net.NetworkInterface) $r1"->"r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>()";
+    "r3 = virtualinvoke r2.<java.net.NetworkInterface: java.util.Enumeration getInetAddresses()>()"->"$r5 = <java.lang.System: java.io.PrintStream out>";
+    "$r5 = <java.lang.System: java.io.PrintStream out>"->"$r4 = new java.lang.StringBuilder";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r6 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getName()>()";
+    "$r6 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getName()>()"->"$r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)";
+    "$r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"->"$r9 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getDisplayName()>()";
+    "$r9 = virtualinvoke r2.<java.net.NetworkInterface: java.lang.String getDisplayName()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r11)";
+    "virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()";
+    "$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()"->"if $z1 == 0 goto (branch)";
+    "if $z1 == 0 goto (branch)"->"$r12 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>()";
+    "if $z1 == 0 goto (branch)"->"goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()]";
+    "$r12 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>()"->"r13 = (java.net.InetAddress) $r12";
+    "r13 = (java.net.InetAddress) $r12"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"$r14 = new java.lang.StringBuilder";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r13)";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r13)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18)";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18)"->"$z2 = r13 instanceof java.net.Inet6Address";
+    "$z2 = r13 instanceof java.net.Inet6Address"->"if $z2 == 0 goto (branch)";
+    "if $z2 == 0 goto (branch)"->"r19 = (java.net.Inet6Address) r13";
+    "if $z2 == 0 goto (branch)"->"goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()]";
+    "r19 = (java.net.Inet6Address) r13"->"r20 = virtualinvoke r19.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>()";
+    "r20 = virtualinvoke r19.<java.net.Inet6Address: java.net.NetworkInterface getScopedInterface()>()"->"$z3 = r20 instanceof java.lang.String";
+    "$z3 = r20 instanceof java.lang.String"->"if $z3 == 0 goto (branch)";
+    "if $z3 == 0 goto (branch)"->"$r21 = new java.lang.RuntimeException";
+    "if $z3 == 0 goto (branch)"->"goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()]";
+    "$r21 = new java.lang.RuntimeException"->"specialinvoke $r21.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Oops! This should be a NetworkInterface\")";
+    "specialinvoke $r21.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Oops! This should be a NetworkInterface\")"->"throw $r21";
+    "goto [?= $z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()]"->"$z1 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>()";
+    "goto [?= $z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()]"->"$z0 = interfaceinvoke r0.<java.util.Enumeration: boolean hasMoreElements()>()";
+}

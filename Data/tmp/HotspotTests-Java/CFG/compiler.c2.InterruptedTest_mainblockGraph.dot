@@ -1,0 +1,399 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 5 ]
+r0 := @parameter0: java.lang.String[];
+i1 = 100;
+$i0 = lengthof r0;
+if $i0 == 1 goto $r1 = r0[0];
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect number of arguments\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 5 ]
+$r1 = r0[0];
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+"
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+goto [?= (branch)];
+"
+    "Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if i1 >= 1 goto $r2 = new compiler.c2.InterruptedTest$1;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Threshold must be at least 1\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 8:
+[preds: 6 7 ] [succs: 12 ]
+$r2 = new compiler.c2.InterruptedTest$1;
+specialinvoke $r2.<compiler.c2.InterruptedTest$1: void <init>(java.lang.String)>(\"worker\");
+r3 = $r2;
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: starts a worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void start()>();
+$r5 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 5 seconds after starting the worker thread\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(5000L);
+i2 = 0;
+goto [?= $z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>()];
+"
+    "Block 9:
+[preds: 13 ] [succs: 10 11 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: interrupts the worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void interrupt()>();
+$z0 = virtualinvoke r3.<java.lang.Thread: boolean isInterrupted()>();
+if $z0 == 0 goto i2 = i2 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: worker thread is interrupted\");
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 12 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 1 second for the worker thread to die...\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(1000L);
+"
+    "Block 12:
+[preds: 8 11 ] [succs: 13 14 ]
+$z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>();
+if $z1 == 0 goto (branch);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 9 ]
+if i2 < i1 goto $r12 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+if i2 != i1 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Main thread: the worker thread did not die after \");
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" seconds have elapsed\");
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"
+    "Block 16:
+[preds: 14 15 ] [succs: ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: bye\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 5 ]
+r0 := @parameter0: java.lang.String[];
+i1 = 100;
+$i0 = lengthof r0;
+if $i0 == 1 goto $r1 = r0[0];
+"->"Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect number of arguments\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 0:
+[preds: ] [succs: 1 2 5 ]
+r0 := @parameter0: java.lang.String[];
+i1 = 100;
+$i0 = lengthof r0;
+if $i0 == 1 goto $r1 = r0[0];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 5 ]
+$r1 = r0[0];
+";
+    "Block 0:
+[preds: ] [succs: 1 2 5 ]
+r0 := @parameter0: java.lang.String[];
+i1 = 100;
+$i0 = lengthof r0;
+if $i0 == 1 goto $r1 = r0[0];
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect number of arguments\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 5 ]
+$r1 = r0[0];
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r16 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect number of arguments\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 5 ]
+$r1 = r0[0];
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 5 ]
+$r1 = r0[0];
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+"->"Block 4:
+[preds: 3 ] [succs: 6 ]
+goto [?= (branch)];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+goto [?= (branch)];
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if i1 >= 1 goto $r2 = new compiler.c2.InterruptedTest$1;
+";
+    "Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r17 := @caughtexception;
+$r18 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>(\"Invalid argument format\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if i1 >= 1 goto $r2 = new compiler.c2.InterruptedTest$1;
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if i1 >= 1 goto $r2 = new compiler.c2.InterruptedTest$1;
+"->"Block 7:
+[preds: 6 ] [succs: 8 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Threshold must be at least 1\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if i1 >= 1 goto $r2 = new compiler.c2.InterruptedTest$1;
+"->"Block 8:
+[preds: 6 7 ] [succs: 12 ]
+$r2 = new compiler.c2.InterruptedTest$1;
+specialinvoke $r2.<compiler.c2.InterruptedTest$1: void <init>(java.lang.String)>(\"worker\");
+r3 = $r2;
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: starts a worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void start()>();
+$r5 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 5 seconds after starting the worker thread\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(5000L);
+i2 = 0;
+goto [?= $z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>()];
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"Threshold must be at least 1\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 8:
+[preds: 6 7 ] [succs: 12 ]
+$r2 = new compiler.c2.InterruptedTest$1;
+specialinvoke $r2.<compiler.c2.InterruptedTest$1: void <init>(java.lang.String)>(\"worker\");
+r3 = $r2;
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: starts a worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void start()>();
+$r5 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 5 seconds after starting the worker thread\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(5000L);
+i2 = 0;
+goto [?= $z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>()];
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 12 ]
+$r2 = new compiler.c2.InterruptedTest$1;
+specialinvoke $r2.<compiler.c2.InterruptedTest$1: void <init>(java.lang.String)>(\"worker\");
+r3 = $r2;
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: starts a worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void start()>();
+$r5 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 5 seconds after starting the worker thread\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(5000L);
+i2 = 0;
+goto [?= $z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>()];
+"->"Block 12:
+[preds: 8 11 ] [succs: 13 14 ]
+$z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 9:
+[preds: 13 ] [succs: 10 11 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: interrupts the worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void interrupt()>();
+$z0 = virtualinvoke r3.<java.lang.Thread: boolean isInterrupted()>();
+if $z0 == 0 goto i2 = i2 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: worker thread is interrupted\");
+";
+    "Block 9:
+[preds: 13 ] [succs: 10 11 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: interrupts the worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void interrupt()>();
+$z0 = virtualinvoke r3.<java.lang.Thread: boolean isInterrupted()>();
+if $z0 == 0 goto i2 = i2 + 1;
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 1 second for the worker thread to die...\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(1000L);
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r14 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: worker thread is interrupted\");
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 1 second for the worker thread to die...\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(1000L);
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: waits 1 second for the worker thread to die...\");
+virtualinvoke r3.<java.lang.Thread: void join(long)>(1000L);
+"->"Block 12:
+[preds: 8 11 ] [succs: 13 14 ]
+$z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>();
+if $z1 == 0 goto (branch);
+";
+    "Block 12:
+[preds: 8 11 ] [succs: 13 14 ]
+$z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>();
+if $z1 == 0 goto (branch);
+"->"Block 13:
+[preds: 12 ] [succs: 14 9 ]
+if i2 < i1 goto $r12 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 12:
+[preds: 8 11 ] [succs: 13 14 ]
+$z1 = virtualinvoke r3.<java.lang.Thread: boolean isAlive()>();
+if $z1 == 0 goto (branch);
+"->"Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+if i2 != i1 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 9 ]
+if i2 < i1 goto $r12 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+if i2 != i1 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 9 ]
+if i2 < i1 goto $r12 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 9:
+[preds: 13 ] [succs: 10 11 ]
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: interrupts the worker thread...\");
+virtualinvoke r3.<java.lang.Thread: void interrupt()>();
+$z0 = virtualinvoke r3.<java.lang.Thread: boolean isInterrupted()>();
+if $z0 == 0 goto i2 = i2 + 1;
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+if i2 != i1 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 15:
+[preds: 14 ] [succs: 16 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Main thread: the worker thread did not die after \");
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" seconds have elapsed\");
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 15 16 ]
+if i2 != i1 goto $r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 16:
+[preds: 14 15 ] [succs: ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: bye\");
+return;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+$r7 = new java.lang.StringBuilder;
+specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Main thread: the worker thread did not die after \");
+$r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" seconds have elapsed\");
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+staticinvoke <java.lang.System: void exit(int)>(97);
+"->"Block 16:
+[preds: 14 15 ] [succs: ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>(\"Main thread: bye\");
+return;
+";
+}

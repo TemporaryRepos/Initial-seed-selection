@@ -1,0 +1,481 @@
+digraph "unitGraph" {
+    "r11 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler"
+    "r2 := @parameter0: java.io.File"
+    "i6 = 1"
+    "r52 = null"
+    "r53 = null"
+    "$r0 = new java.io.BufferedReader"
+    "$r1 = new java.io.FileReader"
+    "specialinvoke $r1.<java.io.FileReader: void <init>(java.io.File)>(r2)"
+    "specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1)"
+    "r53 = $r0"
+    "r54 = null"
+    "$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r52 = $r3"
+    "if $r3 == null goto (branch)"
+    "i0 = virtualinvoke r52.<java.lang.String: int indexOf(int)>(35)"
+    "if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"
+    "r52 = virtualinvoke r52.<java.lang.String: java.lang.String substring(int,int)>(0, i0)"
+    "$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"
+    "$i1 = virtualinvoke $r4.<java.lang.String: int length()>()"
+    "if $i1 != 0 goto $r5 = new java.util.StringTokenizer"
+    "goto [?= i6 = i6 + 1]"
+    "$r5 = new java.util.StringTokenizer"
+    "specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r52, \" \t\")"
+    "r6 = $r5"
+    "if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "$c5 = virtualinvoke r52.<java.lang.String: char charAt(int)>(0)"
+    "$z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5)"
+    "if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "$z5 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "$z6 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"
+    "if $z6 == 0 goto i6 = i6 + 1"
+    "$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"
+    "if $z7 == 0 goto i6 = i6 + 1"
+    "r7 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Zone\")"
+    "if $z0 == 0 goto r54 = null"
+    "$i4 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"
+    "if $i4 >= 3 goto $r28 = new java.util.ArrayList"
+    "$r32 = new java.lang.StringBuilder"
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Zone line in file: \")"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r37)"
+    "$r38 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r38.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Zone line\")"
+    "throw $r38"
+    "$r28 = new java.util.ArrayList"
+    "specialinvoke $r28.<java.util.ArrayList: void <init>()>()"
+    "r54 = $r28"
+    "$r29 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>"
+    "$r30 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "interfaceinvoke $r29.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r30, r54)"
+    "$z3 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"
+    "if $z3 == 0 goto i6 = i6 + 1"
+    "$z1 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Rule\")"
+    "if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"
+    "$i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"
+    "if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Rule line in file: \")"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r26)"
+    "$r27 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r27.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Rule line\")"
+    "throw $r27"
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"
+    "$z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"
+    "if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException"
+    "$i2 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"
+    "if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Link line in file: \")"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r19)"
+    "$r20 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r20.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Link line\")"
+    "throw $r20"
+    "r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "r10 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$r12 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>"
+    "interfaceinvoke $r12.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, r9)"
+    "$r8 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"
+    "throw $r8"
+    "i6 = i6 + 1"
+    "goto [?= $r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "if r53 == null goto return"
+    "virtualinvoke r53.<java.io.BufferedReader: void close()>()"
+    "goto [?= return]"
+    "$r41 := @caughtexception"
+    "r55 = $r41"
+    "$r42 = new java.lang.Exception"
+    "$r43 = new java.lang.StringBuilder"
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed while processing file \'\")"
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' on line \")"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6)"
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \'\")"
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r42.<java.lang.Exception: void <init>(java.lang.String,java.lang.Throwable)>($r51, r55)"
+    "throw $r42"
+    "$r39 := @caughtexception"
+    "r40 = $r39"
+    "if r53 == null goto throw r40"
+    "throw r40"
+    "return"
+    "r11 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler"->"r2 := @parameter0: java.io.File";
+    "r2 := @parameter0: java.io.File"->"i6 = 1";
+    "i6 = 1"->"r52 = null";
+    "r52 = null"->"r53 = null";
+    "r53 = null"->"$r41 := @caughtexception";
+    "r53 = null"->"$r39 := @caughtexception";
+    "r53 = null"->"$r0 = new java.io.BufferedReader";
+    "$r0 = new java.io.BufferedReader"->"$r41 := @caughtexception";
+    "$r0 = new java.io.BufferedReader"->"$r39 := @caughtexception";
+    "$r0 = new java.io.BufferedReader"->"$r1 = new java.io.FileReader";
+    "$r1 = new java.io.FileReader"->"$r41 := @caughtexception";
+    "$r1 = new java.io.FileReader"->"$r39 := @caughtexception";
+    "$r1 = new java.io.FileReader"->"specialinvoke $r1.<java.io.FileReader: void <init>(java.io.File)>(r2)";
+    "specialinvoke $r1.<java.io.FileReader: void <init>(java.io.File)>(r2)"->"$r41 := @caughtexception";
+    "specialinvoke $r1.<java.io.FileReader: void <init>(java.io.File)>(r2)"->"$r39 := @caughtexception";
+    "specialinvoke $r1.<java.io.FileReader: void <init>(java.io.File)>(r2)"->"specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1)";
+    "specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1)"->"$r41 := @caughtexception";
+    "specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1)"->"$r39 := @caughtexception";
+    "specialinvoke $r0.<java.io.BufferedReader: void <init>(java.io.Reader)>($r1)"->"r53 = $r0";
+    "r53 = $r0"->"$r41 := @caughtexception";
+    "r53 = $r0"->"$r39 := @caughtexception";
+    "r53 = $r0"->"r54 = null";
+    "r54 = null"->"$r41 := @caughtexception";
+    "r54 = null"->"$r39 := @caughtexception";
+    "r54 = null"->"$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r41 := @caughtexception";
+    "$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r39 := @caughtexception";
+    "$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()"->"r52 = $r3";
+    "r52 = $r3"->"$r41 := @caughtexception";
+    "r52 = $r3"->"$r39 := @caughtexception";
+    "r52 = $r3"->"if $r3 == null goto (branch)";
+    "if $r3 == null goto (branch)"->"i0 = virtualinvoke r52.<java.lang.String: int indexOf(int)>(35)";
+    "if $r3 == null goto (branch)"->"if r53 == null goto return";
+    "if $r3 == null goto (branch)"->"$r41 := @caughtexception";
+    "if $r3 == null goto (branch)"->"$r39 := @caughtexception";
+    "i0 = virtualinvoke r52.<java.lang.String: int indexOf(int)>(35)"->"$r41 := @caughtexception";
+    "i0 = virtualinvoke r52.<java.lang.String: int indexOf(int)>(35)"->"$r39 := @caughtexception";
+    "i0 = virtualinvoke r52.<java.lang.String: int indexOf(int)>(35)"->"if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()";
+    "if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"r52 = virtualinvoke r52.<java.lang.String: java.lang.String substring(int,int)>(0, i0)";
+    "if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()";
+    "if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$r41 := @caughtexception";
+    "if i0 < 0 goto $r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$r39 := @caughtexception";
+    "r52 = virtualinvoke r52.<java.lang.String: java.lang.String substring(int,int)>(0, i0)"->"$r41 := @caughtexception";
+    "r52 = virtualinvoke r52.<java.lang.String: java.lang.String substring(int,int)>(0, i0)"->"$r39 := @caughtexception";
+    "r52 = virtualinvoke r52.<java.lang.String: java.lang.String substring(int,int)>(0, i0)"->"$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()";
+    "$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$r41 := @caughtexception";
+    "$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$r39 := @caughtexception";
+    "$r4 = virtualinvoke r52.<java.lang.String: java.lang.String trim()>()"->"$i1 = virtualinvoke $r4.<java.lang.String: int length()>()";
+    "$i1 = virtualinvoke $r4.<java.lang.String: int length()>()"->"$r41 := @caughtexception";
+    "$i1 = virtualinvoke $r4.<java.lang.String: int length()>()"->"$r39 := @caughtexception";
+    "$i1 = virtualinvoke $r4.<java.lang.String: int length()>()"->"if $i1 != 0 goto $r5 = new java.util.StringTokenizer";
+    "if $i1 != 0 goto $r5 = new java.util.StringTokenizer"->"goto [?= i6 = i6 + 1]";
+    "if $i1 != 0 goto $r5 = new java.util.StringTokenizer"->"$r5 = new java.util.StringTokenizer";
+    "if $i1 != 0 goto $r5 = new java.util.StringTokenizer"->"$r41 := @caughtexception";
+    "if $i1 != 0 goto $r5 = new java.util.StringTokenizer"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r41 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"i6 = i6 + 1";
+    "$r5 = new java.util.StringTokenizer"->"$r41 := @caughtexception";
+    "$r5 = new java.util.StringTokenizer"->"$r39 := @caughtexception";
+    "$r5 = new java.util.StringTokenizer"->"specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r52, \" \t\")";
+    "specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r52, \" \t\")"->"$r41 := @caughtexception";
+    "specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r52, \" \t\")"->"$r39 := @caughtexception";
+    "specialinvoke $r5.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r52, \" \t\")"->"r6 = $r5";
+    "r6 = $r5"->"$r41 := @caughtexception";
+    "r6 = $r5"->"$r39 := @caughtexception";
+    "r6 = $r5"->"if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$c5 = virtualinvoke r52.<java.lang.String: char charAt(int)>(0)";
+    "if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r41 := @caughtexception";
+    "if r54 == null goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r39 := @caughtexception";
+    "$c5 = virtualinvoke r52.<java.lang.String: char charAt(int)>(0)"->"$r41 := @caughtexception";
+    "$c5 = virtualinvoke r52.<java.lang.String: char charAt(int)>(0)"->"$r39 := @caughtexception";
+    "$c5 = virtualinvoke r52.<java.lang.String: char charAt(int)>(0)"->"$z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5)";
+    "$z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5)"->"$r41 := @caughtexception";
+    "$z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5)"->"$r39 := @caughtexception";
+    "$z4 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c5)"->"if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$z5 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r41 := @caughtexception";
+    "if $z4 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r39 := @caughtexception";
+    "$z5 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r41 := @caughtexception";
+    "$z5 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r39 := @caughtexception";
+    "$z5 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$z6 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)";
+    "if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()";
+    "if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r41 := @caughtexception";
+    "if $z5 == 0 goto $z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r39 := @caughtexception";
+    "$z6 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"$r41 := @caughtexception";
+    "$z6 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"$r39 := @caughtexception";
+    "$z6 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"if $z6 == 0 goto i6 = i6 + 1";
+    "if $z6 == 0 goto i6 = i6 + 1"->"r54 = null";
+    "if $z6 == 0 goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "if $z6 == 0 goto i6 = i6 + 1"->"$r41 := @caughtexception";
+    "if $z6 == 0 goto i6 = i6 + 1"->"$r39 := @caughtexception";
+    "r54 = null"->"$r41 := @caughtexception";
+    "r54 = null"->"$r39 := @caughtexception";
+    "r54 = null"->"goto [?= i6 = i6 + 1]";
+    "goto [?= i6 = i6 + 1]"->"$r41 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"i6 = i6 + 1";
+    "$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r41 := @caughtexception";
+    "$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"$r39 := @caughtexception";
+    "$z7 = virtualinvoke r6.<java.util.StringTokenizer: boolean hasMoreTokens()>()"->"if $z7 == 0 goto i6 = i6 + 1";
+    "if $z7 == 0 goto i6 = i6 + 1"->"r7 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if $z7 == 0 goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "if $z7 == 0 goto i6 = i6 + 1"->"$r41 := @caughtexception";
+    "if $z7 == 0 goto i6 = i6 + 1"->"$r39 := @caughtexception";
+    "r7 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 := @caughtexception";
+    "r7 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "r7 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Zone\")";
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Zone\")"->"$r41 := @caughtexception";
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Zone\")"->"$r39 := @caughtexception";
+    "$z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Zone\")"->"if $z0 == 0 goto r54 = null";
+    "if $z0 == 0 goto r54 = null"->"$i4 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()";
+    "if $z0 == 0 goto r54 = null"->"r54 = null";
+    "if $z0 == 0 goto r54 = null"->"$r41 := @caughtexception";
+    "if $z0 == 0 goto r54 = null"->"$r39 := @caughtexception";
+    "$i4 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r41 := @caughtexception";
+    "$i4 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r39 := @caughtexception";
+    "$i4 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"if $i4 >= 3 goto $r28 = new java.util.ArrayList";
+    "if $i4 >= 3 goto $r28 = new java.util.ArrayList"->"$r32 = new java.lang.StringBuilder";
+    "if $i4 >= 3 goto $r28 = new java.util.ArrayList"->"$r28 = new java.util.ArrayList";
+    "if $i4 >= 3 goto $r28 = new java.util.ArrayList"->"$r41 := @caughtexception";
+    "if $i4 >= 3 goto $r28 = new java.util.ArrayList"->"$r39 := @caughtexception";
+    "$r32 = new java.lang.StringBuilder"->"$r41 := @caughtexception";
+    "$r32 = new java.lang.StringBuilder"->"$r39 := @caughtexception";
+    "$r32 = new java.lang.StringBuilder"->"specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"->"$r41 := @caughtexception";
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"->"$r39 := @caughtexception";
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Zone line in file: \")";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Zone line in file: \")"->"$r41 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Zone line in file: \")"->"$r39 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Zone line in file: \")"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r41 := @caughtexception";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r39 := @caughtexception";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r41 := @caughtexception";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r39 := @caughtexception";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r41 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r39 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r39 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r37)";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r37)"->"$r41 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r37)"->"$r39 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r37)"->"$r38 = new java.lang.IllegalArgumentException";
+    "$r38 = new java.lang.IllegalArgumentException"->"$r41 := @caughtexception";
+    "$r38 = new java.lang.IllegalArgumentException"->"$r39 := @caughtexception";
+    "$r38 = new java.lang.IllegalArgumentException"->"specialinvoke $r38.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Zone line\")";
+    "specialinvoke $r38.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Zone line\")"->"$r41 := @caughtexception";
+    "specialinvoke $r38.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Zone line\")"->"$r39 := @caughtexception";
+    "specialinvoke $r38.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Zone line\")"->"throw $r38";
+    "throw $r38"->"$r41 := @caughtexception";
+    "throw $r38"->"$r39 := @caughtexception";
+    "$r28 = new java.util.ArrayList"->"$r41 := @caughtexception";
+    "$r28 = new java.util.ArrayList"->"$r39 := @caughtexception";
+    "$r28 = new java.util.ArrayList"->"specialinvoke $r28.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r28.<java.util.ArrayList: void <init>()>()"->"$r41 := @caughtexception";
+    "specialinvoke $r28.<java.util.ArrayList: void <init>()>()"->"$r39 := @caughtexception";
+    "specialinvoke $r28.<java.util.ArrayList: void <init>()>()"->"r54 = $r28";
+    "r54 = $r28"->"$r41 := @caughtexception";
+    "r54 = $r28"->"$r39 := @caughtexception";
+    "r54 = $r28"->"$r29 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>";
+    "$r29 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>"->"$r41 := @caughtexception";
+    "$r29 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>"->"$r39 := @caughtexception";
+    "$r29 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>"->"$r30 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$r30 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 := @caughtexception";
+    "$r30 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "$r30 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"interfaceinvoke $r29.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r30, r54)";
+    "interfaceinvoke $r29.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r30, r54)"->"$r41 := @caughtexception";
+    "interfaceinvoke $r29.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r30, r54)"->"$r39 := @caughtexception";
+    "interfaceinvoke $r29.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r30, r54)"->"$z3 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)";
+    "$z3 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"$r41 := @caughtexception";
+    "$z3 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"$r39 := @caughtexception";
+    "$z3 = specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: boolean parseZoneLine(java.util.StringTokenizer,java.util.List)>(r6, r54)"->"if $z3 == 0 goto i6 = i6 + 1";
+    "if $z3 == 0 goto i6 = i6 + 1"->"r54 = null";
+    "if $z3 == 0 goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "if $z3 == 0 goto i6 = i6 + 1"->"$r41 := @caughtexception";
+    "if $z3 == 0 goto i6 = i6 + 1"->"$r39 := @caughtexception";
+    "r54 = null"->"$r41 := @caughtexception";
+    "r54 = null"->"$r39 := @caughtexception";
+    "r54 = null"->"goto [?= i6 = i6 + 1]";
+    "goto [?= i6 = i6 + 1]"->"$r41 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"i6 = i6 + 1";
+    "r54 = null"->"$r41 := @caughtexception";
+    "r54 = null"->"$r39 := @caughtexception";
+    "r54 = null"->"$z1 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Rule\")";
+    "$z1 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Rule\")"->"$r41 := @caughtexception";
+    "$z1 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Rule\")"->"$r39 := @caughtexception";
+    "$z1 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Rule\")"->"if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()";
+    "if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$r41 := @caughtexception";
+    "if $z1 == 0 goto $z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$r39 := @caughtexception";
+    "$i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r41 := @caughtexception";
+    "$i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r39 := @caughtexception";
+    "$i3 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)";
+    "if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"$r21 = new java.lang.StringBuilder";
+    "if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)";
+    "if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"$r41 := @caughtexception";
+    "if $i3 >= 9 goto specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"$r39 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"$r41 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"$r39 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r41 := @caughtexception";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r39 := @caughtexception";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Rule line in file: \")";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Rule line in file: \")"->"$r41 := @caughtexception";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Rule line in file: \")"->"$r39 := @caughtexception";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Rule line in file: \")"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r41 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r39 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r41 := @caughtexception";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r39 := @caughtexception";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r41 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r39 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r39 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r26)";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r26)"->"$r41 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r26)"->"$r39 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r26)"->"$r27 = new java.lang.IllegalArgumentException";
+    "$r27 = new java.lang.IllegalArgumentException"->"$r41 := @caughtexception";
+    "$r27 = new java.lang.IllegalArgumentException"->"$r39 := @caughtexception";
+    "$r27 = new java.lang.IllegalArgumentException"->"specialinvoke $r27.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Rule line\")";
+    "specialinvoke $r27.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Rule line\")"->"$r41 := @caughtexception";
+    "specialinvoke $r27.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Rule line\")"->"$r39 := @caughtexception";
+    "specialinvoke $r27.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Rule line\")"->"throw $r27";
+    "throw $r27"->"$r41 := @caughtexception";
+    "throw $r27"->"$r39 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"$r41 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"$r39 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void parseRuleLine(java.util.StringTokenizer)>(r6)"->"goto [?= i6 = i6 + 1]";
+    "goto [?= i6 = i6 + 1]"->"$r41 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"i6 = i6 + 1";
+    "$z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$r41 := @caughtexception";
+    "$z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"$r39 := @caughtexception";
+    "$z2 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>(\"Link\")"->"if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException";
+    "if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException"->"$i2 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()";
+    "if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException"->"$r8 = new java.lang.IllegalArgumentException";
+    "if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException"->"$r41 := @caughtexception";
+    "if $z2 == 0 goto $r8 = new java.lang.IllegalArgumentException"->"$r39 := @caughtexception";
+    "$i2 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r41 := @caughtexception";
+    "$i2 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"$r39 := @caughtexception";
+    "$i2 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>()"->"if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r14 = new java.lang.StringBuilder";
+    "if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 := @caughtexception";
+    "if $i2 >= 2 goto r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "$r14 = new java.lang.StringBuilder"->"$r41 := @caughtexception";
+    "$r14 = new java.lang.StringBuilder"->"$r39 := @caughtexception";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r41 := @caughtexception";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r39 := @caughtexception";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Link line in file: \")";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Link line in file: \")"->"$r41 := @caughtexception";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Link line in file: \")"->"$r39 := @caughtexception";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid Link line in file: \")"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r41 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r39 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r41 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r39 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r41 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r39 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r39 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r19)";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r19)"->"$r41 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r19)"->"$r39 := @caughtexception";
+    "specialinvoke r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r19)"->"$r20 = new java.lang.IllegalArgumentException";
+    "$r20 = new java.lang.IllegalArgumentException"->"$r41 := @caughtexception";
+    "$r20 = new java.lang.IllegalArgumentException"->"$r39 := @caughtexception";
+    "$r20 = new java.lang.IllegalArgumentException"->"specialinvoke $r20.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Link line\")";
+    "specialinvoke $r20.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Link line\")"->"$r41 := @caughtexception";
+    "specialinvoke $r20.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Link line\")"->"$r39 := @caughtexception";
+    "specialinvoke $r20.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid Link line\")"->"throw $r20";
+    "throw $r20"->"$r41 := @caughtexception";
+    "throw $r20"->"$r39 := @caughtexception";
+    "r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 := @caughtexception";
+    "r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "r9 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"r10 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r10 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 := @caughtexception";
+    "r10 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r39 := @caughtexception";
+    "r10 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r12 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>";
+    "$r12 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>"->"$r41 := @caughtexception";
+    "$r12 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>"->"$r39 := @caughtexception";
+    "$r12 = r11.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>"->"interfaceinvoke $r12.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, r9)";
+    "interfaceinvoke $r12.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, r9)"->"$r41 := @caughtexception";
+    "interfaceinvoke $r12.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, r9)"->"$r39 := @caughtexception";
+    "interfaceinvoke $r12.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r10, r9)"->"goto [?= i6 = i6 + 1]";
+    "goto [?= i6 = i6 + 1]"->"$r41 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"$r39 := @caughtexception";
+    "goto [?= i6 = i6 + 1]"->"i6 = i6 + 1";
+    "$r8 = new java.lang.IllegalArgumentException"->"$r41 := @caughtexception";
+    "$r8 = new java.lang.IllegalArgumentException"->"$r39 := @caughtexception";
+    "$r8 = new java.lang.IllegalArgumentException"->"specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")";
+    "specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"->"$r41 := @caughtexception";
+    "specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"->"$r39 := @caughtexception";
+    "specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"->"throw $r8";
+    "throw $r8"->"$r41 := @caughtexception";
+    "throw $r8"->"$r39 := @caughtexception";
+    "i6 = i6 + 1"->"$r41 := @caughtexception";
+    "i6 = i6 + 1"->"$r39 := @caughtexception";
+    "i6 = i6 + 1"->"goto [?= $r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "goto [?= $r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r41 := @caughtexception";
+    "goto [?= $r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r39 := @caughtexception";
+    "goto [?= $r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r3 = virtualinvoke r53.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "if r53 == null goto return"->"virtualinvoke r53.<java.io.BufferedReader: void close()>()";
+    "if r53 == null goto return"->"return";
+    "virtualinvoke r53.<java.io.BufferedReader: void close()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r41 := @caughtexception"->"r55 = $r41";
+    "$r41 := @caughtexception"->"$r39 := @caughtexception";
+    "r55 = $r41"->"$r42 = new java.lang.Exception";
+    "r55 = $r41"->"$r39 := @caughtexception";
+    "$r42 = new java.lang.Exception"->"$r43 = new java.lang.StringBuilder";
+    "$r42 = new java.lang.Exception"->"$r39 := @caughtexception";
+    "$r43 = new java.lang.StringBuilder"->"specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()";
+    "$r43 = new java.lang.StringBuilder"->"$r39 := @caughtexception";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed while processing file \'\")";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r39 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed while processing file \'\")"->"$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed while processing file \'\")"->"$r39 := @caughtexception";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' on line \")";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r2)"->"$r39 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' on line \")"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' on line \")"->"$r39 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6)"->"$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \'\")";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6)"->"$r39 := @caughtexception";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \'\")"->"$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \'\")"->"$r39 := @caughtexception";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52)"->"$r39 := @caughtexception";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r39 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r42.<java.lang.Exception: void <init>(java.lang.String,java.lang.Throwable)>($r51, r55)";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r39 := @caughtexception";
+    "specialinvoke $r42.<java.lang.Exception: void <init>(java.lang.String,java.lang.Throwable)>($r51, r55)"->"throw $r42";
+    "specialinvoke $r42.<java.lang.Exception: void <init>(java.lang.String,java.lang.Throwable)>($r51, r55)"->"$r39 := @caughtexception";
+    "throw $r42"->"$r39 := @caughtexception";
+    "$r39 := @caughtexception"->"r40 = $r39";
+    "$r39 := @caughtexception"->"$r39 := @caughtexception";
+    "r40 = $r39"->"if r53 == null goto throw r40";
+    "r40 = $r39"->"$r39 := @caughtexception";
+    "if r53 == null goto throw r40"->"virtualinvoke r53.<java.io.BufferedReader: void close()>()";
+    "if r53 == null goto throw r40"->"throw r40";
+    "virtualinvoke r53.<java.io.BufferedReader: void close()>()"->"throw r40";
+}

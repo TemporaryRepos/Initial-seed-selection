@@ -1,0 +1,43 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String"
+    "d0 := @parameter1: double"
+    "d1 := @parameter2: double"
+    "$r0 = new java.lang.StringBuilder"
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": got \")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d0)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected \")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d1)"
+    "r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r8 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d0)"
+    "$r9 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d1)"
+    "$z0 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>($r9)"
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream err>"
+    "$r11 = new java.lang.RuntimeException"
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(r7)"
+    "throw $r11"
+    "$r10 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r7)"
+    "return"
+    "r1 := @parameter0: java.lang.String"->"d0 := @parameter1: double";
+    "d0 := @parameter1: double"->"d1 := @parameter2: double";
+    "d1 := @parameter2: double"->"$r0 = new java.lang.StringBuilder";
+    "$r0 = new java.lang.StringBuilder"->"specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>()>()"->"$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)";
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": got \")";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": got \")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d0)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d0)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected \")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", expected \")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d1)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d1)"->"r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r8 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d0)";
+    "$r8 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d0)"->"$r9 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d1)";
+    "$r9 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d1)"->"$z0 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>($r9)";
+    "$z0 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>($r9)"->"if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream err>";
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream err>"->"$r11 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream err>"->"$r10 = <java.lang.System: java.io.PrintStream err>";
+    "$r11 = new java.lang.RuntimeException"->"specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(r7)";
+    "specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>(r7)"->"throw $r11";
+    "$r10 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r7)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(r7)"->"return";
+}

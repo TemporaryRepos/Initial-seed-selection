@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: long[]"
+    "l4 = 1L"
+    "r1 = r0"
+    "i0 = lengthof r0"
+    "i5 = 0"
+    "goto [?= (branch)]"
+    "$l1 = r1[i5]"
+    "r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"
+    "$l2 = virtualinvoke r2.<java.lang.Long: long longValue()>()"
+    "$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2)"
+    "l4 = l4 + $l3"
+    "i5 = i5 + 1"
+    "if i5 < i0 goto $l1 = r1[i5]"
+    "staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()"
+    "return l4"
+    "r0 := @parameter0: long[]"->"l4 = 1L";
+    "l4 = 1L"->"r1 = r0";
+    "r1 = r0"->"i0 = lengthof r0";
+    "i0 = lengthof r0"->"i5 = 0";
+    "i5 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 < i0 goto $l1 = r1[i5]";
+    "$l1 = r1[i5]"->"r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)";
+    "r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$l2 = virtualinvoke r2.<java.lang.Long: long longValue()>()";
+    "$l2 = virtualinvoke r2.<java.lang.Long: long longValue()>()"->"$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2)";
+    "$l3 = staticinvoke <compiler.eliminateAutobox.TestLongBoxing: long foo(long)>($l2)"->"l4 = l4 + $l3";
+    "l4 = l4 + $l3"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"if i5 < i0 goto $l1 = r1[i5]";
+    "if i5 < i0 goto $l1 = r1[i5]"->"staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()";
+    "if i5 < i0 goto $l1 = r1[i5]"->"$l1 = r1[i5]";
+    "staticinvoke <compiler.eliminateAutobox.TestLongBoxing: void dummy()>()"->"return l4";
+}

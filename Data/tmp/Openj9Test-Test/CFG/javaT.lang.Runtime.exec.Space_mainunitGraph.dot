@@ -1,0 +1,62 @@
+digraph "unitGraph" {
+    "r8 := @parameter0: java.lang.String[]"
+    "$c0 = <java.io.File: char separatorChar>"
+    "if $c0 != 92 goto return"
+    "$r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"
+    "r9 = virtualinvoke $r0.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(\"cmd /c echo hello\")"
+    "$r1 = new java.io.BufferedReader"
+    "$r2 = new java.io.InputStreamReader"
+    "$r3 = virtualinvoke r9.<java.lang.Process: java.io.InputStream getInputStream()>()"
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"
+    "specialinvoke $r1.<java.io.BufferedReader: void <init>(java.io.Reader)>($r2)"
+    "r4 = $r1"
+    "virtualinvoke r9.<java.lang.Process: int waitFor()>()"
+    "r5 = virtualinvoke r4.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "$i2 = virtualinvoke r5.<java.lang.String: int length()>()"
+    "if $i2 != 6 goto (branch)"
+    "$r6 = new java.lang.RuntimeException"
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Extra space in command.\")"
+    "throw $r6"
+    "goto [?= return]"
+    "$r7 := @caughtexception"
+    "r10 = $r7"
+    "return"
+    "r8 := @parameter0: java.lang.String[]"->"$c0 = <java.io.File: char separatorChar>";
+    "$c0 = <java.io.File: char separatorChar>"->"if $c0 != 92 goto return";
+    "if $c0 != 92 goto return"->"$r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()";
+    "if $c0 != 92 goto return"->"return";
+    "if $c0 != 92 goto return"->"$r7 := @caughtexception";
+    "$r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"->"r9 = virtualinvoke $r0.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(\"cmd /c echo hello\")";
+    "$r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"->"$r7 := @caughtexception";
+    "r9 = virtualinvoke $r0.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(\"cmd /c echo hello\")"->"$r1 = new java.io.BufferedReader";
+    "r9 = virtualinvoke $r0.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(\"cmd /c echo hello\")"->"$r7 := @caughtexception";
+    "$r1 = new java.io.BufferedReader"->"$r2 = new java.io.InputStreamReader";
+    "$r1 = new java.io.BufferedReader"->"$r7 := @caughtexception";
+    "$r2 = new java.io.InputStreamReader"->"$r3 = virtualinvoke r9.<java.lang.Process: java.io.InputStream getInputStream()>()";
+    "$r2 = new java.io.InputStreamReader"->"$r7 := @caughtexception";
+    "$r3 = virtualinvoke r9.<java.lang.Process: java.io.InputStream getInputStream()>()"->"specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)";
+    "$r3 = virtualinvoke r9.<java.lang.Process: java.io.InputStream getInputStream()>()"->"$r7 := @caughtexception";
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"->"specialinvoke $r1.<java.io.BufferedReader: void <init>(java.io.Reader)>($r2)";
+    "specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3)"->"$r7 := @caughtexception";
+    "specialinvoke $r1.<java.io.BufferedReader: void <init>(java.io.Reader)>($r2)"->"r4 = $r1";
+    "specialinvoke $r1.<java.io.BufferedReader: void <init>(java.io.Reader)>($r2)"->"$r7 := @caughtexception";
+    "r4 = $r1"->"virtualinvoke r9.<java.lang.Process: int waitFor()>()";
+    "r4 = $r1"->"$r7 := @caughtexception";
+    "virtualinvoke r9.<java.lang.Process: int waitFor()>()"->"r5 = virtualinvoke r4.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "virtualinvoke r9.<java.lang.Process: int waitFor()>()"->"$r7 := @caughtexception";
+    "r5 = virtualinvoke r4.<java.io.BufferedReader: java.lang.String readLine()>()"->"$i2 = virtualinvoke r5.<java.lang.String: int length()>()";
+    "r5 = virtualinvoke r4.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r7 := @caughtexception";
+    "$i2 = virtualinvoke r5.<java.lang.String: int length()>()"->"if $i2 != 6 goto (branch)";
+    "$i2 = virtualinvoke r5.<java.lang.String: int length()>()"->"$r7 := @caughtexception";
+    "if $i2 != 6 goto (branch)"->"$r6 = new java.lang.RuntimeException";
+    "if $i2 != 6 goto (branch)"->"goto [?= return]";
+    "if $i2 != 6 goto (branch)"->"$r7 := @caughtexception";
+    "$r6 = new java.lang.RuntimeException"->"specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Extra space in command.\")";
+    "$r6 = new java.lang.RuntimeException"->"$r7 := @caughtexception";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Extra space in command.\")"->"throw $r6";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Extra space in command.\")"->"$r7 := @caughtexception";
+    "throw $r6"->"$r7 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r7 := @caughtexception"->"r10 = $r7";
+    "r10 = $r7"->"return";
+}

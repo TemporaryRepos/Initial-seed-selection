@@ -1,0 +1,23 @@
+digraph "unitGraph" {
+    "i1 := @parameter0: int"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i2 % 2"
+    "if $i0 != 0 goto i2 = i2 + 1"
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"
+    "$r0[i1] = 999L"
+    "i2 = i2 + 1"
+    "if i2 < 1000 goto $i0 = i2 % 2"
+    "return"
+    "i1 := @parameter0: int"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 1000 goto $i0 = i2 % 2";
+    "$i0 = i2 % 2"->"if $i0 != 0 goto i2 = i2 + 1";
+    "if $i0 != 0 goto i2 = i2 + 1"->"$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>";
+    "if $i0 != 0 goto i2 = i2 + 1"->"i2 = i2 + 1";
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: long[] array>"->"$r0[i1] = 999L";
+    "$r0[i1] = 999L"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 1000 goto $i0 = i2 % 2";
+    "if i2 < 1000 goto $i0 = i2 % 2"->"return";
+    "if i2 < 1000 goto $i0 = i2 % 2"->"$i0 = i2 % 2";
+}

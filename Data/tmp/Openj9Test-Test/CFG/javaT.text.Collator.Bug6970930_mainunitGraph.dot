@@ -1,0 +1,25 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, null)"
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(\"\\\"foo\\\"\", null)"
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, \"\\\"bar\\\"\")"
+    "$z0 = <javaT.text.Collator.Bug6970930: boolean err>"
+    "if $z0 == 0 goto $r0 = <java.lang.System: java.io.PrintStream out>"
+    "$r1 = new java.lang.RuntimeException"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed.\")"
+    "throw $r1"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Passed.\")"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, null)";
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, null)"->"staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(\"\\\"foo\\\"\", null)";
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(\"\\\"foo\\\"\", null)"->"staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, \"\\\"bar\\\"\")";
+    "staticinvoke <javaT.text.Collator.Bug6970930: void test1(java.lang.String,java.lang.String)>(null, \"\\\"bar\\\"\")"->"$z0 = <javaT.text.Collator.Bug6970930: boolean err>";
+    "$z0 = <javaT.text.Collator.Bug6970930: boolean err>"->"if $z0 == 0 goto $r0 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto $r0 = <java.lang.System: java.io.PrintStream out>"->"$r1 = new java.lang.RuntimeException";
+    "if $z0 == 0 goto $r0 = <java.lang.System: java.io.PrintStream out>"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "$r1 = new java.lang.RuntimeException"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed.\")";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed.\")"->"throw $r1";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Passed.\")";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Passed.\")"->"return";
+}

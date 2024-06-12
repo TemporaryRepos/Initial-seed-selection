@@ -1,0 +1,541 @@
+digraph "unitGraph" {
+    "r1 := @this: com.flaptor.indextank.IndexRecoverer"
+    "$r0 = new org.apache.thrift.transport.TSocket"
+    "$r3 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String indexServerHost>"
+    "$r2 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.Integer indexServerPort>"
+    "$i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>()"
+    "$i1 = $i0 + 1"
+    "specialinvoke $r0.<org.apache.thrift.transport.TSocket: void <init>(java.lang.String,int)>($r3, $i1)"
+    "r4 = $r0"
+    "$r5 = new org.apache.thrift.protocol.TBinaryProtocol"
+    "specialinvoke $r5.<org.apache.thrift.protocol.TBinaryProtocol: void <init>(org.apache.thrift.transport.TTransport)>(r4)"
+    "r6 = $r5"
+    "$r7 = new com.flaptor.indextank.rpc.Indexer$Client"
+    "specialinvoke $r7.<com.flaptor.indextank.rpc.Indexer$Client: void <init>(org.apache.thrift.protocol.TProtocol)>(r6)"
+    "r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client> = $r7"
+    "virtualinvoke r4.<org.apache.thrift.transport.TSocket: void open()>()"
+    "r80 = specialinvoke r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.storage.alternatives.IndexStorage getStorage()>()"
+    "$r9 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using environment: \")"
+    "$r11 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String environment>"
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r9.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r13)"
+    "$l2 = r1.<com.flaptor.indextank.IndexRecoverer: long timestamp>"
+    "r14 = interfaceinvoke r80.<com.flaptor.indextank.storage.alternatives.IndexStorage: java.lang.Iterable getAllDocuments(boolean,long)>(1, $l2)"
+    "$r15 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "virtualinvoke $r15.<org.apache.log4j.Logger: void info(java.lang.Object)>(\"Starting recovery.\")"
+    "$r16 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"
+    "if $r16 == null goto i4 = 0"
+    "$r64 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"
+    "$r63 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus recovering>"
+    "virtualinvoke $r64.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r63)"
+    "i4 = 0"
+    "r17 = interfaceinvoke r14.<java.lang.Iterable: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "$r27 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>()"
+    "r28 = (com.flaptor.util.Pair) $r27"
+    "$r29 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "virtualinvoke $r29.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Document found!\")"
+    "$r30 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object first()>()"
+    "r31 = (java.lang.String) $r30"
+    "$r32 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object last()>()"
+    "r33 = (com.flaptor.indextank.index.BoostedDocument) $r32"
+    "r34 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"
+    "$r35 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getBoosts()>()"
+    "$r36 = interfaceinvoke $r35.<java.util.Map: java.util.Set entrySet()>()"
+    "r81 = interfaceinvoke $r36.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"
+    "$r57 = interfaceinvoke r81.<java.util.Iterator: java.lang.Object next()>()"
+    "r82 = (java.util.Map$Entry) $r57"
+    "$r58 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getKey()>()"
+    "$r59 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getValue()>()"
+    "$r60 = (java.lang.Float) $r59"
+    "$f0 = virtualinvoke $r60.<java.lang.Float: float floatValue()>()"
+    "$d0 = (double) $f0"
+    "$r61 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"
+    "interfaceinvoke r34.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r58, $r61)"
+    "goto [?= $z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()]"
+    "r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"
+    "$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"
+    "$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"
+    "i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)"
+    "goto [?= i4 = i4 + 1]"
+    "$r69 := @caughtexception"
+    "r84 = $r69"
+    "$r71 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "$r70 = new java.lang.StringBuilder"
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"
+    "$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid timestamp \")"
+    "$r73 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"
+    "$r74 = virtualinvoke $r73.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"
+    "$r75 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74)"
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for document \")"
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r31)"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -- SKIPPING DOCUMENT\")"
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r71.<org.apache.log4j.Logger: void warn(java.lang.Object)>($r79)"
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"
+    "i4 = i4 + 1"
+    "$z1 = r1.<com.flaptor.indextank.IndexRecoverer: boolean onlyDynamicData>"
+    "if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"
+    "$r54 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r54.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"
+    "$r55 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r55.<com.flaptor.indextank.rpc.Indexer$Client: void updateTimestampBoost(java.lang.String,int)>(r31, i5)"
+    "$r56 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r56.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"
+    "goto [?= $i6 = i4 % 100]"
+    "$r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"
+    "$r40 = virtualinvoke $r39.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"
+    "$i3 = interfaceinvoke $r40.<java.util.Map: int size()>()"
+    "if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "$r49 = new com.flaptor.indextank.rpc.Document"
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.Document: void <init>()>()"
+    "r85 = $r49"
+    "$r50 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"
+    "$r51 = virtualinvoke $r50.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"
+    "virtualinvoke r85.<com.flaptor.indextank.rpc.Document: com.flaptor.indextank.rpc.Document set_fields(java.util.Map)>($r51)"
+    "$r53 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r53.<com.flaptor.indextank.rpc.Indexer$Client: void addDoc(java.lang.String,com.flaptor.indextank.rpc.Document,int,java.util.Map)>(r31, r85, i5, r34)"
+    "goto [?= $r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>]"
+    "$r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r41.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"
+    "$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"
+    "virtualinvoke $r42.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"
+    "$i6 = i4 % 100"
+    "if $i6 != 0 goto (branch)"
+    "$r44 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "$r43 = new java.lang.StringBuilder"
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Recovered \")"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents so far\")"
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r44.<org.apache.log4j.Logger: void info(java.lang.Object)>($r48)"
+    "$r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"
+    "$r18 = new java.lang.StringBuilder"
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Finished recovery. Recovered \")"
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents\")"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r19.<org.apache.log4j.Logger: void info(java.lang.Object)>($r23)"
+    "$r24 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"
+    "if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"
+    "$r26 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"
+    "$r25 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus ready>"
+    "virtualinvoke $r26.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r25)"
+    "staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"
+    "goto [?= return]"
+    "$r67 := @caughtexception"
+    "r86 = $r67"
+    "$r68 = new java.lang.RuntimeException"
+    "specialinvoke $r68.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>(\"Something BAD happened: \", r86)"
+    "throw $r68"
+    "$r65 := @caughtexception"
+    "r66 = $r65"
+    "throw r66"
+    "return"
+    "r1 := @this: com.flaptor.indextank.IndexRecoverer"->"$r0 = new org.apache.thrift.transport.TSocket";
+    "$r0 = new org.apache.thrift.transport.TSocket"->"$r3 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String indexServerHost>";
+    "$r3 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String indexServerHost>"->"$r2 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.Integer indexServerPort>";
+    "$r2 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.Integer indexServerPort>"->"$i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>()";
+    "$i0 = virtualinvoke $r2.<java.lang.Integer: int intValue()>()"->"$i1 = $i0 + 1";
+    "$i1 = $i0 + 1"->"specialinvoke $r0.<org.apache.thrift.transport.TSocket: void <init>(java.lang.String,int)>($r3, $i1)";
+    "specialinvoke $r0.<org.apache.thrift.transport.TSocket: void <init>(java.lang.String,int)>($r3, $i1)"->"r4 = $r0";
+    "r4 = $r0"->"$r5 = new org.apache.thrift.protocol.TBinaryProtocol";
+    "$r5 = new org.apache.thrift.protocol.TBinaryProtocol"->"specialinvoke $r5.<org.apache.thrift.protocol.TBinaryProtocol: void <init>(org.apache.thrift.transport.TTransport)>(r4)";
+    "specialinvoke $r5.<org.apache.thrift.protocol.TBinaryProtocol: void <init>(org.apache.thrift.transport.TTransport)>(r4)"->"r6 = $r5";
+    "r6 = $r5"->"$r7 = new com.flaptor.indextank.rpc.Indexer$Client";
+    "$r7 = new com.flaptor.indextank.rpc.Indexer$Client"->"specialinvoke $r7.<com.flaptor.indextank.rpc.Indexer$Client: void <init>(org.apache.thrift.protocol.TProtocol)>(r6)";
+    "specialinvoke $r7.<com.flaptor.indextank.rpc.Indexer$Client: void <init>(org.apache.thrift.protocol.TProtocol)>(r6)"->"r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client> = $r7";
+    "r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client> = $r7"->"$r67 := @caughtexception";
+    "r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client> = $r7"->"$r65 := @caughtexception";
+    "r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client> = $r7"->"virtualinvoke r4.<org.apache.thrift.transport.TSocket: void open()>()";
+    "virtualinvoke r4.<org.apache.thrift.transport.TSocket: void open()>()"->"$r67 := @caughtexception";
+    "virtualinvoke r4.<org.apache.thrift.transport.TSocket: void open()>()"->"$r65 := @caughtexception";
+    "virtualinvoke r4.<org.apache.thrift.transport.TSocket: void open()>()"->"r80 = specialinvoke r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.storage.alternatives.IndexStorage getStorage()>()";
+    "r80 = specialinvoke r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.storage.alternatives.IndexStorage getStorage()>()"->"$r67 := @caughtexception";
+    "r80 = specialinvoke r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.storage.alternatives.IndexStorage getStorage()>()"->"$r65 := @caughtexception";
+    "r80 = specialinvoke r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.storage.alternatives.IndexStorage getStorage()>()"->"$r9 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "$r9 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r9 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r9 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"$r67 := @caughtexception";
+    "$r8 = new java.lang.StringBuilder"->"$r65 := @caughtexception";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r67 := @caughtexception";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r65 := @caughtexception";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using environment: \")";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using environment: \")"->"$r67 := @caughtexception";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using environment: \")"->"$r65 := @caughtexception";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using environment: \")"->"$r11 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String environment>";
+    "$r11 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String environment>"->"$r67 := @caughtexception";
+    "$r11 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String environment>"->"$r65 := @caughtexception";
+    "$r11 = r1.<com.flaptor.indextank.IndexRecoverer: java.lang.String environment>"->"$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)";
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"->"$r67 := @caughtexception";
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"->"$r65 := @caughtexception";
+    "$r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11)"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r67 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r65 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r9.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r13)";
+    "virtualinvoke $r9.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r13)"->"$r67 := @caughtexception";
+    "virtualinvoke $r9.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r13)"->"$r65 := @caughtexception";
+    "virtualinvoke $r9.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r13)"->"$l2 = r1.<com.flaptor.indextank.IndexRecoverer: long timestamp>";
+    "$l2 = r1.<com.flaptor.indextank.IndexRecoverer: long timestamp>"->"$r67 := @caughtexception";
+    "$l2 = r1.<com.flaptor.indextank.IndexRecoverer: long timestamp>"->"$r65 := @caughtexception";
+    "$l2 = r1.<com.flaptor.indextank.IndexRecoverer: long timestamp>"->"r14 = interfaceinvoke r80.<com.flaptor.indextank.storage.alternatives.IndexStorage: java.lang.Iterable getAllDocuments(boolean,long)>(1, $l2)";
+    "r14 = interfaceinvoke r80.<com.flaptor.indextank.storage.alternatives.IndexStorage: java.lang.Iterable getAllDocuments(boolean,long)>(1, $l2)"->"$r67 := @caughtexception";
+    "r14 = interfaceinvoke r80.<com.flaptor.indextank.storage.alternatives.IndexStorage: java.lang.Iterable getAllDocuments(boolean,long)>(1, $l2)"->"$r65 := @caughtexception";
+    "r14 = interfaceinvoke r80.<com.flaptor.indextank.storage.alternatives.IndexStorage: java.lang.Iterable getAllDocuments(boolean,long)>(1, $l2)"->"$r15 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "$r15 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r15 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r15 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"virtualinvoke $r15.<org.apache.log4j.Logger: void info(java.lang.Object)>(\"Starting recovery.\")";
+    "virtualinvoke $r15.<org.apache.log4j.Logger: void info(java.lang.Object)>(\"Starting recovery.\")"->"$r67 := @caughtexception";
+    "virtualinvoke $r15.<org.apache.log4j.Logger: void info(java.lang.Object)>(\"Starting recovery.\")"->"$r65 := @caughtexception";
+    "virtualinvoke $r15.<org.apache.log4j.Logger: void info(java.lang.Object)>(\"Starting recovery.\")"->"$r16 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>";
+    "$r16 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r67 := @caughtexception";
+    "$r16 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r65 := @caughtexception";
+    "$r16 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"if $r16 == null goto i4 = 0";
+    "if $r16 == null goto i4 = 0"->"$r64 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>";
+    "if $r16 == null goto i4 = 0"->"i4 = 0";
+    "if $r16 == null goto i4 = 0"->"$r67 := @caughtexception";
+    "if $r16 == null goto i4 = 0"->"$r65 := @caughtexception";
+    "$r64 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r67 := @caughtexception";
+    "$r64 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r65 := @caughtexception";
+    "$r64 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r63 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus recovering>";
+    "$r63 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus recovering>"->"$r67 := @caughtexception";
+    "$r63 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus recovering>"->"$r65 := @caughtexception";
+    "$r63 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus recovering>"->"virtualinvoke $r64.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r63)";
+    "virtualinvoke $r64.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r63)"->"$r67 := @caughtexception";
+    "virtualinvoke $r64.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r63)"->"$r65 := @caughtexception";
+    "virtualinvoke $r64.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r63)"->"i4 = 0";
+    "i4 = 0"->"$r67 := @caughtexception";
+    "i4 = 0"->"$r65 := @caughtexception";
+    "i4 = 0"->"r17 = interfaceinvoke r14.<java.lang.Iterable: java.util.Iterator iterator()>()";
+    "r17 = interfaceinvoke r14.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r67 := @caughtexception";
+    "r17 = interfaceinvoke r14.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r65 := @caughtexception";
+    "r17 = interfaceinvoke r14.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()"->"$r67 := @caughtexception";
+    "$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()"->"$r65 := @caughtexception";
+    "$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r27 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "if $z2 == 0 goto $r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r27 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>()"->"$r67 := @caughtexception";
+    "$r27 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>()"->"$r65 := @caughtexception";
+    "$r27 = interfaceinvoke r17.<java.util.Iterator: java.lang.Object next()>()"->"r28 = (com.flaptor.util.Pair) $r27";
+    "r28 = (com.flaptor.util.Pair) $r27"->"$r67 := @caughtexception";
+    "r28 = (com.flaptor.util.Pair) $r27"->"$r65 := @caughtexception";
+    "r28 = (com.flaptor.util.Pair) $r27"->"$r29 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "$r29 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r29 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r29 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"virtualinvoke $r29.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Document found!\")";
+    "virtualinvoke $r29.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Document found!\")"->"$r67 := @caughtexception";
+    "virtualinvoke $r29.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Document found!\")"->"$r65 := @caughtexception";
+    "virtualinvoke $r29.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Document found!\")"->"$r30 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object first()>()";
+    "$r30 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object first()>()"->"$r67 := @caughtexception";
+    "$r30 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object first()>()"->"$r65 := @caughtexception";
+    "$r30 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object first()>()"->"r31 = (java.lang.String) $r30";
+    "r31 = (java.lang.String) $r30"->"$r67 := @caughtexception";
+    "r31 = (java.lang.String) $r30"->"$r65 := @caughtexception";
+    "r31 = (java.lang.String) $r30"->"$r32 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object last()>()";
+    "$r32 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object last()>()"->"$r67 := @caughtexception";
+    "$r32 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object last()>()"->"$r65 := @caughtexception";
+    "$r32 = virtualinvoke r28.<com.flaptor.util.Pair: java.lang.Object last()>()"->"r33 = (com.flaptor.indextank.index.BoostedDocument) $r32";
+    "r33 = (com.flaptor.indextank.index.BoostedDocument) $r32"->"$r67 := @caughtexception";
+    "r33 = (com.flaptor.indextank.index.BoostedDocument) $r32"->"$r65 := @caughtexception";
+    "r33 = (com.flaptor.indextank.index.BoostedDocument) $r32"->"r34 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()";
+    "r34 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"->"$r67 := @caughtexception";
+    "r34 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"->"$r65 := @caughtexception";
+    "r34 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"->"$r35 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getBoosts()>()";
+    "$r35 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getBoosts()>()"->"$r67 := @caughtexception";
+    "$r35 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getBoosts()>()"->"$r65 := @caughtexception";
+    "$r35 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getBoosts()>()"->"$r36 = interfaceinvoke $r35.<java.util.Map: java.util.Set entrySet()>()";
+    "$r36 = interfaceinvoke $r35.<java.util.Map: java.util.Set entrySet()>()"->"$r67 := @caughtexception";
+    "$r36 = interfaceinvoke $r35.<java.util.Map: java.util.Set entrySet()>()"->"$r65 := @caughtexception";
+    "$r36 = interfaceinvoke $r35.<java.util.Map: java.util.Set entrySet()>()"->"r81 = interfaceinvoke $r36.<java.util.Set: java.util.Iterator iterator()>()";
+    "r81 = interfaceinvoke $r36.<java.util.Set: java.util.Iterator iterator()>()"->"$r67 := @caughtexception";
+    "r81 = interfaceinvoke $r36.<java.util.Set: java.util.Iterator iterator()>()"->"$r65 := @caughtexception";
+    "r81 = interfaceinvoke $r36.<java.util.Set: java.util.Iterator iterator()>()"->"$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()"->"$r67 := @caughtexception";
+    "$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()"->"$r65 := @caughtexception";
+    "$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()";
+    "if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r57 = interfaceinvoke r81.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()";
+    "if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r67 := @caughtexception";
+    "if $z0 == 0 goto r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r65 := @caughtexception";
+    "$r57 = interfaceinvoke r81.<java.util.Iterator: java.lang.Object next()>()"->"$r67 := @caughtexception";
+    "$r57 = interfaceinvoke r81.<java.util.Iterator: java.lang.Object next()>()"->"$r65 := @caughtexception";
+    "$r57 = interfaceinvoke r81.<java.util.Iterator: java.lang.Object next()>()"->"r82 = (java.util.Map$Entry) $r57";
+    "r82 = (java.util.Map$Entry) $r57"->"$r67 := @caughtexception";
+    "r82 = (java.util.Map$Entry) $r57"->"$r65 := @caughtexception";
+    "r82 = (java.util.Map$Entry) $r57"->"$r58 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getKey()>()";
+    "$r58 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r67 := @caughtexception";
+    "$r58 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r65 := @caughtexception";
+    "$r58 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getKey()>()"->"$r59 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getValue()>()";
+    "$r59 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r67 := @caughtexception";
+    "$r59 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r65 := @caughtexception";
+    "$r59 = interfaceinvoke r82.<java.util.Map$Entry: java.lang.Object getValue()>()"->"$r60 = (java.lang.Float) $r59";
+    "$r60 = (java.lang.Float) $r59"->"$r67 := @caughtexception";
+    "$r60 = (java.lang.Float) $r59"->"$r65 := @caughtexception";
+    "$r60 = (java.lang.Float) $r59"->"$f0 = virtualinvoke $r60.<java.lang.Float: float floatValue()>()";
+    "$f0 = virtualinvoke $r60.<java.lang.Float: float floatValue()>()"->"$r67 := @caughtexception";
+    "$f0 = virtualinvoke $r60.<java.lang.Float: float floatValue()>()"->"$r65 := @caughtexception";
+    "$f0 = virtualinvoke $r60.<java.lang.Float: float floatValue()>()"->"$d0 = (double) $f0";
+    "$d0 = (double) $f0"->"$r67 := @caughtexception";
+    "$d0 = (double) $f0"->"$r65 := @caughtexception";
+    "$d0 = (double) $f0"->"$r61 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)";
+    "$r61 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"->"$r67 := @caughtexception";
+    "$r61 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"->"$r65 := @caughtexception";
+    "$r61 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0)"->"interfaceinvoke r34.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r58, $r61)";
+    "interfaceinvoke r34.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r58, $r61)"->"$r67 := @caughtexception";
+    "interfaceinvoke r34.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r58, $r61)"->"$r65 := @caughtexception";
+    "interfaceinvoke r34.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r58, $r61)"->"goto [?= $z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()]"->"$r67 := @caughtexception";
+    "goto [?= $z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()]"->"$r65 := @caughtexception";
+    "goto [?= $z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r81.<java.util.Iterator: boolean hasNext()>()";
+    "r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r69 := @caughtexception";
+    "r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r67 := @caughtexception";
+    "r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r65 := @caughtexception";
+    "r83 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: java.util.Map getCategories()>()"->"$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()";
+    "$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r69 := @caughtexception";
+    "$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r67 := @caughtexception";
+    "$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r65 := @caughtexception";
+    "$r37 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")";
+    "$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r69 := @caughtexception";
+    "$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r67 := @caughtexception";
+    "$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r65 := @caughtexception";
+    "$r38 = virtualinvoke $r37.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)";
+    "i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)"->"$r69 := @caughtexception";
+    "i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)"->"$r67 := @caughtexception";
+    "i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)"->"$r65 := @caughtexception";
+    "i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r38)"->"goto [?= i4 = i4 + 1]";
+    "goto [?= i4 = i4 + 1]"->"$r67 := @caughtexception";
+    "goto [?= i4 = i4 + 1]"->"$r65 := @caughtexception";
+    "goto [?= i4 = i4 + 1]"->"i4 = i4 + 1";
+    "$r69 := @caughtexception"->"$r67 := @caughtexception";
+    "$r69 := @caughtexception"->"$r65 := @caughtexception";
+    "$r69 := @caughtexception"->"r84 = $r69";
+    "r84 = $r69"->"$r67 := @caughtexception";
+    "r84 = $r69"->"$r65 := @caughtexception";
+    "r84 = $r69"->"$r71 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "$r71 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r71 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r71 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r70 = new java.lang.StringBuilder";
+    "$r70 = new java.lang.StringBuilder"->"$r67 := @caughtexception";
+    "$r70 = new java.lang.StringBuilder"->"$r65 := @caughtexception";
+    "$r70 = new java.lang.StringBuilder"->"specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"->"$r67 := @caughtexception";
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"->"$r65 := @caughtexception";
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"->"$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid timestamp \")";
+    "$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid timestamp \")"->"$r67 := @caughtexception";
+    "$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid timestamp \")"->"$r65 := @caughtexception";
+    "$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid timestamp \")"->"$r73 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()";
+    "$r73 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r67 := @caughtexception";
+    "$r73 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r65 := @caughtexception";
+    "$r73 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r74 = virtualinvoke $r73.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")";
+    "$r74 = virtualinvoke $r73.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r67 := @caughtexception";
+    "$r74 = virtualinvoke $r73.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r65 := @caughtexception";
+    "$r74 = virtualinvoke $r73.<com.flaptor.indextank.index.Document: java.lang.String getField(java.lang.String)>(\"timestamp\")"->"$r75 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74)";
+    "$r75 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74)"->"$r67 := @caughtexception";
+    "$r75 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74)"->"$r65 := @caughtexception";
+    "$r75 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r74)"->"$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for document \")";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for document \")"->"$r67 := @caughtexception";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for document \")"->"$r65 := @caughtexception";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for document \")"->"$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r31)";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r31)"->"$r67 := @caughtexception";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r31)"->"$r65 := @caughtexception";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r31)"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -- SKIPPING DOCUMENT\")";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -- SKIPPING DOCUMENT\")"->"$r67 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -- SKIPPING DOCUMENT\")"->"$r65 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -- SKIPPING DOCUMENT\")"->"$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r67 := @caughtexception";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r65 := @caughtexception";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r71.<org.apache.log4j.Logger: void warn(java.lang.Object)>($r79)";
+    "virtualinvoke $r71.<org.apache.log4j.Logger: void warn(java.lang.Object)>($r79)"->"$r67 := @caughtexception";
+    "virtualinvoke $r71.<org.apache.log4j.Logger: void warn(java.lang.Object)>($r79)"->"$r65 := @caughtexception";
+    "virtualinvoke $r71.<org.apache.log4j.Logger: void warn(java.lang.Object)>($r79)"->"goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$r67 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$r65 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()";
+    "i4 = i4 + 1"->"$r67 := @caughtexception";
+    "i4 = i4 + 1"->"$r65 := @caughtexception";
+    "i4 = i4 + 1"->"$z1 = r1.<com.flaptor.indextank.IndexRecoverer: boolean onlyDynamicData>";
+    "$z1 = r1.<com.flaptor.indextank.IndexRecoverer: boolean onlyDynamicData>"->"$r67 := @caughtexception";
+    "$z1 = r1.<com.flaptor.indextank.IndexRecoverer: boolean onlyDynamicData>"->"$r65 := @caughtexception";
+    "$z1 = r1.<com.flaptor.indextank.IndexRecoverer: boolean onlyDynamicData>"->"if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()";
+    "if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r54 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()";
+    "if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r67 := @caughtexception";
+    "if $z1 == 0 goto $r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r65 := @caughtexception";
+    "$r54 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r54 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r54 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r54.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)";
+    "virtualinvoke $r54.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r67 := @caughtexception";
+    "virtualinvoke $r54.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r65 := @caughtexception";
+    "virtualinvoke $r54.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r55 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "$r55 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r55 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r55 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r55.<com.flaptor.indextank.rpc.Indexer$Client: void updateTimestampBoost(java.lang.String,int)>(r31, i5)";
+    "virtualinvoke $r55.<com.flaptor.indextank.rpc.Indexer$Client: void updateTimestampBoost(java.lang.String,int)>(r31, i5)"->"$r67 := @caughtexception";
+    "virtualinvoke $r55.<com.flaptor.indextank.rpc.Indexer$Client: void updateTimestampBoost(java.lang.String,int)>(r31, i5)"->"$r65 := @caughtexception";
+    "virtualinvoke $r55.<com.flaptor.indextank.rpc.Indexer$Client: void updateTimestampBoost(java.lang.String,int)>(r31, i5)"->"$r56 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "$r56 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r56 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r56 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r56.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)";
+    "virtualinvoke $r56.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"$r67 := @caughtexception";
+    "virtualinvoke $r56.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"$r65 := @caughtexception";
+    "virtualinvoke $r56.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"goto [?= $i6 = i4 % 100]";
+    "goto [?= $i6 = i4 % 100]"->"$r67 := @caughtexception";
+    "goto [?= $i6 = i4 % 100]"->"$r65 := @caughtexception";
+    "goto [?= $i6 = i4 % 100]"->"$i6 = i4 % 100";
+    "$r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r67 := @caughtexception";
+    "$r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r65 := @caughtexception";
+    "$r39 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r40 = virtualinvoke $r39.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()";
+    "$r40 = virtualinvoke $r39.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"$r67 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"$r65 := @caughtexception";
+    "$r40 = virtualinvoke $r39.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"$i3 = interfaceinvoke $r40.<java.util.Map: int size()>()";
+    "$i3 = interfaceinvoke $r40.<java.util.Map: int size()>()"->"$r67 := @caughtexception";
+    "$i3 = interfaceinvoke $r40.<java.util.Map: int size()>()"->"$r65 := @caughtexception";
+    "$i3 = interfaceinvoke $r40.<java.util.Map: int size()>()"->"if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r49 = new com.flaptor.indextank.rpc.Document";
+    "if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "if $i3 <= 0 goto $r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r49 = new com.flaptor.indextank.rpc.Document"->"$r67 := @caughtexception";
+    "$r49 = new com.flaptor.indextank.rpc.Document"->"$r65 := @caughtexception";
+    "$r49 = new com.flaptor.indextank.rpc.Document"->"specialinvoke $r49.<com.flaptor.indextank.rpc.Document: void <init>()>()";
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.Document: void <init>()>()"->"$r67 := @caughtexception";
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.Document: void <init>()>()"->"$r65 := @caughtexception";
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.Document: void <init>()>()"->"r85 = $r49";
+    "r85 = $r49"->"$r67 := @caughtexception";
+    "r85 = $r49"->"$r65 := @caughtexception";
+    "r85 = $r49"->"$r50 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()";
+    "$r50 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r67 := @caughtexception";
+    "$r50 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r65 := @caughtexception";
+    "$r50 = virtualinvoke r33.<com.flaptor.indextank.index.BoostedDocument: com.flaptor.indextank.index.Document getDocument()>()"->"$r51 = virtualinvoke $r50.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()";
+    "$r51 = virtualinvoke $r50.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"$r67 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"$r65 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<com.flaptor.indextank.index.Document: java.util.Map asMap()>()"->"virtualinvoke r85.<com.flaptor.indextank.rpc.Document: com.flaptor.indextank.rpc.Document set_fields(java.util.Map)>($r51)";
+    "virtualinvoke r85.<com.flaptor.indextank.rpc.Document: com.flaptor.indextank.rpc.Document set_fields(java.util.Map)>($r51)"->"$r67 := @caughtexception";
+    "virtualinvoke r85.<com.flaptor.indextank.rpc.Document: com.flaptor.indextank.rpc.Document set_fields(java.util.Map)>($r51)"->"$r65 := @caughtexception";
+    "virtualinvoke r85.<com.flaptor.indextank.rpc.Document: com.flaptor.indextank.rpc.Document set_fields(java.util.Map)>($r51)"->"$r53 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "$r53 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r53 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r53 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r53.<com.flaptor.indextank.rpc.Indexer$Client: void addDoc(java.lang.String,com.flaptor.indextank.rpc.Document,int,java.util.Map)>(r31, r85, i5, r34)";
+    "virtualinvoke $r53.<com.flaptor.indextank.rpc.Indexer$Client: void addDoc(java.lang.String,com.flaptor.indextank.rpc.Document,int,java.util.Map)>(r31, r85, i5, r34)"->"$r67 := @caughtexception";
+    "virtualinvoke $r53.<com.flaptor.indextank.rpc.Indexer$Client: void addDoc(java.lang.String,com.flaptor.indextank.rpc.Document,int,java.util.Map)>(r31, r85, i5, r34)"->"$r65 := @caughtexception";
+    "virtualinvoke $r53.<com.flaptor.indextank.rpc.Indexer$Client: void addDoc(java.lang.String,com.flaptor.indextank.rpc.Document,int,java.util.Map)>(r31, r85, i5, r34)"->"goto [?= $r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>]";
+    "goto [?= $r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>]"->"$r67 := @caughtexception";
+    "goto [?= $r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>]"->"$r65 := @caughtexception";
+    "goto [?= $r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>]"->"$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "$r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r41 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r41.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)";
+    "virtualinvoke $r41.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r67 := @caughtexception";
+    "virtualinvoke $r41.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r65 := @caughtexception";
+    "virtualinvoke $r41.<com.flaptor.indextank.rpc.Indexer$Client: void updateBoost(java.lang.String,java.util.Map)>(r31, r34)"->"$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>";
+    "$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r67 := @caughtexception";
+    "$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"$r65 := @caughtexception";
+    "$r42 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.rpc.Indexer$Client client>"->"virtualinvoke $r42.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)";
+    "virtualinvoke $r42.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"$r67 := @caughtexception";
+    "virtualinvoke $r42.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"$r65 := @caughtexception";
+    "virtualinvoke $r42.<com.flaptor.indextank.rpc.Indexer$Client: void updateCategories(java.lang.String,java.util.Map)>(r31, r83)"->"$i6 = i4 % 100";
+    "$i6 = i4 % 100"->"$r67 := @caughtexception";
+    "$i6 = i4 % 100"->"$r65 := @caughtexception";
+    "$i6 = i4 % 100"->"if $i6 != 0 goto (branch)";
+    "if $i6 != 0 goto (branch)"->"$r44 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>";
+    "if $i6 != 0 goto (branch)"->"goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]";
+    "if $i6 != 0 goto (branch)"->"$r67 := @caughtexception";
+    "if $i6 != 0 goto (branch)"->"$r65 := @caughtexception";
+    "$r44 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r44 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r44 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r43 = new java.lang.StringBuilder";
+    "$r43 = new java.lang.StringBuilder"->"$r67 := @caughtexception";
+    "$r43 = new java.lang.StringBuilder"->"$r65 := @caughtexception";
+    "$r43 = new java.lang.StringBuilder"->"specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r67 := @caughtexception";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r65 := @caughtexception";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Recovered \")";
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Recovered \")"->"$r67 := @caughtexception";
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Recovered \")"->"$r65 := @caughtexception";
+    "$r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Recovered \")"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r67 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r65 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents so far\")";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents so far\")"->"$r67 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents so far\")"->"$r65 := @caughtexception";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents so far\")"->"$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r67 := @caughtexception";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r65 := @caughtexception";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r44.<org.apache.log4j.Logger: void info(java.lang.Object)>($r48)";
+    "virtualinvoke $r44.<org.apache.log4j.Logger: void info(java.lang.Object)>($r48)"->"$r67 := @caughtexception";
+    "virtualinvoke $r44.<org.apache.log4j.Logger: void info(java.lang.Object)>($r48)"->"$r65 := @caughtexception";
+    "virtualinvoke $r44.<org.apache.log4j.Logger: void info(java.lang.Object)>($r48)"->"goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$r67 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$r65 := @caughtexception";
+    "goto [?= $z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r17.<java.util.Iterator: boolean hasNext()>()";
+    "$r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r67 := @caughtexception";
+    "$r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r65 := @caughtexception";
+    "$r19 = <com.flaptor.indextank.IndexRecoverer: org.apache.log4j.Logger logger>"->"$r18 = new java.lang.StringBuilder";
+    "$r18 = new java.lang.StringBuilder"->"$r67 := @caughtexception";
+    "$r18 = new java.lang.StringBuilder"->"$r65 := @caughtexception";
+    "$r18 = new java.lang.StringBuilder"->"specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r67 := @caughtexception";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r65 := @caughtexception";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Finished recovery. Recovered \")";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Finished recovery. Recovered \")"->"$r67 := @caughtexception";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Finished recovery. Recovered \")"->"$r65 := @caughtexception";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Finished recovery. Recovered \")"->"$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r67 := @caughtexception";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r65 := @caughtexception";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents\")";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents\")"->"$r67 := @caughtexception";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents\")"->"$r65 := @caughtexception";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" documents\")"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r67 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r65 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r19.<org.apache.log4j.Logger: void info(java.lang.Object)>($r23)";
+    "virtualinvoke $r19.<org.apache.log4j.Logger: void info(java.lang.Object)>($r23)"->"$r67 := @caughtexception";
+    "virtualinvoke $r19.<org.apache.log4j.Logger: void info(java.lang.Object)>($r23)"->"$r65 := @caughtexception";
+    "virtualinvoke $r19.<org.apache.log4j.Logger: void info(java.lang.Object)>($r23)"->"$r24 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>";
+    "$r24 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r67 := @caughtexception";
+    "$r24 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r65 := @caughtexception";
+    "$r24 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)";
+    "if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"$r26 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>";
+    "if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)";
+    "if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"$r67 := @caughtexception";
+    "if $r24 == null goto staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"$r65 := @caughtexception";
+    "$r26 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r67 := @caughtexception";
+    "$r26 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r65 := @caughtexception";
+    "$r26 = r1.<com.flaptor.indextank.IndexRecoverer: com.flaptor.indextank.index.IndexEngine ie>"->"$r25 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus ready>";
+    "$r25 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus ready>"->"$r67 := @caughtexception";
+    "$r25 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus ready>"->"$r65 := @caughtexception";
+    "$r25 = <com.flaptor.indextank.rpc.IndexerStatus: com.flaptor.indextank.rpc.IndexerStatus ready>"->"virtualinvoke $r26.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r25)";
+    "virtualinvoke $r26.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r25)"->"$r67 := @caughtexception";
+    "virtualinvoke $r26.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r25)"->"$r65 := @caughtexception";
+    "virtualinvoke $r26.<com.flaptor.indextank.index.IndexEngine: void setStatus(com.flaptor.indextank.rpc.IndexerStatus)>($r25)"->"staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)";
+    "staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r67 := @caughtexception"->"r86 = $r67";
+    "$r67 := @caughtexception"->"$r65 := @caughtexception";
+    "r86 = $r67"->"$r68 = new java.lang.RuntimeException";
+    "r86 = $r67"->"$r65 := @caughtexception";
+    "$r68 = new java.lang.RuntimeException"->"specialinvoke $r68.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>(\"Something BAD happened: \", r86)";
+    "$r68 = new java.lang.RuntimeException"->"$r65 := @caughtexception";
+    "specialinvoke $r68.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>(\"Something BAD happened: \", r86)"->"throw $r68";
+    "specialinvoke $r68.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>(\"Something BAD happened: \", r86)"->"$r65 := @caughtexception";
+    "throw $r68"->"$r65 := @caughtexception";
+    "$r65 := @caughtexception"->"r66 = $r65";
+    "$r65 := @caughtexception"->"$r65 := @caughtexception";
+    "r66 = $r65"->"staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)";
+    "r66 = $r65"->"$r65 := @caughtexception";
+    "staticinvoke <com.flaptor.util.Execute: void close(java.lang.Object)>(r4)"->"throw r66";
+}

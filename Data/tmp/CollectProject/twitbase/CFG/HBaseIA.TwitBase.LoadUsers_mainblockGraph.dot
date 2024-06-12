@@ -1,0 +1,178 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r11 = \"help\";
+$r10 = r0[0];
+$z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r12 = new org.apache.hadoop.hbase.client.HTablePool;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"loadusers count\n  help - print this message and exit.\n  count - add count random TwitBase users.\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+$r12 = new org.apache.hadoop.hbase.client.HTablePool;
+specialinvoke $r12.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>();
+r2 = $r12;
+$r13 = new HBaseIA.TwitBase.hbase.UsersDAO;
+specialinvoke $r13.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2);
+r3 = $r13;
+$r14 = r0[0];
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14);
+r4 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/propernames\");
+r5 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/web2\");
+i2 = 0;
+"
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i2 >= i1 goto $r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+r7 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randName(java.util.List)>(r4);
+r8 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randUser(java.lang.String)>(r7);
+r9 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randEmail(java.lang.String,java.util.List)>(r8, r5);
+virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>(r8, r7, r9, \"abc123\");
+i2 = i2 + 1;
+goto [?= (branch)];
+"
+    "Block 6:
+[preds: 4 ] [succs: ]
+$r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+virtualinvoke r2.<org.apache.hadoop.hbase.client.HTablePool: void closeTablePool(byte[])>($r6);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r11 = \"help\";
+$r10 = r0[0];
+$z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r12 = new org.apache.hadoop.hbase.client.HTablePool;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"loadusers count\n  help - print this message and exit.\n  count - add count random TwitBase users.\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r11 = \"help\";
+$r10 = r0[0];
+$z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r12 = new org.apache.hadoop.hbase.client.HTablePool;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"loadusers count\n  help - print this message and exit.\n  count - add count random TwitBase users.\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 3 ]
+$r11 = \"help\";
+$r10 = r0[0];
+$z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+if $z0 == 0 goto $r12 = new org.apache.hadoop.hbase.client.HTablePool;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+$r12 = new org.apache.hadoop.hbase.client.HTablePool;
+specialinvoke $r12.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>();
+r2 = $r12;
+$r13 = new HBaseIA.TwitBase.hbase.UsersDAO;
+specialinvoke $r13.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2);
+r3 = $r13;
+$r14 = r0[0];
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14);
+r4 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/propernames\");
+r5 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/web2\");
+i2 = 0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 ]
+$r1 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"loadusers count\n  help - print this message and exit.\n  count - add count random TwitBase users.\n\");
+staticinvoke <java.lang.System: void exit(int)>(0);
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+$r12 = new org.apache.hadoop.hbase.client.HTablePool;
+specialinvoke $r12.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>();
+r2 = $r12;
+$r13 = new HBaseIA.TwitBase.hbase.UsersDAO;
+specialinvoke $r13.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2);
+r3 = $r13;
+$r14 = r0[0];
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14);
+r4 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/propernames\");
+r5 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/web2\");
+i2 = 0;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+$r12 = new org.apache.hadoop.hbase.client.HTablePool;
+specialinvoke $r12.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>();
+r2 = $r12;
+$r13 = new HBaseIA.TwitBase.hbase.UsersDAO;
+specialinvoke $r13.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2);
+r3 = $r13;
+$r14 = r0[0];
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14);
+r4 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/propernames\");
+r5 = staticinvoke <utils.LoadUtils: java.util.List readResource(java.lang.String)>(\"/dict/web2\");
+i2 = 0;
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i2 >= i1 goto $r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i2 >= i1 goto $r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+"->"Block 5:
+[preds: 4 ] [succs: 4 ]
+r7 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randName(java.util.List)>(r4);
+r8 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randUser(java.lang.String)>(r7);
+r9 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randEmail(java.lang.String,java.util.List)>(r8, r5);
+virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>(r8, r7, r9, \"abc123\");
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i2 >= i1 goto $r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+"->"Block 6:
+[preds: 4 ] [succs: ]
+$r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+virtualinvoke r2.<org.apache.hadoop.hbase.client.HTablePool: void closeTablePool(byte[])>($r6);
+return;
+";
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+r7 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randName(java.util.List)>(r4);
+r8 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randUser(java.lang.String)>(r7);
+r9 = staticinvoke <HBaseIA.TwitBase.LoadUsers: java.lang.String randEmail(java.lang.String,java.util.List)>(r8, r5);
+virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>(r8, r7, r9, \"abc123\");
+i2 = i2 + 1;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i2 >= i1 goto $r6 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>;
+";
+}

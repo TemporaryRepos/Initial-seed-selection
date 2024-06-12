@@ -1,0 +1,440 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.io.DataOutputStream;
+r2 := @parameter1: java.util.Map;
+if r0 != null goto $r1 = new java.util.HashMap;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r28 = new java.lang.IllegalArgumentException;
+specialinvoke $r28.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"DataOutputStream must not be null.\");
+throw $r28;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+$i0 = interfaceinvoke r2.<java.util.Map: int size()>();
+specialinvoke $r1.<java.util.HashMap: void <init>(int)>($i0);
+r3 = $r1;
+$r4 = new java.util.TreeMap;
+specialinvoke $r4.<java.util.TreeMap: void <init>()>();
+r5 = $r4;
+s7 = 0;
+$r6 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r29 = interfaceinvoke $r6.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r18 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+r30 = (java.util.Map$Entry) $r18;
+$r19 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getKey()>();
+r31 = (java.lang.String) $r19;
+$z3 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r31);
+if $z3 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r32 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r31, r32);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r32, r31);
+$i6 = s7 + 1;
+s7 = (short) $i6;
+if s7 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: ]
+$r27 = new java.lang.InternalError;
+specialinvoke $r27.<java.lang.InternalError: void <init>(java.lang.String)>(\"Too many time zone ids\");
+throw $r27;
+"
+    "Block 7:
+[preds: 4 5 ] [succs: 8 10 ]
+$r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r21 = (org.joda.time.DateTimeZone) $r20;
+r33 = virtualinvoke $r21.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z4 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r33);
+if $z4 != 0 goto (branch);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r34 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r33, r34);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r34, r33);
+$i5 = s7 + 1;
+s7 = (short) $i5;
+if s7 != 0 goto (branch);
+"
+    "Block 9:
+[preds: 8 ] [succs: ]
+$r24 = new java.lang.InternalError;
+specialinvoke $r24.<java.lang.InternalError: void <init>(java.lang.String)>(\"Too many time zone ids\");
+throw $r24;
+"
+    "Block 10:
+[preds: 7 8 ] [succs: 3 ]
+goto [?= $z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 11:
+[preds: 3 ] [succs: 12 ]
+$i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i1);
+$r7 = virtualinvoke r5.<java.util.TreeMap: java.util.Collection values()>();
+r35 = interfaceinvoke $r7.<java.util.Collection: java.util.Iterator iterator()>();
+"
+    "Block 12:
+[preds: 11 13 ] [succs: 13 14 ]
+$z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: 12 ]
+$r17 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>();
+r36 = (java.lang.String) $r17;
+virtualinvoke r0.<java.io.DataOutputStream: void writeUTF(java.lang.String)>(r36);
+goto [?= $z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+$i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i2);
+$r8 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r37 = interfaceinvoke $r8.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto return;
+"
+    "Block 16:
+[preds: 15 ] [succs: 15 ]
+$r9 = interfaceinvoke r37.<java.util.Iterator: java.lang.Object next()>();
+r38 = (java.util.Map$Entry) $r9;
+$r10 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getKey()>();
+r39 = (java.lang.String) $r10;
+$r11 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r39);
+$r12 = (java.lang.Short) $r11;
+$s3 = virtualinvoke $r12.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s3);
+$r13 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r14 = (org.joda.time.DateTimeZone) $r13;
+r40 = virtualinvoke $r14.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r15 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r40);
+$r16 = (java.lang.Short) $r15;
+$s4 = virtualinvoke $r16.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s4);
+goto [?= $z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 17:
+[preds: 15 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.io.DataOutputStream;
+r2 := @parameter1: java.util.Map;
+if r0 != null goto $r1 = new java.util.HashMap;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r28 = new java.lang.IllegalArgumentException;
+specialinvoke $r28.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"DataOutputStream must not be null.\");
+throw $r28;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.io.DataOutputStream;
+r2 := @parameter1: java.util.Map;
+if r0 != null goto $r1 = new java.util.HashMap;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+$i0 = interfaceinvoke r2.<java.util.Map: int size()>();
+specialinvoke $r1.<java.util.HashMap: void <init>(int)>($i0);
+r3 = $r1;
+$r4 = new java.util.TreeMap;
+specialinvoke $r4.<java.util.TreeMap: void <init>()>();
+r5 = $r4;
+s7 = 0;
+$r6 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r29 = interfaceinvoke $r6.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$r1 = new java.util.HashMap;
+$i0 = interfaceinvoke r2.<java.util.Map: int size()>();
+specialinvoke $r1.<java.util.HashMap: void <init>(int)>($i0);
+r3 = $r1;
+$r4 = new java.util.TreeMap;
+specialinvoke $r4.<java.util.TreeMap: void <init>()>();
+r5 = $r4;
+s7 = 0;
+$r6 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r29 = interfaceinvoke $r6.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+";
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r18 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+r30 = (java.util.Map$Entry) $r18;
+$r19 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getKey()>();
+r31 = (java.lang.String) $r19;
+$z3 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r31);
+if $z3 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+";
+    "Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+"->"Block 11:
+[preds: 3 ] [succs: 12 ]
+$i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i1);
+$r7 = virtualinvoke r5.<java.util.TreeMap: java.util.Collection values()>();
+r35 = interfaceinvoke $r7.<java.util.Collection: java.util.Iterator iterator()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r18 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+r30 = (java.util.Map$Entry) $r18;
+$r19 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getKey()>();
+r31 = (java.lang.String) $r19;
+$z3 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r31);
+if $z3 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r32 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r31, r32);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r32, r31);
+$i6 = s7 + 1;
+s7 = (short) $i6;
+if s7 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+$r18 = interfaceinvoke r29.<java.util.Iterator: java.lang.Object next()>();
+r30 = (java.util.Map$Entry) $r18;
+$r19 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getKey()>();
+r31 = (java.lang.String) $r19;
+$z3 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r31);
+if $z3 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"->"Block 7:
+[preds: 4 5 ] [succs: 8 10 ]
+$r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r21 = (org.joda.time.DateTimeZone) $r20;
+r33 = virtualinvoke $r21.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z4 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r33);
+if $z4 != 0 goto (branch);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r32 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r31, r32);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r32, r31);
+$i6 = s7 + 1;
+s7 = (short) $i6;
+if s7 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"->"Block 6:
+[preds: 5 ] [succs: ]
+$r27 = new java.lang.InternalError;
+specialinvoke $r27.<java.lang.InternalError: void <init>(java.lang.String)>(\"Too many time zone ids\");
+throw $r27;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+r32 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r31, r32);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r32, r31);
+$i6 = s7 + 1;
+s7 = (short) $i6;
+if s7 != 0 goto $r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+"->"Block 7:
+[preds: 4 5 ] [succs: 8 10 ]
+$r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r21 = (org.joda.time.DateTimeZone) $r20;
+r33 = virtualinvoke $r21.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z4 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r33);
+if $z4 != 0 goto (branch);
+";
+    "Block 7:
+[preds: 4 5 ] [succs: 8 10 ]
+$r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r21 = (org.joda.time.DateTimeZone) $r20;
+r33 = virtualinvoke $r21.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z4 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r33);
+if $z4 != 0 goto (branch);
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r34 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r33, r34);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r34, r33);
+$i5 = s7 + 1;
+s7 = (short) $i5;
+if s7 != 0 goto (branch);
+";
+    "Block 7:
+[preds: 4 5 ] [succs: 8 10 ]
+$r20 = interfaceinvoke r30.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r21 = (org.joda.time.DateTimeZone) $r20;
+r33 = virtualinvoke $r21.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$z4 = interfaceinvoke r3.<java.util.Map: boolean containsKey(java.lang.Object)>(r33);
+if $z4 != 0 goto (branch);
+"->"Block 10:
+[preds: 7 8 ] [succs: 3 ]
+goto [?= $z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r34 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r33, r34);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r34, r33);
+$i5 = s7 + 1;
+s7 = (short) $i5;
+if s7 != 0 goto (branch);
+"->"Block 9:
+[preds: 8 ] [succs: ]
+$r24 = new java.lang.InternalError;
+specialinvoke $r24.<java.lang.InternalError: void <init>(java.lang.String)>(\"Too many time zone ids\");
+throw $r24;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r34 = staticinvoke <java.lang.Short: java.lang.Short valueOf(short)>(s7);
+interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r33, r34);
+virtualinvoke r5.<java.util.TreeMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r34, r33);
+$i5 = s7 + 1;
+s7 = (short) $i5;
+if s7 != 0 goto (branch);
+"->"Block 10:
+[preds: 7 8 ] [succs: 3 ]
+goto [?= $z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 10:
+[preds: 7 8 ] [succs: 3 ]
+goto [?= $z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 3:
+[preds: 2 10 ] [succs: 4 11 ]
+$z0 = interfaceinvoke r29.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+";
+    "Block 11:
+[preds: 3 ] [succs: 12 ]
+$i1 = virtualinvoke r5.<java.util.TreeMap: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i1);
+$r7 = virtualinvoke r5.<java.util.TreeMap: java.util.Collection values()>();
+r35 = interfaceinvoke $r7.<java.util.Collection: java.util.Iterator iterator()>();
+"->"Block 12:
+[preds: 11 13 ] [succs: 13 14 ]
+$z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+";
+    "Block 12:
+[preds: 11 13 ] [succs: 13 14 ]
+$z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+"->"Block 13:
+[preds: 12 ] [succs: 12 ]
+$r17 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>();
+r36 = (java.lang.String) $r17;
+virtualinvoke r0.<java.io.DataOutputStream: void writeUTF(java.lang.String)>(r36);
+goto [?= $z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 12:
+[preds: 11 13 ] [succs: 13 14 ]
+$z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+"->"Block 14:
+[preds: 12 ] [succs: 15 ]
+$i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i2);
+$r8 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r37 = interfaceinvoke $r8.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 13:
+[preds: 12 ] [succs: 12 ]
+$r17 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>();
+r36 = (java.lang.String) $r17;
+virtualinvoke r0.<java.io.DataOutputStream: void writeUTF(java.lang.String)>(r36);
+goto [?= $z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 12:
+[preds: 11 13 ] [succs: 13 14 ]
+$z1 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 ]
+$i2 = interfaceinvoke r2.<java.util.Map: int size()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($i2);
+$r8 = interfaceinvoke r2.<java.util.Map: java.util.Set entrySet()>();
+r37 = interfaceinvoke $r8.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto return;
+";
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto return;
+"->"Block 16:
+[preds: 15 ] [succs: 15 ]
+$r9 = interfaceinvoke r37.<java.util.Iterator: java.lang.Object next()>();
+r38 = (java.util.Map$Entry) $r9;
+$r10 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getKey()>();
+r39 = (java.lang.String) $r10;
+$r11 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r39);
+$r12 = (java.lang.Short) $r11;
+$s3 = virtualinvoke $r12.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s3);
+$r13 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r14 = (org.joda.time.DateTimeZone) $r13;
+r40 = virtualinvoke $r14.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r15 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r40);
+$r16 = (java.lang.Short) $r15;
+$s4 = virtualinvoke $r16.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s4);
+goto [?= $z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto return;
+"->"Block 17:
+[preds: 15 ] [succs: ]
+return;
+";
+    "Block 16:
+[preds: 15 ] [succs: 15 ]
+$r9 = interfaceinvoke r37.<java.util.Iterator: java.lang.Object next()>();
+r38 = (java.util.Map$Entry) $r9;
+$r10 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getKey()>();
+r39 = (java.lang.String) $r10;
+$r11 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r39);
+$r12 = (java.lang.Short) $r11;
+$s3 = virtualinvoke $r12.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s3);
+$r13 = interfaceinvoke r38.<java.util.Map$Entry: java.lang.Object getValue()>();
+$r14 = (org.joda.time.DateTimeZone) $r13;
+r40 = virtualinvoke $r14.<org.joda.time.DateTimeZone: java.lang.String getID()>();
+$r15 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>(r40);
+$r16 = (java.lang.Short) $r15;
+$s4 = virtualinvoke $r16.<java.lang.Short: short shortValue()>();
+virtualinvoke r0.<java.io.DataOutputStream: void writeShort(int)>($s4);
+goto [?= $z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 15:
+[preds: 14 16 ] [succs: 16 17 ]
+$z2 = interfaceinvoke r37.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto return;
+";
+}

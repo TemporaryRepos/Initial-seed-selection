@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"
+    "i0 = i0 + 1"
+    "if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"
+    "goto [?= return]"
+    "$r0 := @caughtexception"
+    "$r1 = new java.lang.RuntimeException"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"
+    "throw $r1"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"i0 = 0";
+    "r2 := @parameter0: java.lang.String[]"->"$r0 := @caughtexception";
+    "i0 = 0"->"goto [?= (branch)]";
+    "i0 = 0"->"$r0 := @caughtexception";
+    "goto [?= (branch)]"->"if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()";
+    "goto [?= (branch)]"->"$r0 := @caughtexception";
+    "staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"->"i0 = i0 + 1";
+    "staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"->"$r0 := @caughtexception";
+    "i0 = i0 + 1"->"if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()";
+    "i0 = i0 + 1"->"$r0 := @caughtexception";
+    "if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"->"goto [?= return]";
+    "if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"->"staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()";
+    "if i0 < 100000 goto staticinvoke <compiler.types.TestTypePropagationToCmpU: void test()>()"->"$r0 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r0 := @caughtexception"->"$r1 = new java.lang.RuntimeException";
+    "$r1 = new java.lang.RuntimeException"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"->"throw $r1";
+}

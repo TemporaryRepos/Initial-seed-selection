@@ -1,0 +1,155 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "r1 := @parameter1: java.lang.String"
+    "r9 := @parameter2: org.elasticsearch.index.query.QueryBuilder[]"
+    "if r0 == null goto return null"
+    "if r1 != null goto $r2 = new java.util.HashMap"
+    "return null"
+    "$r2 = new java.util.HashMap"
+    "specialinvoke $r2.<java.util.HashMap: void <init>()>()"
+    "r3 = $r2"
+    "$r4 = new org.elasticsearch.index.reindex.ReindexRequest"
+    "specialinvoke $r4.<org.elasticsearch.index.reindex.ReindexRequest: void <init>()>()"
+    "r5 = $r4"
+    "$r6 = newarray (java.lang.String)[1]"
+    "$r6[0] = r0"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceIndices(java.lang.String[])>($r6)"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestIndex(java.lang.String)>(r1)"
+    "if r9 == null goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"
+    "r28 = r9"
+    "i4 = lengthof r28"
+    "i5 = 0"
+    "if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"
+    "r24 = r28[i5]"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceQuery(org.elasticsearch.index.query.QueryBuilder)>(r24)"
+    "i5 = i5 + 1"
+    "goto [?= (branch)]"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: void setConflicts(java.lang.String)>(\"proceed\")"
+    "$r11 = staticinvoke <org.elasticsearch.common.unit.TimeValue: org.elasticsearch.common.unit.TimeValue timeValueMinutes(long)>(2L)"
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.AbstractBulkByScrollRequest setTimeout(org.elasticsearch.common.unit.TimeValue)>($r11)"
+    "$r14 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"
+    "$r13 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"
+    "r29 = virtualinvoke $r14.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse reindex(org.elasticsearch.index.reindex.ReindexRequest,org.elasticsearch.client.RequestOptions)>(r5, $r13)"
+    "$r15 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>()"
+    "$l0 = virtualinvoke $r15.<org.elasticsearch.common.unit.TimeValue: long getMillis()>()"
+    "$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r16)"
+    "$l1 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>()"
+    "$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r18)"
+    "$l2 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getCreated()>()"
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"createdDocs\", $r20)"
+    "$l3 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getUpdated()>()"
+    "$r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3)"
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"updatedDocs\", $r22)"
+    "$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z0 == 0 goto return r3"
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"
+    "goto [?= return r3]"
+    "$r26 := @caughtexception"
+    "r27 = $r26"
+    "$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z1 == 0 goto throw r27"
+    "throw r27"
+    "return r3"
+    "r0 := @parameter0: java.lang.String"->"r1 := @parameter1: java.lang.String";
+    "r1 := @parameter1: java.lang.String"->"r9 := @parameter2: org.elasticsearch.index.query.QueryBuilder[]";
+    "r9 := @parameter2: org.elasticsearch.index.query.QueryBuilder[]"->"if r0 == null goto return null";
+    "if r0 == null goto return null"->"if r1 != null goto $r2 = new java.util.HashMap";
+    "if r0 == null goto return null"->"return null";
+    "if r1 != null goto $r2 = new java.util.HashMap"->"return null";
+    "if r1 != null goto $r2 = new java.util.HashMap"->"$r2 = new java.util.HashMap";
+    "$r2 = new java.util.HashMap"->"specialinvoke $r2.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r2.<java.util.HashMap: void <init>()>()"->"r3 = $r2";
+    "r3 = $r2"->"$r4 = new org.elasticsearch.index.reindex.ReindexRequest";
+    "r3 = $r2"->"$r26 := @caughtexception";
+    "$r4 = new org.elasticsearch.index.reindex.ReindexRequest"->"specialinvoke $r4.<org.elasticsearch.index.reindex.ReindexRequest: void <init>()>()";
+    "$r4 = new org.elasticsearch.index.reindex.ReindexRequest"->"$r26 := @caughtexception";
+    "specialinvoke $r4.<org.elasticsearch.index.reindex.ReindexRequest: void <init>()>()"->"r5 = $r4";
+    "specialinvoke $r4.<org.elasticsearch.index.reindex.ReindexRequest: void <init>()>()"->"$r26 := @caughtexception";
+    "r5 = $r4"->"$r6 = newarray (java.lang.String)[1]";
+    "r5 = $r4"->"$r26 := @caughtexception";
+    "$r6 = newarray (java.lang.String)[1]"->"$r6[0] = r0";
+    "$r6 = newarray (java.lang.String)[1]"->"$r26 := @caughtexception";
+    "$r6[0] = r0"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceIndices(java.lang.String[])>($r6)";
+    "$r6[0] = r0"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceIndices(java.lang.String[])>($r6)"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestIndex(java.lang.String)>(r1)";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceIndices(java.lang.String[])>($r6)"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestIndex(java.lang.String)>(r1)"->"if r9 == null goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestIndex(java.lang.String)>(r1)"->"$r26 := @caughtexception";
+    "if r9 == null goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"r28 = r9";
+    "if r9 == null goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")";
+    "if r9 == null goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"$r26 := @caughtexception";
+    "r28 = r9"->"i4 = lengthof r28";
+    "r28 = r9"->"$r26 := @caughtexception";
+    "i4 = lengthof r28"->"i5 = 0";
+    "i4 = lengthof r28"->"$r26 := @caughtexception";
+    "i5 = 0"->"if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")";
+    "i5 = 0"->"$r26 := @caughtexception";
+    "if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"r24 = r28[i5]";
+    "if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")";
+    "if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"$r26 := @caughtexception";
+    "r24 = r28[i5]"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceQuery(org.elasticsearch.index.query.QueryBuilder)>(r24)";
+    "r24 = r28[i5]"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceQuery(org.elasticsearch.index.query.QueryBuilder)>(r24)"->"i5 = i5 + 1";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setSourceQuery(org.elasticsearch.index.query.QueryBuilder)>(r24)"->"$r26 := @caughtexception";
+    "i5 = i5 + 1"->"goto [?= (branch)]";
+    "i5 = i5 + 1"->"$r26 := @caughtexception";
+    "goto [?= (branch)]"->"if i5 >= i4 goto virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")";
+    "goto [?= (branch)]"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: void setConflicts(java.lang.String)>(\"proceed\")";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.ReindexRequest setDestOpType(java.lang.String)>(\"create\")"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: void setConflicts(java.lang.String)>(\"proceed\")"->"$r11 = staticinvoke <org.elasticsearch.common.unit.TimeValue: org.elasticsearch.common.unit.TimeValue timeValueMinutes(long)>(2L)";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: void setConflicts(java.lang.String)>(\"proceed\")"->"$r26 := @caughtexception";
+    "$r11 = staticinvoke <org.elasticsearch.common.unit.TimeValue: org.elasticsearch.common.unit.TimeValue timeValueMinutes(long)>(2L)"->"virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.AbstractBulkByScrollRequest setTimeout(org.elasticsearch.common.unit.TimeValue)>($r11)";
+    "$r11 = staticinvoke <org.elasticsearch.common.unit.TimeValue: org.elasticsearch.common.unit.TimeValue timeValueMinutes(long)>(2L)"->"$r26 := @caughtexception";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.AbstractBulkByScrollRequest setTimeout(org.elasticsearch.common.unit.TimeValue)>($r11)"->"$r14 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>";
+    "virtualinvoke r5.<org.elasticsearch.index.reindex.ReindexRequest: org.elasticsearch.index.reindex.AbstractBulkByScrollRequest setTimeout(org.elasticsearch.common.unit.TimeValue)>($r11)"->"$r26 := @caughtexception";
+    "$r14 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r13 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>";
+    "$r14 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r26 := @caughtexception";
+    "$r13 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"r29 = virtualinvoke $r14.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse reindex(org.elasticsearch.index.reindex.ReindexRequest,org.elasticsearch.client.RequestOptions)>(r5, $r13)";
+    "$r13 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"$r26 := @caughtexception";
+    "r29 = virtualinvoke $r14.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse reindex(org.elasticsearch.index.reindex.ReindexRequest,org.elasticsearch.client.RequestOptions)>(r5, $r13)"->"$r15 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>()";
+    "r29 = virtualinvoke $r14.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.index.reindex.BulkByScrollResponse reindex(org.elasticsearch.index.reindex.ReindexRequest,org.elasticsearch.client.RequestOptions)>(r5, $r13)"->"$r26 := @caughtexception";
+    "$r15 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>()"->"$l0 = virtualinvoke $r15.<org.elasticsearch.common.unit.TimeValue: long getMillis()>()";
+    "$r15 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: org.elasticsearch.common.unit.TimeValue getTook()>()"->"$r26 := @caughtexception";
+    "$l0 = virtualinvoke $r15.<org.elasticsearch.common.unit.TimeValue: long getMillis()>()"->"$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)";
+    "$l0 = virtualinvoke $r15.<org.elasticsearch.common.unit.TimeValue: long getMillis()>()"->"$r26 := @caughtexception";
+    "$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r16)";
+    "$r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"->"$r26 := @caughtexception";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r16)"->"$l1 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>()";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"time\", $r16)"->"$r26 := @caughtexception";
+    "$l1 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>()"->"$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)";
+    "$l1 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getTotal()>()"->"$r26 := @caughtexception";
+    "$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r18)";
+    "$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$r26 := @caughtexception";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r18)"->"$l2 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getCreated()>()";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r18)"->"$r26 := @caughtexception";
+    "$l2 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getCreated()>()"->"$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)";
+    "$l2 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getCreated()>()"->"$r26 := @caughtexception";
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"createdDocs\", $r20)";
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"$r26 := @caughtexception";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"createdDocs\", $r20)"->"$l3 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getUpdated()>()";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"createdDocs\", $r20)"->"$r26 := @caughtexception";
+    "$l3 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getUpdated()>()"->"$r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3)";
+    "$l3 = virtualinvoke r29.<org.elasticsearch.index.reindex.BulkByScrollResponse: long getUpdated()>()"->"$r26 := @caughtexception";
+    "$r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"updatedDocs\", $r22)";
+    "$r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3)"->"$r26 := @caughtexception";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"updatedDocs\", $r22)"->"$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"updatedDocs\", $r22)"->"$r26 := @caughtexception";
+    "$z0 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z0 == 0 goto return r3";
+    "if $z0 == 0 goto return r3"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z0 == 0 goto return r3"->"return r3";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"goto [?= return r3]";
+    "goto [?= return r3]"->"return r3";
+    "$r26 := @caughtexception"->"r27 = $r26";
+    "$r26 := @caughtexception"->"$r26 := @caughtexception";
+    "r27 = $r26"->"$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "r27 = $r26"->"$r26 := @caughtexception";
+    "$z1 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z1 == 0 goto throw r27";
+    "if $z1 == 0 goto throw r27"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z1 == 0 goto throw r27"->"throw r27";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"throw r27";
+}

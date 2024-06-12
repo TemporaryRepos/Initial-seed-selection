@@ -1,0 +1,23 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.Double"
+    "r1 := @parameter1: java.lang.Double"
+    "$d0 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()"
+    "$d1 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"
+    "$d2 = $d0 + $d1"
+    "$d3 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()"
+    "$d4 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"
+    "$d5 = $d3 * $d4"
+    "$d6 = $d2 + $d5"
+    "$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d6)"
+    "return $r2"
+    "r0 := @parameter0: java.lang.Double"->"r1 := @parameter1: java.lang.Double";
+    "r1 := @parameter1: java.lang.Double"->"$d0 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()";
+    "$d0 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()"->"$d1 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()";
+    "$d1 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"->"$d2 = $d0 + $d1";
+    "$d2 = $d0 + $d1"->"$d3 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()";
+    "$d3 = virtualinvoke r0.<java.lang.Double: double doubleValue()>()"->"$d4 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()";
+    "$d4 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"->"$d5 = $d3 * $d4";
+    "$d5 = $d3 * $d4"->"$d6 = $d2 + $d5";
+    "$d6 = $d2 + $d5"->"$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d6)";
+    "$r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d6)"->"return $r2";
+}

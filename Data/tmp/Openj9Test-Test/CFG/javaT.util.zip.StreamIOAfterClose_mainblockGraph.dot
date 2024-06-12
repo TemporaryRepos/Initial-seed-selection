@@ -1,0 +1,39 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r16 := @parameter0: java.lang.String[];
+$r0 = new java.util.zip.ZipOutputStream;
+$r1 = new java.io.ByteArrayOutputStream;
+specialinvoke $r1.<java.io.ByteArrayOutputStream: void <init>()>();
+specialinvoke $r0.<java.util.zip.ZipOutputStream: void <init>(java.io.OutputStream)>($r1);
+r2 = $r0;
+$r3 = new java.util.zip.ZipEntry;
+specialinvoke $r3.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"1\");
+virtualinvoke r2.<java.util.zip.ZipOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r3);
+staticinvoke <javaT.util.zip.StreamIOAfterClose: void testWrite(java.util.zip.ZipOutputStream)>(r2);
+$r4 = new java.util.jar.JarOutputStream;
+$r5 = new java.io.ByteArrayOutputStream;
+specialinvoke $r5.<java.io.ByteArrayOutputStream: void <init>()>();
+specialinvoke $r4.<java.util.jar.JarOutputStream: void <init>(java.io.OutputStream)>($r5);
+r6 = $r4;
+$r7 = new java.util.zip.ZipEntry;
+specialinvoke $r7.<java.util.zip.ZipEntry: void <init>(java.lang.String)>(\"1\");
+virtualinvoke r6.<java.util.jar.JarOutputStream: void putNextEntry(java.util.zip.ZipEntry)>($r7);
+staticinvoke <javaT.util.zip.StreamIOAfterClose: void testWrite(java.util.zip.ZipOutputStream)>(r6);
+$r8 = new java.io.ByteArrayInputStream;
+$r9 = newarray (byte)[10];
+specialinvoke $r8.<java.io.ByteArrayInputStream: void <init>(byte[])>($r9);
+r10 = $r8;
+$r11 = new java.io.ByteArrayInputStream;
+$r12 = <javaT.util.zip.StreamIOAfterClose: byte[] compressed>;
+specialinvoke $r11.<java.io.ByteArrayInputStream: void <init>(byte[])>($r12);
+r13 = $r11;
+$r14 = new java.util.zip.ZipInputStream;
+specialinvoke $r14.<java.util.zip.ZipInputStream: void <init>(java.io.InputStream)>(r10);
+staticinvoke <javaT.util.zip.StreamIOAfterClose: void testRead(java.io.InputStream)>($r14);
+$r15 = new java.util.zip.GZIPInputStream;
+specialinvoke $r15.<java.util.zip.GZIPInputStream: void <init>(java.io.InputStream)>(r13);
+staticinvoke <javaT.util.zip.StreamIOAfterClose: void testRead(java.io.InputStream)>($r15);
+return;
+"
+}

@@ -1,0 +1,37 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String"
+    "r1 := @parameter1: java.lang.String"
+    "$r0 = new java.text.SimpleDateFormat"
+    "specialinvoke $r0.<java.text.SimpleDateFormat: void <init>(java.lang.String)>(r1)"
+    "r2 = $r0"
+    "r6 = virtualinvoke r2.<java.text.SimpleDateFormat: java.util.Date parse(java.lang.String)>(r3)"
+    "goto [?= (branch)]"
+    "$r4 := @caughtexception"
+    "r5 = $r4"
+    "throw r5"
+    "if r6 != null goto $r7 = new java.sql.Timestamp"
+    "$r7 = null"
+    "goto [?= return $r7]"
+    "$r7 = new java.sql.Timestamp"
+    "$l0 = virtualinvoke r6.<java.util.Date: long getTime()>()"
+    "specialinvoke $r7.<java.sql.Timestamp: void <init>(long)>($l0)"
+    "return $r7"
+    "r3 := @parameter0: java.lang.String"->"r1 := @parameter1: java.lang.String";
+    "r1 := @parameter1: java.lang.String"->"$r0 = new java.text.SimpleDateFormat";
+    "$r0 = new java.text.SimpleDateFormat"->"specialinvoke $r0.<java.text.SimpleDateFormat: void <init>(java.lang.String)>(r1)";
+    "specialinvoke $r0.<java.text.SimpleDateFormat: void <init>(java.lang.String)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"r6 = virtualinvoke r2.<java.text.SimpleDateFormat: java.util.Date parse(java.lang.String)>(r3)";
+    "r2 = $r0"->"$r4 := @caughtexception";
+    "r6 = virtualinvoke r2.<java.text.SimpleDateFormat: java.util.Date parse(java.lang.String)>(r3)"->"goto [?= (branch)]";
+    "r6 = virtualinvoke r2.<java.text.SimpleDateFormat: java.util.Date parse(java.lang.String)>(r3)"->"$r4 := @caughtexception";
+    "goto [?= (branch)]"->"if r6 != null goto $r7 = new java.sql.Timestamp";
+    "$r4 := @caughtexception"->"r5 = $r4";
+    "r5 = $r4"->"throw r5";
+    "if r6 != null goto $r7 = new java.sql.Timestamp"->"$r7 = null";
+    "if r6 != null goto $r7 = new java.sql.Timestamp"->"$r7 = new java.sql.Timestamp";
+    "$r7 = null"->"goto [?= return $r7]";
+    "goto [?= return $r7]"->"return $r7";
+    "$r7 = new java.sql.Timestamp"->"$l0 = virtualinvoke r6.<java.util.Date: long getTime()>()";
+    "$l0 = virtualinvoke r6.<java.util.Date: long getTime()>()"->"specialinvoke $r7.<java.sql.Timestamp: void <init>(long)>($l0)";
+    "specialinvoke $r7.<java.sql.Timestamp: void <init>(long)>($l0)"->"return $r7";
+}

@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 := @parameter1: int"
+    "r0 := @parameter2: double[]"
+    "r1 := @parameter3: double[]"
+    "i2 := @parameter4: int"
+    "i3 = i0"
+    "goto [?= (branch)]"
+    "$d0 = r1[i3]"
+    "r0[i3] = $d0"
+    "if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66"
+    "return 1"
+    "<IterationSplitPredicateInconsistency: int barrier> = 66"
+    "i3 = i3 + 1"
+    "if i3 < i1 goto $d0 = r1[i3]"
+    "return 0"
+    "i0 := @parameter0: int"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"r0 := @parameter2: double[]";
+    "r0 := @parameter2: double[]"->"r1 := @parameter3: double[]";
+    "r1 := @parameter3: double[]"->"i2 := @parameter4: int";
+    "i2 := @parameter4: int"->"i3 = i0";
+    "i3 = i0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 < i1 goto $d0 = r1[i3]";
+    "$d0 = r1[i3]"->"r0[i3] = $d0";
+    "r0[i3] = $d0"->"if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66";
+    "if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66"->"return 1";
+    "if i3 != i2 goto <IterationSplitPredicateInconsistency: int barrier> = 66"->"<IterationSplitPredicateInconsistency: int barrier> = 66";
+    "<IterationSplitPredicateInconsistency: int barrier> = 66"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"if i3 < i1 goto $d0 = r1[i3]";
+    "if i3 < i1 goto $d0 = r1[i3]"->"return 0";
+    "if i3 < i1 goto $d0 = r1[i3]"->"$d0 = r1[i3]";
+}

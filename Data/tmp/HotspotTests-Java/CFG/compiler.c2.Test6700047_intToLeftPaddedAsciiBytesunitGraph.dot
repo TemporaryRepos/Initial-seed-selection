@@ -1,0 +1,41 @@
+digraph "unitGraph" {
+    "i1 = 40"
+    "i2 = 100"
+    "i3 = 1"
+    "goto [?= (branch)]"
+    "i0 = i2 * 52429"
+    "i1 = i1 + -1"
+    "i2 = i0"
+    "if i2 != 0 goto (branch)"
+    "if i1 > 0 goto i0 = i2 * 52429"
+    "if i1 <= 0 goto return i3"
+    "i4 = 0"
+    "i3 = i3 + 1"
+    "$r0 = <compiler.c2.Test6700047: byte[] dummy>"
+    "$r0[i2] = 0"
+    "i4 = i4 + 1"
+    "if i4 < i1 goto i3 = i3 + 1"
+    "return i3"
+    "i1 = 40"->"i2 = 100";
+    "i2 = 100"->"i3 = 1";
+    "i3 = 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 > 0 goto i0 = i2 * 52429";
+    "i0 = i2 * 52429"->"i1 = i1 + -1";
+    "i1 = i1 + -1"->"i2 = i0";
+    "i2 = i0"->"if i2 != 0 goto (branch)";
+    "if i2 != 0 goto (branch)"->"goto [?= (branch)]";
+    "if i2 != 0 goto (branch)"->"if i1 > 0 goto i0 = i2 * 52429";
+    "goto [?= (branch)]"->"if i1 <= 0 goto return i3";
+    "if i1 > 0 goto i0 = i2 * 52429"->"if i1 <= 0 goto return i3";
+    "if i1 > 0 goto i0 = i2 * 52429"->"i0 = i2 * 52429";
+    "if i1 <= 0 goto return i3"->"i4 = 0";
+    "if i1 <= 0 goto return i3"->"return i3";
+    "i4 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 < i1 goto i3 = i3 + 1";
+    "i3 = i3 + 1"->"$r0 = <compiler.c2.Test6700047: byte[] dummy>";
+    "$r0 = <compiler.c2.Test6700047: byte[] dummy>"->"$r0[i2] = 0";
+    "$r0[i2] = 0"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"if i4 < i1 goto i3 = i3 + 1";
+    "if i4 < i1 goto i3 = i3 + 1"->"return i3";
+    "if i4 < i1 goto i3 = i3 + 1"->"i3 = i3 + 1";
+}

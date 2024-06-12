@@ -1,0 +1,133 @@
+digraph "unitGraph" {
+    "r22 := @parameter0: java.lang.String[]"
+    "$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"sun.arch.data.model\")"
+    "$z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(\"32\")"
+    "if $z0 != 0 goto r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Warning: test skipped for 64-bit systems\n\")"
+    "return"
+    "r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"
+    "$z1 = virtualinvoke r23.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\")"
+    "if $z1 == 0 goto staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"
+    "staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"
+    "$r1 = new java.lang.StringBuilder"
+    "$r2 = <java.io.File: java.lang.String pathSeparator>"
+    "$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2)"
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3)"
+    "$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"tmp\")"
+    "$r5 = <java.io.File: java.lang.String pathSeparator>"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"foobar\")"
+    "r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dsun.boot.library.path=\")"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)"
+    "r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r12 = newarray (java.lang.String)[4]"
+    "$r12[0] = r11"
+    "$r12[1] = \"-cp\""
+    "$r12[2] = \".\""
+    "$r12[3] = \"Test6\""
+    "r24 = staticinvoke <TestBootNativeLibraryPath: java.util.List doExec(java.lang.String[])>($r12)"
+    "if r24 == null goto $r13 = new java.lang.RuntimeException"
+    "$r14 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(0)"
+    "$r15 = (java.lang.String) $r14"
+    "$z2 = virtualinvoke $r15.<java.lang.String: boolean endsWith(java.lang.String)>(r8)"
+    "if $z2 != 0 goto return"
+    "$r13 = new java.lang.RuntimeException"
+    "specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: did not get expected error string\")"
+    "throw $r13"
+    "$r17 := @caughtexception"
+    "r25 = $r17"
+    "$r18 = new java.lang.RuntimeException"
+    "$r19 = new java.lang.StringBuilder"
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Unexpected error \")"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r25)"
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r18.<java.lang.RuntimeException: void <init>(java.lang.String)>($r21)"
+    "throw $r18"
+    "r22 := @parameter0: java.lang.String[]"->"$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"sun.arch.data.model\")";
+    "r22 := @parameter0: java.lang.String[]"->"$r17 := @caughtexception";
+    "$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"sun.arch.data.model\")"->"$z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(\"32\")";
+    "$r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"sun.arch.data.model\")"->"$r17 := @caughtexception";
+    "$z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(\"32\")"->"if $z0 != 0 goto r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")";
+    "$z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>(\"32\")"->"$r17 := @caughtexception";
+    "if $z0 != 0 goto r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 != 0 goto r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"->"r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")";
+    "if $z0 != 0 goto r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"->"$r17 := @caughtexception";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Warning: test skipped for 64-bit systems\n\")";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r17 := @caughtexception";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Warning: test skipped for 64-bit systems\n\")"->"return";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"Warning: test skipped for 64-bit systems\n\")"->"$r17 := @caughtexception";
+    "r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"->"$z1 = virtualinvoke r23.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\")";
+    "r23 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>(\"os.name\")"->"$r17 := @caughtexception";
+    "$z1 = virtualinvoke r23.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\")"->"if $z1 == 0 goto staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()";
+    "$z1 = virtualinvoke r23.<java.lang.String: boolean startsWith(java.lang.String)>(\"Windows\")"->"$r17 := @caughtexception";
+    "if $z1 == 0 goto staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"->"staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()";
+    "if $z1 == 0 goto staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"->"$r17 := @caughtexception";
+    "staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"->"$r1 = new java.lang.StringBuilder";
+    "staticinvoke <TestBootNativeLibraryPath: void createTestClass()>()"->"$r17 := @caughtexception";
+    "$r1 = new java.lang.StringBuilder"->"$r2 = <java.io.File: java.lang.String pathSeparator>";
+    "$r1 = new java.lang.StringBuilder"->"$r17 := @caughtexception";
+    "$r2 = <java.io.File: java.lang.String pathSeparator>"->"$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2)";
+    "$r2 = <java.io.File: java.lang.String pathSeparator>"->"$r17 := @caughtexception";
+    "$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2)"->"specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3)";
+    "$r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2)"->"$r17 := @caughtexception";
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3)"->"$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"tmp\")";
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3)"->"$r17 := @caughtexception";
+    "$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"tmp\")"->"$r5 = <java.io.File: java.lang.String pathSeparator>";
+    "$r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"tmp\")"->"$r17 := @caughtexception";
+    "$r5 = <java.io.File: java.lang.String pathSeparator>"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)";
+    "$r5 = <java.io.File: java.lang.String pathSeparator>"->"$r17 := @caughtexception";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"foobar\")";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r17 := @caughtexception";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"foobar\")"->"r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"foobar\")"->"$r17 := @caughtexception";
+    "r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r9 = new java.lang.StringBuilder";
+    "r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r17 := @caughtexception";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dsun.boot.library.path=\")";
+    "$r9 = new java.lang.StringBuilder"->"$r17 := @caughtexception";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dsun.boot.library.path=\")"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"-Dsun.boot.library.path=\")"->"$r17 := @caughtexception";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)"->"r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8)"->"$r17 := @caughtexception";
+    "r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r12 = newarray (java.lang.String)[4]";
+    "r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r17 := @caughtexception";
+    "$r12 = newarray (java.lang.String)[4]"->"$r12[0] = r11";
+    "$r12 = newarray (java.lang.String)[4]"->"$r17 := @caughtexception";
+    "$r12[0] = r11"->"$r12[1] = \"-cp\"";
+    "$r12[0] = r11"->"$r17 := @caughtexception";
+    "$r12[1] = \"-cp\""->"$r12[2] = \".\"";
+    "$r12[1] = \"-cp\""->"$r17 := @caughtexception";
+    "$r12[2] = \".\""->"$r12[3] = \"Test6\"";
+    "$r12[2] = \".\""->"$r17 := @caughtexception";
+    "$r12[3] = \"Test6\""->"r24 = staticinvoke <TestBootNativeLibraryPath: java.util.List doExec(java.lang.String[])>($r12)";
+    "$r12[3] = \"Test6\""->"$r17 := @caughtexception";
+    "r24 = staticinvoke <TestBootNativeLibraryPath: java.util.List doExec(java.lang.String[])>($r12)"->"if r24 == null goto $r13 = new java.lang.RuntimeException";
+    "r24 = staticinvoke <TestBootNativeLibraryPath: java.util.List doExec(java.lang.String[])>($r12)"->"$r17 := @caughtexception";
+    "if r24 == null goto $r13 = new java.lang.RuntimeException"->"$r14 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(0)";
+    "if r24 == null goto $r13 = new java.lang.RuntimeException"->"$r13 = new java.lang.RuntimeException";
+    "if r24 == null goto $r13 = new java.lang.RuntimeException"->"$r17 := @caughtexception";
+    "$r14 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(0)"->"$r15 = (java.lang.String) $r14";
+    "$r14 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(0)"->"$r17 := @caughtexception";
+    "$r15 = (java.lang.String) $r14"->"$z2 = virtualinvoke $r15.<java.lang.String: boolean endsWith(java.lang.String)>(r8)";
+    "$r15 = (java.lang.String) $r14"->"$r17 := @caughtexception";
+    "$z2 = virtualinvoke $r15.<java.lang.String: boolean endsWith(java.lang.String)>(r8)"->"if $z2 != 0 goto return";
+    "$z2 = virtualinvoke $r15.<java.lang.String: boolean endsWith(java.lang.String)>(r8)"->"$r17 := @caughtexception";
+    "if $z2 != 0 goto return"->"$r13 = new java.lang.RuntimeException";
+    "if $z2 != 0 goto return"->"return";
+    "if $z2 != 0 goto return"->"$r17 := @caughtexception";
+    "$r13 = new java.lang.RuntimeException"->"specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: did not get expected error string\")";
+    "$r13 = new java.lang.RuntimeException"->"$r17 := @caughtexception";
+    "specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: did not get expected error string\")"->"throw $r13";
+    "specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Error: did not get expected error string\")"->"$r17 := @caughtexception";
+    "throw $r13"->"$r17 := @caughtexception";
+    "$r17 := @caughtexception"->"r25 = $r17";
+    "r25 = $r17"->"$r18 = new java.lang.RuntimeException";
+    "$r18 = new java.lang.RuntimeException"->"$r19 = new java.lang.StringBuilder";
+    "$r19 = new java.lang.StringBuilder"->"specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Unexpected error \")";
+    "specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Unexpected error \")"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r25)";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r25)"->"$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r18.<java.lang.RuntimeException: void <init>(java.lang.String)>($r21)";
+    "specialinvoke $r18.<java.lang.RuntimeException: void <init>(java.lang.String)>($r21)"->"throw $r18";
+}

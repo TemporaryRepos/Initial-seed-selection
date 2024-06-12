@@ -1,0 +1,29 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: ICloneExtend"
+    "interfaceinvoke r0.<ICloneExtend: java.lang.Object clone()>()"
+    "interfaceinvoke r0.<ICloneExtend: void finalize()>()"
+    "goto [?= return]"
+    "$r2 := @caughtexception"
+    "r3 = $r2"
+    "$z0 = r3 instanceof java.lang.IllegalAccessError"
+    "if $z0 == 0 goto return"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILS - IAE resulted\n\")"
+    "staticinvoke <java.lang.System: void exit(int)>(1)"
+    "return"
+    "r0 := @parameter0: ICloneExtend"->"interfaceinvoke r0.<ICloneExtend: java.lang.Object clone()>()";
+    "r0 := @parameter0: ICloneExtend"->"$r2 := @caughtexception";
+    "interfaceinvoke r0.<ICloneExtend: java.lang.Object clone()>()"->"interfaceinvoke r0.<ICloneExtend: void finalize()>()";
+    "interfaceinvoke r0.<ICloneExtend: java.lang.Object clone()>()"->"$r2 := @caughtexception";
+    "interfaceinvoke r0.<ICloneExtend: void finalize()>()"->"goto [?= return]";
+    "interfaceinvoke r0.<ICloneExtend: void finalize()>()"->"$r2 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r2 := @caughtexception"->"r3 = $r2";
+    "r3 = $r2"->"$z0 = r3 instanceof java.lang.IllegalAccessError";
+    "$z0 = r3 instanceof java.lang.IllegalAccessError"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto return"->"return";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILS - IAE resulted\n\")";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"TEST FAILS - IAE resulted\n\")"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"return";
+}

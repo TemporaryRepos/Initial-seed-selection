@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "if i0 <= 1 goto (branch)"
+    "if i0 != 10 goto $b1 = 2"
+    "$b1 = 1"
+    "goto [?= return $b1]"
+    "$b1 = 2"
+    "if i0 != -10 goto $b1 = 4"
+    "$b1 = 3"
+    "$b1 = 4"
+    "return $b1"
+    "i0 := @parameter0: int"->"if i0 <= 1 goto (branch)";
+    "if i0 <= 1 goto (branch)"->"if i0 != 10 goto $b1 = 2";
+    "if i0 <= 1 goto (branch)"->"if i0 != -10 goto $b1 = 4";
+    "if i0 != 10 goto $b1 = 2"->"$b1 = 1";
+    "if i0 != 10 goto $b1 = 2"->"$b1 = 2";
+    "$b1 = 1"->"goto [?= return $b1]";
+    "goto [?= return $b1]"->"return $b1";
+    "$b1 = 2"->"goto [?= return $b1]";
+    "goto [?= return $b1]"->"return $b1";
+    "if i0 != -10 goto $b1 = 4"->"$b1 = 3";
+    "if i0 != -10 goto $b1 = 4"->"$b1 = 4";
+    "$b1 = 3"->"goto [?= return $b1]";
+    "goto [?= return $b1]"->"return $b1";
+    "$b1 = 4"->"return $b1";
+}

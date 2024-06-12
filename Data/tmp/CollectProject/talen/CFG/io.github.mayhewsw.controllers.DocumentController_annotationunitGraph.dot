@@ -1,0 +1,445 @@
+digraph "unitGraph" {
+    "r25 := @this: io.github.mayhewsw.controllers.DocumentController"
+    "r5 := @parameter0: java.lang.String"
+    "r1 := @parameter1: javax.servlet.http.HttpSession"
+    "r9 := @parameter2: org.springframework.ui.Model"
+    "$r0 = new io.github.mayhewsw.SessionData"
+    "specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)"
+    "r2 = $r0"
+    "r3 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "r4 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"
+    "if r3 != null goto (branch)"
+    "return \"redirect:/document\""
+    "if r5 != null goto $z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)"
+    "$r65 = new java.util.ArrayList"
+    "specialinvoke $r65.<java.util.ArrayList: void <init>()>()"
+    "r123 = $r65"
+    "r124 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>"
+    "$r66 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>"
+    "$r67 = virtualinvoke $r66.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r124)"
+    "r125 = (java.util.Properties) $r67"
+    "r126 = virtualinvoke r125.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")"
+    "r127 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>"
+    "$r68 = new java.lang.StringBuilder"
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"
+    "$r69 = virtualinvoke r126.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"/$\", \"\")"
+    "$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r69)"
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-annotation-\")"
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r127)"
+    "$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")"
+    "r128 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r75 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"
+    "$r74 = new java.lang.StringBuilder"
+    "specialinvoke $r74.<java.lang.StringBuilder: void <init>()>()"
+    "$r76 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Now looking in user annotation folder: \")"
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r128)"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r75.<org.slf4j.Logger: void info(java.lang.String)>($r78)"
+    "$r79 = new java.io.File"
+    "specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>(r128)"
+    "r129 = $r79"
+    "$z8 = virtualinvoke r129.<java.io.File: boolean exists()>()"
+    "if $z8 == 0 goto $r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$r121 = virtualinvoke r129.<java.io.File: java.lang.String[] list()>()"
+    "$r122 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r121)"
+    "interfaceinvoke r123.<java.util.List: boolean addAll(java.util.Collection)>($r122)"
+    "$r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"tamap\", $r80)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"annotatedfiles\", r123)"
+    "$r83 = new java.util.ArrayList"
+    "specialinvoke $r83.<java.util.ArrayList: void <init>()>()"
+    "r130 = $r83"
+    "$r84 = new java.lang.StringBuilder"
+    "specialinvoke $r84.<java.lang.StringBuilder: void <init>()>()"
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Numdocs: \")"
+    "$r86 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$i5 = virtualinvoke $r86.<java.util.TreeMap: int size()>()"
+    "$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)"
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r88)"
+    "$r89 = new java.lang.StringBuilder"
+    "specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()"
+    "$r90 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Num annotated: \")"
+    "$i6 = interfaceinvoke r123.<java.util.List: int size()>()"
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6)"
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r92)"
+    "$r93 = new java.util.HashSet"
+    "specialinvoke $r93.<java.util.HashSet: void <init>()>()"
+    "r131 = $r93"
+    "i10 = 0"
+    "i11 = 0"
+    "$r94 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$r95 = virtualinvoke $r94.<java.util.TreeMap: java.util.Collection values()>()"
+    "r96 = interfaceinvoke $r95.<java.util.Collection: java.util.Iterator iterator()>()"
+    "$z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()"
+    "if $z16 == 0 goto $r97 = new java.lang.StringBuilder"
+    "$r110 = interfaceinvoke r96.<java.util.Iterator: java.lang.Object next()>()"
+    "r111 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r110"
+    "$r112 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()"
+    "$i8 = lengthof $r112"
+    "i11 = i11 + $i8"
+    "$r113 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")"
+    "$r114 = virtualinvoke $r113.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>()"
+    "$r115 = interfaceinvoke $r114.<java.util.List: java.util.stream.Stream stream()>()"
+    "$r116 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_3__308: java.util.function.Function bootstrap$()>()"
+    "$r117 = interfaceinvoke $r115.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r116)"
+    "$r118 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()"
+    "$r119 = interfaceinvoke $r117.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r118)"
+    "r120 = (java.util.List) $r119"
+    "$i9 = interfaceinvoke r120.<java.util.List: int size()>()"
+    "i10 = i10 + $i9"
+    "virtualinvoke r131.<java.util.HashSet: boolean addAll(java.util.Collection)>(r120)"
+    "goto [?= $z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()]"
+    "$r97 = new java.lang.StringBuilder"
+    "specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()"
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total tokens: \")"
+    "$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"
+    "$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r100)"
+    "$r101 = new java.lang.StringBuilder"
+    "specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()"
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total entity surfaces: \")"
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10)"
+    "$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r104)"
+    "$r105 = new java.lang.StringBuilder"
+    "specialinvoke $r105.<java.lang.StringBuilder: void <init>()>()"
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unique entity surfaces: \")"
+    "$i7 = virtualinvoke r131.<java.util.HashSet: int size()>()"
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)"
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r108)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"stats\", r130)"
+    "return \"document/getstarted\""
+    "$z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)"
+    "if $z0 != 0 goto $r6 = newarray (java.lang.Object)[1]"
+    "return \"redirect:document/annotation\""
+    "$r6 = newarray (java.lang.Object)[1]"
+    "$r6[0] = r5"
+    "$r7 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Viewing page with taid: %s\", $r6)"
+    "staticinvoke <io.github.mayhewsw.controllers.DocumentController: void logwrite(java.lang.String,javax.servlet.http.HttpSession)>($r7, r1)"
+    "$r8 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r5)"
+    "r132 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r8"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"ta\", r132)"
+    "virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")"
+    "virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\")"
+    "$r12 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"
+    "$r11 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>"
+    "$z1 = virtualinvoke $r11.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r13 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>"
+    "$z2 = virtualinvoke $r13.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r14 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>"
+    "$z3 = virtualinvoke $r14.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r15 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>"
+    "$z4 = virtualinvoke $r15.<java.lang.Boolean: boolean booleanValue()>()"
+    "r135 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r132, $r12, $z1, $z2, $z3, $z4)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"html\", r135)"
+    "$r17 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object firstKey()>()"
+    "$r18 = (java.lang.String) $r17"
+    "$z5 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>(r5)"
+    "if $z5 != 0 goto $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"
+    "$r63 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lowerKey(java.lang.Object)>(r5)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r63)"
+    "goto [?= $r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()]"
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r19)"
+    "$r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()"
+    "$r22 = (java.lang.String) $r21"
+    "$z6 = virtualinvoke $r22.<java.lang.String: boolean equals(java.lang.Object)>(r5)"
+    "if $z6 != 0 goto $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"
+    "$r61 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object higherKey(java.lang.Object)>(r5)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r61)"
+    "goto [?= $r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>]"
+    "$r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r23)"
+    "$r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"labels\", $r26)"
+    "$r28 = new java.util.HashMap"
+    "specialinvoke $r28.<java.util.HashMap: void <init>()>()"
+    "r136 = $r28"
+    "r137 = virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()"
+    "i12 = lengthof r137"
+    "i13 = 0"
+    "if i13 >= i12 goto $r29 = new java.util.ArrayList"
+    "r138 = r137[i13]"
+    "$i2 = virtualinvoke r138.<java.lang.String: int length()>()"
+    "if $i2 > 1 goto $z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)"
+    "goto [?= i13 = i13 + 1]"
+    "$z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)"
+    "if $z7 != 0 goto $r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)"
+    "$r59 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0)"
+    "virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r59)"
+    "$r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)"
+    "$r56 = (java.lang.Integer) $r55"
+    "$i3 = virtualinvoke $r56.<java.lang.Integer: int intValue()>()"
+    "$i4 = $i3 + 1"
+    "$r57 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4)"
+    "virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r57)"
+    "i13 = i13 + 1"
+    "goto [?= (branch)]"
+    "$r29 = new java.util.ArrayList"
+    "specialinvoke $r29.<java.util.ArrayList: void <init>()>()"
+    "r139 = $r29"
+    "$r30 = virtualinvoke r136.<java.util.HashMap: java.util.Set entrySet()>()"
+    "$r31 = interfaceinvoke $r30.<java.util.Set: java.util.stream.Stream stream()>()"
+    "$r32 = staticinvoke <java.util.Map$Entry: java.util.Comparator comparingByValue()>()"
+    "$r33 = interfaceinvoke $r32.<java.util.Comparator: java.util.Comparator reversed()>()"
+    "$r34 = interfaceinvoke $r31.<java.util.stream.Stream: java.util.stream.Stream sorted(java.util.Comparator)>($r33)"
+    "$r35 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_4__307: java.util.function.Consumer bootstrap$(java.util.List)>(r139)"
+    "interfaceinvoke $r34.<java.util.stream.Stream: void forEachOrdered(java.util.function.Consumer)>($r35)"
+    "$i0 = interfaceinvoke r139.<java.util.List: int size()>()"
+    "$i1 = staticinvoke <java.lang.Math: int min(int,int)>(50, $i0)"
+    "$r36 = interfaceinvoke r139.<java.util.List: java.util.List subList(int,int)>(0, $i1)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"docwords\", $r36)"
+    "$r38 = r2.<io.github.mayhewsw.SessionData: java.util.Properties prop>"
+    "r140 = virtualinvoke $r38.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"parallelpath\")"
+    "if r140 == null goto return \"document/annotation\""
+    "$r39 = virtualinvoke r5.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"-\")"
+    "$r40 = $r39[1]"
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\.\")"
+    "r141 = $r41[0]"
+    "$r42 = new java.lang.StringBuilder"
+    "specialinvoke $r42.<java.lang.StringBuilder: void <init>()>()"
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")"
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r142 = staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: java.lang.String slurp(java.lang.String)>($r46)"
+    "$r48 = <java.lang.System: java.io.PrintStream out>"
+    "$r47 = new java.lang.StringBuilder"
+    "specialinvoke $r47.<java.lang.StringBuilder: void <init>()>()"
+    "$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Trying to read: \")"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")"
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)"
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r48.<java.io.PrintStream: void println(java.lang.String)>($r53)"
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"engtext\", r142)"
+    "return \"document/annotation\""
+    "r25 := @this: io.github.mayhewsw.controllers.DocumentController"->"r5 := @parameter0: java.lang.String";
+    "r5 := @parameter0: java.lang.String"->"r1 := @parameter1: javax.servlet.http.HttpSession";
+    "r1 := @parameter1: javax.servlet.http.HttpSession"->"r9 := @parameter2: org.springframework.ui.Model";
+    "r9 := @parameter2: org.springframework.ui.Model"->"$r0 = new io.github.mayhewsw.SessionData";
+    "$r0 = new io.github.mayhewsw.SessionData"->"specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)";
+    "specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"r3 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "r3 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"r4 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "r4 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"->"if r3 != null goto (branch)";
+    "if r3 != null goto (branch)"->"return \"redirect:/document\"";
+    "if r3 != null goto (branch)"->"if r5 != null goto $z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)";
+    "if r5 != null goto $z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)"->"$r65 = new java.util.ArrayList";
+    "if r5 != null goto $z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)"->"$z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)";
+    "$r65 = new java.util.ArrayList"->"specialinvoke $r65.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r65.<java.util.ArrayList: void <init>()>()"->"r123 = $r65";
+    "r123 = $r65"->"r124 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>";
+    "r124 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>"->"$r66 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>";
+    "$r66 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>"->"$r67 = virtualinvoke $r66.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r124)";
+    "$r67 = virtualinvoke $r66.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r124)"->"r125 = (java.util.Properties) $r67";
+    "r125 = (java.util.Properties) $r67"->"r126 = virtualinvoke r125.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")";
+    "r126 = virtualinvoke r125.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")"->"r127 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>";
+    "r127 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>"->"$r68 = new java.lang.StringBuilder";
+    "$r68 = new java.lang.StringBuilder"->"specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r68.<java.lang.StringBuilder: void <init>()>()"->"$r69 = virtualinvoke r126.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"/$\", \"\")";
+    "$r69 = virtualinvoke r126.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>(\"/$\", \"\")"->"$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r69)";
+    "$r70 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r69)"->"$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-annotation-\")";
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-annotation-\")"->"$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r127)";
+    "$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r127)"->"$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")";
+    "$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")"->"r128 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r128 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r75 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>";
+    "$r75 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"->"$r74 = new java.lang.StringBuilder";
+    "$r74 = new java.lang.StringBuilder"->"specialinvoke $r74.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r74.<java.lang.StringBuilder: void <init>()>()"->"$r76 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Now looking in user annotation folder: \")";
+    "$r76 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Now looking in user annotation folder: \")"->"$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r128)";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r128)"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r75.<org.slf4j.Logger: void info(java.lang.String)>($r78)";
+    "interfaceinvoke $r75.<org.slf4j.Logger: void info(java.lang.String)>($r78)"->"$r79 = new java.io.File";
+    "$r79 = new java.io.File"->"specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>(r128)";
+    "specialinvoke $r79.<java.io.File: void <init>(java.lang.String)>(r128)"->"r129 = $r79";
+    "r129 = $r79"->"$z8 = virtualinvoke r129.<java.io.File: boolean exists()>()";
+    "$z8 = virtualinvoke r129.<java.io.File: boolean exists()>()"->"if $z8 == 0 goto $r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "if $z8 == 0 goto $r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r121 = virtualinvoke r129.<java.io.File: java.lang.String[] list()>()";
+    "if $z8 == 0 goto $r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "$r121 = virtualinvoke r129.<java.io.File: java.lang.String[] list()>()"->"$r122 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r121)";
+    "$r122 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r121)"->"interfaceinvoke r123.<java.util.List: boolean addAll(java.util.Collection)>($r122)";
+    "interfaceinvoke r123.<java.util.List: boolean addAll(java.util.Collection)>($r122)"->"$r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "$r80 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"tamap\", $r80)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"tamap\", $r80)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"annotatedfiles\", r123)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"annotatedfiles\", r123)"->"$r83 = new java.util.ArrayList";
+    "$r83 = new java.util.ArrayList"->"specialinvoke $r83.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r83.<java.util.ArrayList: void <init>()>()"->"r130 = $r83";
+    "r130 = $r83"->"$r84 = new java.lang.StringBuilder";
+    "$r84 = new java.lang.StringBuilder"->"specialinvoke $r84.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r84.<java.lang.StringBuilder: void <init>()>()"->"$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Numdocs: \")";
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Numdocs: \")"->"$r86 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "$r86 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$i5 = virtualinvoke $r86.<java.util.TreeMap: int size()>()";
+    "$i5 = virtualinvoke $r86.<java.util.TreeMap: int size()>()"->"$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)";
+    "$r87 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5)"->"$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r88)";
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r88)"->"$r89 = new java.lang.StringBuilder";
+    "$r89 = new java.lang.StringBuilder"->"specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r89.<java.lang.StringBuilder: void <init>()>()"->"$r90 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Num annotated: \")";
+    "$r90 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Num annotated: \")"->"$i6 = interfaceinvoke r123.<java.util.List: int size()>()";
+    "$i6 = interfaceinvoke r123.<java.util.List: int size()>()"->"$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6)";
+    "$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6)"->"$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r92)";
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r92)"->"$r93 = new java.util.HashSet";
+    "$r93 = new java.util.HashSet"->"specialinvoke $r93.<java.util.HashSet: void <init>()>()";
+    "specialinvoke $r93.<java.util.HashSet: void <init>()>()"->"r131 = $r93";
+    "r131 = $r93"->"i10 = 0";
+    "i10 = 0"->"i11 = 0";
+    "i11 = 0"->"$r94 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "$r94 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r95 = virtualinvoke $r94.<java.util.TreeMap: java.util.Collection values()>()";
+    "$r95 = virtualinvoke $r94.<java.util.TreeMap: java.util.Collection values()>()"->"r96 = interfaceinvoke $r95.<java.util.Collection: java.util.Iterator iterator()>()";
+    "r96 = interfaceinvoke $r95.<java.util.Collection: java.util.Iterator iterator()>()"->"$z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()";
+    "$z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()"->"if $z16 == 0 goto $r97 = new java.lang.StringBuilder";
+    "if $z16 == 0 goto $r97 = new java.lang.StringBuilder"->"$r110 = interfaceinvoke r96.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z16 == 0 goto $r97 = new java.lang.StringBuilder"->"$r97 = new java.lang.StringBuilder";
+    "$r110 = interfaceinvoke r96.<java.util.Iterator: java.lang.Object next()>()"->"r111 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r110";
+    "r111 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r110"->"$r112 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()";
+    "$r112 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()"->"$i8 = lengthof $r112";
+    "$i8 = lengthof $r112"->"i11 = i11 + $i8";
+    "i11 = i11 + $i8"->"$r113 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")";
+    "$r113 = virtualinvoke r111.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")"->"$r114 = virtualinvoke $r113.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>()";
+    "$r114 = virtualinvoke $r113.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.View: java.util.List getConstituents()>()"->"$r115 = interfaceinvoke $r114.<java.util.List: java.util.stream.Stream stream()>()";
+    "$r115 = interfaceinvoke $r114.<java.util.List: java.util.stream.Stream stream()>()"->"$r116 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_3__308: java.util.function.Function bootstrap$()>()";
+    "$r116 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_3__308: java.util.function.Function bootstrap$()>()"->"$r117 = interfaceinvoke $r115.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r116)";
+    "$r117 = interfaceinvoke $r115.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r116)"->"$r118 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()";
+    "$r118 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>()"->"$r119 = interfaceinvoke $r117.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r118)";
+    "$r119 = interfaceinvoke $r117.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r118)"->"r120 = (java.util.List) $r119";
+    "r120 = (java.util.List) $r119"->"$i9 = interfaceinvoke r120.<java.util.List: int size()>()";
+    "$i9 = interfaceinvoke r120.<java.util.List: int size()>()"->"i10 = i10 + $i9";
+    "i10 = i10 + $i9"->"virtualinvoke r131.<java.util.HashSet: boolean addAll(java.util.Collection)>(r120)";
+    "virtualinvoke r131.<java.util.HashSet: boolean addAll(java.util.Collection)>(r120)"->"goto [?= $z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()]"->"$z16 = interfaceinvoke r96.<java.util.Iterator: boolean hasNext()>()";
+    "$r97 = new java.lang.StringBuilder"->"specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()"->"$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total tokens: \")";
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total tokens: \")"->"$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)";
+    "$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11)"->"$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r100)";
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r100)"->"$r101 = new java.lang.StringBuilder";
+    "$r101 = new java.lang.StringBuilder"->"specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()"->"$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total entity surfaces: \")";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Total entity surfaces: \")"->"$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10)";
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10)"->"$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r104)";
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r104)"->"$r105 = new java.lang.StringBuilder";
+    "$r105 = new java.lang.StringBuilder"->"specialinvoke $r105.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r105.<java.lang.StringBuilder: void <init>()>()"->"$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unique entity surfaces: \")";
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unique entity surfaces: \")"->"$i7 = virtualinvoke r131.<java.util.HashSet: int size()>()";
+    "$i7 = virtualinvoke r131.<java.util.HashSet: int size()>()"->"$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)";
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7)"->"$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r108)";
+    "interfaceinvoke r130.<java.util.List: boolean add(java.lang.Object)>($r108)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"stats\", r130)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"stats\", r130)"->"return \"document/getstarted\"";
+    "$z0 = virtualinvoke r3.<java.util.TreeMap: boolean containsKey(java.lang.Object)>(r5)"->"if $z0 != 0 goto $r6 = newarray (java.lang.Object)[1]";
+    "if $z0 != 0 goto $r6 = newarray (java.lang.Object)[1]"->"return \"redirect:document/annotation\"";
+    "if $z0 != 0 goto $r6 = newarray (java.lang.Object)[1]"->"$r6 = newarray (java.lang.Object)[1]";
+    "$r6 = newarray (java.lang.Object)[1]"->"$r6[0] = r5";
+    "$r6[0] = r5"->"$r7 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Viewing page with taid: %s\", $r6)";
+    "$r7 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Viewing page with taid: %s\", $r6)"->"staticinvoke <io.github.mayhewsw.controllers.DocumentController: void logwrite(java.lang.String,javax.servlet.http.HttpSession)>($r7, r1)";
+    "staticinvoke <io.github.mayhewsw.controllers.DocumentController: void logwrite(java.lang.String,javax.servlet.http.HttpSession)>($r7, r1)"->"$r8 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r5)";
+    "$r8 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r5)"->"r132 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r8";
+    "r132 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r8"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"ta\", r132)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"ta\", r132)"->"virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")";
+    "virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"NER_CONLL\")"->"virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\")";
+    "virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: edu.illinois.cs.cogcomp.core.datastructures.textannotation.View getView(java.lang.String)>(\"SENTENCE\")"->"$r12 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "$r12 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"->"$r11 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>";
+    "$r11 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>"->"$z1 = virtualinvoke $r11.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z1 = virtualinvoke $r11.<java.lang.Boolean: boolean booleanValue()>()"->"$r13 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>";
+    "$r13 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>"->"$z2 = virtualinvoke $r13.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z2 = virtualinvoke $r13.<java.lang.Boolean: boolean booleanValue()>()"->"$r14 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>";
+    "$r14 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>"->"$z3 = virtualinvoke $r14.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z3 = virtualinvoke $r14.<java.lang.Boolean: boolean booleanValue()>()"->"$r15 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>";
+    "$r15 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>"->"$z4 = virtualinvoke $r15.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z4 = virtualinvoke $r15.<java.lang.Boolean: boolean booleanValue()>()"->"r135 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r132, $r12, $z1, $z2, $z3, $z4)";
+    "r135 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r132, $r12, $z1, $z2, $z3, $z4)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"html\", r135)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"html\", r135)"->"$r17 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object firstKey()>()";
+    "$r17 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object firstKey()>()"->"$r18 = (java.lang.String) $r17";
+    "$r18 = (java.lang.String) $r17"->"$z5 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>(r5)";
+    "$z5 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>(r5)"->"if $z5 != 0 goto $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)";
+    "if $z5 != 0 goto $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"$r63 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lowerKey(java.lang.Object)>(r5)";
+    "if $z5 != 0 goto $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)";
+    "$r63 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lowerKey(java.lang.Object)>(r5)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r63)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r63)"->"goto [?= $r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()]";
+    "goto [?= $r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()]"->"$r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()";
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r19)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"previd\", $r19)"->"$r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()";
+    "$r21 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object lastKey()>()"->"$r22 = (java.lang.String) $r21";
+    "$r22 = (java.lang.String) $r21"->"$z6 = virtualinvoke $r22.<java.lang.String: boolean equals(java.lang.Object)>(r5)";
+    "$z6 = virtualinvoke $r22.<java.lang.String: boolean equals(java.lang.Object)>(r5)"->"if $z6 != 0 goto $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)";
+    "if $z6 != 0 goto $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"$r61 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object higherKey(java.lang.Object)>(r5)";
+    "if $z6 != 0 goto $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"$r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)";
+    "$r61 = virtualinvoke r3.<java.util.TreeMap: java.lang.Object higherKey(java.lang.Object)>(r5)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r61)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r61)"->"goto [?= $r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>]";
+    "goto [?= $r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>]"->"$r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>";
+    "$r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(-1)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r23)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"nextid\", $r23)"->"$r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>";
+    "$r26 = r25.<io.github.mayhewsw.controllers.DocumentController: java.util.List labels>"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"labels\", $r26)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"labels\", $r26)"->"$r28 = new java.util.HashMap";
+    "$r28 = new java.util.HashMap"->"specialinvoke $r28.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r28.<java.util.HashMap: void <init>()>()"->"r136 = $r28";
+    "r136 = $r28"->"r137 = virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()";
+    "r137 = virtualinvoke r132.<edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation: java.lang.String[] getTokens()>()"->"i12 = lengthof r137";
+    "i12 = lengthof r137"->"i13 = 0";
+    "i13 = 0"->"if i13 >= i12 goto $r29 = new java.util.ArrayList";
+    "if i13 >= i12 goto $r29 = new java.util.ArrayList"->"r138 = r137[i13]";
+    "if i13 >= i12 goto $r29 = new java.util.ArrayList"->"$r29 = new java.util.ArrayList";
+    "r138 = r137[i13]"->"$i2 = virtualinvoke r138.<java.lang.String: int length()>()";
+    "$i2 = virtualinvoke r138.<java.lang.String: int length()>()"->"if $i2 > 1 goto $z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)";
+    "if $i2 > 1 goto $z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)"->"goto [?= i13 = i13 + 1]";
+    "if $i2 > 1 goto $z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)"->"$z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)";
+    "goto [?= i13 = i13 + 1]"->"i13 = i13 + 1";
+    "$z7 = virtualinvoke r136.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r138)"->"if $z7 != 0 goto $r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)";
+    "if $z7 != 0 goto $r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)"->"$r59 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0)";
+    "if $z7 != 0 goto $r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)"->"$r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)";
+    "$r59 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0)"->"virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r59)";
+    "virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r59)"->"$r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)";
+    "$r55 = virtualinvoke r136.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r138)"->"$r56 = (java.lang.Integer) $r55";
+    "$r56 = (java.lang.Integer) $r55"->"$i3 = virtualinvoke $r56.<java.lang.Integer: int intValue()>()";
+    "$i3 = virtualinvoke $r56.<java.lang.Integer: int intValue()>()"->"$i4 = $i3 + 1";
+    "$i4 = $i3 + 1"->"$r57 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4)";
+    "$r57 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4)"->"virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r57)";
+    "virtualinvoke r136.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r138, $r57)"->"i13 = i13 + 1";
+    "i13 = i13 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i13 >= i12 goto $r29 = new java.util.ArrayList";
+    "$r29 = new java.util.ArrayList"->"specialinvoke $r29.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r29.<java.util.ArrayList: void <init>()>()"->"r139 = $r29";
+    "r139 = $r29"->"$r30 = virtualinvoke r136.<java.util.HashMap: java.util.Set entrySet()>()";
+    "$r30 = virtualinvoke r136.<java.util.HashMap: java.util.Set entrySet()>()"->"$r31 = interfaceinvoke $r30.<java.util.Set: java.util.stream.Stream stream()>()";
+    "$r31 = interfaceinvoke $r30.<java.util.Set: java.util.stream.Stream stream()>()"->"$r32 = staticinvoke <java.util.Map$Entry: java.util.Comparator comparingByValue()>()";
+    "$r32 = staticinvoke <java.util.Map$Entry: java.util.Comparator comparingByValue()>()"->"$r33 = interfaceinvoke $r32.<java.util.Comparator: java.util.Comparator reversed()>()";
+    "$r33 = interfaceinvoke $r32.<java.util.Comparator: java.util.Comparator reversed()>()"->"$r34 = interfaceinvoke $r31.<java.util.stream.Stream: java.util.stream.Stream sorted(java.util.Comparator)>($r33)";
+    "$r34 = interfaceinvoke $r31.<java.util.stream.Stream: java.util.stream.Stream sorted(java.util.Comparator)>($r33)"->"$r35 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_4__307: java.util.function.Consumer bootstrap$(java.util.List)>(r139)";
+    "$r35 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_annotation_4__307: java.util.function.Consumer bootstrap$(java.util.List)>(r139)"->"interfaceinvoke $r34.<java.util.stream.Stream: void forEachOrdered(java.util.function.Consumer)>($r35)";
+    "interfaceinvoke $r34.<java.util.stream.Stream: void forEachOrdered(java.util.function.Consumer)>($r35)"->"$i0 = interfaceinvoke r139.<java.util.List: int size()>()";
+    "$i0 = interfaceinvoke r139.<java.util.List: int size()>()"->"$i1 = staticinvoke <java.lang.Math: int min(int,int)>(50, $i0)";
+    "$i1 = staticinvoke <java.lang.Math: int min(int,int)>(50, $i0)"->"$r36 = interfaceinvoke r139.<java.util.List: java.util.List subList(int,int)>(0, $i1)";
+    "$r36 = interfaceinvoke r139.<java.util.List: java.util.List subList(int,int)>(0, $i1)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"docwords\", $r36)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"docwords\", $r36)"->"$r38 = r2.<io.github.mayhewsw.SessionData: java.util.Properties prop>";
+    "$r38 = r2.<io.github.mayhewsw.SessionData: java.util.Properties prop>"->"r140 = virtualinvoke $r38.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"parallelpath\")";
+    "r140 = virtualinvoke $r38.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"parallelpath\")"->"if r140 == null goto return \"document/annotation\"";
+    "if r140 == null goto return \"document/annotation\""->"$r39 = virtualinvoke r5.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"-\")";
+    "if r140 == null goto return \"document/annotation\""->"return \"document/annotation\"";
+    "$r39 = virtualinvoke r5.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"-\")"->"$r40 = $r39[1]";
+    "$r40 = $r39[1]"->"$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\.\")";
+    "$r41 = virtualinvoke $r40.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\.\")"->"r141 = $r41[0]";
+    "r141 = $r41[0]"->"$r42 = new java.lang.StringBuilder";
+    "$r42 = new java.lang.StringBuilder"->"specialinvoke $r42.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r42.<java.lang.StringBuilder: void <init>()>()"->"$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")"->"$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.String toString()>()"->"r142 = staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: java.lang.String slurp(java.lang.String)>($r46)";
+    "r142 = staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: java.lang.String slurp(java.lang.String)>($r46)"->"$r48 = <java.lang.System: java.io.PrintStream out>";
+    "$r48 = <java.lang.System: java.io.PrintStream out>"->"$r47 = new java.lang.StringBuilder";
+    "$r47 = new java.lang.StringBuilder"->"specialinvoke $r47.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r47.<java.lang.StringBuilder: void <init>()>()"->"$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Trying to read: \")";
+    "$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Trying to read: \")"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r140)"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/en-\")"->"$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r141)"->"$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r48.<java.io.PrintStream: void println(java.lang.String)>($r53)";
+    "virtualinvoke $r48.<java.io.PrintStream: void println(java.lang.String)>($r53)"->"interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"engtext\", r142)";
+    "interfaceinvoke r9.<org.springframework.ui.Model: org.springframework.ui.Model addAttribute(java.lang.String,java.lang.Object)>(\"engtext\", r142)"->"return \"document/annotation\"";
+}

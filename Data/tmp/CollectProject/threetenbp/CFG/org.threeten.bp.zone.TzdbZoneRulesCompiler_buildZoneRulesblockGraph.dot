@@ -1,0 +1,450 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler;
+$r1 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>;
+$r2 = interfaceinvoke $r1.<java.util.Map: java.util.Set keySet()>();
+r66 = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+$z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r50 = interfaceinvoke r66.<java.util.Iterator: java.lang.Object next()>();
+r67 = (java.lang.String) $r50;
+$r51 = new java.lang.StringBuilder;
+specialinvoke $r51.<java.lang.StringBuilder: void <init>()>();
+$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Building zone \");
+$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r54);
+$r55 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r67);
+r68 = (java.lang.String) $r55;
+$r56 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>;
+$r57 = interfaceinvoke $r56.<java.util.Map: java.lang.Object get(java.lang.Object)>(r68);
+r69 = (java.util.List) $r57;
+$r58 = new org.threeten.bp.zone.ZoneRulesBuilder;
+specialinvoke $r58.<org.threeten.bp.zone.ZoneRulesBuilder: void <init>()>();
+r70 = $r58;
+r71 = interfaceinvoke r69.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r63 = interfaceinvoke r71.<java.util.Iterator: java.lang.Object next()>();
+r64 = (org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone) $r63;
+$r65 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map rules>;
+r70 = virtualinvoke r64.<org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone: org.threeten.bp.zone.ZoneRulesBuilder addToBuilder(org.threeten.bp.zone.ZoneRulesBuilder,java.util.Map)>(r70, $r65);
+goto [?= $z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 5:
+[preds: 3 ] [succs: 1 ]
+$r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+r72 = virtualinvoke r70.<org.threeten.bp.zone.ZoneRulesBuilder: org.threeten.bp.zone.ZoneRules toRules(java.lang.String,java.util.Map)>(r68, $r59);
+$r60 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r61 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r72);
+interfaceinvoke $r60.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r61);
+goto [?= $z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 6:
+[preds: 1 ] [succs: 7 ]
+$r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r4 = interfaceinvoke $r3.<java.util.Map: java.util.Set keySet()>();
+r73 = interfaceinvoke $r4.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r15 = interfaceinvoke r73.<java.util.Iterator: java.lang.Object next()>();
+r74 = (java.lang.String) $r15;
+$r16 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r74);
+r75 = (java.lang.String) $r16;
+$r17 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r18 = interfaceinvoke $r17.<java.util.Map: java.lang.Object get(java.lang.Object)>(r75);
+r76 = (java.lang.String) $r18;
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Linking alias \");
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r76);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r24);
+$r25 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r26 = interfaceinvoke $r25.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r76);
+r77 = (org.threeten.bp.zone.ZoneRules) $r26;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r29 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r30 = interfaceinvoke $r29.<java.util.Map: java.lang.Object get(java.lang.Object)>(r76);
+r78 = (java.lang.String) $r30;
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Relinking alias \");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r36);
+$r37 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r38 = interfaceinvoke $r37.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r78);
+r77 = (org.threeten.bp.zone.ZoneRules) $r38;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"
+    "Block 10:
+[preds: 9 ] [succs: ]
+$r39 = new java.lang.IllegalArgumentException;
+$r40 = new java.lang.StringBuilder;
+specialinvoke $r40.<java.lang.StringBuilder: void <init>()>();
+$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Alias \'\");
+$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' links to invalid zone \'\");
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' for \'\");
+$r46 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.String version>;
+$r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46);
+$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\");
+$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r39.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r49);
+throw $r39;
+"
+    "Block 11:
+[preds: 8 9 ] [succs: 7 ]
+$r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r27.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r75, r77);
+goto [?= $z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 12:
+[preds: 7 ] [succs: ]
+$r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r5.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"UTC\");
+$r7 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r7.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT\");
+$r9 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r9.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT0\");
+$r11 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r11.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT+0\");
+$r13 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r13.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT-0\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler;
+$r1 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>;
+$r2 = interfaceinvoke $r1.<java.util.Map: java.util.Set keySet()>();
+r66 = interfaceinvoke $r2.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+$z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+";
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+$z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r50 = interfaceinvoke r66.<java.util.Iterator: java.lang.Object next()>();
+r67 = (java.lang.String) $r50;
+$r51 = new java.lang.StringBuilder;
+specialinvoke $r51.<java.lang.StringBuilder: void <init>()>();
+$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Building zone \");
+$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r54);
+$r55 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r67);
+r68 = (java.lang.String) $r55;
+$r56 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>;
+$r57 = interfaceinvoke $r56.<java.util.Map: java.lang.Object get(java.lang.Object)>(r68);
+r69 = (java.util.List) $r57;
+$r58 = new org.threeten.bp.zone.ZoneRulesBuilder;
+specialinvoke $r58.<org.threeten.bp.zone.ZoneRulesBuilder: void <init>()>();
+r70 = $r58;
+r71 = interfaceinvoke r69.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+$z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+"->"Block 6:
+[preds: 1 ] [succs: 7 ]
+$r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r4 = interfaceinvoke $r3.<java.util.Map: java.util.Set keySet()>();
+r73 = interfaceinvoke $r4.<java.util.Set: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r50 = interfaceinvoke r66.<java.util.Iterator: java.lang.Object next()>();
+r67 = (java.lang.String) $r50;
+$r51 = new java.lang.StringBuilder;
+specialinvoke $r51.<java.lang.StringBuilder: void <init>()>();
+$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Building zone \");
+$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r54);
+$r55 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r67);
+r68 = (java.lang.String) $r55;
+$r56 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map zones>;
+$r57 = interfaceinvoke $r56.<java.util.Map: java.lang.Object get(java.lang.Object)>(r68);
+r69 = (java.util.List) $r57;
+$r58 = new org.threeten.bp.zone.ZoneRulesBuilder;
+specialinvoke $r58.<org.threeten.bp.zone.ZoneRulesBuilder: void <init>()>();
+r70 = $r58;
+r71 = interfaceinvoke r69.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+"->"Block 4:
+[preds: 3 ] [succs: 3 ]
+$r63 = interfaceinvoke r71.<java.util.Iterator: java.lang.Object next()>();
+r64 = (org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone) $r63;
+$r65 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map rules>;
+r70 = virtualinvoke r64.<org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone: org.threeten.bp.zone.ZoneRulesBuilder addToBuilder(org.threeten.bp.zone.ZoneRulesBuilder,java.util.Map)>(r70, $r65);
+goto [?= $z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+"->"Block 5:
+[preds: 3 ] [succs: 1 ]
+$r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+r72 = virtualinvoke r70.<org.threeten.bp.zone.ZoneRulesBuilder: org.threeten.bp.zone.ZoneRules toRules(java.lang.String,java.util.Map)>(r68, $r59);
+$r60 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r61 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r72);
+interfaceinvoke $r60.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r61);
+goto [?= $z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r63 = interfaceinvoke r71.<java.util.Iterator: java.lang.Object next()>();
+r64 = (org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone) $r63;
+$r65 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map rules>;
+r70 = virtualinvoke r64.<org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone: org.threeten.bp.zone.ZoneRulesBuilder addToBuilder(org.threeten.bp.zone.ZoneRulesBuilder,java.util.Map)>(r70, $r65);
+goto [?= $z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z2 = interfaceinvoke r71.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto $r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+";
+    "Block 5:
+[preds: 3 ] [succs: 1 ]
+$r59 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map deduplicateMap>;
+r72 = virtualinvoke r70.<org.threeten.bp.zone.ZoneRulesBuilder: org.threeten.bp.zone.ZoneRules toRules(java.lang.String,java.util.Map)>(r68, $r59);
+$r60 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r61 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r72);
+interfaceinvoke $r60.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r68, $r61);
+goto [?= $z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+$z0 = interfaceinvoke r66.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+";
+    "Block 6:
+[preds: 1 ] [succs: 7 ]
+$r3 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r4 = interfaceinvoke $r3.<java.util.Map: java.util.Set keySet()>();
+r73 = interfaceinvoke $r4.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+";
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r15 = interfaceinvoke r73.<java.util.Iterator: java.lang.Object next()>();
+r74 = (java.lang.String) $r15;
+$r16 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r74);
+r75 = (java.lang.String) $r16;
+$r17 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r18 = interfaceinvoke $r17.<java.util.Map: java.lang.Object get(java.lang.Object)>(r75);
+r76 = (java.lang.String) $r18;
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Linking alias \");
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r76);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r24);
+$r25 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r26 = interfaceinvoke $r25.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r76);
+r77 = (org.threeten.bp.zone.ZoneRules) $r26;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+";
+    "Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 12:
+[preds: 7 ] [succs: ]
+$r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r5.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"UTC\");
+$r7 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r7.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT\");
+$r9 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r9.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT0\");
+$r11 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r11.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT+0\");
+$r13 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r13.<java.util.SortedMap: java.lang.Object remove(java.lang.Object)>(\"GMT-0\");
+return;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r15 = interfaceinvoke r73.<java.util.Iterator: java.lang.Object next()>();
+r74 = (java.lang.String) $r15;
+$r16 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r74);
+r75 = (java.lang.String) $r16;
+$r17 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r18 = interfaceinvoke $r17.<java.util.Map: java.lang.Object get(java.lang.Object)>(r75);
+r76 = (java.lang.String) $r18;
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Linking alias \");
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r76);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r24);
+$r25 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r26 = interfaceinvoke $r25.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r76);
+r77 = (org.threeten.bp.zone.ZoneRules) $r26;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r29 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r30 = interfaceinvoke $r29.<java.util.Map: java.lang.Object get(java.lang.Object)>(r76);
+r78 = (java.lang.String) $r30;
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Relinking alias \");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r36);
+$r37 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r38 = interfaceinvoke $r37.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r78);
+r77 = (org.threeten.bp.zone.ZoneRules) $r38;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r15 = interfaceinvoke r73.<java.util.Iterator: java.lang.Object next()>();
+r74 = (java.lang.String) $r15;
+$r16 = virtualinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.Object deduplicate(java.lang.Object)>(r74);
+r75 = (java.lang.String) $r16;
+$r17 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r18 = interfaceinvoke $r17.<java.util.Map: java.lang.Object get(java.lang.Object)>(r75);
+r76 = (java.lang.String) $r18;
+$r19 = new java.lang.StringBuilder;
+specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Linking alias \");
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r76);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r24);
+$r25 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r26 = interfaceinvoke $r25.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r76);
+r77 = (org.threeten.bp.zone.ZoneRules) $r26;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 11:
+[preds: 8 9 ] [succs: 7 ]
+$r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r27.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r75, r77);
+goto [?= $z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r29 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r30 = interfaceinvoke $r29.<java.util.Map: java.lang.Object get(java.lang.Object)>(r76);
+r78 = (java.lang.String) $r30;
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Relinking alias \");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r36);
+$r37 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r38 = interfaceinvoke $r37.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r78);
+r77 = (org.threeten.bp.zone.ZoneRules) $r38;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 10:
+[preds: 9 ] [succs: ]
+$r39 = new java.lang.IllegalArgumentException;
+$r40 = new java.lang.StringBuilder;
+specialinvoke $r40.<java.lang.StringBuilder: void <init>()>();
+$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Alias \'\");
+$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' links to invalid zone \'\");
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' for \'\");
+$r46 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.lang.String version>;
+$r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46);
+$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\");
+$r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r39.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r49);
+throw $r39;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r29 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.Map links>;
+$r30 = interfaceinvoke $r29.<java.util.Map: java.lang.Object get(java.lang.Object)>(r76);
+r78 = (java.lang.String) $r30;
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Relinking alias \");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r75);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" to \");
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r36);
+$r37 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+$r38 = interfaceinvoke $r37.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(r78);
+r77 = (org.threeten.bp.zone.ZoneRules) $r38;
+if r77 != null goto $r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+"->"Block 11:
+[preds: 8 9 ] [succs: 7 ]
+$r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r27.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r75, r77);
+goto [?= $z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 11:
+[preds: 8 9 ] [succs: 7 ]
+$r27 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+interfaceinvoke $r27.<java.util.SortedMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r75, r77);
+goto [?= $z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 7:
+[preds: 6 11 ] [succs: 8 12 ]
+$z1 = interfaceinvoke r73.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto $r5 = r0.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap builtZones>;
+";
+}

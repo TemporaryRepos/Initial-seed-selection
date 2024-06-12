@@ -1,0 +1,258 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r18 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/w2v/Quantizer;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[7];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Entity description files\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r7.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"direct\", 100, \"direct\", \"use a direct quantizer and not binary search\");
+$r3[1] = $r7;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"hashheader\", 104, \"hashheader\", \"if the embeddings file has a header present (will skip it)\");
+$r3[2] = $r8;
+$r9 = new com.martiansoftware.jsap.FlaggedOption;
+$r10 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r9.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"quantizer\", $r10, \"10\", 0, 113, \"quantizer\", \"Quantizer value\");
+$r3[3] = $r9;
+$r11 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r11.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"error\", $r12, \"0.35\", 0, 101, \"error\", \"Error rate\");
+$r3[4] = $r11;
+$r13 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r13.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"w2v\", 119, \"w2v\", \"Serialize the quantized vectors using the original w2v format. If you want to compress the vectors later, you must -not- use this option\");
+$r3[5] = $r13;
+$r14 = new com.martiansoftware.jsap.FlaggedOption;
+$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\");
+$r3[6] = $r14;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Learns entity embeddings\", $r3);
+r17 = $r0;
+r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18);
+$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+specialinvoke $r20.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void <init>()>();
+r21 = $r20;
+$z1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"direct\");
+if $z1 == 0 goto $r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = <java.lang.System: java.io.PrintStream out>;
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using as a quantizer \");
+$r28 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28);
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (won\'t attempt to search for a better one) \");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r31);
+$r32 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r33 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r34 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r34);
+$z4 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z5 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantizeSinglePass(java.lang.String,java.lang.String,int,boolean,boolean)>($r32, $r33, $i0, $z4, $z5);
+goto [?= return];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r23 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"error\");
+$d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r24);
+$z2 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z3 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantize(java.lang.String,java.lang.String,double,boolean,boolean)>($r22, $r23, $d0, $z2, $z3);
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r18 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/w2v/Quantizer;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[7];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Entity description files\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r7.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"direct\", 100, \"direct\", \"use a direct quantizer and not binary search\");
+$r3[1] = $r7;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"hashheader\", 104, \"hashheader\", \"if the embeddings file has a header present (will skip it)\");
+$r3[2] = $r8;
+$r9 = new com.martiansoftware.jsap.FlaggedOption;
+$r10 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r9.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"quantizer\", $r10, \"10\", 0, 113, \"quantizer\", \"Quantizer value\");
+$r3[3] = $r9;
+$r11 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r11.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"error\", $r12, \"0.35\", 0, 101, \"error\", \"Error rate\");
+$r3[4] = $r11;
+$r13 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r13.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"w2v\", 119, \"w2v\", \"Serialize the quantized vectors using the original w2v format. If you want to compress the vectors later, you must -not- use this option\");
+$r3[5] = $r13;
+$r14 = new com.martiansoftware.jsap.FlaggedOption;
+$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\");
+$r3[6] = $r14;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Learns entity embeddings\", $r3);
+r17 = $r0;
+r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18);
+$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r18 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/w2v/Quantizer;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[7];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Entity description files\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r7.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"direct\", 100, \"direct\", \"use a direct quantizer and not binary search\");
+$r3[1] = $r7;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"hashheader\", 104, \"hashheader\", \"if the embeddings file has a header present (will skip it)\");
+$r3[2] = $r8;
+$r9 = new com.martiansoftware.jsap.FlaggedOption;
+$r10 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r9.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"quantizer\", $r10, \"10\", 0, 113, \"quantizer\", \"Quantizer value\");
+$r3[3] = $r9;
+$r11 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r11.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"error\", $r12, \"0.35\", 0, 101, \"error\", \"Error rate\");
+$r3[4] = $r11;
+$r13 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r13.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"w2v\", 119, \"w2v\", \"Serialize the quantized vectors using the original w2v format. If you want to compress the vectors later, you must -not- use this option\");
+$r3[5] = $r13;
+$r14 = new com.martiansoftware.jsap.FlaggedOption;
+$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\");
+$r3[6] = $r14;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Learns entity embeddings\", $r3);
+r17 = $r0;
+r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18);
+$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+specialinvoke $r20.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void <init>()>();
+r21 = $r20;
+$z1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"direct\");
+if $z1 == 0 goto $r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+specialinvoke $r20.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void <init>()>();
+r21 = $r20;
+$z1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"direct\");
+if $z1 == 0 goto $r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = <java.lang.System: java.io.PrintStream out>;
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using as a quantizer \");
+$r28 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28);
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (won\'t attempt to search for a better one) \");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r31);
+$r32 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r33 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r34 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r34);
+$z4 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z5 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantizeSinglePass(java.lang.String,java.lang.String,int,boolean,boolean)>($r32, $r33, $i0, $z4, $z5);
+goto [?= return];
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r20 = new com.yahoo.semsearch.fastlinking.w2v.Quantizer;
+specialinvoke $r20.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void <init>()>();
+r21 = $r20;
+$z1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"direct\");
+if $z1 == 0 goto $r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 4:
+[preds: 2 ] [succs: 5 ]
+$r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r23 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"error\");
+$d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r24);
+$z2 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z3 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantize(java.lang.String,java.lang.String,double,boolean,boolean)>($r22, $r23, $d0, $z2, $z3);
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = <java.lang.System: java.io.PrintStream out>;
+$r25 = new java.lang.StringBuilder;
+specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+$r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using as a quantizer \");
+$r28 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28);
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" (won\'t attempt to search for a better one) \");
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r31);
+$r32 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r33 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r34 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"quantizer\");
+$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r34);
+$z4 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z5 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantizeSinglePass(java.lang.String,java.lang.String,int,boolean,boolean)>($r32, $r33, $i0, $z4, $z5);
+goto [?= return];
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+return;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r22 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+$r23 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"error\");
+$d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r24);
+$z2 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"hashheader\");
+$z3 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"w2v\");
+virtualinvoke r21.<com.yahoo.semsearch.fastlinking.w2v.Quantizer: void quantize(java.lang.String,java.lang.String,double,boolean,boolean)>($r22, $r23, $d0, $z2, $z3);
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+return;
+";
+}

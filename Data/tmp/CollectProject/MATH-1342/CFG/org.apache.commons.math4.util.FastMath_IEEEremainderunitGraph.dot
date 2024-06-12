@@ -1,0 +1,64 @@
+digraph "unitGraph" {
+    "d0 := @parameter0: double"
+    "d1 := @parameter1: double"
+    "$i0 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d0)"
+    "if $i0 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"
+    "$i1 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d1)"
+    "if $i1 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"
+    "$b2 = d1 cmpl 0.0"
+    "if $b2 != 0 goto $d2 = d0 / d1"
+    "$z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"
+    "if $z2 == 0 goto return #NaN"
+    "$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)"
+    "if $z0 != 0 goto return #NaN"
+    "return d0"
+    "return #NaN"
+    "$d2 = d0 / d1"
+    "d3 = staticinvoke <org.apache.commons.math4.util.FastMath: double rint(double)>($d2)"
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"
+    "if $z1 == 0 goto $d4 = d1 * d3"
+    "$d6 = 0.0"
+    "goto [?= d5 = $d6]"
+    "$d4 = d1 * d3"
+    "$d6 = d0 - $d4"
+    "d5 = $d6"
+    "$b3 = d5 cmpl 0.0"
+    "if $b3 != 0 goto $d7 = d5"
+    "$d7 = staticinvoke <org.apache.commons.math4.util.FastMath: double copySign(double,double)>(d5, d0)"
+    "goto [?= return $d7]"
+    "$d7 = d5"
+    "return $d7"
+    "d0 := @parameter0: double"->"d1 := @parameter1: double";
+    "d1 := @parameter1: double"->"$i0 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d0)";
+    "$i0 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d0)"->"if $i0 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "if $i0 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"$i1 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d1)";
+    "if $i0 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"$z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "$i1 = staticinvoke <org.apache.commons.math4.util.FastMath: int getExponent(double)>(d1)"->"if $i1 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "if $i1 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"$b2 = d1 cmpl 0.0";
+    "if $i1 == 1024 goto $z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"$z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "$b2 = d1 cmpl 0.0"->"if $b2 != 0 goto $d2 = d0 / d1";
+    "if $b2 != 0 goto $d2 = d0 / d1"->"$z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "if $b2 != 0 goto $d2 = d0 / d1"->"$d2 = d0 / d1";
+    "$z2 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"if $z2 == 0 goto return #NaN";
+    "if $z2 == 0 goto return #NaN"->"$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)";
+    "if $z2 == 0 goto return #NaN"->"return #NaN";
+    "$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)"->"if $z0 != 0 goto return #NaN";
+    "if $z0 != 0 goto return #NaN"->"return d0";
+    "if $z0 != 0 goto return #NaN"->"return #NaN";
+    "$d2 = d0 / d1"->"d3 = staticinvoke <org.apache.commons.math4.util.FastMath: double rint(double)>($d2)";
+    "d3 = staticinvoke <org.apache.commons.math4.util.FastMath: double rint(double)>($d2)"->"$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)";
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"->"if $z1 == 0 goto $d4 = d1 * d3";
+    "if $z1 == 0 goto $d4 = d1 * d3"->"$d6 = 0.0";
+    "if $z1 == 0 goto $d4 = d1 * d3"->"$d4 = d1 * d3";
+    "$d6 = 0.0"->"goto [?= d5 = $d6]";
+    "goto [?= d5 = $d6]"->"d5 = $d6";
+    "$d4 = d1 * d3"->"$d6 = d0 - $d4";
+    "$d6 = d0 - $d4"->"d5 = $d6";
+    "d5 = $d6"->"$b3 = d5 cmpl 0.0";
+    "$b3 = d5 cmpl 0.0"->"if $b3 != 0 goto $d7 = d5";
+    "if $b3 != 0 goto $d7 = d5"->"$d7 = staticinvoke <org.apache.commons.math4.util.FastMath: double copySign(double,double)>(d5, d0)";
+    "if $b3 != 0 goto $d7 = d5"->"$d7 = d5";
+    "$d7 = staticinvoke <org.apache.commons.math4.util.FastMath: double copySign(double,double)>(d5, d0)"->"goto [?= return $d7]";
+    "goto [?= return $d7]"->"return $d7";
+    "$d7 = d5"->"return $d7";
+}

@@ -1,0 +1,320 @@
+digraph "unitGraph" {
+    "r8 := @parameter0: java.util.List"
+    "r25 := @parameter1: java.util.List"
+    "r10 := @parameter2: java.io.File"
+    "z0 := @parameter3: boolean"
+    "z1 := @parameter4: boolean"
+    "$r0 = new java.util.HashMap"
+    "specialinvoke $r0.<java.util.HashMap: void <init>()>()"
+    "r1 = $r0"
+    "$r2 = new java.util.TreeMap"
+    "specialinvoke $r2.<java.util.TreeMap: void <init>()>()"
+    "r3 = $r2"
+    "$r4 = new java.util.TreeSet"
+    "specialinvoke $r4.<java.util.TreeSet: void <init>()>()"
+    "r5 = $r4"
+    "$r6 = new java.util.HashSet"
+    "specialinvoke $r6.<java.util.HashSet: void <init>()>()"
+    "r7 = $r6"
+    "r61 = null"
+    "r62 = interfaceinvoke r8.<java.util.List: java.util.Iterator iterator()>()"
+    "$z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()"
+    "if $z9 == 0 goto (branch)"
+    "$r21 = interfaceinvoke r62.<java.util.Iterator: java.lang.Object next()>()"
+    "r22 = (java.io.File) $r21"
+    "$r23 = new java.util.ArrayList"
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"
+    "r24 = $r23"
+    "r63 = interfaceinvoke r25.<java.util.List: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto $z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()"
+    "$r52 = interfaceinvoke r63.<java.util.Iterator: java.lang.Object next()>()"
+    "r64 = (java.lang.String) $r52"
+    "$r53 = new java.io.File"
+    "specialinvoke $r53.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, r64)"
+    "r65 = $r53"
+    "$z7 = virtualinvoke r65.<java.io.File: boolean exists()>()"
+    "if $z7 == 0 goto (branch)"
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>(r65)"
+    "goto [?= $z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()]"
+    "$z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()"
+    "if $z3 == 0 goto $r26 = new java.io.File"
+    "goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]"
+    "$r26 = new java.io.File"
+    "specialinvoke $r26.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, \"leapseconds\")"
+    "r66 = $r26"
+    "$z4 = virtualinvoke r66.<java.io.File: boolean exists()>()"
+    "if $z4 != 0 goto r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"
+    "$r46 = <java.lang.System: java.io.PrintStream out>"
+    "$r45 = new java.lang.StringBuilder"
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"
+    "$r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Version \")"
+    "$r48 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"
+    "$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r48)"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not include leap seconds information.\")"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>($r51)"
+    "r66 = null"
+    "r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"
+    "$r27 = new org.threeten.bp.zone.TzdbZoneRulesCompiler"
+    "specialinvoke $r27.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void <init>(java.lang.String,java.util.List,java.io.File,boolean)>(r67, r24, r66, z1)"
+    "r68 = $r27"
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void setDeduplicateMap(java.util.Map)>(r1)"
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void compile()>()"
+    "r69 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getZones()>()"
+    "r28 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getLeapSeconds()>()"
+    "if z0 != 0 goto interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"
+    "$r33 = new java.io.File"
+    "$r34 = new java.lang.StringBuilder"
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"threeten-TZDB-\")"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".jar\")"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r33.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, $r38)"
+    "r39 = $r33"
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"
+    "$r41 = <java.lang.System: java.io.PrintStream out>"
+    "$r40 = new java.lang.StringBuilder"
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting file: \")"
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r44)"
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"
+    "$r70 = interfaceinvoke r69.<java.util.SortedMap: java.util.Set keySet()>()"
+    "interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>($r70)"
+    "$r71 = interfaceinvoke r69.<java.util.SortedMap: java.util.Collection values()>()"
+    "interfaceinvoke r7.<java.util.Set: boolean addAll(java.util.Collection)>($r71)"
+    "$r72 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"
+    "if $r72 == null goto (branch)"
+    "if r61 == null goto r61 = r28"
+    "$r30 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"
+    "$r31 = interfaceinvoke r61.<java.util.SortedMap: java.lang.Object lastKey()>()"
+    "$r32 = (org.threeten.bp.chrono.ChronoLocalDate) $r31"
+    "$i0 = virtualinvoke $r30.<org.threeten.bp.LocalDate: int compareTo(org.threeten.bp.chrono.ChronoLocalDate)>($r32)"
+    "if $i0 <= 0 goto (branch)"
+    "r61 = r28"
+    "goto [?= (branch)]"
+    "$r54 := @caughtexception"
+    "r73 = $r54"
+    "$r56 = <java.lang.System: java.io.PrintStream out>"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed: \")"
+    "$r58 = virtualinvoke r73.<java.lang.Exception: java.lang.String toString()>()"
+    "$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)"
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r60)"
+    "virtualinvoke r73.<java.lang.Exception: void printStackTrace()>()"
+    "staticinvoke <java.lang.System: void exit(int)>(1)"
+    "if z0 == 0 goto $r9 = new java.io.File"
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)"
+    "$r17 = <java.lang.System: java.io.PrintStream out>"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined files: \")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)"
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)"
+    "goto [?= return]"
+    "$r9 = new java.io.File"
+    "specialinvoke $r9.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, \"threeten-TZDB-all.jar\")"
+    "r74 = $r9"
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)"
+    "$r12 = <java.lang.System: java.io.PrintStream out>"
+    "$r11 = new java.lang.StringBuilder"
+    "specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()"
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined file: \")"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r15)"
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)"
+    "return"
+    "r8 := @parameter0: java.util.List"->"r25 := @parameter1: java.util.List";
+    "r25 := @parameter1: java.util.List"->"r10 := @parameter2: java.io.File";
+    "r10 := @parameter2: java.io.File"->"z0 := @parameter3: boolean";
+    "z0 := @parameter3: boolean"->"z1 := @parameter4: boolean";
+    "z1 := @parameter4: boolean"->"$r0 = new java.util.HashMap";
+    "$r0 = new java.util.HashMap"->"specialinvoke $r0.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r0.<java.util.HashMap: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"$r2 = new java.util.TreeMap";
+    "$r2 = new java.util.TreeMap"->"specialinvoke $r2.<java.util.TreeMap: void <init>()>()";
+    "specialinvoke $r2.<java.util.TreeMap: void <init>()>()"->"r3 = $r2";
+    "r3 = $r2"->"$r4 = new java.util.TreeSet";
+    "$r4 = new java.util.TreeSet"->"specialinvoke $r4.<java.util.TreeSet: void <init>()>()";
+    "specialinvoke $r4.<java.util.TreeSet: void <init>()>()"->"r5 = $r4";
+    "r5 = $r4"->"$r6 = new java.util.HashSet";
+    "$r6 = new java.util.HashSet"->"specialinvoke $r6.<java.util.HashSet: void <init>()>()";
+    "specialinvoke $r6.<java.util.HashSet: void <init>()>()"->"r7 = $r6";
+    "r7 = $r6"->"r61 = null";
+    "r61 = null"->"r62 = interfaceinvoke r8.<java.util.List: java.util.Iterator iterator()>()";
+    "r62 = interfaceinvoke r8.<java.util.List: java.util.Iterator iterator()>()"->"$z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()";
+    "$z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()"->"if $z9 == 0 goto (branch)";
+    "if $z9 == 0 goto (branch)"->"$r21 = interfaceinvoke r62.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z9 == 0 goto (branch)"->"if z0 == 0 goto $r9 = new java.io.File";
+    "$r21 = interfaceinvoke r62.<java.util.Iterator: java.lang.Object next()>()"->"r22 = (java.io.File) $r21";
+    "r22 = (java.io.File) $r21"->"$r23 = new java.util.ArrayList";
+    "$r23 = new java.util.ArrayList"->"specialinvoke $r23.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"->"r24 = $r23";
+    "r24 = $r23"->"r63 = interfaceinvoke r25.<java.util.List: java.util.Iterator iterator()>()";
+    "r63 = interfaceinvoke r25.<java.util.List: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto $z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()";
+    "if $z2 == 0 goto $z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()"->"$r52 = interfaceinvoke r63.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto $z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()"->"$z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()";
+    "$r52 = interfaceinvoke r63.<java.util.Iterator: java.lang.Object next()>()"->"r64 = (java.lang.String) $r52";
+    "r64 = (java.lang.String) $r52"->"$r53 = new java.io.File";
+    "$r53 = new java.io.File"->"specialinvoke $r53.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, r64)";
+    "specialinvoke $r53.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, r64)"->"r65 = $r53";
+    "r65 = $r53"->"$z7 = virtualinvoke r65.<java.io.File: boolean exists()>()";
+    "$z7 = virtualinvoke r65.<java.io.File: boolean exists()>()"->"if $z7 == 0 goto (branch)";
+    "if $z7 == 0 goto (branch)"->"interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>(r65)";
+    "if $z7 == 0 goto (branch)"->"goto [?= $z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()]";
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>(r65)"->"goto [?= $z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r63.<java.util.Iterator: boolean hasNext()>()";
+    "$z3 = interfaceinvoke r24.<java.util.List: boolean isEmpty()>()"->"if $z3 == 0 goto $r26 = new java.io.File";
+    "if $z3 == 0 goto $r26 = new java.io.File"->"goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]";
+    "if $z3 == 0 goto $r26 = new java.io.File"->"$r26 = new java.io.File";
+    "goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]"->"$z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()";
+    "$r26 = new java.io.File"->"specialinvoke $r26.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, \"leapseconds\")";
+    "specialinvoke $r26.<java.io.File: void <init>(java.io.File,java.lang.String)>(r22, \"leapseconds\")"->"r66 = $r26";
+    "r66 = $r26"->"$z4 = virtualinvoke r66.<java.io.File: boolean exists()>()";
+    "$z4 = virtualinvoke r66.<java.io.File: boolean exists()>()"->"if $z4 != 0 goto r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()";
+    "if $z4 != 0 goto r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"->"$r46 = <java.lang.System: java.io.PrintStream out>";
+    "if $z4 != 0 goto r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"->"r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()";
+    "$r46 = <java.lang.System: java.io.PrintStream out>"->"$r45 = new java.lang.StringBuilder";
+    "$r45 = new java.lang.StringBuilder"->"specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Version \")";
+    "$r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Version \")"->"$r48 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()";
+    "$r48 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"->"$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r48)";
+    "$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r48)"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not include leap seconds information.\")";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" does not include leap seconds information.\")"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>($r51)";
+    "virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>($r51)"->"r66 = null";
+    "r66 = null"->"r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()";
+    "r67 = virtualinvoke r22.<java.io.File: java.lang.String getName()>()"->"$r27 = new org.threeten.bp.zone.TzdbZoneRulesCompiler";
+    "$r27 = new org.threeten.bp.zone.TzdbZoneRulesCompiler"->"specialinvoke $r27.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void <init>(java.lang.String,java.util.List,java.io.File,boolean)>(r67, r24, r66, z1)";
+    "specialinvoke $r27.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void <init>(java.lang.String,java.util.List,java.io.File,boolean)>(r67, r24, r66, z1)"->"r68 = $r27";
+    "r68 = $r27"->"virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void setDeduplicateMap(java.util.Map)>(r1)";
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void setDeduplicateMap(java.util.Map)>(r1)"->"virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void compile()>()";
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void setDeduplicateMap(java.util.Map)>(r1)"->"$r54 := @caughtexception";
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void compile()>()"->"r69 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getZones()>()";
+    "virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void compile()>()"->"$r54 := @caughtexception";
+    "r69 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getZones()>()"->"r28 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getLeapSeconds()>()";
+    "r69 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getZones()>()"->"$r54 := @caughtexception";
+    "r28 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getLeapSeconds()>()"->"if z0 != 0 goto interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)";
+    "r28 = virtualinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.util.SortedMap getLeapSeconds()>()"->"$r54 := @caughtexception";
+    "if z0 != 0 goto interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"->"$r33 = new java.io.File";
+    "if z0 != 0 goto interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)";
+    "if z0 != 0 goto interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"->"$r54 := @caughtexception";
+    "$r33 = new java.io.File"->"$r34 = new java.lang.StringBuilder";
+    "$r33 = new java.io.File"->"$r54 := @caughtexception";
+    "$r34 = new java.lang.StringBuilder"->"specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()";
+    "$r34 = new java.lang.StringBuilder"->"$r54 := @caughtexception";
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"threeten-TZDB-\")";
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"->"$r54 := @caughtexception";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"threeten-TZDB-\")"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"threeten-TZDB-\")"->"$r54 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".jar\")";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r67)"->"$r54 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".jar\")"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".jar\")"->"$r54 := @caughtexception";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r33.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, $r38)";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r54 := @caughtexception";
+    "specialinvoke $r33.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, $r38)"->"r39 = $r33";
+    "specialinvoke $r33.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, $r38)"->"$r54 := @caughtexception";
+    "r39 = $r33"->"if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)";
+    "r39 = $r33"->"$r54 := @caughtexception";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"->"$r41 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"->"$r54 := @caughtexception";
+    "$r41 = <java.lang.System: java.io.PrintStream out>"->"$r40 = new java.lang.StringBuilder";
+    "$r41 = <java.lang.System: java.io.PrintStream out>"->"$r54 := @caughtexception";
+    "$r40 = new java.lang.StringBuilder"->"specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()";
+    "$r40 = new java.lang.StringBuilder"->"$r54 := @caughtexception";
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"->"$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting file: \")";
+    "specialinvoke $r40.<java.lang.StringBuilder: void <init>()>()"->"$r54 := @caughtexception";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting file: \")"->"$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)";
+    "$r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting file: \")"->"$r54 := @caughtexception";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"->"$r54 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r44)";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r54 := @caughtexception";
+    "virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r44)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)";
+    "virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>($r44)"->"$r54 := @caughtexception";
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"->"interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)";
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)>(r39, r67, r69, r28)"->"$r54 := @caughtexception";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"->"$r70 = interfaceinvoke r69.<java.util.SortedMap: java.util.Set keySet()>()";
+    "interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r67, r69)"->"$r54 := @caughtexception";
+    "$r70 = interfaceinvoke r69.<java.util.SortedMap: java.util.Set keySet()>()"->"interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>($r70)";
+    "$r70 = interfaceinvoke r69.<java.util.SortedMap: java.util.Set keySet()>()"->"$r54 := @caughtexception";
+    "interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>($r70)"->"$r71 = interfaceinvoke r69.<java.util.SortedMap: java.util.Collection values()>()";
+    "interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>($r70)"->"$r54 := @caughtexception";
+    "$r71 = interfaceinvoke r69.<java.util.SortedMap: java.util.Collection values()>()"->"interfaceinvoke r7.<java.util.Set: boolean addAll(java.util.Collection)>($r71)";
+    "$r71 = interfaceinvoke r69.<java.util.SortedMap: java.util.Collection values()>()"->"$r54 := @caughtexception";
+    "interfaceinvoke r7.<java.util.Set: boolean addAll(java.util.Collection)>($r71)"->"$r72 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()";
+    "interfaceinvoke r7.<java.util.Set: boolean addAll(java.util.Collection)>($r71)"->"$r54 := @caughtexception";
+    "$r72 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"->"if $r72 == null goto (branch)";
+    "$r72 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"->"$r54 := @caughtexception";
+    "if $r72 == null goto (branch)"->"if r61 == null goto r61 = r28";
+    "if $r72 == null goto (branch)"->"goto [?= (branch)]";
+    "if $r72 == null goto (branch)"->"$r54 := @caughtexception";
+    "if r61 == null goto r61 = r28"->"$r30 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()";
+    "if r61 == null goto r61 = r28"->"r61 = r28";
+    "if r61 == null goto r61 = r28"->"$r54 := @caughtexception";
+    "$r30 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"->"$r31 = interfaceinvoke r61.<java.util.SortedMap: java.lang.Object lastKey()>()";
+    "$r30 = specialinvoke r68.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.LocalDate getMostRecentLeapSecond()>()"->"$r54 := @caughtexception";
+    "$r31 = interfaceinvoke r61.<java.util.SortedMap: java.lang.Object lastKey()>()"->"$r32 = (org.threeten.bp.chrono.ChronoLocalDate) $r31";
+    "$r31 = interfaceinvoke r61.<java.util.SortedMap: java.lang.Object lastKey()>()"->"$r54 := @caughtexception";
+    "$r32 = (org.threeten.bp.chrono.ChronoLocalDate) $r31"->"$i0 = virtualinvoke $r30.<org.threeten.bp.LocalDate: int compareTo(org.threeten.bp.chrono.ChronoLocalDate)>($r32)";
+    "$r32 = (org.threeten.bp.chrono.ChronoLocalDate) $r31"->"$r54 := @caughtexception";
+    "$i0 = virtualinvoke $r30.<org.threeten.bp.LocalDate: int compareTo(org.threeten.bp.chrono.ChronoLocalDate)>($r32)"->"if $i0 <= 0 goto (branch)";
+    "$i0 = virtualinvoke $r30.<org.threeten.bp.LocalDate: int compareTo(org.threeten.bp.chrono.ChronoLocalDate)>($r32)"->"$r54 := @caughtexception";
+    "if $i0 <= 0 goto (branch)"->"r61 = r28";
+    "if $i0 <= 0 goto (branch)"->"goto [?= (branch)]";
+    "if $i0 <= 0 goto (branch)"->"$r54 := @caughtexception";
+    "r61 = r28"->"goto [?= (branch)]";
+    "r61 = r28"->"$r54 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]";
+    "$r54 := @caughtexception"->"r73 = $r54";
+    "r73 = $r54"->"$r56 = <java.lang.System: java.io.PrintStream out>";
+    "$r56 = <java.lang.System: java.io.PrintStream out>"->"$r55 = new java.lang.StringBuilder";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed: \")";
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Failed: \")"->"$r58 = virtualinvoke r73.<java.lang.Exception: java.lang.String toString()>()";
+    "$r58 = virtualinvoke r73.<java.lang.Exception: java.lang.String toString()>()"->"$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)";
+    "$r59 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r58)"->"$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r60)";
+    "virtualinvoke $r56.<java.io.PrintStream: void println(java.lang.String)>($r60)"->"virtualinvoke r73.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r73.<java.lang.Exception: void printStackTrace()>()"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()]"->"$z9 = interfaceinvoke r62.<java.util.Iterator: boolean hasNext()>()";
+    "if z0 == 0 goto $r9 = new java.io.File"->"if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)";
+    "if z0 == 0 goto $r9 = new java.io.File"->"$r9 = new java.io.File";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)"->"$r17 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)";
+    "$r17 = <java.lang.System: java.io.PrintStream out>"->"$r16 = new java.lang.StringBuilder";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined files: \")";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined files: \")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)";
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)";
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r10, r3, r5, r7, r61)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r9 = new java.io.File"->"specialinvoke $r9.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, \"threeten-TZDB-all.jar\")";
+    "specialinvoke $r9.<java.io.File: void <init>(java.io.File,java.lang.String)>(r10, \"threeten-TZDB-all.jar\")"->"r74 = $r9";
+    "r74 = $r9"->"if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)"->"$r12 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)";
+    "$r12 = <java.lang.System: java.io.PrintStream out>"->"$r11 = new java.lang.StringBuilder";
+    "$r11 = new java.lang.StringBuilder"->"specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r11.<java.lang.StringBuilder: void <init>()>()"->"$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined file: \")";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Outputting combined file: \")"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r74)"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r15)";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r15)"->"staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)";
+    "staticinvoke <org.threeten.bp.zone.TzdbZoneRulesCompiler: void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)>(r74, r3, r5, r7, r61)"->"return";
+}

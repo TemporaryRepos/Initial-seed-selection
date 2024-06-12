@@ -1,0 +1,59 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r1 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto $f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Float;
+$f2 = f1 + 1.0F;
+specialinvoke $r0.<java.lang.Float: void <init>(float)>($f2);
+r1 = $r0;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: ]
+$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+return $f0;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r1 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto $f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+"->"Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Float;
+$f2 = f1 + 1.0F;
+specialinvoke $r0.<java.lang.Float: void <init>(float)>($f2);
+r1 = $r0;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+f1 := @parameter0: float;
+i0 := @parameter1: int;
+r1 = <compiler.eliminateAutobox.TestFloatBoxing: java.lang.Float ibc>;
+$i1 = i0 & 1;
+if $i1 != 0 goto $f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+return $f0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 ]
+$r0 = new java.lang.Float;
+$f2 = f1 + 1.0F;
+specialinvoke $r0.<java.lang.Float: void <init>(float)>($f2);
+r1 = $r0;
+"->"Block 2:
+[preds: 0 1 ] [succs: ]
+$f0 = virtualinvoke r1.<java.lang.Float: float floatValue()>();
+return $f0;
+";
+}

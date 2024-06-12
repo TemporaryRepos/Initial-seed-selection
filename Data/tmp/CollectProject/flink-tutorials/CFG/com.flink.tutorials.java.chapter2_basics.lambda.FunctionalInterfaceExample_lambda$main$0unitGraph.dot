@@ -1,0 +1,15 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.Integer"
+    "r1 := @parameter1: java.lang.Integer"
+    "$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"
+    "$i1 = virtualinvoke r1.<java.lang.Integer: int intValue()>()"
+    "$i2 = $i0 + $i1"
+    "$r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2)"
+    "return $r2"
+    "r0 := @parameter0: java.lang.Integer"->"r1 := @parameter1: java.lang.Integer";
+    "r1 := @parameter1: java.lang.Integer"->"$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>()";
+    "$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>()"->"$i1 = virtualinvoke r1.<java.lang.Integer: int intValue()>()";
+    "$i1 = virtualinvoke r1.<java.lang.Integer: int intValue()>()"->"$i2 = $i0 + $i1";
+    "$i2 = $i0 + $i1"->"$r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2)";
+    "$r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2)"->"return $r2";
+}

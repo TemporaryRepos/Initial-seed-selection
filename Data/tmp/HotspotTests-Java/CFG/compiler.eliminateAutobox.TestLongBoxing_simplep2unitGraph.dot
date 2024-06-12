@@ -1,0 +1,17 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "r1 := @parameter1: java.lang.Long"
+    "$l1 = l0 + 1L"
+    "r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"
+    "$l2 = virtualinvoke r1.<java.lang.Long: long longValue()>()"
+    "$l3 = virtualinvoke r0.<java.lang.Long: long longValue()>()"
+    "$l4 = $l2 + $l3"
+    "return $l4"
+    "l0 := @parameter0: long"->"r1 := @parameter1: java.lang.Long";
+    "r1 := @parameter1: java.lang.Long"->"$l1 = l0 + 1L";
+    "$l1 = l0 + 1L"->"r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)";
+    "r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1)"->"$l2 = virtualinvoke r1.<java.lang.Long: long longValue()>()";
+    "$l2 = virtualinvoke r1.<java.lang.Long: long longValue()>()"->"$l3 = virtualinvoke r0.<java.lang.Long: long longValue()>()";
+    "$l3 = virtualinvoke r0.<java.lang.Long: long longValue()>()"->"$l4 = $l2 + $l3";
+    "$l4 = $l2 + $l3"->"return $l4";
+}

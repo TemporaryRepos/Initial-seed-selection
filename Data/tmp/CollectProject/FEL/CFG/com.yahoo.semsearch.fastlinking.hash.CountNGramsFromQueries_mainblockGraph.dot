@@ -1,0 +1,867 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r14 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.FlaggedOption;
+$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"hash\", $r9, $r8, 0, 104, \"hash\", \"Hash file\");
+$r3[1] = $r7;
+$r10 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r11 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r12, $r11, 1, 111, \"output\", \"Compressed version\");
+$r3[2] = $r10;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3);
+r13 = $r0;
+r15 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r14);
+$z0 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r16 = new it.unimi.dsi.logging.ProgressLogger;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r16 = new it.unimi.dsi.logging.ProgressLogger;
+$r17 = <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: org.slf4j.Logger LOGGER>;
+specialinvoke $r16.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r17);
+r18 = $r16;
+$r19 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+if $r19 == null goto $r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r94 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+$r95 = staticinvoke <it.unimi.dsi.fastutil.io.BinIO: java.lang.Object loadObject(java.lang.CharSequence)>($r94);
+r97 = (com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash) $r95;
+$r96 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats>;
+$l19 = $r96.<com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: long phrases>;
+i20 = (int) $l19;
+r98 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: it.unimi.dsi.fastutil.objects.Object2LongFunction hash>;
+goto [?= $r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r99 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, 0, 0);
+$r21 = new com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1;
+specialinvoke $r21.<com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1: void <init>(java.lang.Iterable)>(r99);
+r100 = $r21;
+$r22 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r23 = interfaceinvoke r100.<java.lang.Iterable: java.util.Iterator iterator()>();
+$r24 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder;
+specialinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>();
+$r25 = virtualinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r100);
+$r26 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r27 = virtualinvoke $r25.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r26);
+$r28 = virtualinvoke $r27.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>();
+specialinvoke $r22.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r23, $r28);
+r101 = $r22;
+r98 = r101;
+i20 = virtualinvoke r101.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: int size()>();
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 6 ]
+$r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r102 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r29, 0, 0);
+r103 = newarray (long)[i20];
+$l0 = (long) i20;
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void set(long)>($l0);
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Counting n-grams\");
+r104 = interfaceinvoke r102.<java.lang.Iterable: java.util.Iterator iterator()>();
+"
+    "Block 6:
+[preds: 5 15 ] [succs: 7 16 ]
+$z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+$r85 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>();
+r105 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r85;
+$r86 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+r106 = virtualinvoke $r86.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\s+\");
+i21 = 0;
+"
+    "Block 8:
+[preds: 7 14 ] [succs: 9 15 ]
+$i14 = lengthof r106;
+if i21 >= $i14 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r87 = new java.lang.StringBuilder;
+specialinvoke $r87.<java.lang.StringBuilder: void <init>()>();
+r107 = $r87;
+i22 = i21;
+"
+    "Block 10:
+[preds: 9 13 ] [succs: 11 14 ]
+$i15 = lengthof r106;
+if i22 >= $i15 goto i21 = i21 + 1;
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r88 = r106[i22];
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r88);
+r108 = virtualinvoke r107.<java.lang.StringBuilder: java.lang.String toString()>();
+$r90 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>(r108);
+r91 = (java.lang.Long) $r90;
+if r91 == null goto virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$i16 = virtualinvoke r91.<java.lang.Long: int intValue()>();
+$l17 = r103[$i16];
+$d9 = (double) $l17;
+$r93 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d8 = $r93.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>;
+$d10 = $d9 + $d8;
+$l18 = (long) $d10;
+r103[$i16] = $l18;
+"
+    "Block 13:
+[preds: 11 12 ] [succs: 10 ]
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+i22 = i22 + 1;
+goto [?= $i15 = lengthof r106];
+"
+    "Block 14:
+[preds: 10 ] [succs: 8 ]
+i21 = i21 + 1;
+goto [?= $i14 = lengthof r106];
+"
+    "Block 15:
+[preds: 8 ] [succs: 6 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 16:
+[preds: 6 ] [succs: 17 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Flushing new datapack into \");
+$r32 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>($r34);
+$r35 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r109 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r35, 0, 0);
+$r36 = new java.io.BufferedWriter;
+$r37 = new java.io.OutputStreamWriter;
+$r38 = new java.io.FileOutputStream;
+$r39 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+specialinvoke $r38.<java.io.FileOutputStream: void <init>(java.lang.String)>($r39);
+specialinvoke $r37.<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.lang.String)>($r38, \"UTF-8\");
+specialinvoke $r36.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r37);
+r110 = $r36;
+r111 = interfaceinvoke r109.<java.lang.Iterable: java.util.Iterator iterator()>();
+"
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 ]
+$z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+$r40 = interfaceinvoke r111.<java.util.Iterator: java.lang.Object next()>();
+r112 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r40;
+$r41 = new java.lang.StringBuilder;
+specialinvoke $r41.<java.lang.StringBuilder: void <init>()>();
+$r42 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42);
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r45 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d0 = $r45.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>;
+$i1 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d0);
+$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r48 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d1 = $r48.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>;
+$i2 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d1);
+$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r51 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r52 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>($r51);
+$r53 = (java.lang.Long) $r52;
+$i3 = virtualinvoke $r53.<java.lang.Long: int intValue()>();
+$l4 = r103[$i3];
+$r54 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r60 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d2 = $r60.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>;
+$i5 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d2);
+$r61 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r63 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d3 = $r63.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>;
+$i6 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d3);
+$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r66 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$r67 = $r66.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+$i7 = lengthof $r67;
+$r68 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r69);
+$r70 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+r113 = $r70.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+i23 = lengthof r113;
+i24 = 0;
+"
+    "Block 19:
+[preds: 18 20 ] [succs: 20 21 ]
+if i24 >= i23 goto virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+"
+    "Block 20:
+[preds: 19 ] [succs: 19 ]
+r114 = r113[i24];
+$r71 = new java.lang.StringBuilder;
+specialinvoke $r71.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$i8 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: int id>;
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$s9 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: short type>;
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($s9);
+$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d4 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>;
+$i10 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d4);
+$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d5 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>;
+$i11 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d5);
+$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11);
+$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u00011\u00011\u0001\");
+$d6 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>;
+$i12 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d6);
+$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d7 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>;
+$i13 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d7);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13);
+$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r84);
+i24 = i24 + 1;
+goto [?= (branch)];
+"
+    "Block 21:
+[preds: 19 ] [succs: 17 ]
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 22:
+[preds: 17 ] [succs: ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+virtualinvoke r110.<java.io.Writer: void close()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r14 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.FlaggedOption;
+$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"hash\", $r9, $r8, 0, 104, \"hash\", \"Hash file\");
+$r3[1] = $r7;
+$r10 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r11 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r12, $r11, 1, 111, \"output\", \"Compressed version\");
+$r3[2] = $r10;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3);
+r13 = $r0;
+r15 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r14);
+$z0 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r16 = new it.unimi.dsi.logging.ProgressLogger;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r14 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.FlaggedOption;
+$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\");
+$r3[0] = $r4;
+$r7 = new com.martiansoftware.jsap.FlaggedOption;
+$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"hash\", $r9, $r8, 0, 104, \"hash\", \"Hash file\");
+$r3[1] = $r7;
+$r10 = new com.martiansoftware.jsap.FlaggedOption;
+$r12 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+$r11 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>;
+specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r12, $r11, 1, 111, \"output\", \"Compressed version\");
+$r3[2] = $r10;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3);
+r13 = $r0;
+r15 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r14);
+$z0 = virtualinvoke r13.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto $r16 = new it.unimi.dsi.logging.ProgressLogger;
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r16 = new it.unimi.dsi.logging.ProgressLogger;
+$r17 = <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: org.slf4j.Logger LOGGER>;
+specialinvoke $r16.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r17);
+r18 = $r16;
+$r19 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+if $r19 == null goto $r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r16 = new it.unimi.dsi.logging.ProgressLogger;
+$r17 = <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: org.slf4j.Logger LOGGER>;
+specialinvoke $r16.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r17);
+r18 = $r16;
+$r19 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+if $r19 == null goto $r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+$r94 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+$r95 = staticinvoke <it.unimi.dsi.fastutil.io.BinIO: java.lang.Object loadObject(java.lang.CharSequence)>($r94);
+r97 = (com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash) $r95;
+$r96 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats>;
+$l19 = $r96.<com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: long phrases>;
+i20 = (int) $l19;
+r98 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: it.unimi.dsi.fastutil.objects.Object2LongFunction hash>;
+goto [?= $r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")];
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r16 = new it.unimi.dsi.logging.ProgressLogger;
+$r17 = <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: org.slf4j.Logger LOGGER>;
+specialinvoke $r16.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r17);
+r18 = $r16;
+$r19 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+if $r19 == null goto $r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 4:
+[preds: 2 ] [succs: 5 ]
+$r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r99 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, 0, 0);
+$r21 = new com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1;
+specialinvoke $r21.<com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1: void <init>(java.lang.Iterable)>(r99);
+r100 = $r21;
+$r22 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r23 = interfaceinvoke r100.<java.lang.Iterable: java.util.Iterator iterator()>();
+$r24 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder;
+specialinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>();
+$r25 = virtualinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r100);
+$r26 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r27 = virtualinvoke $r25.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r26);
+$r28 = virtualinvoke $r27.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>();
+specialinvoke $r22.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r23, $r28);
+r101 = $r22;
+r98 = r101;
+i20 = virtualinvoke r101.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: int size()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r94 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"hash\");
+$r95 = staticinvoke <it.unimi.dsi.fastutil.io.BinIO: java.lang.Object loadObject(java.lang.CharSequence)>($r94);
+r97 = (com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash) $r95;
+$r96 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats>;
+$l19 = $r96.<com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: long phrases>;
+i20 = (int) $l19;
+r98 = r97.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: it.unimi.dsi.fastutil.objects.Object2LongFunction hash>;
+goto [?= $r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")];
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 ]
+$r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r102 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r29, 0, 0);
+r103 = newarray (long)[i20];
+$l0 = (long) i20;
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void set(long)>($l0);
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Counting n-grams\");
+r104 = interfaceinvoke r102.<java.lang.Iterable: java.util.Iterator iterator()>();
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r20 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r99 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, 0, 0);
+$r21 = new com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1;
+specialinvoke $r21.<com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries$1: void <init>(java.lang.Iterable)>(r99);
+r100 = $r21;
+$r22 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r23 = interfaceinvoke r100.<java.lang.Iterable: java.util.Iterator iterator()>();
+$r24 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder;
+specialinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>();
+$r25 = virtualinvoke $r24.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r100);
+$r26 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r27 = virtualinvoke $r25.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r26);
+$r28 = virtualinvoke $r27.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>();
+specialinvoke $r22.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r23, $r28);
+r101 = $r22;
+r98 = r101;
+i20 = virtualinvoke r101.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: int size()>();
+"->"Block 5:
+[preds: 3 4 ] [succs: 6 ]
+$r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r102 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r29, 0, 0);
+r103 = newarray (long)[i20];
+$l0 = (long) i20;
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void set(long)>($l0);
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Counting n-grams\");
+r104 = interfaceinvoke r102.<java.lang.Iterable: java.util.Iterator iterator()>();
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 6 ]
+$r29 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r102 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r29, 0, 0);
+r103 = newarray (long)[i20];
+$l0 = (long) i20;
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void set(long)>($l0);
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Counting n-grams\");
+r104 = interfaceinvoke r102.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 6:
+[preds: 5 15 ] [succs: 7 16 ]
+$z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+";
+    "Block 6:
+[preds: 5 15 ] [succs: 7 16 ]
+$z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 ]
+$r85 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>();
+r105 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r85;
+$r86 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+r106 = virtualinvoke $r86.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\s+\");
+i21 = 0;
+";
+    "Block 6:
+[preds: 5 15 ] [succs: 7 16 ]
+$z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"->"Block 16:
+[preds: 6 ] [succs: 17 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Flushing new datapack into \");
+$r32 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>($r34);
+$r35 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r109 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r35, 0, 0);
+$r36 = new java.io.BufferedWriter;
+$r37 = new java.io.OutputStreamWriter;
+$r38 = new java.io.FileOutputStream;
+$r39 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+specialinvoke $r38.<java.io.FileOutputStream: void <init>(java.lang.String)>($r39);
+specialinvoke $r37.<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.lang.String)>($r38, \"UTF-8\");
+specialinvoke $r36.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r37);
+r110 = $r36;
+r111 = interfaceinvoke r109.<java.lang.Iterable: java.util.Iterator iterator()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+$r85 = interfaceinvoke r104.<java.util.Iterator: java.lang.Object next()>();
+r105 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r85;
+$r86 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+r106 = virtualinvoke $r86.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\\s+\");
+i21 = 0;
+"->"Block 8:
+[preds: 7 14 ] [succs: 9 15 ]
+$i14 = lengthof r106;
+if i21 >= $i14 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+";
+    "Block 8:
+[preds: 7 14 ] [succs: 9 15 ]
+$i14 = lengthof r106;
+if i21 >= $i14 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 9:
+[preds: 8 ] [succs: 10 ]
+$r87 = new java.lang.StringBuilder;
+specialinvoke $r87.<java.lang.StringBuilder: void <init>()>();
+r107 = $r87;
+i22 = i21;
+";
+    "Block 8:
+[preds: 7 14 ] [succs: 9 15 ]
+$i14 = lengthof r106;
+if i21 >= $i14 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 15:
+[preds: 8 ] [succs: 6 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 ]
+$r87 = new java.lang.StringBuilder;
+specialinvoke $r87.<java.lang.StringBuilder: void <init>()>();
+r107 = $r87;
+i22 = i21;
+"->"Block 10:
+[preds: 9 13 ] [succs: 11 14 ]
+$i15 = lengthof r106;
+if i22 >= $i15 goto i21 = i21 + 1;
+";
+    "Block 10:
+[preds: 9 13 ] [succs: 11 14 ]
+$i15 = lengthof r106;
+if i22 >= $i15 goto i21 = i21 + 1;
+"->"Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r88 = r106[i22];
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r88);
+r108 = virtualinvoke r107.<java.lang.StringBuilder: java.lang.String toString()>();
+$r90 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>(r108);
+r91 = (java.lang.Long) $r90;
+if r91 == null goto virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+";
+    "Block 10:
+[preds: 9 13 ] [succs: 11 14 ]
+$i15 = lengthof r106;
+if i22 >= $i15 goto i21 = i21 + 1;
+"->"Block 14:
+[preds: 10 ] [succs: 8 ]
+i21 = i21 + 1;
+goto [?= $i14 = lengthof r106];
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r88 = r106[i22];
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r88);
+r108 = virtualinvoke r107.<java.lang.StringBuilder: java.lang.String toString()>();
+$r90 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>(r108);
+r91 = (java.lang.Long) $r90;
+if r91 == null goto virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"->"Block 12:
+[preds: 11 ] [succs: 13 ]
+$i16 = virtualinvoke r91.<java.lang.Long: int intValue()>();
+$l17 = r103[$i16];
+$d9 = (double) $l17;
+$r93 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d8 = $r93.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>;
+$d10 = $d9 + $d8;
+$l18 = (long) $d10;
+r103[$i16] = $l18;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 13 ]
+$r88 = r106[i22];
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r88);
+r108 = virtualinvoke r107.<java.lang.StringBuilder: java.lang.String toString()>();
+$r90 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>(r108);
+r91 = (java.lang.Long) $r90;
+if r91 == null goto virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+"->"Block 13:
+[preds: 11 12 ] [succs: 10 ]
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+i22 = i22 + 1;
+goto [?= $i15 = lengthof r106];
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 ]
+$i16 = virtualinvoke r91.<java.lang.Long: int intValue()>();
+$l17 = r103[$i16];
+$d9 = (double) $l17;
+$r93 = r105.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d8 = $r93.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>;
+$d10 = $d9 + $d8;
+$l18 = (long) $d10;
+r103[$i16] = $l18;
+"->"Block 13:
+[preds: 11 12 ] [succs: 10 ]
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+i22 = i22 + 1;
+goto [?= $i15 = lengthof r106];
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 10 ]
+virtualinvoke r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \");
+i22 = i22 + 1;
+goto [?= $i15 = lengthof r106];
+"->"Block 10:
+[preds: 9 13 ] [succs: 11 14 ]
+$i15 = lengthof r106;
+if i22 >= $i15 goto i21 = i21 + 1;
+";
+    "Block 14:
+[preds: 10 ] [succs: 8 ]
+i21 = i21 + 1;
+goto [?= $i14 = lengthof r106];
+"->"Block 8:
+[preds: 7 14 ] [succs: 9 15 ]
+$i14 = lengthof r106;
+if i21 >= $i14 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+";
+    "Block 15:
+[preds: 8 ] [succs: 6 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 6:
+[preds: 5 15 ] [succs: 7 16 ]
+$z2 = interfaceinvoke r104.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+";
+    "Block 16:
+[preds: 6 ] [succs: 17 ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Flushing new datapack into \");
+$r32 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>($r34);
+$r35 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r109 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r35, 0, 0);
+$r36 = new java.io.BufferedWriter;
+$r37 = new java.io.OutputStreamWriter;
+$r38 = new java.io.FileOutputStream;
+$r39 = virtualinvoke r15.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\");
+specialinvoke $r38.<java.io.FileOutputStream: void <init>(java.lang.String)>($r39);
+specialinvoke $r37.<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.lang.String)>($r38, \"UTF-8\");
+specialinvoke $r36.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r37);
+r110 = $r36;
+r111 = interfaceinvoke r109.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 17:
+[preds: 16 21 ] [succs: 18 22 ]
+$z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+";
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 ]
+$z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"->"Block 18:
+[preds: 17 ] [succs: 19 ]
+$r40 = interfaceinvoke r111.<java.util.Iterator: java.lang.Object next()>();
+r112 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r40;
+$r41 = new java.lang.StringBuilder;
+specialinvoke $r41.<java.lang.StringBuilder: void <init>()>();
+$r42 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42);
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r45 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d0 = $r45.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>;
+$i1 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d0);
+$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r48 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d1 = $r48.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>;
+$i2 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d1);
+$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r51 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r52 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>($r51);
+$r53 = (java.lang.Long) $r52;
+$i3 = virtualinvoke $r53.<java.lang.Long: int intValue()>();
+$l4 = r103[$i3];
+$r54 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r60 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d2 = $r60.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>;
+$i5 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d2);
+$r61 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r63 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d3 = $r63.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>;
+$i6 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d3);
+$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r66 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$r67 = $r66.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+$i7 = lengthof $r67;
+$r68 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r69);
+$r70 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+r113 = $r70.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+i23 = lengthof r113;
+i24 = 0;
+";
+    "Block 17:
+[preds: 16 21 ] [succs: 18 22 ]
+$z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+"->"Block 22:
+[preds: 17 ] [succs: ]
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+virtualinvoke r110.<java.io.Writer: void close()>();
+return;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 ]
+$r40 = interfaceinvoke r111.<java.util.Iterator: java.lang.Object next()>();
+r112 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r40;
+$r41 = new java.lang.StringBuilder;
+specialinvoke $r41.<java.lang.StringBuilder: void <init>()>();
+$r42 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42);
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r45 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d0 = $r45.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>;
+$i1 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d0);
+$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r48 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d1 = $r48.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>;
+$i2 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d1);
+$r49 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r51 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: java.lang.String surfaceForm>;
+$r52 = interfaceinvoke r98.<it.unimi.dsi.fastutil.objects.Object2LongFunction: java.lang.Object get(java.lang.Object)>($r51);
+$r53 = (java.lang.Long) $r52;
+$i3 = virtualinvoke $r53.<java.lang.Long: int intValue()>();
+$l4 = r103[$i3];
+$r54 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1);
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r60 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d2 = $r60.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>;
+$i5 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d2);
+$r61 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r63 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$d3 = $r63.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>;
+$i6 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d3);
+$r64 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$r66 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+$r67 = $r66.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+$i7 = lengthof $r67;
+$r68 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r69);
+$r70 = r112.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>;
+r113 = $r70.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>;
+i23 = lengthof r113;
+i24 = 0;
+"->"Block 19:
+[preds: 18 20 ] [succs: 20 21 ]
+if i24 >= i23 goto virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+";
+    "Block 19:
+[preds: 18 20 ] [succs: 20 21 ]
+if i24 >= i23 goto virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+"->"Block 20:
+[preds: 19 ] [succs: 19 ]
+r114 = r113[i24];
+$r71 = new java.lang.StringBuilder;
+specialinvoke $r71.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$i8 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: int id>;
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$s9 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: short type>;
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($s9);
+$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d4 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>;
+$i10 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d4);
+$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d5 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>;
+$i11 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d5);
+$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11);
+$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u00011\u00011\u0001\");
+$d6 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>;
+$i12 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d6);
+$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d7 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>;
+$i13 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d7);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13);
+$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r84);
+i24 = i24 + 1;
+goto [?= (branch)];
+";
+    "Block 19:
+[preds: 18 20 ] [succs: 20 21 ]
+if i24 >= i23 goto virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+"->"Block 21:
+[preds: 19 ] [succs: 17 ]
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 20:
+[preds: 19 ] [succs: 19 ]
+r114 = r113[i24];
+$r71 = new java.lang.StringBuilder;
+specialinvoke $r71.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\");
+$i8 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: int id>;
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$s9 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: short type>;
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($s9);
+$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d4 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>;
+$i10 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d4);
+$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d5 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>;
+$i11 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d5);
+$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11);
+$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u00011\u00011\u0001\");
+$d6 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>;
+$i12 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d6);
+$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u0001\");
+$d7 = r114.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>;
+$i13 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountNGramsFromQueries: int toInt(double)>($d7);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13);
+$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>($r84);
+i24 = i24 + 1;
+goto [?= (branch)];
+"->"Block 19:
+[preds: 18 20 ] [succs: 20 21 ]
+if i24 >= i23 goto virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+";
+    "Block 21:
+[preds: 19 ] [succs: 17 ]
+virtualinvoke r110.<java.io.Writer: void write(java.lang.String)>(\"\n\");
+virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+goto [?= $z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 17:
+[preds: 16 21 ] [succs: 18 22 ]
+$z1 = interfaceinvoke r111.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto virtualinvoke r18.<it.unimi.dsi.logging.ProgressLogger: void stop()>();
+";
+}

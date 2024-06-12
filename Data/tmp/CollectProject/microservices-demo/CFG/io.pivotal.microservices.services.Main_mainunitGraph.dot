@@ -1,0 +1,154 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.lang.String[]"
+    "r21 = \"NO-VALUE\""
+    "r22 = null"
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"registration.server.hostname\", \"localhost\")"
+    "r23 = r1"
+    "i0 = lengthof r23"
+    "i1 = 0"
+    "if i1 >= i0 goto (branch)"
+    "r14 = r23[i1]"
+    "$z4 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\")"
+    "if $z4 == 0 goto $z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")"
+    "goto [?= i1 = i1 + 1]"
+    "$z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")"
+    "if $z5 == 0 goto (branch)"
+    "r21 = r14"
+    "if r22 != null goto $r16 = <java.lang.System: java.io.PrintStream out>"
+    "r22 = r14"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "$r15 = new java.lang.StringBuilder"
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected argument: \")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)"
+    "staticinvoke <io.pivotal.microservices.services.Main: void usage()>()"
+    "return"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "if r21 != \"NO-VALUE\" goto (branch)"
+    "if r22 == null goto r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"server.port\", r22)"
+    "r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running on IP: \")"
+    "$r5 = virtualinvoke r24.<java.net.InetAddress: java.lang.String getHostAddress()>()"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)"
+    "goto [?= $z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")]"
+    "$r20 := @caughtexception"
+    "r25 = $r20"
+    "virtualinvoke r25.<java.lang.Exception: void printStackTrace()>()"
+    "$z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")"
+    "if $z0 != 0 goto staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)"
+    "$z1 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"reg\")"
+    "if $z1 == 0 goto $z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")"
+    "staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)"
+    "goto [?= return]"
+    "$z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")"
+    "if $z2 == 0 goto $z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")"
+    "staticinvoke <io.pivotal.microservices.services.accounts.AccountsServer: void main(java.lang.String[])>(r1)"
+    "$z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")"
+    "if $z3 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"
+    "staticinvoke <io.pivotal.microservices.services.web.WebServer: void main(java.lang.String[])>(r1)"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown server type: \")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)"
+    "r1 := @parameter0: java.lang.String[]"->"r21 = \"NO-VALUE\"";
+    "r21 = \"NO-VALUE\""->"r22 = null";
+    "r22 = null"->"staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"registration.server.hostname\", \"localhost\")";
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"registration.server.hostname\", \"localhost\")"->"r23 = r1";
+    "r23 = r1"->"i0 = lengthof r23";
+    "i0 = lengthof r23"->"i1 = 0";
+    "i1 = 0"->"if i1 >= i0 goto (branch)";
+    "if i1 >= i0 goto (branch)"->"r14 = r23[i1]";
+    "if i1 >= i0 goto (branch)"->"if r21 != \"NO-VALUE\" goto (branch)";
+    "r14 = r23[i1]"->"$z4 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\")";
+    "$z4 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\")"->"if $z4 == 0 goto $z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")";
+    "if $z4 == 0 goto $z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")"->"goto [?= i1 = i1 + 1]";
+    "if $z4 == 0 goto $z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")"->"$z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$z5 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"NO-VALUE\")"->"if $z5 == 0 goto (branch)";
+    "if $z5 == 0 goto (branch)"->"r21 = r14";
+    "if $z5 == 0 goto (branch)"->"if r22 != null goto $r16 = <java.lang.System: java.io.PrintStream out>";
+    "r21 = r14"->"goto [?= i1 = i1 + 1]";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "if r22 != null goto $r16 = <java.lang.System: java.io.PrintStream out>"->"r22 = r14";
+    "if r22 != null goto $r16 = <java.lang.System: java.io.PrintStream out>"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "r22 = r14"->"goto [?= i1 = i1 + 1]";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"$r15 = new java.lang.StringBuilder";
+    "$r15 = new java.lang.StringBuilder"->"specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r15.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected argument: \")";
+    "$r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected argument: \")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19)"->"staticinvoke <io.pivotal.microservices.services.Main: void usage()>()";
+    "staticinvoke <io.pivotal.microservices.services.Main: void usage()>()"->"return";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= i0 goto (branch)";
+    "if r21 != \"NO-VALUE\" goto (branch)"->"staticinvoke <io.pivotal.microservices.services.Main: void usage()>()";
+    "if r21 != \"NO-VALUE\" goto (branch)"->"if r22 == null goto r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()";
+    "staticinvoke <io.pivotal.microservices.services.Main: void usage()>()"->"return";
+    "if r22 == null goto r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"server.port\", r22)";
+    "if r22 == null goto r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()";
+    "if r22 == null goto r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"$r20 := @caughtexception";
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"server.port\", r22)"->"r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()";
+    "staticinvoke <java.lang.System: java.lang.String setProperty(java.lang.String,java.lang.String)>(\"server.port\", r22)"->"$r20 := @caughtexception";
+    "r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "r24 = staticinvoke <java.net.InetAddress: java.net.InetAddress getLocalHost()>()"->"$r20 := @caughtexception";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"$r2 = new java.lang.StringBuilder";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"$r20 := @caughtexception";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "$r2 = new java.lang.StringBuilder"->"$r20 := @caughtexception";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running on IP: \")";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r20 := @caughtexception";
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running on IP: \")"->"$r5 = virtualinvoke r24.<java.net.InetAddress: java.lang.String getHostAddress()>()";
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Running on IP: \")"->"$r20 := @caughtexception";
+    "$r5 = virtualinvoke r24.<java.net.InetAddress: java.lang.String getHostAddress()>()"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)";
+    "$r5 = virtualinvoke r24.<java.net.InetAddress: java.lang.String getHostAddress()>()"->"$r20 := @caughtexception";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r20 := @caughtexception";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r20 := @caughtexception";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)"->"goto [?= $z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")]";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)"->"$r20 := @caughtexception";
+    "goto [?= $z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")]"->"$z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")";
+    "$r20 := @caughtexception"->"r25 = $r20";
+    "r25 = $r20"->"virtualinvoke r25.<java.lang.Exception: void printStackTrace()>()";
+    "virtualinvoke r25.<java.lang.Exception: void printStackTrace()>()"->"$z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")";
+    "$z0 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"registration\")"->"if $z0 != 0 goto staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)";
+    "if $z0 != 0 goto staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)"->"$z1 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"reg\")";
+    "if $z0 != 0 goto staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)"->"staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)";
+    "$z1 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"reg\")"->"if $z1 == 0 goto $z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")"->"staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)";
+    "if $z1 == 0 goto $z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")"->"$z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")";
+    "staticinvoke <io.pivotal.microservices.services.registration.RegistrationServer: void main(java.lang.String[])>(r1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$z2 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"accounts\")"->"if $z2 == 0 goto $z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")";
+    "if $z2 == 0 goto $z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")"->"staticinvoke <io.pivotal.microservices.services.accounts.AccountsServer: void main(java.lang.String[])>(r1)";
+    "if $z2 == 0 goto $z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")"->"$z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")";
+    "staticinvoke <io.pivotal.microservices.services.accounts.AccountsServer: void main(java.lang.String[])>(r1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$z3 = virtualinvoke r21.<java.lang.String: boolean equals(java.lang.Object)>(\"web\")"->"if $z3 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>";
+    "if $z3 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"staticinvoke <io.pivotal.microservices.services.web.WebServer: void main(java.lang.String[])>(r1)";
+    "if $z3 == 0 goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "staticinvoke <io.pivotal.microservices.services.web.WebServer: void main(java.lang.String[])>(r1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown server type: \")";
+    "$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unknown server type: \")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12)"->"staticinvoke <io.pivotal.microservices.services.Main: void usage()>()";
+    "staticinvoke <io.pivotal.microservices.services.Main: void usage()>()"->"return";
+}

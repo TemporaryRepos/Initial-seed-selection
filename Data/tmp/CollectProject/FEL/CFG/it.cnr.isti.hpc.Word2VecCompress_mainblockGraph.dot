@@ -1,0 +1,2583 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r10 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.UnflaggedOption;
+$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\");
+$r3[0] = $r4;
+$r6 = new com.martiansoftware.jsap.UnflaggedOption;
+$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\");
+$r3[1] = $r6;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\");
+$r3[2] = $r8;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3);
+r9 = $r0;
+r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10);
+$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 61 65 3 ]
+r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null);
+$r14 = new it.unimi.dsi.logging.ProgressLogger;
+$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15);
+r16 = $r14;
+$r17 = new java.io.BufferedReader;
+$r18 = new java.io.FileReader;
+specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12);
+specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18);
+r65 = $r17;
+r66 = null;
+"
+    "Block 3:
+[preds: 2 ] [succs: 61 65 4 ]
+$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 61 65 5 ]
+r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\");
+"
+    "Block 5:
+[preds: 4 ] [succs: 61 65 6 ]
+$r20 = r67[0];
+"
+    "Block 6:
+[preds: 5 ] [succs: 61 65 7 ]
+i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+"
+    "Block 7:
+[preds: 6 ] [succs: 61 65 8 ]
+$r21 = r67[1];
+"
+    "Block 8:
+[preds: 7 ] [succs: 61 65 9 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"
+    "Block 9:
+[preds: 8 ] [succs: 61 65 10 ]
+$r22 = r67[2];
+"
+    "Block 10:
+[preds: 9 ] [succs: 61 65 11 ]
+f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22);
+"
+    "Block 11:
+[preds: 10 ] [succs: 61 65 12 ]
+$l2 = (long) i0;
+"
+    "Block 12:
+[preds: 11 ] [succs: 61 65 13 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2;
+"
+    "Block 13:
+[preds: 12 ] [succs: 61 65 14 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\");
+"
+    "Block 14:
+[preds: 13 ] [succs: 61 65 15 ]
+$r23 = new java.util.ArrayList;
+"
+    "Block 15:
+[preds: 14 ] [succs: 61 65 16 ]
+specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+"
+    "Block 16:
+[preds: 15 ] [succs: 61 65 17 ]
+r24 = $r23;
+"
+    "Block 17:
+[preds: 16 ] [succs: 61 65 18 ]
+i34 = 0;
+"
+    "Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 19:
+[preds: 18 ] [succs: 61 65 20 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"
+    "Block 20:
+[preds: 19 ] [succs: 61 65 21 ]
+$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 21:
+[preds: 20 ] [succs: 61 65 22 ]
+$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>();
+"
+    "Block 22:
+[preds: 21 ] [succs: 61 65 23 ]
+interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60);
+"
+    "Block 23:
+[preds: 22 ] [succs: 61 65 24 ]
+i34 = i34 + 1;
+"
+    "Block 24:
+[preds: 23 ] [succs: 61 65 18 ]
+goto [?= (branch)];
+"
+    "Block 25:
+[preds: 18 ] [succs: 61 65 26 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 26:
+[preds: 25 ] [succs: 61 65 27 ]
+$i3 = i0 * i1;
+"
+    "Block 27:
+[preds: 26 ] [succs: 61 65 28 ]
+r25 = newarray (int)[$i3];
+"
+    "Block 28:
+[preds: 27 ] [succs: 61 65 29 ]
+r26 = newarray (long)[i1];
+"
+    "Block 29:
+[preds: 28 ] [succs: 61 65 30 ]
+$l4 = (long) i0;
+"
+    "Block 30:
+[preds: 29 ] [succs: 61 65 31 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4;
+"
+    "Block 31:
+[preds: 30 ] [succs: 61 65 32 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\");
+"
+    "Block 32:
+[preds: 31 ] [succs: 61 65 33 ]
+i35 = 0;
+"
+    "Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 34:
+[preds: 33 ] [succs: 61 65 35 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"
+    "Block 35:
+[preds: 34 ] [succs: 61 65 36 ]
+$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"
+    "Block 36:
+[preds: 35 ] [succs: 61 65 37 ]
+r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"
+    "Block 37:
+[preds: 36 ] [succs: 61 65 38 ]
+i36 = 0;
+"
+    "Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+"
+    "Block 39:
+[preds: 38 ] [succs: 61 65 40 ]
+$r58 = r68[i36];
+"
+    "Block 40:
+[preds: 39 ] [succs: 61 65 41 ]
+i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58);
+"
+    "Block 41:
+[preds: 40 ] [succs: 61 65 42 ]
+$i27 = i35 * i1;
+"
+    "Block 42:
+[preds: 41 ] [succs: 61 65 43 ]
+$i28 = $i27 + i36;
+"
+    "Block 43:
+[preds: 42 ] [succs: 61 65 44 ]
+r25[$i28] = i37;
+"
+    "Block 44:
+[preds: 43 ] [succs: 61 65 45 ]
+$l29 = r26[i36];
+"
+    "Block 45:
+[preds: 44 ] [succs: 61 65 46 ]
+$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37);
+"
+    "Block 46:
+[preds: 45 ] [succs: 61 65 47 ]
+$i31 = $i30 + 1;
+"
+    "Block 47:
+[preds: 46 ] [succs: 61 65 48 ]
+$l32 = (long) $i31;
+"
+    "Block 48:
+[preds: 47 ] [succs: 61 65 49 ]
+$l33 = $l29 + $l32;
+"
+    "Block 49:
+[preds: 48 ] [succs: 61 65 50 ]
+r26[i36] = $l33;
+"
+    "Block 50:
+[preds: 49 ] [succs: 61 65 51 ]
+i36 = i36 + 1;
+"
+    "Block 51:
+[preds: 50 ] [succs: 61 65 38 ]
+goto [?= (branch)];
+"
+    "Block 52:
+[preds: 38 ] [succs: 61 65 53 ]
+i35 = i35 + 1;
+"
+    "Block 53:
+[preds: 52 ] [succs: 61 65 33 ]
+goto [?= (branch)];
+"
+    "Block 54:
+[preds: 33 ] [succs: 61 65 55 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 55:
+[preds: 54 ] [succs: 56 74 ]
+if r65 == null goto r73 = newarray (int)[i1];
+"
+    "Block 56:
+[preds: 55 ] [succs: 57 60 59 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"
+    "Block 57:
+[preds: 56 ] [succs: 58 59 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"
+    "Block 58:
+[preds: 57 ] [succs: 74 ]
+goto [?= r73 = newarray (int)[i1]];
+"
+    "Block 59:
+[preds: 56 57 ] [succs: 74 ]
+$r64 := @caughtexception;
+r69 = $r64;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69);
+goto [?= r73 = newarray (int)[i1]];
+"
+    "Block 60:
+[preds: 56 ] [succs: 74 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+goto [?= r73 = newarray (int)[i1]];
+"
+    "Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+"
+    "Block 62:
+[preds: 61 ] [succs: 63 65 ]
+r70 = $r63;
+"
+    "Block 63:
+[preds: 62 ] [succs: 64 65 ]
+r66 = r70;
+"
+    "Block 64:
+[preds: 63 ] [succs: 65 ]
+throw r70;
+"
+    "Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+"
+    "Block 66:
+[preds: 65 ] [succs: 67 65 ]
+r71 = $r62;
+"
+    "Block 67:
+[preds: 66 ] [succs: 68 73 ]
+if r65 == null goto throw r71;
+"
+    "Block 68:
+[preds: 67 ] [succs: 69 72 71 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"
+    "Block 69:
+[preds: 68 ] [succs: 70 71 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"
+    "Block 70:
+[preds: 69 ] [succs: 73 ]
+goto [?= throw r71];
+"
+    "Block 71:
+[preds: 68 69 ] [succs: 73 ]
+$r61 := @caughtexception;
+r72 = $r61;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72);
+goto [?= throw r71];
+"
+    "Block 72:
+[preds: 68 ] [succs: 73 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"
+    "Block 73:
+[preds: 67 70 71 72 ] [succs: ]
+throw r71;
+"
+    "Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+"
+    "Block 75:
+[preds: 74 78 ] [succs: 76 79 ]
+if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+"
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+i39 = 0;
+$l24 = r26[i38];
+$l23 = (long) i0;
+$b25 = $l24 cmp $l23;
+if $b25 <= 0 goto r73[i38] = i39;
+"
+    "Block 77:
+[preds: 76 ] [succs: 78 ]
+$d4 = (double) i0;
+$l26 = r26[i38];
+$d3 = (double) $l26;
+d12 = $d4 / $d3;
+$d5 = 2.0 - d12;
+$d6 = staticinvoke <java.lang.Math: double log(double)>($d5);
+$d7 = 1.0 - d12;
+$d8 = staticinvoke <java.lang.Math: double log(double)>($d7);
+$d9 = neg $d8;
+$d10 = $d6 / $d9;
+$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10);
+i39 = (int) $d11;
+"
+    "Block 78:
+[preds: 76 77 ] [succs: 75 ]
+r73[i38] = i39;
+i38 = i38 + 1;
+goto [?= (branch)];
+"
+    "Block 79:
+[preds: 75 ] [succs: 80 ]
+$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>();
+$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder;
+specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>();
+$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24);
+$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31);
+$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>();
+specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33);
+r74 = $r27;
+r75 = newarray (int)[i0];
+i40 = 0;
+"
+    "Block 80:
+[preds: 79 81 ] [succs: 81 82 ]
+if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+"
+    "Block 81:
+[preds: 80 ] [succs: 80 ]
+$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40);
+$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55);
+i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>();
+r75[i41] = i40;
+i40 = i40 + 1;
+goto [?= (branch)];
+"
+    "Block 82:
+[preds: 80 ] [succs: 83 ]
+$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>();
+r76 = $r34;
+$r35 = new it.unimi.dsi.io.OutputBitStream;
+specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0);
+r77 = $r35;
+$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList;
+specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>();
+r78 = $r36;
+$l5 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\");
+i42 = 0;
+"
+    "Block 83:
+[preds: 82 87 ] [succs: 84 88 ]
+if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 84:
+[preds: 83 ] [succs: 85 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>();
+virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17);
+$i18 = r75[i42];
+i43 = $i18 * i1;
+i44 = 0;
+"
+    "Block 85:
+[preds: 84 86 ] [succs: 86 87 ]
+if i44 >= i1 goto i42 = i42 + 1;
+"
+    "Block 86:
+[preds: 85 ] [succs: 85 ]
+$i19 = i43 + i44;
+i45 = r25[$i19];
+$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45);
+$i21 = r73[i44];
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21);
+i44 = i44 + 1;
+goto [?= (branch)];
+"
+    "Block 87:
+[preds: 85 ] [succs: 83 ]
+i42 = i42 + 1;
+goto [?= (branch)];
+"
+    "Block 88:
+[preds: 83 ] [succs: 89 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>();
+"
+    "Block 89:
+[preds: 88 90 ] [succs: 90 91 ]
+$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>();
+$l7 = $l6 % 4L;
+$b8 = $l7 cmp 0L;
+if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+"
+    "Block 90:
+[preds: 89 ] [succs: 89 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0);
+goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()];
+"
+    "Block 91:
+[preds: 89 ] [succs: 92 93 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i9 = lengthof $r37;
+$d0 = (double) $i9;
+$d2 = 8.0 * $d0;
+$i10 = lengthof r25;
+$d1 = (double) $i10;
+d13 = $d2 / $d1;
+$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i11 = lengthof $r38;
+$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11);
+$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13);
+interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41);
+$r42 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13);
+$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList;
+specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78);
+r79 = $r43;
+$r44 = new it.cnr.isti.hpc.Word2VecCompress;
+$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73);
+r80 = $r44;
+if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+"
+    "Block 92:
+[preds: 91 ] [succs: 93 ]
+staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13);
+"
+    "Block 93:
+[preds: 91 92 ] [succs: 94 103 ]
+$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+if $z1 == 0 goto return;
+"
+    "Block 94:
+[preds: 93 ] [succs: 95 ]
+$l12 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\");
+i46 = 0;
+"
+    "Block 95:
+[preds: 94 101 ] [succs: 96 102 ]
+if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 96:
+[preds: 95 ] [succs: 97 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46);
+$r47 = (java.lang.String) $r46;
+r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47);
+i47 = 0;
+"
+    "Block 97:
+[preds: 96 100 ] [succs: 98 101 ]
+if i47 >= i1 goto i46 = i46 + 1;
+"
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+$i13 = i46 * i1;
+$i14 = $i13 + i47;
+i15 = r25[$i14];
+i16 = r48[i47];
+if i15 == i16 goto i47 = i47 + 1;
+"
+    "Block 99:
+[preds: 98 ] [succs: 100 ]
+$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r49 = newarray (java.lang.Object)[4];
+$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46);
+$r49[0] = $r51;
+$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47);
+$r49[1] = $r52;
+$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r49[2] = $r53;
+$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16);
+$r49[3] = $r54;
+interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 100:
+[preds: 98 99 ] [succs: 97 ]
+i47 = i47 + 1;
+goto [?= (branch)];
+"
+    "Block 101:
+[preds: 97 ] [succs: 95 ]
+i46 = i46 + 1;
+goto [?= (branch)];
+"
+    "Block 102:
+[preds: 95 ] [succs: 103 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"
+    "Block 103:
+[preds: 93 102 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r10 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.UnflaggedOption;
+$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\");
+$r3[0] = $r4;
+$r6 = new com.martiansoftware.jsap.UnflaggedOption;
+$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\");
+$r3[1] = $r6;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\");
+$r3[2] = $r8;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3);
+r9 = $r0;
+r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10);
+$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 1:
+[preds: 0 ] [succs: ]
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r10 := @parameter0: java.lang.String[];
+$r0 = new com.martiansoftware.jsap.SimpleJSAP;
+$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\";
+$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+$r3 = newarray (com.martiansoftware.jsap.Parameter)[3];
+$r4 = new com.martiansoftware.jsap.UnflaggedOption;
+$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\");
+$r3[0] = $r4;
+$r6 = new com.martiansoftware.jsap.UnflaggedOption;
+$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>;
+specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\");
+$r3[1] = $r6;
+$r8 = new com.martiansoftware.jsap.Switch;
+specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\");
+$r3[2] = $r8;
+specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3);
+r9 = $r0;
+r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10);
+$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>();
+if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+"->"Block 2:
+[preds: 0 ] [succs: 61 65 3 ]
+r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null);
+$r14 = new it.unimi.dsi.logging.ProgressLogger;
+$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15);
+r16 = $r14;
+$r17 = new java.io.BufferedReader;
+$r18 = new java.io.FileReader;
+specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12);
+specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18);
+r65 = $r17;
+r66 = null;
+";
+    "Block 2:
+[preds: 0 ] [succs: 61 65 3 ]
+r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null);
+$r14 = new it.unimi.dsi.logging.ProgressLogger;
+$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15);
+r16 = $r14;
+$r17 = new java.io.BufferedReader;
+$r18 = new java.io.FileReader;
+specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12);
+specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18);
+r65 = $r17;
+r66 = null;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 2:
+[preds: 0 ] [succs: 61 65 3 ]
+r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null);
+$r14 = new it.unimi.dsi.logging.ProgressLogger;
+$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15);
+r16 = $r14;
+$r17 = new java.io.BufferedReader;
+$r18 = new java.io.FileReader;
+specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12);
+specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18);
+r65 = $r17;
+r66 = null;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 2:
+[preds: 0 ] [succs: 61 65 3 ]
+r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\");
+r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null);
+$r14 = new it.unimi.dsi.logging.ProgressLogger;
+$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15);
+r16 = $r14;
+$r17 = new java.io.BufferedReader;
+$r18 = new java.io.FileReader;
+specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12);
+specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18);
+r65 = $r17;
+r66 = null;
+"->"Block 3:
+[preds: 2 ] [succs: 61 65 4 ]
+$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 61 65 4 ]
+$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 61 65 4 ]
+$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 61 65 4 ]
+$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 4:
+[preds: 3 ] [succs: 61 65 5 ]
+r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\");
+";
+    "Block 4:
+[preds: 3 ] [succs: 61 65 5 ]
+r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\");
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 61 65 5 ]
+r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\");
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 61 65 5 ]
+r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\");
+"->"Block 5:
+[preds: 4 ] [succs: 61 65 6 ]
+$r20 = r67[0];
+";
+    "Block 5:
+[preds: 4 ] [succs: 61 65 6 ]
+$r20 = r67[0];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 61 65 6 ]
+$r20 = r67[0];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 61 65 6 ]
+$r20 = r67[0];
+"->"Block 6:
+[preds: 5 ] [succs: 61 65 7 ]
+i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+";
+    "Block 6:
+[preds: 5 ] [succs: 61 65 7 ]
+i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 61 65 7 ]
+i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 61 65 7 ]
+i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+"->"Block 7:
+[preds: 6 ] [succs: 61 65 8 ]
+$r21 = r67[1];
+";
+    "Block 7:
+[preds: 6 ] [succs: 61 65 8 ]
+$r21 = r67[1];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 61 65 8 ]
+$r21 = r67[1];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 61 65 8 ]
+$r21 = r67[1];
+"->"Block 8:
+[preds: 7 ] [succs: 61 65 9 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+";
+    "Block 8:
+[preds: 7 ] [succs: 61 65 9 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 61 65 9 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 61 65 9 ]
+i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+"->"Block 9:
+[preds: 8 ] [succs: 61 65 10 ]
+$r22 = r67[2];
+";
+    "Block 9:
+[preds: 8 ] [succs: 61 65 10 ]
+$r22 = r67[2];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 61 65 10 ]
+$r22 = r67[2];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 61 65 10 ]
+$r22 = r67[2];
+"->"Block 10:
+[preds: 9 ] [succs: 61 65 11 ]
+f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22);
+";
+    "Block 10:
+[preds: 9 ] [succs: 61 65 11 ]
+f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 61 65 11 ]
+f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 61 65 11 ]
+f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22);
+"->"Block 11:
+[preds: 10 ] [succs: 61 65 12 ]
+$l2 = (long) i0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 61 65 12 ]
+$l2 = (long) i0;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 61 65 12 ]
+$l2 = (long) i0;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 61 65 12 ]
+$l2 = (long) i0;
+"->"Block 12:
+[preds: 11 ] [succs: 61 65 13 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2;
+";
+    "Block 12:
+[preds: 11 ] [succs: 61 65 13 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 61 65 13 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 61 65 13 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2;
+"->"Block 13:
+[preds: 12 ] [succs: 61 65 14 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\");
+";
+    "Block 13:
+[preds: 12 ] [succs: 61 65 14 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\");
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 61 65 14 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\");
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 61 65 14 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\");
+"->"Block 14:
+[preds: 13 ] [succs: 61 65 15 ]
+$r23 = new java.util.ArrayList;
+";
+    "Block 14:
+[preds: 13 ] [succs: 61 65 15 ]
+$r23 = new java.util.ArrayList;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 61 65 15 ]
+$r23 = new java.util.ArrayList;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 61 65 15 ]
+$r23 = new java.util.ArrayList;
+"->"Block 15:
+[preds: 14 ] [succs: 61 65 16 ]
+specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+";
+    "Block 15:
+[preds: 14 ] [succs: 61 65 16 ]
+specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 61 65 16 ]
+specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 61 65 16 ]
+specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+"->"Block 16:
+[preds: 15 ] [succs: 61 65 17 ]
+r24 = $r23;
+";
+    "Block 16:
+[preds: 15 ] [succs: 61 65 17 ]
+r24 = $r23;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 61 65 17 ]
+r24 = $r23;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 61 65 17 ]
+r24 = $r23;
+"->"Block 17:
+[preds: 16 ] [succs: 61 65 18 ]
+i34 = 0;
+";
+    "Block 17:
+[preds: 16 ] [succs: 61 65 18 ]
+i34 = 0;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 61 65 18 ]
+i34 = 0;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 61 65 18 ]
+i34 = 0;
+"->"Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 19:
+[preds: 18 ] [succs: 61 65 20 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+";
+    "Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 25:
+[preds: 18 ] [succs: 61 65 26 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 61 65 20 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 61 65 20 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 61 65 20 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 20:
+[preds: 19 ] [succs: 61 65 21 ]
+$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 61 65 21 ]
+$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 61 65 21 ]
+$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 61 65 21 ]
+$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 21:
+[preds: 20 ] [succs: 61 65 22 ]
+$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>();
+";
+    "Block 21:
+[preds: 20 ] [succs: 61 65 22 ]
+$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 61 65 22 ]
+$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 61 65 22 ]
+$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>();
+"->"Block 22:
+[preds: 21 ] [succs: 61 65 23 ]
+interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60);
+";
+    "Block 22:
+[preds: 21 ] [succs: 61 65 23 ]
+interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 61 65 23 ]
+interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 61 65 23 ]
+interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60);
+"->"Block 23:
+[preds: 22 ] [succs: 61 65 24 ]
+i34 = i34 + 1;
+";
+    "Block 23:
+[preds: 22 ] [succs: 61 65 24 ]
+i34 = i34 + 1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 61 65 24 ]
+i34 = i34 + 1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 ] [succs: 61 65 24 ]
+i34 = i34 + 1;
+"->"Block 24:
+[preds: 23 ] [succs: 61 65 18 ]
+goto [?= (branch)];
+";
+    "Block 24:
+[preds: 23 ] [succs: 61 65 18 ]
+goto [?= (branch)];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 61 65 18 ]
+goto [?= (branch)];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 61 65 18 ]
+goto [?= (branch)];
+"->"Block 18:
+[preds: 17 24 ] [succs: 19 25 61 65 ]
+if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 25:
+[preds: 18 ] [succs: 61 65 26 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 25:
+[preds: 18 ] [succs: 61 65 26 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 25:
+[preds: 18 ] [succs: 61 65 26 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 26:
+[preds: 25 ] [succs: 61 65 27 ]
+$i3 = i0 * i1;
+";
+    "Block 26:
+[preds: 25 ] [succs: 61 65 27 ]
+$i3 = i0 * i1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 61 65 27 ]
+$i3 = i0 * i1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 61 65 27 ]
+$i3 = i0 * i1;
+"->"Block 27:
+[preds: 26 ] [succs: 61 65 28 ]
+r25 = newarray (int)[$i3];
+";
+    "Block 27:
+[preds: 26 ] [succs: 61 65 28 ]
+r25 = newarray (int)[$i3];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 61 65 28 ]
+r25 = newarray (int)[$i3];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 61 65 28 ]
+r25 = newarray (int)[$i3];
+"->"Block 28:
+[preds: 27 ] [succs: 61 65 29 ]
+r26 = newarray (long)[i1];
+";
+    "Block 28:
+[preds: 27 ] [succs: 61 65 29 ]
+r26 = newarray (long)[i1];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 61 65 29 ]
+r26 = newarray (long)[i1];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 61 65 29 ]
+r26 = newarray (long)[i1];
+"->"Block 29:
+[preds: 28 ] [succs: 61 65 30 ]
+$l4 = (long) i0;
+";
+    "Block 29:
+[preds: 28 ] [succs: 61 65 30 ]
+$l4 = (long) i0;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 61 65 30 ]
+$l4 = (long) i0;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 61 65 30 ]
+$l4 = (long) i0;
+"->"Block 30:
+[preds: 29 ] [succs: 61 65 31 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4;
+";
+    "Block 30:
+[preds: 29 ] [succs: 61 65 31 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 61 65 31 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 61 65 31 ]
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4;
+"->"Block 31:
+[preds: 30 ] [succs: 61 65 32 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\");
+";
+    "Block 31:
+[preds: 30 ] [succs: 61 65 32 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\");
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 61 65 32 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\");
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 61 65 32 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\");
+"->"Block 32:
+[preds: 31 ] [succs: 61 65 33 ]
+i35 = 0;
+";
+    "Block 32:
+[preds: 31 ] [succs: 61 65 33 ]
+i35 = 0;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 61 65 33 ]
+i35 = 0;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 61 65 33 ]
+i35 = 0;
+"->"Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 34:
+[preds: 33 ] [succs: 61 65 35 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+";
+    "Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 54:
+[preds: 33 ] [succs: 61 65 55 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 61 65 35 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 61 65 35 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 61 65 35 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+"->"Block 35:
+[preds: 34 ] [succs: 61 65 36 ]
+$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+";
+    "Block 35:
+[preds: 34 ] [succs: 61 65 36 ]
+$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 61 65 36 ]
+$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 61 65 36 ]
+$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>();
+"->"Block 36:
+[preds: 35 ] [succs: 61 65 37 ]
+r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+";
+    "Block 36:
+[preds: 35 ] [succs: 61 65 37 ]
+r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 61 65 37 ]
+r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 61 65 37 ]
+r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \");
+"->"Block 37:
+[preds: 36 ] [succs: 61 65 38 ]
+i36 = 0;
+";
+    "Block 37:
+[preds: 36 ] [succs: 61 65 38 ]
+i36 = 0;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 61 65 38 ]
+i36 = 0;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 61 65 38 ]
+i36 = 0;
+"->"Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+";
+    "Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+"->"Block 39:
+[preds: 38 ] [succs: 61 65 40 ]
+$r58 = r68[i36];
+";
+    "Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+"->"Block 52:
+[preds: 38 ] [succs: 61 65 53 ]
+i35 = i35 + 1;
+";
+    "Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 39:
+[preds: 38 ] [succs: 61 65 40 ]
+$r58 = r68[i36];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 39:
+[preds: 38 ] [succs: 61 65 40 ]
+$r58 = r68[i36];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 39:
+[preds: 38 ] [succs: 61 65 40 ]
+$r58 = r68[i36];
+"->"Block 40:
+[preds: 39 ] [succs: 61 65 41 ]
+i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58);
+";
+    "Block 40:
+[preds: 39 ] [succs: 61 65 41 ]
+i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 40:
+[preds: 39 ] [succs: 61 65 41 ]
+i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 40:
+[preds: 39 ] [succs: 61 65 41 ]
+i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58);
+"->"Block 41:
+[preds: 40 ] [succs: 61 65 42 ]
+$i27 = i35 * i1;
+";
+    "Block 41:
+[preds: 40 ] [succs: 61 65 42 ]
+$i27 = i35 * i1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 41:
+[preds: 40 ] [succs: 61 65 42 ]
+$i27 = i35 * i1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 41:
+[preds: 40 ] [succs: 61 65 42 ]
+$i27 = i35 * i1;
+"->"Block 42:
+[preds: 41 ] [succs: 61 65 43 ]
+$i28 = $i27 + i36;
+";
+    "Block 42:
+[preds: 41 ] [succs: 61 65 43 ]
+$i28 = $i27 + i36;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 42:
+[preds: 41 ] [succs: 61 65 43 ]
+$i28 = $i27 + i36;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 42:
+[preds: 41 ] [succs: 61 65 43 ]
+$i28 = $i27 + i36;
+"->"Block 43:
+[preds: 42 ] [succs: 61 65 44 ]
+r25[$i28] = i37;
+";
+    "Block 43:
+[preds: 42 ] [succs: 61 65 44 ]
+r25[$i28] = i37;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 61 65 44 ]
+r25[$i28] = i37;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 43:
+[preds: 42 ] [succs: 61 65 44 ]
+r25[$i28] = i37;
+"->"Block 44:
+[preds: 43 ] [succs: 61 65 45 ]
+$l29 = r26[i36];
+";
+    "Block 44:
+[preds: 43 ] [succs: 61 65 45 ]
+$l29 = r26[i36];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 44:
+[preds: 43 ] [succs: 61 65 45 ]
+$l29 = r26[i36];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 44:
+[preds: 43 ] [succs: 61 65 45 ]
+$l29 = r26[i36];
+"->"Block 45:
+[preds: 44 ] [succs: 61 65 46 ]
+$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37);
+";
+    "Block 45:
+[preds: 44 ] [succs: 61 65 46 ]
+$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37);
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 61 65 46 ]
+$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37);
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 61 65 46 ]
+$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37);
+"->"Block 46:
+[preds: 45 ] [succs: 61 65 47 ]
+$i31 = $i30 + 1;
+";
+    "Block 46:
+[preds: 45 ] [succs: 61 65 47 ]
+$i31 = $i30 + 1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 61 65 47 ]
+$i31 = $i30 + 1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 61 65 47 ]
+$i31 = $i30 + 1;
+"->"Block 47:
+[preds: 46 ] [succs: 61 65 48 ]
+$l32 = (long) $i31;
+";
+    "Block 47:
+[preds: 46 ] [succs: 61 65 48 ]
+$l32 = (long) $i31;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 61 65 48 ]
+$l32 = (long) $i31;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 61 65 48 ]
+$l32 = (long) $i31;
+"->"Block 48:
+[preds: 47 ] [succs: 61 65 49 ]
+$l33 = $l29 + $l32;
+";
+    "Block 48:
+[preds: 47 ] [succs: 61 65 49 ]
+$l33 = $l29 + $l32;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 48:
+[preds: 47 ] [succs: 61 65 49 ]
+$l33 = $l29 + $l32;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 48:
+[preds: 47 ] [succs: 61 65 49 ]
+$l33 = $l29 + $l32;
+"->"Block 49:
+[preds: 48 ] [succs: 61 65 50 ]
+r26[i36] = $l33;
+";
+    "Block 49:
+[preds: 48 ] [succs: 61 65 50 ]
+r26[i36] = $l33;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 49:
+[preds: 48 ] [succs: 61 65 50 ]
+r26[i36] = $l33;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 49:
+[preds: 48 ] [succs: 61 65 50 ]
+r26[i36] = $l33;
+"->"Block 50:
+[preds: 49 ] [succs: 61 65 51 ]
+i36 = i36 + 1;
+";
+    "Block 50:
+[preds: 49 ] [succs: 61 65 51 ]
+i36 = i36 + 1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 61 65 51 ]
+i36 = i36 + 1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 61 65 51 ]
+i36 = i36 + 1;
+"->"Block 51:
+[preds: 50 ] [succs: 61 65 38 ]
+goto [?= (branch)];
+";
+    "Block 51:
+[preds: 50 ] [succs: 61 65 38 ]
+goto [?= (branch)];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 61 65 38 ]
+goto [?= (branch)];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 51:
+[preds: 50 ] [succs: 61 65 38 ]
+goto [?= (branch)];
+"->"Block 38:
+[preds: 37 51 ] [succs: 39 52 61 65 ]
+if i36 >= i1 goto i35 = i35 + 1;
+";
+    "Block 52:
+[preds: 38 ] [succs: 61 65 53 ]
+i35 = i35 + 1;
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 52:
+[preds: 38 ] [succs: 61 65 53 ]
+i35 = i35 + 1;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 52:
+[preds: 38 ] [succs: 61 65 53 ]
+i35 = i35 + 1;
+"->"Block 53:
+[preds: 52 ] [succs: 61 65 33 ]
+goto [?= (branch)];
+";
+    "Block 53:
+[preds: 52 ] [succs: 61 65 33 ]
+goto [?= (branch)];
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 53:
+[preds: 52 ] [succs: 61 65 33 ]
+goto [?= (branch)];
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 53:
+[preds: 52 ] [succs: 61 65 33 ]
+goto [?= (branch)];
+"->"Block 33:
+[preds: 32 53 ] [succs: 34 54 61 65 ]
+if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 54:
+[preds: 33 ] [succs: 61 65 55 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+";
+    "Block 54:
+[preds: 33 ] [succs: 61 65 55 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 54:
+[preds: 33 ] [succs: 61 65 55 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 55:
+[preds: 54 ] [succs: 56 74 ]
+if r65 == null goto r73 = newarray (int)[i1];
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 74 ]
+if r65 == null goto r73 = newarray (int)[i1];
+"->"Block 56:
+[preds: 55 ] [succs: 57 60 59 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 74 ]
+if r65 == null goto r73 = newarray (int)[i1];
+"->"Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 60 59 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 57:
+[preds: 56 ] [succs: 58 59 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 60 59 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 60:
+[preds: 56 ] [succs: 74 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+goto [?= r73 = newarray (int)[i1]];
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 60 59 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 59:
+[preds: 56 57 ] [succs: 74 ]
+$r64 := @caughtexception;
+r69 = $r64;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69);
+goto [?= r73 = newarray (int)[i1]];
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 59 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 58:
+[preds: 57 ] [succs: 74 ]
+goto [?= r73 = newarray (int)[i1]];
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 59 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 59:
+[preds: 56 57 ] [succs: 74 ]
+$r64 := @caughtexception;
+r69 = $r64;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69);
+goto [?= r73 = newarray (int)[i1]];
+";
+    "Block 58:
+[preds: 57 ] [succs: 74 ]
+goto [?= r73 = newarray (int)[i1]];
+"->"Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+";
+    "Block 59:
+[preds: 56 57 ] [succs: 74 ]
+$r64 := @caughtexception;
+r69 = $r64;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69);
+goto [?= r73 = newarray (int)[i1]];
+"->"Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+";
+    "Block 60:
+[preds: 56 ] [succs: 74 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+goto [?= r73 = newarray (int)[i1]];
+"->"Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+";
+    "Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+"->"Block 62:
+[preds: 61 ] [succs: 63 65 ]
+r70 = $r63;
+";
+    "Block 61:
+[preds: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 62 65 ]
+$r63 := @caughtexception;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 62:
+[preds: 61 ] [succs: 63 65 ]
+r70 = $r63;
+"->"Block 63:
+[preds: 62 ] [succs: 64 65 ]
+r66 = r70;
+";
+    "Block 62:
+[preds: 61 ] [succs: 63 65 ]
+r70 = $r63;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 63:
+[preds: 62 ] [succs: 64 65 ]
+r66 = r70;
+"->"Block 64:
+[preds: 63 ] [succs: 65 ]
+throw r70;
+";
+    "Block 63:
+[preds: 62 ] [succs: 64 65 ]
+r66 = r70;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 64:
+[preds: 63 ] [succs: 65 ]
+throw r70;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+"->"Block 66:
+[preds: 65 ] [succs: 67 65 ]
+r71 = $r62;
+";
+    "Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 65 ]
+r71 = $r62;
+"->"Block 67:
+[preds: 66 ] [succs: 68 73 ]
+if r65 == null goto throw r71;
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 65 ]
+r71 = $r62;
+"->"Block 65:
+[preds: 61 62 63 64 65 66 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 24 18 19 20 21 22 23 25 26 27 28 29 30 31 32 53 33 34 35 36 37 51 38 39 40 41 42 43 44 45 46 47 48 49 50 52 54 ] [succs: 66 65 ]
+$r62 := @caughtexception;
+";
+    "Block 67:
+[preds: 66 ] [succs: 68 73 ]
+if r65 == null goto throw r71;
+"->"Block 68:
+[preds: 67 ] [succs: 69 72 71 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+";
+    "Block 67:
+[preds: 66 ] [succs: 68 73 ]
+if r65 == null goto throw r71;
+"->"Block 73:
+[preds: 67 70 71 72 ] [succs: ]
+throw r71;
+";
+    "Block 68:
+[preds: 67 ] [succs: 69 72 71 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 69:
+[preds: 68 ] [succs: 70 71 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+";
+    "Block 68:
+[preds: 67 ] [succs: 69 72 71 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 72:
+[preds: 68 ] [succs: 73 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+";
+    "Block 68:
+[preds: 67 ] [succs: 69 72 71 ]
+if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 71:
+[preds: 68 69 ] [succs: 73 ]
+$r61 := @caughtexception;
+r72 = $r61;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72);
+goto [?= throw r71];
+";
+    "Block 69:
+[preds: 68 ] [succs: 70 71 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 70:
+[preds: 69 ] [succs: 73 ]
+goto [?= throw r71];
+";
+    "Block 69:
+[preds: 68 ] [succs: 70 71 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 71:
+[preds: 68 69 ] [succs: 73 ]
+$r61 := @caughtexception;
+r72 = $r61;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72);
+goto [?= throw r71];
+";
+    "Block 70:
+[preds: 69 ] [succs: 73 ]
+goto [?= throw r71];
+"->"Block 73:
+[preds: 67 70 71 72 ] [succs: ]
+throw r71;
+";
+    "Block 71:
+[preds: 68 69 ] [succs: 73 ]
+$r61 := @caughtexception;
+r72 = $r61;
+virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72);
+goto [?= throw r71];
+"->"Block 73:
+[preds: 67 70 71 72 ] [succs: ]
+throw r71;
+";
+    "Block 72:
+[preds: 68 ] [succs: 73 ]
+virtualinvoke r65.<java.io.BufferedReader: void close()>();
+"->"Block 73:
+[preds: 67 70 71 72 ] [succs: ]
+throw r71;
+";
+    "Block 74:
+[preds: 55 58 59 60 ] [succs: 75 ]
+r73 = newarray (int)[i1];
+i38 = 0;
+"->"Block 75:
+[preds: 74 78 ] [succs: 76 79 ]
+if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+";
+    "Block 75:
+[preds: 74 78 ] [succs: 76 79 ]
+if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+"->"Block 76:
+[preds: 75 ] [succs: 77 78 ]
+i39 = 0;
+$l24 = r26[i38];
+$l23 = (long) i0;
+$b25 = $l24 cmp $l23;
+if $b25 <= 0 goto r73[i38] = i39;
+";
+    "Block 75:
+[preds: 74 78 ] [succs: 76 79 ]
+if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+"->"Block 79:
+[preds: 75 ] [succs: 80 ]
+$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>();
+$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder;
+specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>();
+$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24);
+$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31);
+$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>();
+specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33);
+r74 = $r27;
+r75 = newarray (int)[i0];
+i40 = 0;
+";
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+i39 = 0;
+$l24 = r26[i38];
+$l23 = (long) i0;
+$b25 = $l24 cmp $l23;
+if $b25 <= 0 goto r73[i38] = i39;
+"->"Block 77:
+[preds: 76 ] [succs: 78 ]
+$d4 = (double) i0;
+$l26 = r26[i38];
+$d3 = (double) $l26;
+d12 = $d4 / $d3;
+$d5 = 2.0 - d12;
+$d6 = staticinvoke <java.lang.Math: double log(double)>($d5);
+$d7 = 1.0 - d12;
+$d8 = staticinvoke <java.lang.Math: double log(double)>($d7);
+$d9 = neg $d8;
+$d10 = $d6 / $d9;
+$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10);
+i39 = (int) $d11;
+";
+    "Block 76:
+[preds: 75 ] [succs: 77 78 ]
+i39 = 0;
+$l24 = r26[i38];
+$l23 = (long) i0;
+$b25 = $l24 cmp $l23;
+if $b25 <= 0 goto r73[i38] = i39;
+"->"Block 78:
+[preds: 76 77 ] [succs: 75 ]
+r73[i38] = i39;
+i38 = i38 + 1;
+goto [?= (branch)];
+";
+    "Block 77:
+[preds: 76 ] [succs: 78 ]
+$d4 = (double) i0;
+$l26 = r26[i38];
+$d3 = (double) $l26;
+d12 = $d4 / $d3;
+$d5 = 2.0 - d12;
+$d6 = staticinvoke <java.lang.Math: double log(double)>($d5);
+$d7 = 1.0 - d12;
+$d8 = staticinvoke <java.lang.Math: double log(double)>($d7);
+$d9 = neg $d8;
+$d10 = $d6 / $d9;
+$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10);
+i39 = (int) $d11;
+"->"Block 78:
+[preds: 76 77 ] [succs: 75 ]
+r73[i38] = i39;
+i38 = i38 + 1;
+goto [?= (branch)];
+";
+    "Block 78:
+[preds: 76 77 ] [succs: 75 ]
+r73[i38] = i39;
+i38 = i38 + 1;
+goto [?= (branch)];
+"->"Block 75:
+[preds: 74 78 ] [succs: 76 79 ]
+if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+";
+    "Block 79:
+[preds: 75 ] [succs: 80 ]
+$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap;
+$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>();
+$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder;
+specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>();
+$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24);
+$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>();
+$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31);
+$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>();
+specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33);
+r74 = $r27;
+r75 = newarray (int)[i0];
+i40 = 0;
+"->"Block 80:
+[preds: 79 81 ] [succs: 81 82 ]
+if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+";
+    "Block 80:
+[preds: 79 81 ] [succs: 81 82 ]
+if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+"->"Block 81:
+[preds: 80 ] [succs: 80 ]
+$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40);
+$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55);
+i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>();
+r75[i41] = i40;
+i40 = i40 + 1;
+goto [?= (branch)];
+";
+    "Block 80:
+[preds: 79 81 ] [succs: 81 82 ]
+if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+"->"Block 82:
+[preds: 80 ] [succs: 83 ]
+$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>();
+r76 = $r34;
+$r35 = new it.unimi.dsi.io.OutputBitStream;
+specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0);
+r77 = $r35;
+$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList;
+specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>();
+r78 = $r36;
+$l5 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\");
+i42 = 0;
+";
+    "Block 81:
+[preds: 80 ] [succs: 80 ]
+$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40);
+$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55);
+i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>();
+r75[i41] = i40;
+i40 = i40 + 1;
+goto [?= (branch)];
+"->"Block 80:
+[preds: 79 81 ] [succs: 81 82 ]
+if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+";
+    "Block 82:
+[preds: 80 ] [succs: 83 ]
+$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream;
+specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>();
+r76 = $r34;
+$r35 = new it.unimi.dsi.io.OutputBitStream;
+specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0);
+r77 = $r35;
+$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList;
+specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>();
+r78 = $r36;
+$l5 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\");
+i42 = 0;
+"->"Block 83:
+[preds: 82 87 ] [succs: 84 88 ]
+if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 83:
+[preds: 82 87 ] [succs: 84 88 ]
+if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 84:
+[preds: 83 ] [succs: 85 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>();
+virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17);
+$i18 = r75[i42];
+i43 = $i18 * i1;
+i44 = 0;
+";
+    "Block 83:
+[preds: 82 87 ] [succs: 84 88 ]
+if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 88:
+[preds: 83 ] [succs: 89 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>();
+";
+    "Block 84:
+[preds: 83 ] [succs: 85 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>();
+virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17);
+$i18 = r75[i42];
+i43 = $i18 * i1;
+i44 = 0;
+"->"Block 85:
+[preds: 84 86 ] [succs: 86 87 ]
+if i44 >= i1 goto i42 = i42 + 1;
+";
+    "Block 85:
+[preds: 84 86 ] [succs: 86 87 ]
+if i44 >= i1 goto i42 = i42 + 1;
+"->"Block 86:
+[preds: 85 ] [succs: 85 ]
+$i19 = i43 + i44;
+i45 = r25[$i19];
+$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45);
+$i21 = r73[i44];
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21);
+i44 = i44 + 1;
+goto [?= (branch)];
+";
+    "Block 85:
+[preds: 84 86 ] [succs: 86 87 ]
+if i44 >= i1 goto i42 = i42 + 1;
+"->"Block 87:
+[preds: 85 ] [succs: 83 ]
+i42 = i42 + 1;
+goto [?= (branch)];
+";
+    "Block 86:
+[preds: 85 ] [succs: 85 ]
+$i19 = i43 + i44;
+i45 = r25[$i19];
+$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45);
+$i21 = r73[i44];
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21);
+i44 = i44 + 1;
+goto [?= (branch)];
+"->"Block 85:
+[preds: 84 86 ] [succs: 86 87 ]
+if i44 >= i1 goto i42 = i42 + 1;
+";
+    "Block 87:
+[preds: 85 ] [succs: 83 ]
+i42 = i42 + 1;
+goto [?= (branch)];
+"->"Block 83:
+[preds: 82 87 ] [succs: 84 88 ]
+if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 88:
+[preds: 83 ] [succs: 89 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>();
+"->"Block 89:
+[preds: 88 90 ] [succs: 90 91 ]
+$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>();
+$l7 = $l6 % 4L;
+$b8 = $l7 cmp 0L;
+if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+";
+    "Block 89:
+[preds: 88 90 ] [succs: 90 91 ]
+$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>();
+$l7 = $l6 % 4L;
+$b8 = $l7 cmp 0L;
+if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+"->"Block 90:
+[preds: 89 ] [succs: 89 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0);
+goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()];
+";
+    "Block 89:
+[preds: 88 90 ] [succs: 90 91 ]
+$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>();
+$l7 = $l6 % 4L;
+$b8 = $l7 cmp 0L;
+if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+"->"Block 91:
+[preds: 89 ] [succs: 92 93 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i9 = lengthof $r37;
+$d0 = (double) $i9;
+$d2 = 8.0 * $d0;
+$i10 = lengthof r25;
+$d1 = (double) $i10;
+d13 = $d2 / $d1;
+$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i11 = lengthof $r38;
+$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11);
+$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13);
+interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41);
+$r42 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13);
+$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList;
+specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78);
+r79 = $r43;
+$r44 = new it.cnr.isti.hpc.Word2VecCompress;
+$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73);
+r80 = $r44;
+if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+";
+    "Block 90:
+[preds: 89 ] [succs: 89 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0);
+goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()];
+"->"Block 89:
+[preds: 88 90 ] [succs: 90 91 ]
+$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>();
+$l7 = $l6 % 4L;
+$b8 = $l7 cmp 0L;
+if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+";
+    "Block 91:
+[preds: 89 ] [succs: 92 93 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i9 = lengthof $r37;
+$d0 = (double) $i9;
+$d2 = 8.0 * $d0;
+$i10 = lengthof r25;
+$d1 = (double) $i10;
+d13 = $d2 / $d1;
+$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i11 = lengthof $r38;
+$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11);
+$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13);
+interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41);
+$r42 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13);
+$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList;
+specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78);
+r79 = $r43;
+$r44 = new it.cnr.isti.hpc.Word2VecCompress;
+$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73);
+r80 = $r44;
+if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+"->"Block 92:
+[preds: 91 ] [succs: 93 ]
+staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13);
+";
+    "Block 91:
+[preds: 89 ] [succs: 92 93 ]
+virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>();
+$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i9 = lengthof $r37;
+$d0 = (double) $i9;
+$d2 = 8.0 * $d0;
+$i10 = lengthof r25;
+$d1 = (double) $i10;
+d13 = $d2 / $d1;
+$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+$i11 = lengthof $r38;
+$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11);
+$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13);
+interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41);
+$r42 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13);
+$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList;
+specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78);
+r79 = $r43;
+$r44 = new it.cnr.isti.hpc.Word2VecCompress;
+$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>;
+specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73);
+r80 = $r44;
+if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+"->"Block 93:
+[preds: 91 92 ] [succs: 94 103 ]
+$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+if $z1 == 0 goto return;
+";
+    "Block 92:
+[preds: 91 ] [succs: 93 ]
+staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13);
+"->"Block 93:
+[preds: 91 92 ] [succs: 94 103 ]
+$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+if $z1 == 0 goto return;
+";
+    "Block 93:
+[preds: 91 92 ] [succs: 94 103 ]
+$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+if $z1 == 0 goto return;
+"->"Block 94:
+[preds: 93 ] [succs: 95 ]
+$l12 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\");
+i46 = 0;
+";
+    "Block 93:
+[preds: 91 92 ] [succs: 94 103 ]
+$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\");
+if $z1 == 0 goto return;
+"->"Block 103:
+[preds: 93 102 ] [succs: ]
+return;
+";
+    "Block 94:
+[preds: 93 ] [succs: 95 ]
+$l12 = (long) i0;
+r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12;
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\");
+i46 = 0;
+"->"Block 95:
+[preds: 94 101 ] [succs: 96 102 ]
+if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 95:
+[preds: 94 101 ] [succs: 96 102 ]
+if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 96:
+[preds: 95 ] [succs: 97 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46);
+$r47 = (java.lang.String) $r46;
+r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47);
+i47 = 0;
+";
+    "Block 95:
+[preds: 94 101 ] [succs: 96 102 ]
+if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 102:
+[preds: 95 ] [succs: 103 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 96:
+[preds: 95 ] [succs: 97 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>();
+$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46);
+$r47 = (java.lang.String) $r46;
+r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47);
+i47 = 0;
+"->"Block 97:
+[preds: 96 100 ] [succs: 98 101 ]
+if i47 >= i1 goto i46 = i46 + 1;
+";
+    "Block 97:
+[preds: 96 100 ] [succs: 98 101 ]
+if i47 >= i1 goto i46 = i46 + 1;
+"->"Block 98:
+[preds: 97 ] [succs: 99 100 ]
+$i13 = i46 * i1;
+$i14 = $i13 + i47;
+i15 = r25[$i14];
+i16 = r48[i47];
+if i15 == i16 goto i47 = i47 + 1;
+";
+    "Block 97:
+[preds: 96 100 ] [succs: 98 101 ]
+if i47 >= i1 goto i46 = i46 + 1;
+"->"Block 101:
+[preds: 97 ] [succs: 95 ]
+i46 = i46 + 1;
+goto [?= (branch)];
+";
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+$i13 = i46 * i1;
+$i14 = $i13 + i47;
+i15 = r25[$i14];
+i16 = r48[i47];
+if i15 == i16 goto i47 = i47 + 1;
+"->"Block 99:
+[preds: 98 ] [succs: 100 ]
+$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r49 = newarray (java.lang.Object)[4];
+$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46);
+$r49[0] = $r51;
+$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47);
+$r49[1] = $r52;
+$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r49[2] = $r53;
+$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16);
+$r49[3] = $r54;
+interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+$i13 = i46 * i1;
+$i14 = $i13 + i47;
+i15 = r25[$i14];
+i16 = r48[i47];
+if i15 == i16 goto i47 = i47 + 1;
+"->"Block 100:
+[preds: 98 99 ] [succs: 97 ]
+i47 = i47 + 1;
+goto [?= (branch)];
+";
+    "Block 99:
+[preds: 98 ] [succs: 100 ]
+$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>;
+$r49 = newarray (java.lang.Object)[4];
+$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46);
+$r49[0] = $r51;
+$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47);
+$r49[1] = $r52;
+$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15);
+$r49[2] = $r53;
+$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16);
+$r49[3] = $r54;
+interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 100:
+[preds: 98 99 ] [succs: 97 ]
+i47 = i47 + 1;
+goto [?= (branch)];
+";
+    "Block 100:
+[preds: 98 99 ] [succs: 97 ]
+i47 = i47 + 1;
+goto [?= (branch)];
+"->"Block 97:
+[preds: 96 100 ] [succs: 98 101 ]
+if i47 >= i1 goto i46 = i46 + 1;
+";
+    "Block 101:
+[preds: 97 ] [succs: 95 ]
+i46 = i46 + 1;
+goto [?= (branch)];
+"->"Block 95:
+[preds: 94 101 ] [succs: 96 102 ]
+if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+";
+    "Block 102:
+[preds: 95 ] [succs: 103 ]
+virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>();
+"->"Block 103:
+[preds: 93 102 ] [succs: ]
+return;
+";
+}

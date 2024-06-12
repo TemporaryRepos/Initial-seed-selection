@@ -1,0 +1,76 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "r10 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>(\"MD5\")"
+    "$r1 = virtualinvoke r0.<java.lang.String: byte[] getBytes()>()"
+    "virtualinvoke r10.<java.security.MessageDigest: void update(byte[])>($r1)"
+    "r2 = virtualinvoke r10.<java.security.MessageDigest: byte[] digest()>()"
+    "$r3 = new java.lang.StringBuffer"
+    "specialinvoke $r3.<java.lang.StringBuffer: void <init>(java.lang.String)>(\"\")"
+    "r4 = $r3"
+    "i1 = 0"
+    "$i0 = lengthof r2"
+    "if i1 >= $i0 goto $r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"
+    "i2 = r2[i1]"
+    "if i2 >= 0 goto (branch)"
+    "i2 = i2 + 256"
+    "if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"0\")"
+    "$r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6)"
+    "i1 = i1 + 1"
+    "goto [?= $i0 = lengthof r2]"
+    "$r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"
+    "return $r5"
+    "$r9 := @caughtexception"
+    "r11 = $r9"
+    "virtualinvoke r11.<java.security.NoSuchAlgorithmException: void printStackTrace()>()"
+    "return null"
+    "r0 := @parameter0: java.lang.String"->"r10 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>(\"MD5\")";
+    "r0 := @parameter0: java.lang.String"->"$r9 := @caughtexception";
+    "r10 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>(\"MD5\")"->"$r1 = virtualinvoke r0.<java.lang.String: byte[] getBytes()>()";
+    "r10 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>(\"MD5\")"->"$r9 := @caughtexception";
+    "$r1 = virtualinvoke r0.<java.lang.String: byte[] getBytes()>()"->"virtualinvoke r10.<java.security.MessageDigest: void update(byte[])>($r1)";
+    "$r1 = virtualinvoke r0.<java.lang.String: byte[] getBytes()>()"->"$r9 := @caughtexception";
+    "virtualinvoke r10.<java.security.MessageDigest: void update(byte[])>($r1)"->"r2 = virtualinvoke r10.<java.security.MessageDigest: byte[] digest()>()";
+    "virtualinvoke r10.<java.security.MessageDigest: void update(byte[])>($r1)"->"$r9 := @caughtexception";
+    "r2 = virtualinvoke r10.<java.security.MessageDigest: byte[] digest()>()"->"$r3 = new java.lang.StringBuffer";
+    "r2 = virtualinvoke r10.<java.security.MessageDigest: byte[] digest()>()"->"$r9 := @caughtexception";
+    "$r3 = new java.lang.StringBuffer"->"specialinvoke $r3.<java.lang.StringBuffer: void <init>(java.lang.String)>(\"\")";
+    "$r3 = new java.lang.StringBuffer"->"$r9 := @caughtexception";
+    "specialinvoke $r3.<java.lang.StringBuffer: void <init>(java.lang.String)>(\"\")"->"r4 = $r3";
+    "specialinvoke $r3.<java.lang.StringBuffer: void <init>(java.lang.String)>(\"\")"->"$r9 := @caughtexception";
+    "r4 = $r3"->"i1 = 0";
+    "r4 = $r3"->"$r9 := @caughtexception";
+    "i1 = 0"->"$i0 = lengthof r2";
+    "i1 = 0"->"$r9 := @caughtexception";
+    "$i0 = lengthof r2"->"if i1 >= $i0 goto $r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()";
+    "$i0 = lengthof r2"->"$r9 := @caughtexception";
+    "if i1 >= $i0 goto $r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"->"i2 = r2[i1]";
+    "if i1 >= $i0 goto $r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"->"$r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()";
+    "if i1 >= $i0 goto $r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"->"$r9 := @caughtexception";
+    "i2 = r2[i1]"->"if i2 >= 0 goto (branch)";
+    "i2 = r2[i1]"->"$r9 := @caughtexception";
+    "if i2 >= 0 goto (branch)"->"i2 = i2 + 256";
+    "if i2 >= 0 goto (branch)"->"if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)";
+    "if i2 >= 0 goto (branch)"->"$r9 := @caughtexception";
+    "i2 = i2 + 256"->"if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)";
+    "i2 = i2 + 256"->"$r9 := @caughtexception";
+    "if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"->"virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"0\")";
+    "if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"->"$r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)";
+    "if i2 >= 16 goto $r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"->"$r9 := @caughtexception";
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"0\")"->"$r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)";
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"0\")"->"$r9 := @caughtexception";
+    "$r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"->"virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6)";
+    "$r6 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(i2)"->"$r9 := @caughtexception";
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6)"->"i1 = i1 + 1";
+    "virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6)"->"$r9 := @caughtexception";
+    "i1 = i1 + 1"->"goto [?= $i0 = lengthof r2]";
+    "i1 = i1 + 1"->"$r9 := @caughtexception";
+    "goto [?= $i0 = lengthof r2]"->"$i0 = lengthof r2";
+    "goto [?= $i0 = lengthof r2]"->"$r9 := @caughtexception";
+    "$r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"->"return $r5";
+    "$r5 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>()"->"$r9 := @caughtexception";
+    "$r9 := @caughtexception"->"r11 = $r9";
+    "r11 = $r9"->"virtualinvoke r11.<java.security.NoSuchAlgorithmException: void printStackTrace()>()";
+    "virtualinvoke r11.<java.security.NoSuchAlgorithmException: void printStackTrace()>()"->"return null";
+}

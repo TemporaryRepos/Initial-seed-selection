@@ -1,0 +1,268 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "$i0 = lengthof r0"
+    "if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient"
+    "$r14 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: newsgroups newsserver [pattern]\")"
+    "return"
+    "$r1 = new org.apache.commons.net.nntp.NNTPClient"
+    "specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>()"
+    "r2 = $r1"
+    "$i1 = lengthof r0"
+    "if $i1 < 2 goto $r26 = \"\""
+    "$r26 = r0[1]"
+    "goto [?= r3 = $r26]"
+    "$r26 = \"\""
+    "r3 = $r26"
+    "$r4 = r0[0]"
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4)"
+    "i2 = 0"
+    "$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)"
+    "r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()"
+    "$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()"
+    "if $z3 == 0 goto (branch)"
+    "$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()"
+    "r28 = (java.lang.String) $r12"
+    "i2 = i2 + 1"
+    "$r13 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)"
+    "goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= $r6 = <java.lang.System: java.io.PrintStream out>]"
+    "$r25 := @caughtexception"
+    "r29 = $r25"
+    "virtualinvoke r29.<java.io.IOException: void printStackTrace()>()"
+    "$r6 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2)"
+    "i3 = 0"
+    "$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3)"
+    "r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>()"
+    "$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"
+    "if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>"
+    "$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"
+    "r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9"
+    "i3 = i3 + 1"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>()"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11)"
+    "goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"
+    "$r8 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)"
+    "$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"
+    "if $z0 == 0 goto (branch)"
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"
+    "goto [?= return]"
+    "$r23 := @caughtexception"
+    "r32 = $r23"
+    "$r24 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"
+    "virtualinvoke r32.<java.io.IOException: void printStackTrace()>()"
+    "staticinvoke <java.lang.System: void exit(int)>(1)"
+    "$r22 := @caughtexception"
+    "r33 = $r22"
+    "virtualinvoke r33.<java.io.IOException: void printStackTrace()>()"
+    "$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"
+    "if $z2 == 0 goto (branch)"
+    "$r20 := @caughtexception"
+    "r34 = $r20"
+    "$r21 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"
+    "virtualinvoke r34.<java.io.IOException: void printStackTrace()>()"
+    "$r19 := @caughtexception"
+    "r18 = $r19"
+    "$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"
+    "if $z1 == 0 goto (branch)"
+    "goto [?= throw r18]"
+    "$r15 := @caughtexception"
+    "r16 = $r15"
+    "$r17 = <java.lang.System: java.io.PrintStream err>"
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"
+    "virtualinvoke r16.<java.io.IOException: void printStackTrace()>()"
+    "throw r18"
+    "r0 := @parameter0: java.lang.String[]"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient";
+    "if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient"->"$r14 = <java.lang.System: java.io.PrintStream err>";
+    "if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient"->"$r1 = new org.apache.commons.net.nntp.NNTPClient";
+    "$r14 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: newsgroups newsserver [pattern]\")";
+    "virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: newsgroups newsserver [pattern]\")"->"return";
+    "$r1 = new org.apache.commons.net.nntp.NNTPClient"->"specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>()";
+    "specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>()"->"r2 = $r1";
+    "r2 = $r1"->"$i1 = lengthof r0";
+    "$i1 = lengthof r0"->"if $i1 < 2 goto $r26 = \"\"";
+    "if $i1 < 2 goto $r26 = \"\""->"$r26 = r0[1]";
+    "if $i1 < 2 goto $r26 = \"\""->"$r26 = \"\"";
+    "$r26 = r0[1]"->"goto [?= r3 = $r26]";
+    "goto [?= r3 = $r26]"->"r3 = $r26";
+    "$r26 = \"\""->"r3 = $r26";
+    "r3 = $r26"->"$r22 := @caughtexception";
+    "r3 = $r26"->"$r19 := @caughtexception";
+    "r3 = $r26"->"$r4 = r0[0]";
+    "$r4 = r0[0]"->"$r22 := @caughtexception";
+    "$r4 = r0[0]"->"$r19 := @caughtexception";
+    "$r4 = r0[0]"->"virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4)";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4)"->"$r22 := @caughtexception";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4)"->"$r19 := @caughtexception";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4)"->"i2 = 0";
+    "i2 = 0"->"$r25 := @caughtexception";
+    "i2 = 0"->"$r19 := @caughtexception";
+    "i2 = 0"->"$r22 := @caughtexception";
+    "i2 = 0"->"$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)";
+    "$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)"->"$r25 := @caughtexception";
+    "$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)"->"$r19 := @caughtexception";
+    "$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)"->"$r22 := @caughtexception";
+    "$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3)"->"r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()";
+    "r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r25 := @caughtexception";
+    "r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r19 := @caughtexception";
+    "r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r22 := @caughtexception";
+    "r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()";
+    "$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()"->"$r25 := @caughtexception";
+    "$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()"->"$r19 := @caughtexception";
+    "$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()"->"$r22 := @caughtexception";
+    "$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()"->"if $z3 == 0 goto (branch)";
+    "if $z3 == 0 goto (branch)"->"$r25 := @caughtexception";
+    "if $z3 == 0 goto (branch)"->"$r19 := @caughtexception";
+    "if $z3 == 0 goto (branch)"->"$r22 := @caughtexception";
+    "if $z3 == 0 goto (branch)"->"$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z3 == 0 goto (branch)"->"goto [?= $r6 = <java.lang.System: java.io.PrintStream out>]";
+    "$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()"->"$r25 := @caughtexception";
+    "$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()"->"$r19 := @caughtexception";
+    "$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()"->"$r22 := @caughtexception";
+    "$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>()"->"r28 = (java.lang.String) $r12";
+    "r28 = (java.lang.String) $r12"->"$r25 := @caughtexception";
+    "r28 = (java.lang.String) $r12"->"$r19 := @caughtexception";
+    "r28 = (java.lang.String) $r12"->"$r22 := @caughtexception";
+    "r28 = (java.lang.String) $r12"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"$r25 := @caughtexception";
+    "i2 = i2 + 1"->"$r19 := @caughtexception";
+    "i2 = i2 + 1"->"$r22 := @caughtexception";
+    "i2 = i2 + 1"->"$r13 = <java.lang.System: java.io.PrintStream out>";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"$r25 := @caughtexception";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)"->"$r25 := @caughtexception";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)"->"$r19 := @caughtexception";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)"->"$r22 := @caughtexception";
+    "virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28)"->"goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]"->"$r25 := @caughtexception";
+    "goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]"->"$r19 := @caughtexception";
+    "goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]"->"$r22 := @caughtexception";
+    "goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()]"->"$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $r6 = <java.lang.System: java.io.PrintStream out>]"->"$r22 := @caughtexception";
+    "goto [?= $r6 = <java.lang.System: java.io.PrintStream out>]"->"$r19 := @caughtexception";
+    "goto [?= $r6 = <java.lang.System: java.io.PrintStream out>]"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r25 := @caughtexception"->"$r22 := @caughtexception";
+    "$r25 := @caughtexception"->"$r19 := @caughtexception";
+    "$r25 := @caughtexception"->"r29 = $r25";
+    "r29 = $r25"->"$r22 := @caughtexception";
+    "r29 = $r25"->"$r19 := @caughtexception";
+    "r29 = $r25"->"virtualinvoke r29.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r29.<java.io.IOException: void printStackTrace()>()"->"$r22 := @caughtexception";
+    "virtualinvoke r29.<java.io.IOException: void printStackTrace()>()"->"$r19 := @caughtexception";
+    "virtualinvoke r29.<java.io.IOException: void printStackTrace()>()"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2)";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2)"->"$r22 := @caughtexception";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2)"->"$r19 := @caughtexception";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2)"->"i3 = 0";
+    "i3 = 0"->"$r22 := @caughtexception";
+    "i3 = 0"->"$r19 := @caughtexception";
+    "i3 = 0"->"$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3)";
+    "$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3)"->"$r22 := @caughtexception";
+    "$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3)"->"$r19 := @caughtexception";
+    "$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3)"->"r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>()";
+    "r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r22 := @caughtexception";
+    "r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r19 := @caughtexception";
+    "r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()";
+    "$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"->"$r22 := @caughtexception";
+    "$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"->"$r19 := @caughtexception";
+    "$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"->"if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>";
+    "if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>"->"$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>"->"$r8 = <java.lang.System: java.io.PrintStream out>";
+    "if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"->"$r22 := @caughtexception";
+    "$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"->"$r19 := @caughtexception";
+    "$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"->"r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9";
+    "r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9"->"$r22 := @caughtexception";
+    "r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9"->"$r19 := @caughtexception";
+    "r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"$r22 := @caughtexception";
+    "i3 = i3 + 1"->"$r19 := @caughtexception";
+    "i3 = i3 + 1"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>()";
+    "$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>()"->"$r22 := @caughtexception";
+    "$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>()"->"$r19 := @caughtexception";
+    "$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>()"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$r22 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"$r19 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11)"->"goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"->"$r22 := @caughtexception";
+    "goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"->"$r19 := @caughtexception";
+    "goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"->"$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()";
+    "$r8 = <java.lang.System: java.io.PrintStream out>"->"$r22 := @caughtexception";
+    "$r8 = <java.lang.System: java.io.PrintStream out>"->"$r19 := @caughtexception";
+    "$r8 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)";
+    "virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)"->"$r23 := @caughtexception";
+    "virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)"->"$r22 := @caughtexception";
+    "virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)"->"$r19 := @caughtexception";
+    "virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3)"->"$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()";
+    "$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"if $z0 == 0 goto (branch)";
+    "$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"$r23 := @caughtexception";
+    "if $z0 == 0 goto (branch)"->"virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()";
+    "if $z0 == 0 goto (branch)"->"goto [?= return]";
+    "if $z0 == 0 goto (branch)"->"$r23 := @caughtexception";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"goto [?= return]";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"$r23 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r23 := @caughtexception"->"r32 = $r23";
+    "r32 = $r23"->"$r24 = <java.lang.System: java.io.PrintStream err>";
+    "$r24 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")";
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"->"virtualinvoke r32.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r32.<java.io.IOException: void printStackTrace()>()"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r22 := @caughtexception"->"r33 = $r22";
+    "$r22 := @caughtexception"->"$r19 := @caughtexception";
+    "r33 = $r22"->"virtualinvoke r33.<java.io.IOException: void printStackTrace()>()";
+    "r33 = $r22"->"$r19 := @caughtexception";
+    "virtualinvoke r33.<java.io.IOException: void printStackTrace()>()"->"$r20 := @caughtexception";
+    "virtualinvoke r33.<java.io.IOException: void printStackTrace()>()"->"$r19 := @caughtexception";
+    "virtualinvoke r33.<java.io.IOException: void printStackTrace()>()"->"$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()";
+    "$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"if $z2 == 0 goto (branch)";
+    "$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"$r20 := @caughtexception";
+    "if $z2 == 0 goto (branch)"->"virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()";
+    "if $z2 == 0 goto (branch)"->"goto [?= return]";
+    "if $z2 == 0 goto (branch)"->"$r20 := @caughtexception";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"goto [?= return]";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"$r20 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r20 := @caughtexception"->"r34 = $r20";
+    "r34 = $r20"->"$r21 = <java.lang.System: java.io.PrintStream err>";
+    "$r21 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"->"virtualinvoke r34.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r34.<java.io.IOException: void printStackTrace()>()"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r19 := @caughtexception"->"r18 = $r19";
+    "$r19 := @caughtexception"->"$r19 := @caughtexception";
+    "r18 = $r19"->"$r15 := @caughtexception";
+    "r18 = $r19"->"$r19 := @caughtexception";
+    "r18 = $r19"->"$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()";
+    "$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"if $z1 == 0 goto (branch)";
+    "$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>()"->"$r15 := @caughtexception";
+    "if $z1 == 0 goto (branch)"->"virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()";
+    "if $z1 == 0 goto (branch)"->"goto [?= throw r18]";
+    "if $z1 == 0 goto (branch)"->"$r15 := @caughtexception";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"goto [?= throw r18]";
+    "virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>()"->"$r15 := @caughtexception";
+    "goto [?= throw r18]"->"throw r18";
+    "$r15 := @caughtexception"->"r16 = $r15";
+    "r16 = $r15"->"$r17 = <java.lang.System: java.io.PrintStream err>";
+    "$r17 = <java.lang.System: java.io.PrintStream err>"->"virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")";
+    "virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\")"->"virtualinvoke r16.<java.io.IOException: void printStackTrace()>()";
+    "virtualinvoke r16.<java.io.IOException: void printStackTrace()>()"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"throw r18";
+}

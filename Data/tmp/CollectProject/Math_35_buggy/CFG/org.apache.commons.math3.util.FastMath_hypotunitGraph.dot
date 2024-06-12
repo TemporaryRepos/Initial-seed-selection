@@ -1,0 +1,71 @@
+digraph "unitGraph" {
+    "d0 := @parameter0: double"
+    "d1 := @parameter1: double"
+    "$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)"
+    "if $z0 != 0 goto return #Infinity"
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"
+    "if $z1 == 0 goto $z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)"
+    "return #Infinity"
+    "$z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)"
+    "if $z2 != 0 goto return #NaN"
+    "$z3 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d1)"
+    "if $z3 == 0 goto i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)"
+    "return #NaN"
+    "i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)"
+    "i1 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d1)"
+    "$i2 = i1 + 27"
+    "if i0 <= $i2 goto $i3 = i0 + 27"
+    "$d10 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d0)"
+    "return $d10"
+    "$i3 = i0 + 27"
+    "if i1 <= $i3 goto $i4 = i0 + i1"
+    "$d9 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d1)"
+    "return $d9"
+    "$i4 = i0 + i1"
+    "i5 = $i4 / 2"
+    "$i6 = neg i5"
+    "d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d0, $i6)"
+    "$i7 = neg i5"
+    "d3 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d1, $i7)"
+    "$d5 = d2 * d2"
+    "$d4 = d3 * d3"
+    "$d6 = $d5 + $d4"
+    "d7 = staticinvoke <org.apache.commons.math3.util.FastMath: double sqrt(double)>($d6)"
+    "$d8 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d7, i5)"
+    "return $d8"
+    "d0 := @parameter0: double"->"d1 := @parameter1: double";
+    "d1 := @parameter1: double"->"$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)";
+    "$z0 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d0)"->"if $z0 != 0 goto return #Infinity";
+    "if $z0 != 0 goto return #Infinity"->"$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)";
+    "if $z0 != 0 goto return #Infinity"->"return #Infinity";
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d1)"->"if $z1 == 0 goto $z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)";
+    "if $z1 == 0 goto $z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)"->"return #Infinity";
+    "if $z1 == 0 goto $z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)"->"$z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)";
+    "$z2 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d0)"->"if $z2 != 0 goto return #NaN";
+    "if $z2 != 0 goto return #NaN"->"$z3 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d1)";
+    "if $z2 != 0 goto return #NaN"->"return #NaN";
+    "$z3 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d1)"->"if $z3 == 0 goto i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)";
+    "if $z3 == 0 goto i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)"->"return #NaN";
+    "if $z3 == 0 goto i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)"->"i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)";
+    "i0 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d0)"->"i1 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d1)";
+    "i1 = staticinvoke <org.apache.commons.math3.util.FastMath: int getExponent(double)>(d1)"->"$i2 = i1 + 27";
+    "$i2 = i1 + 27"->"if i0 <= $i2 goto $i3 = i0 + 27";
+    "if i0 <= $i2 goto $i3 = i0 + 27"->"$d10 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d0)";
+    "if i0 <= $i2 goto $i3 = i0 + 27"->"$i3 = i0 + 27";
+    "$d10 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d0)"->"return $d10";
+    "$i3 = i0 + 27"->"if i1 <= $i3 goto $i4 = i0 + i1";
+    "if i1 <= $i3 goto $i4 = i0 + i1"->"$d9 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d1)";
+    "if i1 <= $i3 goto $i4 = i0 + i1"->"$i4 = i0 + i1";
+    "$d9 = staticinvoke <org.apache.commons.math3.util.FastMath: double abs(double)>(d1)"->"return $d9";
+    "$i4 = i0 + i1"->"i5 = $i4 / 2";
+    "i5 = $i4 / 2"->"$i6 = neg i5";
+    "$i6 = neg i5"->"d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d0, $i6)";
+    "d2 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d0, $i6)"->"$i7 = neg i5";
+    "$i7 = neg i5"->"d3 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d1, $i7)";
+    "d3 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d1, $i7)"->"$d5 = d2 * d2";
+    "$d5 = d2 * d2"->"$d4 = d3 * d3";
+    "$d4 = d3 * d3"->"$d6 = $d5 + $d4";
+    "$d6 = $d5 + $d4"->"d7 = staticinvoke <org.apache.commons.math3.util.FastMath: double sqrt(double)>($d6)";
+    "d7 = staticinvoke <org.apache.commons.math3.util.FastMath: double sqrt(double)>($d6)"->"$d8 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d7, i5)";
+    "$d8 = staticinvoke <org.apache.commons.math3.util.FastMath: double scalb(double,int)>(d7, i5)"->"return $d8";
+}

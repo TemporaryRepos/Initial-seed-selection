@@ -1,0 +1,367 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+i10 = 0;
+$r0 = newarray (int)[10];
+$r0[0] = 0;
+$r0[1] = 1;
+$r0[2] = 2;
+$r0[3] = 3;
+$r0[4] = -2147483648;
+$r0[5] = -2147483647;
+$r0[6] = -2147483646;
+$r0[7] = -2147483645;
+$r0[8] = -2;
+$r0[9] = -1;
+r1 = $r0;
+r2 = r1;
+i0 = lengthof r2;
+i11 = 0;
+"
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i11 >= i0 goto return i10;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+i1 = r2[i11];
+r3 = r1;
+i2 = lengthof r3;
+i12 = 0;
+"
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i12 >= i2 goto i11 = i11 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+i3 = r3[i12];
+i4 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i1, i3);
+i5 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i3, i1);
+i6 = staticinvoke <javaT.lang.Integer.Unsigned: int compUnsigned(int,int)>(i1, i3);
+if i1 != i3 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if i4 == 0 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned value equal to itself; got %d%n\", $r18);
+"
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i10 = i10 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i6);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+"
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i8 = staticinvoke <java.lang.Integer: int signum(int)>(i5);
+$i9 = neg $i8;
+if $i7 == $i9 goto i12 = i12 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i10 = i10 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i12 = i12 + 1;
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i11 = i11 + 1;
+goto [?= (branch)];
+"
+    "Block 13:
+[preds: 1 ] [succs: ]
+return i10;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+i10 = 0;
+$r0 = newarray (int)[10];
+$r0[0] = 0;
+$r0[1] = 1;
+$r0[2] = 2;
+$r0[3] = 3;
+$r0[4] = -2147483648;
+$r0[5] = -2147483647;
+$r0[6] = -2147483646;
+$r0[7] = -2147483645;
+$r0[8] = -2;
+$r0[9] = -1;
+r1 = $r0;
+r2 = r1;
+i0 = lengthof r2;
+i11 = 0;
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i11 >= i0 goto return i10;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i11 >= i0 goto return i10;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+i1 = r2[i11];
+r3 = r1;
+i2 = lengthof r3;
+i12 = 0;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i11 >= i0 goto return i10;
+"->"Block 13:
+[preds: 1 ] [succs: ]
+return i10;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+i1 = r2[i11];
+r3 = r1;
+i2 = lengthof r3;
+i12 = 0;
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i12 >= i2 goto i11 = i11 + 1;
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i12 >= i2 goto i11 = i11 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 5 7 ]
+i3 = r3[i12];
+i4 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i1, i3);
+i5 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i3, i1);
+i6 = staticinvoke <javaT.lang.Integer.Unsigned: int compUnsigned(int,int)>(i1, i3);
+if i1 != i3 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i12 >= i2 goto i11 = i11 + 1;
+"->"Block 12:
+[preds: 3 ] [succs: 1 ]
+i11 = i11 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+i3 = r3[i12];
+i4 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i1, i3);
+i5 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i3, i1);
+i6 = staticinvoke <javaT.lang.Integer.Unsigned: int compUnsigned(int,int)>(i1, i3);
+if i1 != i3 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if i4 == 0 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 7 ]
+i3 = r3[i12];
+i4 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i1, i3);
+i5 = staticinvoke <java.lang.Integer: int compareUnsigned(int,int)>(i3, i1);
+i6 = staticinvoke <javaT.lang.Integer.Unsigned: int compUnsigned(int,int)>(i1, i3);
+if i1 != i3 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if i4 == 0 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned value equal to itself; got %d%n\", $r18);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+if i4 == 0 goto $i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+i10 = i10 + 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+$r18 = newarray (java.lang.Object)[2];
+$r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r18[0] = $r20;
+$r21 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r18[1] = $r21;
+virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Value 0x%x did not compare as an unsigned value equal to itself; got %d%n\", $r18);
+"->"Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+";
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+i10 = i10 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i6);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+";
+    "Block 7:
+[preds: 4 5 6 ] [succs: 8 9 ]
+$i13 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i14 = staticinvoke <java.lang.Integer: int signum(int)>(i6);
+if $i13 == $i14 goto $i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i8 = staticinvoke <java.lang.Integer: int signum(int)>(i5);
+$i9 = neg $i8;
+if $i7 == $i9 goto i12 = i12 + 1;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i10 = i10 + 1;
+$r12 = <java.lang.System: java.io.PrintStream err>;
+$r11 = newarray (java.lang.Object)[4];
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r11[0] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r14;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i6);
+$r11[2] = $r15;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[3] = $r16;
+virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unsigned compare of 0x%x to 0x%x%n:\texpected sign of %d, got %d%n\", $r11);
+"->"Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i8 = staticinvoke <java.lang.Integer: int signum(int)>(i5);
+$i9 = neg $i8;
+if $i7 == $i9 goto i12 = i12 + 1;
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i8 = staticinvoke <java.lang.Integer: int signum(int)>(i5);
+$i9 = neg $i8;
+if $i7 == $i9 goto i12 = i12 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+i10 = i10 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+";
+    "Block 9:
+[preds: 7 8 ] [succs: 10 11 ]
+$i7 = staticinvoke <java.lang.Integer: int signum(int)>(i4);
+$i8 = staticinvoke <java.lang.Integer: int signum(int)>(i5);
+$i9 = neg $i8;
+if $i7 == $i9 goto i12 = i12 + 1;
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i12 = i12 + 1;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i10 = i10 + 1;
+$r5 = <java.lang.System: java.io.PrintStream err>;
+$r4 = newarray (java.lang.Object)[4];
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+$r4[0] = $r6;
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r4[1] = $r7;
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r4[2] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5);
+$r4[3] = $r9;
+virtualinvoke $r5.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"signum(compareUnsigned(x, y)) != -signum(compareUnsigned(y,x)) for \t0x%x and 0x%x, computed %d and %d%n\", $r4);
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i12 = i12 + 1;
+goto [?= (branch)];
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i12 = i12 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i12 >= i2 goto i11 = i11 + 1;
+";
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i11 = i11 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i11 >= i0 goto return i10;
+";
+}

@@ -1,0 +1,632 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 12 ]
+r0 := @this: com.sun.crypto.provider.Cipher.AES.TestShortBuffer;
+i0 := @parameter0: int;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = 0;
+z0 = 0;
+$r2 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r1 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+r3 = virtualinvoke $r2.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($r1, 0, i0);
+if r3 == null goto $r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 12 ]
+$r9 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i3 = lengthof r3;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 0, $r9, 0, $i3);
+$i5 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i4 = lengthof r3;
+$i6 = $i5 + $i4;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i6;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 12 ]
+$r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 12 ]
+$r6 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 12 ]
+$r4 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 12 ]
+$i1 = lengthof $r4;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 12 ]
+$i2 = $i1 - i0;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 12 ]
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] SHORTBUFFER>;
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+i15 = virtualinvoke $r7.<javax.crypto.Cipher: int update(byte[],int,int,byte[])>($r6, i0, $i2, $r5);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$r8 = new java.lang.Exception;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw ShortBufferException!\");
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+throw $r8;
+"
+    "Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+$r20 = new java.lang.Exception;
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>(\"Wrong number of output bytes\");
+throw $r20;
+"
+    "Block 14:
+[preds: 12 ] [succs: ]
+specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 12 ]
+r0 := @this: com.sun.crypto.provider.Cipher.AES.TestShortBuffer;
+i0 := @parameter0: int;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = 0;
+z0 = 0;
+$r2 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r1 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+r3 = virtualinvoke $r2.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($r1, 0, i0);
+if r3 == null goto $r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"->"Block 1:
+[preds: 0 ] [succs: 2 12 ]
+$r9 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i3 = lengthof r3;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 0, $r9, 0, $i3);
+$i5 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i4 = lengthof r3;
+$i6 = $i5 + $i4;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i6;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 12 ]
+r0 := @this: com.sun.crypto.provider.Cipher.AES.TestShortBuffer;
+i0 := @parameter0: int;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = 0;
+z0 = 0;
+$r2 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r1 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+r3 = virtualinvoke $r2.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($r1, 0, i0);
+if r3 == null goto $r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 12 ]
+$r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 12 ]
+r0 := @this: com.sun.crypto.provider.Cipher.AES.TestShortBuffer;
+i0 := @parameter0: int;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = 0;
+z0 = 0;
+$r2 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r1 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+r3 = virtualinvoke $r2.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($r1, 0, i0);
+if r3 == null goto $r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 12 ]
+$r9 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i3 = lengthof r3;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 0, $r9, 0, $i3);
+$i5 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i4 = lengthof r3;
+$i6 = $i5 + $i4;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i6;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 12 ]
+$r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 12 ]
+$r9 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i3 = lengthof r3;
+staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 0, $r9, 0, $i3);
+$i5 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i4 = lengthof r3;
+$i6 = $i5 + $i4;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i6;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 12 ]
+$r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"->"Block 3:
+[preds: 2 ] [succs: 4 12 ]
+$r6 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 12 ]
+$r7 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 12 ]
+$r6 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"->"Block 4:
+[preds: 3 ] [succs: 5 12 ]
+$r4 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 12 ]
+$r6 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 12 ]
+$r4 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"->"Block 5:
+[preds: 4 ] [succs: 6 12 ]
+$i1 = lengthof $r4;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 12 ]
+$r4 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 12 ]
+$i1 = lengthof $r4;
+"->"Block 6:
+[preds: 5 ] [succs: 7 12 ]
+$i2 = $i1 - i0;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 12 ]
+$i1 = lengthof $r4;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 12 ]
+$i2 = $i1 - i0;
+"->"Block 7:
+[preds: 6 ] [succs: 8 12 ]
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] SHORTBUFFER>;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 12 ]
+$i2 = $i1 - i0;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 12 ]
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] SHORTBUFFER>;
+"->"Block 8:
+[preds: 7 ] [succs: 9 12 ]
+i15 = virtualinvoke $r7.<javax.crypto.Cipher: int update(byte[],int,int,byte[])>($r6, i0, $i2, $r5);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 12 ]
+$r5 = <com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] SHORTBUFFER>;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+i15 = virtualinvoke $r7.<javax.crypto.Cipher: int update(byte[],int,int,byte[])>($r6, i0, $i2, $r5);
+"->"Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$r8 = new java.lang.Exception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 12 ]
+i15 = virtualinvoke $r7.<javax.crypto.Cipher: int update(byte[],int,int,byte[])>($r6, i0, $i2, $r5);
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$r8 = new java.lang.Exception;
+"->"Block 10:
+[preds: 9 ] [succs: 11 12 ]
+specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw ShortBufferException!\");
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 12 ]
+$r8 = new java.lang.Exception;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw ShortBufferException!\");
+"->"Block 11:
+[preds: 10 ] [succs: 12 ]
+throw $r8;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 12 ]
+specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Should throw ShortBufferException!\");
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+throw $r8;
+"->"Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+";
+    "Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+"->"Block 13:
+[preds: 12 ] [succs: ]
+$r20 = new java.lang.Exception;
+specialinvoke $r20.<java.lang.Exception: void <init>(java.lang.String)>(\"Wrong number of output bytes\");
+throw $r20;
+";
+    "Block 12:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 ] [succs: 13 14 ]
+$r10 := @caughtexception;
+r11 = $r10;
+$r12 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Expected SBE thrown....\");
+$r16 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r15 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$r13 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] in>;
+$i7 = lengthof $r13;
+$i9 = $i7 - i0;
+$r14 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i8 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+i16 = virtualinvoke $r16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($r15, i0, $i9, $r14, $i8);
+$r17 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: javax.crypto.Cipher ci>;
+$r18 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i10 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i11 = $i10 + i16;
+r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset> = $i11;
+i17 = virtualinvoke $r17.<javax.crypto.Cipher: int doFinal(byte[],int)>($r18, $i11);
+$r19 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: byte[] out>;
+$i14 = lengthof $r19;
+$i12 = r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: int outOffset>;
+$i13 = i17 + $i12;
+if $i14 == $i13 goto specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+"->"Block 14:
+[preds: 12 ] [succs: ]
+specialinvoke r0.<com.sun.crypto.provider.Cipher.AES.TestShortBuffer: void checkOutput()>();
+return;
+";
+}

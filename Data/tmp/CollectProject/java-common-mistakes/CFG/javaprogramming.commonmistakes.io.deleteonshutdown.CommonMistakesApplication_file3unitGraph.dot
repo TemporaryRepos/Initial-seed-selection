@@ -1,0 +1,29 @@
+digraph "unitGraph" {
+    "$r0 = newarray (java.lang.String)[0]"
+    "r1 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(\"test3.txt\", $r0)"
+    "$r2 = newarray (java.nio.file.OpenOption)[1]"
+    "$r3 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption CREATE>"
+    "$r2[0] = $r3"
+    "r4 = staticinvoke <java.nio.file.Files: java.io.OutputStream newOutputStream(java.nio.file.Path,java.nio.file.OpenOption[])>(r1, $r2)"
+    "$r5 = \"test\""
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"
+    "virtualinvoke r4.<java.io.OutputStream: void write(byte[])>($r6)"
+    "virtualinvoke r4.<java.io.OutputStream: void close()>()"
+    "staticinvoke <javaprogramming.commonmistakes.io.deleteonshutdown.FilesUtil: void deleteOnExit(java.nio.file.Path)>(r1)"
+    "$r7 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"
+    "virtualinvoke $r7.<java.util.concurrent.TimeUnit: void sleep(long)>(5L)"
+    "return"
+    "$r0 = newarray (java.lang.String)[0]"->"r1 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(\"test3.txt\", $r0)";
+    "r1 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(\"test3.txt\", $r0)"->"$r2 = newarray (java.nio.file.OpenOption)[1]";
+    "$r2 = newarray (java.nio.file.OpenOption)[1]"->"$r3 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption CREATE>";
+    "$r3 = <java.nio.file.StandardOpenOption: java.nio.file.StandardOpenOption CREATE>"->"$r2[0] = $r3";
+    "$r2[0] = $r3"->"r4 = staticinvoke <java.nio.file.Files: java.io.OutputStream newOutputStream(java.nio.file.Path,java.nio.file.OpenOption[])>(r1, $r2)";
+    "r4 = staticinvoke <java.nio.file.Files: java.io.OutputStream newOutputStream(java.nio.file.Path,java.nio.file.OpenOption[])>(r1, $r2)"->"$r5 = \"test\"";
+    "$r5 = \"test\""->"$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()";
+    "$r6 = virtualinvoke $r5.<java.lang.String: byte[] getBytes()>()"->"virtualinvoke r4.<java.io.OutputStream: void write(byte[])>($r6)";
+    "virtualinvoke r4.<java.io.OutputStream: void write(byte[])>($r6)"->"virtualinvoke r4.<java.io.OutputStream: void close()>()";
+    "virtualinvoke r4.<java.io.OutputStream: void close()>()"->"staticinvoke <javaprogramming.commonmistakes.io.deleteonshutdown.FilesUtil: void deleteOnExit(java.nio.file.Path)>(r1)";
+    "staticinvoke <javaprogramming.commonmistakes.io.deleteonshutdown.FilesUtil: void deleteOnExit(java.nio.file.Path)>(r1)"->"$r7 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>";
+    "$r7 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"virtualinvoke $r7.<java.util.concurrent.TimeUnit: void sleep(long)>(5L)";
+    "virtualinvoke $r7.<java.util.concurrent.TimeUnit: void sleep(long)>(5L)"->"return";
+}

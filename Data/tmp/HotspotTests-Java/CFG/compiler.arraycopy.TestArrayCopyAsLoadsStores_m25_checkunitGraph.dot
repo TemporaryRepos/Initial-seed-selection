@@ -1,0 +1,35 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: int[]"
+    "r0 := @parameter1: int[]"
+    "$i1 = r0[1]"
+    "$i0 = r1[0]"
+    "if $i1 == $i0 goto return 0"
+    "$r3 = <java.lang.System: java.io.PrintStream out>"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Test m10 failed for src[0]=\")"
+    "$i2 = r1[0]"
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", dest[1]=\")"
+    "$i3 = r0[1]"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)"
+    "return 1"
+    "return 0"
+    "r1 := @parameter0: int[]"->"r0 := @parameter1: int[]";
+    "r0 := @parameter1: int[]"->"$i1 = r0[1]";
+    "$i1 = r0[1]"->"$i0 = r1[0]";
+    "$i0 = r1[0]"->"if $i1 == $i0 goto return 0";
+    "if $i1 == $i0 goto return 0"->"$r3 = <java.lang.System: java.io.PrintStream out>";
+    "if $i1 == $i0 goto return 0"->"return 0";
+    "$r3 = <java.lang.System: java.io.PrintStream out>"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Test m10 failed for src[0]=\")";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"Test m10 failed for src[0]=\")"->"$i2 = r1[0]";
+    "$i2 = r1[0]"->"$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2)";
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", dest[1]=\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", dest[1]=\")"->"$i3 = r0[1]";
+    "$i3 = r0[1]"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)";
+    "virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r7)"->"return 1";
+}

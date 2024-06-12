@@ -1,0 +1,45 @@
+digraph "unitGraph" {
+    "r9 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.nio.channels.spi.SelectorProvider: java.nio.channels.spi.SelectorProvider provider()>()"
+    "r1 = virtualinvoke r0.<java.nio.channels.spi.SelectorProvider: java.nio.channels.Pipe openPipe()>()"
+    "r2 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>()"
+    "r3 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>()"
+    "r4 = newarray (byte)[0]"
+    "r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r4)"
+    "z0 = 0"
+    "i0 = virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>(r5)"
+    "if i0 >= 0 goto r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)"
+    "$r8 = new java.lang.Exception"
+    "specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Write failed\")"
+    "throw $r8"
+    "r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)"
+    "i1 = virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>(r6)"
+    "if i1 >= 0 goto virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()"
+    "$r7 = new java.lang.Exception"
+    "specialinvoke $r7.<java.lang.Exception: void <init>(java.lang.String)>(\"Read EOF\")"
+    "throw $r7"
+    "virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()"
+    "virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: void close()>()"
+    "return"
+    "r9 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.nio.channels.spi.SelectorProvider: java.nio.channels.spi.SelectorProvider provider()>()";
+    "r0 = staticinvoke <java.nio.channels.spi.SelectorProvider: java.nio.channels.spi.SelectorProvider provider()>()"->"r1 = virtualinvoke r0.<java.nio.channels.spi.SelectorProvider: java.nio.channels.Pipe openPipe()>()";
+    "r1 = virtualinvoke r0.<java.nio.channels.spi.SelectorProvider: java.nio.channels.Pipe openPipe()>()"->"r2 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>()";
+    "r2 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SinkChannel sink()>()"->"r3 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>()";
+    "r3 = virtualinvoke r1.<java.nio.channels.Pipe: java.nio.channels.Pipe$SourceChannel source()>()"->"r4 = newarray (byte)[0]";
+    "r4 = newarray (byte)[0]"->"r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r4)";
+    "r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r4)"->"z0 = 0";
+    "z0 = 0"->"i0 = virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>(r5)";
+    "i0 = virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: int write(java.nio.ByteBuffer)>(r5)"->"if i0 >= 0 goto r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)";
+    "if i0 >= 0 goto r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)"->"$r8 = new java.lang.Exception";
+    "if i0 >= 0 goto r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)"->"r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)";
+    "$r8 = new java.lang.Exception"->"specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Write failed\")";
+    "specialinvoke $r8.<java.lang.Exception: void <init>(java.lang.String)>(\"Write failed\")"->"throw $r8";
+    "r6 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(0)"->"i1 = virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>(r6)";
+    "i1 = virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: int read(java.nio.ByteBuffer)>(r6)"->"if i1 >= 0 goto virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()";
+    "if i1 >= 0 goto virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()"->"$r7 = new java.lang.Exception";
+    "if i1 >= 0 goto virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()"->"virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()";
+    "$r7 = new java.lang.Exception"->"specialinvoke $r7.<java.lang.Exception: void <init>(java.lang.String)>(\"Read EOF\")";
+    "specialinvoke $r7.<java.lang.Exception: void <init>(java.lang.String)>(\"Read EOF\")"->"throw $r7";
+    "virtualinvoke r2.<java.nio.channels.Pipe$SinkChannel: void close()>()"->"virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: void close()>()";
+    "virtualinvoke r3.<java.nio.channels.Pipe$SourceChannel: void close()>()"->"return";
+}

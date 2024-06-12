@@ -1,0 +1,43 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r4 := @this: com.github.davidmoten.rtree.RTreeTest;
+r0 = staticinvoke <com.github.davidmoten.rtree.GreekEarthquakes: java.util.List entriesList()>();
+b0 = 8;
+$r1 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree$Builder maxChildren(int)>(b0);
+$r2 = new com.github.davidmoten.rtree.fbs.FactoryFlatBuffers;
+$r3 = new com.github.davidmoten.rtree.RTreeTest$3;
+specialinvoke $r3.<com.github.davidmoten.rtree.RTreeTest$3: void <init>(com.github.davidmoten.rtree.RTreeTest)>(r4);
+$r5 = new com.github.davidmoten.rtree.RTreeTest$4;
+specialinvoke $r5.<com.github.davidmoten.rtree.RTreeTest$4: void <init>(com.github.davidmoten.rtree.RTreeTest)>(r4);
+specialinvoke $r2.<com.github.davidmoten.rtree.fbs.FactoryFlatBuffers: void <init>(rx.functions.Func1,rx.functions.Func1)>($r3, $r5);
+$r6 = virtualinvoke $r1.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree$Builder factory(com.github.davidmoten.rtree.Factory)>($r2);
+$r7 = virtualinvoke $r6.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree create()>();
+r8 = virtualinvoke $r7.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Iterable)>(r0);
+$r9 = virtualinvoke r8.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.Visualizer visualize(int,int)>(2000, 2000);
+virtualinvoke $r9.<com.github.davidmoten.rtree.Visualizer: void save(java.lang.String)>(\"target/greek.png\");
+$r10 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Rectangle rectangle(double,double,double,double)>(40.0, 27.0, 40.5, 27.5);
+$r11 = virtualinvoke r8.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Rectangle)>($r10);
+$r12 = virtualinvoke $r11.<rx.Observable: rx.Observable count()>();
+$r13 = virtualinvoke $r12.<rx.Observable: rx.observables.BlockingObservable toBlocking()>();
+$r14 = virtualinvoke $r13.<rx.observables.BlockingObservable: java.lang.Object single()>();
+$r15 = (java.lang.Integer) $r14;
+i1 = virtualinvoke $r15.<java.lang.Integer: int intValue()>();
+$r17 = <java.lang.System: java.io.PrintStream out>;
+$r16 = new java.lang.StringBuilder;
+specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found=\");
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20);
+$l2 = (long) i1;
+staticinvoke <org.junit.Assert: void assertEquals(long,long)>(22L, $l2);
+$r21 = staticinvoke <com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree$Builder maxChildren(int)>(b0);
+$r22 = virtualinvoke $r21.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree$Builder star()>();
+$r23 = virtualinvoke $r22.<com.github.davidmoten.rtree.RTree$Builder: com.github.davidmoten.rtree.RTree create()>();
+r24 = virtualinvoke $r23.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.RTree add(java.lang.Iterable)>(r0);
+$r25 = virtualinvoke r24.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.rtree.Visualizer visualize(int,int)>(2000, 2000);
+virtualinvoke $r25.<com.github.davidmoten.rtree.Visualizer: void save(java.lang.String)>(\"target/greek2.png\");
+return;
+"
+}

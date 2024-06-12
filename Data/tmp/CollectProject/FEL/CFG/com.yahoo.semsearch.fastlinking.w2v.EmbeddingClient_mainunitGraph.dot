@@ -1,0 +1,302 @@
+digraph "unitGraph" {
+    "r48 := @parameter0: java.lang.String[]"
+    "staticinvoke <helma.xmlrpc.XmlRpc: void setDriver(java.lang.String)>(\"org.apache.xerces.parsers.SAXParser\")"
+    "$r0 = new helma.xmlrpc.XmlRpcClient"
+    "specialinvoke $r0.<helma.xmlrpc.XmlRpcClient: void <init>(java.lang.String)>(\"http://localhost:8999/\")"
+    "r49 = $r0"
+    "$r1 = new java.util.Vector"
+    "specialinvoke $r1.<java.util.Vector: void <init>()>()"
+    "r50 = $r1"
+    "$r2 = new java.lang.Integer"
+    "specialinvoke $r2.<java.lang.Integer: void <init>(int)>(5)"
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r2)"
+    "$r3 = new java.lang.Integer"
+    "specialinvoke $r3.<java.lang.Integer: void <init>(int)>(3)"
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r3)"
+    "$r4 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.sumAndDifference\", r50)"
+    "r51 = (java.util.Hashtable) $r4"
+    "$r5 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"sum\")"
+    "$r6 = (java.lang.Integer) $r5"
+    "i0 = virtualinvoke $r6.<java.lang.Integer: int intValue()>()"
+    "$r7 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"difference\")"
+    "$r8 = (java.lang.Integer) $r7"
+    "i1 = virtualinvoke $r8.<java.lang.Integer: int intValue()>()"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Sum: \")"
+    "$r12 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0)"
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", Difference: \")"
+    "$r15 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1)"
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r17)"
+    "$r18 = newarray (java.lang.String)[2]"
+    "$r18[0] = \"the life of brian\""
+    "$r18[1] = \"this is a test phrase\""
+    "r19 = $r18"
+    "$r20 = newarray (java.lang.String)[3]"
+    "$r20[0] = \"_WIKI_Monty_Python\""
+    "$r20[1] = \"_WIKI_John_Cleese\""
+    "$r20[2] = \"_WIKI_Brad_Pitt\""
+    "r21 = $r20"
+    "virtualinvoke r50.<java.util.Vector: void clear()>()"
+    "$r22 = new java.util.Vector"
+    "specialinvoke $r22.<java.util.Vector: void <init>()>()"
+    "r52 = $r22"
+    "$r23 = r21[0]"
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r23)"
+    "$r24 = r21[1]"
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r24)"
+    "$r25 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.entity2EntitySimilarity\", r52)"
+    "r53 = (java.util.Hashtable) $r25"
+    "$r26 = <java.lang.System: java.io.PrintStream out>"
+    "$r27 = virtualinvoke r53.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"similarity\")"
+    "$r28 = (java.lang.Double) $r27"
+    "$d0 = virtualinvoke $r28.<java.lang.Double: double doubleValue()>()"
+    "virtualinvoke $r26.<java.io.PrintStream: void println(double)>($d0)"
+    "virtualinvoke r52.<java.util.Vector: void clear()>()"
+    "$r29 = r21[0]"
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r29)"
+    "$r30 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.getVector\", r52)"
+    "r54 = (java.util.Hashtable) $r30"
+    "goto [?= return]"
+    "$r38 := @caughtexception"
+    "r55 = $r38"
+    "$r40 = <java.lang.System: java.io.PrintStream err>"
+    "$r39 = new java.lang.StringBuilder"
+    "specialinvoke $r39.<java.lang.StringBuilder: void <init>()>()"
+    "$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: XML-RPC Fault #\")"
+    "$i2 = r55.<helma.xmlrpc.XmlRpcException: int code>"
+    "$r42 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i2)"
+    "$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"
+    "$r45 = virtualinvoke r55.<helma.xmlrpc.XmlRpcException: java.lang.String toString()>()"
+    "$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r47)"
+    "$r31 := @caughtexception"
+    "r56 = $r31"
+    "$r33 = <java.lang.System: java.io.PrintStream err>"
+    "$r32 = new java.lang.StringBuilder"
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"
+    "$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: \")"
+    "$r35 = virtualinvoke r56.<java.lang.Exception: java.lang.String toString()>()"
+    "$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r37)"
+    "return"
+    "r48 := @parameter0: java.lang.String[]"->"$r38 := @caughtexception";
+    "r48 := @parameter0: java.lang.String[]"->"$r31 := @caughtexception";
+    "r48 := @parameter0: java.lang.String[]"->"staticinvoke <helma.xmlrpc.XmlRpc: void setDriver(java.lang.String)>(\"org.apache.xerces.parsers.SAXParser\")";
+    "staticinvoke <helma.xmlrpc.XmlRpc: void setDriver(java.lang.String)>(\"org.apache.xerces.parsers.SAXParser\")"->"$r38 := @caughtexception";
+    "staticinvoke <helma.xmlrpc.XmlRpc: void setDriver(java.lang.String)>(\"org.apache.xerces.parsers.SAXParser\")"->"$r31 := @caughtexception";
+    "staticinvoke <helma.xmlrpc.XmlRpc: void setDriver(java.lang.String)>(\"org.apache.xerces.parsers.SAXParser\")"->"$r0 = new helma.xmlrpc.XmlRpcClient";
+    "$r0 = new helma.xmlrpc.XmlRpcClient"->"$r38 := @caughtexception";
+    "$r0 = new helma.xmlrpc.XmlRpcClient"->"$r31 := @caughtexception";
+    "$r0 = new helma.xmlrpc.XmlRpcClient"->"specialinvoke $r0.<helma.xmlrpc.XmlRpcClient: void <init>(java.lang.String)>(\"http://localhost:8999/\")";
+    "specialinvoke $r0.<helma.xmlrpc.XmlRpcClient: void <init>(java.lang.String)>(\"http://localhost:8999/\")"->"$r38 := @caughtexception";
+    "specialinvoke $r0.<helma.xmlrpc.XmlRpcClient: void <init>(java.lang.String)>(\"http://localhost:8999/\")"->"$r31 := @caughtexception";
+    "specialinvoke $r0.<helma.xmlrpc.XmlRpcClient: void <init>(java.lang.String)>(\"http://localhost:8999/\")"->"r49 = $r0";
+    "r49 = $r0"->"$r38 := @caughtexception";
+    "r49 = $r0"->"$r31 := @caughtexception";
+    "r49 = $r0"->"$r1 = new java.util.Vector";
+    "$r1 = new java.util.Vector"->"$r38 := @caughtexception";
+    "$r1 = new java.util.Vector"->"$r31 := @caughtexception";
+    "$r1 = new java.util.Vector"->"specialinvoke $r1.<java.util.Vector: void <init>()>()";
+    "specialinvoke $r1.<java.util.Vector: void <init>()>()"->"$r38 := @caughtexception";
+    "specialinvoke $r1.<java.util.Vector: void <init>()>()"->"$r31 := @caughtexception";
+    "specialinvoke $r1.<java.util.Vector: void <init>()>()"->"r50 = $r1";
+    "r50 = $r1"->"$r38 := @caughtexception";
+    "r50 = $r1"->"$r31 := @caughtexception";
+    "r50 = $r1"->"$r2 = new java.lang.Integer";
+    "$r2 = new java.lang.Integer"->"$r38 := @caughtexception";
+    "$r2 = new java.lang.Integer"->"$r31 := @caughtexception";
+    "$r2 = new java.lang.Integer"->"specialinvoke $r2.<java.lang.Integer: void <init>(int)>(5)";
+    "specialinvoke $r2.<java.lang.Integer: void <init>(int)>(5)"->"$r38 := @caughtexception";
+    "specialinvoke $r2.<java.lang.Integer: void <init>(int)>(5)"->"$r31 := @caughtexception";
+    "specialinvoke $r2.<java.lang.Integer: void <init>(int)>(5)"->"virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r2)";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r2)"->"$r38 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r2)"->"$r31 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r2)"->"$r3 = new java.lang.Integer";
+    "$r3 = new java.lang.Integer"->"$r38 := @caughtexception";
+    "$r3 = new java.lang.Integer"->"$r31 := @caughtexception";
+    "$r3 = new java.lang.Integer"->"specialinvoke $r3.<java.lang.Integer: void <init>(int)>(3)";
+    "specialinvoke $r3.<java.lang.Integer: void <init>(int)>(3)"->"$r38 := @caughtexception";
+    "specialinvoke $r3.<java.lang.Integer: void <init>(int)>(3)"->"$r31 := @caughtexception";
+    "specialinvoke $r3.<java.lang.Integer: void <init>(int)>(3)"->"virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r3)";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r3)"->"$r38 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r3)"->"$r31 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void addElement(java.lang.Object)>($r3)"->"$r4 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.sumAndDifference\", r50)";
+    "$r4 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.sumAndDifference\", r50)"->"$r38 := @caughtexception";
+    "$r4 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.sumAndDifference\", r50)"->"$r31 := @caughtexception";
+    "$r4 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.sumAndDifference\", r50)"->"r51 = (java.util.Hashtable) $r4";
+    "r51 = (java.util.Hashtable) $r4"->"$r38 := @caughtexception";
+    "r51 = (java.util.Hashtable) $r4"->"$r31 := @caughtexception";
+    "r51 = (java.util.Hashtable) $r4"->"$r5 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"sum\")";
+    "$r5 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"sum\")"->"$r38 := @caughtexception";
+    "$r5 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"sum\")"->"$r31 := @caughtexception";
+    "$r5 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"sum\")"->"$r6 = (java.lang.Integer) $r5";
+    "$r6 = (java.lang.Integer) $r5"->"$r38 := @caughtexception";
+    "$r6 = (java.lang.Integer) $r5"->"$r31 := @caughtexception";
+    "$r6 = (java.lang.Integer) $r5"->"i0 = virtualinvoke $r6.<java.lang.Integer: int intValue()>()";
+    "i0 = virtualinvoke $r6.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "i0 = virtualinvoke $r6.<java.lang.Integer: int intValue()>()"->"$r31 := @caughtexception";
+    "i0 = virtualinvoke $r6.<java.lang.Integer: int intValue()>()"->"$r7 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"difference\")";
+    "$r7 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"difference\")"->"$r38 := @caughtexception";
+    "$r7 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"difference\")"->"$r31 := @caughtexception";
+    "$r7 = virtualinvoke r51.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"difference\")"->"$r8 = (java.lang.Integer) $r7";
+    "$r8 = (java.lang.Integer) $r7"->"$r38 := @caughtexception";
+    "$r8 = (java.lang.Integer) $r7"->"$r31 := @caughtexception";
+    "$r8 = (java.lang.Integer) $r7"->"i1 = virtualinvoke $r8.<java.lang.Integer: int intValue()>()";
+    "i1 = virtualinvoke $r8.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "i1 = virtualinvoke $r8.<java.lang.Integer: int intValue()>()"->"$r31 := @caughtexception";
+    "i1 = virtualinvoke $r8.<java.lang.Integer: int intValue()>()"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r31 := @caughtexception";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r9 = new java.lang.StringBuilder";
+    "$r9 = new java.lang.StringBuilder"->"$r38 := @caughtexception";
+    "$r9 = new java.lang.StringBuilder"->"$r31 := @caughtexception";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r31 := @caughtexception";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Sum: \")";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Sum: \")"->"$r38 := @caughtexception";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Sum: \")"->"$r31 := @caughtexception";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Sum: \")"->"$r12 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0)";
+    "$r12 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0)"->"$r38 := @caughtexception";
+    "$r12 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0)"->"$r31 := @caughtexception";
+    "$r12 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0)"->"$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r38 := @caughtexception";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r31 := @caughtexception";
+    "$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12)"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", Difference: \")";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", Difference: \")"->"$r38 := @caughtexception";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", Difference: \")"->"$r31 := @caughtexception";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", Difference: \")"->"$r15 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1)";
+    "$r15 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1)"->"$r38 := @caughtexception";
+    "$r15 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1)"->"$r31 := @caughtexception";
+    "$r15 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1)"->"$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"->"$r38 := @caughtexception";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"->"$r31 := @caughtexception";
+    "$r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r38 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r31 := @caughtexception";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r17)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r17)"->"$r38 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r17)"->"$r31 := @caughtexception";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r17)"->"$r18 = newarray (java.lang.String)[2]";
+    "$r18 = newarray (java.lang.String)[2]"->"$r38 := @caughtexception";
+    "$r18 = newarray (java.lang.String)[2]"->"$r31 := @caughtexception";
+    "$r18 = newarray (java.lang.String)[2]"->"$r18[0] = \"the life of brian\"";
+    "$r18[0] = \"the life of brian\""->"$r38 := @caughtexception";
+    "$r18[0] = \"the life of brian\""->"$r31 := @caughtexception";
+    "$r18[0] = \"the life of brian\""->"$r18[1] = \"this is a test phrase\"";
+    "$r18[1] = \"this is a test phrase\""->"$r38 := @caughtexception";
+    "$r18[1] = \"this is a test phrase\""->"$r31 := @caughtexception";
+    "$r18[1] = \"this is a test phrase\""->"r19 = $r18";
+    "r19 = $r18"->"$r38 := @caughtexception";
+    "r19 = $r18"->"$r31 := @caughtexception";
+    "r19 = $r18"->"$r20 = newarray (java.lang.String)[3]";
+    "$r20 = newarray (java.lang.String)[3]"->"$r38 := @caughtexception";
+    "$r20 = newarray (java.lang.String)[3]"->"$r31 := @caughtexception";
+    "$r20 = newarray (java.lang.String)[3]"->"$r20[0] = \"_WIKI_Monty_Python\"";
+    "$r20[0] = \"_WIKI_Monty_Python\""->"$r38 := @caughtexception";
+    "$r20[0] = \"_WIKI_Monty_Python\""->"$r31 := @caughtexception";
+    "$r20[0] = \"_WIKI_Monty_Python\""->"$r20[1] = \"_WIKI_John_Cleese\"";
+    "$r20[1] = \"_WIKI_John_Cleese\""->"$r38 := @caughtexception";
+    "$r20[1] = \"_WIKI_John_Cleese\""->"$r31 := @caughtexception";
+    "$r20[1] = \"_WIKI_John_Cleese\""->"$r20[2] = \"_WIKI_Brad_Pitt\"";
+    "$r20[2] = \"_WIKI_Brad_Pitt\""->"$r38 := @caughtexception";
+    "$r20[2] = \"_WIKI_Brad_Pitt\""->"$r31 := @caughtexception";
+    "$r20[2] = \"_WIKI_Brad_Pitt\""->"r21 = $r20";
+    "r21 = $r20"->"$r38 := @caughtexception";
+    "r21 = $r20"->"$r31 := @caughtexception";
+    "r21 = $r20"->"virtualinvoke r50.<java.util.Vector: void clear()>()";
+    "virtualinvoke r50.<java.util.Vector: void clear()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void clear()>()"->"$r31 := @caughtexception";
+    "virtualinvoke r50.<java.util.Vector: void clear()>()"->"$r22 = new java.util.Vector";
+    "$r22 = new java.util.Vector"->"$r38 := @caughtexception";
+    "$r22 = new java.util.Vector"->"$r31 := @caughtexception";
+    "$r22 = new java.util.Vector"->"specialinvoke $r22.<java.util.Vector: void <init>()>()";
+    "specialinvoke $r22.<java.util.Vector: void <init>()>()"->"$r38 := @caughtexception";
+    "specialinvoke $r22.<java.util.Vector: void <init>()>()"->"$r31 := @caughtexception";
+    "specialinvoke $r22.<java.util.Vector: void <init>()>()"->"r52 = $r22";
+    "r52 = $r22"->"$r38 := @caughtexception";
+    "r52 = $r22"->"$r31 := @caughtexception";
+    "r52 = $r22"->"$r23 = r21[0]";
+    "$r23 = r21[0]"->"$r38 := @caughtexception";
+    "$r23 = r21[0]"->"$r31 := @caughtexception";
+    "$r23 = r21[0]"->"virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r23)";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r23)"->"$r38 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r23)"->"$r31 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r23)"->"$r24 = r21[1]";
+    "$r24 = r21[1]"->"$r38 := @caughtexception";
+    "$r24 = r21[1]"->"$r31 := @caughtexception";
+    "$r24 = r21[1]"->"virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r24)";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r24)"->"$r38 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r24)"->"$r31 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r24)"->"$r25 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.entity2EntitySimilarity\", r52)";
+    "$r25 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.entity2EntitySimilarity\", r52)"->"$r38 := @caughtexception";
+    "$r25 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.entity2EntitySimilarity\", r52)"->"$r31 := @caughtexception";
+    "$r25 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.entity2EntitySimilarity\", r52)"->"r53 = (java.util.Hashtable) $r25";
+    "r53 = (java.util.Hashtable) $r25"->"$r38 := @caughtexception";
+    "r53 = (java.util.Hashtable) $r25"->"$r31 := @caughtexception";
+    "r53 = (java.util.Hashtable) $r25"->"$r26 = <java.lang.System: java.io.PrintStream out>";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"$r38 := @caughtexception";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"$r31 := @caughtexception";
+    "$r26 = <java.lang.System: java.io.PrintStream out>"->"$r27 = virtualinvoke r53.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"similarity\")";
+    "$r27 = virtualinvoke r53.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"similarity\")"->"$r38 := @caughtexception";
+    "$r27 = virtualinvoke r53.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"similarity\")"->"$r31 := @caughtexception";
+    "$r27 = virtualinvoke r53.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(\"similarity\")"->"$r28 = (java.lang.Double) $r27";
+    "$r28 = (java.lang.Double) $r27"->"$r38 := @caughtexception";
+    "$r28 = (java.lang.Double) $r27"->"$r31 := @caughtexception";
+    "$r28 = (java.lang.Double) $r27"->"$d0 = virtualinvoke $r28.<java.lang.Double: double doubleValue()>()";
+    "$d0 = virtualinvoke $r28.<java.lang.Double: double doubleValue()>()"->"$r38 := @caughtexception";
+    "$d0 = virtualinvoke $r28.<java.lang.Double: double doubleValue()>()"->"$r31 := @caughtexception";
+    "$d0 = virtualinvoke $r28.<java.lang.Double: double doubleValue()>()"->"virtualinvoke $r26.<java.io.PrintStream: void println(double)>($d0)";
+    "virtualinvoke $r26.<java.io.PrintStream: void println(double)>($d0)"->"$r38 := @caughtexception";
+    "virtualinvoke $r26.<java.io.PrintStream: void println(double)>($d0)"->"$r31 := @caughtexception";
+    "virtualinvoke $r26.<java.io.PrintStream: void println(double)>($d0)"->"virtualinvoke r52.<java.util.Vector: void clear()>()";
+    "virtualinvoke r52.<java.util.Vector: void clear()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void clear()>()"->"$r31 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void clear()>()"->"$r29 = r21[0]";
+    "$r29 = r21[0]"->"$r38 := @caughtexception";
+    "$r29 = r21[0]"->"$r31 := @caughtexception";
+    "$r29 = r21[0]"->"virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r29)";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r29)"->"$r38 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r29)"->"$r31 := @caughtexception";
+    "virtualinvoke r52.<java.util.Vector: void addElement(java.lang.Object)>($r29)"->"$r30 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.getVector\", r52)";
+    "$r30 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.getVector\", r52)"->"$r38 := @caughtexception";
+    "$r30 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.getVector\", r52)"->"$r31 := @caughtexception";
+    "$r30 = virtualinvoke r49.<helma.xmlrpc.XmlRpcClient: java.lang.Object execute(java.lang.String,java.util.Vector)>(\"sample.getVector\", r52)"->"r54 = (java.util.Hashtable) $r30";
+    "r54 = (java.util.Hashtable) $r30"->"$r38 := @caughtexception";
+    "r54 = (java.util.Hashtable) $r30"->"$r31 := @caughtexception";
+    "r54 = (java.util.Hashtable) $r30"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r38 := @caughtexception"->"r55 = $r38";
+    "r55 = $r38"->"$r40 = <java.lang.System: java.io.PrintStream err>";
+    "$r40 = <java.lang.System: java.io.PrintStream err>"->"$r39 = new java.lang.StringBuilder";
+    "$r39 = new java.lang.StringBuilder"->"specialinvoke $r39.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r39.<java.lang.StringBuilder: void <init>()>()"->"$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: XML-RPC Fault #\")";
+    "$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: XML-RPC Fault #\")"->"$i2 = r55.<helma.xmlrpc.XmlRpcException: int code>";
+    "$i2 = r55.<helma.xmlrpc.XmlRpcException: int code>"->"$r42 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i2)";
+    "$r42 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i2)"->"$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)";
+    "$r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42)"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"->"$r45 = virtualinvoke r55.<helma.xmlrpc.XmlRpcException: java.lang.String toString()>()";
+    "$r45 = virtualinvoke r55.<helma.xmlrpc.XmlRpcException: java.lang.String toString()>()"->"$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)";
+    "$r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r47)";
+    "virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r47)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r31 := @caughtexception"->"r56 = $r31";
+    "r56 = $r31"->"$r33 = <java.lang.System: java.io.PrintStream err>";
+    "$r33 = <java.lang.System: java.io.PrintStream err>"->"$r32 = new java.lang.StringBuilder";
+    "$r32 = new java.lang.StringBuilder"->"specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r32.<java.lang.StringBuilder: void <init>()>()"->"$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: \")";
+    "$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"JavaClient: \")"->"$r35 = virtualinvoke r56.<java.lang.Exception: java.lang.String toString()>()";
+    "$r35 = virtualinvoke r56.<java.lang.Exception: java.lang.String toString()>()"->"$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)";
+    "$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r37)";
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r37)"->"return";
+}

@@ -1,0 +1,54 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 0L;
+if $b1 < 0 goto $l2 = l0 >> 32;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r4 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>(l0);
+return $r4;
+"
+    "Block 2:
+[preds: 0 ] [succs: ]
+$l2 = l0 >> 32;
+i3 = (int) $l2;
+i4 = (int) l0;
+$l5 = staticinvoke <java.lang.Integer: long toUnsignedLong(int)>(i3);
+$r0 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l5);
+$r1 = virtualinvoke $r0.<java.math.BigInteger: java.math.BigInteger shiftLeft(int)>(32);
+$l6 = staticinvoke <java.lang.Integer: long toUnsignedLong(int)>(i4);
+$r2 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l6);
+r3 = virtualinvoke $r1.<java.math.BigInteger: java.math.BigInteger add(java.math.BigInteger)>($r2);
+return r3;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 0L;
+if $b1 < 0 goto $l2 = l0 >> 32;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r4 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>(l0);
+return $r4;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+l0 := @parameter0: long;
+$b1 = l0 cmp 0L;
+if $b1 < 0 goto $l2 = l0 >> 32;
+"->"Block 2:
+[preds: 0 ] [succs: ]
+$l2 = l0 >> 32;
+i3 = (int) $l2;
+i4 = (int) l0;
+$l5 = staticinvoke <java.lang.Integer: long toUnsignedLong(int)>(i3);
+$r0 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l5);
+$r1 = virtualinvoke $r0.<java.math.BigInteger: java.math.BigInteger shiftLeft(int)>(32);
+$l6 = staticinvoke <java.lang.Integer: long toUnsignedLong(int)>(i4);
+$r2 = staticinvoke <java.math.BigInteger: java.math.BigInteger valueOf(long)>($l6);
+r3 = virtualinvoke $r1.<java.math.BigInteger: java.math.BigInteger add(java.math.BigInteger)>($r2);
+return r3;
+";
+}

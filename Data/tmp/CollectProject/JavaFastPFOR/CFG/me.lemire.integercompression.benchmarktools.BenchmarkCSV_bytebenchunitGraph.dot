@@ -1,0 +1,298 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.util.ArrayList"
+    "r1 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode"
+    "z1 := @parameter2: boolean"
+    "i19 = 0"
+    "r35 = virtualinvoke r0.<java.util.ArrayList: java.util.Iterator iterator()>()"
+    "$z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto (branch)"
+    "$r34 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>()"
+    "r36 = (int[]) $r34"
+    "$i18 = lengthof r36"
+    "if i19 >= $i18 goto (branch)"
+    "i19 = lengthof r36"
+    "goto [?= $z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()]"
+    "if z1 == 0 goto $i0 = i19 + 1024"
+    "$r30 = <java.lang.System: java.io.PrintStream out>"
+    "$r29 = new java.lang.StringBuilder"
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"
+    "$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Max array length: \")"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r33)"
+    "$i0 = i19 + 1024"
+    "$i1 = 6 * $i0"
+    "r37 = newarray (byte)[$i1]"
+    "r38 = newarray (int)[i19]"
+    "if z1 == 0 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>"
+    "$r28 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"Scheme -- bits/int -- speed (mis)\")"
+    "$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>"
+    "if r1 != $r2 goto $r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>"
+    "$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.differential.IntegratedByteIntegerCODEC[] bcodecs>"
+    "goto [?= r3 = $r39]"
+    "$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>"
+    "r3 = $r39"
+    "i2 = lengthof r3"
+    "i20 = 0"
+    "if i20 >= i2 goto return"
+    "r4 = r3[i20]"
+    "l21 = 0L"
+    "l22 = 0L"
+    "l23 = 0L"
+    "l24 = 0L"
+    "l25 = 0L"
+    "$i3 = virtualinvoke r0.<java.util.ArrayList: int size()>()"
+    "r5 = newarray (byte[])[$i3]"
+    "i26 = 0"
+    "$i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()"
+    "if i26 >= $i4 goto l29 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "$r20 = virtualinvoke r0.<java.util.ArrayList: java.lang.Object get(int)>(i26)"
+    "r40 = (int[]) $r20"
+    "$r21 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r21.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r41 = $r21"
+    "$r22 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r22.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r42 = $r22"
+    "$i9 = lengthof r40"
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void compress(int[],me.lemire.integercompression.IntWrapper,int,byte[],me.lemire.integercompression.IntWrapper)>(r40, r41, $i9, r37, r42)"
+    "i27 = virtualinvoke r42.<me.lemire.integercompression.IntWrapper: int get()>()"
+    "$r23 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r23.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r43 = $r23"
+    "$r24 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r24.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r44 = $r24"
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r37, r43, i27, r38, r44)"
+    "$i10 = lengthof r40"
+    "$l11 = (long) $i10"
+    "l24 = l24 + $l11"
+    "$l12 = (long) i27"
+    "l25 = l25 + $l12"
+    "$i13 = virtualinvoke r44.<me.lemire.integercompression.IntWrapper: int get()>()"
+    "$i14 = lengthof r40"
+    "if $i13 == $i14 goto i28 = 0"
+    "$r27 = new java.lang.RuntimeException"
+    "specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"
+    "throw $r27"
+    "i28 = 0"
+    "$i15 = lengthof r40"
+    "if i28 >= $i15 goto $r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)"
+    "$i17 = r40[i28]"
+    "$i16 = r38[i28]"
+    "if $i17 == $i16 goto i28 = i28 + 1"
+    "$r26 = new java.lang.RuntimeException"
+    "specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"
+    "throw $r26"
+    "i28 = i28 + 1"
+    "goto [?= $i15 = lengthof r40]"
+    "$r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)"
+    "r5[i26] = $r25"
+    "i26 = i26 + 1"
+    "goto [?= $i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()]"
+    "l29 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "r45 = r5"
+    "i30 = lengthof r45"
+    "i31 = 0"
+    "if i31 >= i30 goto l32 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "r46 = r45[i31]"
+    "$r17 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r17.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r47 = $r17"
+    "$r18 = new me.lemire.integercompression.IntWrapper"
+    "specialinvoke $r18.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"
+    "r48 = $r18"
+    "$i6 = lengthof r46"
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r46, r47, $i6, r38, r48)"
+    "$i7 = virtualinvoke r47.<me.lemire.integercompression.IntWrapper: int get()>()"
+    "$i8 = lengthof r46"
+    "if $i7 == $i8 goto i31 = i31 + 1"
+    "$r19 = new java.lang.RuntimeException"
+    "specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"
+    "throw $r19"
+    "i31 = i31 + 1"
+    "goto [?= (branch)]"
+    "l32 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "$l5 = l32 - l29"
+    "l33 = l23 + $l5"
+    "$d0 = (double) l25"
+    "$d2 = $d0 * 8.0"
+    "$d1 = (double) l24"
+    "d6 = $d2 / $d1"
+    "$d3 = (double) l24"
+    "$d5 = $d3 * 1000.0"
+    "$d4 = (double) l33"
+    "d7 = $d5 / $d4"
+    "if z1 == 0 goto i20 = i20 + 1"
+    "$r7 = <java.lang.System: java.io.PrintStream out>"
+    "$r6 = new java.lang.StringBuilder"
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"
+    "$r8 = virtualinvoke r4.<java.lang.Object: java.lang.String toString()>()"
+    "$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"
+    "$r11 = newarray (java.lang.Object)[2]"
+    "$r12 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d6)"
+    "$r11[0] = $r12"
+    "$r13 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d7)"
+    "$r11[1] = $r13"
+    "$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"\t%1$.2f\t%2$.2f\", $r11)"
+    "$r15 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r16)"
+    "i20 = i20 + 1"
+    "return"
+    "r0 := @parameter0: java.util.ArrayList"->"r1 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode";
+    "r1 := @parameter1: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode"->"z1 := @parameter2: boolean";
+    "z1 := @parameter2: boolean"->"i19 = 0";
+    "i19 = 0"->"r35 = virtualinvoke r0.<java.util.ArrayList: java.util.Iterator iterator()>()";
+    "r35 = virtualinvoke r0.<java.util.ArrayList: java.util.Iterator iterator()>()"->"$z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto (branch)";
+    "if $z0 == 0 goto (branch)"->"$r34 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto (branch)"->"if z1 == 0 goto $i0 = i19 + 1024";
+    "$r34 = interfaceinvoke r35.<java.util.Iterator: java.lang.Object next()>()"->"r36 = (int[]) $r34";
+    "r36 = (int[]) $r34"->"$i18 = lengthof r36";
+    "$i18 = lengthof r36"->"if i19 >= $i18 goto (branch)";
+    "if i19 >= $i18 goto (branch)"->"i19 = lengthof r36";
+    "if i19 >= $i18 goto (branch)"->"goto [?= $z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()]";
+    "i19 = lengthof r36"->"goto [?= $z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r35.<java.util.Iterator: boolean hasNext()>()";
+    "if z1 == 0 goto $i0 = i19 + 1024"->"$r30 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto $i0 = i19 + 1024"->"$i0 = i19 + 1024";
+    "$r30 = <java.lang.System: java.io.PrintStream out>"->"$r29 = new java.lang.StringBuilder";
+    "$r29 = new java.lang.StringBuilder"->"specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r29.<java.lang.StringBuilder: void <init>()>()"->"$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Max array length: \")";
+    "$r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Max array length: \")"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19)"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r33)";
+    "virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r33)"->"$i0 = i19 + 1024";
+    "$i0 = i19 + 1024"->"$i1 = 6 * $i0";
+    "$i1 = 6 * $i0"->"r37 = newarray (byte)[$i1]";
+    "r37 = newarray (byte)[$i1]"->"r38 = newarray (int)[i19]";
+    "r38 = newarray (int)[i19]"->"if z1 == 0 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>";
+    "if z1 == 0 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>"->"$r28 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto $r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>"->"$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>";
+    "$r28 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"Scheme -- bits/int -- speed (mis)\")";
+    "virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>(\"Scheme -- bits/int -- speed (mis)\")"->"$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>";
+    "$r2 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode: me.lemire.integercompression.benchmarktools.BenchmarkCSV$CompressionMode DELTA>"->"if r1 != $r2 goto $r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>";
+    "if r1 != $r2 goto $r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>"->"$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.differential.IntegratedByteIntegerCODEC[] bcodecs>";
+    "if r1 != $r2 goto $r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>"->"$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>";
+    "$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.differential.IntegratedByteIntegerCODEC[] bcodecs>"->"goto [?= r3 = $r39]";
+    "goto [?= r3 = $r39]"->"r3 = $r39";
+    "$r39 = <me.lemire.integercompression.benchmarktools.BenchmarkCSV: me.lemire.integercompression.ByteIntegerCODEC[] regbcodecs>"->"r3 = $r39";
+    "r3 = $r39"->"i2 = lengthof r3";
+    "i2 = lengthof r3"->"i20 = 0";
+    "i20 = 0"->"if i20 >= i2 goto return";
+    "if i20 >= i2 goto return"->"r4 = r3[i20]";
+    "if i20 >= i2 goto return"->"return";
+    "r4 = r3[i20]"->"l21 = 0L";
+    "l21 = 0L"->"l22 = 0L";
+    "l22 = 0L"->"l23 = 0L";
+    "l23 = 0L"->"l24 = 0L";
+    "l24 = 0L"->"l25 = 0L";
+    "l25 = 0L"->"$i3 = virtualinvoke r0.<java.util.ArrayList: int size()>()";
+    "$i3 = virtualinvoke r0.<java.util.ArrayList: int size()>()"->"r5 = newarray (byte[])[$i3]";
+    "r5 = newarray (byte[])[$i3]"->"i26 = 0";
+    "i26 = 0"->"$i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()";
+    "$i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()"->"if i26 >= $i4 goto l29 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "if i26 >= $i4 goto l29 = staticinvoke <java.lang.System: long nanoTime()>()"->"$r20 = virtualinvoke r0.<java.util.ArrayList: java.lang.Object get(int)>(i26)";
+    "if i26 >= $i4 goto l29 = staticinvoke <java.lang.System: long nanoTime()>()"->"l29 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "$r20 = virtualinvoke r0.<java.util.ArrayList: java.lang.Object get(int)>(i26)"->"r40 = (int[]) $r20";
+    "r40 = (int[]) $r20"->"$r21 = new me.lemire.integercompression.IntWrapper";
+    "$r21 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r21.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r21.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r41 = $r21";
+    "r41 = $r21"->"$r22 = new me.lemire.integercompression.IntWrapper";
+    "$r22 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r22.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r22.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r42 = $r22";
+    "r42 = $r22"->"$i9 = lengthof r40";
+    "$i9 = lengthof r40"->"interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void compress(int[],me.lemire.integercompression.IntWrapper,int,byte[],me.lemire.integercompression.IntWrapper)>(r40, r41, $i9, r37, r42)";
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void compress(int[],me.lemire.integercompression.IntWrapper,int,byte[],me.lemire.integercompression.IntWrapper)>(r40, r41, $i9, r37, r42)"->"i27 = virtualinvoke r42.<me.lemire.integercompression.IntWrapper: int get()>()";
+    "i27 = virtualinvoke r42.<me.lemire.integercompression.IntWrapper: int get()>()"->"$r23 = new me.lemire.integercompression.IntWrapper";
+    "$r23 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r23.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r23.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r43 = $r23";
+    "r43 = $r23"->"$r24 = new me.lemire.integercompression.IntWrapper";
+    "$r24 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r24.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r24.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r44 = $r24";
+    "r44 = $r24"->"interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r37, r43, i27, r38, r44)";
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r37, r43, i27, r38, r44)"->"$i10 = lengthof r40";
+    "$i10 = lengthof r40"->"$l11 = (long) $i10";
+    "$l11 = (long) $i10"->"l24 = l24 + $l11";
+    "l24 = l24 + $l11"->"$l12 = (long) i27";
+    "$l12 = (long) i27"->"l25 = l25 + $l12";
+    "l25 = l25 + $l12"->"$i13 = virtualinvoke r44.<me.lemire.integercompression.IntWrapper: int get()>()";
+    "$i13 = virtualinvoke r44.<me.lemire.integercompression.IntWrapper: int get()>()"->"$i14 = lengthof r40";
+    "$i14 = lengthof r40"->"if $i13 == $i14 goto i28 = 0";
+    "if $i13 == $i14 goto i28 = 0"->"$r27 = new java.lang.RuntimeException";
+    "if $i13 == $i14 goto i28 = 0"->"i28 = 0";
+    "$r27 = new java.lang.RuntimeException"->"specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")";
+    "specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"->"throw $r27";
+    "i28 = 0"->"$i15 = lengthof r40";
+    "$i15 = lengthof r40"->"if i28 >= $i15 goto $r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)";
+    "if i28 >= $i15 goto $r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)"->"$i17 = r40[i28]";
+    "if i28 >= $i15 goto $r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)"->"$r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)";
+    "$i17 = r40[i28]"->"$i16 = r38[i28]";
+    "$i16 = r38[i28]"->"if $i17 == $i16 goto i28 = i28 + 1";
+    "if $i17 == $i16 goto i28 = i28 + 1"->"$r26 = new java.lang.RuntimeException";
+    "if $i17 == $i16 goto i28 = i28 + 1"->"i28 = i28 + 1";
+    "$r26 = new java.lang.RuntimeException"->"specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")";
+    "specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"->"throw $r26";
+    "i28 = i28 + 1"->"goto [?= $i15 = lengthof r40]";
+    "goto [?= $i15 = lengthof r40]"->"$i15 = lengthof r40";
+    "$r25 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r37, i27)"->"r5[i26] = $r25";
+    "r5[i26] = $r25"->"i26 = i26 + 1";
+    "i26 = i26 + 1"->"goto [?= $i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()]";
+    "goto [?= $i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()]"->"$i4 = virtualinvoke r0.<java.util.ArrayList: int size()>()";
+    "l29 = staticinvoke <java.lang.System: long nanoTime()>()"->"r45 = r5";
+    "r45 = r5"->"i30 = lengthof r45";
+    "i30 = lengthof r45"->"i31 = 0";
+    "i31 = 0"->"if i31 >= i30 goto l32 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "if i31 >= i30 goto l32 = staticinvoke <java.lang.System: long nanoTime()>()"->"r46 = r45[i31]";
+    "if i31 >= i30 goto l32 = staticinvoke <java.lang.System: long nanoTime()>()"->"l32 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "r46 = r45[i31]"->"$r17 = new me.lemire.integercompression.IntWrapper";
+    "$r17 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r17.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r17.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r47 = $r17";
+    "r47 = $r17"->"$r18 = new me.lemire.integercompression.IntWrapper";
+    "$r18 = new me.lemire.integercompression.IntWrapper"->"specialinvoke $r18.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)";
+    "specialinvoke $r18.<me.lemire.integercompression.IntWrapper: void <init>(int)>(0)"->"r48 = $r18";
+    "r48 = $r18"->"$i6 = lengthof r46";
+    "$i6 = lengthof r46"->"interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r46, r47, $i6, r38, r48)";
+    "interfaceinvoke r4.<me.lemire.integercompression.ByteIntegerCODEC: void uncompress(byte[],me.lemire.integercompression.IntWrapper,int,int[],me.lemire.integercompression.IntWrapper)>(r46, r47, $i6, r38, r48)"->"$i7 = virtualinvoke r47.<me.lemire.integercompression.IntWrapper: int get()>()";
+    "$i7 = virtualinvoke r47.<me.lemire.integercompression.IntWrapper: int get()>()"->"$i8 = lengthof r46";
+    "$i8 = lengthof r46"->"if $i7 == $i8 goto i31 = i31 + 1";
+    "if $i7 == $i8 goto i31 = i31 + 1"->"$r19 = new java.lang.RuntimeException";
+    "if $i7 == $i8 goto i31 = i31 + 1"->"i31 = i31 + 1";
+    "$r19 = new java.lang.RuntimeException"->"specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")";
+    "specialinvoke $r19.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"bug\")"->"throw $r19";
+    "i31 = i31 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i31 >= i30 goto l32 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "l32 = staticinvoke <java.lang.System: long nanoTime()>()"->"$l5 = l32 - l29";
+    "$l5 = l32 - l29"->"l33 = l23 + $l5";
+    "l33 = l23 + $l5"->"$d0 = (double) l25";
+    "$d0 = (double) l25"->"$d2 = $d0 * 8.0";
+    "$d2 = $d0 * 8.0"->"$d1 = (double) l24";
+    "$d1 = (double) l24"->"d6 = $d2 / $d1";
+    "d6 = $d2 / $d1"->"$d3 = (double) l24";
+    "$d3 = (double) l24"->"$d5 = $d3 * 1000.0";
+    "$d5 = $d3 * 1000.0"->"$d4 = (double) l33";
+    "$d4 = (double) l33"->"d7 = $d5 / $d4";
+    "d7 = $d5 / $d4"->"if z1 == 0 goto i20 = i20 + 1";
+    "if z1 == 0 goto i20 = i20 + 1"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "if z1 == 0 goto i20 = i20 + 1"->"i20 = i20 + 1";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"$r6 = new java.lang.StringBuilder";
+    "$r6 = new java.lang.StringBuilder"->"specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r6.<java.lang.StringBuilder: void <init>()>()"->"$r8 = virtualinvoke r4.<java.lang.Object: java.lang.String toString()>()";
+    "$r8 = virtualinvoke r4.<java.lang.Object: java.lang.String toString()>()"->"$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)";
+    "$r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\")"->"$r11 = newarray (java.lang.Object)[2]";
+    "$r11 = newarray (java.lang.Object)[2]"->"$r12 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d6)";
+    "$r12 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d6)"->"$r11[0] = $r12";
+    "$r11[0] = $r12"->"$r13 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d7)";
+    "$r13 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d7)"->"$r11[1] = $r13";
+    "$r11[1] = $r13"->"$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"\t%1$.2f\t%2$.2f\", $r11)";
+    "$r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"\t%1$.2f\t%2$.2f\", $r11)"->"$r15 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)";
+    "$r15 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r16)";
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r16)"->"i20 = i20 + 1";
+    "i20 = i20 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i20 >= i2 goto return";
+}

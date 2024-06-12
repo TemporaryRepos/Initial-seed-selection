@@ -1,0 +1,48 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = \"abcdefg\";
+c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6);
+if c0 == 103 goto return;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r1 = new java.lang.RuntimeException;
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"failed: charAt(6) returned \'\");
+$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c0);
+$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' instead of \'g\'\");
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5);
+throw $r1;
+"
+    "Block 2:
+[preds: 0 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = \"abcdefg\";
+c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6);
+if c0 == 103 goto return;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r1 = new java.lang.RuntimeException;
+$r2 = new java.lang.StringBuilder;
+specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"failed: charAt(6) returned \'\");
+$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(c0);
+$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' instead of \'g\'\");
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5);
+throw $r1;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 = \"abcdefg\";
+c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(6);
+if c0 == 103 goto return;
+"->"Block 2:
+[preds: 0 ] [succs: ]
+return;
+";
+}

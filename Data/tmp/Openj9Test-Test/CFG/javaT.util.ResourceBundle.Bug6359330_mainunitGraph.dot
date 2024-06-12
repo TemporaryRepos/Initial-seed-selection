@@ -1,0 +1,33 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "$r0 = new java.lang.SecurityManager"
+    "specialinvoke $r0.<java.lang.SecurityManager: void <init>()>()"
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r0)"
+    "r4 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()"
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setNamespaceAware(boolean)>(1)"
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setValidating(boolean)>(1)"
+    "r1 = virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParser newSAXParser()>()"
+    "virtualinvoke r1.<javax.xml.parsers.SAXParser: void setProperty(java.lang.String,java.lang.Object)>(\"foo\", \"bar\")"
+    "goto [?= return]"
+    "$r2 := @caughtexception"
+    "r5 = $r2"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"$r0 = new java.lang.SecurityManager";
+    "$r0 = new java.lang.SecurityManager"->"specialinvoke $r0.<java.lang.SecurityManager: void <init>()>()";
+    "specialinvoke $r0.<java.lang.SecurityManager: void <init>()>()"->"staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r0)";
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r0)"->"r4 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()";
+    "staticinvoke <java.lang.System: void setSecurityManager(java.lang.SecurityManager)>($r0)"->"$r2 := @caughtexception";
+    "r4 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()"->"virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setNamespaceAware(boolean)>(1)";
+    "r4 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()"->"$r2 := @caughtexception";
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setNamespaceAware(boolean)>(1)"->"virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setValidating(boolean)>(1)";
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setNamespaceAware(boolean)>(1)"->"$r2 := @caughtexception";
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setValidating(boolean)>(1)"->"r1 = virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParser newSAXParser()>()";
+    "virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: void setValidating(boolean)>(1)"->"$r2 := @caughtexception";
+    "r1 = virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParser newSAXParser()>()"->"virtualinvoke r1.<javax.xml.parsers.SAXParser: void setProperty(java.lang.String,java.lang.Object)>(\"foo\", \"bar\")";
+    "r1 = virtualinvoke r4.<javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParser newSAXParser()>()"->"$r2 := @caughtexception";
+    "virtualinvoke r1.<javax.xml.parsers.SAXParser: void setProperty(java.lang.String,java.lang.Object)>(\"foo\", \"bar\")"->"goto [?= return]";
+    "virtualinvoke r1.<javax.xml.parsers.SAXParser: void setProperty(java.lang.String,java.lang.Object)>(\"foo\", \"bar\")"->"$r2 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r2 := @caughtexception"->"r5 = $r2";
+    "r5 = $r2"->"return";
+}

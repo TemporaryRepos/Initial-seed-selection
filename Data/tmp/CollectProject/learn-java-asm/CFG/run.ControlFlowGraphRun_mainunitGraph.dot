@@ -1,0 +1,118 @@
+digraph "unitGraph" {
+    "r28 := @parameter0: java.lang.String[]"
+    "r0 = \"sample/HelloWorld.class\""
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"
+    "r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)"
+    "$r3 = new org.objectweb.asm.ClassReader"
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"
+    "r4 = $r3"
+    "$r5 = new org.objectweb.asm.tree.ClassNode"
+    "specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()"
+    "r6 = $r5"
+    "b0 = 6"
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b0)"
+    "r7 = \"test\""
+    "r29 = null"
+    "$r8 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>"
+    "r30 = interfaceinvoke $r8.<java.util.List: java.util.Iterator iterator()>()"
+    "$z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"
+    "if $z0 == 0 goto (branch)"
+    "$r26 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"
+    "r31 = (org.objectweb.asm.tree.MethodNode) $r26"
+    "$r27 = r31.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"
+    "$z1 = virtualinvoke $r27.<java.lang.String: boolean equals(java.lang.Object)>(r7)"
+    "if $z1 == 0 goto (branch)"
+    "r29 = r31"
+    "goto [?= (branch)]"
+    "goto [?= $z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"
+    "if r29 != null goto $r9 = <java.lang.System: java.io.PrintStream out>"
+    "$r22 = <java.lang.System: java.io.PrintStream out>"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can not find method: \")"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)"
+    "return"
+    "$r9 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"Origin:\")"
+    "$r11 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"
+    "$r10 = <run.ControlFlowGraphType: run.ControlFlowGraphType NONE>"
+    "staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r11, r29, $r10)"
+    "$r12 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Control Flow Graph:\")"
+    "$r14 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"
+    "$r13 = <run.ControlFlowGraphType: run.ControlFlowGraphType STANDARD>"
+    "staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r14, r29, $r13)"
+    "$r15 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"
+    "i1 = staticinvoke <lsieun.asm.analysis.cc.CyclomaticComplexity: int getCyclomaticComplexity(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r15, r29)"
+    "$r16 = newarray (java.lang.Object)[3]"
+    "$r17 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"
+    "$r16[0] = $r17"
+    "$r18 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>"
+    "$r16[1] = $r18"
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)"
+    "$r16[2] = $r19"
+    "r32 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%s:%s complexity: %d\", $r16)"
+    "$r20 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(r32)"
+    "r28 := @parameter0: java.lang.String[]"->"r0 = \"sample/HelloWorld.class\"";
+    "r0 = \"sample/HelloWorld.class\""->"r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)";
+    "r1 = staticinvoke <lsieun.utils.FileUtils: java.lang.String getFilePath(java.lang.String)>(r0)"->"r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)";
+    "r2 = staticinvoke <lsieun.utils.FileUtils: byte[] readBytes(java.lang.String)>(r1)"->"$r3 = new org.objectweb.asm.ClassReader";
+    "$r3 = new org.objectweb.asm.ClassReader"->"specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)";
+    "specialinvoke $r3.<org.objectweb.asm.ClassReader: void <init>(byte[])>(r2)"->"r4 = $r3";
+    "r4 = $r3"->"$r5 = new org.objectweb.asm.tree.ClassNode";
+    "$r5 = new org.objectweb.asm.tree.ClassNode"->"specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()";
+    "specialinvoke $r5.<org.objectweb.asm.tree.ClassNode: void <init>()>()"->"r6 = $r5";
+    "r6 = $r5"->"b0 = 6";
+    "b0 = 6"->"virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b0)";
+    "virtualinvoke r4.<org.objectweb.asm.ClassReader: void accept(org.objectweb.asm.ClassVisitor,int)>(r6, b0)"->"r7 = \"test\"";
+    "r7 = \"test\""->"r29 = null";
+    "r29 = null"->"$r8 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>";
+    "$r8 = r6.<org.objectweb.asm.tree.ClassNode: java.util.List methods>"->"r30 = interfaceinvoke $r8.<java.util.List: java.util.Iterator iterator()>()";
+    "r30 = interfaceinvoke $r8.<java.util.List: java.util.Iterator iterator()>()"->"$z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()";
+    "$z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()"->"if $z0 == 0 goto (branch)";
+    "if $z0 == 0 goto (branch)"->"$r26 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z0 == 0 goto (branch)"->"if r29 != null goto $r9 = <java.lang.System: java.io.PrintStream out>";
+    "$r26 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>()"->"r31 = (org.objectweb.asm.tree.MethodNode) $r26";
+    "r31 = (org.objectweb.asm.tree.MethodNode) $r26"->"$r27 = r31.<org.objectweb.asm.tree.MethodNode: java.lang.String name>";
+    "$r27 = r31.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"->"$z1 = virtualinvoke $r27.<java.lang.String: boolean equals(java.lang.Object)>(r7)";
+    "$z1 = virtualinvoke $r27.<java.lang.String: boolean equals(java.lang.Object)>(r7)"->"if $z1 == 0 goto (branch)";
+    "if $z1 == 0 goto (branch)"->"r29 = r31";
+    "if $z1 == 0 goto (branch)"->"goto [?= $z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]";
+    "r29 = r31"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if r29 != null goto $r9 = <java.lang.System: java.io.PrintStream out>";
+    "goto [?= $z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()]"->"$z0 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()";
+    "if r29 != null goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r22 = <java.lang.System: java.io.PrintStream out>";
+    "if r29 != null goto $r9 = <java.lang.System: java.io.PrintStream out>"->"$r9 = <java.lang.System: java.io.PrintStream out>";
+    "$r22 = <java.lang.System: java.io.PrintStream out>"->"$r21 = new java.lang.StringBuilder";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can not find method: \")";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Can not find method: \")"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)";
+    "virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25)"->"return";
+    "$r9 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"Origin:\")";
+    "virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>(\"Origin:\")"->"$r11 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>";
+    "$r11 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"->"$r10 = <run.ControlFlowGraphType: run.ControlFlowGraphType NONE>";
+    "$r10 = <run.ControlFlowGraphType: run.ControlFlowGraphType NONE>"->"staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r11, r29, $r10)";
+    "staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r11, r29, $r10)"->"$r12 = <java.lang.System: java.io.PrintStream out>";
+    "$r12 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Control Flow Graph:\")";
+    "virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>(\"Control Flow Graph:\")"->"$r14 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>";
+    "$r14 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"->"$r13 = <run.ControlFlowGraphType: run.ControlFlowGraphType STANDARD>";
+    "$r13 = <run.ControlFlowGraphType: run.ControlFlowGraphType STANDARD>"->"staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r14, r29, $r13)";
+    "staticinvoke <run.ControlFlowGraphRun: void display(java.lang.String,org.objectweb.asm.tree.MethodNode,run.ControlFlowGraphType)>($r14, r29, $r13)"->"$r15 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>";
+    "$r15 = r6.<org.objectweb.asm.tree.ClassNode: java.lang.String name>"->"i1 = staticinvoke <lsieun.asm.analysis.cc.CyclomaticComplexity: int getCyclomaticComplexity(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r15, r29)";
+    "i1 = staticinvoke <lsieun.asm.analysis.cc.CyclomaticComplexity: int getCyclomaticComplexity(java.lang.String,org.objectweb.asm.tree.MethodNode)>($r15, r29)"->"$r16 = newarray (java.lang.Object)[3]";
+    "$r16 = newarray (java.lang.Object)[3]"->"$r17 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String name>";
+    "$r17 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String name>"->"$r16[0] = $r17";
+    "$r16[0] = $r17"->"$r18 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>";
+    "$r18 = r29.<org.objectweb.asm.tree.MethodNode: java.lang.String desc>"->"$r16[1] = $r18";
+    "$r16[1] = $r18"->"$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)";
+    "$r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)"->"$r16[2] = $r19";
+    "$r16[2] = $r19"->"r32 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%s:%s complexity: %d\", $r16)";
+    "r32 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%s:%s complexity: %d\", $r16)"->"$r20 = <java.lang.System: java.io.PrintStream out>";
+    "$r20 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(r32)";
+    "virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>(r32)"->"return";
+}

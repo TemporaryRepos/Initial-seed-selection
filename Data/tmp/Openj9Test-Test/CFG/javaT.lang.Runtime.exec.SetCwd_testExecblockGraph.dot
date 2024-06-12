@@ -1,0 +1,262 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r17 := @parameter0: java.lang.String;
+r9 := @parameter1: java.lang.String[];
+z2 := @parameter2: boolean;
+$r0 = new java.io.File;
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(\".\");
+r1 = $r0;
+r2 = virtualinvoke r1.<java.io.File: java.io.File[] listFiles()>();
+r3 = virtualinvoke r1.<java.io.File: java.lang.String getCanonicalPath()>();
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r2;
+if i1 >= $i0 goto $r4 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r5 = r2[i1];
+$z0 = virtualinvoke r5.<java.io.File: boolean isDirectory()>();
+if $z0 == 0 goto i1 = i1 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 10 ]
+$r6 = new java.io.File;
+specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r5, \"SetCwd.class\");
+$z1 = virtualinvoke $r6.<java.io.File: boolean exists()>();
+if $z1 == 0 goto i1 = i1 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r7 = virtualinvoke r5.<java.io.File: java.lang.String getCanonicalPath()>();
+if z2 == 0 goto $r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r16 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r16.<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>(r17, null, r5);
+goto [?= $r10 = new java.io.BufferedReader];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+$r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r8.<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>(r9, null, r5);
+"
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r10 = new java.io.BufferedReader;
+$r11 = new java.io.InputStreamReader;
+$r12 = virtualinvoke r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r12);
+specialinvoke $r10.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+r13 = $r10;
+r14 = virtualinvoke r13.<java.io.BufferedReader: java.lang.String readLine()>();
+$z3 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(r7);
+if $z3 != 0 goto virtualinvoke r18.<java.lang.Process: int waitFor()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: ]
+$r15 = new java.lang.Exception;
+specialinvoke $r15.<java.lang.Exception: void <init>(java.lang.String)>(\"inconsistent directory after exec\");
+throw $r15;
+"
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+virtualinvoke r18.<java.lang.Process: int waitFor()>();
+"
+    "Block 10:
+[preds: 2 3 9 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r2];
+"
+    "Block 11:
+[preds: 1 ] [succs: ]
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(r3);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r17 := @parameter0: java.lang.String;
+r9 := @parameter1: java.lang.String[];
+z2 := @parameter2: boolean;
+$r0 = new java.io.File;
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>(\".\");
+r1 = $r0;
+r2 = virtualinvoke r1.<java.io.File: java.io.File[] listFiles()>();
+r3 = virtualinvoke r1.<java.io.File: java.lang.String getCanonicalPath()>();
+i1 = 0;
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r2;
+if i1 >= $i0 goto $r4 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r2;
+if i1 >= $i0 goto $r4 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r5 = r2[i1];
+$z0 = virtualinvoke r5.<java.io.File: boolean isDirectory()>();
+if $z0 == 0 goto i1 = i1 + 1;
+";
+    "Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r2;
+if i1 >= $i0 goto $r4 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 11:
+[preds: 1 ] [succs: ]
+$r4 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(r3);
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r5 = r2[i1];
+$z0 = virtualinvoke r5.<java.io.File: boolean isDirectory()>();
+if $z0 == 0 goto i1 = i1 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: 4 10 ]
+$r6 = new java.io.File;
+specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r5, \"SetCwd.class\");
+$z1 = virtualinvoke $r6.<java.io.File: boolean exists()>();
+if $z1 == 0 goto i1 = i1 + 1;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 10 ]
+r5 = r2[i1];
+$z0 = virtualinvoke r5.<java.io.File: boolean isDirectory()>();
+if $z0 == 0 goto i1 = i1 + 1;
+"->"Block 10:
+[preds: 2 3 9 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r2];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 10 ]
+$r6 = new java.io.File;
+specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r5, \"SetCwd.class\");
+$z1 = virtualinvoke $r6.<java.io.File: boolean exists()>();
+if $z1 == 0 goto i1 = i1 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r7 = virtualinvoke r5.<java.io.File: java.lang.String getCanonicalPath()>();
+if z2 == 0 goto $r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 10 ]
+$r6 = new java.io.File;
+specialinvoke $r6.<java.io.File: void <init>(java.io.File,java.lang.String)>(r5, \"SetCwd.class\");
+$z1 = virtualinvoke $r6.<java.io.File: boolean exists()>();
+if $z1 == 0 goto i1 = i1 + 1;
+"->"Block 10:
+[preds: 2 3 9 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r2];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r7 = virtualinvoke r5.<java.io.File: java.lang.String getCanonicalPath()>();
+if z2 == 0 goto $r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+"->"Block 5:
+[preds: 4 ] [succs: 7 ]
+$r16 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r16.<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>(r17, null, r5);
+goto [?= $r10 = new java.io.BufferedReader];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+r7 = virtualinvoke r5.<java.io.File: java.lang.String getCanonicalPath()>();
+if z2 == 0 goto $r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+"->"Block 6:
+[preds: 4 ] [succs: 7 ]
+$r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r8.<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>(r9, null, r5);
+";
+    "Block 5:
+[preds: 4 ] [succs: 7 ]
+$r16 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r16.<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>(r17, null, r5);
+goto [?= $r10 = new java.io.BufferedReader];
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r10 = new java.io.BufferedReader;
+$r11 = new java.io.InputStreamReader;
+$r12 = virtualinvoke r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r12);
+specialinvoke $r10.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+r13 = $r10;
+r14 = virtualinvoke r13.<java.io.BufferedReader: java.lang.String readLine()>();
+$z3 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(r7);
+if $z3 != 0 goto virtualinvoke r18.<java.lang.Process: int waitFor()>();
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+$r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+r18 = virtualinvoke $r8.<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>(r9, null, r5);
+"->"Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r10 = new java.io.BufferedReader;
+$r11 = new java.io.InputStreamReader;
+$r12 = virtualinvoke r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r12);
+specialinvoke $r10.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+r13 = $r10;
+r14 = virtualinvoke r13.<java.io.BufferedReader: java.lang.String readLine()>();
+$z3 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(r7);
+if $z3 != 0 goto virtualinvoke r18.<java.lang.Process: int waitFor()>();
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r10 = new java.io.BufferedReader;
+$r11 = new java.io.InputStreamReader;
+$r12 = virtualinvoke r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r12);
+specialinvoke $r10.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+r13 = $r10;
+r14 = virtualinvoke r13.<java.io.BufferedReader: java.lang.String readLine()>();
+$z3 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(r7);
+if $z3 != 0 goto virtualinvoke r18.<java.lang.Process: int waitFor()>();
+"->"Block 8:
+[preds: 7 ] [succs: ]
+$r15 = new java.lang.Exception;
+specialinvoke $r15.<java.lang.Exception: void <init>(java.lang.String)>(\"inconsistent directory after exec\");
+throw $r15;
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 8 9 ]
+$r10 = new java.io.BufferedReader;
+$r11 = new java.io.InputStreamReader;
+$r12 = virtualinvoke r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+specialinvoke $r11.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r12);
+specialinvoke $r10.<java.io.BufferedReader: void <init>(java.io.Reader)>($r11);
+r13 = $r10;
+r14 = virtualinvoke r13.<java.io.BufferedReader: java.lang.String readLine()>();
+$z3 = virtualinvoke r14.<java.lang.String: boolean startsWith(java.lang.String)>(r7);
+if $z3 != 0 goto virtualinvoke r18.<java.lang.Process: int waitFor()>();
+"->"Block 9:
+[preds: 7 ] [succs: 10 ]
+virtualinvoke r18.<java.lang.Process: int waitFor()>();
+";
+    "Block 9:
+[preds: 7 ] [succs: 10 ]
+virtualinvoke r18.<java.lang.Process: int waitFor()>();
+"->"Block 10:
+[preds: 2 3 9 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r2];
+";
+    "Block 10:
+[preds: 2 3 9 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r2];
+"->"Block 1:
+[preds: 0 10 ] [succs: 2 11 ]
+$i0 = lengthof r2;
+if i1 >= $i0 goto $r4 = <java.lang.System: java.io.PrintStream out>;
+";
+}

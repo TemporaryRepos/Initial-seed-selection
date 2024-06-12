@@ -1,0 +1,20 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String"
+    "r0 := @parameter1: java.lang.String"
+    "r1 := @parameter2: java.lang.String"
+    "$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(r1)"
+    "if $z0 != 0 goto staticinvoke <javaT.lang.Appendable.Basic: void pass()>()"
+    "staticinvoke <javaT.lang.Appendable.Basic: void fail(java.lang.String,java.lang.String,java.lang.String)>(r2, r0, r1)"
+    "goto [?= return]"
+    "staticinvoke <javaT.lang.Appendable.Basic: void pass()>()"
+    "return"
+    "r2 := @parameter0: java.lang.String"->"r0 := @parameter1: java.lang.String";
+    "r0 := @parameter1: java.lang.String"->"r1 := @parameter2: java.lang.String";
+    "r1 := @parameter2: java.lang.String"->"$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(r1)";
+    "$z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>(r1)"->"if $z0 != 0 goto staticinvoke <javaT.lang.Appendable.Basic: void pass()>()";
+    "if $z0 != 0 goto staticinvoke <javaT.lang.Appendable.Basic: void pass()>()"->"staticinvoke <javaT.lang.Appendable.Basic: void fail(java.lang.String,java.lang.String,java.lang.String)>(r2, r0, r1)";
+    "if $z0 != 0 goto staticinvoke <javaT.lang.Appendable.Basic: void pass()>()"->"staticinvoke <javaT.lang.Appendable.Basic: void pass()>()";
+    "staticinvoke <javaT.lang.Appendable.Basic: void fail(java.lang.String,java.lang.String,java.lang.String)>(r2, r0, r1)"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "staticinvoke <javaT.lang.Appendable.Basic: void pass()>()"->"return";
+}

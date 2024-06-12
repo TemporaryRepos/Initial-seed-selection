@@ -1,0 +1,3314 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 != 0 goto i13 = lengthof r0;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+i13 = lengthof r0;
+$i1 = i13 - 1;
+r116 = r0[$i1];
+z4 = 0;
+i14 = 1;
+r117 = null;
+r118 = null;
+r119 = null;
+z5 = 0;
+i15 = i13 + -1;
+$r1 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r116);
+r3 = (java.lang.String) $r2;
+if r3 != null goto r116 = r3;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 6 ]
+$r83 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$z3 = virtualinvoke $r83.<java.util.HashMap: boolean containsValue(java.lang.Object)>(r116);
+if $z3 != 0 goto r120 = null;
+"
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+$r85 = <java.lang.System: java.io.PrintStream err>;
+$r84 = new java.lang.StringBuilder;
+specialinvoke $r84.<java.lang.StringBuilder: void <init>()>();
+$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized UUID generation type \'\");
+$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r116);
+$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; currently available ones are:\");
+$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r85.<java.io.PrintStream: void println(java.lang.String)>($r89);
+$r91 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r90 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r91, $r90, 0);
+$r92 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r92.<java.io.PrintStream: void println()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= r120 = null];
+"
+    "Block 5:
+[preds: 2 ] [succs: 6 ]
+r116 = r3;
+"
+    "Block 6:
+[preds: 3 4 5 ] [succs: 7 ]
+r120 = null;
+r121 = null;
+i16 = 0;
+"
+    "Block 7:
+[preds: 6 76 ] [succs: 8 77 ]
+if i16 >= i15 goto c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r122 = r0[i16];
+$i11 = virtualinvoke r122.<java.lang.String: int length()>();
+if $i11 == 0 goto $r57 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$c12 = virtualinvoke r122.<java.lang.String: char charAt(int)>(0);
+if $c12 == 45 goto c17 = 0;
+"
+    "Block 10:
+[preds: 8 9 ] [succs: 11 ]
+$r57 = <java.lang.System: java.io.PrintStream err>;
+$r56 = new java.lang.StringBuilder;
+specialinvoke $r56.<java.lang.StringBuilder: void <init>()>();
+$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' (missing leading hyphen?), exiting.\");
+$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r61);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 12 15 ]
+c17 = 0;
+$z6 = virtualinvoke r122.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\");
+if $z6 == 0 goto $r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r80 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r81 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(2);
+$r82 = virtualinvoke $r80.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r81);
+r123 = (java.lang.String) $r82;
+if r123 == null goto (branch);
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+c17 = virtualinvoke r123.<java.lang.String: char charAt(int)>(0);
+"
+    "Block 14:
+[preds: 12 13 ] [succs: 17 ]
+goto [?= (branch)];
+"
+    "Block 15:
+[preds: 11 ] [succs: 16 17 ]
+$r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r63 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(1);
+$z2 = virtualinvoke $r62.<java.util.HashMap: boolean containsValue(java.lang.Object)>($r63);
+if $z2 == 0 goto (branch);
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 ]
+c17 = virtualinvoke r122.<java.lang.String: char charAt(int)>(1);
+"
+    "Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 75 ]
+$r71 = <java.lang.System: java.io.PrintStream err>;
+$r70 = new java.lang.StringBuilder;
+specialinvoke $r70.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; exiting.\");
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r71.<java.io.PrintStream: void println(java.lang.String)>($r75);
+$r76 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r76.<java.io.PrintStream: void print(java.lang.String)>(\"[options currently available are: \");
+$r78 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r77 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r78, $r77, 1);
+$r79 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r79.<java.io.PrintStream: void println(java.lang.String)>(\"]\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 75 ]
+i16 = i16 + 1;
+"
+    "Block 21:
+[preds: 20 ] [succs: 24 75 22 ]
+r124 = r0[i16];
+"
+    "Block 22:
+[preds: 21 ] [succs: 24 75 23 ]
+i14 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r124);
+"
+    "Block 23:
+[preds: 22 ] [succs: 35 75 ]
+goto [?= (branch)];
+"
+    "Block 24:
+[preds: 21 22 ] [succs: 25 75 ]
+$r109 := @caughtexception;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 75 ]
+r125 = $r109;
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 75 ]
+$r111 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 75 ]
+$r110 = new java.lang.StringBuilder;
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 75 ]
+specialinvoke $r110.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 75 ]
+$r112 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 75 ]
+$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 75 ]
+$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+"
+    "Block 32:
+[preds: 31 ] [succs: 33 75 ]
+$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 75 ]
+virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>($r115);
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+"
+    "Block 36:
+[preds: 35 ] [succs: 37 75 ]
+$r65 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 37:
+[preds: 36 ] [succs: 38 75 ]
+$r64 = new java.lang.StringBuilder;
+"
+    "Block 38:
+[preds: 37 ] [succs: 39 75 ]
+specialinvoke $r64.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 39:
+[preds: 38 ] [succs: 40 75 ]
+$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"
+    "Block 40:
+[preds: 39 ] [succs: 41 75 ]
+$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"
+    "Block 41:
+[preds: 40 ] [succs: 42 75 ]
+$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; negative numbers not allowed, ignoring (defaults to 1).\");
+"
+    "Block 42:
+[preds: 41 ] [succs: 43 75 ]
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 43:
+[preds: 42 ] [succs: 44 75 ]
+virtualinvoke $r65.<java.io.PrintStream: void println(java.lang.String)>($r69);
+"
+    "Block 44:
+[preds: 43 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 45:
+[preds: 19 ] [succs: 46 75 ]
+i16 = i16 + 1;
+"
+    "Block 46:
+[preds: 45 ] [succs: 49 75 47 ]
+r126 = r0[i16];
+"
+    "Block 47:
+[preds: 46 ] [succs: 49 75 48 ]
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress valueOf(java.lang.String)>(r126);
+"
+    "Block 48:
+[preds: 47 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 49:
+[preds: 46 47 ] [succs: 50 75 ]
+$r100 := @caughtexception;
+"
+    "Block 50:
+[preds: 49 ] [succs: 51 75 ]
+r127 = $r100;
+"
+    "Block 51:
+[preds: 50 ] [succs: 52 75 ]
+$r102 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 52:
+[preds: 51 ] [succs: 53 75 ]
+$r101 = new java.lang.StringBuilder;
+"
+    "Block 53:
+[preds: 52 ] [succs: 54 75 ]
+specialinvoke $r101.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 54:
+[preds: 53 ] [succs: 55 75 ]
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid ethernet address for option \'\");
+"
+    "Block 55:
+[preds: 54 ] [succs: 56 75 ]
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"
+    "Block 56:
+[preds: 55 ] [succs: 57 75 ]
+$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', error: \");
+"
+    "Block 57:
+[preds: 56 ] [succs: 58 75 ]
+$r106 = virtualinvoke r127.<java.lang.NumberFormatException: java.lang.String toString()>();
+"
+    "Block 58:
+[preds: 57 ] [succs: 59 75 ]
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r106);
+"
+    "Block 59:
+[preds: 58 ] [succs: 60 75 ]
+$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 60:
+[preds: 59 ] [succs: 61 75 ]
+virtualinvoke $r102.<java.io.PrintStream: void println(java.lang.String)>($r108);
+"
+    "Block 61:
+[preds: 60 ] [succs: 62 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 62:
+[preds: 61 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 63:
+[preds: 19 ] [succs: 64 75 ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+"
+    "Block 64:
+[preds: 63 ] [succs: ]
+return;
+"
+    "Block 65:
+[preds: 19 ] [succs: 66 75 ]
+i16 = i16 + 1;
+"
+    "Block 66:
+[preds: 65 ] [succs: 67 75 ]
+r117 = r0[i16];
+"
+    "Block 67:
+[preds: 66 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 68:
+[preds: 19 ] [succs: 69 75 ]
+z5 = 1;
+"
+    "Block 69:
+[preds: 68 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 70:
+[preds: 19 ] [succs: 71 75 ]
+i16 = i16 + 1;
+"
+    "Block 71:
+[preds: 70 ] [succs: 72 75 ]
+r118 = r0[i16];
+"
+    "Block 72:
+[preds: 71 ] [succs: 74 75 ]
+goto [?= (branch)];
+"
+    "Block 73:
+[preds: 19 ] [succs: 74 75 ]
+z4 = 1;
+"
+    "Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+"
+    "Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 76:
+[preds: 74 75 ] [succs: 7 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+"
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"
+    "Block 78:
+[preds: 77 ] [succs: 79 83 ]
+z7 = 1;
+if r119 != null goto (branch);
+"
+    "Block 79:
+[preds: 78 ] [succs: 80 81 ]
+if z4 == 0 goto $r34 = new java.util.Random;
+"
+    "Block 80:
+[preds: 79 ] [succs: 81 ]
+$r38 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"(no address specified, generating dummy address: \");
+"
+    "Block 81:
+[preds: 79 80 ] [succs: 82 83 ]
+$r34 = new java.util.Random;
+$l10 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+specialinvoke $r34.<java.util.Random: void <init>(long)>($l10);
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress constructMulticastAddress(java.util.Random)>($r34);
+if z4 == 0 goto (branch);
+"
+    "Block 82:
+[preds: 81 ] [succs: 83 ]
+$r35 = <java.lang.System: java.io.PrintStream out>;
+$r36 = virtualinvoke r119.<com.fasterxml.uuid.EthernetAddress: java.lang.String toString()>();
+virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>($r36);
+$r37 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\")\");
+"
+    "Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+"
+    "Block 84:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedGenerator timeBasedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+goto [?= r120 = $r130];
+"
+    "Block 85:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+"
+    "Block 86:
+[preds: 84 85 ] [succs: 104 ]
+r120 = $r130;
+goto [?= (branch)];
+"
+    "Block 87:
+[preds: 77 ] [succs: 88 89 ]
+z7 = 1;
+$r4 = new java.security.SecureRandom;
+specialinvoke $r4.<java.security.SecureRandom: void <init>()>();
+r131 = $r4;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+"
+    "Block 88:
+[preds: 87 ] [succs: 89 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+$r26 = new java.lang.StringBuilder;
+specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r29 = virtualinvoke r131.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r30 = virtualinvoke $r29.<java.security.Provider: java.lang.String getInfo()>();
+$r31 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>($r33);
+"
+    "Block 89:
+[preds: 87 88 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+goto [?= (branch)];
+"
+    "Block 90:
+[preds: 77 ] [succs: 91 92 ]
+z7 = 1;
+$r47 = new java.security.SecureRandom;
+specialinvoke $r47.<java.security.SecureRandom: void <init>()>();
+r132 = $r47;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+"
+    "Block 91:
+[preds: 90 ] [succs: 92 ]
+$r49 = <java.lang.System: java.io.PrintStream out>;
+$r48 = new java.lang.StringBuilder;
+specialinvoke $r48.<java.lang.StringBuilder: void <init>()>();
+$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r51 = virtualinvoke r132.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r52 = virtualinvoke $r51.<java.security.Provider: java.lang.String getInfo()>();
+$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r49.<java.io.PrintStream: void print(java.lang.String)>($r55);
+"
+    "Block 92:
+[preds: 90 91 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+goto [?= (branch)];
+"
+    "Block 93:
+[preds: 77 ] [succs: 94 95 ]
+if r118 != null goto (branch);
+"
+    "Block 94:
+[preds: 93 ] [succs: 95 ]
+$r46 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>(\"--name-space (-s) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 95:
+[preds: 93 94 ] [succs: 96 97 ]
+if r117 != null goto (branch);
+"
+    "Block 96:
+[preds: 95 ] [succs: 97 ]
+$r45 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>(\"--name (-n) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 97:
+[preds: 95 96 ] [succs: 98 103 ]
+if c18 != 110 goto r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+"
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+r133 = r118;
+r134 = virtualinvoke r118.<java.lang.String: java.lang.String toLowerCase()>();
+$z0 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"url\");
+if $z0 == 0 goto $z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+"
+    "Block 99:
+[preds: 98 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_URL>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+"
+    "Block 100:
+[preds: 98 ] [succs: 101 102 ]
+$z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+if $z1 == 0 goto $r40 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 101:
+[preds: 100 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_DNS>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+"
+    "Block 102:
+[preds: 100 ] [succs: 103 ]
+$r40 = <java.lang.System: java.io.PrintStream err>;
+$r39 = new java.lang.StringBuilder;
+specialinvoke $r39.<java.lang.StringBuilder: void <init>()>();
+$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized namespace \'\");
+$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r133);
+$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; only DNS and URL allowed for name-based generation.\");
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r44);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+"
+    "Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+"
+    "Block 105:
+[preds: 104 ] [succs: 106 ]
+$r25 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r25.<java.io.PrintStream: void println()>();
+"
+    "Block 106:
+[preds: 104 105 ] [succs: 107 113 ]
+l19 = 0L;
+if z5 == 0 goto i20 = 0;
+"
+    "Block 107:
+[preds: 106 ] [succs: 108 112 ]
+if z7 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"
+    "Block 108:
+[preds: 107 ] [succs: 109 110 ]
+if z4 == 0 goto virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+"
+    "Block 109:
+[preds: 108 ] [succs: 110 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"(initializing random number generator before UUID generation so that performance measurements are not skewed due to one-time init costs)\");
+"
+    "Block 110:
+[preds: 108 109 ] [succs: 111 112 ]
+virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+if z4 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"
+    "Block 111:
+[preds: 110 ] [succs: 112 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"(random number generator initialized ok)\");
+"
+    "Block 112:
+[preds: 107 110 111 ] [succs: 113 ]
+l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"
+    "Block 113:
+[preds: 106 112 ] [succs: 114 ]
+i20 = 0;
+"
+    "Block 114:
+[preds: 113 123 ] [succs: 115 124 ]
+if i20 >= i14 goto (branch);
+"
+    "Block 115:
+[preds: 114 ] [succs: 116 117 ]
+if r121 != null goto $r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+"
+    "Block 116:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+goto [?= r18 = $r135];
+"
+    "Block 117:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+"
+    "Block 118:
+[preds: 116 117 ] [succs: 119 120 ]
+r18 = $r135;
+if z4 == 0 goto (branch);
+"
+    "Block 119:
+[preds: 118 ] [succs: 120 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"UUID: \");
+"
+    "Block 120:
+[preds: 118 119 ] [succs: 121 122 ]
+if z5 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 121:
+[preds: 120 ] [succs: 122 123 ]
+if z4 == 0 goto i20 = i20 + 1;
+"
+    "Block 122:
+[preds: 120 121 ] [succs: 123 ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+$r20 = virtualinvoke r18.<java.util.UUID: java.lang.String toString()>();
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r20);
+"
+    "Block 123:
+[preds: 121 122 ] [succs: 114 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+"
+    "Block 124:
+[preds: 114 ] [succs: 125 126 ]
+if z4 == 0 goto (branch);
+"
+    "Block 125:
+[preds: 124 ] [succs: 126 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Done.\");
+"
+    "Block 126:
+[preds: 124 125 ] [succs: 127 128 ]
+if z5 == 0 goto return;
+"
+    "Block 127:
+[preds: 126 ] [succs: 128 ]
+$l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l21 = $l2 - l19;
+$l5 = l21 * 10L;
+$i3 = i14 / 2;
+$l4 = (long) $i3;
+$l7 = $l5 + $l4;
+$l6 = (long) i14;
+l22 = $l7 / $l6;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Performance: took \");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l21);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds to generate (and print out) \");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i14);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" UUIDs; average being \");
+$l8 = l22 / 10L;
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+$l9 = l22 % 10L;
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" msec.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r16);
+"
+    "Block 128:
+[preds: 126 127 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 != 0 goto i13 = lengthof r0;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 != 0 goto i13 = lengthof r0;
+"->"Block 2:
+[preds: 0 ] [succs: 3 5 ]
+i13 = lengthof r0;
+$i1 = i13 - 1;
+r116 = r0[$i1];
+z4 = 0;
+i14 = 1;
+r117 = null;
+r118 = null;
+r119 = null;
+z5 = 0;
+i15 = i13 + -1;
+$r1 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r116);
+r3 = (java.lang.String) $r2;
+if r3 != null goto r116 = r3;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+i13 = lengthof r0;
+$i1 = i13 - 1;
+r116 = r0[$i1];
+z4 = 0;
+i14 = 1;
+r117 = null;
+r118 = null;
+r119 = null;
+z5 = 0;
+i15 = i13 + -1;
+$r1 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r116);
+r3 = (java.lang.String) $r2;
+if r3 != null goto r116 = r3;
+"->"Block 3:
+[preds: 2 ] [succs: 4 6 ]
+$r83 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$z3 = virtualinvoke $r83.<java.util.HashMap: boolean containsValue(java.lang.Object)>(r116);
+if $z3 != 0 goto r120 = null;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 5 ]
+i13 = lengthof r0;
+$i1 = i13 - 1;
+r116 = r0[$i1];
+z4 = 0;
+i14 = 1;
+r117 = null;
+r118 = null;
+r119 = null;
+z5 = 0;
+i15 = i13 + -1;
+$r1 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r116);
+r3 = (java.lang.String) $r2;
+if r3 != null goto r116 = r3;
+"->"Block 5:
+[preds: 2 ] [succs: 6 ]
+r116 = r3;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 6 ]
+$r83 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$z3 = virtualinvoke $r83.<java.util.HashMap: boolean containsValue(java.lang.Object)>(r116);
+if $z3 != 0 goto r120 = null;
+"->"Block 4:
+[preds: 3 ] [succs: 6 ]
+$r85 = <java.lang.System: java.io.PrintStream err>;
+$r84 = new java.lang.StringBuilder;
+specialinvoke $r84.<java.lang.StringBuilder: void <init>()>();
+$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized UUID generation type \'\");
+$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r116);
+$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; currently available ones are:\");
+$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r85.<java.io.PrintStream: void println(java.lang.String)>($r89);
+$r91 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r90 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r91, $r90, 0);
+$r92 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r92.<java.io.PrintStream: void println()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= r120 = null];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 6 ]
+$r83 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$z3 = virtualinvoke $r83.<java.util.HashMap: boolean containsValue(java.lang.Object)>(r116);
+if $z3 != 0 goto r120 = null;
+"->"Block 6:
+[preds: 3 4 5 ] [succs: 7 ]
+r120 = null;
+r121 = null;
+i16 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 6 ]
+$r85 = <java.lang.System: java.io.PrintStream err>;
+$r84 = new java.lang.StringBuilder;
+specialinvoke $r84.<java.lang.StringBuilder: void <init>()>();
+$r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized UUID generation type \'\");
+$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r116);
+$r88 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; currently available ones are:\");
+$r89 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r85.<java.io.PrintStream: void println(java.lang.String)>($r89);
+$r91 = <com.fasterxml.uuid.Jug: java.util.HashMap TYPES>;
+$r90 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r91, $r90, 0);
+$r92 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r92.<java.io.PrintStream: void println()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= r120 = null];
+"->"Block 6:
+[preds: 3 4 5 ] [succs: 7 ]
+r120 = null;
+r121 = null;
+i16 = 0;
+";
+    "Block 5:
+[preds: 2 ] [succs: 6 ]
+r116 = r3;
+"->"Block 6:
+[preds: 3 4 5 ] [succs: 7 ]
+r120 = null;
+r121 = null;
+i16 = 0;
+";
+    "Block 6:
+[preds: 3 4 5 ] [succs: 7 ]
+r120 = null;
+r121 = null;
+i16 = 0;
+"->"Block 7:
+[preds: 6 76 ] [succs: 8 77 ]
+if i16 >= i15 goto c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+";
+    "Block 7:
+[preds: 6 76 ] [succs: 8 77 ]
+if i16 >= i15 goto c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+"->"Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r122 = r0[i16];
+$i11 = virtualinvoke r122.<java.lang.String: int length()>();
+if $i11 == 0 goto $r57 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 7:
+[preds: 6 76 ] [succs: 8 77 ]
+if i16 >= i15 goto c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+"->"Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r122 = r0[i16];
+$i11 = virtualinvoke r122.<java.lang.String: int length()>();
+if $i11 == 0 goto $r57 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$c12 = virtualinvoke r122.<java.lang.String: char charAt(int)>(0);
+if $c12 == 45 goto c17 = 0;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 10 ]
+r122 = r0[i16];
+$i11 = virtualinvoke r122.<java.lang.String: int length()>();
+if $i11 == 0 goto $r57 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 ]
+$r57 = <java.lang.System: java.io.PrintStream err>;
+$r56 = new java.lang.StringBuilder;
+specialinvoke $r56.<java.lang.StringBuilder: void <init>()>();
+$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' (missing leading hyphen?), exiting.\");
+$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r61);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$c12 = virtualinvoke r122.<java.lang.String: char charAt(int)>(0);
+if $c12 == 45 goto c17 = 0;
+"->"Block 10:
+[preds: 8 9 ] [succs: 11 ]
+$r57 = <java.lang.System: java.io.PrintStream err>;
+$r56 = new java.lang.StringBuilder;
+specialinvoke $r56.<java.lang.StringBuilder: void <init>()>();
+$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' (missing leading hyphen?), exiting.\");
+$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r61);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$c12 = virtualinvoke r122.<java.lang.String: char charAt(int)>(0);
+if $c12 == 45 goto c17 = 0;
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 15 ]
+c17 = 0;
+$z6 = virtualinvoke r122.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\");
+if $z6 == 0 goto $r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+";
+    "Block 10:
+[preds: 8 9 ] [succs: 11 ]
+$r57 = <java.lang.System: java.io.PrintStream err>;
+$r56 = new java.lang.StringBuilder;
+specialinvoke $r56.<java.lang.StringBuilder: void <init>()>();
+$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' (missing leading hyphen?), exiting.\");
+$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r61);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 11:
+[preds: 9 10 ] [succs: 12 15 ]
+c17 = 0;
+$z6 = virtualinvoke r122.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\");
+if $z6 == 0 goto $r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 15 ]
+c17 = 0;
+$z6 = virtualinvoke r122.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\");
+if $z6 == 0 goto $r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+"->"Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r80 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r81 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(2);
+$r82 = virtualinvoke $r80.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r81);
+r123 = (java.lang.String) $r82;
+if r123 == null goto (branch);
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 12 15 ]
+c17 = 0;
+$z6 = virtualinvoke r122.<java.lang.String: boolean startsWith(java.lang.String)>(\"--\");
+if $z6 == 0 goto $r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+"->"Block 15:
+[preds: 11 ] [succs: 16 17 ]
+$r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r63 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(1);
+$z2 = virtualinvoke $r62.<java.util.HashMap: boolean containsValue(java.lang.Object)>($r63);
+if $z2 == 0 goto (branch);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r80 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r81 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(2);
+$r82 = virtualinvoke $r80.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r81);
+r123 = (java.lang.String) $r82;
+if r123 == null goto (branch);
+"->"Block 13:
+[preds: 12 ] [succs: 14 ]
+c17 = virtualinvoke r123.<java.lang.String: char charAt(int)>(0);
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 14 ]
+$r80 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r81 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(2);
+$r82 = virtualinvoke $r80.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r81);
+r123 = (java.lang.String) $r82;
+if r123 == null goto (branch);
+"->"Block 14:
+[preds: 12 13 ] [succs: 17 ]
+goto [?= (branch)];
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 ]
+c17 = virtualinvoke r123.<java.lang.String: char charAt(int)>(0);
+"->"Block 14:
+[preds: 12 13 ] [succs: 17 ]
+goto [?= (branch)];
+";
+    "Block 14:
+[preds: 12 13 ] [succs: 17 ]
+goto [?= (branch)];
+"->"Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+";
+    "Block 15:
+[preds: 11 ] [succs: 16 17 ]
+$r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r63 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(1);
+$z2 = virtualinvoke $r62.<java.util.HashMap: boolean containsValue(java.lang.Object)>($r63);
+if $z2 == 0 goto (branch);
+"->"Block 16:
+[preds: 15 ] [succs: 17 ]
+c17 = virtualinvoke r122.<java.lang.String: char charAt(int)>(1);
+";
+    "Block 15:
+[preds: 11 ] [succs: 16 17 ]
+$r62 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r63 = virtualinvoke r122.<java.lang.String: java.lang.String substring(int)>(1);
+$z2 = virtualinvoke $r62.<java.util.HashMap: boolean containsValue(java.lang.Object)>($r63);
+if $z2 == 0 goto (branch);
+"->"Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 ]
+c17 = virtualinvoke r122.<java.lang.String: char charAt(int)>(1);
+"->"Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+";
+    "Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+"->"Block 18:
+[preds: 17 ] [succs: 19 75 ]
+$r71 = <java.lang.System: java.io.PrintStream err>;
+$r70 = new java.lang.StringBuilder;
+specialinvoke $r70.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; exiting.\");
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r71.<java.io.PrintStream: void println(java.lang.String)>($r75);
+$r76 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r76.<java.io.PrintStream: void print(java.lang.String)>(\"[options currently available are: \");
+$r78 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r77 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r78, $r77, 1);
+$r79 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r79.<java.io.PrintStream: void println(java.lang.String)>(\"]\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+"->"Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+";
+    "Block 17:
+[preds: 14 15 16 ] [succs: 18 19 75 ]
+if c17 != 0 goto (branch);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 75 ]
+$r71 = <java.lang.System: java.io.PrintStream err>;
+$r70 = new java.lang.StringBuilder;
+specialinvoke $r70.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; exiting.\");
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r71.<java.io.PrintStream: void println(java.lang.String)>($r75);
+$r76 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r76.<java.io.PrintStream: void print(java.lang.String)>(\"[options currently available are: \");
+$r78 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r77 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r78, $r77, 1);
+$r79 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r79.<java.io.PrintStream: void println(java.lang.String)>(\"]\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 75 ]
+$r71 = <java.lang.System: java.io.PrintStream err>;
+$r70 = new java.lang.StringBuilder;
+specialinvoke $r70.<java.lang.StringBuilder: void <init>()>();
+$r72 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized option \'\");
+$r73 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; exiting.\");
+$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r71.<java.io.PrintStream: void println(java.lang.String)>($r75);
+$r76 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r76.<java.io.PrintStream: void print(java.lang.String)>(\"[options currently available are: \");
+$r78 = <com.fasterxml.uuid.Jug: java.util.HashMap OPTIONS>;
+$r77 = <java.lang.System: java.io.PrintStream err>;
+staticinvoke <com.fasterxml.uuid.Jug: void printMap(java.util.Map,java.io.PrintStream,boolean)>($r78, $r77, 1);
+$r79 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r79.<java.io.PrintStream: void println(java.lang.String)>(\"]\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 20:
+[preds: 19 ] [succs: 21 75 ]
+i16 = i16 + 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 45:
+[preds: 19 ] [succs: 46 75 ]
+i16 = i16 + 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 63:
+[preds: 19 ] [succs: 64 75 ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 65:
+[preds: 19 ] [succs: 66 75 ]
+i16 = i16 + 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 68:
+[preds: 19 ] [succs: 69 75 ]
+z5 = 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 70:
+[preds: 19 ] [succs: 71 75 ]
+i16 = i16 + 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 73:
+[preds: 19 ] [succs: 74 75 ]
+z4 = 1;
+";
+    "Block 19:
+[preds: 17 18 ] [succs: 20 74 45 63 65 68 70 73 75 ]
+tableswitch(c17) {     case 99: goto i16 = i16 + 1;     case 100: goto goto [?= i16 = i16 + 1];     case 101: goto i16 = i16 + 1;     case 102: goto goto [?= i16 = i16 + 1];     case 103: goto goto [?= i16 = i16 + 1];     case 104: goto staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();     case 105: goto goto [?= i16 = i16 + 1];     case 106: goto goto [?= i16 = i16 + 1];     case 107: goto goto [?= i16 = i16 + 1];     case 108: goto goto [?= i16 = i16 + 1];     case 109: goto goto [?= i16 = i16 + 1];     case 110: goto i16 = i16 + 1;     case 111: goto goto [?= i16 = i16 + 1];     case 112: goto z5 = 1;     case 113: goto goto [?= i16 = i16 + 1];     case 114: goto goto [?= i16 = i16 + 1];     case 115: goto i16 = i16 + 1;     case 116: goto goto [?= i16 = i16 + 1];     case 117: goto goto [?= i16 = i16 + 1];     case 118: goto z4 = 1;     default: goto goto [?= i16 = i16 + 1]; };
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 75 ]
+i16 = i16 + 1;
+"->"Block 21:
+[preds: 20 ] [succs: 24 75 22 ]
+r124 = r0[i16];
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 75 ]
+i16 = i16 + 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 21:
+[preds: 20 ] [succs: 24 75 22 ]
+r124 = r0[i16];
+"->"Block 24:
+[preds: 21 22 ] [succs: 25 75 ]
+$r109 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 24 75 22 ]
+r124 = r0[i16];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 21:
+[preds: 20 ] [succs: 24 75 22 ]
+r124 = r0[i16];
+"->"Block 22:
+[preds: 21 ] [succs: 24 75 23 ]
+i14 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r124);
+";
+    "Block 22:
+[preds: 21 ] [succs: 24 75 23 ]
+i14 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r124);
+"->"Block 24:
+[preds: 21 22 ] [succs: 25 75 ]
+$r109 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 24 75 23 ]
+i14 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r124);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 22:
+[preds: 21 ] [succs: 24 75 23 ]
+i14 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r124);
+"->"Block 23:
+[preds: 22 ] [succs: 35 75 ]
+goto [?= (branch)];
+";
+    "Block 23:
+[preds: 22 ] [succs: 35 75 ]
+goto [?= (branch)];
+"->"Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+";
+    "Block 23:
+[preds: 22 ] [succs: 35 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 24:
+[preds: 21 22 ] [succs: 25 75 ]
+$r109 := @caughtexception;
+"->"Block 25:
+[preds: 24 ] [succs: 26 75 ]
+r125 = $r109;
+";
+    "Block 24:
+[preds: 21 22 ] [succs: 25 75 ]
+$r109 := @caughtexception;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 75 ]
+r125 = $r109;
+"->"Block 26:
+[preds: 25 ] [succs: 27 75 ]
+$r111 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 75 ]
+r125 = $r109;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 75 ]
+$r111 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 27:
+[preds: 26 ] [succs: 28 75 ]
+$r110 = new java.lang.StringBuilder;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 75 ]
+$r111 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 75 ]
+$r110 = new java.lang.StringBuilder;
+"->"Block 28:
+[preds: 27 ] [succs: 29 75 ]
+specialinvoke $r110.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 75 ]
+$r110 = new java.lang.StringBuilder;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 75 ]
+specialinvoke $r110.<java.lang.StringBuilder: void <init>()>();
+"->"Block 29:
+[preds: 28 ] [succs: 30 75 ]
+$r112 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 75 ]
+specialinvoke $r110.<java.lang.StringBuilder: void <init>()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 75 ]
+$r112 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"->"Block 30:
+[preds: 29 ] [succs: 31 75 ]
+$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 75 ]
+$r112 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 75 ]
+$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 31:
+[preds: 30 ] [succs: 32 75 ]
+$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 75 ]
+$r113 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 75 ]
+$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+"->"Block 32:
+[preds: 31 ] [succs: 33 75 ]
+$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 75 ]
+$r114 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 75 ]
+$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 33:
+[preds: 32 ] [succs: 34 75 ]
+virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>($r115);
+";
+    "Block 32:
+[preds: 31 ] [succs: 33 75 ]
+$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 75 ]
+virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>($r115);
+"->"Block 34:
+[preds: 33 ] [succs: 35 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 75 ]
+virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>($r115);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+"->"Block 36:
+[preds: 35 ] [succs: 37 75 ]
+$r65 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 35:
+[preds: 23 34 ] [succs: 36 74 75 ]
+if i14 >= 1 goto (branch);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 75 ]
+$r65 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 37:
+[preds: 36 ] [succs: 38 75 ]
+$r64 = new java.lang.StringBuilder;
+";
+    "Block 36:
+[preds: 35 ] [succs: 37 75 ]
+$r65 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 75 ]
+$r64 = new java.lang.StringBuilder;
+"->"Block 38:
+[preds: 37 ] [succs: 39 75 ]
+specialinvoke $r64.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 37:
+[preds: 36 ] [succs: 38 75 ]
+$r64 = new java.lang.StringBuilder;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 75 ]
+specialinvoke $r64.<java.lang.StringBuilder: void <init>()>();
+"->"Block 39:
+[preds: 38 ] [succs: 40 75 ]
+$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+";
+    "Block 38:
+[preds: 37 ] [succs: 39 75 ]
+specialinvoke $r64.<java.lang.StringBuilder: void <init>()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 75 ]
+$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"->"Block 40:
+[preds: 39 ] [succs: 41 75 ]
+$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 75 ]
+$r66 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid number argument for option \'\");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 75 ]
+$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 41:
+[preds: 40 ] [succs: 42 75 ]
+$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; negative numbers not allowed, ignoring (defaults to 1).\");
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 75 ]
+$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 75 ]
+$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; negative numbers not allowed, ignoring (defaults to 1).\");
+"->"Block 42:
+[preds: 41 ] [succs: 43 75 ]
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 75 ]
+$r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; negative numbers not allowed, ignoring (defaults to 1).\");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 75 ]
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 43:
+[preds: 42 ] [succs: 44 75 ]
+virtualinvoke $r65.<java.io.PrintStream: void println(java.lang.String)>($r69);
+";
+    "Block 42:
+[preds: 41 ] [succs: 43 75 ]
+$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 43:
+[preds: 42 ] [succs: 44 75 ]
+virtualinvoke $r65.<java.io.PrintStream: void println(java.lang.String)>($r69);
+"->"Block 44:
+[preds: 43 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 43:
+[preds: 42 ] [succs: 44 75 ]
+virtualinvoke $r65.<java.io.PrintStream: void println(java.lang.String)>($r69);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 44:
+[preds: 43 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 44:
+[preds: 43 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 45:
+[preds: 19 ] [succs: 46 75 ]
+i16 = i16 + 1;
+"->"Block 46:
+[preds: 45 ] [succs: 49 75 47 ]
+r126 = r0[i16];
+";
+    "Block 45:
+[preds: 19 ] [succs: 46 75 ]
+i16 = i16 + 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 46:
+[preds: 45 ] [succs: 49 75 47 ]
+r126 = r0[i16];
+"->"Block 49:
+[preds: 46 47 ] [succs: 50 75 ]
+$r100 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 49 75 47 ]
+r126 = r0[i16];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 46:
+[preds: 45 ] [succs: 49 75 47 ]
+r126 = r0[i16];
+"->"Block 47:
+[preds: 46 ] [succs: 49 75 48 ]
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress valueOf(java.lang.String)>(r126);
+";
+    "Block 47:
+[preds: 46 ] [succs: 49 75 48 ]
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress valueOf(java.lang.String)>(r126);
+"->"Block 49:
+[preds: 46 47 ] [succs: 50 75 ]
+$r100 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 49 75 48 ]
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress valueOf(java.lang.String)>(r126);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 47:
+[preds: 46 ] [succs: 49 75 48 ]
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress valueOf(java.lang.String)>(r126);
+"->"Block 48:
+[preds: 47 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 48:
+[preds: 47 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 48:
+[preds: 47 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 49:
+[preds: 46 47 ] [succs: 50 75 ]
+$r100 := @caughtexception;
+"->"Block 50:
+[preds: 49 ] [succs: 51 75 ]
+r127 = $r100;
+";
+    "Block 49:
+[preds: 46 47 ] [succs: 50 75 ]
+$r100 := @caughtexception;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 75 ]
+r127 = $r100;
+"->"Block 51:
+[preds: 50 ] [succs: 52 75 ]
+$r102 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 75 ]
+r127 = $r100;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 51:
+[preds: 50 ] [succs: 52 75 ]
+$r102 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 52:
+[preds: 51 ] [succs: 53 75 ]
+$r101 = new java.lang.StringBuilder;
+";
+    "Block 51:
+[preds: 50 ] [succs: 52 75 ]
+$r102 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 75 ]
+$r101 = new java.lang.StringBuilder;
+"->"Block 53:
+[preds: 52 ] [succs: 54 75 ]
+specialinvoke $r101.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 75 ]
+$r101 = new java.lang.StringBuilder;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 75 ]
+specialinvoke $r101.<java.lang.StringBuilder: void <init>()>();
+"->"Block 54:
+[preds: 53 ] [succs: 55 75 ]
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid ethernet address for option \'\");
+";
+    "Block 53:
+[preds: 52 ] [succs: 54 75 ]
+specialinvoke $r101.<java.lang.StringBuilder: void <init>()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 75 ]
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid ethernet address for option \'\");
+"->"Block 55:
+[preds: 54 ] [succs: 56 75 ]
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 75 ]
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid ethernet address for option \'\");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 75 ]
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 56:
+[preds: 55 ] [succs: 57 75 ]
+$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', error: \");
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 75 ]
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 75 ]
+$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', error: \");
+"->"Block 57:
+[preds: 56 ] [succs: 58 75 ]
+$r106 = virtualinvoke r127.<java.lang.NumberFormatException: java.lang.String toString()>();
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 75 ]
+$r105 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', error: \");
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 75 ]
+$r106 = virtualinvoke r127.<java.lang.NumberFormatException: java.lang.String toString()>();
+"->"Block 58:
+[preds: 57 ] [succs: 59 75 ]
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r106);
+";
+    "Block 57:
+[preds: 56 ] [succs: 58 75 ]
+$r106 = virtualinvoke r127.<java.lang.NumberFormatException: java.lang.String toString()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 58:
+[preds: 57 ] [succs: 59 75 ]
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r106);
+"->"Block 59:
+[preds: 58 ] [succs: 60 75 ]
+$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 58:
+[preds: 57 ] [succs: 59 75 ]
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r106);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 59:
+[preds: 58 ] [succs: 60 75 ]
+$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 60:
+[preds: 59 ] [succs: 61 75 ]
+virtualinvoke $r102.<java.io.PrintStream: void println(java.lang.String)>($r108);
+";
+    "Block 59:
+[preds: 58 ] [succs: 60 75 ]
+$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 75 ]
+virtualinvoke $r102.<java.io.PrintStream: void println(java.lang.String)>($r108);
+"->"Block 61:
+[preds: 60 ] [succs: 62 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 60:
+[preds: 59 ] [succs: 61 75 ]
+virtualinvoke $r102.<java.io.PrintStream: void println(java.lang.String)>($r108);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 62:
+[preds: 61 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 61:
+[preds: 60 ] [succs: 62 75 ]
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 62:
+[preds: 61 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 62:
+[preds: 61 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 63:
+[preds: 19 ] [succs: 64 75 ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+"->"Block 64:
+[preds: 63 ] [succs: ]
+return;
+";
+    "Block 63:
+[preds: 19 ] [succs: 64 75 ]
+staticinvoke <com.fasterxml.uuid.Jug: void printUsage()>();
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 65:
+[preds: 19 ] [succs: 66 75 ]
+i16 = i16 + 1;
+"->"Block 66:
+[preds: 65 ] [succs: 67 75 ]
+r117 = r0[i16];
+";
+    "Block 65:
+[preds: 19 ] [succs: 66 75 ]
+i16 = i16 + 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 75 ]
+r117 = r0[i16];
+"->"Block 67:
+[preds: 66 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 66:
+[preds: 65 ] [succs: 67 75 ]
+r117 = r0[i16];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 67:
+[preds: 66 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 67:
+[preds: 66 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 68:
+[preds: 19 ] [succs: 69 75 ]
+z5 = 1;
+"->"Block 69:
+[preds: 68 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 68:
+[preds: 19 ] [succs: 69 75 ]
+z5 = 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 69:
+[preds: 68 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 69:
+[preds: 68 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 70:
+[preds: 19 ] [succs: 71 75 ]
+i16 = i16 + 1;
+"->"Block 71:
+[preds: 70 ] [succs: 72 75 ]
+r118 = r0[i16];
+";
+    "Block 70:
+[preds: 19 ] [succs: 71 75 ]
+i16 = i16 + 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 71:
+[preds: 70 ] [succs: 72 75 ]
+r118 = r0[i16];
+"->"Block 72:
+[preds: 71 ] [succs: 74 75 ]
+goto [?= (branch)];
+";
+    "Block 71:
+[preds: 70 ] [succs: 72 75 ]
+r118 = r0[i16];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 72:
+[preds: 71 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 72:
+[preds: 71 ] [succs: 74 75 ]
+goto [?= (branch)];
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 73:
+[preds: 19 ] [succs: 74 75 ]
+z4 = 1;
+"->"Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+";
+    "Block 73:
+[preds: 19 ] [succs: 74 75 ]
+z4 = 1;
+"->"Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 74:
+[preds: 19 35 44 48 62 67 69 72 73 ] [succs: 76 ]
+goto [?= i16 = i16 + 1];
+"->"Block 76:
+[preds: 74 75 ] [succs: 7 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+";
+    "Block 75:
+[preds: 21 22 46 47 17 18 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 65 66 67 68 69 70 71 72 73 ] [succs: 76 ]
+$r93 := @caughtexception;
+r128 = $r93;
+$r95 = <java.lang.System: java.io.PrintStream err>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Missing argument for option \'\");
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\', exiting.\");
+$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r99);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 76:
+[preds: 74 75 ] [succs: 7 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+";
+    "Block 76:
+[preds: 74 75 ] [succs: 7 ]
+i16 = i16 + 1;
+goto [?= (branch)];
+"->"Block 7:
+[preds: 6 76 ] [succs: 8 77 ]
+if i16 >= i15 goto c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+";
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"->"Block 90:
+[preds: 77 ] [succs: 91 92 ]
+z7 = 1;
+$r47 = new java.security.SecureRandom;
+specialinvoke $r47.<java.security.SecureRandom: void <init>()>();
+r132 = $r47;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+";
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"->"Block 93:
+[preds: 77 ] [succs: 94 95 ]
+if r118 != null goto (branch);
+";
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"->"Block 78:
+[preds: 77 ] [succs: 79 83 ]
+z7 = 1;
+if r119 != null goto (branch);
+";
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"->"Block 87:
+[preds: 77 ] [succs: 88 89 ]
+z7 = 1;
+$r4 = new java.security.SecureRandom;
+specialinvoke $r4.<java.security.SecureRandom: void <init>()>();
+r131 = $r4;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+";
+    "Block 77:
+[preds: 7 ] [succs: 90 93 78 87 104 ]
+c18 = virtualinvoke r116.<java.lang.String: char charAt(int)>(0);
+r129 = null;
+z7 = 0;
+lookupswitch(c18) {     case 101: goto z7 = 1;     case 110: goto if r118 != null goto (branch);     case 111: goto z7 = 1;     case 114: goto z7 = 1;     case 116: goto z7 = 1;     default: goto if z4 == 0 goto l19 = 0L; };
+"->"Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+";
+    "Block 78:
+[preds: 77 ] [succs: 79 83 ]
+z7 = 1;
+if r119 != null goto (branch);
+"->"Block 79:
+[preds: 78 ] [succs: 80 81 ]
+if z4 == 0 goto $r34 = new java.util.Random;
+";
+    "Block 78:
+[preds: 77 ] [succs: 79 83 ]
+z7 = 1;
+if r119 != null goto (branch);
+"->"Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+";
+    "Block 79:
+[preds: 78 ] [succs: 80 81 ]
+if z4 == 0 goto $r34 = new java.util.Random;
+"->"Block 80:
+[preds: 79 ] [succs: 81 ]
+$r38 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"(no address specified, generating dummy address: \");
+";
+    "Block 79:
+[preds: 78 ] [succs: 80 81 ]
+if z4 == 0 goto $r34 = new java.util.Random;
+"->"Block 81:
+[preds: 79 80 ] [succs: 82 83 ]
+$r34 = new java.util.Random;
+$l10 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+specialinvoke $r34.<java.util.Random: void <init>(long)>($l10);
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress constructMulticastAddress(java.util.Random)>($r34);
+if z4 == 0 goto (branch);
+";
+    "Block 80:
+[preds: 79 ] [succs: 81 ]
+$r38 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r38.<java.io.PrintStream: void print(java.lang.String)>(\"(no address specified, generating dummy address: \");
+"->"Block 81:
+[preds: 79 80 ] [succs: 82 83 ]
+$r34 = new java.util.Random;
+$l10 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+specialinvoke $r34.<java.util.Random: void <init>(long)>($l10);
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress constructMulticastAddress(java.util.Random)>($r34);
+if z4 == 0 goto (branch);
+";
+    "Block 81:
+[preds: 79 80 ] [succs: 82 83 ]
+$r34 = new java.util.Random;
+$l10 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+specialinvoke $r34.<java.util.Random: void <init>(long)>($l10);
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress constructMulticastAddress(java.util.Random)>($r34);
+if z4 == 0 goto (branch);
+"->"Block 82:
+[preds: 81 ] [succs: 83 ]
+$r35 = <java.lang.System: java.io.PrintStream out>;
+$r36 = virtualinvoke r119.<com.fasterxml.uuid.EthernetAddress: java.lang.String toString()>();
+virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>($r36);
+$r37 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\")\");
+";
+    "Block 81:
+[preds: 79 80 ] [succs: 82 83 ]
+$r34 = new java.util.Random;
+$l10 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+specialinvoke $r34.<java.util.Random: void <init>(long)>($l10);
+r119 = staticinvoke <com.fasterxml.uuid.EthernetAddress: com.fasterxml.uuid.EthernetAddress constructMulticastAddress(java.util.Random)>($r34);
+if z4 == 0 goto (branch);
+"->"Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+";
+    "Block 82:
+[preds: 81 ] [succs: 83 ]
+$r35 = <java.lang.System: java.io.PrintStream out>;
+$r36 = virtualinvoke r119.<com.fasterxml.uuid.EthernetAddress: java.lang.String toString()>();
+virtualinvoke $r35.<java.io.PrintStream: void print(java.lang.String)>($r36);
+$r37 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>(\")\");
+"->"Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+";
+    "Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+"->"Block 84:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedGenerator timeBasedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+goto [?= r120 = $r130];
+";
+    "Block 83:
+[preds: 78 81 82 ] [succs: 84 85 ]
+if c18 != 116 goto $r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+"->"Block 85:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+";
+    "Block 84:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedGenerator timeBasedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+goto [?= r120 = $r130];
+"->"Block 86:
+[preds: 84 85 ] [succs: 104 ]
+r120 = $r130;
+goto [?= (branch)];
+";
+    "Block 85:
+[preds: 83 ] [succs: 86 ]
+$r130 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedReorderedGenerator timeBasedReorderedGenerator(com.fasterxml.uuid.EthernetAddress)>(r119);
+"->"Block 86:
+[preds: 84 85 ] [succs: 104 ]
+r120 = $r130;
+goto [?= (branch)];
+";
+    "Block 86:
+[preds: 84 85 ] [succs: 104 ]
+r120 = $r130;
+goto [?= (branch)];
+"->"Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+";
+    "Block 87:
+[preds: 77 ] [succs: 88 89 ]
+z7 = 1;
+$r4 = new java.security.SecureRandom;
+specialinvoke $r4.<java.security.SecureRandom: void <init>()>();
+r131 = $r4;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+"->"Block 88:
+[preds: 87 ] [succs: 89 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+$r26 = new java.lang.StringBuilder;
+specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r29 = virtualinvoke r131.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r30 = virtualinvoke $r29.<java.security.Provider: java.lang.String getInfo()>();
+$r31 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>($r33);
+";
+    "Block 87:
+[preds: 77 ] [succs: 88 89 ]
+z7 = 1;
+$r4 = new java.security.SecureRandom;
+specialinvoke $r4.<java.security.SecureRandom: void <init>()>();
+r131 = $r4;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+"->"Block 89:
+[preds: 87 88 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+goto [?= (branch)];
+";
+    "Block 88:
+[preds: 87 ] [succs: 89 ]
+$r27 = <java.lang.System: java.io.PrintStream out>;
+$r26 = new java.lang.StringBuilder;
+specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r29 = virtualinvoke r131.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r30 = virtualinvoke $r29.<java.security.Provider: java.lang.String getInfo()>();
+$r31 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r27.<java.io.PrintStream: void print(java.lang.String)>($r33);
+"->"Block 89:
+[preds: 87 88 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+goto [?= (branch)];
+";
+    "Block 89:
+[preds: 87 88 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.RandomBasedGenerator randomBasedGenerator(java.util.Random)>(r131);
+goto [?= (branch)];
+"->"Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+";
+    "Block 90:
+[preds: 77 ] [succs: 91 92 ]
+z7 = 1;
+$r47 = new java.security.SecureRandom;
+specialinvoke $r47.<java.security.SecureRandom: void <init>()>();
+r132 = $r47;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+"->"Block 91:
+[preds: 90 ] [succs: 92 ]
+$r49 = <java.lang.System: java.io.PrintStream out>;
+$r48 = new java.lang.StringBuilder;
+specialinvoke $r48.<java.lang.StringBuilder: void <init>()>();
+$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r51 = virtualinvoke r132.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r52 = virtualinvoke $r51.<java.security.Provider: java.lang.String getInfo()>();
+$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r49.<java.io.PrintStream: void print(java.lang.String)>($r55);
+";
+    "Block 90:
+[preds: 77 ] [succs: 91 92 ]
+z7 = 1;
+$r47 = new java.security.SecureRandom;
+specialinvoke $r47.<java.security.SecureRandom: void <init>()>();
+r132 = $r47;
+if z4 == 0 goto r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+"->"Block 92:
+[preds: 90 91 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+goto [?= (branch)];
+";
+    "Block 91:
+[preds: 90 ] [succs: 92 ]
+$r49 = <java.lang.System: java.io.PrintStream out>;
+$r48 = new java.lang.StringBuilder;
+specialinvoke $r48.<java.lang.StringBuilder: void <init>()>();
+$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"(using secure random generator, info = \'\");
+$r51 = virtualinvoke r132.<java.security.SecureRandom: java.security.Provider getProvider()>();
+$r52 = virtualinvoke $r51.<java.security.Provider: java.lang.String getInfo()>();
+$r53 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52);
+$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\')\");
+$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r49.<java.io.PrintStream: void print(java.lang.String)>($r55);
+"->"Block 92:
+[preds: 90 91 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+goto [?= (branch)];
+";
+    "Block 92:
+[preds: 90 91 ] [succs: 104 ]
+r120 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.TimeBasedEpochGenerator timeBasedEpochGenerator(java.util.Random)>(r132);
+goto [?= (branch)];
+"->"Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+";
+    "Block 93:
+[preds: 77 ] [succs: 94 95 ]
+if r118 != null goto (branch);
+"->"Block 94:
+[preds: 93 ] [succs: 95 ]
+$r46 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>(\"--name-space (-s) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 93:
+[preds: 77 ] [succs: 94 95 ]
+if r118 != null goto (branch);
+"->"Block 95:
+[preds: 93 94 ] [succs: 96 97 ]
+if r117 != null goto (branch);
+";
+    "Block 94:
+[preds: 93 ] [succs: 95 ]
+$r46 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>(\"--name-space (-s) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 95:
+[preds: 93 94 ] [succs: 96 97 ]
+if r117 != null goto (branch);
+";
+    "Block 95:
+[preds: 93 94 ] [succs: 96 97 ]
+if r117 != null goto (branch);
+"->"Block 96:
+[preds: 95 ] [succs: 97 ]
+$r45 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>(\"--name (-n) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 95:
+[preds: 93 94 ] [succs: 96 97 ]
+if r117 != null goto (branch);
+"->"Block 97:
+[preds: 95 96 ] [succs: 98 103 ]
+if c18 != 110 goto r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 96:
+[preds: 95 ] [succs: 97 ]
+$r45 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>(\"--name (-n) - argument missing when using method that requires it, exiting.\");
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 97:
+[preds: 95 96 ] [succs: 98 103 ]
+if c18 != 110 goto r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 97:
+[preds: 95 96 ] [succs: 98 103 ]
+if c18 != 110 goto r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+"->"Block 98:
+[preds: 97 ] [succs: 99 100 ]
+r133 = r118;
+r134 = virtualinvoke r118.<java.lang.String: java.lang.String toLowerCase()>();
+$z0 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"url\");
+if $z0 == 0 goto $z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+";
+    "Block 97:
+[preds: 95 96 ] [succs: 98 103 ]
+if c18 != 110 goto r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+"->"Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+r133 = r118;
+r134 = virtualinvoke r118.<java.lang.String: java.lang.String toLowerCase()>();
+$z0 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"url\");
+if $z0 == 0 goto $z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+"->"Block 99:
+[preds: 98 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_URL>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+";
+    "Block 98:
+[preds: 97 ] [succs: 99 100 ]
+r133 = r118;
+r134 = virtualinvoke r118.<java.lang.String: java.lang.String toLowerCase()>();
+$z0 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"url\");
+if $z0 == 0 goto $z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+"->"Block 100:
+[preds: 98 ] [succs: 101 102 ]
+$z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+if $z1 == 0 goto $r40 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 99:
+[preds: 98 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_URL>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+"->"Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 100:
+[preds: 98 ] [succs: 101 102 ]
+$z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+if $z1 == 0 goto $r40 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 101:
+[preds: 100 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_DNS>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+";
+    "Block 100:
+[preds: 98 ] [succs: 101 102 ]
+$z1 = virtualinvoke r134.<java.lang.String: boolean equals(java.lang.Object)>(\"dns\");
+if $z1 == 0 goto $r40 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 102:
+[preds: 100 ] [succs: 103 ]
+$r40 = <java.lang.System: java.io.PrintStream err>;
+$r39 = new java.lang.StringBuilder;
+specialinvoke $r39.<java.lang.StringBuilder: void <init>()>();
+$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized namespace \'\");
+$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r133);
+$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; only DNS and URL allowed for name-based generation.\");
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r44);
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 101:
+[preds: 100 ] [succs: 103 ]
+r129 = <com.fasterxml.uuid.impl.NameBasedGenerator: java.util.UUID NAMESPACE_DNS>;
+goto [?= r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129)];
+"->"Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 102:
+[preds: 100 ] [succs: 103 ]
+$r40 = <java.lang.System: java.io.PrintStream err>;
+$r39 = new java.lang.StringBuilder;
+specialinvoke $r39.<java.lang.StringBuilder: void <init>()>();
+$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unrecognized namespace \'\");
+$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r133);
+$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'; only DNS and URL allowed for name-based generation.\");
+$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>($r44);
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+";
+    "Block 103:
+[preds: 97 99 101 102 ] [succs: 104 ]
+r121 = staticinvoke <com.fasterxml.uuid.Generators: com.fasterxml.uuid.impl.NameBasedGenerator nameBasedGenerator(java.util.UUID)>(r129);
+"->"Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+";
+    "Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+"->"Block 105:
+[preds: 104 ] [succs: 106 ]
+$r25 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r25.<java.io.PrintStream: void println()>();
+";
+    "Block 104:
+[preds: 77 86 89 92 103 ] [succs: 105 106 ]
+if z4 == 0 goto l19 = 0L;
+"->"Block 106:
+[preds: 104 105 ] [succs: 107 113 ]
+l19 = 0L;
+if z5 == 0 goto i20 = 0;
+";
+    "Block 105:
+[preds: 104 ] [succs: 106 ]
+$r25 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r25.<java.io.PrintStream: void println()>();
+"->"Block 106:
+[preds: 104 105 ] [succs: 107 113 ]
+l19 = 0L;
+if z5 == 0 goto i20 = 0;
+";
+    "Block 106:
+[preds: 104 105 ] [succs: 107 113 ]
+l19 = 0L;
+if z5 == 0 goto i20 = 0;
+"->"Block 107:
+[preds: 106 ] [succs: 108 112 ]
+if z7 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 106:
+[preds: 104 105 ] [succs: 107 113 ]
+l19 = 0L;
+if z5 == 0 goto i20 = 0;
+"->"Block 113:
+[preds: 106 112 ] [succs: 114 ]
+i20 = 0;
+";
+    "Block 107:
+[preds: 106 ] [succs: 108 112 ]
+if z7 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 108:
+[preds: 107 ] [succs: 109 110 ]
+if z4 == 0 goto virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+";
+    "Block 107:
+[preds: 106 ] [succs: 108 112 ]
+if z7 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 112:
+[preds: 107 110 111 ] [succs: 113 ]
+l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 108:
+[preds: 107 ] [succs: 109 110 ]
+if z4 == 0 goto virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+"->"Block 109:
+[preds: 108 ] [succs: 110 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"(initializing random number generator before UUID generation so that performance measurements are not skewed due to one-time init costs)\");
+";
+    "Block 108:
+[preds: 107 ] [succs: 109 110 ]
+if z4 == 0 goto virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+"->"Block 110:
+[preds: 108 109 ] [succs: 111 112 ]
+virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+if z4 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 109:
+[preds: 108 ] [succs: 110 ]
+$r24 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"(initializing random number generator before UUID generation so that performance measurements are not skewed due to one-time init costs)\");
+"->"Block 110:
+[preds: 108 109 ] [succs: 111 112 ]
+virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+if z4 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 110:
+[preds: 108 109 ] [succs: 111 112 ]
+virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+if z4 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 111:
+[preds: 110 ] [succs: 112 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"(random number generator initialized ok)\");
+";
+    "Block 110:
+[preds: 108 109 ] [succs: 111 112 ]
+virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+if z4 == 0 goto l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 112:
+[preds: 107 110 111 ] [succs: 113 ]
+l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 111:
+[preds: 110 ] [succs: 112 ]
+$r23 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>(\"(random number generator initialized ok)\");
+"->"Block 112:
+[preds: 107 110 111 ] [succs: 113 ]
+l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 112:
+[preds: 107 110 111 ] [succs: 113 ]
+l19 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 113:
+[preds: 106 112 ] [succs: 114 ]
+i20 = 0;
+";
+    "Block 113:
+[preds: 106 112 ] [succs: 114 ]
+i20 = 0;
+"->"Block 114:
+[preds: 113 123 ] [succs: 115 124 ]
+if i20 >= i14 goto (branch);
+";
+    "Block 114:
+[preds: 113 123 ] [succs: 115 124 ]
+if i20 >= i14 goto (branch);
+"->"Block 115:
+[preds: 114 ] [succs: 116 117 ]
+if r121 != null goto $r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+";
+    "Block 114:
+[preds: 113 123 ] [succs: 115 124 ]
+if i20 >= i14 goto (branch);
+"->"Block 124:
+[preds: 114 ] [succs: 125 126 ]
+if z4 == 0 goto (branch);
+";
+    "Block 115:
+[preds: 114 ] [succs: 116 117 ]
+if r121 != null goto $r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+"->"Block 116:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+goto [?= r18 = $r135];
+";
+    "Block 115:
+[preds: 114 ] [succs: 116 117 ]
+if r121 != null goto $r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+"->"Block 117:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+";
+    "Block 116:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r120.<com.fasterxml.uuid.NoArgGenerator: java.util.UUID generate()>();
+goto [?= r18 = $r135];
+"->"Block 118:
+[preds: 116 117 ] [succs: 119 120 ]
+r18 = $r135;
+if z4 == 0 goto (branch);
+";
+    "Block 117:
+[preds: 115 ] [succs: 118 ]
+$r135 = virtualinvoke r121.<com.fasterxml.uuid.StringArgGenerator: java.util.UUID generate(java.lang.String)>(r117);
+"->"Block 118:
+[preds: 116 117 ] [succs: 119 120 ]
+r18 = $r135;
+if z4 == 0 goto (branch);
+";
+    "Block 118:
+[preds: 116 117 ] [succs: 119 120 ]
+r18 = $r135;
+if z4 == 0 goto (branch);
+"->"Block 119:
+[preds: 118 ] [succs: 120 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"UUID: \");
+";
+    "Block 118:
+[preds: 116 117 ] [succs: 119 120 ]
+r18 = $r135;
+if z4 == 0 goto (branch);
+"->"Block 120:
+[preds: 118 119 ] [succs: 121 122 ]
+if z5 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 119:
+[preds: 118 ] [succs: 120 ]
+$r21 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r21.<java.io.PrintStream: void print(java.lang.String)>(\"UUID: \");
+"->"Block 120:
+[preds: 118 119 ] [succs: 121 122 ]
+if z5 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 120:
+[preds: 118 119 ] [succs: 121 122 ]
+if z5 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 121:
+[preds: 120 ] [succs: 122 123 ]
+if z4 == 0 goto i20 = i20 + 1;
+";
+    "Block 120:
+[preds: 118 119 ] [succs: 121 122 ]
+if z5 == 0 goto $r19 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 122:
+[preds: 120 121 ] [succs: 123 ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+$r20 = virtualinvoke r18.<java.util.UUID: java.lang.String toString()>();
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r20);
+";
+    "Block 121:
+[preds: 120 ] [succs: 122 123 ]
+if z4 == 0 goto i20 = i20 + 1;
+"->"Block 122:
+[preds: 120 121 ] [succs: 123 ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+$r20 = virtualinvoke r18.<java.util.UUID: java.lang.String toString()>();
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r20);
+";
+    "Block 121:
+[preds: 120 ] [succs: 122 123 ]
+if z4 == 0 goto i20 = i20 + 1;
+"->"Block 123:
+[preds: 121 122 ] [succs: 114 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+";
+    "Block 122:
+[preds: 120 121 ] [succs: 123 ]
+$r19 = <java.lang.System: java.io.PrintStream out>;
+$r20 = virtualinvoke r18.<java.util.UUID: java.lang.String toString()>();
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r20);
+"->"Block 123:
+[preds: 121 122 ] [succs: 114 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+";
+    "Block 123:
+[preds: 121 122 ] [succs: 114 ]
+i20 = i20 + 1;
+goto [?= (branch)];
+"->"Block 114:
+[preds: 113 123 ] [succs: 115 124 ]
+if i20 >= i14 goto (branch);
+";
+    "Block 124:
+[preds: 114 ] [succs: 125 126 ]
+if z4 == 0 goto (branch);
+"->"Block 125:
+[preds: 124 ] [succs: 126 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Done.\");
+";
+    "Block 124:
+[preds: 114 ] [succs: 125 126 ]
+if z4 == 0 goto (branch);
+"->"Block 126:
+[preds: 124 125 ] [succs: 127 128 ]
+if z5 == 0 goto return;
+";
+    "Block 125:
+[preds: 124 ] [succs: 126 ]
+$r17 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Done.\");
+"->"Block 126:
+[preds: 124 125 ] [succs: 127 128 ]
+if z5 == 0 goto return;
+";
+    "Block 126:
+[preds: 124 125 ] [succs: 127 128 ]
+if z5 == 0 goto return;
+"->"Block 127:
+[preds: 126 ] [succs: 128 ]
+$l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l21 = $l2 - l19;
+$l5 = l21 * 10L;
+$i3 = i14 / 2;
+$l4 = (long) $i3;
+$l7 = $l5 + $l4;
+$l6 = (long) i14;
+l22 = $l7 / $l6;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Performance: took \");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l21);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds to generate (and print out) \");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i14);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" UUIDs; average being \");
+$l8 = l22 / 10L;
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+$l9 = l22 % 10L;
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" msec.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r16);
+";
+    "Block 126:
+[preds: 124 125 ] [succs: 127 128 ]
+if z5 == 0 goto return;
+"->"Block 128:
+[preds: 126 127 ] [succs: ]
+return;
+";
+    "Block 127:
+[preds: 126 ] [succs: 128 ]
+$l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l21 = $l2 - l19;
+$l5 = l21 * 10L;
+$i3 = i14 / 2;
+$l4 = (long) $i3;
+$l7 = $l5 + $l4;
+$l6 = (long) i14;
+l22 = $l7 / $l6;
+$r6 = <java.lang.System: java.io.PrintStream out>;
+$r5 = new java.lang.StringBuilder;
+specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Performance: took \");
+$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l21);
+$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" milliseconds to generate (and print out) \");
+$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i14);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" UUIDs; average being \");
+$l8 = l22 / 10L;
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".\");
+$l9 = l22 % 10L;
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" msec.\");
+$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r16);
+"->"Block 128:
+[preds: 126 127 ] [succs: ]
+return;
+";
+}

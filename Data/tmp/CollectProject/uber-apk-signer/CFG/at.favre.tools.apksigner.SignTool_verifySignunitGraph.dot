@@ -1,0 +1,683 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.io.File"
+    "r8 := @parameter1: java.io.File"
+    "r11 := @parameter2: java.lang.String[]"
+    "z5 := @parameter3: boolean"
+    "z0 := @parameter4: boolean"
+    "$r0 = new at.favre.tools.apksigner.signing.AndroidApkSignerVerify"
+    "specialinvoke $r0.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: void <init>()>()"
+    "r116 = $r0"
+    "r2 = virtualinvoke r116.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verify(java.io.File,java.lang.Integer,java.lang.Integer,java.io.File,boolean)>(r1, null, null, null, 0)"
+    "if z0 != 0 goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "$z2 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "if $z2 == 0 goto $r3 = new java.lang.StringBuilder"
+    "$r101 = new java.lang.StringBuilder"
+    "specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()"
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature verified \")"
+    "$r103 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"
+    "$r104 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r103)"
+    "$r105 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"
+    "$r106 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r105)"
+    "r117 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "goto [?= $r118 = r117]"
+    "$r3 = new java.lang.StringBuilder"
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature VERIFY FAILED (\")"
+    "$r5 = virtualinvoke r1.<java.io.File: java.lang.String getName()>()"
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"
+    "r117 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r118 = r117"
+    "$z3 = virtualinvoke r8.<java.io.File: boolean equals(java.lang.Object)>(r1)"
+    "if $z3 != 0 goto $z13 = 0"
+    "$z13 = 1"
+    "goto [?= $z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"
+    "$z13 = 0"
+    "$z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "if $z4 != 0 goto $z14 = 0"
+    "$z14 = 1"
+    "goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)]"
+    "$z14 = 0"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)"
+    "$r120 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"
+    "$z15 = interfaceinvoke $r120.<java.util.List: boolean isEmpty()>()"
+    "if $z15 != 0 goto (branch)"
+    "$r95 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"
+    "r121 = interfaceinvoke $r95.<java.util.List: java.util.Iterator iterator()>()"
+    "$z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()"
+    "if $z12 == 0 goto (branch)"
+    "$r96 = interfaceinvoke r121.<java.util.Iterator: java.lang.Object next()>()"
+    "r122 = (java.lang.String) $r96"
+    "$r97 = new java.lang.StringBuilder"
+    "specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()"
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"
+    "$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122)"
+    "$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r100)"
+    "goto [?= $z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()]"
+    "if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "$r88 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "$z10 = interfaceinvoke $r88.<java.util.List: boolean isEmpty()>()"
+    "if $z10 != 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "$r89 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "r123 = interfaceinvoke $r89.<java.util.List: java.util.Iterator iterator()>()"
+    "$z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()"
+    "if $z11 == 0 goto (branch)"
+    "$r90 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()"
+    "r124 = (java.lang.String) $r90"
+    "$r91 = new java.lang.StringBuilder"
+    "specialinvoke $r91.<java.lang.StringBuilder: void <init>()>()"
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"
+    "$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r124)"
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r94)"
+    "goto [?= $z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"
+    "$r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "$z6 = interfaceinvoke $r9.<java.util.List: boolean isEmpty()>()"
+    "if $z6 != 0 goto $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "$r82 = new java.lang.StringBuilder"
+    "specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()"
+    "$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"
+    "$r84 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"
+    "$i4 = interfaceinvoke $r84.<java.util.List: int size()>()"
+    "$r85 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"
+    "$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" warnings\")"
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r87)"
+    "$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "if $z16 == 0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"
+    "i5 = 0"
+    "$r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"
+    "$i0 = interfaceinvoke $r27.<java.util.List: int size()>()"
+    "if i5 >= $i0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"
+    "$r28 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"
+    "$r29 = interfaceinvoke $r28.<java.util.List: java.lang.Object get(int)>(i5)"
+    "r125 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r29"
+    "$r30 = new java.lang.StringBuilder"
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"
+    "$r32 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"
+    "$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r34)"
+    "$r35 = new java.lang.StringBuilder"
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"
+    "$r37 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"
+    "$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37)"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" / \")"
+    "$r40 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String sigAlgo>"
+    "$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r40)"
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r42)"
+    "if z5 == 0 goto $r43 = new java.lang.StringBuilder"
+    "$r50 = new java.lang.StringBuilder"
+    "specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA1: \")"
+    "$r52 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha1>"
+    "$r53 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)"
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r54)"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"
+    "$r57 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String issuerDn>"
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"
+    "$r60 = new java.lang.StringBuilder"
+    "specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA256: \")"
+    "$r62 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha256>"
+    "$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r62)"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r64)"
+    "$r65 = new java.lang.StringBuilder"
+    "specialinvoke $r65.<java.lang.StringBuilder: void <init>()>()"
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA1: \")"
+    "$r67 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha1>"
+    "$r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r67)"
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r69)"
+    "$r70 = new java.lang.StringBuilder"
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key Algo: \")"
+    "$r72 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubAlgo>"
+    "$r73 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)"
+    "$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"
+    "$i3 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: int pubKeysize>"
+    "$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r76)"
+    "$r77 = new java.lang.StringBuilder"
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tIssue Date: \")"
+    "$r79 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date beginValidity>"
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r79)"
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"
+    "$r43 = new java.lang.StringBuilder"
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tExpires: \")"
+    "$r45 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date expiry>"
+    "$r46 = virtualinvoke $r45.<java.util.Date: java.lang.String toString()>()"
+    "$r47 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46)"
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r48)"
+    "$r49 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"
+    "$i1 = interfaceinvoke $r49.<java.util.List: int size()>()"
+    "$i2 = $i1 - 1"
+    "if i5 >= $i2 goto i5 = i5 + 1"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\")"
+    "i5 = i5 + 1"
+    "goto [?= $r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>]"
+    "$r10 = new at.favre.tools.apksigner.signing.CertHashChecker"
+    "specialinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: void <init>()>()"
+    "r126 = virtualinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: at.favre.tools.apksigner.signing.CertHashChecker$Result check(at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result,java.lang.String[])>(r2, r11)"
+    "if r126 == null goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "$z7 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"
+    "if $z7 != 0 goto $r12 = new java.lang.StringBuilder"
+    "$r17 = new java.lang.StringBuilder"
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash check failed \")"
+    "$r19 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19)"
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"
+    "$r22 = new java.lang.StringBuilder"
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tERROR: \")"
+    "$r24 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String errorString>"
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r26)"
+    "goto [?= $z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash successful \")"
+    "$r14 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r16)"
+    "$z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "if $z8 == 0 goto $r127 = null"
+    "$z9 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"
+    "if $z9 == 0 goto $r127 = null"
+    "$r127 = r2"
+    "goto [?= return $r127]"
+    "$r127 = null"
+    "return $r127"
+    "$z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"
+    "if $z1 == 0 goto $r128 = null"
+    "$r128 = r2"
+    "goto [?= return $r128]"
+    "$r128 = null"
+    "return $r128"
+    "$r107 := @caughtexception"
+    "r129 = $r107"
+    "$r108 = new java.lang.IllegalStateException"
+    "$r109 = new java.lang.StringBuilder"
+    "specialinvoke $r109.<java.lang.StringBuilder: void <init>()>()"
+    "$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not verify \")"
+    "$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"
+    "$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"
+    "$r113 = virtualinvoke r129.<java.lang.Exception: java.lang.String getMessage()>()"
+    "$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r113)"
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r108.<java.lang.IllegalStateException: void <init>(java.lang.String,java.lang.Throwable)>($r115, r129)"
+    "throw $r108"
+    "r1 := @parameter0: java.io.File"->"r8 := @parameter1: java.io.File";
+    "r8 := @parameter1: java.io.File"->"r11 := @parameter2: java.lang.String[]";
+    "r11 := @parameter2: java.lang.String[]"->"z5 := @parameter3: boolean";
+    "z5 := @parameter3: boolean"->"z0 := @parameter4: boolean";
+    "z0 := @parameter4: boolean"->"$r0 = new at.favre.tools.apksigner.signing.AndroidApkSignerVerify";
+    "z0 := @parameter4: boolean"->"$r107 := @caughtexception";
+    "$r0 = new at.favre.tools.apksigner.signing.AndroidApkSignerVerify"->"specialinvoke $r0.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: void <init>()>()";
+    "$r0 = new at.favre.tools.apksigner.signing.AndroidApkSignerVerify"->"$r107 := @caughtexception";
+    "specialinvoke $r0.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: void <init>()>()"->"r116 = $r0";
+    "specialinvoke $r0.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: void <init>()>()"->"$r107 := @caughtexception";
+    "r116 = $r0"->"r2 = virtualinvoke r116.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verify(java.io.File,java.lang.Integer,java.lang.Integer,java.io.File,boolean)>(r1, null, null, null, 0)";
+    "r116 = $r0"->"$r107 := @caughtexception";
+    "r2 = virtualinvoke r116.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verify(java.io.File,java.lang.Integer,java.lang.Integer,java.io.File,boolean)>(r1, null, null, null, 0)"->"if z0 != 0 goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "r2 = virtualinvoke r116.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify: at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result verify(java.io.File,java.lang.Integer,java.lang.Integer,java.io.File,boolean)>(r1, null, null, null, 0)"->"$r107 := @caughtexception";
+    "if z0 != 0 goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$z2 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "if z0 != 0 goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "if z0 != 0 goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "$z2 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"if $z2 == 0 goto $r3 = new java.lang.StringBuilder";
+    "$z2 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z2 == 0 goto $r3 = new java.lang.StringBuilder"->"$r101 = new java.lang.StringBuilder";
+    "if $z2 == 0 goto $r3 = new java.lang.StringBuilder"->"$r3 = new java.lang.StringBuilder";
+    "if $z2 == 0 goto $r3 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "$r101 = new java.lang.StringBuilder"->"specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()";
+    "$r101 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()"->"$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature verified \")";
+    "specialinvoke $r101.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature verified \")"->"$r103 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature verified \")"->"$r107 := @caughtexception";
+    "$r103 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"->"$r104 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r103)";
+    "$r103 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getCertCountString()>()"->"$r107 := @caughtexception";
+    "$r104 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r103)"->"$r105 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()";
+    "$r104 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r103)"->"$r107 := @caughtexception";
+    "$r105 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"->"$r106 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r105)";
+    "$r105 = virtualinvoke r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.lang.String getSchemaVersionInfoString()>()"->"$r107 := @caughtexception";
+    "$r106 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r105)"->"r117 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r106 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r105)"->"$r107 := @caughtexception";
+    "r117 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.String toString()>()"->"goto [?= $r118 = r117]";
+    "r117 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "goto [?= $r118 = r117]"->"$r118 = r117";
+    "goto [?= $r118 = r117]"->"$r107 := @caughtexception";
+    "$r3 = new java.lang.StringBuilder"->"specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()";
+    "$r3 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature VERIFY FAILED (\")";
+    "specialinvoke $r3.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature VERIFY FAILED (\")"->"$r5 = virtualinvoke r1.<java.io.File: java.lang.String getName()>()";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- signature VERIFY FAILED (\")"->"$r107 := @caughtexception";
+    "$r5 = virtualinvoke r1.<java.io.File: java.lang.String getName()>()"->"$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)";
+    "$r5 = virtualinvoke r1.<java.io.File: java.lang.String getName()>()"->"$r107 := @caughtexception";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")";
+    "$r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)"->"$r107 := @caughtexception";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"r117 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\")\")"->"$r107 := @caughtexception";
+    "r117 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r118 = r117";
+    "r117 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "$r118 = r117"->"$z3 = virtualinvoke r8.<java.io.File: boolean equals(java.lang.Object)>(r1)";
+    "$r118 = r117"->"$r107 := @caughtexception";
+    "$z3 = virtualinvoke r8.<java.io.File: boolean equals(java.lang.Object)>(r1)"->"if $z3 != 0 goto $z13 = 0";
+    "$z3 = virtualinvoke r8.<java.io.File: boolean equals(java.lang.Object)>(r1)"->"$r107 := @caughtexception";
+    "if $z3 != 0 goto $z13 = 0"->"$z13 = 1";
+    "if $z3 != 0 goto $z13 = 0"->"$z13 = 0";
+    "if $z3 != 0 goto $z13 = 0"->"$r107 := @caughtexception";
+    "$z13 = 1"->"goto [?= $z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]";
+    "$z13 = 1"->"$r107 := @caughtexception";
+    "goto [?= $z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "goto [?= $z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$r107 := @caughtexception";
+    "$z13 = 0"->"$z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "$z13 = 0"->"$r107 := @caughtexception";
+    "$z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"if $z4 != 0 goto $z14 = 0";
+    "$z4 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z4 != 0 goto $z14 = 0"->"$z14 = 1";
+    "if $z4 != 0 goto $z14 = 0"->"$z14 = 0";
+    "if $z4 != 0 goto $z14 = 0"->"$r107 := @caughtexception";
+    "$z14 = 1"->"goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)]";
+    "$z14 = 1"->"$r107 := @caughtexception";
+    "goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)]"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)";
+    "goto [?= staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)]"->"$r107 := @caughtexception";
+    "$z14 = 0"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)";
+    "$z14 = 0"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)"->"$r120 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logConditionally(java.lang.String,java.io.File,boolean,boolean)>($r118, r1, $z13, $z14)"->"$r107 := @caughtexception";
+    "$r120 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"->"$z15 = interfaceinvoke $r120.<java.util.List: boolean isEmpty()>()";
+    "$r120 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"->"$r107 := @caughtexception";
+    "$z15 = interfaceinvoke $r120.<java.util.List: boolean isEmpty()>()"->"if $z15 != 0 goto (branch)";
+    "$z15 = interfaceinvoke $r120.<java.util.List: boolean isEmpty()>()"->"$r107 := @caughtexception";
+    "if $z15 != 0 goto (branch)"->"$r95 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>";
+    "if $z15 != 0 goto (branch)"->"if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if $z15 != 0 goto (branch)"->"$r107 := @caughtexception";
+    "$r95 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"->"r121 = interfaceinvoke $r95.<java.util.List: java.util.Iterator iterator()>()";
+    "$r95 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List errors>"->"$r107 := @caughtexception";
+    "r121 = interfaceinvoke $r95.<java.util.List: java.util.Iterator iterator()>()"->"$z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()";
+    "r121 = interfaceinvoke $r95.<java.util.List: java.util.Iterator iterator()>()"->"$r107 := @caughtexception";
+    "$z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()"->"if $z12 == 0 goto (branch)";
+    "$z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()"->"$r107 := @caughtexception";
+    "if $z12 == 0 goto (branch)"->"$r96 = interfaceinvoke r121.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z12 == 0 goto (branch)"->"if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if $z12 == 0 goto (branch)"->"$r107 := @caughtexception";
+    "$r96 = interfaceinvoke r121.<java.util.Iterator: java.lang.Object next()>()"->"r122 = (java.lang.String) $r96";
+    "$r96 = interfaceinvoke r121.<java.util.Iterator: java.lang.Object next()>()"->"$r107 := @caughtexception";
+    "r122 = (java.lang.String) $r96"->"$r97 = new java.lang.StringBuilder";
+    "r122 = (java.lang.String) $r96"->"$r107 := @caughtexception";
+    "$r97 = new java.lang.StringBuilder"->"specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()";
+    "$r97 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()"->"$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")";
+    "specialinvoke $r97.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122)";
+    "$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r107 := @caughtexception";
+    "$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122)"->"$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r99 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r122)"->"$r107 := @caughtexception";
+    "$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r100)";
+    "$r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r100)"->"goto [?= $z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()]";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r100)"->"$r107 := @caughtexception";
+    "goto [?= $z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()]"->"$z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z12 = interfaceinvoke r121.<java.util.Iterator: boolean hasNext()>()]"->"$r107 := @caughtexception";
+    "if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r88 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if z5 == 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "$r88 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$z10 = interfaceinvoke $r88.<java.util.List: boolean isEmpty()>()";
+    "$r88 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "$z10 = interfaceinvoke $r88.<java.util.List: boolean isEmpty()>()"->"if $z10 != 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "$z10 = interfaceinvoke $r88.<java.util.List: boolean isEmpty()>()"->"$r107 := @caughtexception";
+    "if $z10 != 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r89 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if $z10 != 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "if $z10 != 0 goto $r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "$r89 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"r123 = interfaceinvoke $r89.<java.util.List: java.util.Iterator iterator()>()";
+    "$r89 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "r123 = interfaceinvoke $r89.<java.util.List: java.util.Iterator iterator()>()"->"$z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()";
+    "r123 = interfaceinvoke $r89.<java.util.List: java.util.Iterator iterator()>()"->"$r107 := @caughtexception";
+    "$z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()"->"if $z11 == 0 goto (branch)";
+    "$z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()"->"$r107 := @caughtexception";
+    "if $z11 == 0 goto (branch)"->"$r90 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z11 == 0 goto (branch)"->"goto [?= $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]";
+    "if $z11 == 0 goto (branch)"->"$r107 := @caughtexception";
+    "$r90 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()"->"r124 = (java.lang.String) $r90";
+    "$r90 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>()"->"$r107 := @caughtexception";
+    "r124 = (java.lang.String) $r90"->"$r91 = new java.lang.StringBuilder";
+    "r124 = (java.lang.String) $r90"->"$r107 := @caughtexception";
+    "$r91 = new java.lang.StringBuilder"->"specialinvoke $r91.<java.lang.StringBuilder: void <init>()>()";
+    "$r91 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r91.<java.lang.StringBuilder: void <init>()>()"->"$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")";
+    "specialinvoke $r91.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r124)";
+    "$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r107 := @caughtexception";
+    "$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r124)"->"$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r124)"->"$r107 := @caughtexception";
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r94)";
+    "$r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r94)"->"goto [?= $z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r94)"->"$r107 := @caughtexception";
+    "goto [?= $z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]"->"$z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z11 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()]"->"$r107 := @caughtexception";
+    "goto [?= $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "goto [?= $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$r107 := @caughtexception";
+    "$r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$z6 = interfaceinvoke $r9.<java.util.List: boolean isEmpty()>()";
+    "$r9 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "$z6 = interfaceinvoke $r9.<java.util.List: boolean isEmpty()>()"->"if $z6 != 0 goto $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "$z6 = interfaceinvoke $r9.<java.util.List: boolean isEmpty()>()"->"$r107 := @caughtexception";
+    "if $z6 != 0 goto $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r82 = new java.lang.StringBuilder";
+    "if $z6 != 0 goto $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "if $z6 != 0 goto $z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "$r82 = new java.lang.StringBuilder"->"specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()";
+    "$r82 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()"->"$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")";
+    "specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r84 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>";
+    "$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r107 := @caughtexception";
+    "$r84 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$i4 = interfaceinvoke $r84.<java.util.List: int size()>()";
+    "$r84 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List warnings>"->"$r107 := @caughtexception";
+    "$i4 = interfaceinvoke $r84.<java.util.List: int size()>()"->"$r85 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)";
+    "$i4 = interfaceinvoke $r84.<java.util.List: int size()>()"->"$r107 := @caughtexception";
+    "$r85 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"->"$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" warnings\")";
+    "$r85 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"->"$r107 := @caughtexception";
+    "$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" warnings\")"->"$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r86 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" warnings\")"->"$r107 := @caughtexception";
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r87)";
+    "$r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r87)"->"$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r87)"->"$r107 := @caughtexception";
+    "$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"if $z16 == 0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker";
+    "$z16 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z16 == 0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"i5 = 0";
+    "if $z16 == 0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r10 = new at.favre.tools.apksigner.signing.CertHashChecker";
+    "if $z16 == 0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r107 := @caughtexception";
+    "i5 = 0"->"$r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>";
+    "i5 = 0"->"$r107 := @caughtexception";
+    "$r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$i0 = interfaceinvoke $r27.<java.util.List: int size()>()";
+    "$r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r107 := @caughtexception";
+    "$i0 = interfaceinvoke $r27.<java.util.List: int size()>()"->"if i5 >= $i0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker";
+    "$i0 = interfaceinvoke $r27.<java.util.List: int size()>()"->"$r107 := @caughtexception";
+    "if i5 >= $i0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r28 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>";
+    "if i5 >= $i0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r10 = new at.favre.tools.apksigner.signing.CertHashChecker";
+    "if i5 >= $i0 goto $r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r107 := @caughtexception";
+    "$r28 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r29 = interfaceinvoke $r28.<java.util.List: java.lang.Object get(int)>(i5)";
+    "$r28 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r107 := @caughtexception";
+    "$r29 = interfaceinvoke $r28.<java.util.List: java.lang.Object get(int)>(i5)"->"r125 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r29";
+    "$r29 = interfaceinvoke $r28.<java.util.List: java.lang.Object get(int)>(i5)"->"$r107 := @caughtexception";
+    "r125 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r29"->"$r30 = new java.lang.StringBuilder";
+    "r125 = (at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo) $r29"->"$r107 := @caughtexception";
+    "$r30 = new java.lang.StringBuilder"->"specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()";
+    "$r30 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")";
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r32 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r107 := @caughtexception";
+    "$r32 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"->"$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)";
+    "$r32 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String subjectDn>"->"$r107 := @caughtexception";
+    "$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32)"->"$r107 := @caughtexception";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r34)";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r34)"->"$r35 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r34)"->"$r107 := @caughtexception";
+    "$r35 = new java.lang.StringBuilder"->"specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()";
+    "$r35 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")";
+    "specialinvoke $r35.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"->"$r37 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA256: \")"->"$r107 := @caughtexception";
+    "$r37 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"->"$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37)";
+    "$r37 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha256>"->"$r107 := @caughtexception";
+    "$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37)"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" / \")";
+    "$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37)"->"$r107 := @caughtexception";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" / \")"->"$r40 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String sigAlgo>";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" / \")"->"$r107 := @caughtexception";
+    "$r40 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String sigAlgo>"->"$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r40)";
+    "$r40 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String sigAlgo>"->"$r107 := @caughtexception";
+    "$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r40)"->"$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r40)"->"$r107 := @caughtexception";
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r42)";
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r42)"->"if z5 == 0 goto $r43 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r42)"->"$r107 := @caughtexception";
+    "if z5 == 0 goto $r43 = new java.lang.StringBuilder"->"$r50 = new java.lang.StringBuilder";
+    "if z5 == 0 goto $r43 = new java.lang.StringBuilder"->"$r43 = new java.lang.StringBuilder";
+    "if z5 == 0 goto $r43 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "$r50 = new java.lang.StringBuilder"->"specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()";
+    "$r50 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA1: \")";
+    "specialinvoke $r50.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA1: \")"->"$r52 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha1>";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tSHA1: \")"->"$r107 := @caughtexception";
+    "$r52 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha1>"->"$r53 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)";
+    "$r52 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String certSha1>"->"$r107 := @caughtexception";
+    "$r53 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)"->"$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r53 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52)"->"$r107 := @caughtexception";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r54)";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r54)"->"$r55 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r54)"->"$r107 := @caughtexception";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "$r55 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r57 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String issuerDn>";
+    "$r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\t\")"->"$r107 := @caughtexception";
+    "$r57 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String issuerDn>"->"$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)";
+    "$r57 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String issuerDn>"->"$r107 := @caughtexception";
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"->"$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r58 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57)"->"$r107 := @caughtexception";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)";
+    "$r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"->"$r60 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r59)"->"$r107 := @caughtexception";
+    "$r60 = new java.lang.StringBuilder"->"specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()";
+    "$r60 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA256: \")";
+    "specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA256: \")"->"$r62 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha256>";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA256: \")"->"$r107 := @caughtexception";
+    "$r62 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha256>"->"$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r62)";
+    "$r62 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha256>"->"$r107 := @caughtexception";
+    "$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r62)"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r63 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r62)"->"$r107 := @caughtexception";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r64)";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r64)"->"$r65 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r64)"->"$r107 := @caughtexception";
+    "$r65 = new java.lang.StringBuilder"->"specialinvoke $r65.<java.lang.StringBuilder: void <init>()>()";
+    "$r65 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r65.<java.lang.StringBuilder: void <init>()>()"->"$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA1: \")";
+    "specialinvoke $r65.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA1: \")"->"$r67 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha1>";
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key SHA1: \")"->"$r107 := @caughtexception";
+    "$r67 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha1>"->"$r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r67)";
+    "$r67 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubSha1>"->"$r107 := @caughtexception";
+    "$r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r67)"->"$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r67)"->"$r107 := @caughtexception";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r69)";
+    "$r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r69)"->"$r70 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r69)"->"$r107 := @caughtexception";
+    "$r70 = new java.lang.StringBuilder"->"specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()";
+    "$r70 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"->"$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key Algo: \")";
+    "specialinvoke $r70.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key Algo: \")"->"$r72 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubAlgo>";
+    "$r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tPublic Key Algo: \")"->"$r107 := @caughtexception";
+    "$r72 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubAlgo>"->"$r73 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)";
+    "$r72 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.lang.String pubAlgo>"->"$r107 := @caughtexception";
+    "$r73 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)"->"$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")";
+    "$r73 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r72)"->"$r107 := @caughtexception";
+    "$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"->"$i3 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: int pubKeysize>";
+    "$r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"->"$r107 := @caughtexception";
+    "$i3 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: int pubKeysize>"->"$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)";
+    "$i3 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: int pubKeysize>"->"$r107 := @caughtexception";
+    "$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"->"$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"->"$r107 := @caughtexception";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r76)";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r76)"->"$r77 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r76)"->"$r107 := @caughtexception";
+    "$r77 = new java.lang.StringBuilder"->"specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()";
+    "$r77 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tIssue Date: \")";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tIssue Date: \")"->"$r79 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date beginValidity>";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tIssue Date: \")"->"$r107 := @caughtexception";
+    "$r79 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date beginValidity>"->"$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r79)";
+    "$r79 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date beginValidity>"->"$r107 := @caughtexception";
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r79)"->"$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r80 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r79)"->"$r107 := @caughtexception";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)";
+    "$r81 = virtualinvoke $r80.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"->"$r43 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r81)"->"$r107 := @caughtexception";
+    "$r43 = new java.lang.StringBuilder"->"specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()";
+    "$r43 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tExpires: \")";
+    "specialinvoke $r43.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tExpires: \")"->"$r45 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date expiry>";
+    "$r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tExpires: \")"->"$r107 := @caughtexception";
+    "$r45 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date expiry>"->"$r46 = virtualinvoke $r45.<java.util.Date: java.lang.String toString()>()";
+    "$r45 = r125.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$CertInfo: java.util.Date expiry>"->"$r107 := @caughtexception";
+    "$r46 = virtualinvoke $r45.<java.util.Date: java.lang.String toString()>()"->"$r47 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46)";
+    "$r46 = virtualinvoke $r45.<java.util.Date: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "$r47 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46)"->"$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r47 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46)"->"$r107 := @caughtexception";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r48)";
+    "$r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r48)"->"$r49 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r48)"->"$r107 := @caughtexception";
+    "$r49 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$i1 = interfaceinvoke $r49.<java.util.List: int size()>()";
+    "$r49 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>"->"$r107 := @caughtexception";
+    "$i1 = interfaceinvoke $r49.<java.util.List: int size()>()"->"$i2 = $i1 - 1";
+    "$i1 = interfaceinvoke $r49.<java.util.List: int size()>()"->"$r107 := @caughtexception";
+    "$i2 = $i1 - 1"->"if i5 >= $i2 goto i5 = i5 + 1";
+    "$i2 = $i1 - 1"->"$r107 := @caughtexception";
+    "if i5 >= $i2 goto i5 = i5 + 1"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\")";
+    "if i5 >= $i2 goto i5 = i5 + 1"->"i5 = i5 + 1";
+    "if i5 >= $i2 goto i5 = i5 + 1"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\")"->"i5 = i5 + 1";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>(\"\")"->"$r107 := @caughtexception";
+    "i5 = i5 + 1"->"goto [?= $r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>]";
+    "i5 = i5 + 1"->"$r107 := @caughtexception";
+    "goto [?= $r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>]"->"$r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>";
+    "goto [?= $r27 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: java.util.List certInfoList>]"->"$r107 := @caughtexception";
+    "$r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"specialinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: void <init>()>()";
+    "$r10 = new at.favre.tools.apksigner.signing.CertHashChecker"->"$r107 := @caughtexception";
+    "specialinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: void <init>()>()"->"r126 = virtualinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: at.favre.tools.apksigner.signing.CertHashChecker$Result check(at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result,java.lang.String[])>(r2, r11)";
+    "specialinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: void <init>()>()"->"$r107 := @caughtexception";
+    "r126 = virtualinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: at.favre.tools.apksigner.signing.CertHashChecker$Result check(at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result,java.lang.String[])>(r2, r11)"->"if r126 == null goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "r126 = virtualinvoke $r10.<at.favre.tools.apksigner.signing.CertHashChecker: at.favre.tools.apksigner.signing.CertHashChecker$Result check(at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result,java.lang.String[])>(r2, r11)"->"$r107 := @caughtexception";
+    "if r126 == null goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$z7 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>";
+    "if r126 == null goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "if r126 == null goto $z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "$z7 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"->"if $z7 != 0 goto $r12 = new java.lang.StringBuilder";
+    "$z7 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z7 != 0 goto $r12 = new java.lang.StringBuilder"->"$r17 = new java.lang.StringBuilder";
+    "if $z7 != 0 goto $r12 = new java.lang.StringBuilder"->"$r12 = new java.lang.StringBuilder";
+    "if $z7 != 0 goto $r12 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "$r17 = new java.lang.StringBuilder"->"specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()";
+    "$r17 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash check failed \")";
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash check failed \")"->"$r19 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash check failed \")"->"$r107 := @caughtexception";
+    "$r19 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"->"$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19)";
+    "$r19 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"->"$r107 := @caughtexception";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19)"->"$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19)"->"$r107 := @caughtexception";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"->"$r22 = new java.lang.StringBuilder";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r21)"->"$r107 := @caughtexception";
+    "$r22 = new java.lang.StringBuilder"->"specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()";
+    "$r22 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tERROR: \")";
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tERROR: \")"->"$r24 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String errorString>";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t\tERROR: \")"->"$r107 := @caughtexception";
+    "$r24 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String errorString>"->"$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)";
+    "$r24 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String errorString>"->"$r107 := @caughtexception";
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24)"->"$r107 := @caughtexception";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r26)";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r26)"->"goto [?= $z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void logErr(java.lang.String)>($r26)"->"$r107 := @caughtexception";
+    "goto [?= $z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "goto [?= $z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>]"->"$r107 := @caughtexception";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "$r12 = new java.lang.StringBuilder"->"$r107 := @caughtexception";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash successful \")";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r107 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash successful \")"->"$r14 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\t- verify with provided hash successful \")"->"$r107 := @caughtexception";
+    "$r14 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"->"$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)";
+    "$r14 = virtualinvoke r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: java.lang.String hashSummary()>()"->"$r107 := @caughtexception";
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14)"->"$r107 := @caughtexception";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r16)";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r107 := @caughtexception";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r16)"->"$z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>";
+    "staticinvoke <at.favre.tools.apksigner.SignTool: void log(java.lang.String)>($r16)"->"$r107 := @caughtexception";
+    "$z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"if $z8 == 0 goto $r127 = null";
+    "$z8 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z8 == 0 goto $r127 = null"->"$z9 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>";
+    "if $z8 == 0 goto $r127 = null"->"$r127 = null";
+    "if $z8 == 0 goto $r127 = null"->"$r107 := @caughtexception";
+    "$z9 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"->"if $z9 == 0 goto $r127 = null";
+    "$z9 = r126.<at.favre.tools.apksigner.signing.CertHashChecker$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z9 == 0 goto $r127 = null"->"$r127 = r2";
+    "if $z9 == 0 goto $r127 = null"->"$r127 = null";
+    "if $z9 == 0 goto $r127 = null"->"$r107 := @caughtexception";
+    "$r127 = r2"->"goto [?= return $r127]";
+    "$r127 = r2"->"$r107 := @caughtexception";
+    "goto [?= return $r127]"->"return $r127";
+    "goto [?= return $r127]"->"$r107 := @caughtexception";
+    "$r127 = null"->"return $r127";
+    "$r127 = null"->"$r107 := @caughtexception";
+    "$z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"if $z1 == 0 goto $r128 = null";
+    "$z1 = r2.<at.favre.tools.apksigner.signing.AndroidApkSignerVerify$Result: boolean verified>"->"$r107 := @caughtexception";
+    "if $z1 == 0 goto $r128 = null"->"$r128 = r2";
+    "if $z1 == 0 goto $r128 = null"->"$r128 = null";
+    "if $z1 == 0 goto $r128 = null"->"$r107 := @caughtexception";
+    "$r128 = r2"->"goto [?= return $r128]";
+    "$r128 = r2"->"$r107 := @caughtexception";
+    "goto [?= return $r128]"->"return $r128";
+    "goto [?= return $r128]"->"$r107 := @caughtexception";
+    "$r128 = null"->"return $r128";
+    "$r128 = null"->"$r107 := @caughtexception";
+    "$r107 := @caughtexception"->"r129 = $r107";
+    "r129 = $r107"->"$r108 = new java.lang.IllegalStateException";
+    "$r108 = new java.lang.IllegalStateException"->"$r109 = new java.lang.StringBuilder";
+    "$r109 = new java.lang.StringBuilder"->"specialinvoke $r109.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r109.<java.lang.StringBuilder: void <init>()>()"->"$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not verify \")";
+    "$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"could not verify \")"->"$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)";
+    "$r111 = virtualinvoke $r110.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"->"$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")";
+    "$r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")"->"$r113 = virtualinvoke r129.<java.lang.Exception: java.lang.String getMessage()>()";
+    "$r113 = virtualinvoke r129.<java.lang.Exception: java.lang.String getMessage()>()"->"$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r113)";
+    "$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r113)"->"$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r108.<java.lang.IllegalStateException: void <init>(java.lang.String,java.lang.Throwable)>($r115, r129)";
+    "specialinvoke $r108.<java.lang.IllegalStateException: void <init>(java.lang.String,java.lang.Throwable)>($r115, r129)"->"throw $r108";
+}

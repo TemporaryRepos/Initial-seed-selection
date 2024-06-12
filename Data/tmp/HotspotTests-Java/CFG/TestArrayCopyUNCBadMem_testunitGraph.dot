@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: int[]"
+    "r0 = newarray (int)[10]"
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, 10)"
+    "<TestArrayCopyUNCBadMem: int field> = 66"
+    "<TestArrayCopyUNCBadMem$unloaded: int dummy> = 66"
+    "$i1 = r0[0]"
+    "$i0 = r0[1]"
+    "$i2 = $i1 + $i0"
+    "return $i2"
+    "r1 := @parameter0: int[]"->"r0 = newarray (int)[10]";
+    "r0 = newarray (int)[10]"->"staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, 10)";
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, 0, r0, 0, 10)"->"<TestArrayCopyUNCBadMem: int field> = 66";
+    "<TestArrayCopyUNCBadMem: int field> = 66"->"<TestArrayCopyUNCBadMem$unloaded: int dummy> = 66";
+    "<TestArrayCopyUNCBadMem$unloaded: int dummy> = 66"->"$i1 = r0[0]";
+    "$i1 = r0[0]"->"$i0 = r0[1]";
+    "$i0 = r0[1]"->"$i2 = $i1 + $i0";
+    "$i2 = $i1 + $i0"->"return $i2";
+}

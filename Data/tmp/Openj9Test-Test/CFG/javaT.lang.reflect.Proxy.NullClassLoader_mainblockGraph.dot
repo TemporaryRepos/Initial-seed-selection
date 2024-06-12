@@ -1,0 +1,846 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 27 ]
+r23 := @parameter0: java.lang.String[];
+$r0 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nTest creating proxy class with the null class loader.\n\");
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 27 ]
+$r1 = newarray (java.lang.Class)[2];
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 27 ]
+$r1[0] = class \"Ljava/lang/Runnable;\";
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 27 ]
+$r1[1] = class \"Ljava/util/Observer;\";
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 27 ]
+r24 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(null, $r1);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 27 ]
+$r3 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 27 ]
+$r2 = new java.lang.StringBuilder;
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 27 ]
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 27 ]
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class: \");
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 27 ]
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r24);
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 27 ]
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 27 ]
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+"
+    "Block 12:
+[preds: 11 ] [succs: 13 27 ]
+r7 = virtualinvoke r24.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+"
+    "Block 13:
+[preds: 12 ] [succs: 14 27 ]
+$r9 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 27 ]
+$r8 = new java.lang.StringBuilder;
+"
+    "Block 15:
+[preds: 14 ] [succs: 16 27 ]
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+"
+    "Block 16:
+[preds: 15 ] [succs: 17 27 ]
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class\'s class loader: \");
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 27 ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 27 ]
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 27 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 24 27 ]
+if r7 == null goto $r13 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 21:
+[preds: 20 ] [succs: 22 27 ]
+$r14 = new java.lang.RuntimeException;
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 27 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class not defined in the null class loader\");
+"
+    "Block 23:
+[preds: 22 ] [succs: 27 ]
+throw $r14;
+"
+    "Block 24:
+[preds: 20 ] [succs: 25 27 ]
+$r13 = <java.lang.System: java.io.PrintStream err>;
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\");
+"
+    "Block 26:
+[preds: 25 ] [succs: 28 ]
+goto [?= return];
+"
+    "Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+"
+    "Block 28:
+[preds: 26 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 27 ]
+r23 := @parameter0: java.lang.String[];
+$r0 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nTest creating proxy class with the null class loader.\n\");
+"->"Block 1:
+[preds: 0 ] [succs: 2 27 ]
+$r1 = newarray (java.lang.Class)[2];
+";
+    "Block 0:
+[preds: ] [succs: 1 27 ]
+r23 := @parameter0: java.lang.String[];
+$r0 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"\nTest creating proxy class with the null class loader.\n\");
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 27 ]
+$r1 = newarray (java.lang.Class)[2];
+"->"Block 2:
+[preds: 1 ] [succs: 3 27 ]
+$r1[0] = class \"Ljava/lang/Runnable;\";
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 27 ]
+$r1 = newarray (java.lang.Class)[2];
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 27 ]
+$r1[0] = class \"Ljava/lang/Runnable;\";
+"->"Block 3:
+[preds: 2 ] [succs: 4 27 ]
+$r1[1] = class \"Ljava/util/Observer;\";
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 27 ]
+$r1[0] = class \"Ljava/lang/Runnable;\";
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 27 ]
+$r1[1] = class \"Ljava/util/Observer;\";
+"->"Block 4:
+[preds: 3 ] [succs: 5 27 ]
+r24 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(null, $r1);
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 27 ]
+$r1[1] = class \"Ljava/util/Observer;\";
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 27 ]
+r24 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(null, $r1);
+"->"Block 5:
+[preds: 4 ] [succs: 6 27 ]
+$r3 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 27 ]
+r24 = staticinvoke <java.lang.reflect.Proxy: java.lang.Class getProxyClass(java.lang.ClassLoader,java.lang.Class[])>(null, $r1);
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 27 ]
+$r3 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 6:
+[preds: 5 ] [succs: 7 27 ]
+$r2 = new java.lang.StringBuilder;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 27 ]
+$r3 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 27 ]
+$r2 = new java.lang.StringBuilder;
+"->"Block 7:
+[preds: 6 ] [succs: 8 27 ]
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 27 ]
+$r2 = new java.lang.StringBuilder;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 27 ]
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+"->"Block 8:
+[preds: 7 ] [succs: 9 27 ]
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class: \");
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 27 ]
+specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 27 ]
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class: \");
+"->"Block 9:
+[preds: 8 ] [succs: 10 27 ]
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r24);
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 27 ]
+$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class: \");
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 27 ]
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r24);
+"->"Block 10:
+[preds: 9 ] [succs: 11 27 ]
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 27 ]
+$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r24);
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 27 ]
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 11:
+[preds: 10 ] [succs: 12 27 ]
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 27 ]
+$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 27 ]
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+"->"Block 12:
+[preds: 11 ] [succs: 13 27 ]
+r7 = virtualinvoke r24.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 27 ]
+virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 27 ]
+r7 = virtualinvoke r24.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+"->"Block 13:
+[preds: 12 ] [succs: 14 27 ]
+$r9 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 12:
+[preds: 11 ] [succs: 13 27 ]
+r7 = virtualinvoke r24.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 27 ]
+$r9 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 14:
+[preds: 13 ] [succs: 15 27 ]
+$r8 = new java.lang.StringBuilder;
+";
+    "Block 13:
+[preds: 12 ] [succs: 14 27 ]
+$r9 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 27 ]
+$r8 = new java.lang.StringBuilder;
+"->"Block 15:
+[preds: 14 ] [succs: 16 27 ]
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 27 ]
+$r8 = new java.lang.StringBuilder;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 27 ]
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+"->"Block 16:
+[preds: 15 ] [succs: 17 27 ]
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class\'s class loader: \");
+";
+    "Block 15:
+[preds: 14 ] [succs: 16 27 ]
+specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 27 ]
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class\'s class loader: \");
+"->"Block 17:
+[preds: 16 ] [succs: 18 27 ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+";
+    "Block 16:
+[preds: 15 ] [succs: 17 27 ]
+$r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"proxy class\'s class loader: \");
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 27 ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+"->"Block 18:
+[preds: 17 ] [succs: 19 27 ]
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 27 ]
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r7);
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 27 ]
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 19:
+[preds: 18 ] [succs: 20 27 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 27 ]
+$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 27 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+"->"Block 20:
+[preds: 19 ] [succs: 21 24 27 ]
+if r7 == null goto $r13 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 27 ]
+virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 24 27 ]
+if r7 == null goto $r13 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 21:
+[preds: 20 ] [succs: 22 27 ]
+$r14 = new java.lang.RuntimeException;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 24 27 ]
+if r7 == null goto $r13 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 24:
+[preds: 20 ] [succs: 25 27 ]
+$r13 = <java.lang.System: java.io.PrintStream err>;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 24 27 ]
+if r7 == null goto $r13 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 27 ]
+$r14 = new java.lang.RuntimeException;
+"->"Block 22:
+[preds: 21 ] [succs: 23 27 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class not defined in the null class loader\");
+";
+    "Block 21:
+[preds: 20 ] [succs: 22 27 ]
+$r14 = new java.lang.RuntimeException;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 27 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class not defined in the null class loader\");
+"->"Block 23:
+[preds: 22 ] [succs: 27 ]
+throw $r14;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 27 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"proxy class not defined in the null class loader\");
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 23:
+[preds: 22 ] [succs: 27 ]
+throw $r14;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 24:
+[preds: 20 ] [succs: 25 27 ]
+$r13 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 25:
+[preds: 24 ] [succs: 26 27 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\");
+";
+    "Block 24:
+[preds: 20 ] [succs: 25 27 ]
+$r13 = <java.lang.System: java.io.PrintStream err>;
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\");
+"->"Block 26:
+[preds: 25 ] [succs: 28 ]
+goto [?= return];
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 27 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST PASSED\");
+"->"Block 27:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 ] [succs: ]
+$r15 := @caughtexception;
+r25 = $r15;
+$r16 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(\"\nTEST FAILED:\");
+virtualinvoke r25.<java.lang.Throwable: void printStackTrace()>();
+$r17 = new java.lang.RuntimeException;
+$r18 = new java.lang.StringBuilder;
+specialinvoke $r18.<java.lang.StringBuilder: void <init>()>();
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"TEST FAILED: \");
+$r20 = virtualinvoke r25.<java.lang.Throwable: java.lang.String toString()>();
+$r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r17.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+throw $r17;
+";
+    "Block 26:
+[preds: 25 ] [succs: 28 ]
+goto [?= return];
+"->"Block 28:
+[preds: 26 ] [succs: ]
+return;
+";
+}

@@ -1,0 +1,370 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+i2 = 0;
+$r0 = newarray (long)[24];
+$r0[0] = 0L;
+$r0[1] = 1L;
+$r0[2] = 2L;
+$r0[3] = 3L;
+$r0[4] = 99999L;
+$r0[5] = 100000L;
+$r0[6] = 999999L;
+$r0[7] = 100000L;
+$r0[8] = 999999999L;
+$r0[9] = 1000000000L;
+$r0[10] = 305419896L;
+$r0[11] = 2147483648L;
+$r0[12] = 2147483649L;
+$r0[13] = 2147483650L;
+$r0[14] = 2147483651L;
+$r0[15] = 2271560481L;
+$r0[16] = 4294967294L;
+$r0[17] = 4294967295L;
+$r0[18] = 999999999999L;
+$r0[19] = 1000000000000L;
+$r0[20] = 999999999999999999L;
+$r0[21] = 1000000000000000000L;
+$r0[22] = -2L;
+$r0[23] = -1L;
+r1 = $r0;
+i3 = 2;
+"
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i3 > 36 goto return i2;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r2 = r1;
+i0 = lengthof r2;
+i4 = 0;
+"
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i4 >= i0 goto i3 = i3 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+l1 = r2[i4];
+r3 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long,int)>(l1, i3);
+$r4 = staticinvoke <javaT.lang.Long.Unsigned: java.math.BigInteger toUnsignedBigInt(long)>(l1);
+r5 = virtualinvoke $r4.<java.math.BigInteger: java.lang.String toString(int)>(i3);
+$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+i2 = i2 + 1;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+$r16 = newarray (java.lang.Object)[3];
+$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r16[0] = $r18;
+$r16[1] = r3;
+$r16[2] = r5;
+virtualinvoke $r17.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r16);
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 9 ]
+if i3 != 10 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r20 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>(l1);
+$z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>(r20);
+if $z1 != 0 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream err>;
+$r12 = newarray (java.lang.Object)[3];
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r12[0] = $r14;
+$r12[1] = r20;
+$r12[2] = r5;
+virtualinvoke $r13.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r12);
+"
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i2 = i2 + 1;
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[4];
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r6[1] = $r9;
+$r6[2] = r3;
+$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r6[3] = $r10;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Bad roundtrip conversion of %d in base %d\tconverting back \'\'%s\'\' resulted in %d%n\", $r6);
+"
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+"
+    "Block 13:
+[preds: 1 ] [succs: ]
+return i2;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+i2 = 0;
+$r0 = newarray (long)[24];
+$r0[0] = 0L;
+$r0[1] = 1L;
+$r0[2] = 2L;
+$r0[3] = 3L;
+$r0[4] = 99999L;
+$r0[5] = 100000L;
+$r0[6] = 999999L;
+$r0[7] = 100000L;
+$r0[8] = 999999999L;
+$r0[9] = 1000000000L;
+$r0[10] = 305419896L;
+$r0[11] = 2147483648L;
+$r0[12] = 2147483649L;
+$r0[13] = 2147483650L;
+$r0[14] = 2147483651L;
+$r0[15] = 2271560481L;
+$r0[16] = 4294967294L;
+$r0[17] = 4294967295L;
+$r0[18] = 999999999999L;
+$r0[19] = 1000000000000L;
+$r0[20] = 999999999999999999L;
+$r0[21] = 1000000000000000000L;
+$r0[22] = -2L;
+$r0[23] = -1L;
+r1 = $r0;
+i3 = 2;
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i3 > 36 goto return i2;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i3 > 36 goto return i2;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+r2 = r1;
+i0 = lengthof r2;
+i4 = 0;
+";
+    "Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i3 > 36 goto return i2;
+"->"Block 13:
+[preds: 1 ] [succs: ]
+return i2;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r2 = r1;
+i0 = lengthof r2;
+i4 = 0;
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i4 >= i0 goto i3 = i3 + 1;
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i4 >= i0 goto i3 = i3 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 5 6 ]
+l1 = r2[i4];
+r3 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long,int)>(l1, i3);
+$r4 = staticinvoke <javaT.lang.Long.Unsigned: java.math.BigInteger toUnsignedBigInt(long)>(l1);
+r5 = virtualinvoke $r4.<java.math.BigInteger: java.lang.String toString(int)>(i3);
+$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto (branch);
+";
+    "Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i4 >= i0 goto i3 = i3 + 1;
+"->"Block 12:
+[preds: 3 ] [succs: 1 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+l1 = r2[i4];
+r3 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long,int)>(l1, i3);
+$r4 = staticinvoke <javaT.lang.Long.Unsigned: java.math.BigInteger toUnsignedBigInt(long)>(l1);
+r5 = virtualinvoke $r4.<java.math.BigInteger: java.lang.String toString(int)>(i3);
+$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+i2 = i2 + 1;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+$r16 = newarray (java.lang.Object)[3];
+$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r16[0] = $r18;
+$r16[1] = r3;
+$r16[2] = r5;
+virtualinvoke $r17.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r16);
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 6 ]
+l1 = r2[i4];
+r3 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long,int)>(l1, i3);
+$r4 = staticinvoke <javaT.lang.Long.Unsigned: java.math.BigInteger toUnsignedBigInt(long)>(l1);
+r5 = virtualinvoke $r4.<java.math.BigInteger: java.lang.String toString(int)>(i3);
+$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+if $z0 != 0 goto (branch);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 9 ]
+if i3 != 10 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+i2 = i2 + 1;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+$r16 = newarray (java.lang.Object)[3];
+$r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r16[0] = $r18;
+$r16[1] = r3;
+$r16[2] = r5;
+virtualinvoke $r17.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r16);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 9 ]
+if i3 != 10 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 9 ]
+if i3 != 10 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r20 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>(l1);
+$z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>(r20);
+if $z1 != 0 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 9 ]
+if i3 != 10 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r20 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>(l1);
+$z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>(r20);
+if $z1 != 0 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"->"Block 8:
+[preds: 7 ] [succs: 9 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream err>;
+$r12 = newarray (java.lang.Object)[3];
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r12[0] = $r14;
+$r12[1] = r20;
+$r12[2] = r5;
+virtualinvoke $r13.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r12);
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+r20 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>(l1);
+$z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>(r20);
+if $z1 != 0 goto l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 ]
+i2 = i2 + 1;
+$r13 = <java.lang.System: java.io.PrintStream err>;
+$r12 = newarray (java.lang.Object)[3];
+$r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r12[0] = $r14;
+$r12[1] = r20;
+$r12[2] = r5;
+virtualinvoke $r13.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Unexpected string difference converting 0x%x:\t%s %s%n\", $r12);
+"->"Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+i2 = i2 + 1;
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[4];
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r6[1] = $r9;
+$r6[2] = r3;
+$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r6[3] = $r10;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Bad roundtrip conversion of %d in base %d\tconverting back \'\'%s\'\' resulted in %d%n\", $r6);
+";
+    "Block 9:
+[preds: 6 7 8 ] [succs: 10 11 ]
+l5 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String,int)>(r3, i3);
+$b6 = l5 cmp l1;
+if $b6 == 0 goto i4 = i4 + 1;
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+i2 = i2 + 1;
+$r7 = <java.lang.System: java.io.PrintStream err>;
+$r6 = newarray (java.lang.Object)[4];
+$r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+$r6[0] = $r8;
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r6[1] = $r9;
+$r6[2] = r3;
+$r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+$r6[3] = $r10;
+virtualinvoke $r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"Bad roundtrip conversion of %d in base %d\tconverting back \'\'%s\'\' resulted in %d%n\", $r6);
+"->"Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+";
+    "Block 11:
+[preds: 9 10 ] [succs: 3 ]
+i4 = i4 + 1;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 2 11 ] [succs: 4 12 ]
+if i4 >= i0 goto i3 = i3 + 1;
+";
+    "Block 12:
+[preds: 3 ] [succs: 1 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 12 ] [succs: 2 13 ]
+if i3 > 36 goto return i2;
+";
+}

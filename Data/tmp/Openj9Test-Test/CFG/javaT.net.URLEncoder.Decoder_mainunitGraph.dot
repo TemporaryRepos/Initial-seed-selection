@@ -1,0 +1,108 @@
+digraph "unitGraph" {
+    "r22 := @parameter0: java.lang.String[]"
+    "z0 = 1"
+    "r0 = \"UTF-16\""
+    "$r1 = newarray (java.lang.String)[9]"
+    "$r1[0] = \"\u0100\u0101\""
+    "$r1[1] = \"\u0100 \u0101\""
+    "$r1[2] = \"\u0100 \u0101\u0102\""
+    "$r1[3] = \"\u0100 \u0101 \u0102\""
+    "$r1[4] = \"\u0100C\u0101 \u0102\""
+    "$r1[5] = \"\u0100\u0101\u0102\""
+    "$r1[6] = \"?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&\""
+    "$r1[7] = \"foobar\""
+    "$r1[8] = \"foo?bar\""
+    "r2 = $r1"
+    "i1 = 0"
+    "$i0 = lengthof r2"
+    "if i1 >= $i0 goto return"
+    "$r3 = r2[i1]"
+    "r4 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r3, r0)"
+    "$r6 = <java.lang.System: java.io.PrintStream out>"
+    "$r5 = new java.lang.StringBuilder"
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>()>()"
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ecnoded: \")"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4)"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9)"
+    "r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r4, r0)"
+    "$r11 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r11.<java.io.PrintStream: void print(java.lang.String)>(\"init:    \")"
+    "$r12 = r2[i1]"
+    "staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>($r12)"
+    "$r13 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\"decoded: \")"
+    "staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>(r10)"
+    "$r14 = r2[i1]"
+    "$z1 = virtualinvoke $r14.<java.lang.String: boolean equals(java.lang.Object)>(r10)"
+    "if $z1 == 0 goto $r15 = <java.lang.System: java.io.PrintStream out>"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\" - correct - \n\")"
+    "goto [?= i1 = i1 + 1]"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" - incorrect - \n\")"
+    "$r16 = new java.lang.RuntimeException"
+    "$r17 = new java.lang.StringBuilder"
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected decoded output on string \")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>($r20)"
+    "throw $r16"
+    "i1 = i1 + 1"
+    "goto [?= $i0 = lengthof r2]"
+    "return"
+    "r22 := @parameter0: java.lang.String[]"->"z0 = 1";
+    "z0 = 1"->"r0 = \"UTF-16\"";
+    "r0 = \"UTF-16\""->"$r1 = newarray (java.lang.String)[9]";
+    "$r1 = newarray (java.lang.String)[9]"->"$r1[0] = \"\u0100\u0101\"";
+    "$r1[0] = \"\u0100\u0101\""->"$r1[1] = \"\u0100 \u0101\"";
+    "$r1[1] = \"\u0100 \u0101\""->"$r1[2] = \"\u0100 \u0101\u0102\"";
+    "$r1[2] = \"\u0100 \u0101\u0102\""->"$r1[3] = \"\u0100 \u0101 \u0102\"";
+    "$r1[3] = \"\u0100 \u0101 \u0102\""->"$r1[4] = \"\u0100C\u0101 \u0102\"";
+    "$r1[4] = \"\u0100C\u0101 \u0102\""->"$r1[5] = \"\u0100\u0101\u0102\"";
+    "$r1[5] = \"\u0100\u0101\u0102\""->"$r1[6] = \"?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&\"";
+    "$r1[6] = \"?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&?&\""->"$r1[7] = \"foobar\"";
+    "$r1[7] = \"foobar\""->"$r1[8] = \"foo?bar\"";
+    "$r1[8] = \"foo?bar\""->"r2 = $r1";
+    "r2 = $r1"->"i1 = 0";
+    "i1 = 0"->"$i0 = lengthof r2";
+    "$i0 = lengthof r2"->"if i1 >= $i0 goto return";
+    "if i1 >= $i0 goto return"->"$r3 = r2[i1]";
+    "if i1 >= $i0 goto return"->"return";
+    "$r3 = r2[i1]"->"r4 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r3, r0)";
+    "r4 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r3, r0)"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"$r5 = new java.lang.StringBuilder";
+    "$r5 = new java.lang.StringBuilder"->"specialinvoke $r5.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r5.<java.lang.StringBuilder: void <init>()>()"->"$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ecnoded: \")";
+    "$r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ecnoded: \")"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4)"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9)";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9)"->"r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r4, r0)";
+    "r10 = staticinvoke <java.net.URLDecoder: java.lang.String decode(java.lang.String,java.lang.String)>(r4, r0)"->"$r11 = <java.lang.System: java.io.PrintStream out>";
+    "$r11 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r11.<java.io.PrintStream: void print(java.lang.String)>(\"init:    \")";
+    "virtualinvoke $r11.<java.io.PrintStream: void print(java.lang.String)>(\"init:    \")"->"$r12 = r2[i1]";
+    "$r12 = r2[i1]"->"staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>($r12)";
+    "staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>($r12)"->"$r13 = <java.lang.System: java.io.PrintStream out>";
+    "$r13 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\"decoded: \")";
+    "virtualinvoke $r13.<java.io.PrintStream: void print(java.lang.String)>(\"decoded: \")"->"staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>(r10)";
+    "staticinvoke <javaT.net.URLEncoder.Decoder: void printString(java.lang.String)>(r10)"->"$r14 = r2[i1]";
+    "$r14 = r2[i1]"->"$z1 = virtualinvoke $r14.<java.lang.String: boolean equals(java.lang.Object)>(r10)";
+    "$z1 = virtualinvoke $r14.<java.lang.String: boolean equals(java.lang.Object)>(r10)"->"if $z1 == 0 goto $r15 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "if $z1 == 0 goto $r15 = <java.lang.System: java.io.PrintStream out>"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\" - correct - \n\")";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\" - correct - \n\")"->"goto [?= i1 = i1 + 1]";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" - incorrect - \n\")";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\" - incorrect - \n\")"->"$r16 = new java.lang.RuntimeException";
+    "$r16 = new java.lang.RuntimeException"->"$r17 = new java.lang.StringBuilder";
+    "$r17 = new java.lang.StringBuilder"->"specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r17.<java.lang.StringBuilder: void <init>()>()"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected decoded output on string \")";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected decoded output on string \")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1)"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>($r20)";
+    "specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>($r20)"->"throw $r16";
+    "i1 = i1 + 1"->"goto [?= $i0 = lengthof r2]";
+    "goto [?= $i0 = lengthof r2]"->"$i0 = lengthof r2";
+}

@@ -1,0 +1,45 @@
+digraph "unitGraph" {
+    "r1 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>"
+    "r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)"
+    "i1 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i1 & 1"
+    "if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"
+    "$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"
+    "$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>"
+    "$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>()"
+    "$d4 = $d2 + $d3"
+    "r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4)"
+    "goto [?= i1 = i1 + 1]"
+    "$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"
+    "$d1 = $d0 + 2.0"
+    "r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"
+    "i1 = i1 + 1"
+    "if i1 < 1000 goto $i0 = i1 & 1"
+    "$d5 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"
+    "$d6 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"
+    "$d7 = $d5 + $d6"
+    "return $d7"
+    "r1 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>"->"r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)";
+    "r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0)"->"i1 = 0";
+    "i1 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < 1000 goto $i0 = i1 & 1";
+    "$i0 = i1 & 1"->"if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()";
+    "if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"->"$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()";
+    "if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"->"$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()";
+    "$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"->"$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>";
+    "$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>"->"$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>()";
+    "$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>()"->"$d4 = $d2 + $d3";
+    "$d4 = $d2 + $d3"->"r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4)";
+    "r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4)"->"goto [?= i1 = i1 + 1]";
+    "goto [?= i1 = i1 + 1]"->"i1 = i1 + 1";
+    "$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"->"$d1 = $d0 + 2.0";
+    "$d1 = $d0 + 2.0"->"r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)";
+    "r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"if i1 < 1000 goto $i0 = i1 & 1";
+    "if i1 < 1000 goto $i0 = i1 & 1"->"$d5 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()";
+    "if i1 < 1000 goto $i0 = i1 & 1"->"$i0 = i1 & 1";
+    "$d5 = virtualinvoke r1.<java.lang.Double: double doubleValue()>()"->"$d6 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()";
+    "$d6 = virtualinvoke r2.<java.lang.Double: double doubleValue()>()"->"$d7 = $d5 + $d6";
+    "$d7 = $d5 + $d6"->"return $d7";
+}

@@ -1,0 +1,307 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r1 := @this: guide.flclient2;
+r4 := @parameter0: org.zeromq.ZMsg;
+$r0 = newarray (java.lang.Object)[1];
+$i0 = r1.<guide.flclient2: int sequence>;
+$i1 = $i0 + 1;
+r1.<guide.flclient2: int sequence> = $i1;
+$r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r0[0] = $r2;
+r3 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r0);
+virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg push(java.lang.String)>(r3);
+virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg push(java.lang.String)>(\"\");
+i12 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$i2 = r1.<guide.flclient2: int servers>;
+if i12 >= $i2 goto r16 = null;
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r15 = virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>();
+$r14 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r15.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>($r14);
+i12 = i12 + 1;
+goto [?= $i2 = r1.<guide.flclient2: int servers>];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+r16 = null;
+$l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l4 = $l3 + 2500L;
+$r7 = r1.<guide.flclient2: org.zeromq.ZContext ctx>;
+r8 = virtualinvoke $r7.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1);
+$r9 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>($r9, 1);
+"
+    "Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 4 ]
+$l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$l7 = l4 - $l6;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int poll(long)>($l7);
+$z0 = virtualinvoke r8.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0);
+if $z0 == 0 goto $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+$r10 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+r16 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>($r10);
+$z1 = <guide.flclient2: boolean $assertionsDisabled>;
+if $z1 != 0 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$i11 = virtualinvoke r16.<org.zeromq.ZMsg: int size()>();
+if $i11 == 3 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: ]
+$r13 = new java.lang.AssertionError;
+specialinvoke $r13.<java.lang.AssertionError: void <init>()>();
+throw $r13;
+"
+    "Block 9:
+[preds: 6 7 ] [succs: 10 11 ]
+virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+r12 = virtualinvoke r16.<org.zeromq.ZMsg: java.lang.String popString()>();
+i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r12);
+$i10 = r1.<guide.flclient2: int sequence>;
+if i9 != $i10 goto virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>()];
+"
+    "Block 11:
+[preds: 9 ] [succs: 4 ]
+virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+goto [?= $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>()];
+"
+    "Block 12:
+[preds: 4 10 ] [succs: ]
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+virtualinvoke r4.<org.zeromq.ZMsg: void destroy()>();
+return r16;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r1 := @this: guide.flclient2;
+r4 := @parameter0: org.zeromq.ZMsg;
+$r0 = newarray (java.lang.Object)[1];
+$i0 = r1.<guide.flclient2: int sequence>;
+$i1 = $i0 + 1;
+r1.<guide.flclient2: int sequence> = $i1;
+$r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r0[0] = $r2;
+r3 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"%d\", $r0);
+virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg push(java.lang.String)>(r3);
+virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg push(java.lang.String)>(\"\");
+i12 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$i2 = r1.<guide.flclient2: int servers>;
+if i12 >= $i2 goto r16 = null;
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$i2 = r1.<guide.flclient2: int servers>;
+if i12 >= $i2 goto r16 = null;
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+r15 = virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>();
+$r14 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r15.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>($r14);
+i12 = i12 + 1;
+goto [?= $i2 = r1.<guide.flclient2: int servers>];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$i2 = r1.<guide.flclient2: int servers>;
+if i12 >= $i2 goto r16 = null;
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+r16 = null;
+$l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l4 = $l3 + 2500L;
+$r7 = r1.<guide.flclient2: org.zeromq.ZContext ctx>;
+r8 = virtualinvoke $r7.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1);
+$r9 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>($r9, 1);
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+r15 = virtualinvoke r4.<org.zeromq.ZMsg: org.zeromq.ZMsg duplicate()>();
+$r14 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r15.<org.zeromq.ZMsg: boolean send(org.zeromq.ZMQ$Socket)>($r14);
+i12 = i12 + 1;
+goto [?= $i2 = r1.<guide.flclient2: int servers>];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+$i2 = r1.<guide.flclient2: int servers>;
+if i12 >= $i2 goto r16 = null;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+r16 = null;
+$l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+l4 = $l3 + 2500L;
+$r7 = r1.<guide.flclient2: org.zeromq.ZContext ctx>;
+r8 = virtualinvoke $r7.<org.zeromq.ZContext: org.zeromq.ZMQ$Poller createPoller(int)>(1);
+$r9 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int register(org.zeromq.ZMQ$Socket,int)>($r9, 1);
+"->"Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+";
+    "Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+"->"Block 5:
+[preds: 4 ] [succs: 6 4 ]
+$l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$l7 = l4 - $l6;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int poll(long)>($l7);
+$z0 = virtualinvoke r8.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0);
+if $z0 == 0 goto $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+";
+    "Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+"->"Block 12:
+[preds: 4 10 ] [succs: ]
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+virtualinvoke r4.<org.zeromq.ZMsg: void destroy()>();
+return r16;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 4 ]
+$l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$l7 = l4 - $l6;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int poll(long)>($l7);
+$z0 = virtualinvoke r8.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0);
+if $z0 == 0 goto $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 6:
+[preds: 5 ] [succs: 7 9 ]
+$r10 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+r16 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>($r10);
+$z1 = <guide.flclient2: boolean $assertionsDisabled>;
+if $z1 != 0 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 4 ]
+$l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$l7 = l4 - $l6;
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: int poll(long)>($l7);
+$z0 = virtualinvoke r8.<org.zeromq.ZMQ$Poller: boolean pollin(int)>(0);
+if $z0 == 0 goto $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+"->"Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+$r10 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+r16 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>($r10);
+$z1 = <guide.flclient2: boolean $assertionsDisabled>;
+if $z1 != 0 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$i11 = virtualinvoke r16.<org.zeromq.ZMsg: int size()>();
+if $i11 == 3 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 9 ]
+$r10 = r1.<guide.flclient2: org.zeromq.ZMQ$Socket socket>;
+r16 = staticinvoke <org.zeromq.ZMsg: org.zeromq.ZMsg recvMsg(org.zeromq.ZMQ$Socket)>($r10);
+$z1 = <guide.flclient2: boolean $assertionsDisabled>;
+if $z1 != 0 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"->"Block 9:
+[preds: 6 7 ] [succs: 10 11 ]
+virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+r12 = virtualinvoke r16.<org.zeromq.ZMsg: java.lang.String popString()>();
+i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r12);
+$i10 = r1.<guide.flclient2: int sequence>;
+if i9 != $i10 goto virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$i11 = virtualinvoke r16.<org.zeromq.ZMsg: int size()>();
+if $i11 == 3 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"->"Block 8:
+[preds: 7 ] [succs: ]
+$r13 = new java.lang.AssertionError;
+specialinvoke $r13.<java.lang.AssertionError: void <init>()>();
+throw $r13;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 9 ]
+$i11 = virtualinvoke r16.<org.zeromq.ZMsg: int size()>();
+if $i11 == 3 goto virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+"->"Block 9:
+[preds: 6 7 ] [succs: 10 11 ]
+virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+r12 = virtualinvoke r16.<org.zeromq.ZMsg: java.lang.String popString()>();
+i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r12);
+$i10 = r1.<guide.flclient2: int sequence>;
+if i9 != $i10 goto virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+";
+    "Block 9:
+[preds: 6 7 ] [succs: 10 11 ]
+virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+r12 = virtualinvoke r16.<org.zeromq.ZMsg: java.lang.String popString()>();
+i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r12);
+$i10 = r1.<guide.flclient2: int sequence>;
+if i9 != $i10 goto virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+"->"Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>()];
+";
+    "Block 9:
+[preds: 6 7 ] [succs: 10 11 ]
+virtualinvoke r16.<org.zeromq.ZMsg: org.zeromq.ZFrame pop()>();
+r12 = virtualinvoke r16.<org.zeromq.ZMsg: java.lang.String popString()>();
+i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r12);
+$i10 = r1.<guide.flclient2: int sequence>;
+if i9 != $i10 goto virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+"->"Block 11:
+[preds: 9 ] [succs: 4 ]
+virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+goto [?= $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>()];
+";
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>()];
+"->"Block 12:
+[preds: 4 10 ] [succs: ]
+virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+virtualinvoke r4.<org.zeromq.ZMsg: void destroy()>();
+return r16;
+";
+    "Block 11:
+[preds: 9 ] [succs: 4 ]
+virtualinvoke r16.<org.zeromq.ZMsg: void destroy()>();
+goto [?= $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>()];
+"->"Block 4:
+[preds: 3 5 11 ] [succs: 5 12 ]
+$l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+$b14 = $l13 cmp l4;
+if $b14 >= 0 goto virtualinvoke r8.<org.zeromq.ZMQ$Poller: void close()>();
+";
+}

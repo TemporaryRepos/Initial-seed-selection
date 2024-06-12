@@ -1,0 +1,441 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r2 := @parameter0: java.lang.Object[];
+i0 := @parameter1: int;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r0 = new java.io.FileInputStream;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\");
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+r17 = $r0;
+"
+    "Block 4:
+[preds: 3 ] [succs: 9 ]
+goto [?= $r1 = new java.io.BufferedInputStream];
+"
+    "Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+"
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+if i6 >= i0 goto return;
+"
+    "Block 7:
+[preds: 6 ] [succs: 6 ]
+$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6);
+r2[i6] = $r16;
+i6 = i6 + 1;
+goto [?= (branch)];
+"
+    "Block 8:
+[preds: 6 ] [succs: ]
+return;
+"
+    "Block 9:
+[preds: 4 ] [succs: 10 ]
+$r1 = new java.io.BufferedInputStream;
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17);
+r18 = $r1;
+i7 = 0;
+"
+    "Block 10:
+[preds: 9 19 ] [succs: 11 20 ]
+if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+"
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+$r12 = new java.lang.StringBuffer;
+specialinvoke $r12.<java.lang.StringBuffer: void <init>()>();
+r19 = $r12;
+"
+    "Block 12:
+[preds: 11 18 ] [succs: 13 14 ]
+i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>();
+if i3 >= 0 goto c4 = (char) i3;
+"
+    "Block 13:
+[preds: 12 ] [succs: 20 ]
+goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()];
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+c4 = (char) i3;
+if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+"
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$i5 = i7;
+i7 = i7 + 1;
+$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>();
+r2[$i5] = $r13;
+goto [?= (branch)];
+"
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+if $z0 != 0 goto (branch);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4);
+"
+    "Block 18:
+[preds: 16 17 ] [succs: 12 ]
+goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()];
+"
+    "Block 19:
+[preds: 15 ] [succs: 10 ]
+goto [?= (branch)];
+"
+    "Block 20:
+[preds: 10 13 ] [succs: 21 ]
+virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+i8 = 0;
+"
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+if i7 >= i0 goto return;
+"
+    "Block 22:
+[preds: 21 ] [succs: 21 ]
+$i1 = i7;
+i7 = i7 + 1;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+$i2 = i8;
+i8 = i8 + 1;
+$r4 = r2[$i2];
+$r5 = (java.lang.String) $r4;
+$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r8 = r2[i8];
+$r9 = (java.lang.String) $r8;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+r2[$i1] = $r11;
+goto [?= (branch)];
+"
+    "Block 23:
+[preds: 21 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r2 := @parameter0: java.lang.Object[];
+i0 := @parameter1: int;
+"->"Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r0 = new java.io.FileInputStream;
+";
+    "Block 0:
+[preds: ] [succs: 1 5 ]
+r2 := @parameter0: java.lang.Object[];
+i0 := @parameter1: int;
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r0 = new java.io.FileInputStream;
+"->"Block 2:
+[preds: 1 ] [succs: 3 5 ]
+specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\");
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 5 ]
+$r0 = new java.io.FileInputStream;
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\");
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+r17 = $r0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 5 ]
+specialinvoke $r0.<java.io.FileInputStream: void <init>(java.lang.String)>(\"testwords.txt\");
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+r17 = $r0;
+"->"Block 4:
+[preds: 3 ] [succs: 9 ]
+goto [?= $r1 = new java.io.BufferedInputStream];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+r17 = $r0;
+"->"Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+";
+    "Block 4:
+[preds: 3 ] [succs: 9 ]
+goto [?= $r1 = new java.io.BufferedInputStream];
+"->"Block 9:
+[preds: 4 ] [succs: 10 ]
+$r1 = new java.io.BufferedInputStream;
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17);
+r18 = $r1;
+i7 = 0;
+";
+    "Block 5:
+[preds: 0 1 2 3 ] [succs: 6 ]
+$r14 := @caughtexception;
+$r15 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"No word file. Using String.valueOf(i)\");
+i6 = 0;
+"->"Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+if i6 >= i0 goto return;
+";
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+if i6 >= i0 goto return;
+"->"Block 7:
+[preds: 6 ] [succs: 6 ]
+$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6);
+r2[i6] = $r16;
+i6 = i6 + 1;
+goto [?= (branch)];
+";
+    "Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+if i6 >= i0 goto return;
+"->"Block 8:
+[preds: 6 ] [succs: ]
+return;
+";
+    "Block 7:
+[preds: 6 ] [succs: 6 ]
+$r16 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i6);
+r2[i6] = $r16;
+i6 = i6 + 1;
+goto [?= (branch)];
+"->"Block 6:
+[preds: 5 7 ] [succs: 7 8 ]
+if i6 >= i0 goto return;
+";
+    "Block 9:
+[preds: 4 ] [succs: 10 ]
+$r1 = new java.io.BufferedInputStream;
+specialinvoke $r1.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>(r17);
+r18 = $r1;
+i7 = 0;
+"->"Block 10:
+[preds: 9 19 ] [succs: 11 20 ]
+if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+";
+    "Block 10:
+[preds: 9 19 ] [succs: 11 20 ]
+if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+"->"Block 11:
+[preds: 10 ] [succs: 12 ]
+$r12 = new java.lang.StringBuffer;
+specialinvoke $r12.<java.lang.StringBuffer: void <init>()>();
+r19 = $r12;
+";
+    "Block 10:
+[preds: 9 19 ] [succs: 11 20 ]
+if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+"->"Block 20:
+[preds: 10 13 ] [succs: 21 ]
+virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+i8 = 0;
+";
+    "Block 11:
+[preds: 10 ] [succs: 12 ]
+$r12 = new java.lang.StringBuffer;
+specialinvoke $r12.<java.lang.StringBuffer: void <init>()>();
+r19 = $r12;
+"->"Block 12:
+[preds: 11 18 ] [succs: 13 14 ]
+i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>();
+if i3 >= 0 goto c4 = (char) i3;
+";
+    "Block 12:
+[preds: 11 18 ] [succs: 13 14 ]
+i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>();
+if i3 >= 0 goto c4 = (char) i3;
+"->"Block 13:
+[preds: 12 ] [succs: 20 ]
+goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()];
+";
+    "Block 12:
+[preds: 11 18 ] [succs: 13 14 ]
+i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>();
+if i3 >= 0 goto c4 = (char) i3;
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+c4 = (char) i3;
+if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+";
+    "Block 13:
+[preds: 12 ] [succs: 20 ]
+goto [?= virtualinvoke r18.<java.io.BufferedInputStream: void close()>()];
+"->"Block 20:
+[preds: 10 13 ] [succs: 21 ]
+virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+i8 = 0;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+c4 = (char) i3;
+if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+"->"Block 15:
+[preds: 14 ] [succs: 19 ]
+$i5 = i7;
+i7 = i7 + 1;
+$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>();
+r2[$i5] = $r13;
+goto [?= (branch)];
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+c4 = (char) i3;
+if c4 != 10 goto $z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+"->"Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+if $z0 != 0 goto (branch);
+";
+    "Block 15:
+[preds: 14 ] [succs: 19 ]
+$i5 = i7;
+i7 = i7 + 1;
+$r13 = virtualinvoke r19.<java.lang.StringBuffer: java.lang.String toString()>();
+r2[$i5] = $r13;
+goto [?= (branch)];
+"->"Block 19:
+[preds: 15 ] [succs: 10 ]
+goto [?= (branch)];
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+if $z0 != 0 goto (branch);
+"->"Block 17:
+[preds: 16 ] [succs: 18 ]
+virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4);
+";
+    "Block 16:
+[preds: 14 ] [succs: 17 18 ]
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>(c4);
+if $z0 != 0 goto (branch);
+"->"Block 18:
+[preds: 16 17 ] [succs: 12 ]
+goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()];
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 ]
+virtualinvoke r19.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c4);
+"->"Block 18:
+[preds: 16 17 ] [succs: 12 ]
+goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()];
+";
+    "Block 18:
+[preds: 16 17 ] [succs: 12 ]
+goto [?= i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>()];
+"->"Block 12:
+[preds: 11 18 ] [succs: 13 14 ]
+i3 = virtualinvoke r18.<java.io.BufferedInputStream: int read()>();
+if i3 >= 0 goto c4 = (char) i3;
+";
+    "Block 19:
+[preds: 15 ] [succs: 10 ]
+goto [?= (branch)];
+"->"Block 10:
+[preds: 9 19 ] [succs: 11 20 ]
+if i7 >= i0 goto virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+";
+    "Block 20:
+[preds: 10 13 ] [succs: 21 ]
+virtualinvoke r18.<java.io.BufferedInputStream: void close()>();
+i8 = 0;
+"->"Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+if i7 >= i0 goto return;
+";
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+if i7 >= i0 goto return;
+"->"Block 22:
+[preds: 21 ] [succs: 21 ]
+$i1 = i7;
+i7 = i7 + 1;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+$i2 = i8;
+i8 = i8 + 1;
+$r4 = r2[$i2];
+$r5 = (java.lang.String) $r4;
+$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r8 = r2[i8];
+$r9 = (java.lang.String) $r8;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+r2[$i1] = $r11;
+goto [?= (branch)];
+";
+    "Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+if i7 >= i0 goto return;
+"->"Block 23:
+[preds: 21 ] [succs: ]
+return;
+";
+    "Block 22:
+[preds: 21 ] [succs: 21 ]
+$i1 = i7;
+i7 = i7 + 1;
+$r3 = new java.lang.StringBuilder;
+specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+$i2 = i8;
+i8 = i8 + 1;
+$r4 = r2[$i2];
+$r5 = (java.lang.String) $r4;
+$r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\");
+$r8 = r2[i8];
+$r9 = (java.lang.String) $r8;
+$r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+r2[$i1] = $r11;
+goto [?= (branch)];
+"->"Block 21:
+[preds: 20 22 ] [succs: 22 23 ]
+if i7 >= i0 goto return;
+";
+}

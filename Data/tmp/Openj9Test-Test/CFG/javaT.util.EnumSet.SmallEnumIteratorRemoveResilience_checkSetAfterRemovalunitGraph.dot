@@ -1,0 +1,51 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.util.Set"
+    "i1 := @parameter1: int"
+    "r1 := @parameter2: javaT.util.EnumSet.SmallEnumIteratorRemoveResilience$SmallEnum"
+    "$i0 = interfaceinvoke r0.<java.util.Set: int size()>()"
+    "$i2 = i1 - 1"
+    "if $i0 == $i2 goto $z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)"
+    "$r3 = new java.lang.Exception"
+    "$r4 = new java.lang.StringBuilder"
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Test FAILED: Unexpected set size after removal; expected \'\")"
+    "$i3 = i1 - 1"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' but found \'\")"
+    "$i4 = interfaceinvoke r0.<java.util.Set: int size()>()"
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r3.<java.lang.Exception: void <init>(java.lang.String)>($r10)"
+    "throw $r3"
+    "$z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)"
+    "if $z0 == 0 goto return"
+    "$r2 = new java.lang.Exception"
+    "specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"Test FAILED: Element returned from iterator unexpectedly still in set after removal.\")"
+    "throw $r2"
+    "return"
+    "r0 := @parameter0: java.util.Set"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"r1 := @parameter2: javaT.util.EnumSet.SmallEnumIteratorRemoveResilience$SmallEnum";
+    "r1 := @parameter2: javaT.util.EnumSet.SmallEnumIteratorRemoveResilience$SmallEnum"->"$i0 = interfaceinvoke r0.<java.util.Set: int size()>()";
+    "$i0 = interfaceinvoke r0.<java.util.Set: int size()>()"->"$i2 = i1 - 1";
+    "$i2 = i1 - 1"->"if $i0 == $i2 goto $z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)";
+    "if $i0 == $i2 goto $z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)"->"$r3 = new java.lang.Exception";
+    "if $i0 == $i2 goto $z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)"->"$z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)";
+    "$r3 = new java.lang.Exception"->"$r4 = new java.lang.StringBuilder";
+    "$r4 = new java.lang.StringBuilder"->"specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r4.<java.lang.StringBuilder: void <init>()>()"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Test FAILED: Unexpected set size after removal; expected \'\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Test FAILED: Unexpected set size after removal; expected \'\")"->"$i3 = i1 - 1";
+    "$i3 = i1 - 1"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' but found \'\")";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' but found \'\")"->"$i4 = interfaceinvoke r0.<java.util.Set: int size()>()";
+    "$i4 = interfaceinvoke r0.<java.util.Set: int size()>()"->"$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)";
+    "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4)"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r3.<java.lang.Exception: void <init>(java.lang.String)>($r10)";
+    "specialinvoke $r3.<java.lang.Exception: void <init>(java.lang.String)>($r10)"->"throw $r3";
+    "$z0 = interfaceinvoke r0.<java.util.Set: boolean contains(java.lang.Object)>(r1)"->"if $z0 == 0 goto return";
+    "if $z0 == 0 goto return"->"$r2 = new java.lang.Exception";
+    "if $z0 == 0 goto return"->"return";
+    "$r2 = new java.lang.Exception"->"specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"Test FAILED: Element returned from iterator unexpectedly still in set after removal.\")";
+    "specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>(\"Test FAILED: Element returned from iterator unexpectedly still in set after removal.\")"->"throw $r2";
+}

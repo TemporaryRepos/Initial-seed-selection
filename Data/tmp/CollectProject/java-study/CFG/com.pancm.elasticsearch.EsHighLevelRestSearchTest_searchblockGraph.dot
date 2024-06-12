@@ -1,0 +1,642 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+$r0 = new org.elasticsearch.action.search.SearchRequest;
+$r1 = newarray (java.lang.String)[1];
+$r1[0] = \"user\";
+specialinvoke $r0.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r1);
+r2 = $r0;
+$r3 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r3.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r4 = $r3;
+$r5 = new org.elasticsearch.index.query.MatchQueryBuilder;
+specialinvoke $r5.<org.elasticsearch.index.query.MatchQueryBuilder: void <init>(java.lang.String,java.lang.Object)>(\"user\", \"pancm\");
+r6 = $r5;
+$r7 = <org.elasticsearch.common.unit.Fuzziness: org.elasticsearch.common.unit.Fuzziness AUTO>;
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder fuzziness(java.lang.Object)>($r7);
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder prefixLength(int)>(3);
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder maxExpansions(int)>(10);
+$r11 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r11.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r12 = $r11;
+virtualinvoke r12.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r6);
+$r14 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r14.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r12);
+$r18 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r17 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r19 = virtualinvoke $r18.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r2, $r17);
+r20 = virtualinvoke r19.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: long getTotalHits()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: float getMaxScore()>();
+$r21 = staticinvoke <com.pancm.elasticsearch.EsHighLevelRestSearchTest$lambda_search_8__165: java.util.function.Consumer bootstrap$()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r21);
+$r22 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"\n=================\n\");
+$r23 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r23.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r24 = $r23;
+$r25 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+specialinvoke $r25.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: void <init>()>();
+r26 = $r25;
+$r27 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field;
+specialinvoke $r27.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: void <init>(java.lang.String)>(\"title\");
+r28 = $r27;
+virtualinvoke r28.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: org.elasticsearch.search.fetch.subphase.highlight.AbstractHighlighterBuilder highlighterType(java.lang.String)>(\"user\");
+virtualinvoke r26.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder field(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field)>(r28);
+$r31 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field;
+specialinvoke $r31.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: void <init>(java.lang.String)>(\"user\");
+r32 = $r31;
+virtualinvoke r26.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder field(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field)>(r32);
+virtualinvoke r24.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder highlighter(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder)>(r26);
+$r35 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r35.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r36 = $r35;
+virtualinvoke r36.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r24);
+$r39 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r38 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r40 = virtualinvoke $r39.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r36, $r38);
+$r41 = virtualinvoke r40.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>();
+$r42 = staticinvoke <com.pancm.elasticsearch.EsHighLevelRestSearchTest$lambda_search_9__166: java.util.function.Consumer bootstrap$()>();
+virtualinvoke $r41.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r42);
+$r43 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>(\"\n=================\n\");
+$r44 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r44.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r45 = $r44;
+$r46 = staticinvoke <org.elasticsearch.search.aggregations.AggregationBuilders: org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder terms(java.lang.String)>(\"user_\");
+$r47 = virtualinvoke $r46.<org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder: org.elasticsearch.search.aggregations.support.ValuesSourceAggregationBuilder field(java.lang.String)>(\"user\");
+r48 = (org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder) $r47;
+$r49 = staticinvoke <org.elasticsearch.search.aggregations.AggregationBuilders: org.elasticsearch.search.aggregations.metrics.avg.AvgAggregationBuilder avg(java.lang.String)>(\"average_age\");
+$r50 = virtualinvoke $r49.<org.elasticsearch.search.aggregations.metrics.avg.AvgAggregationBuilder: org.elasticsearch.search.aggregations.support.ValuesSourceAggregationBuilder field(java.lang.String)>(\"age\");
+virtualinvoke r48.<org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder: org.elasticsearch.search.aggregations.AbstractAggregationBuilder subAggregation(org.elasticsearch.search.aggregations.AggregationBuilder)>($r50);
+virtualinvoke r45.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder aggregation(org.elasticsearch.search.aggregations.AggregationBuilder)>(r48);
+$r53 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r53.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r54 = $r53;
+virtualinvoke r54.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r45);
+$r57 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r56 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r58 = virtualinvoke $r57.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r54, $r56);
+r59 = virtualinvoke r58.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.aggregations.Aggregations getAggregations()>();
+$r60 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r60.<java.io.PrintStream: void println(java.lang.String)>(\"\u805a\u5408\u67e5\u8be2\");
+r118 = virtualinvoke r59.<org.elasticsearch.search.aggregations.Aggregations: java.util.Iterator iterator()>();
+"
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r84 = interfaceinvoke r118.<java.util.Iterator: java.lang.Object next()>();
+r119 = (org.elasticsearch.search.aggregations.Aggregation) $r84;
+r120 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getType()>();
+r121 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getName()>();
+$r85 = virtualinvoke r59.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(r121);
+r122 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) $r85;
+$r86 = interfaceinvoke r122.<org.elasticsearch.search.aggregations.bucket.terms.Terms: java.util.List getBuckets()>();
+r123 = interfaceinvoke $r86.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+"
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r93 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>();
+r124 = (org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket) $r93;
+$r95 = <java.lang.System: java.io.PrintStream out>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$l1 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98);
+$r100 = <java.lang.System: java.io.PrintStream out>;
+$r99 = new java.lang.StringBuilder;
+specialinvoke $r99.<java.lang.StringBuilder: void <init>()>();
+$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"key:\");
+$r102 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Object getKey()>();
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r102);
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r100.<java.io.PrintStream: void println(java.lang.String)>($r104);
+$r106 = <java.lang.System: java.io.PrintStream out>;
+$r105 = new java.lang.StringBuilder;
+specialinvoke $r105.<java.lang.StringBuilder: void <init>()>();
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"num:\");
+$r108 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Number getKeyAsNumber()>();
+$r109 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r108);
+$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r106.<java.io.PrintStream: void println(java.lang.String)>($r110);
+$r111 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: org.elasticsearch.search.aggregations.Aggregations getAggregations()>();
+$r112 = virtualinvoke $r111.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(\"average_age\");
+r125 = (org.elasticsearch.search.aggregations.metrics.avg.Avg) $r112;
+$r114 = <java.lang.System: java.io.PrintStream out>;
+$r113 = new java.lang.StringBuilder;
+specialinvoke $r113.<java.lang.StringBuilder: void <init>()>();
+$r115 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"value:\");
+$d0 = interfaceinvoke r125.<org.elasticsearch.search.aggregations.metrics.avg.Avg: double getValue()>();
+$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r117);
+goto [?= $z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+if $z4 == 0 goto (branch);
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r87 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) r119;
+r126 = interfaceinvoke $r87.<org.elasticsearch.search.aggregations.bucket.terms.Terms: org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket getBucketByKey(java.lang.String)>(\"average_age\");
+l2 = interfaceinvoke r126.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r89 = <java.lang.System: java.io.PrintStream out>;
+$r88 = new java.lang.StringBuilder;
+specialinvoke $r88.<java.lang.StringBuilder: void <init>()>();
+$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r89.<java.io.PrintStream: void println(java.lang.String)>($r92);
+"
+    "Block 7:
+[preds: 5 6 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 8:
+[preds: 1 ] [succs: 9 ]
+$r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r61.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r127 = $r61;
+$r62 = staticinvoke <org.elasticsearch.search.suggest.SuggestBuilders: org.elasticsearch.search.suggest.term.TermSuggestionBuilder termSuggestion(java.lang.String)>(\"user\");
+r128 = virtualinvoke $r62.<org.elasticsearch.search.suggest.term.TermSuggestionBuilder: org.elasticsearch.search.suggest.SuggestionBuilder text(java.lang.String)>(\"pancm\");
+$r63 = new org.elasticsearch.search.suggest.SuggestBuilder;
+specialinvoke $r63.<org.elasticsearch.search.suggest.SuggestBuilder: void <init>()>();
+r129 = $r63;
+virtualinvoke r129.<org.elasticsearch.search.suggest.SuggestBuilder: org.elasticsearch.search.suggest.SuggestBuilder addSuggestion(java.lang.String,org.elasticsearch.search.suggest.SuggestionBuilder)>(\"suggest_user\", r128);
+virtualinvoke r127.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder suggest(org.elasticsearch.search.suggest.SuggestBuilder)>(r129);
+$r66 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r66.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r130 = $r66;
+virtualinvoke r130.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r127);
+$r69 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r68 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r131 = virtualinvoke $r69.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r130, $r68);
+r132 = virtualinvoke r131.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.suggest.Suggest getSuggest()>();
+$r70 = virtualinvoke r132.<org.elasticsearch.search.suggest.Suggest: org.elasticsearch.search.suggest.Suggest$Suggestion getSuggestion(java.lang.String)>(\"suggest_user\");
+r133 = (org.elasticsearch.search.suggest.term.TermSuggestion) $r70;
+$r71 = virtualinvoke r133.<org.elasticsearch.search.suggest.term.TermSuggestion: java.util.List getEntries()>();
+r134 = interfaceinvoke $r71.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 9:
+[preds: 8 13 ] [succs: 10 14 ]
+$z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto return;
+"
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r72 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>();
+r73 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry) $r72;
+r74 = virtualinvoke r73.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry: java.util.Iterator iterator()>();
+"
+    "Block 11:
+[preds: 10 12 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"
+    "Block 12:
+[preds: 11 ] [succs: 11 ]
+$r75 = interfaceinvoke r74.<java.util.Iterator: java.lang.Object next()>();
+r76 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option) $r75;
+$r77 = virtualinvoke r76.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option: org.elasticsearch.common.text.Text getText()>();
+r78 = virtualinvoke $r77.<org.elasticsearch.common.text.Text: java.lang.String string()>();
+$r80 = <java.lang.System: java.io.PrintStream out>;
+$r79 = new java.lang.StringBuilder;
+specialinvoke $r79.<java.lang.StringBuilder: void <init>()>();
+$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u8fd4\u56de\u7ed3\u679c:\");
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r83);
+goto [?= $z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 13:
+[preds: 11 ] [succs: 9 ]
+goto [?= $z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 14:
+[preds: 9 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+$r0 = new org.elasticsearch.action.search.SearchRequest;
+$r1 = newarray (java.lang.String)[1];
+$r1[0] = \"user\";
+specialinvoke $r0.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r1);
+r2 = $r0;
+$r3 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r3.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r4 = $r3;
+$r5 = new org.elasticsearch.index.query.MatchQueryBuilder;
+specialinvoke $r5.<org.elasticsearch.index.query.MatchQueryBuilder: void <init>(java.lang.String,java.lang.Object)>(\"user\", \"pancm\");
+r6 = $r5;
+$r7 = <org.elasticsearch.common.unit.Fuzziness: org.elasticsearch.common.unit.Fuzziness AUTO>;
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder fuzziness(java.lang.Object)>($r7);
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder prefixLength(int)>(3);
+virtualinvoke r6.<org.elasticsearch.index.query.MatchQueryBuilder: org.elasticsearch.index.query.MatchQueryBuilder maxExpansions(int)>(10);
+$r11 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r11.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r12 = $r11;
+virtualinvoke r12.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r6);
+$r14 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r14.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r15 = $r14;
+virtualinvoke r15.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r12);
+$r18 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r17 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r19 = virtualinvoke $r18.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r2, $r17);
+r20 = virtualinvoke r19.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: long getTotalHits()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: float getMaxScore()>();
+$r21 = staticinvoke <com.pancm.elasticsearch.EsHighLevelRestSearchTest$lambda_search_8__165: java.util.function.Consumer bootstrap$()>();
+virtualinvoke r20.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r21);
+$r22 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>(\"\n=================\n\");
+$r23 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r23.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r24 = $r23;
+$r25 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+specialinvoke $r25.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: void <init>()>();
+r26 = $r25;
+$r27 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field;
+specialinvoke $r27.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: void <init>(java.lang.String)>(\"title\");
+r28 = $r27;
+virtualinvoke r28.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: org.elasticsearch.search.fetch.subphase.highlight.AbstractHighlighterBuilder highlighterType(java.lang.String)>(\"user\");
+virtualinvoke r26.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder field(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field)>(r28);
+$r31 = new org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field;
+specialinvoke $r31.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field: void <init>(java.lang.String)>(\"user\");
+r32 = $r31;
+virtualinvoke r26.<org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder: org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder field(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder$Field)>(r32);
+virtualinvoke r24.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder highlighter(org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder)>(r26);
+$r35 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r35.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r36 = $r35;
+virtualinvoke r36.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r24);
+$r39 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r38 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r40 = virtualinvoke $r39.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r36, $r38);
+$r41 = virtualinvoke r40.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>();
+$r42 = staticinvoke <com.pancm.elasticsearch.EsHighLevelRestSearchTest$lambda_search_9__166: java.util.function.Consumer bootstrap$()>();
+virtualinvoke $r41.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r42);
+$r43 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>(\"\n=================\n\");
+$r44 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r44.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r45 = $r44;
+$r46 = staticinvoke <org.elasticsearch.search.aggregations.AggregationBuilders: org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder terms(java.lang.String)>(\"user_\");
+$r47 = virtualinvoke $r46.<org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder: org.elasticsearch.search.aggregations.support.ValuesSourceAggregationBuilder field(java.lang.String)>(\"user\");
+r48 = (org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder) $r47;
+$r49 = staticinvoke <org.elasticsearch.search.aggregations.AggregationBuilders: org.elasticsearch.search.aggregations.metrics.avg.AvgAggregationBuilder avg(java.lang.String)>(\"average_age\");
+$r50 = virtualinvoke $r49.<org.elasticsearch.search.aggregations.metrics.avg.AvgAggregationBuilder: org.elasticsearch.search.aggregations.support.ValuesSourceAggregationBuilder field(java.lang.String)>(\"age\");
+virtualinvoke r48.<org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder: org.elasticsearch.search.aggregations.AbstractAggregationBuilder subAggregation(org.elasticsearch.search.aggregations.AggregationBuilder)>($r50);
+virtualinvoke r45.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder aggregation(org.elasticsearch.search.aggregations.AggregationBuilder)>(r48);
+$r53 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r53.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r54 = $r53;
+virtualinvoke r54.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r45);
+$r57 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r56 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r58 = virtualinvoke $r57.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r54, $r56);
+r59 = virtualinvoke r58.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.aggregations.Aggregations getAggregations()>();
+$r60 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r60.<java.io.PrintStream: void println(java.lang.String)>(\"\u805a\u5408\u67e5\u8be2\");
+r118 = virtualinvoke r59.<org.elasticsearch.search.aggregations.Aggregations: java.util.Iterator iterator()>();
+"->"Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+";
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+$r84 = interfaceinvoke r118.<java.util.Iterator: java.lang.Object next()>();
+r119 = (org.elasticsearch.search.aggregations.Aggregation) $r84;
+r120 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getType()>();
+r121 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getName()>();
+$r85 = virtualinvoke r59.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(r121);
+r122 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) $r85;
+$r86 = interfaceinvoke r122.<org.elasticsearch.search.aggregations.bucket.terms.Terms: java.util.List getBuckets()>();
+r123 = interfaceinvoke $r86.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+"->"Block 8:
+[preds: 1 ] [succs: 9 ]
+$r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r61.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r127 = $r61;
+$r62 = staticinvoke <org.elasticsearch.search.suggest.SuggestBuilders: org.elasticsearch.search.suggest.term.TermSuggestionBuilder termSuggestion(java.lang.String)>(\"user\");
+r128 = virtualinvoke $r62.<org.elasticsearch.search.suggest.term.TermSuggestionBuilder: org.elasticsearch.search.suggest.SuggestionBuilder text(java.lang.String)>(\"pancm\");
+$r63 = new org.elasticsearch.search.suggest.SuggestBuilder;
+specialinvoke $r63.<org.elasticsearch.search.suggest.SuggestBuilder: void <init>()>();
+r129 = $r63;
+virtualinvoke r129.<org.elasticsearch.search.suggest.SuggestBuilder: org.elasticsearch.search.suggest.SuggestBuilder addSuggestion(java.lang.String,org.elasticsearch.search.suggest.SuggestionBuilder)>(\"suggest_user\", r128);
+virtualinvoke r127.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder suggest(org.elasticsearch.search.suggest.SuggestBuilder)>(r129);
+$r66 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r66.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r130 = $r66;
+virtualinvoke r130.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r127);
+$r69 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r68 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r131 = virtualinvoke $r69.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r130, $r68);
+r132 = virtualinvoke r131.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.suggest.Suggest getSuggest()>();
+$r70 = virtualinvoke r132.<org.elasticsearch.search.suggest.Suggest: org.elasticsearch.search.suggest.Suggest$Suggestion getSuggestion(java.lang.String)>(\"suggest_user\");
+r133 = (org.elasticsearch.search.suggest.term.TermSuggestion) $r70;
+$r71 = virtualinvoke r133.<org.elasticsearch.search.suggest.term.TermSuggestion: java.util.List getEntries()>();
+r134 = interfaceinvoke $r71.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+$r84 = interfaceinvoke r118.<java.util.Iterator: java.lang.Object next()>();
+r119 = (org.elasticsearch.search.aggregations.Aggregation) $r84;
+r120 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getType()>();
+r121 = interfaceinvoke r119.<org.elasticsearch.search.aggregations.Aggregation: java.lang.String getName()>();
+$r85 = virtualinvoke r59.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(r121);
+r122 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) $r85;
+$r86 = interfaceinvoke r122.<org.elasticsearch.search.aggregations.bucket.terms.Terms: java.util.List getBuckets()>();
+r123 = interfaceinvoke $r86.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+"->"Block 4:
+[preds: 3 ] [succs: 3 ]
+$r93 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>();
+r124 = (org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket) $r93;
+$r95 = <java.lang.System: java.io.PrintStream out>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$l1 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98);
+$r100 = <java.lang.System: java.io.PrintStream out>;
+$r99 = new java.lang.StringBuilder;
+specialinvoke $r99.<java.lang.StringBuilder: void <init>()>();
+$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"key:\");
+$r102 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Object getKey()>();
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r102);
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r100.<java.io.PrintStream: void println(java.lang.String)>($r104);
+$r106 = <java.lang.System: java.io.PrintStream out>;
+$r105 = new java.lang.StringBuilder;
+specialinvoke $r105.<java.lang.StringBuilder: void <init>()>();
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"num:\");
+$r108 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Number getKeyAsNumber()>();
+$r109 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r108);
+$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r106.<java.io.PrintStream: void println(java.lang.String)>($r110);
+$r111 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: org.elasticsearch.search.aggregations.Aggregations getAggregations()>();
+$r112 = virtualinvoke $r111.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(\"average_age\");
+r125 = (org.elasticsearch.search.aggregations.metrics.avg.Avg) $r112;
+$r114 = <java.lang.System: java.io.PrintStream out>;
+$r113 = new java.lang.StringBuilder;
+specialinvoke $r113.<java.lang.StringBuilder: void <init>()>();
+$r115 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"value:\");
+$d0 = interfaceinvoke r125.<org.elasticsearch.search.aggregations.metrics.avg.Avg: double getValue()>();
+$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r117);
+goto [?= $z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+"->"Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+if $z4 == 0 goto (branch);
+";
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+$r93 = interfaceinvoke r123.<java.util.Iterator: java.lang.Object next()>();
+r124 = (org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket) $r93;
+$r95 = <java.lang.System: java.io.PrintStream out>;
+$r94 = new java.lang.StringBuilder;
+specialinvoke $r94.<java.lang.StringBuilder: void <init>()>();
+$r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$l1 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+$r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r95.<java.io.PrintStream: void println(java.lang.String)>($r98);
+$r100 = <java.lang.System: java.io.PrintStream out>;
+$r99 = new java.lang.StringBuilder;
+specialinvoke $r99.<java.lang.StringBuilder: void <init>()>();
+$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"key:\");
+$r102 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Object getKey()>();
+$r103 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r102);
+$r104 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r100.<java.io.PrintStream: void println(java.lang.String)>($r104);
+$r106 = <java.lang.System: java.io.PrintStream out>;
+$r105 = new java.lang.StringBuilder;
+specialinvoke $r105.<java.lang.StringBuilder: void <init>()>();
+$r107 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"num:\");
+$r108 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: java.lang.Number getKeyAsNumber()>();
+$r109 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r108);
+$r110 = virtualinvoke $r109.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r106.<java.io.PrintStream: void println(java.lang.String)>($r110);
+$r111 = interfaceinvoke r124.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: org.elasticsearch.search.aggregations.Aggregations getAggregations()>();
+$r112 = virtualinvoke $r111.<org.elasticsearch.search.aggregations.Aggregations: org.elasticsearch.search.aggregations.Aggregation get(java.lang.String)>(\"average_age\");
+r125 = (org.elasticsearch.search.aggregations.metrics.avg.Avg) $r112;
+$r114 = <java.lang.System: java.io.PrintStream out>;
+$r113 = new java.lang.StringBuilder;
+specialinvoke $r113.<java.lang.StringBuilder: void <init>()>();
+$r115 = virtualinvoke $r113.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"value:\");
+$d0 = interfaceinvoke r125.<org.elasticsearch.search.aggregations.metrics.avg.Avg: double getValue()>();
+$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>($r117);
+goto [?= $z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$z3 = interfaceinvoke r123.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto $z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+if $z4 == 0 goto (branch);
+"->"Block 6:
+[preds: 5 ] [succs: 7 ]
+$r87 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) r119;
+r126 = interfaceinvoke $r87.<org.elasticsearch.search.aggregations.bucket.terms.Terms: org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket getBucketByKey(java.lang.String)>(\"average_age\");
+l2 = interfaceinvoke r126.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r89 = <java.lang.System: java.io.PrintStream out>;
+$r88 = new java.lang.StringBuilder;
+specialinvoke $r88.<java.lang.StringBuilder: void <init>()>();
+$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r89.<java.io.PrintStream: void println(java.lang.String)>($r92);
+";
+    "Block 5:
+[preds: 3 ] [succs: 6 7 ]
+$z4 = virtualinvoke r120.<java.lang.String: boolean equals(java.lang.Object)>(\"terms\");
+if $z4 == 0 goto (branch);
+"->"Block 7:
+[preds: 5 6 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 ]
+$r87 = (org.elasticsearch.search.aggregations.bucket.terms.Terms) r119;
+r126 = interfaceinvoke $r87.<org.elasticsearch.search.aggregations.bucket.terms.Terms: org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket getBucketByKey(java.lang.String)>(\"average_age\");
+l2 = interfaceinvoke r126.<org.elasticsearch.search.aggregations.bucket.terms.Terms$Bucket: long getDocCount()>();
+$r89 = <java.lang.System: java.io.PrintStream out>;
+$r88 = new java.lang.StringBuilder;
+specialinvoke $r88.<java.lang.StringBuilder: void <init>()>();
+$r90 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u6761\u6570:\");
+$r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+$r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r89.<java.io.PrintStream: void println(java.lang.String)>($r92);
+"->"Block 7:
+[preds: 5 6 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 7:
+[preds: 5 6 ] [succs: 1 ]
+goto [?= $z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 7 ] [succs: 2 8 ]
+$z0 = interfaceinvoke r118.<java.util.Iterator: boolean hasNext()>();
+if $z0 == 0 goto $r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+";
+    "Block 8:
+[preds: 1 ] [succs: 9 ]
+$r61 = new org.elasticsearch.search.builder.SearchSourceBuilder;
+specialinvoke $r61.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>();
+r127 = $r61;
+$r62 = staticinvoke <org.elasticsearch.search.suggest.SuggestBuilders: org.elasticsearch.search.suggest.term.TermSuggestionBuilder termSuggestion(java.lang.String)>(\"user\");
+r128 = virtualinvoke $r62.<org.elasticsearch.search.suggest.term.TermSuggestionBuilder: org.elasticsearch.search.suggest.SuggestionBuilder text(java.lang.String)>(\"pancm\");
+$r63 = new org.elasticsearch.search.suggest.SuggestBuilder;
+specialinvoke $r63.<org.elasticsearch.search.suggest.SuggestBuilder: void <init>()>();
+r129 = $r63;
+virtualinvoke r129.<org.elasticsearch.search.suggest.SuggestBuilder: org.elasticsearch.search.suggest.SuggestBuilder addSuggestion(java.lang.String,org.elasticsearch.search.suggest.SuggestionBuilder)>(\"suggest_user\", r128);
+virtualinvoke r127.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder suggest(org.elasticsearch.search.suggest.SuggestBuilder)>(r129);
+$r66 = new org.elasticsearch.action.search.SearchRequest;
+specialinvoke $r66.<org.elasticsearch.action.search.SearchRequest: void <init>()>();
+r130 = $r66;
+virtualinvoke r130.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r127);
+$r69 = <com.pancm.elasticsearch.EsHighLevelRestSearchTest: org.elasticsearch.client.RestHighLevelClient client>;
+$r68 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>;
+r131 = virtualinvoke $r69.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r130, $r68);
+r132 = virtualinvoke r131.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.suggest.Suggest getSuggest()>();
+$r70 = virtualinvoke r132.<org.elasticsearch.search.suggest.Suggest: org.elasticsearch.search.suggest.Suggest$Suggestion getSuggestion(java.lang.String)>(\"suggest_user\");
+r133 = (org.elasticsearch.search.suggest.term.TermSuggestion) $r70;
+$r71 = virtualinvoke r133.<org.elasticsearch.search.suggest.term.TermSuggestion: java.util.List getEntries()>();
+r134 = interfaceinvoke $r71.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 9:
+[preds: 8 13 ] [succs: 10 14 ]
+$z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto return;
+";
+    "Block 9:
+[preds: 8 13 ] [succs: 10 14 ]
+$z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto return;
+"->"Block 10:
+[preds: 9 ] [succs: 11 ]
+$r72 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>();
+r73 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry) $r72;
+r74 = virtualinvoke r73.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry: java.util.Iterator iterator()>();
+";
+    "Block 9:
+[preds: 8 13 ] [succs: 10 14 ]
+$z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto return;
+"->"Block 14:
+[preds: 9 ] [succs: ]
+return;
+";
+    "Block 10:
+[preds: 9 ] [succs: 11 ]
+$r72 = interfaceinvoke r134.<java.util.Iterator: java.lang.Object next()>();
+r73 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry) $r72;
+r74 = virtualinvoke r73.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry: java.util.Iterator iterator()>();
+"->"Block 11:
+[preds: 10 12 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 11:
+[preds: 10 12 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 12:
+[preds: 11 ] [succs: 11 ]
+$r75 = interfaceinvoke r74.<java.util.Iterator: java.lang.Object next()>();
+r76 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option) $r75;
+$r77 = virtualinvoke r76.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option: org.elasticsearch.common.text.Text getText()>();
+r78 = virtualinvoke $r77.<org.elasticsearch.common.text.Text: java.lang.String string()>();
+$r80 = <java.lang.System: java.io.PrintStream out>;
+$r79 = new java.lang.StringBuilder;
+specialinvoke $r79.<java.lang.StringBuilder: void <init>()>();
+$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u8fd4\u56de\u7ed3\u679c:\");
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r83);
+goto [?= $z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 11:
+[preds: 10 12 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+"->"Block 13:
+[preds: 11 ] [succs: 9 ]
+goto [?= $z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 12:
+[preds: 11 ] [succs: 11 ]
+$r75 = interfaceinvoke r74.<java.util.Iterator: java.lang.Object next()>();
+r76 = (org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option) $r75;
+$r77 = virtualinvoke r76.<org.elasticsearch.search.suggest.term.TermSuggestion$Entry$Option: org.elasticsearch.common.text.Text getText()>();
+r78 = virtualinvoke $r77.<org.elasticsearch.common.text.Text: java.lang.String string()>();
+$r80 = <java.lang.System: java.io.PrintStream out>;
+$r79 = new java.lang.StringBuilder;
+specialinvoke $r79.<java.lang.StringBuilder: void <init>()>();
+$r81 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\u8fd4\u56de\u7ed3\u679c:\");
+$r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>($r83);
+goto [?= $z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 11:
+[preds: 10 12 ] [succs: 12 13 ]
+$z2 = interfaceinvoke r74.<java.util.Iterator: boolean hasNext()>();
+if $z2 == 0 goto (branch);
+";
+    "Block 13:
+[preds: 11 ] [succs: 9 ]
+goto [?= $z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 9:
+[preds: 8 13 ] [succs: 10 14 ]
+$z1 = interfaceinvoke r134.<java.util.Iterator: boolean hasNext()>();
+if $z1 == 0 goto return;
+";
+}

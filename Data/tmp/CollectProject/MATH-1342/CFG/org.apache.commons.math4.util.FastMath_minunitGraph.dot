@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "d0 := @parameter0: double"
+    "d1 := @parameter1: double"
+    "$b0 = d0 cmpl d1"
+    "if $b0 <= 0 goto $b1 = d0 cmpg d1"
+    "return d1"
+    "$b1 = d0 cmpg d1"
+    "if $b1 >= 0 goto $b2 = d0 cmpl d1"
+    "return d0"
+    "$b2 = d0 cmpl d1"
+    "if $b2 == 0 goto l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)"
+    "return #NaN"
+    "l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)"
+    "$b4 = l3 cmp -9223372036854775808L"
+    "if $b4 != 0 goto return d1"
+    "d0 := @parameter0: double"->"d1 := @parameter1: double";
+    "d1 := @parameter1: double"->"$b0 = d0 cmpl d1";
+    "$b0 = d0 cmpl d1"->"if $b0 <= 0 goto $b1 = d0 cmpg d1";
+    "if $b0 <= 0 goto $b1 = d0 cmpg d1"->"return d1";
+    "if $b0 <= 0 goto $b1 = d0 cmpg d1"->"$b1 = d0 cmpg d1";
+    "$b1 = d0 cmpg d1"->"if $b1 >= 0 goto $b2 = d0 cmpl d1";
+    "if $b1 >= 0 goto $b2 = d0 cmpl d1"->"return d0";
+    "if $b1 >= 0 goto $b2 = d0 cmpl d1"->"$b2 = d0 cmpl d1";
+    "$b2 = d0 cmpl d1"->"if $b2 == 0 goto l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)";
+    "if $b2 == 0 goto l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)"->"return #NaN";
+    "if $b2 == 0 goto l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)"->"l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)";
+    "l3 = staticinvoke <java.lang.Double: long doubleToRawLongBits(double)>(d0)"->"$b4 = l3 cmp -9223372036854775808L";
+    "$b4 = l3 cmp -9223372036854775808L"->"if $b4 != 0 goto return d1";
+    "if $b4 != 0 goto return d1"->"return d0";
+    "if $b4 != 0 goto return d1"->"return d1";
+}

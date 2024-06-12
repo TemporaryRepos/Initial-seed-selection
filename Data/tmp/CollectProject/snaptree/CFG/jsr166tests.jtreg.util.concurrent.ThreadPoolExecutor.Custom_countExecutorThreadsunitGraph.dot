@@ -1,0 +1,40 @@
+digraph "unitGraph" {
+    "$i0 = staticinvoke <java.lang.Thread: int activeCount()>()"
+    "$i1 = $i0 + 100"
+    "r0 = newarray (java.lang.Thread)[$i1]"
+    "staticinvoke <java.lang.Thread: int enumerate(java.lang.Thread[])>(r0)"
+    "i4 = 0"
+    "r1 = r0"
+    "i3 = lengthof r1"
+    "i5 = 0"
+    "if i5 >= i3 goto return i4"
+    "r2 = r1[i5]"
+    "if r2 == null goto i5 = i5 + 1"
+    "$r3 = virtualinvoke r2.<java.lang.Thread: java.lang.String getName()>()"
+    "$z0 = virtualinvoke $r3.<java.lang.String: boolean matches(java.lang.String)>(\"pool-[0-9]+-thread-[0-9]+\")"
+    "if $z0 == 0 goto i5 = i5 + 1"
+    "i4 = i4 + 1"
+    "i5 = i5 + 1"
+    "goto [?= (branch)]"
+    "return i4"
+    "$i0 = staticinvoke <java.lang.Thread: int activeCount()>()"->"$i1 = $i0 + 100";
+    "$i1 = $i0 + 100"->"r0 = newarray (java.lang.Thread)[$i1]";
+    "r0 = newarray (java.lang.Thread)[$i1]"->"staticinvoke <java.lang.Thread: int enumerate(java.lang.Thread[])>(r0)";
+    "staticinvoke <java.lang.Thread: int enumerate(java.lang.Thread[])>(r0)"->"i4 = 0";
+    "i4 = 0"->"r1 = r0";
+    "r1 = r0"->"i3 = lengthof r1";
+    "i3 = lengthof r1"->"i5 = 0";
+    "i5 = 0"->"if i5 >= i3 goto return i4";
+    "if i5 >= i3 goto return i4"->"r2 = r1[i5]";
+    "if i5 >= i3 goto return i4"->"return i4";
+    "r2 = r1[i5]"->"if r2 == null goto i5 = i5 + 1";
+    "if r2 == null goto i5 = i5 + 1"->"$r3 = virtualinvoke r2.<java.lang.Thread: java.lang.String getName()>()";
+    "if r2 == null goto i5 = i5 + 1"->"i5 = i5 + 1";
+    "$r3 = virtualinvoke r2.<java.lang.Thread: java.lang.String getName()>()"->"$z0 = virtualinvoke $r3.<java.lang.String: boolean matches(java.lang.String)>(\"pool-[0-9]+-thread-[0-9]+\")";
+    "$z0 = virtualinvoke $r3.<java.lang.String: boolean matches(java.lang.String)>(\"pool-[0-9]+-thread-[0-9]+\")"->"if $z0 == 0 goto i5 = i5 + 1";
+    "if $z0 == 0 goto i5 = i5 + 1"->"i4 = i4 + 1";
+    "if $z0 == 0 goto i5 = i5 + 1"->"i5 = i5 + 1";
+    "i4 = i4 + 1"->"i5 = i5 + 1";
+    "i5 = i5 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i5 >= i3 goto return i4";
+}

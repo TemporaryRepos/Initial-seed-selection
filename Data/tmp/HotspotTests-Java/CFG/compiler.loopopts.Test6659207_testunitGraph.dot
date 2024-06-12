@@ -1,0 +1,32 @@
+digraph "unitGraph" {
+    "i3 := @parameter0: int"
+    "i4 = 0"
+    "i5 = staticinvoke <compiler.loopopts.Test6659207: int index(int)>(i3)"
+    "if i5 < 0 goto (branch)"
+    "$r1 = <compiler.loopopts.Test6659207: int[] array>"
+    "$i2 = $r1[i5]"
+    "if $i2 == 0 goto (branch)"
+    "i4 = i4 + 1"
+    "if i5 == -1 goto return i4"
+    "$r0 = <compiler.loopopts.Test6659207: int[] array>"
+    "$i0 = $r0[i5]"
+    "$i1 = $i0 + 1"
+    "$r0[i5] = $i1"
+    "return i4"
+    "i3 := @parameter0: int"->"i4 = 0";
+    "i4 = 0"->"i5 = staticinvoke <compiler.loopopts.Test6659207: int index(int)>(i3)";
+    "i5 = staticinvoke <compiler.loopopts.Test6659207: int index(int)>(i3)"->"if i5 < 0 goto (branch)";
+    "if i5 < 0 goto (branch)"->"$r1 = <compiler.loopopts.Test6659207: int[] array>";
+    "if i5 < 0 goto (branch)"->"if i5 == -1 goto return i4";
+    "$r1 = <compiler.loopopts.Test6659207: int[] array>"->"$i2 = $r1[i5]";
+    "$i2 = $r1[i5]"->"if $i2 == 0 goto (branch)";
+    "if $i2 == 0 goto (branch)"->"i4 = i4 + 1";
+    "if $i2 == 0 goto (branch)"->"if i5 == -1 goto return i4";
+    "i4 = i4 + 1"->"if i5 == -1 goto return i4";
+    "if i5 == -1 goto return i4"->"$r0 = <compiler.loopopts.Test6659207: int[] array>";
+    "if i5 == -1 goto return i4"->"return i4";
+    "$r0 = <compiler.loopopts.Test6659207: int[] array>"->"$i0 = $r0[i5]";
+    "$i0 = $r0[i5]"->"$i1 = $i0 + 1";
+    "$i1 = $i0 + 1"->"$r0[i5] = $i1";
+    "$r0[i5] = $i1"->"return i4";
+}

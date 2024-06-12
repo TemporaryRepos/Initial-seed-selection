@@ -1,0 +1,183 @@
+digraph "unitGraph" {
+    "r6 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler"
+    "r1 := @parameter0: java.lang.String"
+    "$r0 = new java.util.StringTokenizer"
+    "specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r1, \" \t\")"
+    "r2 = $r0"
+    "r3 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(\"Leap\")"
+    "if $z0 == 0 goto $r4 = new java.lang.IllegalArgumentException"
+    "$i0 = virtualinvoke r2.<java.util.StringTokenizer: int countTokens()>()"
+    "if $i0 >= 6 goto $r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$r41 = new java.lang.StringBuilder"
+    "specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()"
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid leap second line in file: \")"
+    "$r43 = r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.io.File leapSecondsFile>"
+    "$r44 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r43)"
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r47)"
+    "$r48 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r48.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid leap second line\")"
+    "throw $r48"
+    "$r4 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"
+    "throw $r4"
+    "$r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5)"
+    "$r7 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "r8 = specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.Month parseMonth(java.lang.String)>($r7)"
+    "$r9 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9)"
+    "r10 = staticinvoke <org.threeten.bp.LocalDate: org.threeten.bp.LocalDate of(int,org.threeten.bp.Month,int)>(i1, r8, i2)"
+    "r11 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "z6 = 0"
+    "r12 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"+\")"
+    "if $z1 == 0 goto $z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")"
+    "$r35 = \"23:59:60\""
+    "$z5 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>(r11)"
+    "if $z5 != 0 goto b3 = 1"
+    "$r36 = new java.lang.IllegalArgumentException"
+    "$r37 = new java.lang.StringBuilder"
+    "specialinvoke $r37.<java.lang.StringBuilder: void <init>()>()"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be inserted at 23:59:60 - Date:\")"
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r36.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r40)"
+    "throw $r36"
+    "b3 = 1"
+    "goto [?= r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()]"
+    "$z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")"
+    "if $z2 == 0 goto $r13 = new java.lang.IllegalArgumentException"
+    "$r20 = \"23:59:59\""
+    "$z3 = virtualinvoke $r20.<java.lang.String: boolean equals(java.lang.Object)>(r11)"
+    "if $z3 != 0 goto b3 = -1"
+    "$r30 = new java.lang.IllegalArgumentException"
+    "$r31 = new java.lang.StringBuilder"
+    "specialinvoke $r31.<java.lang.StringBuilder: void <init>()>()"
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be removed at 23:59:59 - Date:\")"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r30.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r34)"
+    "throw $r30"
+    "b3 = -1"
+    "$r13 = new java.lang.IllegalArgumentException"
+    "$r14 = new java.lang.StringBuilder"
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid adjustment \'\")"
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12)"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' in leap second rule for \")"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r13.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r19)"
+    "throw $r13"
+    "r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"
+    "$r22 = \"S\""
+    "$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r21)"
+    "if $z4 != 0 goto $r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule"
+    "$r24 = new java.lang.IllegalArgumentException"
+    "$r25 = new java.lang.StringBuilder"
+    "specialinvoke $r25.<java.lang.StringBuilder: void <init>()>()"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Only stationary (\'S\') leap seconds are supported, not \'\")"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r24.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r29)"
+    "throw $r24"
+    "$r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule"
+    "specialinvoke $r23.<org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule: void <init>(org.threeten.bp.LocalDate,byte)>(r10, b3)"
+    "return $r23"
+    "r6 := @this: org.threeten.bp.zone.TzdbZoneRulesCompiler"->"r1 := @parameter0: java.lang.String";
+    "r1 := @parameter0: java.lang.String"->"$r0 = new java.util.StringTokenizer";
+    "$r0 = new java.util.StringTokenizer"->"specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r1, \" \t\")";
+    "specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r1, \" \t\")"->"r2 = $r0";
+    "r2 = $r0"->"r3 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r3 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(\"Leap\")";
+    "$z0 = virtualinvoke r3.<java.lang.String: boolean equals(java.lang.Object)>(\"Leap\")"->"if $z0 == 0 goto $r4 = new java.lang.IllegalArgumentException";
+    "if $z0 == 0 goto $r4 = new java.lang.IllegalArgumentException"->"$i0 = virtualinvoke r2.<java.util.StringTokenizer: int countTokens()>()";
+    "if $z0 == 0 goto $r4 = new java.lang.IllegalArgumentException"->"$r4 = new java.lang.IllegalArgumentException";
+    "$i0 = virtualinvoke r2.<java.util.StringTokenizer: int countTokens()>()"->"if $i0 >= 6 goto $r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "if $i0 >= 6 goto $r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r41 = new java.lang.StringBuilder";
+    "if $i0 >= 6 goto $r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$r41 = new java.lang.StringBuilder"->"specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()"->"$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid leap second line in file: \")";
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid leap second line in file: \")"->"$r43 = r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.io.File leapSecondsFile>";
+    "$r43 = r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: java.io.File leapSecondsFile>"->"$r44 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r43)";
+    "$r44 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r43)"->"$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")";
+    "$r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", line: \")"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r47)";
+    "specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: void printVerbose(java.lang.String)>($r47)"->"$r48 = new java.lang.IllegalArgumentException";
+    "$r48 = new java.lang.IllegalArgumentException"->"specialinvoke $r48.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid leap second line\")";
+    "specialinvoke $r48.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid leap second line\")"->"throw $r48";
+    "$r4 = new java.lang.IllegalArgumentException"->"specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")";
+    "specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Unknown line\")"->"throw $r4";
+    "$r5 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5)";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5)"->"$r7 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$r7 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"r8 = specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.Month parseMonth(java.lang.String)>($r7)";
+    "r8 = specialinvoke r6.<org.threeten.bp.zone.TzdbZoneRulesCompiler: org.threeten.bp.Month parseMonth(java.lang.String)>($r7)"->"$r9 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$r9 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9)";
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9)"->"r10 = staticinvoke <org.threeten.bp.LocalDate: org.threeten.bp.LocalDate of(int,org.threeten.bp.Month,int)>(i1, r8, i2)";
+    "r10 = staticinvoke <org.threeten.bp.LocalDate: org.threeten.bp.LocalDate of(int,org.threeten.bp.Month,int)>(i1, r8, i2)"->"r11 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r11 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"z6 = 0";
+    "z6 = 0"->"r12 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "r12 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"+\")";
+    "$z1 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"+\")"->"if $z1 == 0 goto $z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")";
+    "if $z1 == 0 goto $z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")"->"$r35 = \"23:59:60\"";
+    "if $z1 == 0 goto $z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")"->"$z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")";
+    "$r35 = \"23:59:60\""->"$z5 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>(r11)";
+    "$z5 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>(r11)"->"if $z5 != 0 goto b3 = 1";
+    "if $z5 != 0 goto b3 = 1"->"$r36 = new java.lang.IllegalArgumentException";
+    "if $z5 != 0 goto b3 = 1"->"b3 = 1";
+    "$r36 = new java.lang.IllegalArgumentException"->"$r37 = new java.lang.StringBuilder";
+    "$r37 = new java.lang.StringBuilder"->"specialinvoke $r37.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r37.<java.lang.StringBuilder: void <init>()>()"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be inserted at 23:59:60 - Date:\")";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be inserted at 23:59:60 - Date:\")"->"$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)";
+    "$r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"->"$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r36.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r40)";
+    "specialinvoke $r36.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r40)"->"throw $r36";
+    "b3 = 1"->"goto [?= r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()]";
+    "goto [?= r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()]"->"r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$z2 = virtualinvoke r12.<java.lang.String: boolean equals(java.lang.Object)>(\"-\")"->"if $z2 == 0 goto $r13 = new java.lang.IllegalArgumentException";
+    "if $z2 == 0 goto $r13 = new java.lang.IllegalArgumentException"->"$r20 = \"23:59:59\"";
+    "if $z2 == 0 goto $r13 = new java.lang.IllegalArgumentException"->"$r13 = new java.lang.IllegalArgumentException";
+    "$r20 = \"23:59:59\""->"$z3 = virtualinvoke $r20.<java.lang.String: boolean equals(java.lang.Object)>(r11)";
+    "$z3 = virtualinvoke $r20.<java.lang.String: boolean equals(java.lang.Object)>(r11)"->"if $z3 != 0 goto b3 = -1";
+    "if $z3 != 0 goto b3 = -1"->"$r30 = new java.lang.IllegalArgumentException";
+    "if $z3 != 0 goto b3 = -1"->"b3 = -1";
+    "$r30 = new java.lang.IllegalArgumentException"->"$r31 = new java.lang.StringBuilder";
+    "$r31 = new java.lang.StringBuilder"->"specialinvoke $r31.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r31.<java.lang.StringBuilder: void <init>()>()"->"$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be removed at 23:59:59 - Date:\")";
+    "$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Leap seconds can only be removed at 23:59:59 - Date:\")"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r30.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r34)";
+    "specialinvoke $r30.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r34)"->"throw $r30";
+    "b3 = -1"->"goto [?= r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()]";
+    "goto [?= r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()]"->"r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()";
+    "$r13 = new java.lang.IllegalArgumentException"->"$r14 = new java.lang.StringBuilder";
+    "$r14 = new java.lang.StringBuilder"->"specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r14.<java.lang.StringBuilder: void <init>()>()"->"$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid adjustment \'\")";
+    "$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Invalid adjustment \'\")"->"$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12)";
+    "$r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12)"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' in leap second rule for \")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' in leap second rule for \")"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r10)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r13.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r19)";
+    "specialinvoke $r13.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r19)"->"throw $r13";
+    "r21 = virtualinvoke r2.<java.util.StringTokenizer: java.lang.String nextToken()>()"->"$r22 = \"S\"";
+    "$r22 = \"S\""->"$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r21)";
+    "$z4 = virtualinvoke $r22.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(r21)"->"if $z4 != 0 goto $r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule";
+    "if $z4 != 0 goto $r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule"->"$r24 = new java.lang.IllegalArgumentException";
+    "if $z4 != 0 goto $r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule"->"$r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule";
+    "$r24 = new java.lang.IllegalArgumentException"->"$r25 = new java.lang.StringBuilder";
+    "$r25 = new java.lang.StringBuilder"->"specialinvoke $r25.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r25.<java.lang.StringBuilder: void <init>()>()"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Only stationary (\'S\') leap seconds are supported, not \'\")";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Only stationary (\'S\') leap seconds are supported, not \'\")"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r21)"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\'\")"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r24.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r29)";
+    "specialinvoke $r24.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r29)"->"throw $r24";
+    "$r23 = new org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule"->"specialinvoke $r23.<org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule: void <init>(org.threeten.bp.LocalDate,byte)>(r10, b3)";
+    "specialinvoke $r23.<org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule: void <init>(org.threeten.bp.LocalDate,byte)>(r10, b3)"->"return $r23";
+}

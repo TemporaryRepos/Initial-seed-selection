@@ -1,0 +1,29 @@
+digraph "unitGraph" {
+    "d2 := @parameter0: double"
+    "d3 = staticinvoke <java.lang.Math: double abs(double)>(d2)"
+    "$z0 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d3)"
+    "if $z0 == 0 goto $z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"
+    "return #NaN"
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"
+    "if $z1 == 0 goto $b0 = d3 cmpl 1.7976931348623157E308"
+    "return #Infinity"
+    "$b0 = d3 cmpl 1.7976931348623157E308"
+    "if $b0 != 0 goto $d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)"
+    "return 1.9958403095347198E292"
+    "$d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)"
+    "$d1 = $d0 - d3"
+    "return $d1"
+    "d2 := @parameter0: double"->"d3 = staticinvoke <java.lang.Math: double abs(double)>(d2)";
+    "d3 = staticinvoke <java.lang.Math: double abs(double)>(d2)"->"$z0 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d3)";
+    "$z0 = staticinvoke <java.lang.Double: boolean isNaN(double)>(d3)"->"if $z0 == 0 goto $z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)";
+    "if $z0 == 0 goto $z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"->"return #NaN";
+    "if $z0 == 0 goto $z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"->"$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)";
+    "$z1 = staticinvoke <java.lang.Double: boolean isInfinite(double)>(d3)"->"if $z1 == 0 goto $b0 = d3 cmpl 1.7976931348623157E308";
+    "if $z1 == 0 goto $b0 = d3 cmpl 1.7976931348623157E308"->"return #Infinity";
+    "if $z1 == 0 goto $b0 = d3 cmpl 1.7976931348623157E308"->"$b0 = d3 cmpl 1.7976931348623157E308";
+    "$b0 = d3 cmpl 1.7976931348623157E308"->"if $b0 != 0 goto $d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)";
+    "if $b0 != 0 goto $d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)"->"return 1.9958403095347198E292";
+    "if $b0 != 0 goto $d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)"->"$d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)";
+    "$d0 = staticinvoke <vm.compiler.jbe.subcommon.subcommon02.subcommon02: double nextAfter(double,double)>(d3, #Infinity)"->"$d1 = $d0 - d3";
+    "$d1 = $d0 - d3"->"return $d1";
+}

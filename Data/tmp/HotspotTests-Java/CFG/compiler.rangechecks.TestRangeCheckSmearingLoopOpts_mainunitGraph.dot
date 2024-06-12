@@ -1,0 +1,49 @@
+digraph "unitGraph" {
+    "r3 := @parameter0: java.lang.String[]"
+    "$r0 = newarray (int)[11]"
+    "$r0[1] = 1"
+    "$r0[2] = 2"
+    "$r0[3] = -3"
+    "$r0[4] = 4"
+    "$r0[5] = 5"
+    "$r0[6] = -2"
+    "$r0[7] = 7"
+    "$r0[8] = 8"
+    "$r0[9] = 9"
+    "$r0[10] = -1"
+    "r1 = $r0"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"
+    "i2 = i2 + 1"
+    "if i2 < 20000 goto staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"
+    "r1[0] = -1"
+    "goto [?= return]"
+    "$r2 := @caughtexception"
+    "return"
+    "r3 := @parameter0: java.lang.String[]"->"$r0 = newarray (int)[11]";
+    "$r0 = newarray (int)[11]"->"$r0[1] = 1";
+    "$r0[1] = 1"->"$r0[2] = 2";
+    "$r0[2] = 2"->"$r0[3] = -3";
+    "$r0[3] = -3"->"$r0[4] = 4";
+    "$r0[4] = 4"->"$r0[5] = 5";
+    "$r0[5] = 5"->"$r0[6] = -2";
+    "$r0[6] = -2"->"$r0[7] = 7";
+    "$r0[7] = 7"->"$r0[8] = 8";
+    "$r0[8] = 8"->"$r0[9] = 9";
+    "$r0[9] = 9"->"$r0[10] = -1";
+    "$r0[10] = -1"->"r1 = $r0";
+    "r1 = $r0"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 20000 goto staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)";
+    "staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 20000 goto staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)";
+    "if i2 < 20000 goto staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"->"r1[0] = -1";
+    "if i2 < 20000 goto staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"->"staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)";
+    "r1[0] = -1"->"staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)";
+    "r1[0] = -1"->"$r2 := @caughtexception";
+    "staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"->"goto [?= return]";
+    "staticinvoke <compiler.rangechecks.TestRangeCheckSmearingLoopOpts: int m1(int[],int)>(r1, 0)"->"$r2 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r2 := @caughtexception"->"return";
+}

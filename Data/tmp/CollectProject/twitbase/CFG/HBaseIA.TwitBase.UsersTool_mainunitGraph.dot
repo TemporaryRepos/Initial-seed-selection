@@ -1,0 +1,153 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "$i0 = lengthof r0"
+    "if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"
+    "$r35 = \"help\""
+    "$r34 = r0[0]"
+    "$z3 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>($r34)"
+    "if $z3 == 0 goto $r36 = new org.apache.hadoop.hbase.client.HTablePool"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"usertool action ...\n  help - print this message and exit.\n  add user name email password - add a new user.\n  get user - retrieve a specific user.\n  list - list all installed users.\n\")"
+    "staticinvoke <java.lang.System: void exit(int)>(0)"
+    "$r36 = new org.apache.hadoop.hbase.client.HTablePool"
+    "specialinvoke $r36.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>()"
+    "r2 = $r36"
+    "$r37 = new HBaseIA.TwitBase.hbase.UsersDAO"
+    "specialinvoke $r37.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2)"
+    "r3 = $r37"
+    "$r38 = \"get\""
+    "$r39 = r0[0]"
+    "$z4 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>($r39)"
+    "if $z4 == 0 goto $r5 = \"add\""
+    "$r30 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"
+    "$r28 = newarray (java.lang.Object)[1]"
+    "$r29 = r0[1]"
+    "$r28[0] = $r29"
+    "$r31 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Getting user %s\", $r28)"
+    "virtualinvoke $r30.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r31)"
+    "$r32 = r0[1]"
+    "r40 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r32)"
+    "$r33 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.Object)>(r40)"
+    "$r5 = \"add\""
+    "$r4 = r0[0]"
+    "$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r4)"
+    "if $z0 == 0 goto $r7 = \"list\""
+    "$r17 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"
+    "virtualinvoke $r17.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Adding user...\")"
+    "$r21 = r0[1]"
+    "$r20 = r0[2]"
+    "$r19 = r0[3]"
+    "$r18 = r0[4]"
+    "virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($r21, $r20, $r19, $r18)"
+    "$r22 = r0[1]"
+    "r41 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r22)"
+    "$r24 = <java.lang.System: java.io.PrintStream out>"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Successfully added user \")"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r41)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r27)"
+    "$r7 = \"list\""
+    "$r6 = r0[0]"
+    "$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6)"
+    "if $z1 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"
+    "r42 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: java.util.List getUsers()>()"
+    "$r10 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"
+    "$r9 = newarray (java.lang.Object)[1]"
+    "$i1 = interfaceinvoke r42.<java.util.List: int size()>()"
+    "$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1)"
+    "$r9[0] = $r11"
+    "$r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Found %s users.\", $r9)"
+    "virtualinvoke $r10.<org.apache.log4j.Logger: void info(java.lang.Object)>($r12)"
+    "r13 = interfaceinvoke r42.<java.util.List: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"
+    "$r14 = interfaceinvoke r13.<java.util.Iterator: java.lang.Object next()>()"
+    "r15 = (HBaseIA.TwitBase.model.User) $r14"
+    "$r16 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.Object)>(r15)"
+    "goto [?= $z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()]"
+    "$r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"
+    "virtualinvoke r2.<org.apache.hadoop.hbase.client.HTablePool: void closeTablePool(byte[])>($r8)"
+    "return"
+    "r0 := @parameter0: java.lang.String[]"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>";
+    "if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"->"$r35 = \"help\"";
+    "if $i0 == 0 goto $r1 = <java.lang.System: java.io.PrintStream out>"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "$r35 = \"help\""->"$r34 = r0[0]";
+    "$r34 = r0[0]"->"$z3 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>($r34)";
+    "$z3 = virtualinvoke $r35.<java.lang.String: boolean equals(java.lang.Object)>($r34)"->"if $z3 == 0 goto $r36 = new org.apache.hadoop.hbase.client.HTablePool";
+    "if $z3 == 0 goto $r36 = new org.apache.hadoop.hbase.client.HTablePool"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "if $z3 == 0 goto $r36 = new org.apache.hadoop.hbase.client.HTablePool"->"$r36 = new org.apache.hadoop.hbase.client.HTablePool";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"usertool action ...\n  help - print this message and exit.\n  add user name email password - add a new user.\n  get user - retrieve a specific user.\n  list - list all installed users.\n\")";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(\"usertool action ...\n  help - print this message and exit.\n  add user name email password - add a new user.\n  get user - retrieve a specific user.\n  list - list all installed users.\n\")"->"staticinvoke <java.lang.System: void exit(int)>(0)";
+    "staticinvoke <java.lang.System: void exit(int)>(0)"->"$r36 = new org.apache.hadoop.hbase.client.HTablePool";
+    "$r36 = new org.apache.hadoop.hbase.client.HTablePool"->"specialinvoke $r36.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>()";
+    "specialinvoke $r36.<org.apache.hadoop.hbase.client.HTablePool: void <init>()>()"->"r2 = $r36";
+    "r2 = $r36"->"$r37 = new HBaseIA.TwitBase.hbase.UsersDAO";
+    "$r37 = new HBaseIA.TwitBase.hbase.UsersDAO"->"specialinvoke $r37.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2)";
+    "specialinvoke $r37.<HBaseIA.TwitBase.hbase.UsersDAO: void <init>(org.apache.hadoop.hbase.client.HTablePool)>(r2)"->"r3 = $r37";
+    "r3 = $r37"->"$r38 = \"get\"";
+    "$r38 = \"get\""->"$r39 = r0[0]";
+    "$r39 = r0[0]"->"$z4 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>($r39)";
+    "$z4 = virtualinvoke $r38.<java.lang.String: boolean equals(java.lang.Object)>($r39)"->"if $z4 == 0 goto $r5 = \"add\"";
+    "if $z4 == 0 goto $r5 = \"add\""->"$r30 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>";
+    "if $z4 == 0 goto $r5 = \"add\""->"$r5 = \"add\"";
+    "$r30 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"->"$r28 = newarray (java.lang.Object)[1]";
+    "$r28 = newarray (java.lang.Object)[1]"->"$r29 = r0[1]";
+    "$r29 = r0[1]"->"$r28[0] = $r29";
+    "$r28[0] = $r29"->"$r31 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Getting user %s\", $r28)";
+    "$r31 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Getting user %s\", $r28)"->"virtualinvoke $r30.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r31)";
+    "virtualinvoke $r30.<org.apache.log4j.Logger: void debug(java.lang.Object)>($r31)"->"$r32 = r0[1]";
+    "$r32 = r0[1]"->"r40 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r32)";
+    "r40 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r32)"->"$r33 = <java.lang.System: java.io.PrintStream out>";
+    "$r33 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.Object)>(r40)";
+    "virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.Object)>(r40)"->"$r5 = \"add\"";
+    "$r5 = \"add\""->"$r4 = r0[0]";
+    "$r4 = r0[0]"->"$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r4)";
+    "$z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r4)"->"if $z0 == 0 goto $r7 = \"list\"";
+    "if $z0 == 0 goto $r7 = \"list\""->"$r17 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>";
+    "if $z0 == 0 goto $r7 = \"list\""->"$r7 = \"list\"";
+    "$r17 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"->"virtualinvoke $r17.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Adding user...\")";
+    "virtualinvoke $r17.<org.apache.log4j.Logger: void debug(java.lang.Object)>(\"Adding user...\")"->"$r21 = r0[1]";
+    "$r21 = r0[1]"->"$r20 = r0[2]";
+    "$r20 = r0[2]"->"$r19 = r0[3]";
+    "$r19 = r0[3]"->"$r18 = r0[4]";
+    "$r18 = r0[4]"->"virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($r21, $r20, $r19, $r18)";
+    "virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: void addUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($r21, $r20, $r19, $r18)"->"$r22 = r0[1]";
+    "$r22 = r0[1]"->"r41 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r22)";
+    "r41 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: HBaseIA.TwitBase.model.User getUser(java.lang.String)>($r22)"->"$r24 = <java.lang.System: java.io.PrintStream out>";
+    "$r24 = <java.lang.System: java.io.PrintStream out>"->"$r23 = new java.lang.StringBuilder";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Successfully added user \")";
+    "$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Successfully added user \")"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r41)";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r41)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r27)";
+    "virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r27)"->"$r7 = \"list\"";
+    "$r7 = \"list\""->"$r6 = r0[0]";
+    "$r6 = r0[0]"->"$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6)";
+    "$z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>($r6)"->"if $z1 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>";
+    "if $z1 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"->"r42 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: java.util.List getUsers()>()";
+    "if $z1 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"->"$r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>";
+    "r42 = virtualinvoke r3.<HBaseIA.TwitBase.hbase.UsersDAO: java.util.List getUsers()>()"->"$r10 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>";
+    "$r10 = <HBaseIA.TwitBase.UsersTool: org.apache.log4j.Logger log>"->"$r9 = newarray (java.lang.Object)[1]";
+    "$r9 = newarray (java.lang.Object)[1]"->"$i1 = interfaceinvoke r42.<java.util.List: int size()>()";
+    "$i1 = interfaceinvoke r42.<java.util.List: int size()>()"->"$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1)";
+    "$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1)"->"$r9[0] = $r11";
+    "$r9[0] = $r11"->"$r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Found %s users.\", $r9)";
+    "$r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"Found %s users.\", $r9)"->"virtualinvoke $r10.<org.apache.log4j.Logger: void info(java.lang.Object)>($r12)";
+    "virtualinvoke $r10.<org.apache.log4j.Logger: void info(java.lang.Object)>($r12)"->"r13 = interfaceinvoke r42.<java.util.List: java.util.Iterator iterator()>()";
+    "r13 = interfaceinvoke r42.<java.util.List: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>";
+    "if $z2 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"->"$r14 = interfaceinvoke r13.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto $r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"->"$r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>";
+    "$r14 = interfaceinvoke r13.<java.util.Iterator: java.lang.Object next()>()"->"r15 = (HBaseIA.TwitBase.model.User) $r14";
+    "r15 = (HBaseIA.TwitBase.model.User) $r14"->"$r16 = <java.lang.System: java.io.PrintStream out>";
+    "$r16 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.Object)>(r15)";
+    "virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.Object)>(r15)"->"goto [?= $z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r13.<java.util.Iterator: boolean hasNext()>()";
+    "$r8 = <HBaseIA.TwitBase.hbase.UsersDAO: byte[] TABLE_NAME>"->"virtualinvoke r2.<org.apache.hadoop.hbase.client.HTablePool: void closeTablePool(byte[])>($r8)";
+    "virtualinvoke r2.<org.apache.hadoop.hbase.client.HTablePool: void closeTablePool(byte[])>($r8)"->"return";
+}

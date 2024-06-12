@@ -1,0 +1,443 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 11 ]
+$r0 = new java.io.File;
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 11 ]
+$r1 = class \"Lpmedit/PreferencesWindow;\";
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r2 = virtualinvoke $r1.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$r3 = virtualinvoke $r2.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r4 = virtualinvoke $r3.<java.security.CodeSource: java.net.URL getLocation()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$r5 = virtualinvoke $r4.<java.net.URL: java.net.URI toURI()>();
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 11 ]
+$r6 = virtualinvoke $r5.<java.net.URI: java.lang.String getPath()>();
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 11 ]
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r6);
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = virtualinvoke $r0.<java.io.File: java.io.File getParentFile()>();
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+r8 = virtualinvoke $r7.<java.io.File: java.lang.String getAbsolutePath()>();
+"
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= r42 = \"\"];
+"
+    "Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+r42 = \"\";
+r9 = staticinvoke <pmedit.Version: java.lang.String getAppName()>();
+$r10 = new java.lang.StringBuilder;
+specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r12 = <java.io.File: java.lang.String separator>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r43 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+$r16 = new java.io.File;
+specialinvoke $r16.<java.io.File: void <init>(java.lang.String)>(r43);
+$z0 = virtualinvoke $r16.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r17 = new java.lang.StringBuilder;
+"
+    "Block 13:
+[preds: 12 ] [succs: ]
+return r43;
+"
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r17 = new java.lang.StringBuilder;
+specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r42);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r43);
+r44 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r22 = <java.io.File: java.lang.String separator>;
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"..\\\\");
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r45 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+$r27 = new java.io.File;
+specialinvoke $r27.<java.io.File: void <init>(java.lang.String)>(r45);
+$z1 = virtualinvoke $r27.<java.io.File: boolean exists()>();
+if $z1 == 0 goto $r28 = new java.lang.StringBuilder;
+"
+    "Block 15:
+[preds: 14 ] [succs: ]
+return r45;
+"
+    "Block 16:
+[preds: 14 ] [succs: ]
+$r28 = new java.lang.StringBuilder;
+specialinvoke $r28.<java.lang.StringBuilder: void <init>()>();
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r44);
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" , \");
+r46 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r46);
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r45);
+r47 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+$r34 = new java.lang.Exception;
+$r35 = new java.lang.StringBuilder;
+specialinvoke $r35.<java.lang.StringBuilder: void <init>()>();
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find the path to current exe, tried: \");
+$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r47);
+$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r34.<java.lang.Exception: void <init>(java.lang.String)>($r38);
+throw $r34;
+"
+    "Block 0:
+[preds: ] [succs: 1 11 ]
+$r0 = new java.io.File;
+"->"Block 1:
+[preds: 0 ] [succs: 2 11 ]
+$r1 = class \"Lpmedit/PreferencesWindow;\";
+";
+    "Block 0:
+[preds: ] [succs: 1 11 ]
+$r0 = new java.io.File;
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 11 ]
+$r1 = class \"Lpmedit/PreferencesWindow;\";
+"->"Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r2 = virtualinvoke $r1.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 11 ]
+$r1 = class \"Lpmedit/PreferencesWindow;\";
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r2 = virtualinvoke $r1.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>();
+"->"Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$r3 = virtualinvoke $r2.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 11 ]
+$r2 = virtualinvoke $r1.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$r3 = virtualinvoke $r2.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r4 = virtualinvoke $r3.<java.security.CodeSource: java.net.URL getLocation()>();
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 11 ]
+$r3 = virtualinvoke $r2.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r4 = virtualinvoke $r3.<java.security.CodeSource: java.net.URL getLocation()>();
+"->"Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$r5 = virtualinvoke $r4.<java.net.URL: java.net.URI toURI()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 11 ]
+$r4 = virtualinvoke $r3.<java.security.CodeSource: java.net.URL getLocation()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$r5 = virtualinvoke $r4.<java.net.URL: java.net.URI toURI()>();
+"->"Block 6:
+[preds: 5 ] [succs: 7 11 ]
+$r6 = virtualinvoke $r5.<java.net.URI: java.lang.String getPath()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 11 ]
+$r5 = virtualinvoke $r4.<java.net.URL: java.net.URI toURI()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 11 ]
+$r6 = virtualinvoke $r5.<java.net.URI: java.lang.String getPath()>();
+"->"Block 7:
+[preds: 6 ] [succs: 8 11 ]
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r6);
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 11 ]
+$r6 = virtualinvoke $r5.<java.net.URI: java.lang.String getPath()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 11 ]
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r6);
+"->"Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = virtualinvoke $r0.<java.io.File: java.io.File getParentFile()>();
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 11 ]
+specialinvoke $r0.<java.io.File: void <init>(java.lang.String)>($r6);
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = virtualinvoke $r0.<java.io.File: java.io.File getParentFile()>();
+"->"Block 9:
+[preds: 8 ] [succs: 10 11 ]
+r8 = virtualinvoke $r7.<java.io.File: java.lang.String getAbsolutePath()>();
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r7 = virtualinvoke $r0.<java.io.File: java.io.File getParentFile()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+r8 = virtualinvoke $r7.<java.io.File: java.lang.String getAbsolutePath()>();
+"->"Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= r42 = \"\"];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+r8 = virtualinvoke $r7.<java.io.File: java.lang.String getAbsolutePath()>();
+"->"Block 11:
+[preds: 0 1 2 3 4 5 6 7 8 9 ] [succs: ]
+$r39 := @caughtexception;
+r41 = $r39;
+$r40 = new java.lang.Exception;
+specialinvoke $r40.<java.lang.Exception: void <init>(java.lang.String)>(\"Cannot find the path to current jar\");
+throw $r40;
+";
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= r42 = \"\"];
+"->"Block 12:
+[preds: 10 ] [succs: 13 14 ]
+r42 = \"\";
+r9 = staticinvoke <pmedit.Version: java.lang.String getAppName()>();
+$r10 = new java.lang.StringBuilder;
+specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r12 = <java.io.File: java.lang.String separator>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r43 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+$r16 = new java.io.File;
+specialinvoke $r16.<java.io.File: void <init>(java.lang.String)>(r43);
+$z0 = virtualinvoke $r16.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r17 = new java.lang.StringBuilder;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+r42 = \"\";
+r9 = staticinvoke <pmedit.Version: java.lang.String getAppName()>();
+$r10 = new java.lang.StringBuilder;
+specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r12 = <java.io.File: java.lang.String separator>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r43 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+$r16 = new java.io.File;
+specialinvoke $r16.<java.io.File: void <init>(java.lang.String)>(r43);
+$z0 = virtualinvoke $r16.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r17 = new java.lang.StringBuilder;
+"->"Block 13:
+[preds: 12 ] [succs: ]
+return r43;
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 14 ]
+r42 = \"\";
+r9 = staticinvoke <pmedit.Version: java.lang.String getAppName()>();
+$r10 = new java.lang.StringBuilder;
+specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r12 = <java.io.File: java.lang.String separator>;
+$r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r43 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+$r16 = new java.io.File;
+specialinvoke $r16.<java.io.File: void <init>(java.lang.String)>(r43);
+$z0 = virtualinvoke $r16.<java.io.File: boolean exists()>();
+if $z0 == 0 goto $r17 = new java.lang.StringBuilder;
+"->"Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r17 = new java.lang.StringBuilder;
+specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r42);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r43);
+r44 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r22 = <java.io.File: java.lang.String separator>;
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"..\\\\");
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r45 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+$r27 = new java.io.File;
+specialinvoke $r27.<java.io.File: void <init>(java.lang.String)>(r45);
+$z1 = virtualinvoke $r27.<java.io.File: boolean exists()>();
+if $z1 == 0 goto $r28 = new java.lang.StringBuilder;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r17 = new java.lang.StringBuilder;
+specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r42);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r43);
+r44 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r22 = <java.io.File: java.lang.String separator>;
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"..\\\\");
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r45 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+$r27 = new java.io.File;
+specialinvoke $r27.<java.io.File: void <init>(java.lang.String)>(r45);
+$z1 = virtualinvoke $r27.<java.io.File: boolean exists()>();
+if $z1 == 0 goto $r28 = new java.lang.StringBuilder;
+"->"Block 15:
+[preds: 14 ] [succs: ]
+return r45;
+";
+    "Block 14:
+[preds: 12 ] [succs: 15 16 ]
+$r17 = new java.lang.StringBuilder;
+specialinvoke $r17.<java.lang.StringBuilder: void <init>()>();
+$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r42);
+$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r43);
+r44 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+$r20 = new java.lang.StringBuilder;
+specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+$r22 = <java.io.File: java.lang.String separator>;
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"..\\\\");
+$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r9);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".exe\");
+r45 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+$r27 = new java.io.File;
+specialinvoke $r27.<java.io.File: void <init>(java.lang.String)>(r45);
+$z1 = virtualinvoke $r27.<java.io.File: boolean exists()>();
+if $z1 == 0 goto $r28 = new java.lang.StringBuilder;
+"->"Block 16:
+[preds: 14 ] [succs: ]
+$r28 = new java.lang.StringBuilder;
+specialinvoke $r28.<java.lang.StringBuilder: void <init>()>();
+$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r44);
+$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" , \");
+r46 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+$r31 = new java.lang.StringBuilder;
+specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r46);
+$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r45);
+r47 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+$r34 = new java.lang.Exception;
+$r35 = new java.lang.StringBuilder;
+specialinvoke $r35.<java.lang.StringBuilder: void <init>()>();
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find the path to current exe, tried: \");
+$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r47);
+$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>();
+specialinvoke $r34.<java.lang.Exception: void <init>(java.lang.String)>($r38);
+throw $r34;
+";
+}

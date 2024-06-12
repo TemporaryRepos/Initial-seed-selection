@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "r5 := @parameter0: java.lang.String[]"
+    "staticinvoke <java.security.cert.CertStore: java.security.cert.CertStore getInstance(java.lang.String,java.security.cert.CertStoreParameters,java.lang.String)>(\"Collection\", null, \"SUN\")"
+    "goto [?= return]"
+    "$r3 := @caughtexception"
+    "r6 = $r3"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"test passed\")"
+    "$r1 := @caughtexception"
+    "r7 = $r1"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"test failed\")"
+    "throw r7"
+    "return"
+    "r5 := @parameter0: java.lang.String[]"->"$r3 := @caughtexception";
+    "r5 := @parameter0: java.lang.String[]"->"$r1 := @caughtexception";
+    "r5 := @parameter0: java.lang.String[]"->"staticinvoke <java.security.cert.CertStore: java.security.cert.CertStore getInstance(java.lang.String,java.security.cert.CertStoreParameters,java.lang.String)>(\"Collection\", null, \"SUN\")";
+    "staticinvoke <java.security.cert.CertStore: java.security.cert.CertStore getInstance(java.lang.String,java.security.cert.CertStoreParameters,java.lang.String)>(\"Collection\", null, \"SUN\")"->"$r3 := @caughtexception";
+    "staticinvoke <java.security.cert.CertStore: java.security.cert.CertStore getInstance(java.lang.String,java.security.cert.CertStoreParameters,java.lang.String)>(\"Collection\", null, \"SUN\")"->"$r1 := @caughtexception";
+    "staticinvoke <java.security.cert.CertStore: java.security.cert.CertStore getInstance(java.lang.String,java.security.cert.CertStoreParameters,java.lang.String)>(\"Collection\", null, \"SUN\")"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r3 := @caughtexception"->"r6 = $r3";
+    "r6 = $r3"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"test passed\")";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"test passed\")"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r1 := @caughtexception"->"r7 = $r1";
+    "r7 = $r1"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"test failed\")";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"test failed\")"->"throw r7";
+}

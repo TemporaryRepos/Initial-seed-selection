@@ -1,0 +1,799 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @this: com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs;
+r5 := @parameter0: info.bliki.wiki.dump.WikiArticle;
+r35 := @parameter1: info.bliki.wiki.dump.Siteinfo;
+$r1 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+virtualinvoke $r1.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r3 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>();
+$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95);
+$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String)>($r8);
+virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9);
+$r11 = new info.bliki.wiki.model.WikiModel;
+$r13 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.lang.String imageBaseURL>;
+$r12 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.lang.String linkBaseURL>;
+specialinvoke $r11.<info.bliki.wiki.model.WikiModel: void <init>(java.lang.String,java.lang.String)>($r13, $r12);
+r14 = $r11;
+$r15 = new info.bliki.wiki.filter.PlainTextConverter;
+specialinvoke $r15.<info.bliki.wiki.filter.PlainTextConverter: void <init>()>();
+$r16 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getText()>();
+r17 = virtualinvoke r14.<info.bliki.wiki.model.WikiModel: java.lang.String render(info.bliki.wiki.filter.ITextConverter,java.lang.String)>($r15, $r16);
+i7 = 0;
+"
+    "Block 1:
+[preds: 0 15 ] [succs: 2 16 ]
+$i0 = virtualinvoke r17.<java.lang.String: int length()>();
+if i7 >= $i0 goto $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$c1 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c1);
+if $z0 == 0 goto $c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"
+    "Block 3:
+[preds: 2 ] [succs: 15 ]
+goto [?= i7 = i7 + 1];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 8 ]
+$c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c2 != 123 goto $c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r33 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACES_CLOSED>;
+$i6 = virtualinvoke $r33.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i8 = $i6;
+if $i6 != -1 goto i7 = i8 + 1;
+"
+    "Block 6:
+[preds: 5 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"
+    "Block 7:
+[preds: 5 ] [succs: 15 ]
+i7 = i8 + 1;
+goto [?= i7 = i7 + 1];
+"
+    "Block 8:
+[preds: 4 ] [succs: 9 12 ]
+$c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c3 != 91 goto i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r32 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACKETS_CLOSED>;
+$i5 = virtualinvoke $r32.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i9 = $i5;
+if $i5 != -1 goto i7 = i9 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"
+    "Block 11:
+[preds: 9 ] [succs: 15 ]
+i7 = i9 + 1;
+goto [?= i7 = i7 + 1];
+"
+    "Block 12:
+[preds: 8 ] [succs: 13 14 ]
+i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+if i4 > i7 goto $r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+"
+    "Block 13:
+[preds: 12 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"
+    "Block 14:
+[preds: 12 ] [succs: 16 ]
+$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+$r30 = virtualinvoke r17.<java.lang.String: java.lang.String substring(int,int)>(i7, i4);
+virtualinvoke $r29.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r30);
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"
+    "Block 15:
+[preds: 3 7 11 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = virtualinvoke r17.<java.lang.String: int length()>()];
+"
+    "Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+"
+    "Block 17:
+[preds: 16 ] [succs: 18 35 ]
+$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"
+    "Block 18:
+[preds: 17 ] [succs: 19 35 ]
+$r42 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+"
+    "Block 19:
+[preds: 18 ] [succs: 20 35 ]
+$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42);
+"
+    "Block 20:
+[preds: 19 ] [succs: 21 35 ]
+virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\");
+"
+    "Block 21:
+[preds: 20 31 ] [succs: 22 35 ]
+$r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+"
+    "Block 22:
+[preds: 21 ] [succs: 23 35 ]
+$r45 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"
+    "Block 23:
+[preds: 22 ] [succs: 24 35 ]
+$r46 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+"
+    "Block 24:
+[preds: 23 ] [succs: 25 35 ]
+$z1 = virtualinvoke $r44.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r45, $r46);
+"
+    "Block 25:
+[preds: 24 ] [succs: 26 32 35 ]
+if $z1 == 0 goto $r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"
+    "Block 26:
+[preds: 25 ] [succs: 27 35 ]
+$r25 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 35 ]
+$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"
+    "Block 28:
+[preds: 27 ] [succs: 29 35 ]
+$r26 = virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>();
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 35 ]
+$r27 = virtualinvoke $r25.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r26);
+"
+    "Block 30:
+[preds: 29 ] [succs: 31 35 ]
+virtualinvoke $r27.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \");
+"
+    "Block 31:
+[preds: 30 ] [succs: 21 35 ]
+goto [?= $r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>];
+"
+    "Block 32:
+[preds: 25 ] [succs: 33 35 ]
+$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"
+    "Block 33:
+[preds: 32 ] [succs: 34 35 ]
+virtualinvoke $r22.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\");
+"
+    "Block 34:
+[preds: 33 ] [succs: 36 ]
+goto [?= return];
+"
+    "Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+"
+    "Block 36:
+[preds: 34 35 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r0 := @this: com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs;
+r5 := @parameter0: info.bliki.wiki.dump.WikiArticle;
+r35 := @parameter1: info.bliki.wiki.dump.Siteinfo;
+$r1 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+virtualinvoke $r1.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r3 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+virtualinvoke $r3.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r6 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+$r7 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getTitle()>();
+$r8 = virtualinvoke $r7.<java.lang.String: java.lang.String replace(char,char)>(32, 95);
+$r9 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String)>($r8);
+virtualinvoke $r6.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r9);
+$r11 = new info.bliki.wiki.model.WikiModel;
+$r13 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.lang.String imageBaseURL>;
+$r12 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.lang.String linkBaseURL>;
+specialinvoke $r11.<info.bliki.wiki.model.WikiModel: void <init>(java.lang.String,java.lang.String)>($r13, $r12);
+r14 = $r11;
+$r15 = new info.bliki.wiki.filter.PlainTextConverter;
+specialinvoke $r15.<info.bliki.wiki.filter.PlainTextConverter: void <init>()>();
+$r16 = virtualinvoke r5.<info.bliki.wiki.dump.WikiArticle: java.lang.String getText()>();
+r17 = virtualinvoke r14.<info.bliki.wiki.model.WikiModel: java.lang.String render(info.bliki.wiki.filter.ITextConverter,java.lang.String)>($r15, $r16);
+i7 = 0;
+"->"Block 1:
+[preds: 0 15 ] [succs: 2 16 ]
+$i0 = virtualinvoke r17.<java.lang.String: int length()>();
+if i7 >= $i0 goto $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+";
+    "Block 1:
+[preds: 0 15 ] [succs: 2 16 ]
+$i0 = virtualinvoke r17.<java.lang.String: int length()>();
+if i7 >= $i0 goto $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$c1 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c1);
+if $z0 == 0 goto $c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+";
+    "Block 1:
+[preds: 0 15 ] [succs: 2 16 ]
+$i0 = virtualinvoke r17.<java.lang.String: int length()>();
+if i7 >= $i0 goto $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$c1 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c1);
+if $z0 == 0 goto $c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"->"Block 3:
+[preds: 2 ] [succs: 15 ]
+goto [?= i7 = i7 + 1];
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$c1 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+$z0 = staticinvoke <java.lang.Character: boolean isWhitespace(char)>($c1);
+if $z0 == 0 goto $c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"->"Block 4:
+[preds: 2 ] [succs: 5 8 ]
+$c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c2 != 123 goto $c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+";
+    "Block 3:
+[preds: 2 ] [succs: 15 ]
+goto [?= i7 = i7 + 1];
+"->"Block 15:
+[preds: 3 7 11 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = virtualinvoke r17.<java.lang.String: int length()>()];
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 8 ]
+$c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c2 != 123 goto $c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"->"Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r33 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACES_CLOSED>;
+$i6 = virtualinvoke $r33.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i8 = $i6;
+if $i6 != -1 goto i7 = i8 + 1;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 8 ]
+$c2 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c2 != 123 goto $c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+"->"Block 8:
+[preds: 4 ] [succs: 9 12 ]
+$c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c3 != 91 goto i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r33 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACES_CLOSED>;
+$i6 = virtualinvoke $r33.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i8 = $i6;
+if $i6 != -1 goto i7 = i8 + 1;
+"->"Block 6:
+[preds: 5 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 7 ]
+$r33 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACES_CLOSED>;
+$i6 = virtualinvoke $r33.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i8 = $i6;
+if $i6 != -1 goto i7 = i8 + 1;
+"->"Block 7:
+[preds: 5 ] [succs: 15 ]
+i7 = i8 + 1;
+goto [?= i7 = i7 + 1];
+";
+    "Block 6:
+[preds: 5 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"->"Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+";
+    "Block 7:
+[preds: 5 ] [succs: 15 ]
+i7 = i8 + 1;
+goto [?= i7 = i7 + 1];
+"->"Block 15:
+[preds: 3 7 11 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = virtualinvoke r17.<java.lang.String: int length()>()];
+";
+    "Block 8:
+[preds: 4 ] [succs: 9 12 ]
+$c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c3 != 91 goto i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+"->"Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r32 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACKETS_CLOSED>;
+$i5 = virtualinvoke $r32.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i9 = $i5;
+if $i5 != -1 goto i7 = i9 + 1;
+";
+    "Block 8:
+[preds: 4 ] [succs: 9 12 ]
+$c3 = virtualinvoke r17.<java.lang.String: char charAt(int)>(i7);
+if $c3 != 91 goto i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+"->"Block 12:
+[preds: 8 ] [succs: 13 14 ]
+i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+if i4 > i7 goto $r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r32 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACKETS_CLOSED>;
+$i5 = virtualinvoke $r32.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i9 = $i5;
+if $i5 != -1 goto i7 = i9 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 11 ]
+$r32 = <com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.util.TextPattern BRACKETS_CLOSED>;
+$i5 = virtualinvoke $r32.<it.unimi.dsi.util.TextPattern: int search(java.lang.CharSequence,int)>(r17, i7);
+i9 = $i5;
+if $i5 != -1 goto i7 = i9 + 1;
+"->"Block 11:
+[preds: 9 ] [succs: 15 ]
+i7 = i9 + 1;
+goto [?= i7 = i7 + 1];
+";
+    "Block 10:
+[preds: 9 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"->"Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+";
+    "Block 11:
+[preds: 9 ] [succs: 15 ]
+i7 = i9 + 1;
+goto [?= i7 = i7 + 1];
+"->"Block 15:
+[preds: 3 7 11 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = virtualinvoke r17.<java.lang.String: int length()>()];
+";
+    "Block 12:
+[preds: 8 ] [succs: 13 14 ]
+i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+if i4 > i7 goto $r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+"->"Block 13:
+[preds: 12 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+";
+    "Block 12:
+[preds: 8 ] [succs: 13 14 ]
+i4 = virtualinvoke r17.<java.lang.String: int indexOf(int,int)>(10, i7);
+if i4 > i7 goto $r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+"->"Block 14:
+[preds: 12 ] [succs: 16 ]
+$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+$r30 = virtualinvoke r17.<java.lang.String: java.lang.String substring(int,int)>(i7, i4);
+virtualinvoke $r29.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r30);
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+";
+    "Block 13:
+[preds: 12 ] [succs: 16 ]
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"->"Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+";
+    "Block 14:
+[preds: 12 ] [succs: 16 ]
+$r29 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+$r30 = virtualinvoke r17.<java.lang.String: java.lang.String substring(int,int)>(i7, i4);
+virtualinvoke $r29.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString append(java.lang.String)>($r30);
+goto [?= $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>];
+"->"Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+";
+    "Block 15:
+[preds: 3 7 11 ] [succs: 1 ]
+i7 = i7 + 1;
+goto [?= $i0 = virtualinvoke r17.<java.lang.String: int length()>()];
+"->"Block 1:
+[preds: 0 15 ] [succs: 2 16 ]
+$i0 = virtualinvoke r17.<java.lang.String: int length()>();
+if i7 >= $i0 goto $r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+";
+    "Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+"->"Block 17:
+[preds: 16 ] [succs: 18 35 ]
+$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+";
+    "Block 16:
+[preds: 1 6 10 13 14 ] [succs: 17 35 ]
+$r36 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+virtualinvoke $r36.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r37 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+virtualinvoke $r37.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString length(int)>(0);
+$r38 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+$r39 = new it.unimi.dsi.io.FastBufferedReader;
+$r40 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString firstPar>;
+specialinvoke $r39.<it.unimi.dsi.io.FastBufferedReader: void <init>(it.unimi.dsi.lang.MutableString)>($r40);
+virtualinvoke $r38.<it.unimi.dsi.io.FastBufferedReader: it.unimi.dsi.io.FastBufferedReader setReader(java.io.Reader)>($r39);
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 35 ]
+$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 18:
+[preds: 17 ] [succs: 19 35 ]
+$r42 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+";
+    "Block 17:
+[preds: 16 ] [succs: 18 35 ]
+$r41 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 35 ]
+$r42 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+"->"Block 19:
+[preds: 18 ] [succs: 20 35 ]
+$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42);
+";
+    "Block 18:
+[preds: 17 ] [succs: 19 35 ]
+$r42 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString title>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 35 ]
+$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42);
+"->"Block 20:
+[preds: 19 ] [succs: 21 35 ]
+virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\");
+";
+    "Block 19:
+[preds: 18 ] [succs: 20 35 ]
+$r43 = virtualinvoke $r41.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r42);
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 35 ]
+virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\");
+"->"Block 21:
+[preds: 20 31 ] [succs: 22 35 ]
+$r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+";
+    "Block 20:
+[preds: 19 ] [succs: 21 35 ]
+virtualinvoke $r43.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\"\t\");
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 21:
+[preds: 20 31 ] [succs: 22 35 ]
+$r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+"->"Block 22:
+[preds: 21 ] [succs: 23 35 ]
+$r45 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+";
+    "Block 21:
+[preds: 20 31 ] [succs: 22 35 ]
+$r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 35 ]
+$r45 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 23:
+[preds: 22 ] [succs: 24 35 ]
+$r46 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+";
+    "Block 22:
+[preds: 21 ] [succs: 23 35 ]
+$r45 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 35 ]
+$r46 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+"->"Block 24:
+[preds: 23 ] [succs: 25 35 ]
+$z1 = virtualinvoke $r44.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r45, $r46);
+";
+    "Block 23:
+[preds: 22 ] [succs: 24 35 ]
+$r46 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString nonWord>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 35 ]
+$z1 = virtualinvoke $r44.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r45, $r46);
+"->"Block 25:
+[preds: 24 ] [succs: 26 32 35 ]
+if $z1 == 0 goto $r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+";
+    "Block 24:
+[preds: 23 ] [succs: 25 35 ]
+$z1 = virtualinvoke $r44.<it.unimi.dsi.io.FastBufferedReader: boolean next(it.unimi.dsi.lang.MutableString,it.unimi.dsi.lang.MutableString)>($r45, $r46);
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 35 ]
+if $z1 == 0 goto $r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 26:
+[preds: 25 ] [succs: 27 35 ]
+$r25 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 35 ]
+if $z1 == 0 goto $r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 32:
+[preds: 25 ] [succs: 33 35 ]
+$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+";
+    "Block 25:
+[preds: 24 ] [succs: 26 32 35 ]
+if $z1 == 0 goto $r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 35 ]
+$r25 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 27:
+[preds: 26 ] [succs: 28 35 ]
+$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+";
+    "Block 26:
+[preds: 25 ] [succs: 27 35 ]
+$r25 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 35 ]
+$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 28:
+[preds: 27 ] [succs: 29 35 ]
+$r26 = virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 35 ]
+$r24 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.lang.MutableString word>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 35 ]
+$r26 = virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>();
+"->"Block 29:
+[preds: 28 ] [succs: 30 35 ]
+$r27 = virtualinvoke $r25.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r26);
+";
+    "Block 28:
+[preds: 27 ] [succs: 29 35 ]
+$r26 = virtualinvoke $r24.<it.unimi.dsi.lang.MutableString: it.unimi.dsi.lang.MutableString toLowerCase()>();
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 35 ]
+$r27 = virtualinvoke $r25.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r26);
+"->"Block 30:
+[preds: 29 ] [succs: 31 35 ]
+virtualinvoke $r27.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \");
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 35 ]
+$r27 = virtualinvoke $r25.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>($r26);
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 35 ]
+virtualinvoke $r27.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \");
+"->"Block 31:
+[preds: 30 ] [succs: 21 35 ]
+goto [?= $r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>];
+";
+    "Block 30:
+[preds: 29 ] [succs: 31 35 ]
+virtualinvoke $r27.<java.io.Writer: java.io.Writer append(java.lang.CharSequence)>(\" \");
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 31:
+[preds: 30 ] [succs: 21 35 ]
+goto [?= $r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>];
+"->"Block 21:
+[preds: 20 31 ] [succs: 22 35 ]
+$r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>;
+";
+    "Block 31:
+[preds: 30 ] [succs: 21 35 ]
+goto [?= $r44 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: it.unimi.dsi.io.FastBufferedReader wordReader>];
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 32:
+[preds: 25 ] [succs: 33 35 ]
+$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 33:
+[preds: 32 ] [succs: 34 35 ]
+virtualinvoke $r22.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\");
+";
+    "Block 32:
+[preds: 25 ] [succs: 33 35 ]
+$r22 = r0.<com.yahoo.semsearch.fastlinking.utils.ExtractFirstParagraphs: java.io.FileWriter writer>;
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 35 ]
+virtualinvoke $r22.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\");
+"->"Block 34:
+[preds: 33 ] [succs: 36 ]
+goto [?= return];
+";
+    "Block 33:
+[preds: 32 ] [succs: 34 35 ]
+virtualinvoke $r22.<java.io.FileWriter: java.io.Writer append(java.lang.CharSequence)>(\"\n\");
+"->"Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 34:
+[preds: 33 ] [succs: 36 ]
+goto [?= return];
+"->"Block 36:
+[preds: 34 35 ] [succs: ]
+return;
+";
+    "Block 35:
+[preds: 16 17 18 19 20 31 21 22 23 24 25 26 27 28 29 30 32 33 ] [succs: 36 ]
+$r34 := @caughtexception;
+r47 = $r34;
+virtualinvoke r47.<java.io.IOException: void printStackTrace()>();
+"->"Block 36:
+[preds: 34 35 ] [succs: ]
+return;
+";
+}

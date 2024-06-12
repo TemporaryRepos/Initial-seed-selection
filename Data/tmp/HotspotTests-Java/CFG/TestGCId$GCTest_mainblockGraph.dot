@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r3 := @parameter0: java.lang.String[];
+$r0 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating garbage\");
+i0 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = newarray (byte)[131072];
+<TestGCId$GCTest: byte[] garbage> = $r1;
+i0 = i0 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1024 goto $r1 = newarray (byte)[131072];
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <java.lang.System: void gc()>();
+$r2 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Done\");
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r3 := @parameter0: java.lang.String[];
+$r0 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(\"Creating garbage\");
+i0 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1024 goto $r1 = newarray (byte)[131072];
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = newarray (byte)[131072];
+<TestGCId$GCTest: byte[] garbage> = $r1;
+i0 = i0 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1024 goto $r1 = newarray (byte)[131072];
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1024 goto $r1 = newarray (byte)[131072];
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <java.lang.System: void gc()>();
+$r2 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Done\");
+return;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 1024 goto $r1 = newarray (byte)[131072];
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$r1 = newarray (byte)[131072];
+<TestGCId$GCTest: byte[] garbage> = $r1;
+i0 = i0 + 1;
+";
+}

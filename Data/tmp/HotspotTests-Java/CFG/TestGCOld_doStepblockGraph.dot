@@ -1,0 +1,21 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+l1 := @parameter0: long;
+l0 = <TestGCOld: long actuallyMut>;
+staticinvoke <TestGCOld: void doYoungGenAlloc(long,int)>(l1, 100);
+staticinvoke <TestGCOld: void doMutWork(long)>(l1);
+$i2 = <TestGCOld: int promoteRate>;
+$l3 = (long) $i2;
+$l4 = l1 / $l3;
+staticinvoke <TestGCOld: void oldGenAlloc(long)>($l4);
+$i5 = <TestGCOld: int ptrMutRate>;
+$l6 = (long) $i5;
+$l8 = l0 + $l6;
+$l7 = <TestGCOld: long actuallyMut>;
+$l9 = $l8 - $l7;
+$l10 = staticinvoke <java.lang.Math: long max(long,long)>(0L, $l9);
+staticinvoke <TestGCOld: void oldGenMut(long)>($l10);
+return;
+"
+}

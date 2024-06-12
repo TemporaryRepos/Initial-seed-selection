@@ -1,0 +1,183 @@
+digraph "unitGraph" {
+    "r0 := @this: com.github.markusbernhardt.proxy.ui.ProxyTester"
+    "$r1 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"
+    "$r2 = virtualinvoke $r1.<javax.swing.JTextField: java.lang.String getText()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>()"
+    "$i0 = virtualinvoke $r3.<java.lang.String: int length()>()"
+    "if $i0 != 0 goto $r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "$r32 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "virtualinvoke $r32.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tPlease enter an URL first.\n\")"
+    "return"
+    "$r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "virtualinvoke $r4.<javax.swing.JTextArea: void setText(java.lang.String)>(\"\")"
+    "$r5 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JComboBox modes>"
+    "$r6 = virtualinvoke $r5.<javax.swing.JComboBox: java.lang.Object getSelectedItem()>()"
+    "r39 = (com.github.markusbernhardt.proxy.ProxySearch$Strategy) $r6"
+    "$r7 = new com.github.markusbernhardt.proxy.ProxySearch"
+    "specialinvoke $r7.<com.github.markusbernhardt.proxy.ProxySearch: void <init>()>()"
+    "r8 = $r7"
+    "virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: void addStrategy(com.github.markusbernhardt.proxy.ProxySearch$Strategy)>(r39)"
+    "r9 = virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: java.net.ProxySelector getProxySelector()>()"
+    "if r9 != null goto staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"
+    "$r31 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "virtualinvoke $r31.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tNo proxy settings available for this mode.\n\")"
+    "staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"
+    "$r10 = new java.net.URL"
+    "$r11 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"
+    "$r12 = virtualinvoke $r11.<javax.swing.JTextField: java.lang.String getText()>()"
+    "$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String trim()>()"
+    "specialinvoke $r10.<java.net.URL: void <init>(java.lang.String)>($r13)"
+    "r14 = $r10"
+    "$r15 = virtualinvoke r14.<java.net.URL: java.net.URI toURI()>()"
+    "r16 = virtualinvoke r9.<java.net.ProxySelector: java.util.List select(java.net.URI)>($r15)"
+    "if r16 == null goto $r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "$i1 = interfaceinvoke r16.<java.util.List: int size()>()"
+    "if $i1 != 0 goto $r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "$r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "virtualinvoke $r17.<javax.swing.JTextArea: void append(java.lang.String)>(\"INFO\tNo proxy found for this url.\n\")"
+    "$r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "$r18 = new java.lang.StringBuilder"
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy Settings found using \")"
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" strategy.\n\")"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r19.<javax.swing.JTextArea: void append(java.lang.String)>($r23)"
+    "$r25 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"
+    "$r24 = new java.lang.StringBuilder"
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy used for URL is: \")"
+    "$r27 = interfaceinvoke r16.<java.util.List: java.lang.Object get(int)>(0)"
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r27)"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r25.<javax.swing.JTextArea: void append(java.lang.String)>($r30)"
+    "goto [?= return]"
+    "$r33 := @caughtexception"
+    "r40 = $r33"
+    "$r34 = new java.lang.StringBuilder"
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error:\")"
+    "$r36 = virtualinvoke r40.<java.lang.Exception: java.lang.String getMessage()>()"
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <javax.swing.JOptionPane: void showMessageDialog(java.awt.Component,java.lang.Object,java.lang.String,int)>(r0, $r38, \"Error checking URL.\", 0)"
+    "r0 := @this: com.github.markusbernhardt.proxy.ui.ProxyTester"->"$r1 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>";
+    "r0 := @this: com.github.markusbernhardt.proxy.ui.ProxyTester"->"$r33 := @caughtexception";
+    "$r1 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"->"$r2 = virtualinvoke $r1.<javax.swing.JTextField: java.lang.String getText()>()";
+    "$r1 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"->"$r33 := @caughtexception";
+    "$r2 = virtualinvoke $r1.<javax.swing.JTextField: java.lang.String getText()>()"->"$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>()";
+    "$r2 = virtualinvoke $r1.<javax.swing.JTextField: java.lang.String getText()>()"->"$r33 := @caughtexception";
+    "$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>()"->"$i0 = virtualinvoke $r3.<java.lang.String: int length()>()";
+    "$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String trim()>()"->"$r33 := @caughtexception";
+    "$i0 = virtualinvoke $r3.<java.lang.String: int length()>()"->"if $i0 != 0 goto $r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "$i0 = virtualinvoke $r3.<java.lang.String: int length()>()"->"$r33 := @caughtexception";
+    "if $i0 != 0 goto $r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r32 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if $i0 != 0 goto $r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if $i0 != 0 goto $r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "$r32 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"virtualinvoke $r32.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tPlease enter an URL first.\n\")";
+    "$r32 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "virtualinvoke $r32.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tPlease enter an URL first.\n\")"->"return";
+    "virtualinvoke $r32.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tPlease enter an URL first.\n\")"->"$r33 := @caughtexception";
+    "$r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"virtualinvoke $r4.<javax.swing.JTextArea: void setText(java.lang.String)>(\"\")";
+    "$r4 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "virtualinvoke $r4.<javax.swing.JTextArea: void setText(java.lang.String)>(\"\")"->"$r5 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JComboBox modes>";
+    "virtualinvoke $r4.<javax.swing.JTextArea: void setText(java.lang.String)>(\"\")"->"$r33 := @caughtexception";
+    "$r5 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JComboBox modes>"->"$r6 = virtualinvoke $r5.<javax.swing.JComboBox: java.lang.Object getSelectedItem()>()";
+    "$r5 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JComboBox modes>"->"$r33 := @caughtexception";
+    "$r6 = virtualinvoke $r5.<javax.swing.JComboBox: java.lang.Object getSelectedItem()>()"->"r39 = (com.github.markusbernhardt.proxy.ProxySearch$Strategy) $r6";
+    "$r6 = virtualinvoke $r5.<javax.swing.JComboBox: java.lang.Object getSelectedItem()>()"->"$r33 := @caughtexception";
+    "r39 = (com.github.markusbernhardt.proxy.ProxySearch$Strategy) $r6"->"$r7 = new com.github.markusbernhardt.proxy.ProxySearch";
+    "r39 = (com.github.markusbernhardt.proxy.ProxySearch$Strategy) $r6"->"$r33 := @caughtexception";
+    "$r7 = new com.github.markusbernhardt.proxy.ProxySearch"->"specialinvoke $r7.<com.github.markusbernhardt.proxy.ProxySearch: void <init>()>()";
+    "$r7 = new com.github.markusbernhardt.proxy.ProxySearch"->"$r33 := @caughtexception";
+    "specialinvoke $r7.<com.github.markusbernhardt.proxy.ProxySearch: void <init>()>()"->"r8 = $r7";
+    "specialinvoke $r7.<com.github.markusbernhardt.proxy.ProxySearch: void <init>()>()"->"$r33 := @caughtexception";
+    "r8 = $r7"->"virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: void addStrategy(com.github.markusbernhardt.proxy.ProxySearch$Strategy)>(r39)";
+    "r8 = $r7"->"$r33 := @caughtexception";
+    "virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: void addStrategy(com.github.markusbernhardt.proxy.ProxySearch$Strategy)>(r39)"->"r9 = virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: java.net.ProxySelector getProxySelector()>()";
+    "virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: void addStrategy(com.github.markusbernhardt.proxy.ProxySearch$Strategy)>(r39)"->"$r33 := @caughtexception";
+    "r9 = virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: java.net.ProxySelector getProxySelector()>()"->"if r9 != null goto staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)";
+    "r9 = virtualinvoke r8.<com.github.markusbernhardt.proxy.ProxySearch: java.net.ProxySelector getProxySelector()>()"->"$r33 := @caughtexception";
+    "if r9 != null goto staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"->"$r31 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if r9 != null goto staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"->"staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)";
+    "if r9 != null goto staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"->"$r33 := @caughtexception";
+    "$r31 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"virtualinvoke $r31.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tNo proxy settings available for this mode.\n\")";
+    "$r31 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "virtualinvoke $r31.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tNo proxy settings available for this mode.\n\")"->"return";
+    "virtualinvoke $r31.<javax.swing.JTextArea: void append(java.lang.String)>(\"ERROR\tNo proxy settings available for this mode.\n\")"->"$r33 := @caughtexception";
+    "staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"->"$r10 = new java.net.URL";
+    "staticinvoke <java.net.ProxySelector: void setDefault(java.net.ProxySelector)>(r9)"->"$r33 := @caughtexception";
+    "$r10 = new java.net.URL"->"$r11 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>";
+    "$r10 = new java.net.URL"->"$r33 := @caughtexception";
+    "$r11 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"->"$r12 = virtualinvoke $r11.<javax.swing.JTextField: java.lang.String getText()>()";
+    "$r11 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextField urlField>"->"$r33 := @caughtexception";
+    "$r12 = virtualinvoke $r11.<javax.swing.JTextField: java.lang.String getText()>()"->"$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String trim()>()";
+    "$r12 = virtualinvoke $r11.<javax.swing.JTextField: java.lang.String getText()>()"->"$r33 := @caughtexception";
+    "$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String trim()>()"->"specialinvoke $r10.<java.net.URL: void <init>(java.lang.String)>($r13)";
+    "$r13 = virtualinvoke $r12.<java.lang.String: java.lang.String trim()>()"->"$r33 := @caughtexception";
+    "specialinvoke $r10.<java.net.URL: void <init>(java.lang.String)>($r13)"->"r14 = $r10";
+    "specialinvoke $r10.<java.net.URL: void <init>(java.lang.String)>($r13)"->"$r33 := @caughtexception";
+    "r14 = $r10"->"$r15 = virtualinvoke r14.<java.net.URL: java.net.URI toURI()>()";
+    "r14 = $r10"->"$r33 := @caughtexception";
+    "$r15 = virtualinvoke r14.<java.net.URL: java.net.URI toURI()>()"->"r16 = virtualinvoke r9.<java.net.ProxySelector: java.util.List select(java.net.URI)>($r15)";
+    "$r15 = virtualinvoke r14.<java.net.URL: java.net.URI toURI()>()"->"$r33 := @caughtexception";
+    "r16 = virtualinvoke r9.<java.net.ProxySelector: java.util.List select(java.net.URI)>($r15)"->"if r16 == null goto $r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "r16 = virtualinvoke r9.<java.net.ProxySelector: java.util.List select(java.net.URI)>($r15)"->"$r33 := @caughtexception";
+    "if r16 == null goto $r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$i1 = interfaceinvoke r16.<java.util.List: int size()>()";
+    "if r16 == null goto $r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if r16 == null goto $r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "$i1 = interfaceinvoke r16.<java.util.List: int size()>()"->"if $i1 != 0 goto $r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "$i1 = interfaceinvoke r16.<java.util.List: int size()>()"->"$r33 := @caughtexception";
+    "if $i1 != 0 goto $r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if $i1 != 0 goto $r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "if $i1 != 0 goto $r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "$r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"virtualinvoke $r17.<javax.swing.JTextArea: void append(java.lang.String)>(\"INFO\tNo proxy found for this url.\n\")";
+    "$r17 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "virtualinvoke $r17.<javax.swing.JTextArea: void append(java.lang.String)>(\"INFO\tNo proxy found for this url.\n\")"->"return";
+    "virtualinvoke $r17.<javax.swing.JTextArea: void append(java.lang.String)>(\"INFO\tNo proxy found for this url.\n\")"->"$r33 := @caughtexception";
+    "$r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r18 = new java.lang.StringBuilder";
+    "$r19 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "$r18 = new java.lang.StringBuilder"->"specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()";
+    "$r18 = new java.lang.StringBuilder"->"$r33 := @caughtexception";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy Settings found using \")";
+    "specialinvoke $r18.<java.lang.StringBuilder: void <init>()>()"->"$r33 := @caughtexception";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy Settings found using \")"->"$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)";
+    "$r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy Settings found using \")"->"$r33 := @caughtexception";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"->"$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" strategy.\n\")";
+    "$r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r39)"->"$r33 := @caughtexception";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" strategy.\n\")"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" strategy.\n\")"->"$r33 := @caughtexception";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r19.<javax.swing.JTextArea: void append(java.lang.String)>($r23)";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r33 := @caughtexception";
+    "virtualinvoke $r19.<javax.swing.JTextArea: void append(java.lang.String)>($r23)"->"$r25 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>";
+    "virtualinvoke $r19.<javax.swing.JTextArea: void append(java.lang.String)>($r23)"->"$r33 := @caughtexception";
+    "$r25 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r24 = new java.lang.StringBuilder";
+    "$r25 = r0.<com.github.markusbernhardt.proxy.ui.ProxyTester: javax.swing.JTextArea logArea>"->"$r33 := @caughtexception";
+    "$r24 = new java.lang.StringBuilder"->"specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()";
+    "$r24 = new java.lang.StringBuilder"->"$r33 := @caughtexception";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy used for URL is: \")";
+    "specialinvoke $r24.<java.lang.StringBuilder: void <init>()>()"->"$r33 := @caughtexception";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy used for URL is: \")"->"$r27 = interfaceinvoke r16.<java.util.List: java.lang.Object get(int)>(0)";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"INFO\tProxy used for URL is: \")"->"$r33 := @caughtexception";
+    "$r27 = interfaceinvoke r16.<java.util.List: java.lang.Object get(int)>(0)"->"$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r27)";
+    "$r27 = interfaceinvoke r16.<java.util.List: java.lang.Object get(int)>(0)"->"$r33 := @caughtexception";
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r27)"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")";
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r27)"->"$r33 := @caughtexception";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\n\")"->"$r33 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r25.<javax.swing.JTextArea: void append(java.lang.String)>($r30)";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r33 := @caughtexception";
+    "virtualinvoke $r25.<javax.swing.JTextArea: void append(java.lang.String)>($r30)"->"goto [?= return]";
+    "virtualinvoke $r25.<javax.swing.JTextArea: void append(java.lang.String)>($r30)"->"$r33 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r33 := @caughtexception"->"r40 = $r33";
+    "r40 = $r33"->"$r34 = new java.lang.StringBuilder";
+    "$r34 = new java.lang.StringBuilder"->"specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error:\")";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Error:\")"->"$r36 = virtualinvoke r40.<java.lang.Exception: java.lang.String getMessage()>()";
+    "$r36 = virtualinvoke r40.<java.lang.Exception: java.lang.String getMessage()>()"->"$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)";
+    "$r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36)"->"$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <javax.swing.JOptionPane: void showMessageDialog(java.awt.Component,java.lang.Object,java.lang.String,int)>(r0, $r38, \"Error checking URL.\", 0)";
+    "staticinvoke <javax.swing.JOptionPane: void showMessageDialog(java.awt.Component,java.lang.Object,java.lang.String,int)>(r0, $r38, \"Error checking URL.\", 0)"->"return";
+}

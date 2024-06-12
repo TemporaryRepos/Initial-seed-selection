@@ -1,0 +1,59 @@
+digraph "unitGraph" {
+    "i4 = 0"
+    "b5 = 73"
+    "i0 = staticinvoke <java.lang.Integer: int bitCount(int)>(b5)"
+    "if b5 == 0 goto (branch)"
+    "$l1 = (long) b5"
+    "i6 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l1)"
+    "i7 = b5 >>> i6"
+    "goto [?= (branch)]"
+    "i4 = i4 + 1"
+    "$i2 = i7 ^ 1"
+    "i7 = $i2"
+    "if $i2 == 0 goto (branch)"
+    "$l3 = (long) i7"
+    "i8 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l3)"
+    "i7 = i7 >>> i8"
+    "if i7 != 0 goto i4 = i4 + 1"
+    "if i0 == i4 goto return i4"
+    "$r1 = <java.lang.System: java.io.PrintStream out>"
+    "$r0 = new java.lang.StringBuilder"
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"ERROR: \")"
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5)"
+    "staticinvoke <java.lang.System: void exit(int)>(97)"
+    "return i4"
+    "i4 = 0"->"b5 = 73";
+    "b5 = 73"->"i0 = staticinvoke <java.lang.Integer: int bitCount(int)>(b5)";
+    "i0 = staticinvoke <java.lang.Integer: int bitCount(int)>(b5)"->"if b5 == 0 goto (branch)";
+    "if b5 == 0 goto (branch)"->"$l1 = (long) b5";
+    "if b5 == 0 goto (branch)"->"if i0 == i4 goto return i4";
+    "$l1 = (long) b5"->"i6 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l1)";
+    "i6 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l1)"->"i7 = b5 >>> i6";
+    "i7 = b5 >>> i6"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i7 != 0 goto i4 = i4 + 1";
+    "i4 = i4 + 1"->"$i2 = i7 ^ 1";
+    "$i2 = i7 ^ 1"->"i7 = $i2";
+    "i7 = $i2"->"if $i2 == 0 goto (branch)";
+    "if $i2 == 0 goto (branch)"->"$l3 = (long) i7";
+    "if $i2 == 0 goto (branch)"->"if i7 != 0 goto i4 = i4 + 1";
+    "$l3 = (long) i7"->"i8 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l3)";
+    "i8 = staticinvoke <java.lang.Long: int numberOfTrailingZeros(long)>($l3)"->"i7 = i7 >>> i8";
+    "i7 = i7 >>> i8"->"if i7 != 0 goto i4 = i4 + 1";
+    "if i7 != 0 goto i4 = i4 + 1"->"if i0 == i4 goto return i4";
+    "if i7 != 0 goto i4 = i4 + 1"->"i4 = i4 + 1";
+    "if i0 == i4 goto return i4"->"$r1 = <java.lang.System: java.io.PrintStream out>";
+    "if i0 == i4 goto return i4"->"return i4";
+    "$r1 = <java.lang.System: java.io.PrintStream out>"->"$r0 = new java.lang.StringBuilder";
+    "$r0 = new java.lang.StringBuilder"->"specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"ERROR: \")";
+    "specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(\"ERROR: \")"->"$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)";
+    "$r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" != \")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5)";
+    "virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5)"->"staticinvoke <java.lang.System: void exit(int)>(97)";
+    "staticinvoke <java.lang.System: void exit(int)>(97)"->"return i4";
+}

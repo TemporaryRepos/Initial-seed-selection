@@ -1,0 +1,66 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>(1);
+i4 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+$i1 = $i0 + 1;
+$i2 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i1);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+i4 = i4 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i3 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+return $i3;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r0 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: java.lang.Integer foob(int)>(1);
+i4 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+$i1 = $i0 + 1;
+$i2 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i1);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+i4 = i4 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+"->"Block 3:
+[preds: 2 ] [succs: ]
+staticinvoke <compiler.eliminateAutobox.TestIntBoxing: void dummy()>();
+$i3 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+return $i3;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i4 < 1000 goto $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+$i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+$i1 = $i0 + 1;
+$i2 = staticinvoke <compiler.eliminateAutobox.TestIntBoxing: int foo(int)>($i1);
+r0 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+i4 = i4 + 1;
+";
+}

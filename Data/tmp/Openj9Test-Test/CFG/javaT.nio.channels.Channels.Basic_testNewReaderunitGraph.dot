@@ -1,0 +1,87 @@
+digraph "unitGraph" {
+    "r1 := @parameter0: java.io.File"
+    "$r0 = new java.io.FileInputStream"
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)"
+    "r2 = $r0"
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"
+    "$r4 = <javaT.nio.channels.Channels.Basic: java.lang.String encoding>"
+    "r5 = staticinvoke <java.nio.channels.Channels: java.io.Reader newReader(java.nio.channels.ReadableByteChannel,java.lang.String)>(r3, $r4)"
+    "$r6 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"
+    "$i0 = virtualinvoke $r6.<java.lang.String: int length()>()"
+    "$i1 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>"
+    "i2 = $i0 * $i1"
+    "r7 = newarray (char)[i2]"
+    "i8 = 0"
+    "i9 = 0"
+    "if i8 >= i2 goto $r8 = new java.lang.String"
+    "i8 = i8 + i9"
+    "$i7 = i2 - i8"
+    "i9 = virtualinvoke r5.<java.io.Reader: int read(char[],int,int)>(r7, i8, $i7)"
+    "goto [?= (branch)]"
+    "$r8 = new java.lang.String"
+    "specialinvoke $r8.<java.lang.String: void <init>(char[],int,int)>(r7, 0, i8)"
+    "r9 = $r8"
+    "$r10 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"
+    "i3 = virtualinvoke $r10.<java.lang.String: int length()>()"
+    "i10 = 0"
+    "$i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>"
+    "if i10 >= $i4 goto virtualinvoke r5.<java.io.Reader: void close()>()"
+    "i11 = i10 + 1"
+    "$i6 = i10 * i3"
+    "$i5 = i11 * i3"
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int,int)>($i6, $i5)"
+    "$r12 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"
+    "$z0 = virtualinvoke r11.<java.lang.String: boolean equals(java.lang.Object)>($r12)"
+    "if $z0 != 0 goto i10 = i11 + 1"
+    "$r13 = new java.lang.RuntimeException"
+    "specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"
+    "throw $r13"
+    "i10 = i11 + 1"
+    "goto [?= $i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>]"
+    "virtualinvoke r5.<java.io.Reader: void close()>()"
+    "virtualinvoke r2.<java.io.FileInputStream: void close()>()"
+    "return"
+    "r1 := @parameter0: java.io.File"->"$r0 = new java.io.FileInputStream";
+    "$r0 = new java.io.FileInputStream"->"specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)";
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()";
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"->"$r4 = <javaT.nio.channels.Channels.Basic: java.lang.String encoding>";
+    "$r4 = <javaT.nio.channels.Channels.Basic: java.lang.String encoding>"->"r5 = staticinvoke <java.nio.channels.Channels: java.io.Reader newReader(java.nio.channels.ReadableByteChannel,java.lang.String)>(r3, $r4)";
+    "r5 = staticinvoke <java.nio.channels.Channels: java.io.Reader newReader(java.nio.channels.ReadableByteChannel,java.lang.String)>(r3, $r4)"->"$r6 = <javaT.nio.channels.Channels.Basic: java.lang.String message>";
+    "$r6 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"->"$i0 = virtualinvoke $r6.<java.lang.String: int length()>()";
+    "$i0 = virtualinvoke $r6.<java.lang.String: int length()>()"->"$i1 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>";
+    "$i1 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>"->"i2 = $i0 * $i1";
+    "i2 = $i0 * $i1"->"r7 = newarray (char)[i2]";
+    "r7 = newarray (char)[i2]"->"i8 = 0";
+    "i8 = 0"->"i9 = 0";
+    "i9 = 0"->"if i8 >= i2 goto $r8 = new java.lang.String";
+    "if i8 >= i2 goto $r8 = new java.lang.String"->"i8 = i8 + i9";
+    "if i8 >= i2 goto $r8 = new java.lang.String"->"$r8 = new java.lang.String";
+    "i8 = i8 + i9"->"$i7 = i2 - i8";
+    "$i7 = i2 - i8"->"i9 = virtualinvoke r5.<java.io.Reader: int read(char[],int,int)>(r7, i8, $i7)";
+    "i9 = virtualinvoke r5.<java.io.Reader: int read(char[],int,int)>(r7, i8, $i7)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i8 >= i2 goto $r8 = new java.lang.String";
+    "$r8 = new java.lang.String"->"specialinvoke $r8.<java.lang.String: void <init>(char[],int,int)>(r7, 0, i8)";
+    "specialinvoke $r8.<java.lang.String: void <init>(char[],int,int)>(r7, 0, i8)"->"r9 = $r8";
+    "r9 = $r8"->"$r10 = <javaT.nio.channels.Channels.Basic: java.lang.String message>";
+    "$r10 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"->"i3 = virtualinvoke $r10.<java.lang.String: int length()>()";
+    "i3 = virtualinvoke $r10.<java.lang.String: int length()>()"->"i10 = 0";
+    "i10 = 0"->"$i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>";
+    "$i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>"->"if i10 >= $i4 goto virtualinvoke r5.<java.io.Reader: void close()>()";
+    "if i10 >= $i4 goto virtualinvoke r5.<java.io.Reader: void close()>()"->"i11 = i10 + 1";
+    "if i10 >= $i4 goto virtualinvoke r5.<java.io.Reader: void close()>()"->"virtualinvoke r5.<java.io.Reader: void close()>()";
+    "i11 = i10 + 1"->"$i6 = i10 * i3";
+    "$i6 = i10 * i3"->"$i5 = i11 * i3";
+    "$i5 = i11 * i3"->"r11 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int,int)>($i6, $i5)";
+    "r11 = virtualinvoke r9.<java.lang.String: java.lang.String substring(int,int)>($i6, $i5)"->"$r12 = <javaT.nio.channels.Channels.Basic: java.lang.String message>";
+    "$r12 = <javaT.nio.channels.Channels.Basic: java.lang.String message>"->"$z0 = virtualinvoke r11.<java.lang.String: boolean equals(java.lang.Object)>($r12)";
+    "$z0 = virtualinvoke r11.<java.lang.String: boolean equals(java.lang.Object)>($r12)"->"if $z0 != 0 goto i10 = i11 + 1";
+    "if $z0 != 0 goto i10 = i11 + 1"->"$r13 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto i10 = i11 + 1"->"i10 = i11 + 1";
+    "$r13 = new java.lang.RuntimeException"->"specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")";
+    "specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"->"throw $r13";
+    "i10 = i11 + 1"->"goto [?= $i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>]";
+    "goto [?= $i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>]"->"$i4 = <javaT.nio.channels.Channels.Basic: int ITERATIONS>";
+    "virtualinvoke r5.<java.io.Reader: void close()>()"->"virtualinvoke r2.<java.io.FileInputStream: void close()>()";
+    "virtualinvoke r2.<java.io.FileInputStream: void close()>()"->"return";
+}

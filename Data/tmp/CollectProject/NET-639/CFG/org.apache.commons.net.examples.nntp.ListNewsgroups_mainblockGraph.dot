@@ -1,0 +1,1504 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient;
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r14 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: newsgroups newsserver [pattern]\");
+return;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r2 = $r1;
+$i1 = lengthof r0;
+if $i1 < 2 goto $r26 = \"\";
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = r0[1];
+goto [?= r3 = $r26];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r26 = \"\";
+"
+    "Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+"
+    "Block 6:
+[preds: 5 ] [succs: 44 52 7 ]
+$r4 = r0[0];
+"
+    "Block 7:
+[preds: 6 ] [succs: 44 52 8 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4);
+"
+    "Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+"
+    "Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+"
+    "Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+"
+    "Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"
+    "Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+"
+    "Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+"
+    "Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+"
+    "Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+"
+    "Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 19:
+[preds: 12 ] [succs: 44 52 23 ]
+goto [?= $r6 = <java.lang.System: java.io.PrintStream out>];
+"
+    "Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+"
+    "Block 21:
+[preds: 20 ] [succs: 44 52 22 ]
+r29 = $r25;
+"
+    "Block 22:
+[preds: 21 ] [succs: 44 52 23 ]
+virtualinvoke r29.<java.io.IOException: void printStackTrace()>();
+"
+    "Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 24:
+[preds: 23 ] [succs: 44 52 25 ]
+virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2);
+"
+    "Block 25:
+[preds: 24 ] [succs: 44 52 26 ]
+i3 = 0;
+"
+    "Block 26:
+[preds: 25 ] [succs: 44 52 27 ]
+$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3);
+"
+    "Block 27:
+[preds: 26 ] [succs: 44 52 28 ]
+r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+"
+    "Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+"
+    "Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 30:
+[preds: 29 ] [succs: 44 52 31 ]
+$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>();
+"
+    "Block 31:
+[preds: 30 ] [succs: 44 52 32 ]
+r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9;
+"
+    "Block 32:
+[preds: 31 ] [succs: 44 52 33 ]
+i3 = i3 + 1;
+"
+    "Block 33:
+[preds: 32 ] [succs: 44 52 34 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 34:
+[preds: 33 ] [succs: 44 52 35 ]
+$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>();
+"
+    "Block 35:
+[preds: 34 ] [succs: 44 52 36 ]
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11);
+"
+    "Block 36:
+[preds: 35 ] [succs: 44 52 28 ]
+goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 37:
+[preds: 29 ] [succs: 44 52 38 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+"
+    "Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+"
+    "Block 39:
+[preds: 38 ] [succs: 40 43 ]
+$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"
+    "Block 40:
+[preds: 39 ] [succs: 41 42 43 ]
+if $z0 == 0 goto (branch);
+"
+    "Block 41:
+[preds: 40 ] [succs: 42 43 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"
+    "Block 42:
+[preds: 40 41 ] [succs: 60 ]
+goto [?= return];
+"
+    "Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+"
+    "Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+"
+    "Block 45:
+[preds: 44 ] [succs: 46 52 ]
+r33 = $r22;
+"
+    "Block 46:
+[preds: 45 ] [succs: 51 52 47 ]
+virtualinvoke r33.<java.io.IOException: void printStackTrace()>();
+"
+    "Block 47:
+[preds: 46 ] [succs: 48 51 ]
+$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"
+    "Block 48:
+[preds: 47 ] [succs: 49 50 51 ]
+if $z2 == 0 goto (branch);
+"
+    "Block 49:
+[preds: 48 ] [succs: 50 51 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"
+    "Block 50:
+[preds: 48 49 ] [succs: 60 ]
+goto [?= return];
+"
+    "Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+"
+    "Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+"
+    "Block 53:
+[preds: 52 ] [succs: 58 52 54 ]
+r18 = $r19;
+"
+    "Block 54:
+[preds: 53 ] [succs: 55 58 ]
+$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"
+    "Block 55:
+[preds: 54 ] [succs: 56 57 58 ]
+if $z1 == 0 goto (branch);
+"
+    "Block 56:
+[preds: 55 ] [succs: 57 58 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"
+    "Block 57:
+[preds: 55 56 ] [succs: 59 ]
+goto [?= throw r18];
+"
+    "Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+"
+    "Block 59:
+[preds: 57 58 ] [succs: ]
+throw r18;
+"
+    "Block 60:
+[preds: 42 43 50 51 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient;
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r14 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>(\"Usage: newsgroups newsserver [pattern]\");
+return;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.lang.String[];
+$i0 = lengthof r0;
+if $i0 >= 1 goto $r1 = new org.apache.commons.net.nntp.NNTPClient;
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r2 = $r1;
+$i1 = lengthof r0;
+if $i1 < 2 goto $r26 = \"\";
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r2 = $r1;
+$i1 = lengthof r0;
+if $i1 < 2 goto $r26 = \"\";
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = r0[1];
+goto [?= r3 = $r26];
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = new org.apache.commons.net.nntp.NNTPClient;
+specialinvoke $r1.<org.apache.commons.net.nntp.NNTPClient: void <init>()>();
+r2 = $r1;
+$i1 = lengthof r0;
+if $i1 < 2 goto $r26 = \"\";
+"->"Block 4:
+[preds: 2 ] [succs: 5 ]
+$r26 = \"\";
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+$r26 = r0[1];
+goto [?= r3 = $r26];
+"->"Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 ]
+$r26 = \"\";
+"->"Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 5:
+[preds: 3 4 ] [succs: 44 52 6 ]
+r3 = $r26;
+"->"Block 6:
+[preds: 5 ] [succs: 44 52 7 ]
+$r4 = r0[0];
+";
+    "Block 6:
+[preds: 5 ] [succs: 44 52 7 ]
+$r4 = r0[0];
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 44 52 7 ]
+$r4 = r0[0];
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 44 52 7 ]
+$r4 = r0[0];
+"->"Block 7:
+[preds: 6 ] [succs: 44 52 8 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4);
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 52 8 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 52 8 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 52 8 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void connect(java.lang.String)>($r4);
+"->"Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+";
+    "Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 20 52 44 9 ]
+i2 = 0;
+"->"Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+";
+    "Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 20 52 44 10 ]
+$r5 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroupListing(java.lang.String)>(r3);
+"->"Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+";
+    "Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 10:
+[preds: 9 ] [succs: 20 52 44 11 ]
+r27 = interfaceinvoke $r5.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+"->"Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+";
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"->"Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+";
+    "Block 12:
+[preds: 11 ] [succs: 20 52 44 13 19 ]
+if $z3 == 0 goto (branch);
+"->"Block 19:
+[preds: 12 ] [succs: 44 52 23 ]
+goto [?= $r6 = <java.lang.System: java.io.PrintStream out>];
+";
+    "Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 13:
+[preds: 12 ] [succs: 20 52 44 14 ]
+$r12 = interfaceinvoke r27.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+";
+    "Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 20 52 44 15 ]
+r28 = (java.lang.String) $r12;
+"->"Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+";
+    "Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 20 52 44 16 ]
+i2 = i2 + 1;
+"->"Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 20 52 44 17 ]
+$r13 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+";
+    "Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 20 52 44 18 ]
+virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(r28);
+"->"Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 18:
+[preds: 17 ] [succs: 20 52 44 11 ]
+goto [?= $z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 11:
+[preds: 10 18 ] [succs: 20 52 44 12 ]
+$z3 = interfaceinvoke r27.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 19:
+[preds: 12 ] [succs: 44 52 23 ]
+goto [?= $r6 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 19:
+[preds: 12 ] [succs: 44 52 23 ]
+goto [?= $r6 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 19:
+[preds: 12 ] [succs: 44 52 23 ]
+goto [?= $r6 = <java.lang.System: java.io.PrintStream out>];
+"->"Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 20:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 ] [succs: 44 52 21 ]
+$r25 := @caughtexception;
+"->"Block 21:
+[preds: 20 ] [succs: 44 52 22 ]
+r29 = $r25;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 52 22 ]
+r29 = $r25;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 52 22 ]
+r29 = $r25;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 52 22 ]
+r29 = $r25;
+"->"Block 22:
+[preds: 21 ] [succs: 44 52 23 ]
+virtualinvoke r29.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 52 23 ]
+virtualinvoke r29.<java.io.IOException: void printStackTrace()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 52 23 ]
+virtualinvoke r29.<java.io.IOException: void printStackTrace()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 52 23 ]
+virtualinvoke r29.<java.io.IOException: void printStackTrace()>();
+"->"Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 23:
+[preds: 19 22 ] [succs: 44 52 24 ]
+$r6 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 24:
+[preds: 23 ] [succs: 44 52 25 ]
+virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2);
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 52 25 ]
+virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 52 25 ]
+virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 52 25 ]
+virtualinvoke $r6.<java.io.PrintStream: void println(int)>(i2);
+"->"Block 25:
+[preds: 24 ] [succs: 44 52 26 ]
+i3 = 0;
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 52 26 ]
+i3 = 0;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 52 26 ]
+i3 = 0;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 52 26 ]
+i3 = 0;
+"->"Block 26:
+[preds: 25 ] [succs: 44 52 27 ]
+$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3);
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 52 27 ]
+$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 52 27 ]
+$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 52 27 ]
+$r7 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: java.lang.Iterable iterateNewsgroups(java.lang.String)>(r3);
+"->"Block 27:
+[preds: 26 ] [succs: 44 52 28 ]
+r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+";
+    "Block 27:
+[preds: 26 ] [succs: 44 52 28 ]
+r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 44 52 28 ]
+r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 44 52 28 ]
+r30 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+"->"Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+"->"Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 30:
+[preds: 29 ] [succs: 44 52 31 ]
+$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>();
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 37:
+[preds: 29 ] [succs: 44 52 38 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 30 37 44 52 ]
+if $z4 == 0 goto $r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 44 52 31 ]
+$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 44 52 31 ]
+$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 30:
+[preds: 29 ] [succs: 44 52 31 ]
+$r9 = interfaceinvoke r30.<java.util.Iterator: java.lang.Object next()>();
+"->"Block 31:
+[preds: 30 ] [succs: 44 52 32 ]
+r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9;
+";
+    "Block 31:
+[preds: 30 ] [succs: 44 52 32 ]
+r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 44 52 32 ]
+r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 44 52 32 ]
+r31 = (org.apache.commons.net.nntp.NewsgroupInfo) $r9;
+"->"Block 32:
+[preds: 31 ] [succs: 44 52 33 ]
+i3 = i3 + 1;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 52 33 ]
+i3 = i3 + 1;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 52 33 ]
+i3 = i3 + 1;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 52 33 ]
+i3 = i3 + 1;
+"->"Block 33:
+[preds: 32 ] [succs: 44 52 34 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 52 34 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 52 34 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 52 34 ]
+$r10 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 34:
+[preds: 33 ] [succs: 44 52 35 ]
+$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>();
+";
+    "Block 34:
+[preds: 33 ] [succs: 44 52 35 ]
+$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>();
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 44 52 35 ]
+$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 44 52 35 ]
+$r11 = virtualinvoke r31.<org.apache.commons.net.nntp.NewsgroupInfo: java.lang.String getNewsgroup()>();
+"->"Block 35:
+[preds: 34 ] [succs: 44 52 36 ]
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11);
+";
+    "Block 35:
+[preds: 34 ] [succs: 44 52 36 ]
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 44 52 36 ]
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 35:
+[preds: 34 ] [succs: 44 52 36 ]
+virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r11);
+"->"Block 36:
+[preds: 35 ] [succs: 44 52 28 ]
+goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 52 28 ]
+goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 52 28 ]
+goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 52 28 ]
+goto [?= $z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 28:
+[preds: 27 36 ] [succs: 44 52 29 ]
+$z4 = interfaceinvoke r30.<java.util.Iterator: boolean hasNext()>();
+";
+    "Block 37:
+[preds: 29 ] [succs: 44 52 38 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 37:
+[preds: 29 ] [succs: 44 52 38 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 37:
+[preds: 29 ] [succs: 44 52 38 ]
+$r8 = <java.lang.System: java.io.PrintStream out>;
+"->"Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+";
+    "Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+";
+    "Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 38:
+[preds: 37 ] [succs: 43 44 52 39 ]
+virtualinvoke $r8.<java.io.PrintStream: void println(int)>(i3);
+"->"Block 39:
+[preds: 38 ] [succs: 40 43 ]
+$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 43 ]
+$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 40:
+[preds: 39 ] [succs: 41 42 43 ]
+if $z0 == 0 goto (branch);
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 43 ]
+$z0 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 42 43 ]
+if $z0 == 0 goto (branch);
+"->"Block 41:
+[preds: 40 ] [succs: 42 43 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 42 43 ]
+if $z0 == 0 goto (branch);
+"->"Block 42:
+[preds: 40 41 ] [succs: 60 ]
+goto [?= return];
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 42 43 ]
+if $z0 == 0 goto (branch);
+"->"Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 43 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 42:
+[preds: 40 41 ] [succs: 60 ]
+goto [?= return];
+";
+    "Block 41:
+[preds: 40 ] [succs: 42 43 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 42:
+[preds: 40 41 ] [succs: 60 ]
+goto [?= return];
+"->"Block 60:
+[preds: 42 43 50 51 ] [succs: ]
+return;
+";
+    "Block 43:
+[preds: 38 39 40 41 ] [succs: 60 ]
+$r23 := @caughtexception;
+r32 = $r23;
+$r24 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r32.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+"->"Block 60:
+[preds: 42 43 50 51 ] [succs: ]
+return;
+";
+    "Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+"->"Block 45:
+[preds: 44 ] [succs: 46 52 ]
+r33 = $r22;
+";
+    "Block 44:
+[preds: 5 6 7 8 12 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 9 10 18 11 13 14 15 16 17 ] [succs: 45 52 ]
+$r22 := @caughtexception;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 52 ]
+r33 = $r22;
+"->"Block 46:
+[preds: 45 ] [succs: 51 52 47 ]
+virtualinvoke r33.<java.io.IOException: void printStackTrace()>();
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 52 ]
+r33 = $r22;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 51 52 47 ]
+virtualinvoke r33.<java.io.IOException: void printStackTrace()>();
+"->"Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 46:
+[preds: 45 ] [succs: 51 52 47 ]
+virtualinvoke r33.<java.io.IOException: void printStackTrace()>();
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 51 52 47 ]
+virtualinvoke r33.<java.io.IOException: void printStackTrace()>();
+"->"Block 47:
+[preds: 46 ] [succs: 48 51 ]
+$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 51 ]
+$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 48:
+[preds: 47 ] [succs: 49 50 51 ]
+if $z2 == 0 goto (branch);
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 51 ]
+$z2 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 48:
+[preds: 47 ] [succs: 49 50 51 ]
+if $z2 == 0 goto (branch);
+"->"Block 49:
+[preds: 48 ] [succs: 50 51 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+";
+    "Block 48:
+[preds: 47 ] [succs: 49 50 51 ]
+if $z2 == 0 goto (branch);
+"->"Block 50:
+[preds: 48 49 ] [succs: 60 ]
+goto [?= return];
+";
+    "Block 48:
+[preds: 47 ] [succs: 49 50 51 ]
+if $z2 == 0 goto (branch);
+"->"Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 51 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 50:
+[preds: 48 49 ] [succs: 60 ]
+goto [?= return];
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 51 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+";
+    "Block 50:
+[preds: 48 49 ] [succs: 60 ]
+goto [?= return];
+"->"Block 60:
+[preds: 42 43 50 51 ] [succs: ]
+return;
+";
+    "Block 51:
+[preds: 46 47 48 49 ] [succs: 60 ]
+$r20 := @caughtexception;
+r34 = $r20;
+$r21 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r34.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+goto [?= return];
+"->"Block 60:
+[preds: 42 43 50 51 ] [succs: ]
+return;
+";
+    "Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+"->"Block 53:
+[preds: 52 ] [succs: 58 52 54 ]
+r18 = $r19;
+";
+    "Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 53:
+[preds: 52 ] [succs: 58 52 54 ]
+r18 = $r19;
+"->"Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 53:
+[preds: 52 ] [succs: 58 52 54 ]
+r18 = $r19;
+"->"Block 52:
+[preds: 8 9 10 18 11 12 13 14 15 16 17 5 6 7 19 20 21 22 23 24 25 26 27 36 28 29 30 31 32 33 34 35 37 38 44 45 46 52 53 ] [succs: 53 52 ]
+$r19 := @caughtexception;
+";
+    "Block 53:
+[preds: 52 ] [succs: 58 52 54 ]
+r18 = $r19;
+"->"Block 54:
+[preds: 53 ] [succs: 55 58 ]
+$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 58 ]
+$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 55:
+[preds: 54 ] [succs: 56 57 58 ]
+if $z1 == 0 goto (branch);
+";
+    "Block 54:
+[preds: 53 ] [succs: 55 58 ]
+$z1 = virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: boolean isConnected()>();
+"->"Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 57 58 ]
+if $z1 == 0 goto (branch);
+"->"Block 56:
+[preds: 55 ] [succs: 57 58 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 57 58 ]
+if $z1 == 0 goto (branch);
+"->"Block 57:
+[preds: 55 56 ] [succs: 59 ]
+goto [?= throw r18];
+";
+    "Block 55:
+[preds: 54 ] [succs: 56 57 58 ]
+if $z1 == 0 goto (branch);
+"->"Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 58 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 57:
+[preds: 55 56 ] [succs: 59 ]
+goto [?= throw r18];
+";
+    "Block 56:
+[preds: 55 ] [succs: 57 58 ]
+virtualinvoke r2.<org.apache.commons.net.nntp.NNTPClient: void disconnect()>();
+"->"Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+";
+    "Block 57:
+[preds: 55 56 ] [succs: 59 ]
+goto [?= throw r18];
+"->"Block 59:
+[preds: 57 58 ] [succs: ]
+throw r18;
+";
+    "Block 58:
+[preds: 53 54 55 56 ] [succs: 59 ]
+$r15 := @caughtexception;
+r16 = $r15;
+$r17 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>(\"Error disconnecting from server.\");
+virtualinvoke r16.<java.io.IOException: void printStackTrace()>();
+staticinvoke <java.lang.System: void exit(int)>(1);
+"->"Block 59:
+[preds: 57 58 ] [succs: ]
+throw r18;
+";
+}

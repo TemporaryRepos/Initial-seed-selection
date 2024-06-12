@@ -1,0 +1,153 @@
+digraph "unitGraph" {
+    "r42 := @this: io.github.mayhewsw.controllers.DocumentController"
+    "r43 := @parameter0: java.lang.String"
+    "r9 := @parameter1: java.lang.String"
+    "r1 := @parameter2: javax.servlet.http.HttpSession"
+    "$r0 = new io.github.mayhewsw.SessionData"
+    "specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)"
+    "r2 = $r0"
+    "$r4 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>"
+    "$r3 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>"
+    "$r5 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r3)"
+    "r6 = (java.util.Properties) $r5"
+    "r7 = virtualinvoke r6.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")"
+    "r8 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"
+    "$r10 = virtualinvoke r8.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r9)"
+    "r11 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r10"
+    "$r13 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"
+    "$r12 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "$r14 = virtualinvoke $r12.<java.util.ArrayList: java.lang.String toString()>()"
+    "interfaceinvoke $r13.<org.slf4j.Logger: void info(java.lang.String)>($r14)"
+    "$r15 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"
+    "interfaceinvoke $r15.<org.slf4j.Logger: void info(java.lang.String)>(r43)"
+    "$z0 = virtualinvoke r43.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\")"
+    "if $z0 == 0 goto $r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "r43 = virtualinvoke r43.<java.lang.String: java.lang.String substring(int)>(1)"
+    "$r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "$z1 = virtualinvoke $r16.<java.util.ArrayList: boolean contains(java.lang.Object)>(r43)"
+    "if $z1 != 0 goto $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"
+    "$r17 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "virtualinvoke $r17.<java.util.ArrayList: boolean add(java.lang.Object)>(r43)"
+    "$r18 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "$r19 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_addsuffix_5__309: java.util.Comparator bootstrap$()>()"
+    "virtualinvoke $r18.<java.util.ArrayList: void sort(java.util.Comparator)>($r19)"
+    "$r20 = new java.io.File"
+    "specialinvoke $r20.<java.io.File: void <init>(java.lang.String)>(r7)"
+    "r21 = virtualinvoke $r20.<java.io.File: java.lang.String getParent()>()"
+    "$r22 = new java.io.File"
+    "$r23 = new java.lang.StringBuilder"
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"suffixes-\")"
+    "$r25 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>"
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25)"
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".txt\")"
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r22.<java.io.File: void <init>(java.lang.String,java.lang.String)>(r21, $r28)"
+    "r29 = $r22"
+    "$r30 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()"
+    "$r31 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"
+    "$r32 = staticinvoke <edu.illinois.cs.cogcomp.core.utilities.StringUtils: java.lang.String join(java.lang.String,java.util.List)>(\" \", $r31)"
+    "$r33 = staticinvoke <java.util.Collections: java.util.List singletonList(java.lang.Object)>($r32)"
+    "staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: void write(java.lang.String,java.lang.Iterable)>($r30, $r33)"
+    "goto [?= $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>]"
+    "$r34 := @caughtexception"
+    "r35 = $r34"
+    "$r37 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"
+    "$r36 = new java.lang.StringBuilder"
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"
+    "$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Could not save suffix file: \")"
+    "$r39 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()"
+    "$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r39)"
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r37.<org.slf4j.Logger: void error(java.lang.String)>($r41)"
+    "$r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"
+    "$r45 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>"
+    "$z3 = virtualinvoke $r45.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r46 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>"
+    "$z4 = virtualinvoke $r46.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r47 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>"
+    "$z5 = virtualinvoke $r47.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r48 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>"
+    "$z6 = virtualinvoke $r48.<java.lang.Boolean: boolean booleanValue()>()"
+    "$r49 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r11, $r44, $z3, $z4, $z5, $z6)"
+    "return $r49"
+    "r42 := @this: io.github.mayhewsw.controllers.DocumentController"->"r43 := @parameter0: java.lang.String";
+    "r43 := @parameter0: java.lang.String"->"r9 := @parameter1: java.lang.String";
+    "r9 := @parameter1: java.lang.String"->"r1 := @parameter2: javax.servlet.http.HttpSession";
+    "r1 := @parameter2: javax.servlet.http.HttpSession"->"$r0 = new io.github.mayhewsw.SessionData";
+    "$r0 = new io.github.mayhewsw.SessionData"->"specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)";
+    "specialinvoke $r0.<io.github.mayhewsw.SessionData: void <init>(javax.servlet.http.HttpSession)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"$r4 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>";
+    "$r4 = r2.<io.github.mayhewsw.SessionData: java.util.HashMap datasets>"->"$r3 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>";
+    "$r3 = r2.<io.github.mayhewsw.SessionData: java.lang.String dataname>"->"$r5 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r3)";
+    "$r5 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r3)"->"r6 = (java.util.Properties) $r5";
+    "r6 = (java.util.Properties) $r5"->"r7 = virtualinvoke r6.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")";
+    "r7 = virtualinvoke r6.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(\"folderpath\")"->"r8 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>";
+    "r8 = r2.<io.github.mayhewsw.SessionData: java.util.TreeMap tas>"->"$r10 = virtualinvoke r8.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r9)";
+    "$r10 = virtualinvoke r8.<java.util.TreeMap: java.lang.Object get(java.lang.Object)>(r9)"->"r11 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r10";
+    "r11 = (edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation) $r10"->"$r13 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>";
+    "$r13 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"->"$r12 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "$r12 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$r14 = virtualinvoke $r12.<java.util.ArrayList: java.lang.String toString()>()";
+    "$r14 = virtualinvoke $r12.<java.util.ArrayList: java.lang.String toString()>()"->"interfaceinvoke $r13.<org.slf4j.Logger: void info(java.lang.String)>($r14)";
+    "interfaceinvoke $r13.<org.slf4j.Logger: void info(java.lang.String)>($r14)"->"$r15 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>";
+    "$r15 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"->"interfaceinvoke $r15.<org.slf4j.Logger: void info(java.lang.String)>(r43)";
+    "interfaceinvoke $r15.<org.slf4j.Logger: void info(java.lang.String)>(r43)"->"$z0 = virtualinvoke r43.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\")";
+    "$z0 = virtualinvoke r43.<java.lang.String: boolean startsWith(java.lang.String)>(\"-\")"->"if $z0 == 0 goto $r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "if $z0 == 0 goto $r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"r43 = virtualinvoke r43.<java.lang.String: java.lang.String substring(int)>(1)";
+    "if $z0 == 0 goto $r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "r43 = virtualinvoke r43.<java.lang.String: java.lang.String substring(int)>(1)"->"$r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "$r16 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$z1 = virtualinvoke $r16.<java.util.ArrayList: boolean contains(java.lang.Object)>(r43)";
+    "$z1 = virtualinvoke $r16.<java.util.ArrayList: boolean contains(java.lang.Object)>(r43)"->"if $z1 != 0 goto $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "if $z1 != 0 goto $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"->"$r17 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "if $z1 != 0 goto $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"->"$r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "$r17 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"virtualinvoke $r17.<java.util.ArrayList: boolean add(java.lang.Object)>(r43)";
+    "virtualinvoke $r17.<java.util.ArrayList: boolean add(java.lang.Object)>(r43)"->"$r18 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "$r18 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$r19 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_addsuffix_5__309: java.util.Comparator bootstrap$()>()";
+    "$r19 = staticinvoke <io.github.mayhewsw.controllers.DocumentController$lambda_addsuffix_5__309: java.util.Comparator bootstrap$()>()"->"virtualinvoke $r18.<java.util.ArrayList: void sort(java.util.Comparator)>($r19)";
+    "virtualinvoke $r18.<java.util.ArrayList: void sort(java.util.Comparator)>($r19)"->"$r20 = new java.io.File";
+    "$r20 = new java.io.File"->"specialinvoke $r20.<java.io.File: void <init>(java.lang.String)>(r7)";
+    "specialinvoke $r20.<java.io.File: void <init>(java.lang.String)>(r7)"->"r21 = virtualinvoke $r20.<java.io.File: java.lang.String getParent()>()";
+    "r21 = virtualinvoke $r20.<java.io.File: java.lang.String getParent()>()"->"$r22 = new java.io.File";
+    "$r22 = new java.io.File"->"$r23 = new java.lang.StringBuilder";
+    "$r23 = new java.lang.StringBuilder"->"specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r23.<java.lang.StringBuilder: void <init>()>()"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"suffixes-\")";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"suffixes-\")"->"$r25 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>";
+    "$r25 = r2.<io.github.mayhewsw.SessionData: java.lang.String username>"->"$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25)";
+    "$r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25)"->"$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".txt\")";
+    "$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".txt\")"->"$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r22.<java.io.File: void <init>(java.lang.String,java.lang.String)>(r21, $r28)";
+    "specialinvoke $r22.<java.io.File: void <init>(java.lang.String,java.lang.String)>(r21, $r28)"->"r29 = $r22";
+    "r29 = $r22"->"$r30 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "r29 = $r22"->"$r34 := @caughtexception";
+    "$r30 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()"->"$r31 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>";
+    "$r30 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()"->"$r34 := @caughtexception";
+    "$r31 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$r32 = staticinvoke <edu.illinois.cs.cogcomp.core.utilities.StringUtils: java.lang.String join(java.lang.String,java.util.List)>(\" \", $r31)";
+    "$r31 = r2.<io.github.mayhewsw.SessionData: java.util.ArrayList suffixes>"->"$r34 := @caughtexception";
+    "$r32 = staticinvoke <edu.illinois.cs.cogcomp.core.utilities.StringUtils: java.lang.String join(java.lang.String,java.util.List)>(\" \", $r31)"->"$r33 = staticinvoke <java.util.Collections: java.util.List singletonList(java.lang.Object)>($r32)";
+    "$r32 = staticinvoke <edu.illinois.cs.cogcomp.core.utilities.StringUtils: java.lang.String join(java.lang.String,java.util.List)>(\" \", $r31)"->"$r34 := @caughtexception";
+    "$r33 = staticinvoke <java.util.Collections: java.util.List singletonList(java.lang.Object)>($r32)"->"staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: void write(java.lang.String,java.lang.Iterable)>($r30, $r33)";
+    "$r33 = staticinvoke <java.util.Collections: java.util.List singletonList(java.lang.Object)>($r32)"->"$r34 := @caughtexception";
+    "staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: void write(java.lang.String,java.lang.Iterable)>($r30, $r33)"->"goto [?= $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>]";
+    "staticinvoke <edu.illinois.cs.cogcomp.core.io.LineIO: void write(java.lang.String,java.lang.Iterable)>($r30, $r33)"->"$r34 := @caughtexception";
+    "goto [?= $r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>]"->"$r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "$r34 := @caughtexception"->"r35 = $r34";
+    "r35 = $r34"->"$r37 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>";
+    "$r37 = <io.github.mayhewsw.controllers.DocumentController: org.slf4j.Logger logger>"->"$r36 = new java.lang.StringBuilder";
+    "$r36 = new java.lang.StringBuilder"->"specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r36.<java.lang.StringBuilder: void <init>()>()"->"$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Could not save suffix file: \")";
+    "$r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Could not save suffix file: \")"->"$r39 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()";
+    "$r39 = virtualinvoke r29.<java.io.File: java.lang.String getAbsolutePath()>()"->"$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r39)";
+    "$r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r39)"->"$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r37.<org.slf4j.Logger: void error(java.lang.String)>($r41)";
+    "interfaceinvoke $r37.<org.slf4j.Logger: void error(java.lang.String)>($r41)"->"$r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>";
+    "$r44 = r2.<io.github.mayhewsw.SessionData: io.github.mayhewsw.Dictionary dict>"->"$r45 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>";
+    "$r45 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showdefs>"->"$z3 = virtualinvoke $r45.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z3 = virtualinvoke $r45.<java.lang.Boolean: boolean booleanValue()>()"->"$r46 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>";
+    "$r46 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showroman>"->"$z4 = virtualinvoke $r46.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z4 = virtualinvoke $r46.<java.lang.Boolean: boolean booleanValue()>()"->"$r47 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>";
+    "$r47 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean allowcopy>"->"$z5 = virtualinvoke $r47.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z5 = virtualinvoke $r47.<java.lang.Boolean: boolean booleanValue()>()"->"$r48 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>";
+    "$r48 = r2.<io.github.mayhewsw.SessionData: java.lang.Boolean showgoogle>"->"$z6 = virtualinvoke $r48.<java.lang.Boolean: boolean booleanValue()>()";
+    "$z6 = virtualinvoke $r48.<java.lang.Boolean: boolean booleanValue()>()"->"$r49 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r11, $r44, $z3, $z4, $z5, $z6)";
+    "$r49 = staticinvoke <io.github.mayhewsw.utils.HtmlGenerator: java.lang.String getHTMLfromTA(edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation,io.github.mayhewsw.Dictionary,boolean,boolean,boolean,boolean)>(r11, $r44, $z3, $z4, $z5, $z6)"->"return $r49";
+}

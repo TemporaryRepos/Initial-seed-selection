@@ -1,0 +1,448 @@
+digraph "unitGraph" {
+    "r36 := @parameter0: java.lang.String[]"
+    "$r63 = new com.sun.crypto.provider.SunJCE"
+    "specialinvoke $r63.<com.sun.crypto.provider.SunJCE: void <init>()>()"
+    "$r70 = (java.security.Provider) $r63"
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>($r70)"
+    "r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\")"
+    "virtualinvoke r1.<java.security.KeyPairGenerator: void initialize(int)>(512)"
+    "r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"
+    "r3 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")"
+    "r4 = virtualinvoke r3.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"
+    "r5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"DES/CFB16/PKCS5Padding\")"
+    "$r71 = (java.security.Key) r4"
+    "virtualinvoke r5.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71)"
+    "$r64 = new javax.crypto.SealedObject"
+    "$r7 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"
+    "specialinvoke $r64.<javax.crypto.SealedObject: void <init>(java.io.Serializable,javax.crypto.Cipher)>($r7, r5)"
+    "r37 = $r64"
+    "$r65 = new java.io.FileOutputStream"
+    "specialinvoke $r65.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"sealed\")"
+    "r38 = $r65"
+    "r39 = null"
+    "$r66 = new java.io.ObjectOutputStream"
+    "specialinvoke $r66.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r38)"
+    "r40 = $r66"
+    "r41 = null"
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"
+    "if r40 == null goto (branch)"
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"
+    "goto [?= (branch)]"
+    "$r35 := @caughtexception"
+    "r42 = $r35"
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42)"
+    "$r34 := @caughtexception"
+    "r43 = $r34"
+    "r41 = r43"
+    "throw r43"
+    "$r33 := @caughtexception"
+    "r32 = $r33"
+    "if r40 == null goto throw r32"
+    "goto [?= throw r32]"
+    "$r30 := @caughtexception"
+    "r31 = $r30"
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r31)"
+    "throw r32"
+    "if r38 == null goto $r67 = new java.io.FileInputStream"
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"
+    "goto [?= $r67 = new java.io.FileInputStream]"
+    "$r29 := @caughtexception"
+    "r44 = $r29"
+    "virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44)"
+    "$r28 := @caughtexception"
+    "r45 = $r28"
+    "r39 = r45"
+    "throw r45"
+    "$r27 := @caughtexception"
+    "r26 = $r27"
+    "if r38 == null goto throw r26"
+    "goto [?= throw r26]"
+    "$r24 := @caughtexception"
+    "r25 = $r24"
+    "virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25)"
+    "throw r26"
+    "$r67 = new java.io.FileInputStream"
+    "specialinvoke $r67.<java.io.FileInputStream: void <init>(java.lang.String)>(\"sealed\")"
+    "r47 = $r67"
+    "r48 = null"
+    "$r68 = new java.io.ObjectInputStream"
+    "specialinvoke $r68.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>(r47)"
+    "r50 = $r68"
+    "r51 = null"
+    "$r52 = virtualinvoke r50.<java.io.ObjectInputStream: java.lang.Object readObject()>()"
+    "r53 = (javax.crypto.SealedObject) $r52"
+    "if r50 == null goto (branch)"
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"
+    "$r23 := @caughtexception"
+    "r54 = $r23"
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"
+    "$r22 := @caughtexception"
+    "r55 = $r22"
+    "r51 = r55"
+    "throw r55"
+    "$r21 := @caughtexception"
+    "r20 = $r21"
+    "if r50 == null goto throw r20"
+    "goto [?= throw r20]"
+    "$r18 := @caughtexception"
+    "r19 = $r18"
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r19)"
+    "throw r20"
+    "if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>"
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"
+    "goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]"
+    "$r17 := @caughtexception"
+    "r56 = $r17"
+    "virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r56)"
+    "$r16 := @caughtexception"
+    "r57 = $r16"
+    "r48 = r57"
+    "throw r57"
+    "$r15 := @caughtexception"
+    "r14 = $r15"
+    "if r47 == null goto throw r14"
+    "goto [?= throw r14]"
+    "$r12 := @caughtexception"
+    "r13 = $r12"
+    "virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r13)"
+    "throw r14"
+    "$r58 = <java.lang.System: java.io.PrintStream out>"
+    "$r59 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.String getAlgorithm()>()"
+    "virtualinvoke $r58.<java.io.PrintStream: void println(java.lang.String)>($r59)"
+    "$r72 = (java.security.Key) r4"
+    "$r60 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.Object getObject(java.security.Key)>($r72)"
+    "r61 = (java.security.PrivateKey) $r60"
+    "$r62 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"
+    "$z0 = virtualinvoke r61.<java.lang.Object: boolean equals(java.lang.Object)>($r62)"
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r69 = new java.lang.Exception"
+    "specialinvoke $r69.<java.lang.Exception: void <init>(java.lang.String)>(\"TEST FAILED\")"
+    "throw $r69"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"TEST SUCCEEDED\")"
+    "return"
+    "r36 := @parameter0: java.lang.String[]"->"$r63 = new com.sun.crypto.provider.SunJCE";
+    "$r63 = new com.sun.crypto.provider.SunJCE"->"specialinvoke $r63.<com.sun.crypto.provider.SunJCE: void <init>()>()";
+    "specialinvoke $r63.<com.sun.crypto.provider.SunJCE: void <init>()>()"->"$r70 = (java.security.Provider) $r63";
+    "$r70 = (java.security.Provider) $r63"->"staticinvoke <java.security.Security: int addProvider(java.security.Provider)>($r70)";
+    "staticinvoke <java.security.Security: int addProvider(java.security.Provider)>($r70)"->"r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\")";
+    "r1 = staticinvoke <java.security.KeyPairGenerator: java.security.KeyPairGenerator getInstance(java.lang.String)>(\"DSA\")"->"virtualinvoke r1.<java.security.KeyPairGenerator: void initialize(int)>(512)";
+    "virtualinvoke r1.<java.security.KeyPairGenerator: void initialize(int)>(512)"->"r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()";
+    "r2 = virtualinvoke r1.<java.security.KeyPairGenerator: java.security.KeyPair generateKeyPair()>()"->"r3 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")";
+    "r3 = staticinvoke <javax.crypto.KeyGenerator: javax.crypto.KeyGenerator getInstance(java.lang.String)>(\"DES\")"->"r4 = virtualinvoke r3.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()";
+    "r4 = virtualinvoke r3.<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>()"->"r5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"DES/CFB16/PKCS5Padding\")";
+    "r5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"DES/CFB16/PKCS5Padding\")"->"$r71 = (java.security.Key) r4";
+    "$r71 = (java.security.Key) r4"->"virtualinvoke r5.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71)";
+    "virtualinvoke r5.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, $r71)"->"$r64 = new javax.crypto.SealedObject";
+    "$r64 = new javax.crypto.SealedObject"->"$r7 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()";
+    "$r7 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"->"specialinvoke $r64.<javax.crypto.SealedObject: void <init>(java.io.Serializable,javax.crypto.Cipher)>($r7, r5)";
+    "specialinvoke $r64.<javax.crypto.SealedObject: void <init>(java.io.Serializable,javax.crypto.Cipher)>($r7, r5)"->"r37 = $r64";
+    "r37 = $r64"->"$r65 = new java.io.FileOutputStream";
+    "$r65 = new java.io.FileOutputStream"->"specialinvoke $r65.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"sealed\")";
+    "specialinvoke $r65.<java.io.FileOutputStream: void <init>(java.lang.String)>(\"sealed\")"->"r38 = $r65";
+    "r38 = $r65"->"r39 = null";
+    "r39 = null"->"$r28 := @caughtexception";
+    "r39 = null"->"$r27 := @caughtexception";
+    "r39 = null"->"$r66 = new java.io.ObjectOutputStream";
+    "$r66 = new java.io.ObjectOutputStream"->"$r28 := @caughtexception";
+    "$r66 = new java.io.ObjectOutputStream"->"$r27 := @caughtexception";
+    "$r66 = new java.io.ObjectOutputStream"->"specialinvoke $r66.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r38)";
+    "specialinvoke $r66.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r38)"->"$r28 := @caughtexception";
+    "specialinvoke $r66.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r38)"->"$r27 := @caughtexception";
+    "specialinvoke $r66.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>(r38)"->"r40 = $r66";
+    "r40 = $r66"->"$r28 := @caughtexception";
+    "r40 = $r66"->"$r27 := @caughtexception";
+    "r40 = $r66"->"r41 = null";
+    "r41 = null"->"$r34 := @caughtexception";
+    "r41 = null"->"$r28 := @caughtexception";
+    "r41 = null"->"$r33 := @caughtexception";
+    "r41 = null"->"$r27 := @caughtexception";
+    "r41 = null"->"virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"->"$r34 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"->"$r28 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"->"$r33 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"->"$r27 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r37)"->"if r40 == null goto (branch)";
+    "if r40 == null goto (branch)"->"if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "if r40 == null goto (branch)"->"if r38 == null goto $r67 = new java.io.FileInputStream";
+    "if r40 == null goto (branch)"->"$r28 := @caughtexception";
+    "if r40 == null goto (branch)"->"$r27 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r35 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r35 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r28 := @caughtexception";
+    "goto [?= (branch)]"->"$r27 := @caughtexception";
+    "goto [?= (branch)]"->"if r38 == null goto $r67 = new java.io.FileInputStream";
+    "$r35 := @caughtexception"->"$r28 := @caughtexception";
+    "$r35 := @caughtexception"->"$r27 := @caughtexception";
+    "$r35 := @caughtexception"->"r42 = $r35";
+    "r42 = $r35"->"$r28 := @caughtexception";
+    "r42 = $r35"->"$r27 := @caughtexception";
+    "r42 = $r35"->"virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42)";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42)"->"$r28 := @caughtexception";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42)"->"$r27 := @caughtexception";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r42)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r28 := @caughtexception";
+    "goto [?= (branch)]"->"$r27 := @caughtexception";
+    "goto [?= (branch)]"->"if r38 == null goto $r67 = new java.io.FileInputStream";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r28 := @caughtexception";
+    "goto [?= (branch)]"->"$r27 := @caughtexception";
+    "goto [?= (branch)]"->"if r38 == null goto $r67 = new java.io.FileInputStream";
+    "$r34 := @caughtexception"->"r43 = $r34";
+    "$r34 := @caughtexception"->"$r33 := @caughtexception";
+    "r43 = $r34"->"r41 = r43";
+    "r43 = $r34"->"$r33 := @caughtexception";
+    "r41 = r43"->"throw r43";
+    "r41 = r43"->"$r33 := @caughtexception";
+    "throw r43"->"$r33 := @caughtexception";
+    "$r33 := @caughtexception"->"r32 = $r33";
+    "$r33 := @caughtexception"->"$r33 := @caughtexception";
+    "r32 = $r33"->"$r33 := @caughtexception";
+    "r32 = $r33"->"$r28 := @caughtexception";
+    "r32 = $r33"->"$r27 := @caughtexception";
+    "r32 = $r33"->"if r40 == null goto throw r32";
+    "if r40 == null goto throw r32"->"if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "if r40 == null goto throw r32"->"throw r32";
+    "if r40 == null goto throw r32"->"$r28 := @caughtexception";
+    "if r40 == null goto throw r32"->"$r27 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r30 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "if r41 == null goto virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r30 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"goto [?= throw r32]";
+    "goto [?= throw r32]"->"$r28 := @caughtexception";
+    "goto [?= throw r32]"->"$r27 := @caughtexception";
+    "goto [?= throw r32]"->"throw r32";
+    "$r30 := @caughtexception"->"$r28 := @caughtexception";
+    "$r30 := @caughtexception"->"$r27 := @caughtexception";
+    "$r30 := @caughtexception"->"r31 = $r30";
+    "r31 = $r30"->"$r28 := @caughtexception";
+    "r31 = $r30"->"$r27 := @caughtexception";
+    "r31 = $r30"->"virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r31)";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r31)"->"$r28 := @caughtexception";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r31)"->"$r27 := @caughtexception";
+    "virtualinvoke r41.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r31)"->"goto [?= throw r32]";
+    "goto [?= throw r32]"->"$r28 := @caughtexception";
+    "goto [?= throw r32]"->"$r27 := @caughtexception";
+    "goto [?= throw r32]"->"throw r32";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r28 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"$r27 := @caughtexception";
+    "virtualinvoke r40.<java.io.ObjectOutputStream: void close()>()"->"throw r32";
+    "throw r32"->"$r28 := @caughtexception";
+    "throw r32"->"$r27 := @caughtexception";
+    "if r38 == null goto $r67 = new java.io.FileInputStream"->"if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r38 == null goto $r67 = new java.io.FileInputStream"->"$r67 = new java.io.FileInputStream";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"$r29 := @caughtexception";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"goto [?= $r67 = new java.io.FileInputStream]";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"$r29 := @caughtexception";
+    "goto [?= $r67 = new java.io.FileInputStream]"->"$r67 = new java.io.FileInputStream";
+    "$r29 := @caughtexception"->"r44 = $r29";
+    "r44 = $r29"->"virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44)";
+    "virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r44)"->"goto [?= $r67 = new java.io.FileInputStream]";
+    "goto [?= $r67 = new java.io.FileInputStream]"->"$r67 = new java.io.FileInputStream";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"goto [?= $r67 = new java.io.FileInputStream]";
+    "goto [?= $r67 = new java.io.FileInputStream]"->"$r67 = new java.io.FileInputStream";
+    "$r28 := @caughtexception"->"r45 = $r28";
+    "$r28 := @caughtexception"->"$r27 := @caughtexception";
+    "r45 = $r28"->"r39 = r45";
+    "r45 = $r28"->"$r27 := @caughtexception";
+    "r39 = r45"->"throw r45";
+    "r39 = r45"->"$r27 := @caughtexception";
+    "throw r45"->"$r27 := @caughtexception";
+    "$r27 := @caughtexception"->"r26 = $r27";
+    "$r27 := @caughtexception"->"$r27 := @caughtexception";
+    "r26 = $r27"->"if r38 == null goto throw r26";
+    "r26 = $r27"->"$r27 := @caughtexception";
+    "if r38 == null goto throw r26"->"if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r38 == null goto throw r26"->"throw r26";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"virtualinvoke r38.<java.io.FileOutputStream: void close()>()";
+    "if r39 == null goto virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"goto [?= throw r26]";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"$r24 := @caughtexception";
+    "goto [?= throw r26]"->"throw r26";
+    "$r24 := @caughtexception"->"r25 = $r24";
+    "r25 = $r24"->"virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25)";
+    "virtualinvoke r39.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25)"->"goto [?= throw r26]";
+    "goto [?= throw r26]"->"throw r26";
+    "virtualinvoke r38.<java.io.FileOutputStream: void close()>()"->"throw r26";
+    "$r67 = new java.io.FileInputStream"->"specialinvoke $r67.<java.io.FileInputStream: void <init>(java.lang.String)>(\"sealed\")";
+    "specialinvoke $r67.<java.io.FileInputStream: void <init>(java.lang.String)>(\"sealed\")"->"r47 = $r67";
+    "r47 = $r67"->"r48 = null";
+    "r48 = null"->"$r16 := @caughtexception";
+    "r48 = null"->"$r15 := @caughtexception";
+    "r48 = null"->"$r68 = new java.io.ObjectInputStream";
+    "$r68 = new java.io.ObjectInputStream"->"$r16 := @caughtexception";
+    "$r68 = new java.io.ObjectInputStream"->"$r15 := @caughtexception";
+    "$r68 = new java.io.ObjectInputStream"->"specialinvoke $r68.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>(r47)";
+    "specialinvoke $r68.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>(r47)"->"$r16 := @caughtexception";
+    "specialinvoke $r68.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>(r47)"->"$r15 := @caughtexception";
+    "specialinvoke $r68.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>(r47)"->"r50 = $r68";
+    "r50 = $r68"->"$r16 := @caughtexception";
+    "r50 = $r68"->"$r15 := @caughtexception";
+    "r50 = $r68"->"r51 = null";
+    "r51 = null"->"$r22 := @caughtexception";
+    "r51 = null"->"$r16 := @caughtexception";
+    "r51 = null"->"$r21 := @caughtexception";
+    "r51 = null"->"$r15 := @caughtexception";
+    "r51 = null"->"$r52 = virtualinvoke r50.<java.io.ObjectInputStream: java.lang.Object readObject()>()";
+    "$r52 = virtualinvoke r50.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"$r22 := @caughtexception";
+    "$r52 = virtualinvoke r50.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"$r21 := @caughtexception";
+    "$r52 = virtualinvoke r50.<java.io.ObjectInputStream: java.lang.Object readObject()>()"->"r53 = (javax.crypto.SealedObject) $r52";
+    "r53 = (javax.crypto.SealedObject) $r52"->"$r22 := @caughtexception";
+    "r53 = (javax.crypto.SealedObject) $r52"->"$r16 := @caughtexception";
+    "r53 = (javax.crypto.SealedObject) $r52"->"$r21 := @caughtexception";
+    "r53 = (javax.crypto.SealedObject) $r52"->"$r15 := @caughtexception";
+    "r53 = (javax.crypto.SealedObject) $r52"->"if r50 == null goto (branch)";
+    "if r50 == null goto (branch)"->"if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "if r50 == null goto (branch)"->"if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>";
+    "if r50 == null goto (branch)"->"$r16 := @caughtexception";
+    "if r50 == null goto (branch)"->"$r15 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r23 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r23 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r16 := @caughtexception";
+    "goto [?= (branch)]"->"$r15 := @caughtexception";
+    "goto [?= (branch)]"->"if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>";
+    "$r23 := @caughtexception"->"$r16 := @caughtexception";
+    "$r23 := @caughtexception"->"$r15 := @caughtexception";
+    "$r23 := @caughtexception"->"r54 = $r23";
+    "r54 = $r23"->"$r16 := @caughtexception";
+    "r54 = $r23"->"$r15 := @caughtexception";
+    "r54 = $r23"->"virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"->"$r16 := @caughtexception";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"->"$r15 := @caughtexception";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r54)"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r16 := @caughtexception";
+    "goto [?= (branch)]"->"$r15 := @caughtexception";
+    "goto [?= (branch)]"->"if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r16 := @caughtexception";
+    "goto [?= (branch)]"->"$r15 := @caughtexception";
+    "goto [?= (branch)]"->"if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>";
+    "$r22 := @caughtexception"->"r55 = $r22";
+    "$r22 := @caughtexception"->"$r21 := @caughtexception";
+    "r55 = $r22"->"r51 = r55";
+    "r55 = $r22"->"$r21 := @caughtexception";
+    "r51 = r55"->"throw r55";
+    "r51 = r55"->"$r21 := @caughtexception";
+    "throw r55"->"$r21 := @caughtexception";
+    "$r21 := @caughtexception"->"r20 = $r21";
+    "$r21 := @caughtexception"->"$r21 := @caughtexception";
+    "r20 = $r21"->"$r21 := @caughtexception";
+    "r20 = $r21"->"$r16 := @caughtexception";
+    "r20 = $r21"->"$r15 := @caughtexception";
+    "r20 = $r21"->"if r50 == null goto throw r20";
+    "if r50 == null goto throw r20"->"if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "if r50 == null goto throw r20"->"throw r20";
+    "if r50 == null goto throw r20"->"$r16 := @caughtexception";
+    "if r50 == null goto throw r20"->"$r15 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r18 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "if r51 == null goto virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"virtualinvoke r50.<java.io.ObjectInputStream: void close()>()";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r18 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"goto [?= throw r20]";
+    "goto [?= throw r20]"->"$r16 := @caughtexception";
+    "goto [?= throw r20]"->"$r15 := @caughtexception";
+    "goto [?= throw r20]"->"throw r20";
+    "$r18 := @caughtexception"->"$r16 := @caughtexception";
+    "$r18 := @caughtexception"->"$r15 := @caughtexception";
+    "$r18 := @caughtexception"->"r19 = $r18";
+    "r19 = $r18"->"$r16 := @caughtexception";
+    "r19 = $r18"->"$r15 := @caughtexception";
+    "r19 = $r18"->"virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r19)";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r19)"->"$r16 := @caughtexception";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r19)"->"$r15 := @caughtexception";
+    "virtualinvoke r51.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r19)"->"goto [?= throw r20]";
+    "goto [?= throw r20]"->"$r16 := @caughtexception";
+    "goto [?= throw r20]"->"$r15 := @caughtexception";
+    "goto [?= throw r20]"->"throw r20";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r16 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"$r15 := @caughtexception";
+    "virtualinvoke r50.<java.io.ObjectInputStream: void close()>()"->"throw r20";
+    "throw r20"->"$r16 := @caughtexception";
+    "throw r20"->"$r15 := @caughtexception";
+    "if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>"->"if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r47 == null goto $r58 = <java.lang.System: java.io.PrintStream out>"->"$r58 = <java.lang.System: java.io.PrintStream out>";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"$r17 := @caughtexception";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"$r17 := @caughtexception";
+    "goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]"->"$r58 = <java.lang.System: java.io.PrintStream out>";
+    "$r17 := @caughtexception"->"r56 = $r17";
+    "r56 = $r17"->"virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r56)";
+    "virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r56)"->"goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]"->"$r58 = <java.lang.System: java.io.PrintStream out>";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]";
+    "goto [?= $r58 = <java.lang.System: java.io.PrintStream out>]"->"$r58 = <java.lang.System: java.io.PrintStream out>";
+    "$r16 := @caughtexception"->"r57 = $r16";
+    "$r16 := @caughtexception"->"$r15 := @caughtexception";
+    "r57 = $r16"->"r48 = r57";
+    "r57 = $r16"->"$r15 := @caughtexception";
+    "r48 = r57"->"throw r57";
+    "r48 = r57"->"$r15 := @caughtexception";
+    "throw r57"->"$r15 := @caughtexception";
+    "$r15 := @caughtexception"->"r14 = $r15";
+    "$r15 := @caughtexception"->"$r15 := @caughtexception";
+    "r14 = $r15"->"if r47 == null goto throw r14";
+    "r14 = $r15"->"$r15 := @caughtexception";
+    "if r47 == null goto throw r14"->"if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r47 == null goto throw r14"->"throw r14";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"virtualinvoke r47.<java.io.FileInputStream: void close()>()";
+    "if r48 == null goto virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"$r12 := @caughtexception";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"goto [?= throw r14]";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"$r12 := @caughtexception";
+    "goto [?= throw r14]"->"throw r14";
+    "$r12 := @caughtexception"->"r13 = $r12";
+    "r13 = $r12"->"virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r13)";
+    "virtualinvoke r48.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r13)"->"goto [?= throw r14]";
+    "goto [?= throw r14]"->"throw r14";
+    "virtualinvoke r47.<java.io.FileInputStream: void close()>()"->"throw r14";
+    "$r58 = <java.lang.System: java.io.PrintStream out>"->"$r59 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.String getAlgorithm()>()";
+    "$r59 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.String getAlgorithm()>()"->"virtualinvoke $r58.<java.io.PrintStream: void println(java.lang.String)>($r59)";
+    "virtualinvoke $r58.<java.io.PrintStream: void println(java.lang.String)>($r59)"->"$r72 = (java.security.Key) r4";
+    "$r72 = (java.security.Key) r4"->"$r60 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.Object getObject(java.security.Key)>($r72)";
+    "$r60 = virtualinvoke r53.<javax.crypto.SealedObject: java.lang.Object getObject(java.security.Key)>($r72)"->"r61 = (java.security.PrivateKey) $r60";
+    "r61 = (java.security.PrivateKey) $r60"->"$r62 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()";
+    "$r62 = virtualinvoke r2.<java.security.KeyPair: java.security.PrivateKey getPrivate()>()"->"$z0 = virtualinvoke r61.<java.lang.Object: boolean equals(java.lang.Object)>($r62)";
+    "$z0 = virtualinvoke r61.<java.lang.Object: boolean equals(java.lang.Object)>($r62)"->"if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r69 = new java.lang.Exception";
+    "if $z0 != 0 goto $r10 = <java.lang.System: java.io.PrintStream out>"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r69 = new java.lang.Exception"->"specialinvoke $r69.<java.lang.Exception: void <init>(java.lang.String)>(\"TEST FAILED\")";
+    "specialinvoke $r69.<java.lang.Exception: void <init>(java.lang.String)>(\"TEST FAILED\")"->"throw $r69";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"TEST SUCCEEDED\")";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>(\"TEST SUCCEEDED\")"->"return";
+}

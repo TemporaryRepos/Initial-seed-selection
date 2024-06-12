@@ -1,0 +1,669 @@
+digraph "unitGraph" {
+    "r18 := @parameter0: java.lang.String[]"
+    "$r0 = new com.martiansoftware.jsap.SimpleJSAP"
+    "$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\""
+    "$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+    "$r3 = newarray (com.martiansoftware.jsap.Parameter)[5]"
+    "$r4 = new com.martiansoftware.jsap.FlaggedOption"
+    "$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"
+    "$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"
+    "specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\")"
+    "$r3[0] = $r4"
+    "$r7 = new com.martiansoftware.jsap.FlaggedOption"
+    "$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"
+    "$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"
+    "specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"entity2id\", $r9, $r8, 1, 101, \"entities\", \"TAB-separated entity names and corresponding ids\")"
+    "$r3[1] = $r7"
+    "$r10 = new com.martiansoftware.jsap.FlaggedOption"
+    "$r11 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>"
+    "specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"wikiThreshold\", $r11, \"0\", 0, 119, \"wikiThreshold\", \"Minimum number of anchors to store a candidate\")"
+    "$r3[2] = $r10"
+    "$r12 = new com.martiansoftware.jsap.FlaggedOption"
+    "$r13 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>"
+    "specialinvoke $r12.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"queryThreshold\", $r13, \"0\", 0, 113, \"queryThreshold\", \"Minimum number of clicks to store a candidate\")"
+    "$r3[3] = $r12"
+    "$r14 = new com.martiansoftware.jsap.FlaggedOption"
+    "$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"
+    "$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"
+    "specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\")"
+    "$r3[4] = $r14"
+    "specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3)"
+    "r17 = $r0"
+    "r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18)"
+    "$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()"
+    "if $z0 == 0 goto $r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"
+    "return"
+    "$r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"
+    "$i0 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"queryThreshold\")"
+    "$i1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"wikiThreshold\")"
+    "r21 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, $i0, $i1)"
+    "$r22 = new java.io.BufferedReader"
+    "$r23 = new java.io.FileReader"
+    "$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")"
+    "specialinvoke $r23.<java.io.FileReader: void <init>(java.lang.String)>($r24)"
+    "specialinvoke $r22.<java.io.BufferedReader: void <init>(java.io.Reader)>($r23)"
+    "r25 = $r22"
+    "i35 = 0"
+    "$r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r117 = $r26"
+    "if $r26 == null goto virtualinvoke r25.<java.io.BufferedReader: void close()>()"
+    "r118 = virtualinvoke r117.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"
+    "$r110 = r118[1]"
+    "i36 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r110)"
+    "if i36 <= i35 goto (branch)"
+    "i35 = i36"
+    "goto [?= $r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "virtualinvoke r25.<java.io.BufferedReader: void close()>()"
+    "$r27 = new java.io.BufferedReader"
+    "$r28 = new java.io.FileReader"
+    "$r29 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")"
+    "specialinvoke $r28.<java.io.FileReader: void <init>(java.lang.String)>($r29)"
+    "specialinvoke $r27.<java.io.BufferedReader: void <init>(java.io.Reader)>($r28)"
+    "r119 = $r27"
+    "$r30 = new it.unimi.dsi.fastutil.objects.ObjectArrayList"
+    "specialinvoke $r30.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void <init>(int)>(i35)"
+    "r120 = $r30"
+    "$r31 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r31.<org.slf4j.Logger: void info(java.lang.String)>(\"Storing entity names\")"
+    "$r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r121 = $r32"
+    "if $r32 == null goto $r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "r122 = virtualinvoke r121.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"
+    "$r96 = r122[1]"
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r96)"
+    "$i33 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"
+    "if i37 < $i33 goto $r97 = r122[0]"
+    "$i34 = i37 + 1"
+    "virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void size(int)>($i34)"
+    "$r97 = r122[0]"
+    "$r98 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i37, $r97)"
+    "r123 = (java.lang.String) $r98"
+    "if r123 == null goto (branch)"
+    "$r100 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "$r99 = new java.lang.StringBuilder"
+    "specialinvoke $r99.<java.lang.StringBuilder: void <init>()>()"
+    "$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Duplicate index \")"
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i37)"
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for names \\\"\")"
+    "$r104 = r122[0]"
+    "$r105 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r104)"
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\" and \\\"\")"
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r123)"
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"
+    "$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r100.<org.slf4j.Logger: void warn(java.lang.String)>($r109)"
+    "goto [?= (branch)]"
+    "$r111 := @caughtexception"
+    "r124 = $r111"
+    "$r113 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "$r112 = new java.lang.StringBuilder"
+    "specialinvoke $r112.<java.lang.StringBuilder: void <init>()>()"
+    "$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Wrong line (skipping) --> \")"
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r121)"
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r113.<org.slf4j.Logger: void error(java.lang.String)>($r116)"
+    "goto [?= $r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()]"
+    "$r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r33.<org.slf4j.Logger: void info(java.lang.String)>(\"done\")"
+    "virtualinvoke r119.<java.io.BufferedReader: void close()>()"
+    "i38 = 0"
+    "$i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"
+    "if i38 >= $i2 goto $r34 = new java.util.HashMap"
+    "$r94 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object get(int)>(i38)"
+    "if $r94 != null goto i38 = i38 + 1"
+    "virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i38, \"\")"
+    "i38 = i38 + 1"
+    "goto [?= $i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()]"
+    "$r34 = new java.util.HashMap"
+    "specialinvoke $r34.<java.util.HashMap: void <init>()>()"
+    "r125 = $r34"
+    "$r35 = new java.util.HashMap"
+    "specialinvoke $r35.<java.util.HashMap: void <init>()>()"
+    "r126 = $r35"
+    "$r36 = new java.util.HashMap"
+    "specialinvoke $r36.<java.util.HashMap: void <init>()>()"
+    "r127 = $r36"
+    "$r37 = new it.unimi.dsi.fastutil.longs.LongArrayList"
+    "specialinvoke $r37.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"
+    "r128 = $r37"
+    "r129 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")"
+    "virtualinvoke r129.<java.io.File: void deleteOnExit()>()"
+    "i39 = 0"
+    "$r38 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r38, r129)"
+    "$r40 = new java.io.DataOutputStream"
+    "$r41 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream"
+    "$r42 = new java.io.FileOutputStream"
+    "specialinvoke $r42.<java.io.FileOutputStream: void <init>(java.io.File)>(r129)"
+    "specialinvoke $r41.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r42)"
+    "specialinvoke $r40.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r41)"
+    "r130 = $r40"
+    "virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(0L)"
+    "$r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r43, r130)"
+    "$r45 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r45, r128)"
+    "l40 = 0L"
+    "$r47 = new it.unimi.dsi.fastutil.ints.IntBigArrayBigList"
+    "specialinvoke $r47.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void <init>()>()"
+    "r48 = $r47"
+    "$i3 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"
+    "$i4 = $i3 * 3"
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void size(int)>($i4)"
+    "$r49 = new it.unimi.dsi.logging.ProgressLogger"
+    "$r50 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "specialinvoke $r49.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r50)"
+    "r51 = $r49"
+    "r51.<it.unimi.dsi.logging.ProgressLogger: java.lang.String itemsName> = \"aliases\""
+    "i41 = 0"
+    "r131 = interfaceinvoke r21.<java.lang.Iterable: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto virtualinvoke r130.<java.io.DataOutputStream: void close()>()"
+    "$r83 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()"
+    "r132 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r83"
+    "virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"
+    "$i10 = i41"
+    "i41 = i41 + 1"
+    "if $i10 <= 9999999 goto r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>"
+    "i41 = 1"
+    "i39 = i39 + 1"
+    "r133 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")"
+    "virtualinvoke r133.<java.io.File: void deleteOnExit()>()"
+    "virtualinvoke r130.<java.io.DataOutputStream: void close()>()"
+    "$r84 = new java.io.DataOutputStream"
+    "$r85 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream"
+    "$r86 = new java.io.FileOutputStream"
+    "specialinvoke $r86.<java.io.FileOutputStream: void <init>(java.io.File)>(r133)"
+    "specialinvoke $r85.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r86)"
+    "specialinvoke $r84.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r85)"
+    "r130 = $r84"
+    "$r87 = new it.unimi.dsi.fastutil.longs.LongArrayList"
+    "specialinvoke $r87.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"
+    "r128 = $r87"
+    "$r88 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r88, r130)"
+    "$r90 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r90, r128)"
+    "$r92 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"
+    "virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r92, r133)"
+    "r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>"
+    "$d0 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>"
+    "$i11 = (int) $d0"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i11)"
+    "$d1 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>"
+    "$i12 = (int) $d1"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i12)"
+    "$d2 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>"
+    "$i13 = (int) $d2"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i13)"
+    "$d3 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>"
+    "$i14 = (int) $d3"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i14)"
+    "$d4 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>"
+    "$i15 = (int) $d4"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i15)"
+    "l40 = l40 + 5L"
+    "r135 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>"
+    "i42 = lengthof r135"
+    "i43 = 0"
+    "if i43 >= i42 goto virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)"
+    "r136 = r135[i43]"
+    "$i16 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i16)"
+    "$d5 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>"
+    "$i17 = (int) $d5"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i17)"
+    "$d6 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>"
+    "$i18 = (int) $d6"
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i18)"
+    "l40 = l40 + 3L"
+    "$i19 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"
+    "$i21 = $i19 * 3"
+    "$d7 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>"
+    "$i20 = (int) $d7"
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i21, $i20)"
+    "$i23 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"
+    "$i24 = $i23 * 3"
+    "$i26 = $i24 + 1"
+    "$d8 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>"
+    "$i25 = (int) $d8"
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i26, $i25)"
+    "$i28 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"
+    "$i29 = $i28 * 3"
+    "$i31 = $i29 + 2"
+    "$s30 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: short type>"
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i31, $s30)"
+    "i43 = i43 + 1"
+    "virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)"
+    "goto [?= $z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]"
+    "virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "$r52 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1"
+    "specialinvoke $r52.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1: void <init>(java.lang.Iterable)>(r21)"
+    "r137 = $r52"
+    "$r53 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"
+    "$r54 = interfaceinvoke r137.<java.lang.Iterable: java.util.Iterator iterator()>()"
+    "$r55 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder"
+    "specialinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>()"
+    "$r56 = virtualinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r137)"
+    "$r57 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()"
+    "$r58 = virtualinvoke $r56.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r57)"
+    "$r59 = virtualinvoke $r58.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>()"
+    "specialinvoke $r53.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r54, $r59)"
+    "r138 = $r53"
+    "$i5 = virtualinvoke r127.<java.util.HashMap: int size()>()"
+    "r139 = newarray (it.unimi.dsi.sux4j.util.EliasFanoLongBigList)[$i5]"
+    "$i6 = virtualinvoke r127.<java.util.HashMap: int size()>()"
+    "r140 = newarray (it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList)[$i6]"
+    "i44 = 0"
+    "$i7 = virtualinvoke r127.<java.util.HashMap: int size()>()"
+    "if i44 >= $i7 goto $r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "$r73 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)"
+    "$r74 = virtualinvoke r127.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r73)"
+    "r141 = (java.io.File) $r74"
+    "$r75 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2"
+    "specialinvoke $r75.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2: void <init>(java.io.File)>(r141)"
+    "r142 = $r75"
+    "l45 = 9223372036854775807L"
+    "r76 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()"
+    "$z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()"
+    "if $z5 == 0 goto $r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"
+    "$l9 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: long nextLong()>()"
+    "l45 = staticinvoke <java.lang.Math: long min(long,long)>(l45, $l9)"
+    "goto [?= $z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()]"
+    "$r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"
+    "$r78 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)"
+    "$r79 = virtualinvoke r126.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r78)"
+    "$r80 = (it.unimi.dsi.fastutil.longs.LongIterable) $r79"
+    "specialinvoke $r77.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>($r80)"
+    "r140[i44] = $r77"
+    "$r81 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList"
+    "$r82 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()"
+    "specialinvoke $r81.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterator,long,boolean)>($r82, l45, 1)"
+    "r139[i44] = $r81"
+    "i44 = i44 + 1"
+    "goto [?= $i7 = virtualinvoke r127.<java.util.HashMap: int size()>()]"
+    "$r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "$r60 = new java.lang.StringBuilder"
+    "specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()"
+    "$r62 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"#Batches= \")"
+    "$i8 = virtualinvoke r127.<java.util.HashMap: int size()>()"
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "interfaceinvoke $r61.<org.slf4j.Logger: void info(java.lang.String)>($r64)"
+    "$r65 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash"
+    "$r66 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList"
+    "specialinvoke $r66.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.ints.IntIterable)>(r48)"
+    "$r67 = new it.unimi.dsi.util.FrontCodedStringList"
+    "specialinvoke $r67.<it.unimi.dsi.util.FrontCodedStringList: void <init>(java.util.Collection,int,boolean)>(r120, 8, 1)"
+    "specialinvoke $r65.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: void <init>(it.unimi.dsi.fastutil.objects.Object2LongFunction,it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList,it.unimi.dsi.util.FrontCodedStringList)>(r138, r140, r139, $r66, $r67)"
+    "r143 = $r65"
+    "$r68 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r68.<org.slf4j.Logger: void info(java.lang.String)>(\"Creating stats\")"
+    "$r69 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats createStats(com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash)>(r143)"
+    "r143.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats> = $r69"
+    "$r70 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\")"
+    "staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r143, $r70)"
+    "$r71 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"
+    "interfaceinvoke $r71.<org.slf4j.Logger: void info(java.lang.String)>(\"...  done\")"
+    "$z3 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean $assertionsDisabled>"
+    "if $z3 != 0 goto return"
+    "$z4 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean checkMap(com.martiansoftware.jsap.JSAPResult,java.lang.Iterable)>(r19, r21)"
+    "if $z4 != 0 goto return"
+    "$r72 = new java.lang.AssertionError"
+    "specialinvoke $r72.<java.lang.AssertionError: void <init>()>()"
+    "throw $r72"
+    "r18 := @parameter0: java.lang.String[]"->"$r0 = new com.martiansoftware.jsap.SimpleJSAP";
+    "$r0 = new com.martiansoftware.jsap.SimpleJSAP"->"$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\"";
+    "$r1 = class \"Lcom/yahoo/semsearch/fastlinking/hash/QuasiSuccinctEntityHash;\""->"$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()";
+    "$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"->"$r3 = newarray (com.martiansoftware.jsap.Parameter)[5]";
+    "$r3 = newarray (com.martiansoftware.jsap.Parameter)[5]"->"$r4 = new com.martiansoftware.jsap.FlaggedOption";
+    "$r4 = new com.martiansoftware.jsap.FlaggedOption"->"$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>";
+    "$r6 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"->"$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>";
+    "$r5 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"->"specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\")";
+    "specialinvoke $r4.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"input\", $r6, $r5, 1, 105, \"input\", \"Input file\")"->"$r3[0] = $r4";
+    "$r3[0] = $r4"->"$r7 = new com.martiansoftware.jsap.FlaggedOption";
+    "$r7 = new com.martiansoftware.jsap.FlaggedOption"->"$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>";
+    "$r9 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"->"$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>";
+    "$r8 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"->"specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"entity2id\", $r9, $r8, 1, 101, \"entities\", \"TAB-separated entity names and corresponding ids\")";
+    "specialinvoke $r7.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"entity2id\", $r9, $r8, 1, 101, \"entities\", \"TAB-separated entity names and corresponding ids\")"->"$r3[1] = $r7";
+    "$r3[1] = $r7"->"$r10 = new com.martiansoftware.jsap.FlaggedOption";
+    "$r10 = new com.martiansoftware.jsap.FlaggedOption"->"$r11 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>";
+    "$r11 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>"->"specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"wikiThreshold\", $r11, \"0\", 0, 119, \"wikiThreshold\", \"Minimum number of anchors to store a candidate\")";
+    "specialinvoke $r10.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"wikiThreshold\", $r11, \"0\", 0, 119, \"wikiThreshold\", \"Minimum number of anchors to store a candidate\")"->"$r3[2] = $r10";
+    "$r3[2] = $r10"->"$r12 = new com.martiansoftware.jsap.FlaggedOption";
+    "$r12 = new com.martiansoftware.jsap.FlaggedOption"->"$r13 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>";
+    "$r13 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.IntegerStringParser INTEGER_PARSER>"->"specialinvoke $r12.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"queryThreshold\", $r13, \"0\", 0, 113, \"queryThreshold\", \"Minimum number of clicks to store a candidate\")";
+    "specialinvoke $r12.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"queryThreshold\", $r13, \"0\", 0, 113, \"queryThreshold\", \"Minimum number of clicks to store a candidate\")"->"$r3[3] = $r12";
+    "$r3[3] = $r12"->"$r14 = new com.martiansoftware.jsap.FlaggedOption";
+    "$r14 = new com.martiansoftware.jsap.FlaggedOption"->"$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>";
+    "$r16 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"->"$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>";
+    "$r15 = <com.martiansoftware.jsap.JSAP: java.lang.String NO_DEFAULT>"->"specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\")";
+    "specialinvoke $r14.<com.martiansoftware.jsap.FlaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,java.lang.String,boolean,char,java.lang.String,java.lang.String)>(\"output\", $r16, $r15, 1, 111, \"output\", \"Compressed version\")"->"$r3[4] = $r14";
+    "$r3[4] = $r14"->"specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3)";
+    "specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a MPHF from a file with the candidates info\", $r3)"->"r17 = $r0";
+    "r17 = $r0"->"r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18)";
+    "r19 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r18)"->"$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()";
+    "$z0 = virtualinvoke r17.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()"->"if $z0 == 0 goto $r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")";
+    "if $z0 == 0 goto $r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"return";
+    "if $z0 == 0 goto $r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"$r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")";
+    "$r20 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"$i0 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"queryThreshold\")";
+    "$i0 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"queryThreshold\")"->"$i1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"wikiThreshold\")";
+    "$i1 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: int getInt(java.lang.String)>(\"wikiThreshold\")"->"r21 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, $i0, $i1)";
+    "r21 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.FormatReader: java.lang.Iterable stringAndCandidates(java.lang.String,int,int)>($r20, $i0, $i1)"->"$r22 = new java.io.BufferedReader";
+    "$r22 = new java.io.BufferedReader"->"$r23 = new java.io.FileReader";
+    "$r23 = new java.io.FileReader"->"$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")";
+    "$r24 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")"->"specialinvoke $r23.<java.io.FileReader: void <init>(java.lang.String)>($r24)";
+    "specialinvoke $r23.<java.io.FileReader: void <init>(java.lang.String)>($r24)"->"specialinvoke $r22.<java.io.BufferedReader: void <init>(java.io.Reader)>($r23)";
+    "specialinvoke $r22.<java.io.BufferedReader: void <init>(java.io.Reader)>($r23)"->"r25 = $r22";
+    "r25 = $r22"->"i35 = 0";
+    "i35 = 0"->"$r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()"->"r117 = $r26";
+    "r117 = $r26"->"if $r26 == null goto virtualinvoke r25.<java.io.BufferedReader: void close()>()";
+    "if $r26 == null goto virtualinvoke r25.<java.io.BufferedReader: void close()>()"->"r118 = virtualinvoke r117.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")";
+    "if $r26 == null goto virtualinvoke r25.<java.io.BufferedReader: void close()>()"->"virtualinvoke r25.<java.io.BufferedReader: void close()>()";
+    "r118 = virtualinvoke r117.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r110 = r118[1]";
+    "$r110 = r118[1]"->"i36 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r110)";
+    "i36 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r110)"->"if i36 <= i35 goto (branch)";
+    "if i36 <= i35 goto (branch)"->"i35 = i36";
+    "if i36 <= i35 goto (branch)"->"goto [?= $r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "i35 = i36"->"goto [?= $r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "goto [?= $r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r26 = virtualinvoke r25.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "virtualinvoke r25.<java.io.BufferedReader: void close()>()"->"$r27 = new java.io.BufferedReader";
+    "$r27 = new java.io.BufferedReader"->"$r28 = new java.io.FileReader";
+    "$r28 = new java.io.FileReader"->"$r29 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")";
+    "$r29 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"entity2id\")"->"specialinvoke $r28.<java.io.FileReader: void <init>(java.lang.String)>($r29)";
+    "specialinvoke $r28.<java.io.FileReader: void <init>(java.lang.String)>($r29)"->"specialinvoke $r27.<java.io.BufferedReader: void <init>(java.io.Reader)>($r28)";
+    "specialinvoke $r27.<java.io.BufferedReader: void <init>(java.io.Reader)>($r28)"->"r119 = $r27";
+    "r119 = $r27"->"$r30 = new it.unimi.dsi.fastutil.objects.ObjectArrayList";
+    "$r30 = new it.unimi.dsi.fastutil.objects.ObjectArrayList"->"specialinvoke $r30.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void <init>(int)>(i35)";
+    "specialinvoke $r30.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void <init>(int)>(i35)"->"r120 = $r30";
+    "r120 = $r30"->"$r31 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r31 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r31.<org.slf4j.Logger: void info(java.lang.String)>(\"Storing entity names\")";
+    "interfaceinvoke $r31.<org.slf4j.Logger: void info(java.lang.String)>(\"Storing entity names\")"->"$r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()"->"r121 = $r32";
+    "r121 = $r32"->"if $r32 == null goto $r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "if $r32 == null goto $r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"r122 = virtualinvoke r121.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")";
+    "if $r32 == null goto $r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "r122 = virtualinvoke r121.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r96 = r122[1]";
+    "r122 = virtualinvoke r121.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r111 := @caughtexception";
+    "$r96 = r122[1]"->"i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r96)";
+    "$r96 = r122[1]"->"$r111 := @caughtexception";
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r96)"->"$i33 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()";
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r96)"->"$r111 := @caughtexception";
+    "$i33 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"->"if i37 < $i33 goto $r97 = r122[0]";
+    "$i33 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"->"$r111 := @caughtexception";
+    "if i37 < $i33 goto $r97 = r122[0]"->"$i34 = i37 + 1";
+    "if i37 < $i33 goto $r97 = r122[0]"->"$r97 = r122[0]";
+    "if i37 < $i33 goto $r97 = r122[0]"->"$r111 := @caughtexception";
+    "$i34 = i37 + 1"->"virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void size(int)>($i34)";
+    "$i34 = i37 + 1"->"$r111 := @caughtexception";
+    "virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void size(int)>($i34)"->"$r97 = r122[0]";
+    "virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: void size(int)>($i34)"->"$r111 := @caughtexception";
+    "$r97 = r122[0]"->"$r98 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i37, $r97)";
+    "$r97 = r122[0]"->"$r111 := @caughtexception";
+    "$r98 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i37, $r97)"->"r123 = (java.lang.String) $r98";
+    "$r98 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i37, $r97)"->"$r111 := @caughtexception";
+    "r123 = (java.lang.String) $r98"->"if r123 == null goto (branch)";
+    "r123 = (java.lang.String) $r98"->"$r111 := @caughtexception";
+    "if r123 == null goto (branch)"->"$r100 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "if r123 == null goto (branch)"->"goto [?= (branch)]";
+    "if r123 == null goto (branch)"->"$r111 := @caughtexception";
+    "$r100 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r99 = new java.lang.StringBuilder";
+    "$r100 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r111 := @caughtexception";
+    "$r99 = new java.lang.StringBuilder"->"specialinvoke $r99.<java.lang.StringBuilder: void <init>()>()";
+    "$r99 = new java.lang.StringBuilder"->"$r111 := @caughtexception";
+    "specialinvoke $r99.<java.lang.StringBuilder: void <init>()>()"->"$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Duplicate index \")";
+    "specialinvoke $r99.<java.lang.StringBuilder: void <init>()>()"->"$r111 := @caughtexception";
+    "$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Duplicate index \")"->"$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i37)";
+    "$r101 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Duplicate index \")"->"$r111 := @caughtexception";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i37)"->"$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for names \\\"\")";
+    "$r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i37)"->"$r111 := @caughtexception";
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for names \\\"\")"->"$r104 = r122[0]";
+    "$r103 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" for names \\\"\")"->"$r111 := @caughtexception";
+    "$r104 = r122[0]"->"$r105 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r104)";
+    "$r104 = r122[0]"->"$r111 := @caughtexception";
+    "$r105 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r104)"->"$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\" and \\\"\")";
+    "$r105 = virtualinvoke $r103.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r104)"->"$r111 := @caughtexception";
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\" and \\\"\")"->"$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r123)";
+    "$r106 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\" and \\\"\")"->"$r111 := @caughtexception";
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r123)"->"$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")";
+    "$r107 = virtualinvoke $r106.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r123)"->"$r111 := @caughtexception";
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"->"$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"->"$r111 := @caughtexception";
+    "$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r100.<org.slf4j.Logger: void warn(java.lang.String)>($r109)";
+    "$r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r111 := @caughtexception";
+    "interfaceinvoke $r100.<org.slf4j.Logger: void warn(java.lang.String)>($r109)"->"goto [?= (branch)]";
+    "interfaceinvoke $r100.<org.slf4j.Logger: void warn(java.lang.String)>($r109)"->"$r111 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= $r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "$r111 := @caughtexception"->"r124 = $r111";
+    "r124 = $r111"->"$r113 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r113 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r112 = new java.lang.StringBuilder";
+    "$r112 = new java.lang.StringBuilder"->"specialinvoke $r112.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r112.<java.lang.StringBuilder: void <init>()>()"->"$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Wrong line (skipping) --> \")";
+    "$r114 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Wrong line (skipping) --> \")"->"$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r121)";
+    "$r115 = virtualinvoke $r114.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r121)"->"$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r116 = virtualinvoke $r115.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r113.<org.slf4j.Logger: void error(java.lang.String)>($r116)";
+    "interfaceinvoke $r113.<org.slf4j.Logger: void error(java.lang.String)>($r116)"->"goto [?= $r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()]";
+    "goto [?= $r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()]"->"$r32 = virtualinvoke r119.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r33 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r33.<org.slf4j.Logger: void info(java.lang.String)>(\"done\")";
+    "interfaceinvoke $r33.<org.slf4j.Logger: void info(java.lang.String)>(\"done\")"->"virtualinvoke r119.<java.io.BufferedReader: void close()>()";
+    "virtualinvoke r119.<java.io.BufferedReader: void close()>()"->"i38 = 0";
+    "i38 = 0"->"$i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()";
+    "$i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"->"if i38 >= $i2 goto $r34 = new java.util.HashMap";
+    "if i38 >= $i2 goto $r34 = new java.util.HashMap"->"$r94 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object get(int)>(i38)";
+    "if i38 >= $i2 goto $r34 = new java.util.HashMap"->"$r34 = new java.util.HashMap";
+    "$r94 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object get(int)>(i38)"->"if $r94 != null goto i38 = i38 + 1";
+    "if $r94 != null goto i38 = i38 + 1"->"virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i38, \"\")";
+    "if $r94 != null goto i38 = i38 + 1"->"i38 = i38 + 1";
+    "virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: java.lang.Object set(int,java.lang.Object)>(i38, \"\")"->"i38 = i38 + 1";
+    "i38 = i38 + 1"->"goto [?= $i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()]";
+    "goto [?= $i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()]"->"$i2 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()";
+    "$r34 = new java.util.HashMap"->"specialinvoke $r34.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r34.<java.util.HashMap: void <init>()>()"->"r125 = $r34";
+    "r125 = $r34"->"$r35 = new java.util.HashMap";
+    "$r35 = new java.util.HashMap"->"specialinvoke $r35.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r35.<java.util.HashMap: void <init>()>()"->"r126 = $r35";
+    "r126 = $r35"->"$r36 = new java.util.HashMap";
+    "$r36 = new java.util.HashMap"->"specialinvoke $r36.<java.util.HashMap: void <init>()>()";
+    "specialinvoke $r36.<java.util.HashMap: void <init>()>()"->"r127 = $r36";
+    "r127 = $r36"->"$r37 = new it.unimi.dsi.fastutil.longs.LongArrayList";
+    "$r37 = new it.unimi.dsi.fastutil.longs.LongArrayList"->"specialinvoke $r37.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()";
+    "specialinvoke $r37.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"->"r128 = $r37";
+    "r128 = $r37"->"r129 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")";
+    "r129 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")"->"virtualinvoke r129.<java.io.File: void deleteOnExit()>()";
+    "virtualinvoke r129.<java.io.File: void deleteOnExit()>()"->"i39 = 0";
+    "i39 = 0"->"$r38 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r38 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r38, r129)";
+    "virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r38, r129)"->"$r40 = new java.io.DataOutputStream";
+    "$r40 = new java.io.DataOutputStream"->"$r41 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream";
+    "$r41 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream"->"$r42 = new java.io.FileOutputStream";
+    "$r42 = new java.io.FileOutputStream"->"specialinvoke $r42.<java.io.FileOutputStream: void <init>(java.io.File)>(r129)";
+    "specialinvoke $r42.<java.io.FileOutputStream: void <init>(java.io.File)>(r129)"->"specialinvoke $r41.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r42)";
+    "specialinvoke $r41.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r42)"->"specialinvoke $r40.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r41)";
+    "specialinvoke $r40.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r41)"->"r130 = $r40";
+    "r130 = $r40"->"virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(0L)";
+    "virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(0L)"->"$r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r43, r130)";
+    "virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r43, r130)"->"$r45 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r45 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r45, r128)";
+    "virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r45, r128)"->"l40 = 0L";
+    "l40 = 0L"->"$r47 = new it.unimi.dsi.fastutil.ints.IntBigArrayBigList";
+    "$r47 = new it.unimi.dsi.fastutil.ints.IntBigArrayBigList"->"specialinvoke $r47.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void <init>()>()";
+    "specialinvoke $r47.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void <init>()>()"->"r48 = $r47";
+    "r48 = $r47"->"$i3 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()";
+    "$i3 = virtualinvoke r120.<it.unimi.dsi.fastutil.objects.ObjectArrayList: int size()>()"->"$i4 = $i3 * 3";
+    "$i4 = $i3 * 3"->"virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void size(int)>($i4)";
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: void size(int)>($i4)"->"$r49 = new it.unimi.dsi.logging.ProgressLogger";
+    "$r49 = new it.unimi.dsi.logging.ProgressLogger"->"$r50 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r50 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"specialinvoke $r49.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r50)";
+    "specialinvoke $r49.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r50)"->"r51 = $r49";
+    "r51 = $r49"->"r51.<it.unimi.dsi.logging.ProgressLogger: java.lang.String itemsName> = \"aliases\"";
+    "r51.<it.unimi.dsi.logging.ProgressLogger: java.lang.String itemsName> = \"aliases\""->"i41 = 0";
+    "i41 = 0"->"r131 = interfaceinvoke r21.<java.lang.Iterable: java.util.Iterator iterator()>()";
+    "r131 = interfaceinvoke r21.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto virtualinvoke r130.<java.io.DataOutputStream: void close()>()";
+    "if $z2 == 0 goto virtualinvoke r130.<java.io.DataOutputStream: void close()>()"->"$r83 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto virtualinvoke r130.<java.io.DataOutputStream: void close()>()"->"virtualinvoke r130.<java.io.DataOutputStream: void close()>()";
+    "$r83 = interfaceinvoke r131.<java.util.Iterator: java.lang.Object next()>()"->"r132 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r83";
+    "r132 = (com.yahoo.semsearch.fastlinking.view.StringAndCandidate) $r83"->"virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()";
+    "virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$i10 = i41";
+    "$i10 = i41"->"i41 = i41 + 1";
+    "i41 = i41 + 1"->"if $i10 <= 9999999 goto r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>";
+    "if $i10 <= 9999999 goto r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>"->"i41 = 1";
+    "if $i10 <= 9999999 goto r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>"->"r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>";
+    "i41 = 1"->"i39 = i39 + 1";
+    "i39 = i39 + 1"->"r133 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")";
+    "r133 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"values\", \"tempfile\")"->"virtualinvoke r133.<java.io.File: void deleteOnExit()>()";
+    "virtualinvoke r133.<java.io.File: void deleteOnExit()>()"->"virtualinvoke r130.<java.io.DataOutputStream: void close()>()";
+    "virtualinvoke r130.<java.io.DataOutputStream: void close()>()"->"$r84 = new java.io.DataOutputStream";
+    "$r84 = new java.io.DataOutputStream"->"$r85 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream";
+    "$r85 = new it.unimi.dsi.fastutil.io.FastBufferedOutputStream"->"$r86 = new java.io.FileOutputStream";
+    "$r86 = new java.io.FileOutputStream"->"specialinvoke $r86.<java.io.FileOutputStream: void <init>(java.io.File)>(r133)";
+    "specialinvoke $r86.<java.io.FileOutputStream: void <init>(java.io.File)>(r133)"->"specialinvoke $r85.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r86)";
+    "specialinvoke $r85.<it.unimi.dsi.fastutil.io.FastBufferedOutputStream: void <init>(java.io.OutputStream)>($r86)"->"specialinvoke $r84.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r85)";
+    "specialinvoke $r84.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>($r85)"->"r130 = $r84";
+    "r130 = $r84"->"$r87 = new it.unimi.dsi.fastutil.longs.LongArrayList";
+    "$r87 = new it.unimi.dsi.fastutil.longs.LongArrayList"->"specialinvoke $r87.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()";
+    "specialinvoke $r87.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"->"r128 = $r87";
+    "r128 = $r87"->"virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(0L)";
+    "virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(0L)"->"$r88 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r88 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r88, r130)";
+    "virtualinvoke r125.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r88, r130)"->"$r90 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r90 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r90, r128)";
+    "virtualinvoke r126.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r90, r128)"->"$r92 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)";
+    "$r92 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i39)"->"virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r92, r133)";
+    "virtualinvoke r127.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r92, r133)"->"l40 = 0L";
+    "l40 = 0L"->"r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>";
+    "r134 = r132.<com.yahoo.semsearch.fastlinking.view.StringAndCandidate: com.yahoo.semsearch.fastlinking.view.CandidatesInfo candidatesInfo>"->"$d0 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>";
+    "$d0 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAF>"->"$i11 = (int) $d0";
+    "$i11 = (int) $d0"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i11)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i11)"->"$d1 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>";
+    "$d1 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAT>"->"$i12 = (int) $d1";
+    "$i12 = (int) $d1"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i12)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i12)"->"$d2 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>";
+    "$d2 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double QAC>"->"$i13 = (int) $d2";
+    "$i13 = (int) $d2"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i13)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i13)"->"$d3 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>";
+    "$d3 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAF>"->"$i14 = (int) $d3";
+    "$i14 = (int) $d3"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i14)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i14)"->"$d4 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>";
+    "$d4 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: double LAT>"->"$i15 = (int) $d4";
+    "$i15 = (int) $d4"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i15)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i15)"->"l40 = l40 + 5L";
+    "l40 = l40 + 5L"->"r135 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>";
+    "r135 = r134.<com.yahoo.semsearch.fastlinking.view.CandidatesInfo: com.yahoo.semsearch.fastlinking.view.Entity[] entities>"->"i42 = lengthof r135";
+    "i42 = lengthof r135"->"i43 = 0";
+    "i43 = 0"->"if i43 >= i42 goto virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)";
+    "if i43 >= i42 goto virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)"->"r136 = r135[i43]";
+    "if i43 >= i42 goto virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)"->"virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)";
+    "r136 = r135[i43]"->"$i16 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>";
+    "$i16 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i16)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i16)"->"$d5 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>";
+    "$d5 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LAET>"->"$i17 = (int) $d5";
+    "$i17 = (int) $d5"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i17)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i17)"->"$d6 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>";
+    "$d6 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QAEF>"->"$i18 = (int) $d6";
+    "$i18 = (int) $d6"->"virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i18)";
+    "virtualinvoke r130.<java.io.DataOutputStream: void writeInt(int)>($i18)"->"l40 = l40 + 3L";
+    "l40 = l40 + 3L"->"$i19 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>";
+    "$i19 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"->"$i21 = $i19 * 3";
+    "$i21 = $i19 * 3"->"$d7 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>";
+    "$d7 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double QEF>"->"$i20 = (int) $d7";
+    "$i20 = (int) $d7"->"virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i21, $i20)";
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i21, $i20)"->"$i23 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>";
+    "$i23 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"->"$i24 = $i23 * 3";
+    "$i24 = $i23 * 3"->"$i26 = $i24 + 1";
+    "$i26 = $i24 + 1"->"$d8 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>";
+    "$d8 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: double LET>"->"$i25 = (int) $d8";
+    "$i25 = (int) $d8"->"virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i26, $i25)";
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i26, $i25)"->"$i28 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>";
+    "$i28 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: int id>"->"$i29 = $i28 * 3";
+    "$i29 = $i28 * 3"->"$i31 = $i29 + 2";
+    "$i31 = $i29 + 2"->"$s30 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: short type>";
+    "$s30 = r136.<com.yahoo.semsearch.fastlinking.view.Entity: short type>"->"virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i31, $s30)";
+    "virtualinvoke r48.<it.unimi.dsi.fastutil.ints.IntBigArrayBigList: int set(int,int)>($i31, $s30)"->"i43 = i43 + 1";
+    "i43 = i43 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i43 >= i42 goto virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)";
+    "virtualinvoke r128.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>(l40)"->"goto [?= $z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r131.<java.util.Iterator: boolean hasNext()>()";
+    "virtualinvoke r130.<java.io.DataOutputStream: void close()>()"->"virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r51.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r52 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1";
+    "$r52 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1"->"specialinvoke $r52.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1: void <init>(java.lang.Iterable)>(r21)";
+    "specialinvoke $r52.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$1: void <init>(java.lang.Iterable)>(r21)"->"r137 = $r52";
+    "r137 = $r52"->"$r53 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap";
+    "$r53 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"->"$r54 = interfaceinvoke r137.<java.lang.Iterable: java.util.Iterator iterator()>()";
+    "$r54 = interfaceinvoke r137.<java.lang.Iterable: java.util.Iterator iterator()>()"->"$r55 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder";
+    "$r55 = new it.unimi.dsi.sux4j.mph.MWHCFunction$Builder"->"specialinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>()";
+    "specialinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: void <init>()>()"->"$r56 = virtualinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r137)";
+    "$r56 = virtualinvoke $r55.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder keys(java.lang.Iterable)>(r137)"->"$r57 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()";
+    "$r57 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()"->"$r58 = virtualinvoke $r56.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r57)";
+    "$r58 = virtualinvoke $r56.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r57)"->"$r59 = virtualinvoke $r58.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>()";
+    "$r59 = virtualinvoke $r58.<it.unimi.dsi.sux4j.mph.MWHCFunction$Builder: it.unimi.dsi.sux4j.mph.MWHCFunction build()>()"->"specialinvoke $r53.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r54, $r59)";
+    "specialinvoke $r53.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r54, $r59)"->"r138 = $r53";
+    "r138 = $r53"->"$i5 = virtualinvoke r127.<java.util.HashMap: int size()>()";
+    "$i5 = virtualinvoke r127.<java.util.HashMap: int size()>()"->"r139 = newarray (it.unimi.dsi.sux4j.util.EliasFanoLongBigList)[$i5]";
+    "r139 = newarray (it.unimi.dsi.sux4j.util.EliasFanoLongBigList)[$i5]"->"$i6 = virtualinvoke r127.<java.util.HashMap: int size()>()";
+    "$i6 = virtualinvoke r127.<java.util.HashMap: int size()>()"->"r140 = newarray (it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList)[$i6]";
+    "r140 = newarray (it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList)[$i6]"->"i44 = 0";
+    "i44 = 0"->"$i7 = virtualinvoke r127.<java.util.HashMap: int size()>()";
+    "$i7 = virtualinvoke r127.<java.util.HashMap: int size()>()"->"if i44 >= $i7 goto $r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "if i44 >= $i7 goto $r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r73 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)";
+    "if i44 >= $i7 goto $r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r73 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)"->"$r74 = virtualinvoke r127.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r73)";
+    "$r74 = virtualinvoke r127.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r73)"->"r141 = (java.io.File) $r74";
+    "r141 = (java.io.File) $r74"->"$r75 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2";
+    "$r75 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2"->"specialinvoke $r75.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2: void <init>(java.io.File)>(r141)";
+    "specialinvoke $r75.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash$2: void <init>(java.io.File)>(r141)"->"r142 = $r75";
+    "r142 = $r75"->"l45 = 9223372036854775807L";
+    "l45 = 9223372036854775807L"->"r76 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()";
+    "r76 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()"->"$z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()";
+    "$z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()"->"if $z5 == 0 goto $r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList";
+    "if $z5 == 0 goto $r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"->"$l9 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: long nextLong()>()";
+    "if $z5 == 0 goto $r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"->"$r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList";
+    "$l9 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: long nextLong()>()"->"l45 = staticinvoke <java.lang.Math: long min(long,long)>(l45, $l9)";
+    "l45 = staticinvoke <java.lang.Math: long min(long,long)>(l45, $l9)"->"goto [?= $z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()]";
+    "goto [?= $z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()]"->"$z5 = interfaceinvoke r76.<it.unimi.dsi.fastutil.longs.LongIterator: boolean hasNext()>()";
+    "$r77 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"->"$r78 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)";
+    "$r78 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i44)"->"$r79 = virtualinvoke r126.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r78)";
+    "$r79 = virtualinvoke r126.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r78)"->"$r80 = (it.unimi.dsi.fastutil.longs.LongIterable) $r79";
+    "$r80 = (it.unimi.dsi.fastutil.longs.LongIterable) $r79"->"specialinvoke $r77.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>($r80)";
+    "specialinvoke $r77.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>($r80)"->"r140[i44] = $r77";
+    "r140[i44] = $r77"->"$r81 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList";
+    "$r81 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList"->"$r82 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()";
+    "$r82 = interfaceinvoke r142.<it.unimi.dsi.fastutil.longs.LongIterable: it.unimi.dsi.fastutil.longs.LongIterator iterator()>()"->"specialinvoke $r81.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterator,long,boolean)>($r82, l45, 1)";
+    "specialinvoke $r81.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterator,long,boolean)>($r82, l45, 1)"->"r139[i44] = $r81";
+    "r139[i44] = $r81"->"i44 = i44 + 1";
+    "i44 = i44 + 1"->"goto [?= $i7 = virtualinvoke r127.<java.util.HashMap: int size()>()]";
+    "goto [?= $i7 = virtualinvoke r127.<java.util.HashMap: int size()>()]"->"$i7 = virtualinvoke r127.<java.util.HashMap: int size()>()";
+    "$r61 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"$r60 = new java.lang.StringBuilder";
+    "$r60 = new java.lang.StringBuilder"->"specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r60.<java.lang.StringBuilder: void <init>()>()"->"$r62 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"#Batches= \")";
+    "$r62 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"#Batches= \")"->"$i8 = virtualinvoke r127.<java.util.HashMap: int size()>()";
+    "$i8 = virtualinvoke r127.<java.util.HashMap: int size()>()"->"$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)";
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8)"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>()"->"interfaceinvoke $r61.<org.slf4j.Logger: void info(java.lang.String)>($r64)";
+    "interfaceinvoke $r61.<org.slf4j.Logger: void info(java.lang.String)>($r64)"->"$r65 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash";
+    "$r65 = new com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash"->"$r66 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList";
+    "$r66 = new it.unimi.dsi.sux4j.util.EliasFanoLongBigList"->"specialinvoke $r66.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.ints.IntIterable)>(r48)";
+    "specialinvoke $r66.<it.unimi.dsi.sux4j.util.EliasFanoLongBigList: void <init>(it.unimi.dsi.fastutil.ints.IntIterable)>(r48)"->"$r67 = new it.unimi.dsi.util.FrontCodedStringList";
+    "$r67 = new it.unimi.dsi.util.FrontCodedStringList"->"specialinvoke $r67.<it.unimi.dsi.util.FrontCodedStringList: void <init>(java.util.Collection,int,boolean)>(r120, 8, 1)";
+    "specialinvoke $r67.<it.unimi.dsi.util.FrontCodedStringList: void <init>(java.util.Collection,int,boolean)>(r120, 8, 1)"->"specialinvoke $r65.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: void <init>(it.unimi.dsi.fastutil.objects.Object2LongFunction,it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList,it.unimi.dsi.util.FrontCodedStringList)>(r138, r140, r139, $r66, $r67)";
+    "specialinvoke $r65.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: void <init>(it.unimi.dsi.fastutil.objects.Object2LongFunction,it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList[],it.unimi.dsi.sux4j.util.EliasFanoLongBigList,it.unimi.dsi.util.FrontCodedStringList)>(r138, r140, r139, $r66, $r67)"->"r143 = $r65";
+    "r143 = $r65"->"$r68 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r68 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r68.<org.slf4j.Logger: void info(java.lang.String)>(\"Creating stats\")";
+    "interfaceinvoke $r68.<org.slf4j.Logger: void info(java.lang.String)>(\"Creating stats\")"->"$r69 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats createStats(com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash)>(r143)";
+    "$r69 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats createStats(com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash)>(r143)"->"r143.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats> = $r69";
+    "r143.<com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: com.yahoo.semsearch.fastlinking.hash.CountAndRecordStats stats> = $r69"->"$r70 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\")";
+    "$r70 = virtualinvoke r19.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"output\")"->"staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r143, $r70)";
+    "staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r143, $r70)"->"$r71 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>";
+    "$r71 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: org.slf4j.Logger LOGGER>"->"interfaceinvoke $r71.<org.slf4j.Logger: void info(java.lang.String)>(\"...  done\")";
+    "interfaceinvoke $r71.<org.slf4j.Logger: void info(java.lang.String)>(\"...  done\")"->"$z3 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean $assertionsDisabled>";
+    "$z3 = <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean $assertionsDisabled>"->"if $z3 != 0 goto return";
+    "if $z3 != 0 goto return"->"$z4 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean checkMap(com.martiansoftware.jsap.JSAPResult,java.lang.Iterable)>(r19, r21)";
+    "if $z3 != 0 goto return"->"return";
+    "$z4 = staticinvoke <com.yahoo.semsearch.fastlinking.hash.QuasiSuccinctEntityHash: boolean checkMap(com.martiansoftware.jsap.JSAPResult,java.lang.Iterable)>(r19, r21)"->"if $z4 != 0 goto return";
+    "if $z4 != 0 goto return"->"$r72 = new java.lang.AssertionError";
+    "if $z4 != 0 goto return"->"return";
+    "$r72 = new java.lang.AssertionError"->"specialinvoke $r72.<java.lang.AssertionError: void <init>()>()";
+    "specialinvoke $r72.<java.lang.AssertionError: void <init>()>()"->"throw $r72";
+}

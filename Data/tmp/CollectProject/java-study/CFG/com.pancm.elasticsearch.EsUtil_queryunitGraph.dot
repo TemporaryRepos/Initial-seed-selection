@@ -1,0 +1,394 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "r1 := @parameter1: java.lang.String"
+    "r11 := @parameter2: com.pancm.elasticsearch.EsQueryCondition"
+    "r12 := @parameter3: org.elasticsearch.index.query.QueryBuilder[]"
+    "if r0 == null goto return null"
+    "if r1 != null goto $r2 = new java.util.ArrayList"
+    "return null"
+    "$r2 = new java.util.ArrayList"
+    "specialinvoke $r2.<java.util.ArrayList: void <init>()>()"
+    "r3 = $r2"
+    "$r4 = new org.elasticsearch.action.search.SearchRequest"
+    "$r5 = newarray (java.lang.String)[1]"
+    "$r5[0] = r0"
+    "specialinvoke $r4.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r5)"
+    "r6 = $r4"
+    "$r7 = newarray (java.lang.String)[1]"
+    "$r7[0] = r1"
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest types(java.lang.String[])>($r7)"
+    "$r9 = new org.elasticsearch.search.builder.SearchSourceBuilder"
+    "specialinvoke $r9.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>()"
+    "r10 = $r9"
+    "if r11 == null goto (branch)"
+    "r40 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getIndex()>()"
+    "r41 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getPagesize()>()"
+    "if r40 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"
+    "$i5 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"
+    "if $i5 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"
+    "if r41 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"
+    "$i6 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"
+    "if $i6 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"
+    "$i7 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"
+    "$i8 = $i7 - 1"
+    "$i9 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"
+    "$i10 = $i8 * $i9"
+    "r42 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10)"
+    "$i11 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"
+    "$i12 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"
+    "$i13 = $i11 + $i12"
+    "r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i13)"
+    "$i14 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder 'from'(int)>($i14)"
+    "$i15 = virtualinvoke r43.<java.lang.Integer: int intValue()>()"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder size(int)>($i15)"
+    "r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"
+    "if r44 == null goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"
+    "$i4 = virtualinvoke r44.<java.lang.String: int length()>()"
+    "if $i4 <= 0 goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest routing(java.lang.String)>(r44)"
+    "$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest indicesOptions(org.elasticsearch.action.support.IndicesOptions)>($r45)"
+    "r46 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getOrder()>()"
+    "if r46 == null goto r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"
+    "r47 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getOrderField()>()"
+    "$r26 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"
+    "$z3 = virtualinvoke r46.<java.lang.String: boolean equals(java.lang.Object)>($r26)"
+    "if $z3 == 0 goto $r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"
+    "goto [?= r49 = $r48]"
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"
+    "r49 = $r48"
+    "if r47 == null goto $r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"
+    "r30 = r47"
+    "i3 = lengthof r30"
+    "i16 = 0"
+    "if i16 >= i3 goto (branch)"
+    "r31 = r30[i16]"
+    "$r32 = new org.elasticsearch.search.sort.FieldSortBuilder"
+    "specialinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: void <init>(java.lang.String)>(r31)"
+    "$r33 = virtualinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r33)"
+    "i16 = i16 + 1"
+    "goto [?= (branch)]"
+    "goto [?= r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()]"
+    "$r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"
+    "specialinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: void <init>()>()"
+    "$r28 = virtualinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r28)"
+    "r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"
+    "r51 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getExcludeFields()>()"
+    "if r50 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"
+    "$i1 = lengthof r50"
+    "if $i1 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"
+    "if r51 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"
+    "$i2 = lengthof r51"
+    "if $i2 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(java.lang.String[],java.lang.String[])>(r50, r51)"
+    "$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(boolean)>($z5)"
+    "if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"
+    "r52 = r12"
+    "i17 = lengthof r52"
+    "i18 = 0"
+    "if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"
+    "r53 = r52[i18]"
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r53)"
+    "i18 = i18 + 1"
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"
+    "$r15 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"
+    "$r14 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"
+    "r54 = virtualinvoke $r15.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r6, $r14)"
+    "if r12 != null goto $r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"
+    "$z2 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isQueryData()>()"
+    "if $z2 == 0 goto (branch)"
+    "$r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"
+    "$r17 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_query_2__169: java.util.function.Consumer bootstrap$(java.util.List)>(r3)"
+    "virtualinvoke $r16.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r17)"
+    "if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "$z0 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isNeedTotal()>()"
+    "if $z0 == 0 goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "$r18 = new java.util.HashMap"
+    "specialinvoke $r18.<java.util.HashMap: void <init>()>()"
+    "r55 = $r18"
+    "$r19 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"
+    "$l0 = virtualinvoke $r19.<org.elasticsearch.search.SearchHits: long getTotalHits()>()"
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"
+    "interfaceinvoke r55.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r20)"
+    "interfaceinvoke r3.<java.util.List: boolean add(java.lang.Object)>(r55)"
+    "$z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z6 == 0 goto return r3"
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"
+    "goto [?= return r3]"
+    "$r38 := @caughtexception"
+    "r39 = $r38"
+    "$z4 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"
+    "if $z4 == 0 goto throw r39"
+    "throw r39"
+    "return r3"
+    "r0 := @parameter0: java.lang.String"->"r1 := @parameter1: java.lang.String";
+    "r1 := @parameter1: java.lang.String"->"r11 := @parameter2: com.pancm.elasticsearch.EsQueryCondition";
+    "r11 := @parameter2: com.pancm.elasticsearch.EsQueryCondition"->"r12 := @parameter3: org.elasticsearch.index.query.QueryBuilder[]";
+    "r12 := @parameter3: org.elasticsearch.index.query.QueryBuilder[]"->"if r0 == null goto return null";
+    "if r0 == null goto return null"->"if r1 != null goto $r2 = new java.util.ArrayList";
+    "if r0 == null goto return null"->"return null";
+    "if r1 != null goto $r2 = new java.util.ArrayList"->"return null";
+    "if r1 != null goto $r2 = new java.util.ArrayList"->"$r2 = new java.util.ArrayList";
+    "$r2 = new java.util.ArrayList"->"specialinvoke $r2.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r2.<java.util.ArrayList: void <init>()>()"->"r3 = $r2";
+    "r3 = $r2"->"$r4 = new org.elasticsearch.action.search.SearchRequest";
+    "r3 = $r2"->"$r38 := @caughtexception";
+    "$r4 = new org.elasticsearch.action.search.SearchRequest"->"$r5 = newarray (java.lang.String)[1]";
+    "$r4 = new org.elasticsearch.action.search.SearchRequest"->"$r38 := @caughtexception";
+    "$r5 = newarray (java.lang.String)[1]"->"$r5[0] = r0";
+    "$r5 = newarray (java.lang.String)[1]"->"$r38 := @caughtexception";
+    "$r5[0] = r0"->"specialinvoke $r4.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r5)";
+    "$r5[0] = r0"->"$r38 := @caughtexception";
+    "specialinvoke $r4.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r5)"->"r6 = $r4";
+    "specialinvoke $r4.<org.elasticsearch.action.search.SearchRequest: void <init>(java.lang.String[])>($r5)"->"$r38 := @caughtexception";
+    "r6 = $r4"->"$r7 = newarray (java.lang.String)[1]";
+    "r6 = $r4"->"$r38 := @caughtexception";
+    "$r7 = newarray (java.lang.String)[1]"->"$r7[0] = r1";
+    "$r7 = newarray (java.lang.String)[1]"->"$r38 := @caughtexception";
+    "$r7[0] = r1"->"virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest types(java.lang.String[])>($r7)";
+    "$r7[0] = r1"->"$r38 := @caughtexception";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest types(java.lang.String[])>($r7)"->"$r9 = new org.elasticsearch.search.builder.SearchSourceBuilder";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest types(java.lang.String[])>($r7)"->"$r38 := @caughtexception";
+    "$r9 = new org.elasticsearch.search.builder.SearchSourceBuilder"->"specialinvoke $r9.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>()";
+    "$r9 = new org.elasticsearch.search.builder.SearchSourceBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r9.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>()"->"r10 = $r9";
+    "specialinvoke $r9.<org.elasticsearch.search.builder.SearchSourceBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "r10 = $r9"->"if r11 == null goto (branch)";
+    "r10 = $r9"->"$r38 := @caughtexception";
+    "if r11 == null goto (branch)"->"r40 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getIndex()>()";
+    "if r11 == null goto (branch)"->"if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "if r11 == null goto (branch)"->"$r38 := @caughtexception";
+    "r40 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getIndex()>()"->"r41 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getPagesize()>()";
+    "r40 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getIndex()>()"->"$r38 := @caughtexception";
+    "r41 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getPagesize()>()"->"if r40 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "r41 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.Integer getPagesize()>()"->"$r38 := @caughtexception";
+    "if r40 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$i5 = virtualinvoke r40.<java.lang.Integer: int intValue()>()";
+    "if r40 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "if r40 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$r38 := @caughtexception";
+    "$i5 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"->"if $i5 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "$i5 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "if $i5 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"if r41 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "if $i5 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "if $i5 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$r38 := @caughtexception";
+    "if r41 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$i6 = virtualinvoke r41.<java.lang.Integer: int intValue()>()";
+    "if r41 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "if r41 == null goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$r38 := @caughtexception";
+    "$i6 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"if $i6 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "$i6 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "if $i6 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$i7 = virtualinvoke r40.<java.lang.Integer: int intValue()>()";
+    "if $i6 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "if $i6 <= 0 goto r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$r38 := @caughtexception";
+    "$i7 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"->"$i8 = $i7 - 1";
+    "$i7 = virtualinvoke r40.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "$i8 = $i7 - 1"->"$i9 = virtualinvoke r41.<java.lang.Integer: int intValue()>()";
+    "$i8 = $i7 - 1"->"$r38 := @caughtexception";
+    "$i9 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"$i10 = $i8 * $i9";
+    "$i9 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "$i10 = $i8 * $i9"->"r42 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10)";
+    "$i10 = $i8 * $i9"->"$r38 := @caughtexception";
+    "r42 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10)"->"$i11 = virtualinvoke r42.<java.lang.Integer: int intValue()>()";
+    "r42 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10)"->"$r38 := @caughtexception";
+    "$i11 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"->"$i12 = virtualinvoke r41.<java.lang.Integer: int intValue()>()";
+    "$i11 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "$i12 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"$i13 = $i11 + $i12";
+    "$i12 = virtualinvoke r41.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "$i13 = $i11 + $i12"->"r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i13)";
+    "$i13 = $i11 + $i12"->"$r38 := @caughtexception";
+    "r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i13)"->"$i14 = virtualinvoke r42.<java.lang.Integer: int intValue()>()";
+    "r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i13)"->"$r38 := @caughtexception";
+    "$i14 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder 'from'(int)>($i14)";
+    "$i14 = virtualinvoke r42.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder 'from'(int)>($i14)"->"$i15 = virtualinvoke r43.<java.lang.Integer: int intValue()>()";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder 'from'(int)>($i14)"->"$r38 := @caughtexception";
+    "$i15 = virtualinvoke r43.<java.lang.Integer: int intValue()>()"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder size(int)>($i15)";
+    "$i15 = virtualinvoke r43.<java.lang.Integer: int intValue()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder size(int)>($i15)"->"r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder size(int)>($i15)"->"$r38 := @caughtexception";
+    "r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"if r44 == null goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()";
+    "r44 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getRouting()>()"->"$r38 := @caughtexception";
+    "if r44 == null goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$i4 = virtualinvoke r44.<java.lang.String: int length()>()";
+    "if r44 == null goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()";
+    "if r44 == null goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$r38 := @caughtexception";
+    "$i4 = virtualinvoke r44.<java.lang.String: int length()>()"->"if $i4 <= 0 goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()";
+    "$i4 = virtualinvoke r44.<java.lang.String: int length()>()"->"$r38 := @caughtexception";
+    "if $i4 <= 0 goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest routing(java.lang.String)>(r44)";
+    "if $i4 <= 0 goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()";
+    "if $i4 <= 0 goto $r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest routing(java.lang.String)>(r44)"->"$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest routing(java.lang.String)>(r44)"->"$r38 := @caughtexception";
+    "$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest indicesOptions(org.elasticsearch.action.support.IndicesOptions)>($r45)";
+    "$r45 = staticinvoke <org.elasticsearch.action.support.IndicesOptions: org.elasticsearch.action.support.IndicesOptions lenientExpandOpen()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest indicesOptions(org.elasticsearch.action.support.IndicesOptions)>($r45)"->"r46 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getOrder()>()";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest indicesOptions(org.elasticsearch.action.support.IndicesOptions)>($r45)"->"$r38 := @caughtexception";
+    "r46 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getOrder()>()"->"if r46 == null goto r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()";
+    "r46 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String getOrder()>()"->"$r38 := @caughtexception";
+    "if r46 == null goto r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"->"r47 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getOrderField()>()";
+    "if r46 == null goto r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"->"r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()";
+    "if r46 == null goto r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"->"$r38 := @caughtexception";
+    "r47 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getOrderField()>()"->"$r26 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>";
+    "r47 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getOrderField()>()"->"$r38 := @caughtexception";
+    "$r26 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"->"$z3 = virtualinvoke r46.<java.lang.String: boolean equals(java.lang.Object)>($r26)";
+    "$r26 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"->"$r38 := @caughtexception";
+    "$z3 = virtualinvoke r46.<java.lang.String: boolean equals(java.lang.Object)>($r26)"->"if $z3 == 0 goto $r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>";
+    "$z3 = virtualinvoke r46.<java.lang.String: boolean equals(java.lang.Object)>($r26)"->"$r38 := @caughtexception";
+    "if $z3 == 0 goto $r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"->"$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>";
+    "if $z3 == 0 goto $r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"->"$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>";
+    "if $z3 == 0 goto $r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"->"$r38 := @caughtexception";
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"->"goto [?= r49 = $r48]";
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder DESC>"->"$r38 := @caughtexception";
+    "goto [?= r49 = $r48]"->"r49 = $r48";
+    "goto [?= r49 = $r48]"->"$r38 := @caughtexception";
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"->"r49 = $r48";
+    "$r48 = <org.elasticsearch.search.sort.SortOrder: org.elasticsearch.search.sort.SortOrder ASC>"->"$r38 := @caughtexception";
+    "r49 = $r48"->"if r47 == null goto $r27 = new org.elasticsearch.search.sort.ScoreSortBuilder";
+    "r49 = $r48"->"$r38 := @caughtexception";
+    "if r47 == null goto $r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"->"r30 = r47";
+    "if r47 == null goto $r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"->"$r27 = new org.elasticsearch.search.sort.ScoreSortBuilder";
+    "if r47 == null goto $r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"->"$r38 := @caughtexception";
+    "r30 = r47"->"i3 = lengthof r30";
+    "r30 = r47"->"$r38 := @caughtexception";
+    "i3 = lengthof r30"->"i16 = 0";
+    "i3 = lengthof r30"->"$r38 := @caughtexception";
+    "i16 = 0"->"if i16 >= i3 goto (branch)";
+    "i16 = 0"->"$r38 := @caughtexception";
+    "if i16 >= i3 goto (branch)"->"r31 = r30[i16]";
+    "if i16 >= i3 goto (branch)"->"goto [?= r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()]";
+    "if i16 >= i3 goto (branch)"->"$r38 := @caughtexception";
+    "r31 = r30[i16]"->"$r32 = new org.elasticsearch.search.sort.FieldSortBuilder";
+    "r31 = r30[i16]"->"$r38 := @caughtexception";
+    "$r32 = new org.elasticsearch.search.sort.FieldSortBuilder"->"specialinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: void <init>(java.lang.String)>(r31)";
+    "$r32 = new org.elasticsearch.search.sort.FieldSortBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: void <init>(java.lang.String)>(r31)"->"$r33 = virtualinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)";
+    "specialinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: void <init>(java.lang.String)>(r31)"->"$r38 := @caughtexception";
+    "$r33 = virtualinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r33)";
+    "$r33 = virtualinvoke $r32.<org.elasticsearch.search.sort.FieldSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r33)"->"i16 = i16 + 1";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r33)"->"$r38 := @caughtexception";
+    "i16 = i16 + 1"->"goto [?= (branch)]";
+    "i16 = i16 + 1"->"$r38 := @caughtexception";
+    "goto [?= (branch)]"->"if i16 >= i3 goto (branch)";
+    "goto [?= (branch)]"->"$r38 := @caughtexception";
+    "goto [?= r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()]"->"r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()";
+    "goto [?= r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()]"->"$r38 := @caughtexception";
+    "$r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"->"specialinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: void <init>()>()";
+    "$r27 = new org.elasticsearch.search.sort.ScoreSortBuilder"->"$r38 := @caughtexception";
+    "specialinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: void <init>()>()"->"$r28 = virtualinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)";
+    "specialinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: void <init>()>()"->"$r38 := @caughtexception";
+    "$r28 = virtualinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r28)";
+    "$r28 = virtualinvoke $r27.<org.elasticsearch.search.sort.ScoreSortBuilder: org.elasticsearch.search.sort.SortBuilder order(org.elasticsearch.search.sort.SortOrder)>(r49)"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r28)"->"r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder sort(org.elasticsearch.search.sort.SortBuilder)>($r28)"->"$r38 := @caughtexception";
+    "r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"->"r51 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getExcludeFields()>()";
+    "r50 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getIncludeFields()>()"->"$r38 := @caughtexception";
+    "r51 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getExcludeFields()>()"->"if r50 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "r51 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: java.lang.String[] getExcludeFields()>()"->"$r38 := @caughtexception";
+    "if r50 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$i1 = lengthof r50";
+    "if r50 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "if r50 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$r38 := @caughtexception";
+    "$i1 = lengthof r50"->"if $i1 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "$i1 = lengthof r50"->"$r38 := @caughtexception";
+    "if $i1 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"if r51 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "if $i1 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "if $i1 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$r38 := @caughtexception";
+    "if r51 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$i2 = lengthof r51";
+    "if r51 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "if r51 == null goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$r38 := @caughtexception";
+    "$i2 = lengthof r51"->"if $i2 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "$i2 = lengthof r51"->"$r38 := @caughtexception";
+    "if $i2 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(java.lang.String[],java.lang.String[])>(r50, r51)";
+    "if $i2 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "if $i2 <= 0 goto $z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(java.lang.String[],java.lang.String[])>(r50, r51)"->"$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(java.lang.String[],java.lang.String[])>(r50, r51)"->"$r38 := @caughtexception";
+    "$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(boolean)>($z5)";
+    "$z5 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isCloseSource()>()"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(boolean)>($z5)"->"if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder fetchSource(boolean)>($z5)"->"$r38 := @caughtexception";
+    "if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"r52 = r12";
+    "if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "if r12 == null goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"$r38 := @caughtexception";
+    "r52 = r12"->"i17 = lengthof r52";
+    "r52 = r12"->"$r38 := @caughtexception";
+    "i17 = lengthof r52"->"i18 = 0";
+    "i17 = lengthof r52"->"$r38 := @caughtexception";
+    "i18 = 0"->"if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "i18 = 0"->"$r38 := @caughtexception";
+    "if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"r53 = r52[i18]";
+    "if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"$r38 := @caughtexception";
+    "r53 = r52[i18]"->"virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r53)";
+    "r53 = r52[i18]"->"$r38 := @caughtexception";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r53)"->"i18 = i18 + 1";
+    "virtualinvoke r10.<org.elasticsearch.search.builder.SearchSourceBuilder: org.elasticsearch.search.builder.SearchSourceBuilder query(org.elasticsearch.index.query.QueryBuilder)>(r53)"->"$r38 := @caughtexception";
+    "i18 = i18 + 1"->"goto [?= (branch)]";
+    "i18 = i18 + 1"->"$r38 := @caughtexception";
+    "goto [?= (branch)]"->"if i18 >= i17 goto virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)";
+    "goto [?= (branch)]"->"$r38 := @caughtexception";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"$r15 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>";
+    "virtualinvoke r6.<org.elasticsearch.action.search.SearchRequest: org.elasticsearch.action.search.SearchRequest source(org.elasticsearch.search.builder.SearchSourceBuilder)>(r10)"->"$r38 := @caughtexception";
+    "$r15 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r14 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>";
+    "$r15 = <com.pancm.elasticsearch.EsUtil: org.elasticsearch.client.RestHighLevelClient client>"->"$r38 := @caughtexception";
+    "$r14 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"r54 = virtualinvoke $r15.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r6, $r14)";
+    "$r14 = <org.elasticsearch.client.RequestOptions: org.elasticsearch.client.RequestOptions DEFAULT>"->"$r38 := @caughtexception";
+    "r54 = virtualinvoke $r15.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r6, $r14)"->"if r12 != null goto $r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()";
+    "r54 = virtualinvoke $r15.<org.elasticsearch.client.RestHighLevelClient: org.elasticsearch.action.search.SearchResponse search(org.elasticsearch.action.search.SearchRequest,org.elasticsearch.client.RequestOptions)>(r6, $r14)"->"$r38 := @caughtexception";
+    "if r12 != null goto $r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"if r11 == null goto (branch)";
+    "if r12 != null goto $r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()";
+    "if r12 != null goto $r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$r38 := @caughtexception";
+    "if r11 == null goto (branch)"->"$z2 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isQueryData()>()";
+    "if r11 == null goto (branch)"->"if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "if r11 == null goto (branch)"->"$r38 := @caughtexception";
+    "$z2 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isQueryData()>()"->"if $z2 == 0 goto (branch)";
+    "$z2 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isQueryData()>()"->"$r38 := @caughtexception";
+    "if $z2 == 0 goto (branch)"->"$r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()";
+    "if $z2 == 0 goto (branch)"->"if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "if $z2 == 0 goto (branch)"->"$r38 := @caughtexception";
+    "$r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$r17 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_query_2__169: java.util.function.Consumer bootstrap$(java.util.List)>(r3)";
+    "$r16 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$r38 := @caughtexception";
+    "$r17 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_query_2__169: java.util.function.Consumer bootstrap$(java.util.List)>(r3)"->"virtualinvoke $r16.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r17)";
+    "$r17 = staticinvoke <com.pancm.elasticsearch.EsUtil$lambda_query_2__169: java.util.function.Consumer bootstrap$(java.util.List)>(r3)"->"$r38 := @caughtexception";
+    "virtualinvoke $r16.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r17)"->"if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "virtualinvoke $r16.<org.elasticsearch.search.SearchHits: void forEach(java.util.function.Consumer)>($r17)"->"$r38 := @caughtexception";
+    "if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$z0 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isNeedTotal()>()";
+    "if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "if r11 == null goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$r38 := @caughtexception";
+    "$z0 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isNeedTotal()>()"->"if $z0 == 0 goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "$z0 = virtualinvoke r11.<com.pancm.elasticsearch.EsQueryCondition: boolean isNeedTotal()>()"->"$r38 := @caughtexception";
+    "if $z0 == 0 goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$r18 = new java.util.HashMap";
+    "if $z0 == 0 goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "if $z0 == 0 goto $z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"$r38 := @caughtexception";
+    "$r18 = new java.util.HashMap"->"specialinvoke $r18.<java.util.HashMap: void <init>()>()";
+    "$r18 = new java.util.HashMap"->"$r38 := @caughtexception";
+    "specialinvoke $r18.<java.util.HashMap: void <init>()>()"->"r55 = $r18";
+    "specialinvoke $r18.<java.util.HashMap: void <init>()>()"->"$r38 := @caughtexception";
+    "r55 = $r18"->"$r19 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()";
+    "r55 = $r18"->"$r38 := @caughtexception";
+    "$r19 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$l0 = virtualinvoke $r19.<org.elasticsearch.search.SearchHits: long getTotalHits()>()";
+    "$r19 = virtualinvoke r54.<org.elasticsearch.action.search.SearchResponse: org.elasticsearch.search.SearchHits getHits()>()"->"$r38 := @caughtexception";
+    "$l0 = virtualinvoke $r19.<org.elasticsearch.search.SearchHits: long getTotalHits()>()"->"$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)";
+    "$l0 = virtualinvoke $r19.<org.elasticsearch.search.SearchHits: long getTotalHits()>()"->"$r38 := @caughtexception";
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"->"interfaceinvoke r55.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r20)";
+    "$r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0)"->"$r38 := @caughtexception";
+    "interfaceinvoke r55.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r20)"->"interfaceinvoke r3.<java.util.List: boolean add(java.lang.Object)>(r55)";
+    "interfaceinvoke r55.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"total\", $r20)"->"$r38 := @caughtexception";
+    "interfaceinvoke r3.<java.util.List: boolean add(java.lang.Object)>(r55)"->"$z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "interfaceinvoke r3.<java.util.List: boolean add(java.lang.Object)>(r55)"->"$r38 := @caughtexception";
+    "$z6 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z6 == 0 goto return r3";
+    "if $z6 == 0 goto return r3"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z6 == 0 goto return r3"->"return r3";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"goto [?= return r3]";
+    "goto [?= return r3]"->"return r3";
+    "$r38 := @caughtexception"->"r39 = $r38";
+    "$r38 := @caughtexception"->"$r38 := @caughtexception";
+    "r39 = $r38"->"$z4 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>";
+    "r39 = $r38"->"$r38 := @caughtexception";
+    "$z4 = <com.pancm.elasticsearch.EsUtil: boolean isAutoClose>"->"if $z4 == 0 goto throw r39";
+    "if $z4 == 0 goto throw r39"->"staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()";
+    "if $z4 == 0 goto throw r39"->"throw r39";
+    "staticinvoke <com.pancm.elasticsearch.EsUtil: void close()>()"->"throw r39";
+}

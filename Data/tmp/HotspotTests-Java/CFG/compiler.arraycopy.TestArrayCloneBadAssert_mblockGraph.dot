@@ -1,0 +1,85 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+r2 := @parameter0: int[];
+i0 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i0 = i0 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 2 goto i0 = i0 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>;
+"
+    "Block 5:
+[preds: 3 4 ] [succs: ]
+$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+$r1 = (int[]) $r0;
+return $r1;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+r2 := @parameter0: int[];
+i0 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 2 goto i0 = i0 + 1;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i0 = i0 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 2 goto i0 = i0 + 1;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 2 goto i0 = i0 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: 4 5 ]
+if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i0 < 2 goto i0 = i0 + 1;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+i0 = i0 + 1;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>;
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 5 ]
+if i0 != 2 goto $r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+$r1 = (int[]) $r0;
+return $r1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+r2 = <compiler.arraycopy.TestArrayCloneBadAssert: int[] array>;
+"->"Block 5:
+[preds: 3 4 ] [succs: ]
+$r0 = virtualinvoke r2.<java.lang.Object: java.lang.Object clone()>();
+$r1 = (int[]) $r0;
+return $r1;
+";
+}

@@ -1,0 +1,35 @@
+digraph "unitGraph" {
+    "$r0 = new java.lang.Integer"
+    "specialinvoke $r0.<java.lang.Integer: void <init>(int)>(1)"
+    "r2 = $r0"
+    "i4 = 0"
+    "goto [?= (branch)]"
+    "$i0 = i4 & 1"
+    "if $i0 != 0 goto i4 = i4 + 1"
+    "$r1 = new java.lang.Integer"
+    "$i1 = virtualinvoke r2.<java.lang.Integer: int intValue()>()"
+    "$i2 = $i1 + 1"
+    "specialinvoke $r1.<java.lang.Integer: void <init>(int)>($i2)"
+    "r2 = $r1"
+    "i4 = i4 + 1"
+    "if i4 < 1000 goto $i0 = i4 & 1"
+    "$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>()"
+    "return $i3"
+    "$r0 = new java.lang.Integer"->"specialinvoke $r0.<java.lang.Integer: void <init>(int)>(1)";
+    "specialinvoke $r0.<java.lang.Integer: void <init>(int)>(1)"->"r2 = $r0";
+    "r2 = $r0"->"i4 = 0";
+    "i4 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 < 1000 goto $i0 = i4 & 1";
+    "$i0 = i4 & 1"->"if $i0 != 0 goto i4 = i4 + 1";
+    "if $i0 != 0 goto i4 = i4 + 1"->"$r1 = new java.lang.Integer";
+    "if $i0 != 0 goto i4 = i4 + 1"->"i4 = i4 + 1";
+    "$r1 = new java.lang.Integer"->"$i1 = virtualinvoke r2.<java.lang.Integer: int intValue()>()";
+    "$i1 = virtualinvoke r2.<java.lang.Integer: int intValue()>()"->"$i2 = $i1 + 1";
+    "$i2 = $i1 + 1"->"specialinvoke $r1.<java.lang.Integer: void <init>(int)>($i2)";
+    "specialinvoke $r1.<java.lang.Integer: void <init>(int)>($i2)"->"r2 = $r1";
+    "r2 = $r1"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"if i4 < 1000 goto $i0 = i4 & 1";
+    "if i4 < 1000 goto $i0 = i4 & 1"->"$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>()";
+    "if i4 < 1000 goto $i0 = i4 & 1"->"$i0 = i4 & 1";
+    "$i3 = virtualinvoke r2.<java.lang.Integer: int intValue()>()"->"return $i3";
+}

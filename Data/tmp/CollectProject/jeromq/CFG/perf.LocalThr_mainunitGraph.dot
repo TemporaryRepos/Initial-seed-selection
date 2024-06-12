@@ -1,0 +1,171 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String[]"
+    "$i0 = lengthof r0"
+    "if $i0 == 3 goto r1 = r0[0]"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"usage: local_thr <bind-to> <message-size> <message-count>\n\")"
+    "return"
+    "r1 = r0[0]"
+    "$r2 = r0[1]"
+    "i1 = staticinvoke <perf.LocalThr: int atoi(java.lang.String)>($r2)"
+    "$r3 = r0[2]"
+    "l2 = staticinvoke <perf.LocalThr: long atol(java.lang.String)>($r3)"
+    "r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1)"
+    "if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in init\")"
+    "r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)"
+    "if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in socket\")"
+    "z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)"
+    "if z0 != 0 goto r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in bind: %s\n\")"
+    "r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"
+    "if r20 != null goto l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in recvmsg: %s\n\")"
+    "l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()"
+    "l15 = 0L"
+    "$l4 = l2 - 1L"
+    "$b5 = l15 cmp $l4"
+    "if $b5 == 0 goto l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)"
+    "r21 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"
+    "if r21 != null goto $i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"
+    "$i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"
+    "if $i13 == i1 goto l15 = l15 + 1L"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"message of incorrect size received \")"
+    "$i14 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14)"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>($r19)"
+    "l15 = l15 + 1L"
+    "goto [?= $l4 = l2 - 1L]"
+    "l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)"
+    "$b6 = l16 cmp 0L"
+    "if $b6 != 0 goto $d1 = (double) l2"
+    "l16 = 1L"
+    "$d1 = (double) l2"
+    "$d0 = (double) l16"
+    "$d2 = $d1 / $d0"
+    "$d3 = $d2 * 1000000.0"
+    "l7 = (long) $d3"
+    "$l8 = (long) i1"
+    "$l9 = l7 * $l8"
+    "$l10 = $l9 * 8L"
+    "$d4 = (double) $l10"
+    "d5 = $d4 / 1000000.0"
+    "$r6 = newarray (java.lang.Object)[1]"
+    "$d6 = (double) l16"
+    "$d7 = $d6 / 1000000.0"
+    "$r7 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d7)"
+    "$r6[0] = $r7"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message elapsed: %.3f \n\", $r6)"
+    "$r8 = newarray (java.lang.Object)[1]"
+    "$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)"
+    "$r8[0] = $r9"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message size: %d [B]\n\", $r8)"
+    "$r10 = newarray (java.lang.Object)[1]"
+    "$i11 = (int) l2"
+    "$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)"
+    "$r10[0] = $r11"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message count: %d\n\", $r10)"
+    "$r12 = newarray (java.lang.Object)[1]"
+    "$i12 = (int) l7"
+    "$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)"
+    "$r12[0] = $r13"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %d [msg/s]\n\", $r12)"
+    "$r14 = newarray (java.lang.Object)[1]"
+    "$r15 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d5)"
+    "$r14[0] = $r15"
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %.3f [Mb/s]\n\", $r14)"
+    "staticinvoke <zmq.ZMQ: void close(zmq.SocketBase)>(r5)"
+    "staticinvoke <zmq.ZMQ: void term(zmq.Ctx)>(r4)"
+    "r0 := @parameter0: java.lang.String[]"->"$i0 = lengthof r0";
+    "$i0 = lengthof r0"->"if $i0 == 3 goto r1 = r0[0]";
+    "if $i0 == 3 goto r1 = r0[0]"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"usage: local_thr <bind-to> <message-size> <message-count>\n\")";
+    "if $i0 == 3 goto r1 = r0[0]"->"r1 = r0[0]";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"usage: local_thr <bind-to> <message-size> <message-count>\n\")"->"return";
+    "r1 = r0[0]"->"$r2 = r0[1]";
+    "$r2 = r0[1]"->"i1 = staticinvoke <perf.LocalThr: int atoi(java.lang.String)>($r2)";
+    "i1 = staticinvoke <perf.LocalThr: int atoi(java.lang.String)>($r2)"->"$r3 = r0[2]";
+    "$r3 = r0[2]"->"l2 = staticinvoke <perf.LocalThr: long atol(java.lang.String)>($r3)";
+    "l2 = staticinvoke <perf.LocalThr: long atol(java.lang.String)>($r3)"->"r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1)";
+    "r4 = staticinvoke <zmq.ZMQ: zmq.Ctx init(int)>(1)"->"if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)";
+    "if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in init\")";
+    "if r4 != null goto r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)"->"r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in init\")"->"return";
+    "r5 = staticinvoke <zmq.ZMQ: zmq.SocketBase socket(zmq.Ctx,int)>(r4, 7)"->"if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)";
+    "if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in socket\")";
+    "if r5 != null goto z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)"->"z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in socket\")"->"z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)";
+    "z0 = staticinvoke <zmq.ZMQ: boolean bind(zmq.SocketBase,java.lang.String)>(r5, r1)"->"if z0 != 0 goto r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)";
+    "if z0 != 0 goto r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in bind: %s\n\")";
+    "if z0 != 0 goto r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"->"r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in bind: %s\n\")"->"return";
+    "r20 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"->"if r20 != null goto l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()";
+    "if r20 != null goto l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in recvmsg: %s\n\")";
+    "if r20 != null goto l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()"->"l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in recvmsg: %s\n\")"->"return";
+    "l3 = staticinvoke <zmq.ZMQ: long startStopwatch()>()"->"l15 = 0L";
+    "l15 = 0L"->"$l4 = l2 - 1L";
+    "$l4 = l2 - 1L"->"$b5 = l15 cmp $l4";
+    "$b5 = l15 cmp $l4"->"if $b5 == 0 goto l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)";
+    "if $b5 == 0 goto l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)"->"r21 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)";
+    "if $b5 == 0 goto l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)"->"l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)";
+    "r21 = staticinvoke <zmq.ZMQ: zmq.Msg recvMsg(zmq.SocketBase,int)>(r5, 0)"->"if r21 != null goto $i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)";
+    "if r21 != null goto $i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in recvmsg: %s\n\")";
+    "if r21 != null goto $i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"->"$i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>(\"error in recvmsg: %s\n\")"->"return";
+    "$i13 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"->"if $i13 == i1 goto l15 = l15 + 1L";
+    "if $i13 == i1 goto l15 = l15 + 1L"->"$r16 = new java.lang.StringBuilder";
+    "if $i13 == i1 goto l15 = l15 + 1L"->"l15 = l15 + 1L";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"message of incorrect size received \")";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"message of incorrect size received \")"->"$i14 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)";
+    "$i14 = staticinvoke <zmq.ZMQ: int msgSize(zmq.Msg)>(r21)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14)";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14)"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <perf.LocalThr: void printf(java.lang.String)>($r19)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String)>($r19)"->"return";
+    "l15 = l15 + 1L"->"goto [?= $l4 = l2 - 1L]";
+    "goto [?= $l4 = l2 - 1L]"->"$l4 = l2 - 1L";
+    "l16 = staticinvoke <zmq.ZMQ: long stopStopwatch(long)>(l3)"->"$b6 = l16 cmp 0L";
+    "$b6 = l16 cmp 0L"->"if $b6 != 0 goto $d1 = (double) l2";
+    "if $b6 != 0 goto $d1 = (double) l2"->"l16 = 1L";
+    "if $b6 != 0 goto $d1 = (double) l2"->"$d1 = (double) l2";
+    "l16 = 1L"->"$d1 = (double) l2";
+    "$d1 = (double) l2"->"$d0 = (double) l16";
+    "$d0 = (double) l16"->"$d2 = $d1 / $d0";
+    "$d2 = $d1 / $d0"->"$d3 = $d2 * 1000000.0";
+    "$d3 = $d2 * 1000000.0"->"l7 = (long) $d3";
+    "l7 = (long) $d3"->"$l8 = (long) i1";
+    "$l8 = (long) i1"->"$l9 = l7 * $l8";
+    "$l9 = l7 * $l8"->"$l10 = $l9 * 8L";
+    "$l10 = $l9 * 8L"->"$d4 = (double) $l10";
+    "$d4 = (double) $l10"->"d5 = $d4 / 1000000.0";
+    "d5 = $d4 / 1000000.0"->"$r6 = newarray (java.lang.Object)[1]";
+    "$r6 = newarray (java.lang.Object)[1]"->"$d6 = (double) l16";
+    "$d6 = (double) l16"->"$d7 = $d6 / 1000000.0";
+    "$d7 = $d6 / 1000000.0"->"$r7 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d7)";
+    "$r7 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d7)"->"$r6[0] = $r7";
+    "$r6[0] = $r7"->"staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message elapsed: %.3f \n\", $r6)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message elapsed: %.3f \n\", $r6)"->"$r8 = newarray (java.lang.Object)[1]";
+    "$r8 = newarray (java.lang.Object)[1]"->"$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)";
+    "$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1)"->"$r8[0] = $r9";
+    "$r8[0] = $r9"->"staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message size: %d [B]\n\", $r8)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message size: %d [B]\n\", $r8)"->"$r10 = newarray (java.lang.Object)[1]";
+    "$r10 = newarray (java.lang.Object)[1]"->"$i11 = (int) l2";
+    "$i11 = (int) l2"->"$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)";
+    "$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)"->"$r10[0] = $r11";
+    "$r10[0] = $r11"->"staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message count: %d\n\", $r10)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"message count: %d\n\", $r10)"->"$r12 = newarray (java.lang.Object)[1]";
+    "$r12 = newarray (java.lang.Object)[1]"->"$i12 = (int) l7";
+    "$i12 = (int) l7"->"$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)";
+    "$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12)"->"$r12[0] = $r13";
+    "$r12[0] = $r13"->"staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %d [msg/s]\n\", $r12)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %d [msg/s]\n\", $r12)"->"$r14 = newarray (java.lang.Object)[1]";
+    "$r14 = newarray (java.lang.Object)[1]"->"$r15 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d5)";
+    "$r15 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d5)"->"$r14[0] = $r15";
+    "$r14[0] = $r15"->"staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %.3f [Mb/s]\n\", $r14)";
+    "staticinvoke <perf.LocalThr: void printf(java.lang.String,java.lang.Object[])>(\"mean throughput: %.3f [Mb/s]\n\", $r14)"->"staticinvoke <zmq.ZMQ: void close(zmq.SocketBase)>(r5)";
+    "staticinvoke <zmq.ZMQ: void close(zmq.SocketBase)>(r5)"->"staticinvoke <zmq.ZMQ: void term(zmq.Ctx)>(r4)";
+    "staticinvoke <zmq.ZMQ: void term(zmq.Ctx)>(r4)"->"return";
+}

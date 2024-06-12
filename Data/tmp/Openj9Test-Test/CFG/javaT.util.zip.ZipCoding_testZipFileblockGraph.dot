@@ -1,0 +1,1329 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 44 48 1 ]
+r1 := @parameter0: java.io.File;
+r2 := @parameter1: java.nio.charset.Charset;
+r6 := @parameter2: java.lang.String;
+r9 := @parameter3: java.lang.String;
+r12 := @parameter4: byte[];
+$r0 = new java.util.zip.ZipFile;
+specialinvoke $r0.<java.util.zip.ZipFile: void <init>(java.io.File,java.nio.charset.Charset)>(r1, r2);
+r3 = $r0;
+r23 = null;
+"
+    "Block 1:
+[preds: 0 ] [succs: 44 48 2 ]
+r24 = virtualinvoke r3.<java.util.zip.ZipFile: java.util.Enumeration entries()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 44 48 3 ]
+$r4 = interfaceinvoke r24.<java.util.Enumeration: java.lang.Object nextElement()>();
+"
+    "Block 3:
+[preds: 2 ] [succs: 44 48 4 ]
+r5 = (java.util.zip.ZipEntry) $r4;
+"
+    "Block 4:
+[preds: 3 ] [succs: 44 48 5 ]
+$r7 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getName()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 44 48 6 ]
+$z0 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+"
+    "Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+"
+    "Block 7:
+[preds: 6 ] [succs: 44 48 8 ]
+$r10 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getComment()>();
+"
+    "Block 8:
+[preds: 7 ] [succs: 44 48 9 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"
+    "Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+"
+    "Block 11:
+[preds: 10 ] [succs: 44 48 12 ]
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: name/comment doesn\'t match!\");
+"
+    "Block 12:
+[preds: 11 ] [succs: 44 48 ]
+throw $r8;
+"
+    "Block 13:
+[preds: 9 ] [succs: 44 48 14 ]
+r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"
+    "Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+"
+    "Block 15:
+[preds: 14 ] [succs: 44 48 16 ]
+$r16 = new java.lang.RuntimeException;
+"
+    "Block 16:
+[preds: 15 ] [succs: 44 48 17 ]
+specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: getIS failed!\");
+"
+    "Block 17:
+[preds: 16 ] [succs: 44 48 ]
+throw $r16;
+"
+    "Block 18:
+[preds: 14 ] [succs: 44 48 19 ]
+$i0 = lengthof r12;
+"
+    "Block 19:
+[preds: 18 ] [succs: 44 48 20 ]
+$i1 = $i0 << 1;
+"
+    "Block 20:
+[preds: 19 ] [succs: 44 48 21 ]
+r13 = newarray (byte)[$i1];
+"
+    "Block 21:
+[preds: 20 ] [succs: 44 48 22 ]
+i6 = 0;
+"
+    "Block 22:
+[preds: 21 ] [succs: 44 48 23 ]
+z3 = 0;
+"
+    "Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+"
+    "Block 24:
+[preds: 23 ] [succs: 44 48 25 ]
+$i3 = $i2 - i6;
+"
+    "Block 25:
+[preds: 24 ] [succs: 44 48 26 ]
+$i4 = virtualinvoke r11.<java.io.InputStream: int read(byte[],int,int)>(r13, i6, $i3);
+"
+    "Block 26:
+[preds: 25 ] [succs: 44 48 27 ]
+i7 = $i4;
+"
+    "Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+"
+    "Block 28:
+[preds: 27 ] [succs: 44 48 29 ]
+i6 = i6 + i7;
+"
+    "Block 29:
+[preds: 28 ] [succs: 44 48 23 ]
+goto [?= $i2 = lengthof r13];
+"
+    "Block 30:
+[preds: 27 ] [succs: 44 48 31 ]
+$i5 = lengthof r12;
+"
+    "Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+"
+    "Block 32:
+[preds: 31 ] [succs: 44 48 33 ]
+$r15 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r13, i6);
+"
+    "Block 33:
+[preds: 32 ] [succs: 44 48 34 ]
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r12, $r15);
+"
+    "Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+"
+    "Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+"
+    "Block 36:
+[preds: 35 ] [succs: 44 48 37 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile content doesn\'t match!\");
+"
+    "Block 37:
+[preds: 36 ] [succs: 44 48 ]
+throw $r14;
+"
+    "Block 38:
+[preds: 34 ] [succs: 39 57 ]
+if r3 == null goto return;
+"
+    "Block 39:
+[preds: 38 ] [succs: 40 43 42 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"
+    "Block 40:
+[preds: 39 ] [succs: 41 42 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"
+    "Block 41:
+[preds: 40 ] [succs: 57 ]
+goto [?= return];
+"
+    "Block 42:
+[preds: 39 40 ] [succs: 57 ]
+$r22 := @caughtexception;
+r25 = $r22;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25);
+goto [?= return];
+"
+    "Block 43:
+[preds: 39 ] [succs: 57 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+goto [?= return];
+"
+    "Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+"
+    "Block 45:
+[preds: 44 ] [succs: 46 48 ]
+r26 = $r21;
+"
+    "Block 46:
+[preds: 45 ] [succs: 47 48 ]
+r23 = r26;
+"
+    "Block 47:
+[preds: 46 ] [succs: 48 ]
+throw r26;
+"
+    "Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+"
+    "Block 49:
+[preds: 48 ] [succs: 50 48 ]
+r19 = $r20;
+"
+    "Block 50:
+[preds: 49 ] [succs: 51 56 ]
+if r3 == null goto throw r19;
+"
+    "Block 51:
+[preds: 50 ] [succs: 52 55 54 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"
+    "Block 52:
+[preds: 51 ] [succs: 53 54 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"
+    "Block 53:
+[preds: 52 ] [succs: 56 ]
+goto [?= throw r19];
+"
+    "Block 54:
+[preds: 51 52 ] [succs: 56 ]
+$r17 := @caughtexception;
+r18 = $r17;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r18);
+goto [?= throw r19];
+"
+    "Block 55:
+[preds: 51 ] [succs: 56 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"
+    "Block 56:
+[preds: 50 53 54 55 ] [succs: ]
+throw r19;
+"
+    "Block 57:
+[preds: 38 41 42 43 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 44 48 1 ]
+r1 := @parameter0: java.io.File;
+r2 := @parameter1: java.nio.charset.Charset;
+r6 := @parameter2: java.lang.String;
+r9 := @parameter3: java.lang.String;
+r12 := @parameter4: byte[];
+$r0 = new java.util.zip.ZipFile;
+specialinvoke $r0.<java.util.zip.ZipFile: void <init>(java.io.File,java.nio.charset.Charset)>(r1, r2);
+r3 = $r0;
+r23 = null;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 0:
+[preds: ] [succs: 44 48 1 ]
+r1 := @parameter0: java.io.File;
+r2 := @parameter1: java.nio.charset.Charset;
+r6 := @parameter2: java.lang.String;
+r9 := @parameter3: java.lang.String;
+r12 := @parameter4: byte[];
+$r0 = new java.util.zip.ZipFile;
+specialinvoke $r0.<java.util.zip.ZipFile: void <init>(java.io.File,java.nio.charset.Charset)>(r1, r2);
+r3 = $r0;
+r23 = null;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 0:
+[preds: ] [succs: 44 48 1 ]
+r1 := @parameter0: java.io.File;
+r2 := @parameter1: java.nio.charset.Charset;
+r6 := @parameter2: java.lang.String;
+r9 := @parameter3: java.lang.String;
+r12 := @parameter4: byte[];
+$r0 = new java.util.zip.ZipFile;
+specialinvoke $r0.<java.util.zip.ZipFile: void <init>(java.io.File,java.nio.charset.Charset)>(r1, r2);
+r3 = $r0;
+r23 = null;
+"->"Block 1:
+[preds: 0 ] [succs: 44 48 2 ]
+r24 = virtualinvoke r3.<java.util.zip.ZipFile: java.util.Enumeration entries()>();
+";
+    "Block 1:
+[preds: 0 ] [succs: 44 48 2 ]
+r24 = virtualinvoke r3.<java.util.zip.ZipFile: java.util.Enumeration entries()>();
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 1:
+[preds: 0 ] [succs: 44 48 2 ]
+r24 = virtualinvoke r3.<java.util.zip.ZipFile: java.util.Enumeration entries()>();
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 1:
+[preds: 0 ] [succs: 44 48 2 ]
+r24 = virtualinvoke r3.<java.util.zip.ZipFile: java.util.Enumeration entries()>();
+"->"Block 2:
+[preds: 1 ] [succs: 44 48 3 ]
+$r4 = interfaceinvoke r24.<java.util.Enumeration: java.lang.Object nextElement()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 44 48 3 ]
+$r4 = interfaceinvoke r24.<java.util.Enumeration: java.lang.Object nextElement()>();
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 2:
+[preds: 1 ] [succs: 44 48 3 ]
+$r4 = interfaceinvoke r24.<java.util.Enumeration: java.lang.Object nextElement()>();
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 2:
+[preds: 1 ] [succs: 44 48 3 ]
+$r4 = interfaceinvoke r24.<java.util.Enumeration: java.lang.Object nextElement()>();
+"->"Block 3:
+[preds: 2 ] [succs: 44 48 4 ]
+r5 = (java.util.zip.ZipEntry) $r4;
+";
+    "Block 3:
+[preds: 2 ] [succs: 44 48 4 ]
+r5 = (java.util.zip.ZipEntry) $r4;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 44 48 4 ]
+r5 = (java.util.zip.ZipEntry) $r4;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 3:
+[preds: 2 ] [succs: 44 48 4 ]
+r5 = (java.util.zip.ZipEntry) $r4;
+"->"Block 4:
+[preds: 3 ] [succs: 44 48 5 ]
+$r7 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getName()>();
+";
+    "Block 4:
+[preds: 3 ] [succs: 44 48 5 ]
+$r7 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getName()>();
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 44 48 5 ]
+$r7 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getName()>();
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 4:
+[preds: 3 ] [succs: 44 48 5 ]
+$r7 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getName()>();
+"->"Block 5:
+[preds: 4 ] [succs: 44 48 6 ]
+$z0 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+";
+    "Block 5:
+[preds: 4 ] [succs: 44 48 6 ]
+$z0 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 44 48 6 ]
+$z0 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 5:
+[preds: 4 ] [succs: 44 48 6 ]
+$z0 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>($r7);
+"->"Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+"->"Block 7:
+[preds: 6 ] [succs: 44 48 8 ]
+$r10 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getComment()>();
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+"->"Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 6:
+[preds: 5 ] [succs: 7 10 44 48 ]
+if $z0 == 0 goto $r8 = new java.lang.RuntimeException;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 48 8 ]
+$r10 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getComment()>();
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 48 8 ]
+$r10 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getComment()>();
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 7:
+[preds: 6 ] [succs: 44 48 8 ]
+$r10 = virtualinvoke r5.<java.util.zip.ZipEntry: java.lang.String getComment()>();
+"->"Block 8:
+[preds: 7 ] [succs: 44 48 9 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+";
+    "Block 8:
+[preds: 7 ] [succs: 44 48 9 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 44 48 9 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 8:
+[preds: 7 ] [succs: 44 48 9 ]
+$z1 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+"->"Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 13:
+[preds: 9 ] [succs: 44 48 14 ]
+r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 44 48 ]
+if $z1 != 0 goto r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 10:
+[preds: 6 9 ] [succs: 44 48 11 ]
+$r8 = new java.lang.RuntimeException;
+"->"Block 11:
+[preds: 10 ] [succs: 44 48 12 ]
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: name/comment doesn\'t match!\");
+";
+    "Block 11:
+[preds: 10 ] [succs: 44 48 12 ]
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: name/comment doesn\'t match!\");
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 44 48 12 ]
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: name/comment doesn\'t match!\");
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 11:
+[preds: 10 ] [succs: 44 48 12 ]
+specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: name/comment doesn\'t match!\");
+"->"Block 12:
+[preds: 11 ] [succs: 44 48 ]
+throw $r8;
+";
+    "Block 12:
+[preds: 11 ] [succs: 44 48 ]
+throw $r8;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 12:
+[preds: 11 ] [succs: 44 48 ]
+throw $r8;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 13:
+[preds: 9 ] [succs: 44 48 14 ]
+r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 13:
+[preds: 9 ] [succs: 44 48 14 ]
+r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 13:
+[preds: 9 ] [succs: 44 48 14 ]
+r11 = virtualinvoke r3.<java.util.zip.ZipFile: java.io.InputStream getInputStream(java.util.zip.ZipEntry)>(r5);
+"->"Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+"->"Block 15:
+[preds: 14 ] [succs: 44 48 16 ]
+$r16 = new java.lang.RuntimeException;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+"->"Block 18:
+[preds: 14 ] [succs: 44 48 19 ]
+$i0 = lengthof r12;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 14:
+[preds: 13 ] [succs: 15 18 44 48 ]
+if r11 != null goto $i0 = lengthof r12;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 44 48 16 ]
+$r16 = new java.lang.RuntimeException;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 44 48 16 ]
+$r16 = new java.lang.RuntimeException;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 15:
+[preds: 14 ] [succs: 44 48 16 ]
+$r16 = new java.lang.RuntimeException;
+"->"Block 16:
+[preds: 15 ] [succs: 44 48 17 ]
+specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: getIS failed!\");
+";
+    "Block 16:
+[preds: 15 ] [succs: 44 48 17 ]
+specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: getIS failed!\");
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 44 48 17 ]
+specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: getIS failed!\");
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 16:
+[preds: 15 ] [succs: 44 48 17 ]
+specialinvoke $r16.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile: getIS failed!\");
+"->"Block 17:
+[preds: 16 ] [succs: 44 48 ]
+throw $r16;
+";
+    "Block 17:
+[preds: 16 ] [succs: 44 48 ]
+throw $r16;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 17:
+[preds: 16 ] [succs: 44 48 ]
+throw $r16;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 18:
+[preds: 14 ] [succs: 44 48 19 ]
+$i0 = lengthof r12;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 18:
+[preds: 14 ] [succs: 44 48 19 ]
+$i0 = lengthof r12;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 18:
+[preds: 14 ] [succs: 44 48 19 ]
+$i0 = lengthof r12;
+"->"Block 19:
+[preds: 18 ] [succs: 44 48 20 ]
+$i1 = $i0 << 1;
+";
+    "Block 19:
+[preds: 18 ] [succs: 44 48 20 ]
+$i1 = $i0 << 1;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 44 48 20 ]
+$i1 = $i0 << 1;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 19:
+[preds: 18 ] [succs: 44 48 20 ]
+$i1 = $i0 << 1;
+"->"Block 20:
+[preds: 19 ] [succs: 44 48 21 ]
+r13 = newarray (byte)[$i1];
+";
+    "Block 20:
+[preds: 19 ] [succs: 44 48 21 ]
+r13 = newarray (byte)[$i1];
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 44 48 21 ]
+r13 = newarray (byte)[$i1];
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 20:
+[preds: 19 ] [succs: 44 48 21 ]
+r13 = newarray (byte)[$i1];
+"->"Block 21:
+[preds: 20 ] [succs: 44 48 22 ]
+i6 = 0;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 48 22 ]
+i6 = 0;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 48 22 ]
+i6 = 0;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 21:
+[preds: 20 ] [succs: 44 48 22 ]
+i6 = 0;
+"->"Block 22:
+[preds: 21 ] [succs: 44 48 23 ]
+z3 = 0;
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 48 23 ]
+z3 = 0;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 48 23 ]
+z3 = 0;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 22:
+[preds: 21 ] [succs: 44 48 23 ]
+z3 = 0;
+"->"Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+";
+    "Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+"->"Block 24:
+[preds: 23 ] [succs: 44 48 25 ]
+$i3 = $i2 - i6;
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 48 25 ]
+$i3 = $i2 - i6;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 48 25 ]
+$i3 = $i2 - i6;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 24:
+[preds: 23 ] [succs: 44 48 25 ]
+$i3 = $i2 - i6;
+"->"Block 25:
+[preds: 24 ] [succs: 44 48 26 ]
+$i4 = virtualinvoke r11.<java.io.InputStream: int read(byte[],int,int)>(r13, i6, $i3);
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 48 26 ]
+$i4 = virtualinvoke r11.<java.io.InputStream: int read(byte[],int,int)>(r13, i6, $i3);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 48 26 ]
+$i4 = virtualinvoke r11.<java.io.InputStream: int read(byte[],int,int)>(r13, i6, $i3);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 25:
+[preds: 24 ] [succs: 44 48 26 ]
+$i4 = virtualinvoke r11.<java.io.InputStream: int read(byte[],int,int)>(r13, i6, $i3);
+"->"Block 26:
+[preds: 25 ] [succs: 44 48 27 ]
+i7 = $i4;
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 48 27 ]
+i7 = $i4;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 48 27 ]
+i7 = $i4;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 26:
+[preds: 25 ] [succs: 44 48 27 ]
+i7 = $i4;
+"->"Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+"->"Block 28:
+[preds: 27 ] [succs: 44 48 29 ]
+i6 = i6 + i7;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+"->"Block 30:
+[preds: 27 ] [succs: 44 48 31 ]
+$i5 = lengthof r12;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 27:
+[preds: 26 ] [succs: 28 30 44 48 ]
+if $i4 == -1 goto $i5 = lengthof r12;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 44 48 29 ]
+i6 = i6 + i7;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 44 48 29 ]
+i6 = i6 + i7;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 28:
+[preds: 27 ] [succs: 44 48 29 ]
+i6 = i6 + i7;
+"->"Block 29:
+[preds: 28 ] [succs: 44 48 23 ]
+goto [?= $i2 = lengthof r13];
+";
+    "Block 29:
+[preds: 28 ] [succs: 44 48 23 ]
+goto [?= $i2 = lengthof r13];
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 44 48 23 ]
+goto [?= $i2 = lengthof r13];
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 29:
+[preds: 28 ] [succs: 44 48 23 ]
+goto [?= $i2 = lengthof r13];
+"->"Block 23:
+[preds: 22 29 ] [succs: 44 48 24 ]
+$i2 = lengthof r13;
+";
+    "Block 30:
+[preds: 27 ] [succs: 44 48 31 ]
+$i5 = lengthof r12;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 30:
+[preds: 27 ] [succs: 44 48 31 ]
+$i5 = lengthof r12;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 30:
+[preds: 27 ] [succs: 44 48 31 ]
+$i5 = lengthof r12;
+"->"Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+"->"Block 32:
+[preds: 31 ] [succs: 44 48 33 ]
+$r15 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r13, i6);
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+"->"Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 31:
+[preds: 30 ] [succs: 32 35 44 48 ]
+if i6 != $i5 goto $r14 = new java.lang.RuntimeException;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 48 33 ]
+$r15 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r13, i6);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 48 33 ]
+$r15 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r13, i6);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 32:
+[preds: 31 ] [succs: 44 48 33 ]
+$r15 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>(r13, i6);
+"->"Block 33:
+[preds: 32 ] [succs: 44 48 34 ]
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r12, $r15);
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 48 34 ]
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r12, $r15);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 48 34 ]
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r12, $r15);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 33:
+[preds: 32 ] [succs: 44 48 34 ]
+$z2 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r12, $r15);
+"->"Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+"->"Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+"->"Block 38:
+[preds: 34 ] [succs: 39 57 ]
+if r3 == null goto return;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 34:
+[preds: 33 ] [succs: 35 38 44 48 ]
+if $z2 != 0 goto (branch);
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 35:
+[preds: 31 34 ] [succs: 44 48 36 ]
+$r14 = new java.lang.RuntimeException;
+"->"Block 36:
+[preds: 35 ] [succs: 44 48 37 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile content doesn\'t match!\");
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 48 37 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile content doesn\'t match!\");
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 48 37 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile content doesn\'t match!\");
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 36:
+[preds: 35 ] [succs: 44 48 37 ]
+specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"ZipFile content doesn\'t match!\");
+"->"Block 37:
+[preds: 36 ] [succs: 44 48 ]
+throw $r14;
+";
+    "Block 37:
+[preds: 36 ] [succs: 44 48 ]
+throw $r14;
+"->"Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+";
+    "Block 37:
+[preds: 36 ] [succs: 44 48 ]
+throw $r14;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 38:
+[preds: 34 ] [succs: 39 57 ]
+if r3 == null goto return;
+"->"Block 39:
+[preds: 38 ] [succs: 40 43 42 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+";
+    "Block 38:
+[preds: 34 ] [succs: 39 57 ]
+if r3 == null goto return;
+"->"Block 57:
+[preds: 38 41 42 43 ] [succs: ]
+return;
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 43 42 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 40:
+[preds: 39 ] [succs: 41 42 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 43 42 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 43:
+[preds: 39 ] [succs: 57 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+goto [?= return];
+";
+    "Block 39:
+[preds: 38 ] [succs: 40 43 42 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 42:
+[preds: 39 40 ] [succs: 57 ]
+$r22 := @caughtexception;
+r25 = $r22;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25);
+goto [?= return];
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 42 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 41:
+[preds: 40 ] [succs: 57 ]
+goto [?= return];
+";
+    "Block 40:
+[preds: 39 ] [succs: 41 42 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 42:
+[preds: 39 40 ] [succs: 57 ]
+$r22 := @caughtexception;
+r25 = $r22;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25);
+goto [?= return];
+";
+    "Block 41:
+[preds: 40 ] [succs: 57 ]
+goto [?= return];
+"->"Block 57:
+[preds: 38 41 42 43 ] [succs: ]
+return;
+";
+    "Block 42:
+[preds: 39 40 ] [succs: 57 ]
+$r22 := @caughtexception;
+r25 = $r22;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r25);
+goto [?= return];
+"->"Block 57:
+[preds: 38 41 42 43 ] [succs: ]
+return;
+";
+    "Block 43:
+[preds: 39 ] [succs: 57 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+goto [?= return];
+"->"Block 57:
+[preds: 38 41 42 43 ] [succs: ]
+return;
+";
+    "Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+"->"Block 45:
+[preds: 44 ] [succs: 46 48 ]
+r26 = $r21;
+";
+    "Block 44:
+[preds: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 45 48 ]
+$r21 := @caughtexception;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 48 ]
+r26 = $r21;
+"->"Block 46:
+[preds: 45 ] [succs: 47 48 ]
+r23 = r26;
+";
+    "Block 45:
+[preds: 44 ] [succs: 46 48 ]
+r26 = $r21;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 48 ]
+r23 = r26;
+"->"Block 47:
+[preds: 46 ] [succs: 48 ]
+throw r26;
+";
+    "Block 46:
+[preds: 45 ] [succs: 47 48 ]
+r23 = r26;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 47:
+[preds: 46 ] [succs: 48 ]
+throw r26;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+"->"Block 49:
+[preds: 48 ] [succs: 50 48 ]
+r19 = $r20;
+";
+    "Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 48 ]
+r19 = $r20;
+"->"Block 50:
+[preds: 49 ] [succs: 51 56 ]
+if r3 == null goto throw r19;
+";
+    "Block 49:
+[preds: 48 ] [succs: 50 48 ]
+r19 = $r20;
+"->"Block 48:
+[preds: 44 45 46 47 48 49 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 29 23 24 25 26 27 28 30 31 32 33 34 35 36 37 ] [succs: 49 48 ]
+$r20 := @caughtexception;
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 56 ]
+if r3 == null goto throw r19;
+"->"Block 51:
+[preds: 50 ] [succs: 52 55 54 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+";
+    "Block 50:
+[preds: 49 ] [succs: 51 56 ]
+if r3 == null goto throw r19;
+"->"Block 56:
+[preds: 50 53 54 55 ] [succs: ]
+throw r19;
+";
+    "Block 51:
+[preds: 50 ] [succs: 52 55 54 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 52:
+[preds: 51 ] [succs: 53 54 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+";
+    "Block 51:
+[preds: 50 ] [succs: 52 55 54 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 55:
+[preds: 51 ] [succs: 56 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+";
+    "Block 51:
+[preds: 50 ] [succs: 52 55 54 ]
+if r23 == null goto virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 54:
+[preds: 51 52 ] [succs: 56 ]
+$r17 := @caughtexception;
+r18 = $r17;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r18);
+goto [?= throw r19];
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 54 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 53:
+[preds: 52 ] [succs: 56 ]
+goto [?= throw r19];
+";
+    "Block 52:
+[preds: 51 ] [succs: 53 54 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 54:
+[preds: 51 52 ] [succs: 56 ]
+$r17 := @caughtexception;
+r18 = $r17;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r18);
+goto [?= throw r19];
+";
+    "Block 53:
+[preds: 52 ] [succs: 56 ]
+goto [?= throw r19];
+"->"Block 56:
+[preds: 50 53 54 55 ] [succs: ]
+throw r19;
+";
+    "Block 54:
+[preds: 51 52 ] [succs: 56 ]
+$r17 := @caughtexception;
+r18 = $r17;
+virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r18);
+goto [?= throw r19];
+"->"Block 56:
+[preds: 50 53 54 55 ] [succs: ]
+throw r19;
+";
+    "Block 55:
+[preds: 51 ] [succs: 56 ]
+virtualinvoke r3.<java.util.zip.ZipFile: void close()>();
+"->"Block 56:
+[preds: 50 53 54 55 ] [succs: ]
+throw r19;
+";
+}

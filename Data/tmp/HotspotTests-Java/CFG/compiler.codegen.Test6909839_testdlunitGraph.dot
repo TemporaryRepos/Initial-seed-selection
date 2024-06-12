@@ -1,0 +1,37 @@
+digraph "unitGraph" {
+    "l3 = 0L"
+    "i4 = 0"
+    "goto [?= (branch)]"
+    "i0 = i4 % 4"
+    "$l2 = l3"
+    "$d0 = (double) i0"
+    "$b1 = $d0 cmpl 1.0"
+    "if $b1 <= 0 goto $l5 = 2L"
+    "$l5 = 1L"
+    "goto [?= l3 = $l2 + $l5]"
+    "$l5 = 2L"
+    "l3 = $l2 + $l5"
+    "i4 = i4 + 1"
+    "if i4 < 10000 goto i0 = i4 % 4"
+    "$r0 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r0.<java.io.PrintStream: void println(long)>(l3)"
+    "return"
+    "l3 = 0L"->"i4 = 0";
+    "i4 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i4 < 10000 goto i0 = i4 % 4";
+    "i0 = i4 % 4"->"$l2 = l3";
+    "$l2 = l3"->"$d0 = (double) i0";
+    "$d0 = (double) i0"->"$b1 = $d0 cmpl 1.0";
+    "$b1 = $d0 cmpl 1.0"->"if $b1 <= 0 goto $l5 = 2L";
+    "if $b1 <= 0 goto $l5 = 2L"->"$l5 = 1L";
+    "if $b1 <= 0 goto $l5 = 2L"->"$l5 = 2L";
+    "$l5 = 1L"->"goto [?= l3 = $l2 + $l5]";
+    "goto [?= l3 = $l2 + $l5]"->"l3 = $l2 + $l5";
+    "$l5 = 2L"->"l3 = $l2 + $l5";
+    "l3 = $l2 + $l5"->"i4 = i4 + 1";
+    "i4 = i4 + 1"->"if i4 < 10000 goto i0 = i4 % 4";
+    "if i4 < 10000 goto i0 = i4 % 4"->"$r0 = <java.lang.System: java.io.PrintStream out>";
+    "if i4 < 10000 goto i0 = i4 % 4"->"i0 = i4 % 4";
+    "$r0 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r0.<java.io.PrintStream: void println(long)>(l3)";
+    "virtualinvoke $r0.<java.io.PrintStream: void println(long)>(l3)"->"return";
+}

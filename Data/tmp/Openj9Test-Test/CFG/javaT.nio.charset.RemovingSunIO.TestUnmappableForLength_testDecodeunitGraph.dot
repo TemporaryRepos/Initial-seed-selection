@@ -1,0 +1,55 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "r3 := @parameter1: byte[]"
+    "i1 := @parameter2: int"
+    "$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(r0)"
+    "$r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetDecoder newDecoder()>()"
+    "$r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r3)"
+    "$r5 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer allocate(int)>(4)"
+    "r8 = virtualinvoke $r2.<java.nio.charset.CharsetDecoder: java.nio.charset.CoderResult decode(java.nio.ByteBuffer,java.nio.CharBuffer,boolean)>($r4, $r5, 1)"
+    "$z0 = virtualinvoke r8.<java.nio.charset.CoderResult: boolean isUnmappable()>()"
+    "if $z0 == 0 goto (branch)"
+    "$i0 = virtualinvoke r8.<java.nio.charset.CoderResult: int length()>()"
+    "if $i0 == i1 goto (branch)"
+    "$r6 = new java.nio.charset.CharacterCodingException"
+    "specialinvoke $r6.<java.nio.charset.CharacterCodingException: void <init>()>()"
+    "throw $r6"
+    "goto [?= return]"
+    "$r7 := @caughtexception"
+    "r9 = $r7"
+    "virtualinvoke r9.<java.lang.IllegalArgumentException: void printStackTrace()>()"
+    "return"
+    "r0 := @parameter0: java.lang.String"->"r3 := @parameter1: byte[]";
+    "r3 := @parameter1: byte[]"->"i1 := @parameter2: int";
+    "i1 := @parameter2: int"->"$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(r0)";
+    "i1 := @parameter2: int"->"$r7 := @caughtexception";
+    "$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(r0)"->"$r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetDecoder newDecoder()>()";
+    "$r1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(r0)"->"$r7 := @caughtexception";
+    "$r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetDecoder newDecoder()>()"->"$r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r3)";
+    "$r2 = virtualinvoke $r1.<java.nio.charset.Charset: java.nio.charset.CharsetDecoder newDecoder()>()"->"$r7 := @caughtexception";
+    "$r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r3)"->"$r5 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer allocate(int)>(4)";
+    "$r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r3)"->"$r7 := @caughtexception";
+    "$r5 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer allocate(int)>(4)"->"r8 = virtualinvoke $r2.<java.nio.charset.CharsetDecoder: java.nio.charset.CoderResult decode(java.nio.ByteBuffer,java.nio.CharBuffer,boolean)>($r4, $r5, 1)";
+    "$r5 = staticinvoke <java.nio.CharBuffer: java.nio.CharBuffer allocate(int)>(4)"->"$r7 := @caughtexception";
+    "r8 = virtualinvoke $r2.<java.nio.charset.CharsetDecoder: java.nio.charset.CoderResult decode(java.nio.ByteBuffer,java.nio.CharBuffer,boolean)>($r4, $r5, 1)"->"$z0 = virtualinvoke r8.<java.nio.charset.CoderResult: boolean isUnmappable()>()";
+    "r8 = virtualinvoke $r2.<java.nio.charset.CharsetDecoder: java.nio.charset.CoderResult decode(java.nio.ByteBuffer,java.nio.CharBuffer,boolean)>($r4, $r5, 1)"->"$r7 := @caughtexception";
+    "$z0 = virtualinvoke r8.<java.nio.charset.CoderResult: boolean isUnmappable()>()"->"if $z0 == 0 goto (branch)";
+    "$z0 = virtualinvoke r8.<java.nio.charset.CoderResult: boolean isUnmappable()>()"->"$r7 := @caughtexception";
+    "if $z0 == 0 goto (branch)"->"$i0 = virtualinvoke r8.<java.nio.charset.CoderResult: int length()>()";
+    "if $z0 == 0 goto (branch)"->"goto [?= return]";
+    "if $z0 == 0 goto (branch)"->"$r7 := @caughtexception";
+    "$i0 = virtualinvoke r8.<java.nio.charset.CoderResult: int length()>()"->"if $i0 == i1 goto (branch)";
+    "$i0 = virtualinvoke r8.<java.nio.charset.CoderResult: int length()>()"->"$r7 := @caughtexception";
+    "if $i0 == i1 goto (branch)"->"$r6 = new java.nio.charset.CharacterCodingException";
+    "if $i0 == i1 goto (branch)"->"goto [?= return]";
+    "if $i0 == i1 goto (branch)"->"$r7 := @caughtexception";
+    "$r6 = new java.nio.charset.CharacterCodingException"->"specialinvoke $r6.<java.nio.charset.CharacterCodingException: void <init>()>()";
+    "$r6 = new java.nio.charset.CharacterCodingException"->"$r7 := @caughtexception";
+    "specialinvoke $r6.<java.nio.charset.CharacterCodingException: void <init>()>()"->"throw $r6";
+    "specialinvoke $r6.<java.nio.charset.CharacterCodingException: void <init>()>()"->"$r7 := @caughtexception";
+    "throw $r6"->"$r7 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r7 := @caughtexception"->"r9 = $r7";
+    "r9 = $r7"->"virtualinvoke r9.<java.lang.IllegalArgumentException: void printStackTrace()>()";
+    "virtualinvoke r9.<java.lang.IllegalArgumentException: void printStackTrace()>()"->"return";
+}

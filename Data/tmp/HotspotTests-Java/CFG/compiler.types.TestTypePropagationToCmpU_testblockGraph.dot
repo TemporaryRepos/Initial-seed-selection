@@ -1,0 +1,67 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+i5 = -2147483648;
+i0 = <compiler.types.TestTypePropagationToCmpU: int global>;
+r0 = newarray (char)[1];
+i6 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i5 = i6 - i0;
+i6 = i6 + 1;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i6 <= i0 goto i5 = i6 - i0;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$i1 = i5 * 11;
+$i2 = $i1 / 2;
+$i3 = $i2 - i5;
+$c4 = r0[$i3];
+r0[0] = 0;
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+i5 = -2147483648;
+i0 = <compiler.types.TestTypePropagationToCmpU: int global>;
+r0 = newarray (char)[1];
+i6 = 0;
+goto [?= (branch)];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i6 <= i0 goto i5 = i6 - i0;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i5 = i6 - i0;
+i6 = i6 + 1;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i6 <= i0 goto i5 = i6 - i0;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i6 <= i0 goto i5 = i6 - i0;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$i1 = i5 * 11;
+$i2 = $i1 / 2;
+$i3 = $i2 - i5;
+$c4 = r0[$i3];
+r0[0] = 0;
+return;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+if i6 <= i0 goto i5 = i6 - i0;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+i5 = i6 - i0;
+i6 = i6 + 1;
+";
+}

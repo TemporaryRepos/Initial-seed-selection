@@ -1,0 +1,392 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r38 := @parameter0: java.lang.String[];
+z5 = 0;
+$r0 = newarray (java.lang.String[])[5];
+$r1 = newarray (java.lang.String)[2];
+$r1[0] = \"ilw\";
+$r1[1] = \"gal\";
+$r0[0] = $r1;
+$r2 = newarray (java.lang.String)[2];
+$r2[0] = \"meg\";
+$r2[1] = \"cir\";
+$r0[1] = $r2;
+$r3 = newarray (java.lang.String)[2];
+$r3[0] = \"pcr\";
+$r3[1] = \"adx\";
+$r0[2] = $r3;
+$r4 = newarray (java.lang.String)[2];
+$r4[0] = \"xia\";
+$r4[1] = \"acn\";
+$r0[3] = $r4;
+$r5 = newarray (java.lang.String)[2];
+$r5[0] = \"yos\";
+$r5[1] = \"zom\";
+$r0[4] = $r5;
+r6 = $r0;
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 9 ] [succs: 2 10 ]
+$i0 = lengthof r6;
+if i1 >= $i0 goto (branch);
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 9 ]
+$r8 = r6[i1];
+$r9 = $r8[0];
+r10 = staticinvoke <java.util.Locale$LanguageRange: java.util.List parse(java.lang.String)>($r9);
+$r11 = new java.util.ArrayList;
+specialinvoke $r11.<java.util.ArrayList: void <init>()>();
+r12 = $r11;
+$r13 = new java.util.Locale$LanguageRange;
+$r14 = r6[i1];
+$r15 = $r14[0];
+specialinvoke $r13.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r15, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r13);
+$r16 = new java.util.Locale$LanguageRange;
+$r17 = r6[i1];
+$r18 = $r17[1];
+specialinvoke $r16.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r18, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r16);
+$z2 = virtualinvoke r12.<java.util.ArrayList: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto i1 = i1 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+z5 = 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect language ranges. \");
+r39 = virtualinvoke r12.<java.util.ArrayList: java.util.Iterator iterator()>();
+"
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+$z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r29 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (java.util.Locale$LanguageRange) $r29;
+$r31 = <java.lang.System: java.io.PrintStream err>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Expected: range=\");
+$r33 = virtualinvoke r40.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d1 = virtualinvoke r40.<java.util.Locale$LanguageRange: double getWeight()>();
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37);
+goto [?= $z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+"
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto i1 = i1 + 1;
+"
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r20 = interfaceinvoke r41.<java.util.Iterator: java.lang.Object next()>();
+r42 = (java.util.Locale$LanguageRange) $r20;
+$r22 = <java.lang.System: java.io.PrintStream err>;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Got:      range=\");
+$r24 = virtualinvoke r42.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d0 = virtualinvoke r42.<java.util.Locale$LanguageRange: double getWeight()>();
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r28);
+goto [?= $z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 9:
+[preds: 2 7 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r6];
+"
+    "Block 10:
+[preds: 1 ] [succs: 11 12 ]
+if z5 == 0 goto return;
+"
+    "Block 11:
+[preds: 10 ] [succs: ]
+$r7 = new java.lang.RuntimeException;
+specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed.\");
+throw $r7;
+"
+    "Block 12:
+[preds: 10 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r38 := @parameter0: java.lang.String[];
+z5 = 0;
+$r0 = newarray (java.lang.String[])[5];
+$r1 = newarray (java.lang.String)[2];
+$r1[0] = \"ilw\";
+$r1[1] = \"gal\";
+$r0[0] = $r1;
+$r2 = newarray (java.lang.String)[2];
+$r2[0] = \"meg\";
+$r2[1] = \"cir\";
+$r0[1] = $r2;
+$r3 = newarray (java.lang.String)[2];
+$r3[0] = \"pcr\";
+$r3[1] = \"adx\";
+$r0[2] = $r3;
+$r4 = newarray (java.lang.String)[2];
+$r4[0] = \"xia\";
+$r4[1] = \"acn\";
+$r0[3] = $r4;
+$r5 = newarray (java.lang.String)[2];
+$r5[0] = \"yos\";
+$r5[1] = \"zom\";
+$r0[4] = $r5;
+r6 = $r0;
+i1 = 0;
+"->"Block 1:
+[preds: 0 9 ] [succs: 2 10 ]
+$i0 = lengthof r6;
+if i1 >= $i0 goto (branch);
+";
+    "Block 1:
+[preds: 0 9 ] [succs: 2 10 ]
+$i0 = lengthof r6;
+if i1 >= $i0 goto (branch);
+"->"Block 2:
+[preds: 1 ] [succs: 3 9 ]
+$r8 = r6[i1];
+$r9 = $r8[0];
+r10 = staticinvoke <java.util.Locale$LanguageRange: java.util.List parse(java.lang.String)>($r9);
+$r11 = new java.util.ArrayList;
+specialinvoke $r11.<java.util.ArrayList: void <init>()>();
+r12 = $r11;
+$r13 = new java.util.Locale$LanguageRange;
+$r14 = r6[i1];
+$r15 = $r14[0];
+specialinvoke $r13.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r15, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r13);
+$r16 = new java.util.Locale$LanguageRange;
+$r17 = r6[i1];
+$r18 = $r17[1];
+specialinvoke $r16.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r18, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r16);
+$z2 = virtualinvoke r12.<java.util.ArrayList: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto i1 = i1 + 1;
+";
+    "Block 1:
+[preds: 0 9 ] [succs: 2 10 ]
+$i0 = lengthof r6;
+if i1 >= $i0 goto (branch);
+"->"Block 10:
+[preds: 1 ] [succs: 11 12 ]
+if z5 == 0 goto return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 9 ]
+$r8 = r6[i1];
+$r9 = $r8[0];
+r10 = staticinvoke <java.util.Locale$LanguageRange: java.util.List parse(java.lang.String)>($r9);
+$r11 = new java.util.ArrayList;
+specialinvoke $r11.<java.util.ArrayList: void <init>()>();
+r12 = $r11;
+$r13 = new java.util.Locale$LanguageRange;
+$r14 = r6[i1];
+$r15 = $r14[0];
+specialinvoke $r13.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r15, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r13);
+$r16 = new java.util.Locale$LanguageRange;
+$r17 = r6[i1];
+$r18 = $r17[1];
+specialinvoke $r16.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r18, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r16);
+$z2 = virtualinvoke r12.<java.util.ArrayList: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto i1 = i1 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: 4 ]
+z5 = 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect language ranges. \");
+r39 = virtualinvoke r12.<java.util.ArrayList: java.util.Iterator iterator()>();
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 9 ]
+$r8 = r6[i1];
+$r9 = $r8[0];
+r10 = staticinvoke <java.util.Locale$LanguageRange: java.util.List parse(java.lang.String)>($r9);
+$r11 = new java.util.ArrayList;
+specialinvoke $r11.<java.util.ArrayList: void <init>()>();
+r12 = $r11;
+$r13 = new java.util.Locale$LanguageRange;
+$r14 = r6[i1];
+$r15 = $r14[0];
+specialinvoke $r13.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r15, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r13);
+$r16 = new java.util.Locale$LanguageRange;
+$r17 = r6[i1];
+$r18 = $r17[1];
+specialinvoke $r16.<java.util.Locale$LanguageRange: void <init>(java.lang.String,double)>($r18, 1.0);
+virtualinvoke r12.<java.util.ArrayList: boolean add(java.lang.Object)>($r16);
+$z2 = virtualinvoke r12.<java.util.ArrayList: boolean equals(java.lang.Object)>(r10);
+if $z2 != 0 goto i1 = i1 + 1;
+"->"Block 9:
+[preds: 2 7 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r6];
+";
+    "Block 3:
+[preds: 2 ] [succs: 4 ]
+z5 = 1;
+$r19 = <java.lang.System: java.io.PrintStream err>;
+virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>(\"Incorrect language ranges. \");
+r39 = virtualinvoke r12.<java.util.ArrayList: java.util.Iterator iterator()>();
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+$z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+$z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 5:
+[preds: 4 ] [succs: 4 ]
+$r29 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (java.util.Locale$LanguageRange) $r29;
+$r31 = <java.lang.System: java.io.PrintStream err>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Expected: range=\");
+$r33 = virtualinvoke r40.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d1 = virtualinvoke r40.<java.util.Locale$LanguageRange: double getWeight()>();
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37);
+goto [?= $z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+$z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 6:
+[preds: 4 ] [succs: 7 ]
+r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r29 = interfaceinvoke r39.<java.util.Iterator: java.lang.Object next()>();
+r40 = (java.util.Locale$LanguageRange) $r29;
+$r31 = <java.lang.System: java.io.PrintStream err>;
+$r30 = new java.lang.StringBuilder;
+specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Expected: range=\");
+$r33 = virtualinvoke r40.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d1 = virtualinvoke r40.<java.util.Locale$LanguageRange: double getWeight()>();
+$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37);
+goto [?= $z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+$z3 = interfaceinvoke r39.<java.util.Iterator: boolean hasNext()>();
+if $z3 == 0 goto r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 ]
+r41 = interfaceinvoke r10.<java.util.List: java.util.Iterator iterator()>();
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto i1 = i1 + 1;
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto i1 = i1 + 1;
+"->"Block 8:
+[preds: 7 ] [succs: 7 ]
+$r20 = interfaceinvoke r41.<java.util.Iterator: java.lang.Object next()>();
+r42 = (java.util.Locale$LanguageRange) $r20;
+$r22 = <java.lang.System: java.io.PrintStream err>;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Got:      range=\");
+$r24 = virtualinvoke r42.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d0 = virtualinvoke r42.<java.util.Locale$LanguageRange: double getWeight()>();
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r28);
+goto [?= $z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto i1 = i1 + 1;
+"->"Block 9:
+[preds: 2 7 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r6];
+";
+    "Block 8:
+[preds: 7 ] [succs: 7 ]
+$r20 = interfaceinvoke r41.<java.util.Iterator: java.lang.Object next()>();
+r42 = (java.util.Locale$LanguageRange) $r20;
+$r22 = <java.lang.System: java.io.PrintStream err>;
+$r21 = new java.lang.StringBuilder;
+specialinvoke $r21.<java.lang.StringBuilder: void <init>()>();
+$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  Got:      range=\");
+$r24 = virtualinvoke r42.<java.util.Locale$LanguageRange: java.lang.String getRange()>();
+$r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\", weight=\");
+$d0 = virtualinvoke r42.<java.util.Locale$LanguageRange: double getWeight()>();
+$r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+$r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r28);
+goto [?= $z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 7:
+[preds: 6 8 ] [succs: 8 9 ]
+$z4 = interfaceinvoke r41.<java.util.Iterator: boolean hasNext()>();
+if $z4 == 0 goto i1 = i1 + 1;
+";
+    "Block 9:
+[preds: 2 7 ] [succs: 1 ]
+i1 = i1 + 1;
+goto [?= $i0 = lengthof r6];
+"->"Block 1:
+[preds: 0 9 ] [succs: 2 10 ]
+$i0 = lengthof r6;
+if i1 >= $i0 goto (branch);
+";
+    "Block 10:
+[preds: 1 ] [succs: 11 12 ]
+if z5 == 0 goto return;
+"->"Block 11:
+[preds: 10 ] [succs: ]
+$r7 = new java.lang.RuntimeException;
+specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Failed.\");
+throw $r7;
+";
+    "Block 10:
+[preds: 1 ] [succs: 11 12 ]
+if z5 == 0 goto return;
+"->"Block 12:
+[preds: 10 ] [succs: ]
+return;
+";
+}

@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "l0 := @parameter0: long"
+    "l1 := @parameter1: long"
+    "$l2 = staticinvoke <java.lang.Math: long floorDiv(long,long)>(l0, l1)"
+    "$r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"
+    "return $r0"
+    "$r1 := @caughtexception"
+    "r2 = $r1"
+    "return r2"
+    "l0 := @parameter0: long"->"l1 := @parameter1: long";
+    "l1 := @parameter1: long"->"$l2 = staticinvoke <java.lang.Math: long floorDiv(long,long)>(l0, l1)";
+    "l1 := @parameter1: long"->"$r1 := @caughtexception";
+    "$l2 = staticinvoke <java.lang.Math: long floorDiv(long,long)>(l0, l1)"->"$r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)";
+    "$l2 = staticinvoke <java.lang.Math: long floorDiv(long,long)>(l0, l1)"->"$r1 := @caughtexception";
+    "$r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"return $r0";
+    "$r0 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2)"->"$r1 := @caughtexception";
+    "$r1 := @caughtexception"->"r2 = $r1";
+    "r2 = $r1"->"return r2";
+}

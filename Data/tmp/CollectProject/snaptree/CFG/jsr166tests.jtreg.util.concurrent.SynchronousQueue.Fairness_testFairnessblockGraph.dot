@@ -1,0 +1,326 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+z0 := @parameter0: boolean;
+r7 := @parameter1: java.util.concurrent.BlockingQueue;
+$r0 = new java.util.concurrent.locks.ReentrantLock;
+specialinvoke $r0.<java.util.concurrent.locks.ReentrantLock: void <init>()>();
+r1 = $r0;
+r2 = virtualinvoke r1.<java.util.concurrent.locks.ReentrantLock: java.util.concurrent.locks.Condition newCondition()>();
+b0 = 10;
+r3 = newarray (java.lang.Throwable)[1];
+virtualinvoke r1.<java.util.concurrent.locks.ReentrantLock: void lock()>();
+i2 = 0;
+"
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+if i2 >= 10 goto i3 = 0;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2);
+$r16 = new jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1;
+specialinvoke $r16.<jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1: void <init>(java.util.concurrent.locks.ReentrantLock,java.util.concurrent.locks.Condition,java.util.concurrent.BlockingQueue,java.lang.Integer,java.lang.Throwable[])>(r1, r2, r7, r20, r3);
+r17 = $r16;
+virtualinvoke r17.<java.lang.Thread: void start()>();
+interfaceinvoke r2.<java.util.concurrent.locks.Condition: void await()>();
+"
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>();
+$r19 = <java.lang.Thread$State: java.lang.Thread$State RUNNABLE>;
+if $r18 != $r19 goto i2 = i2 + 1;
+"
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+staticinvoke <java.lang.Thread: void yield()>();
+goto [?= $r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>()];
+"
+    "Block 5:
+[preds: 3 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+"
+    "Block 6:
+[preds: 1 ] [succs: 7 ]
+i3 = 0;
+"
+    "Block 7:
+[preds: 6 13 ] [succs: 8 14 ]
+if i3 >= 10 goto $r4 = r3[0];
+"
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r8 = interfaceinvoke r7.<java.util.concurrent.BlockingQueue: java.lang.Object take()>();
+$r9 = (java.lang.Integer) $r8;
+i4 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+if z0 == 0 goto $i1 = 9 - i3;
+"
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+if i4 == i3 goto i3 = i3 + 1;
+"
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= $r10 = new java.lang.Error];
+"
+    "Block 11:
+[preds: 8 ] [succs: 12 13 ]
+$i1 = 9 - i3;
+if i4 == $i1 goto i3 = i3 + 1;
+"
+    "Block 12:
+[preds: 10 11 ] [succs: ]
+$r10 = new java.lang.Error;
+$r11 = newarray (java.lang.Object)[3];
+$r12 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z0);
+$r11[0] = $r12;
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[2] = $r14;
+$r15 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"fair=%b i=%d j=%d%n\", $r11);
+specialinvoke $r10.<java.lang.Error: void <init>(java.lang.String)>($r15);
+throw $r10;
+"
+    "Block 13:
+[preds: 9 11 ] [succs: 7 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+"
+    "Block 14:
+[preds: 7 ] [succs: 15 16 ]
+$r4 = r3[0];
+if $r4 == null goto return;
+"
+    "Block 15:
+[preds: 14 ] [succs: ]
+$r5 = new java.lang.Error;
+$r6 = r3[0];
+specialinvoke $r5.<java.lang.Error: void <init>(java.lang.Throwable)>($r6);
+throw $r5;
+"
+    "Block 16:
+[preds: 14 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+z0 := @parameter0: boolean;
+r7 := @parameter1: java.util.concurrent.BlockingQueue;
+$r0 = new java.util.concurrent.locks.ReentrantLock;
+specialinvoke $r0.<java.util.concurrent.locks.ReentrantLock: void <init>()>();
+r1 = $r0;
+r2 = virtualinvoke r1.<java.util.concurrent.locks.ReentrantLock: java.util.concurrent.locks.Condition newCondition()>();
+b0 = 10;
+r3 = newarray (java.lang.Throwable)[1];
+virtualinvoke r1.<java.util.concurrent.locks.ReentrantLock: void lock()>();
+i2 = 0;
+"->"Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+if i2 >= 10 goto i3 = 0;
+";
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+if i2 >= 10 goto i3 = 0;
+"->"Block 2:
+[preds: 1 ] [succs: 3 ]
+r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2);
+$r16 = new jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1;
+specialinvoke $r16.<jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1: void <init>(java.util.concurrent.locks.ReentrantLock,java.util.concurrent.locks.Condition,java.util.concurrent.BlockingQueue,java.lang.Integer,java.lang.Throwable[])>(r1, r2, r7, r20, r3);
+r17 = $r16;
+virtualinvoke r17.<java.lang.Thread: void start()>();
+interfaceinvoke r2.<java.util.concurrent.locks.Condition: void await()>();
+";
+    "Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+if i2 >= 10 goto i3 = 0;
+"->"Block 6:
+[preds: 1 ] [succs: 7 ]
+i3 = 0;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 ]
+r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i2);
+$r16 = new jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1;
+specialinvoke $r16.<jsr166tests.jtreg.util.concurrent.SynchronousQueue.Fairness$1: void <init>(java.util.concurrent.locks.ReentrantLock,java.util.concurrent.locks.Condition,java.util.concurrent.BlockingQueue,java.lang.Integer,java.lang.Throwable[])>(r1, r2, r7, r20, r3);
+r17 = $r16;
+virtualinvoke r17.<java.lang.Thread: void start()>();
+interfaceinvoke r2.<java.util.concurrent.locks.Condition: void await()>();
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>();
+$r19 = <java.lang.Thread$State: java.lang.Thread$State RUNNABLE>;
+if $r18 != $r19 goto i2 = i2 + 1;
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>();
+$r19 = <java.lang.Thread$State: java.lang.Thread$State RUNNABLE>;
+if $r18 != $r19 goto i2 = i2 + 1;
+"->"Block 4:
+[preds: 3 ] [succs: 3 ]
+staticinvoke <java.lang.Thread: void yield()>();
+goto [?= $r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>()];
+";
+    "Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>();
+$r19 = <java.lang.Thread$State: java.lang.Thread$State RUNNABLE>;
+if $r18 != $r19 goto i2 = i2 + 1;
+"->"Block 5:
+[preds: 3 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 ] [succs: 3 ]
+staticinvoke <java.lang.Thread: void yield()>();
+goto [?= $r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>()];
+"->"Block 3:
+[preds: 2 4 ] [succs: 4 5 ]
+$r18 = virtualinvoke r17.<java.lang.Thread: java.lang.Thread$State getState()>();
+$r19 = <java.lang.Thread$State: java.lang.Thread$State RUNNABLE>;
+if $r18 != $r19 goto i2 = i2 + 1;
+";
+    "Block 5:
+[preds: 3 ] [succs: 1 ]
+i2 = i2 + 1;
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 5 ] [succs: 2 6 ]
+if i2 >= 10 goto i3 = 0;
+";
+    "Block 6:
+[preds: 1 ] [succs: 7 ]
+i3 = 0;
+"->"Block 7:
+[preds: 6 13 ] [succs: 8 14 ]
+if i3 >= 10 goto $r4 = r3[0];
+";
+    "Block 7:
+[preds: 6 13 ] [succs: 8 14 ]
+if i3 >= 10 goto $r4 = r3[0];
+"->"Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r8 = interfaceinvoke r7.<java.util.concurrent.BlockingQueue: java.lang.Object take()>();
+$r9 = (java.lang.Integer) $r8;
+i4 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+if z0 == 0 goto $i1 = 9 - i3;
+";
+    "Block 7:
+[preds: 6 13 ] [succs: 8 14 ]
+if i3 >= 10 goto $r4 = r3[0];
+"->"Block 14:
+[preds: 7 ] [succs: 15 16 ]
+$r4 = r3[0];
+if $r4 == null goto return;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r8 = interfaceinvoke r7.<java.util.concurrent.BlockingQueue: java.lang.Object take()>();
+$r9 = (java.lang.Integer) $r8;
+i4 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+if z0 == 0 goto $i1 = 9 - i3;
+"->"Block 9:
+[preds: 8 ] [succs: 10 13 ]
+if i4 == i3 goto i3 = i3 + 1;
+";
+    "Block 8:
+[preds: 7 ] [succs: 9 11 ]
+$r8 = interfaceinvoke r7.<java.util.concurrent.BlockingQueue: java.lang.Object take()>();
+$r9 = (java.lang.Integer) $r8;
+i4 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+if z0 == 0 goto $i1 = 9 - i3;
+"->"Block 11:
+[preds: 8 ] [succs: 12 13 ]
+$i1 = 9 - i3;
+if i4 == $i1 goto i3 = i3 + 1;
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+if i4 == i3 goto i3 = i3 + 1;
+"->"Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= $r10 = new java.lang.Error];
+";
+    "Block 9:
+[preds: 8 ] [succs: 10 13 ]
+if i4 == i3 goto i3 = i3 + 1;
+"->"Block 13:
+[preds: 9 11 ] [succs: 7 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 9 ] [succs: 12 ]
+goto [?= $r10 = new java.lang.Error];
+"->"Block 12:
+[preds: 10 11 ] [succs: ]
+$r10 = new java.lang.Error;
+$r11 = newarray (java.lang.Object)[3];
+$r12 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z0);
+$r11[0] = $r12;
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[2] = $r14;
+$r15 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"fair=%b i=%d j=%d%n\", $r11);
+specialinvoke $r10.<java.lang.Error: void <init>(java.lang.String)>($r15);
+throw $r10;
+";
+    "Block 11:
+[preds: 8 ] [succs: 12 13 ]
+$i1 = 9 - i3;
+if i4 == $i1 goto i3 = i3 + 1;
+"->"Block 12:
+[preds: 10 11 ] [succs: ]
+$r10 = new java.lang.Error;
+$r11 = newarray (java.lang.Object)[3];
+$r12 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z0);
+$r11[0] = $r12;
+$r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+$r11[1] = $r13;
+$r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+$r11[2] = $r14;
+$r15 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"fair=%b i=%d j=%d%n\", $r11);
+specialinvoke $r10.<java.lang.Error: void <init>(java.lang.String)>($r15);
+throw $r10;
+";
+    "Block 11:
+[preds: 8 ] [succs: 12 13 ]
+$i1 = 9 - i3;
+if i4 == $i1 goto i3 = i3 + 1;
+"->"Block 13:
+[preds: 9 11 ] [succs: 7 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+";
+    "Block 13:
+[preds: 9 11 ] [succs: 7 ]
+i3 = i3 + 1;
+goto [?= (branch)];
+"->"Block 7:
+[preds: 6 13 ] [succs: 8 14 ]
+if i3 >= 10 goto $r4 = r3[0];
+";
+    "Block 14:
+[preds: 7 ] [succs: 15 16 ]
+$r4 = r3[0];
+if $r4 == null goto return;
+"->"Block 15:
+[preds: 14 ] [succs: ]
+$r5 = new java.lang.Error;
+$r6 = r3[0];
+specialinvoke $r5.<java.lang.Error: void <init>(java.lang.Throwable)>($r6);
+throw $r5;
+";
+    "Block 14:
+[preds: 7 ] [succs: 15 16 ]
+$r4 = r3[0];
+if $r4 == null goto return;
+"->"Block 16:
+[preds: 14 ] [succs: ]
+return;
+";
+}

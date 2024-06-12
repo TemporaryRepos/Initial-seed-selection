@@ -1,0 +1,41 @@
+digraph "unitGraph" {
+    "r0 = newarray (int)[10]"
+    "i0 = 6"
+    "goto [?= (branch)]"
+    "i1 = 8"
+    "i2 = 1"
+    "r0[i1] = 0"
+    "lookupswitch(i2) {     case 1: goto <compiler.loopopts.TestOverunrolling: long lFld> = 0L;     case 10: goto <compiler.loopopts.TestOverunrolling: double dFld> = 0.0;     default: goto i2 = i2 + 1; }"
+    "<compiler.loopopts.TestOverunrolling: long lFld> = 0L"
+    "goto [?= i2 = i2 + 1]"
+    "<compiler.loopopts.TestOverunrolling: double dFld> = 0.0"
+    "i2 = i2 + 1"
+    "if i2 < 1 goto r0[i1] = 0"
+    "i1 = i1 + -1"
+    "if i1 > i0 goto i2 = 1"
+    "i0 = i0 + 1"
+    "if i0 < 10 goto i1 = 8"
+    "return"
+    "r0 = newarray (int)[10]"->"i0 = 6";
+    "i0 = 6"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 10 goto i1 = 8";
+    "i1 = 8"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 > i0 goto i2 = 1";
+    "i2 = 1"->"r0[i1] = 0";
+    "r0[i1] = 0"->"lookupswitch(i2) {     case 1: goto <compiler.loopopts.TestOverunrolling: long lFld> = 0L;     case 10: goto <compiler.loopopts.TestOverunrolling: double dFld> = 0.0;     default: goto i2 = i2 + 1; }";
+    "lookupswitch(i2) {     case 1: goto <compiler.loopopts.TestOverunrolling: long lFld> = 0L;     case 10: goto <compiler.loopopts.TestOverunrolling: double dFld> = 0.0;     default: goto i2 = i2 + 1; }"->"<compiler.loopopts.TestOverunrolling: long lFld> = 0L";
+    "lookupswitch(i2) {     case 1: goto <compiler.loopopts.TestOverunrolling: long lFld> = 0L;     case 10: goto <compiler.loopopts.TestOverunrolling: double dFld> = 0.0;     default: goto i2 = i2 + 1; }"->"<compiler.loopopts.TestOverunrolling: double dFld> = 0.0";
+    "lookupswitch(i2) {     case 1: goto <compiler.loopopts.TestOverunrolling: long lFld> = 0L;     case 10: goto <compiler.loopopts.TestOverunrolling: double dFld> = 0.0;     default: goto i2 = i2 + 1; }"->"i2 = i2 + 1";
+    "<compiler.loopopts.TestOverunrolling: long lFld> = 0L"->"goto [?= i2 = i2 + 1]";
+    "goto [?= i2 = i2 + 1]"->"i2 = i2 + 1";
+    "<compiler.loopopts.TestOverunrolling: double dFld> = 0.0"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 1 goto r0[i1] = 0";
+    "if i2 < 1 goto r0[i1] = 0"->"i1 = i1 + -1";
+    "if i2 < 1 goto r0[i1] = 0"->"r0[i1] = 0";
+    "i1 = i1 + -1"->"if i1 > i0 goto i2 = 1";
+    "if i1 > i0 goto i2 = 1"->"i0 = i0 + 1";
+    "if i1 > i0 goto i2 = 1"->"i2 = 1";
+    "i0 = i0 + 1"->"if i0 < 10 goto i1 = 8";
+    "if i0 < 10 goto i1 = 8"->"return";
+    "if i0 < 10 goto i1 = 8"->"i1 = 8";
+}

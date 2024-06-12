@@ -1,0 +1,72 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r1 := @parameter0: java.io.File;
+$r0 = new javaT.nio.channels.Channels.ExtendedFileInputStream;
+specialinvoke $r0.<javaT.nio.channels.Channels.ExtendedFileInputStream: void <init>(java.io.File)>(r1);
+r2 = $r0;
+r3 = staticinvoke <java.nio.channels.Channels: java.nio.channels.ReadableByteChannel newChannel(java.io.InputStream)>(r2);
+r4 = newarray (byte)[9000];
+r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r4);
+i0 = 1;
+i1 = 0;
+"
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i0 <= 0 goto interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+i1 = i1 + i0;
+i0 = interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: int read(java.nio.ByteBuffer)>(r5);
+goto [?= (branch)];
+"
+    "Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+virtualinvoke r2.<javaT.nio.channels.Channels.ExtendedFileInputStream: void close()>();
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r1 := @parameter0: java.io.File;
+$r0 = new javaT.nio.channels.Channels.ExtendedFileInputStream;
+specialinvoke $r0.<javaT.nio.channels.Channels.ExtendedFileInputStream: void <init>(java.io.File)>(r1);
+r2 = $r0;
+r3 = staticinvoke <java.nio.channels.Channels: java.nio.channels.ReadableByteChannel newChannel(java.io.InputStream)>(r2);
+r4 = newarray (byte)[9000];
+r5 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer wrap(byte[])>(r4);
+i0 = 1;
+i1 = 0;
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i0 <= 0 goto interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i0 <= 0 goto interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+"->"Block 2:
+[preds: 1 ] [succs: 1 ]
+i1 = i1 + i0;
+i0 = interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: int read(java.nio.ByteBuffer)>(r5);
+goto [?= (branch)];
+";
+    "Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i0 <= 0 goto interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+"->"Block 3:
+[preds: 1 ] [succs: ]
+interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+virtualinvoke r2.<javaT.nio.channels.Channels.ExtendedFileInputStream: void close()>();
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 1 ]
+i1 = i1 + i0;
+i0 = interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: int read(java.nio.ByteBuffer)>(r5);
+goto [?= (branch)];
+"->"Block 1:
+[preds: 0 2 ] [succs: 2 3 ]
+if i0 <= 0 goto interfaceinvoke r3.<java.nio.channels.ReadableByteChannel: void close()>();
+";
+}

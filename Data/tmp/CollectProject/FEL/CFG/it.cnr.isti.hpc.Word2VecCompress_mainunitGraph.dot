@@ -1,0 +1,617 @@
+digraph "unitGraph" {
+    "r10 := @parameter0: java.lang.String[]"
+    "$r0 = new com.martiansoftware.jsap.SimpleJSAP"
+    "$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\""
+    "$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+    "$r3 = newarray (com.martiansoftware.jsap.Parameter)[3]"
+    "$r4 = new com.martiansoftware.jsap.UnflaggedOption"
+    "$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"
+    "specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\")"
+    "$r3[0] = $r4"
+    "$r6 = new com.martiansoftware.jsap.UnflaggedOption"
+    "$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"
+    "specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\")"
+    "$r3[1] = $r6"
+    "$r8 = new com.martiansoftware.jsap.Switch"
+    "specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\")"
+    "$r3[2] = $r8"
+    "specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3)"
+    "r9 = $r0"
+    "r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10)"
+    "$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()"
+    "if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"
+    "return"
+    "r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"
+    "r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null)"
+    "$r14 = new it.unimi.dsi.logging.ProgressLogger"
+    "$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"
+    "specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15)"
+    "r16 = $r14"
+    "$r17 = new java.io.BufferedReader"
+    "$r18 = new java.io.FileReader"
+    "specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12)"
+    "specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18)"
+    "r65 = $r17"
+    "r66 = null"
+    "$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"
+    "$r20 = r67[0]"
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20)"
+    "$r21 = r67[1]"
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21)"
+    "$r22 = r67[2]"
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22)"
+    "$l2 = (long) i0"
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\")"
+    "$r23 = new java.util.ArrayList"
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"
+    "r24 = $r23"
+    "i34 = 0"
+    "if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"
+    "$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>()"
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60)"
+    "i34 = i34 + 1"
+    "goto [?= (branch)]"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "$i3 = i0 * i1"
+    "r25 = newarray (int)[$i3]"
+    "r26 = newarray (long)[i1]"
+    "$l4 = (long) i0"
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\")"
+    "i35 = 0"
+    "if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"
+    "r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"
+    "i36 = 0"
+    "if i36 >= i1 goto i35 = i35 + 1"
+    "$r58 = r68[i36]"
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58)"
+    "$i27 = i35 * i1"
+    "$i28 = $i27 + i36"
+    "r25[$i28] = i37"
+    "$l29 = r26[i36]"
+    "$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37)"
+    "$i31 = $i30 + 1"
+    "$l32 = (long) $i31"
+    "$l33 = $l29 + $l32"
+    "r26[i36] = $l33"
+    "i36 = i36 + 1"
+    "i35 = i35 + 1"
+    "if r65 == null goto r73 = newarray (int)[i1]"
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"
+    "goto [?= r73 = newarray (int)[i1]]"
+    "$r64 := @caughtexception"
+    "r69 = $r64"
+    "virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69)"
+    "$r63 := @caughtexception"
+    "r70 = $r63"
+    "r66 = r70"
+    "throw r70"
+    "$r62 := @caughtexception"
+    "r71 = $r62"
+    "if r65 == null goto throw r71"
+    "goto [?= throw r71]"
+    "$r61 := @caughtexception"
+    "r72 = $r61"
+    "virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"
+    "throw r71"
+    "r73 = newarray (int)[i1]"
+    "i38 = 0"
+    "if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"
+    "i39 = 0"
+    "$l24 = r26[i38]"
+    "$l23 = (long) i0"
+    "$b25 = $l24 cmp $l23"
+    "if $b25 <= 0 goto r73[i38] = i39"
+    "$d4 = (double) i0"
+    "$l26 = r26[i38]"
+    "$d3 = (double) $l26"
+    "d12 = $d4 / $d3"
+    "$d5 = 2.0 - d12"
+    "$d6 = staticinvoke <java.lang.Math: double log(double)>($d5)"
+    "$d7 = 1.0 - d12"
+    "$d8 = staticinvoke <java.lang.Math: double log(double)>($d7)"
+    "$d9 = neg $d8"
+    "$d10 = $d6 / $d9"
+    "$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10)"
+    "i39 = (int) $d11"
+    "r73[i38] = i39"
+    "i38 = i38 + 1"
+    "$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"
+    "$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>()"
+    "$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder"
+    "specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>()"
+    "$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24)"
+    "$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()"
+    "$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31)"
+    "$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>()"
+    "specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33)"
+    "r74 = $r27"
+    "r75 = newarray (int)[i0]"
+    "i40 = 0"
+    "if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream"
+    "$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40)"
+    "$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55)"
+    "i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>()"
+    "r75[i41] = i40"
+    "i40 = i40 + 1"
+    "$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream"
+    "specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>()"
+    "r76 = $r34"
+    "$r35 = new it.unimi.dsi.io.OutputBitStream"
+    "specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0)"
+    "r77 = $r35"
+    "$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList"
+    "specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"
+    "r78 = $r36"
+    "$l5 = (long) i0"
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\")"
+    "i42 = 0"
+    "if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>()"
+    "virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17)"
+    "$i18 = r75[i42]"
+    "i43 = $i18 * i1"
+    "i44 = 0"
+    "if i44 >= i1 goto i42 = i42 + 1"
+    "$i19 = i43 + i44"
+    "i45 = r25[$i19]"
+    "$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45)"
+    "$i21 = r73[i44]"
+    "virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21)"
+    "i44 = i44 + 1"
+    "i42 = i42 + 1"
+    "virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>()"
+    "$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()"
+    "$l7 = $l6 % 4L"
+    "$b8 = $l7 cmp 0L"
+    "if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()"
+    "virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0)"
+    "goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()]"
+    "virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()"
+    "$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"
+    "$i9 = lengthof $r37"
+    "$d0 = (double) $i9"
+    "$d2 = 8.0 * $d0"
+    "$i10 = lengthof r25"
+    "$d1 = (double) $i10"
+    "d13 = $d2 / $d1"
+    "$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"
+    "$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"
+    "$i11 = lengthof $r38"
+    "$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)"
+    "$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13)"
+    "interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41)"
+    "$r42 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13)"
+    "$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"
+    "specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78)"
+    "r79 = $r43"
+    "$r44 = new it.cnr.isti.hpc.Word2VecCompress"
+    "$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"
+    "specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73)"
+    "r80 = $r44"
+    "if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")"
+    "staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13)"
+    "$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")"
+    "if $z1 == 0 goto return"
+    "$l12 = (long) i0"
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12"
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\")"
+    "i46 = 0"
+    "if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"
+    "$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46)"
+    "$r47 = (java.lang.String) $r46"
+    "r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47)"
+    "i47 = 0"
+    "if i47 >= i1 goto i46 = i46 + 1"
+    "$i13 = i46 * i1"
+    "$i14 = $i13 + i47"
+    "i15 = r25[$i14]"
+    "i16 = r48[i47]"
+    "if i15 == i16 goto i47 = i47 + 1"
+    "$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"
+    "$r49 = newarray (java.lang.Object)[4]"
+    "$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46)"
+    "$r49[0] = $r51"
+    "$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47)"
+    "$r49[1] = $r52"
+    "$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15)"
+    "$r49[2] = $r53"
+    "$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16)"
+    "$r49[3] = $r54"
+    "interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49)"
+    "staticinvoke <java.lang.System: void exit(int)>(1)"
+    "i47 = i47 + 1"
+    "i46 = i46 + 1"
+    "r10 := @parameter0: java.lang.String[]"->"$r0 = new com.martiansoftware.jsap.SimpleJSAP";
+    "$r0 = new com.martiansoftware.jsap.SimpleJSAP"->"$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\"";
+    "$r1 = class \"Lit/cnr/isti/hpc/Word2VecCompress;\""->"$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()";
+    "$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"->"$r3 = newarray (com.martiansoftware.jsap.Parameter)[3]";
+    "$r3 = newarray (com.martiansoftware.jsap.Parameter)[3]"->"$r4 = new com.martiansoftware.jsap.UnflaggedOption";
+    "$r4 = new com.martiansoftware.jsap.UnflaggedOption"->"$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>";
+    "$r5 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"->"specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\")";
+    "specialinvoke $r4.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"input\", $r5, 1, \"Input file\")"->"$r3[0] = $r4";
+    "$r3[0] = $r4"->"$r6 = new com.martiansoftware.jsap.UnflaggedOption";
+    "$r6 = new com.martiansoftware.jsap.UnflaggedOption"->"$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>";
+    "$r7 = <com.martiansoftware.jsap.JSAP: com.martiansoftware.jsap.stringparsers.StringStringParser STRING_PARSER>"->"specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\")";
+    "specialinvoke $r6.<com.martiansoftware.jsap.UnflaggedOption: void <init>(java.lang.String,com.martiansoftware.jsap.StringParser,boolean,java.lang.String)>(\"output\", $r7, 0, \"Compressed version\")"->"$r3[1] = $r6";
+    "$r3[1] = $r6"->"$r8 = new com.martiansoftware.jsap.Switch";
+    "$r8 = new com.martiansoftware.jsap.Switch"->"specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\")";
+    "specialinvoke $r8.<com.martiansoftware.jsap.Switch: void <init>(java.lang.String,char,java.lang.String,java.lang.String)>(\"check\", 0, \"check\", \"Check correctness of output\")"->"$r3[2] = $r8";
+    "$r3[2] = $r8"->"specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3)";
+    "specialinvoke $r0.<com.martiansoftware.jsap.SimpleJSAP: void <init>(java.lang.String,java.lang.String,com.martiansoftware.jsap.Parameter[])>($r2, \"Creates a compressed representation of quantized word2vec vectors\", $r3)"->"r9 = $r0";
+    "r9 = $r0"->"r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10)";
+    "r11 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: com.martiansoftware.jsap.JSAPResult parse(java.lang.String[])>(r10)"->"$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()";
+    "$z0 = virtualinvoke r9.<com.martiansoftware.jsap.SimpleJSAP: boolean messagePrinted()>()"->"if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")";
+    "if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"return";
+    "if $z0 == 0 goto r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")";
+    "r12 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String)>(\"input\")"->"r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null)";
+    "r13 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: java.lang.String getString(java.lang.String,java.lang.String)>(\"output\", null)"->"$r14 = new it.unimi.dsi.logging.ProgressLogger";
+    "$r14 = new it.unimi.dsi.logging.ProgressLogger"->"$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>";
+    "$r15 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"->"specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15)";
+    "specialinvoke $r14.<it.unimi.dsi.logging.ProgressLogger: void <init>(org.slf4j.Logger)>($r15)"->"r16 = $r14";
+    "r16 = $r14"->"$r17 = new java.io.BufferedReader";
+    "$r17 = new java.io.BufferedReader"->"$r18 = new java.io.FileReader";
+    "$r18 = new java.io.FileReader"->"specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12)";
+    "specialinvoke $r18.<java.io.FileReader: void <init>(java.lang.String)>(r12)"->"specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18)";
+    "specialinvoke $r17.<java.io.BufferedReader: void <init>(java.io.Reader)>($r18)"->"r65 = $r17";
+    "r65 = $r17"->"r66 = null";
+    "r66 = null"->"$r63 := @caughtexception";
+    "r66 = null"->"$r62 := @caughtexception";
+    "r66 = null"->"$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r63 := @caughtexception";
+    "$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r62 := @caughtexception";
+    "$r19 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")";
+    "r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r63 := @caughtexception";
+    "r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r62 := @caughtexception";
+    "r67 = virtualinvoke $r19.<java.lang.String: java.lang.String[] split(java.lang.String)>(\"\t\")"->"$r20 = r67[0]";
+    "$r20 = r67[0]"->"$r63 := @caughtexception";
+    "$r20 = r67[0]"->"$r62 := @caughtexception";
+    "$r20 = r67[0]"->"i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20)";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20)"->"$r63 := @caughtexception";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20)"->"$r62 := @caughtexception";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20)"->"$r21 = r67[1]";
+    "$r21 = r67[1]"->"$r63 := @caughtexception";
+    "$r21 = r67[1]"->"$r62 := @caughtexception";
+    "$r21 = r67[1]"->"i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21)";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21)"->"$r63 := @caughtexception";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21)"->"$r62 := @caughtexception";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21)"->"$r22 = r67[2]";
+    "$r22 = r67[2]"->"$r63 := @caughtexception";
+    "$r22 = r67[2]"->"$r62 := @caughtexception";
+    "$r22 = r67[2]"->"f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22)";
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22)"->"$r63 := @caughtexception";
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22)"->"$r62 := @caughtexception";
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r22)"->"$l2 = (long) i0";
+    "$l2 = (long) i0"->"$r63 := @caughtexception";
+    "$l2 = (long) i0"->"$r62 := @caughtexception";
+    "$l2 = (long) i0"->"r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2"->"$r63 := @caughtexception";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2"->"$r62 := @caughtexception";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l2"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\")";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\")"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\")"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the dictionary\")"->"$r23 = new java.util.ArrayList";
+    "$r23 = new java.util.ArrayList"->"$r63 := @caughtexception";
+    "$r23 = new java.util.ArrayList"->"$r62 := @caughtexception";
+    "$r23 = new java.util.ArrayList"->"specialinvoke $r23.<java.util.ArrayList: void <init>()>()";
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"->"$r63 := @caughtexception";
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"->"$r62 := @caughtexception";
+    "specialinvoke $r23.<java.util.ArrayList: void <init>()>()"->"r24 = $r23";
+    "r24 = $r23"->"$r63 := @caughtexception";
+    "r24 = $r23"->"$r62 := @caughtexception";
+    "r24 = $r23"->"i34 = 0";
+    "i34 = 0"->"$r63 := @caughtexception";
+    "i34 = 0"->"$r62 := @caughtexception";
+    "i34 = 0"->"if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()";
+    "if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r63 := @caughtexception";
+    "if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r63 := @caughtexception";
+    "$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r62 := @caughtexception";
+    "$r59 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>()";
+    "$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>()"->"$r63 := @caughtexception";
+    "$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>()"->"$r62 := @caughtexception";
+    "$r60 = virtualinvoke $r59.<java.lang.String: java.lang.String trim()>()"->"interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60)";
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60)"->"$r63 := @caughtexception";
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60)"->"$r62 := @caughtexception";
+    "interfaceinvoke r24.<java.util.List: boolean add(java.lang.Object)>($r60)"->"i34 = i34 + 1";
+    "i34 = i34 + 1"->"$r63 := @caughtexception";
+    "i34 = i34 + 1"->"$r62 := @caughtexception";
+    "i34 = i34 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r63 := @caughtexception";
+    "goto [?= (branch)]"->"$r62 := @caughtexception";
+    "goto [?= (branch)]"->"if i34 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$i3 = i0 * i1";
+    "$i3 = i0 * i1"->"$r63 := @caughtexception";
+    "$i3 = i0 * i1"->"$r62 := @caughtexception";
+    "$i3 = i0 * i1"->"r25 = newarray (int)[$i3]";
+    "r25 = newarray (int)[$i3]"->"$r63 := @caughtexception";
+    "r25 = newarray (int)[$i3]"->"$r62 := @caughtexception";
+    "r25 = newarray (int)[$i3]"->"r26 = newarray (long)[i1]";
+    "r26 = newarray (long)[i1]"->"$r63 := @caughtexception";
+    "r26 = newarray (long)[i1]"->"$r62 := @caughtexception";
+    "r26 = newarray (long)[i1]"->"$l4 = (long) i0";
+    "$l4 = (long) i0"->"$r63 := @caughtexception";
+    "$l4 = (long) i0"->"$r62 := @caughtexception";
+    "$l4 = (long) i0"->"r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4"->"$r63 := @caughtexception";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4"->"$r62 := @caughtexception";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l4"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\")";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\")"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\")"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Reading the vectors\")"->"i35 = 0";
+    "i35 = 0"->"$r63 := @caughtexception";
+    "i35 = 0"->"$r62 := @caughtexception";
+    "i35 = 0"->"if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()";
+    "if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r63 := @caughtexception";
+    "if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()";
+    "$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r63 := @caughtexception";
+    "$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"$r62 := @caughtexception";
+    "$r57 = virtualinvoke r65.<java.io.BufferedReader: java.lang.String readLine()>()"->"r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")";
+    "r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"$r63 := @caughtexception";
+    "r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"$r62 := @caughtexception";
+    "r68 = virtualinvoke $r57.<java.lang.String: java.lang.String[] split(java.lang.String)>(\" \")"->"i36 = 0";
+    "i36 = 0"->"$r63 := @caughtexception";
+    "i36 = 0"->"$r62 := @caughtexception";
+    "i36 = 0"->"if i36 >= i1 goto i35 = i35 + 1";
+    "if i36 >= i1 goto i35 = i35 + 1"->"$r58 = r68[i36]";
+    "if i36 >= i1 goto i35 = i35 + 1"->"i35 = i35 + 1";
+    "if i36 >= i1 goto i35 = i35 + 1"->"$r63 := @caughtexception";
+    "if i36 >= i1 goto i35 = i35 + 1"->"$r62 := @caughtexception";
+    "$r58 = r68[i36]"->"$r63 := @caughtexception";
+    "$r58 = r68[i36]"->"$r62 := @caughtexception";
+    "$r58 = r68[i36]"->"i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58)";
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58)"->"$r63 := @caughtexception";
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58)"->"$r62 := @caughtexception";
+    "i37 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r58)"->"$i27 = i35 * i1";
+    "$i27 = i35 * i1"->"$r63 := @caughtexception";
+    "$i27 = i35 * i1"->"$r62 := @caughtexception";
+    "$i27 = i35 * i1"->"$i28 = $i27 + i36";
+    "$i28 = $i27 + i36"->"$r63 := @caughtexception";
+    "$i28 = $i27 + i36"->"$r62 := @caughtexception";
+    "$i28 = $i27 + i36"->"r25[$i28] = i37";
+    "r25[$i28] = i37"->"$r63 := @caughtexception";
+    "r25[$i28] = i37"->"$r62 := @caughtexception";
+    "r25[$i28] = i37"->"$l29 = r26[i36]";
+    "$l29 = r26[i36]"->"$r63 := @caughtexception";
+    "$l29 = r26[i36]"->"$r62 := @caughtexception";
+    "$l29 = r26[i36]"->"$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37)";
+    "$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37)"->"$r63 := @caughtexception";
+    "$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37)"->"$r62 := @caughtexception";
+    "$i30 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i37)"->"$i31 = $i30 + 1";
+    "$i31 = $i30 + 1"->"$r63 := @caughtexception";
+    "$i31 = $i30 + 1"->"$r62 := @caughtexception";
+    "$i31 = $i30 + 1"->"$l32 = (long) $i31";
+    "$l32 = (long) $i31"->"$r63 := @caughtexception";
+    "$l32 = (long) $i31"->"$r62 := @caughtexception";
+    "$l32 = (long) $i31"->"$l33 = $l29 + $l32";
+    "$l33 = $l29 + $l32"->"$r63 := @caughtexception";
+    "$l33 = $l29 + $l32"->"$r62 := @caughtexception";
+    "$l33 = $l29 + $l32"->"r26[i36] = $l33";
+    "r26[i36] = $l33"->"$r63 := @caughtexception";
+    "r26[i36] = $l33"->"$r62 := @caughtexception";
+    "r26[i36] = $l33"->"i36 = i36 + 1";
+    "i36 = i36 + 1"->"$r63 := @caughtexception";
+    "i36 = i36 + 1"->"$r62 := @caughtexception";
+    "i36 = i36 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r63 := @caughtexception";
+    "goto [?= (branch)]"->"$r62 := @caughtexception";
+    "goto [?= (branch)]"->"if i36 >= i1 goto i35 = i35 + 1";
+    "i35 = i35 + 1"->"$r63 := @caughtexception";
+    "i35 = i35 + 1"->"$r62 := @caughtexception";
+    "i35 = i35 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"$r63 := @caughtexception";
+    "goto [?= (branch)]"->"$r62 := @caughtexception";
+    "goto [?= (branch)]"->"if i35 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r63 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"$r62 := @caughtexception";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"if r65 == null goto r73 = newarray (int)[i1]";
+    "if r65 == null goto r73 = newarray (int)[i1]"->"if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r65 == null goto r73 = newarray (int)[i1]"->"r73 = newarray (int)[i1]";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"$r64 := @caughtexception";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"goto [?= r73 = newarray (int)[i1]]";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"$r64 := @caughtexception";
+    "goto [?= r73 = newarray (int)[i1]]"->"r73 = newarray (int)[i1]";
+    "$r64 := @caughtexception"->"r69 = $r64";
+    "r69 = $r64"->"virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69)";
+    "virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r69)"->"goto [?= r73 = newarray (int)[i1]]";
+    "goto [?= r73 = newarray (int)[i1]]"->"r73 = newarray (int)[i1]";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"goto [?= r73 = newarray (int)[i1]]";
+    "goto [?= r73 = newarray (int)[i1]]"->"r73 = newarray (int)[i1]";
+    "$r63 := @caughtexception"->"r70 = $r63";
+    "$r63 := @caughtexception"->"$r62 := @caughtexception";
+    "r70 = $r63"->"r66 = r70";
+    "r70 = $r63"->"$r62 := @caughtexception";
+    "r66 = r70"->"throw r70";
+    "r66 = r70"->"$r62 := @caughtexception";
+    "throw r70"->"$r62 := @caughtexception";
+    "$r62 := @caughtexception"->"r71 = $r62";
+    "$r62 := @caughtexception"->"$r62 := @caughtexception";
+    "r71 = $r62"->"if r65 == null goto throw r71";
+    "r71 = $r62"->"$r62 := @caughtexception";
+    "if r65 == null goto throw r71"->"if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r65 == null goto throw r71"->"throw r71";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"virtualinvoke r65.<java.io.BufferedReader: void close()>()";
+    "if r66 == null goto virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"$r61 := @caughtexception";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"goto [?= throw r71]";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"$r61 := @caughtexception";
+    "goto [?= throw r71]"->"throw r71";
+    "$r61 := @caughtexception"->"r72 = $r61";
+    "r72 = $r61"->"virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)";
+    "virtualinvoke r66.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>(r72)"->"goto [?= throw r71]";
+    "goto [?= throw r71]"->"throw r71";
+    "virtualinvoke r65.<java.io.BufferedReader: void close()>()"->"throw r71";
+    "r73 = newarray (int)[i1]"->"i38 = 0";
+    "i38 = 0"->"if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap";
+    "if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"->"i39 = 0";
+    "if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"->"$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap";
+    "i39 = 0"->"$l24 = r26[i38]";
+    "$l24 = r26[i38]"->"$l23 = (long) i0";
+    "$l23 = (long) i0"->"$b25 = $l24 cmp $l23";
+    "$b25 = $l24 cmp $l23"->"if $b25 <= 0 goto r73[i38] = i39";
+    "if $b25 <= 0 goto r73[i38] = i39"->"$d4 = (double) i0";
+    "if $b25 <= 0 goto r73[i38] = i39"->"r73[i38] = i39";
+    "$d4 = (double) i0"->"$l26 = r26[i38]";
+    "$l26 = r26[i38]"->"$d3 = (double) $l26";
+    "$d3 = (double) $l26"->"d12 = $d4 / $d3";
+    "d12 = $d4 / $d3"->"$d5 = 2.0 - d12";
+    "$d5 = 2.0 - d12"->"$d6 = staticinvoke <java.lang.Math: double log(double)>($d5)";
+    "$d6 = staticinvoke <java.lang.Math: double log(double)>($d5)"->"$d7 = 1.0 - d12";
+    "$d7 = 1.0 - d12"->"$d8 = staticinvoke <java.lang.Math: double log(double)>($d7)";
+    "$d8 = staticinvoke <java.lang.Math: double log(double)>($d7)"->"$d9 = neg $d8";
+    "$d9 = neg $d8"->"$d10 = $d6 / $d9";
+    "$d10 = $d6 / $d9"->"$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10)";
+    "$d11 = staticinvoke <java.lang.Math: double ceil(double)>($d10)"->"i39 = (int) $d11";
+    "i39 = (int) $d11"->"r73[i38] = i39";
+    "r73[i38] = i39"->"i38 = i38 + 1";
+    "i38 = i38 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i38 >= i1 goto $r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap";
+    "$r27 = new it.unimi.dsi.util.ShiftAddXorSignedStringMap"->"$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>()";
+    "$r28 = interfaceinvoke r24.<java.util.List: java.util.Iterator iterator()>()"->"$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder";
+    "$r29 = new it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder"->"specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>()";
+    "specialinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: void <init>()>()"->"$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24)";
+    "$r30 = virtualinvoke $r29.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder keys(java.lang.Iterable)>(r24)"->"$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()";
+    "$r31 = staticinvoke <it.unimi.dsi.bits.TransformationStrategies: it.unimi.dsi.bits.TransformationStrategy utf16()>()"->"$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31)";
+    "$r32 = virtualinvoke $r30.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder transform(it.unimi.dsi.bits.TransformationStrategy)>($r31)"->"$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>()";
+    "$r33 = virtualinvoke $r32.<it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction$Builder: it.unimi.dsi.sux4j.mph.MinimalPerfectHashFunction build()>()"->"specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33)";
+    "specialinvoke $r27.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: void <init>(java.util.Iterator,it.unimi.dsi.fastutil.objects.Object2LongFunction)>($r28, $r33)"->"r74 = $r27";
+    "r74 = $r27"->"r75 = newarray (int)[i0]";
+    "r75 = newarray (int)[i0]"->"i40 = 0";
+    "i40 = 0"->"if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream";
+    "if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream"->"$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40)";
+    "if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream"->"$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream";
+    "$r55 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i40)"->"$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55)";
+    "$r56 = virtualinvoke r74.<it.unimi.dsi.util.ShiftAddXorSignedStringMap: java.lang.Long get(java.lang.Object)>($r55)"->"i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>()";
+    "i41 = virtualinvoke $r56.<java.lang.Long: int intValue()>()"->"r75[i41] = i40";
+    "r75[i41] = i40"->"i40 = i40 + 1";
+    "i40 = i40 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i40 >= i0 goto $r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream";
+    "$r34 = new it.unimi.dsi.fastutil.io.FastByteArrayOutputStream"->"specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>()";
+    "specialinvoke $r34.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void <init>()>()"->"r76 = $r34";
+    "r76 = $r34"->"$r35 = new it.unimi.dsi.io.OutputBitStream";
+    "$r35 = new it.unimi.dsi.io.OutputBitStream"->"specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0)";
+    "specialinvoke $r35.<it.unimi.dsi.io.OutputBitStream: void <init>(java.io.OutputStream,int)>(r76, 0)"->"r77 = $r35";
+    "r77 = $r35"->"$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList";
+    "$r36 = new it.unimi.dsi.fastutil.longs.LongArrayList"->"specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()";
+    "specialinvoke $r36.<it.unimi.dsi.fastutil.longs.LongArrayList: void <init>()>()"->"r78 = $r36";
+    "r78 = $r36"->"$l5 = (long) i0";
+    "$l5 = (long) i0"->"r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l5"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\")";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Compressing the vectors\")"->"i42 = 0";
+    "i42 = 0"->"if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()";
+    "if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>()";
+    "$l17 = virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: long writtenBits()>()"->"virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17)";
+    "virtualinvoke r78.<it.unimi.dsi.fastutil.longs.LongArrayList: boolean add(long)>($l17)"->"$i18 = r75[i42]";
+    "$i18 = r75[i42]"->"i43 = $i18 * i1";
+    "i43 = $i18 * i1"->"i44 = 0";
+    "i44 = 0"->"if i44 >= i1 goto i42 = i42 + 1";
+    "if i44 >= i1 goto i42 = i42 + 1"->"$i19 = i43 + i44";
+    "if i44 >= i1 goto i42 = i42 + 1"->"i42 = i42 + 1";
+    "$i19 = i43 + i44"->"i45 = r25[$i19]";
+    "i45 = r25[$i19]"->"$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45)";
+    "$i20 = staticinvoke <it.unimi.dsi.bits.Fast: int int2nat(int)>(i45)"->"$i21 = r73[i44]";
+    "$i21 = r73[i44]"->"virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21)";
+    "virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: int writeGolomb(int,int)>($i20, $i21)"->"i44 = i44 + 1";
+    "i44 = i44 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i44 >= i1 goto i42 = i42 + 1";
+    "i42 = i42 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i42 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>()";
+    "virtualinvoke r77.<it.unimi.dsi.io.OutputBitStream: void close()>()"->"$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()";
+    "$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()"->"$l7 = $l6 % 4L";
+    "$l7 = $l6 % 4L"->"$b8 = $l7 cmp 0L";
+    "$b8 = $l7 cmp 0L"->"if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()";
+    "if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()"->"virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0)";
+    "if $b8 == 0 goto virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()"->"virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()";
+    "virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void write(int)>(0)"->"goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()]";
+    "goto [?= $l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()]"->"$l6 = virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: long length()>()";
+    "virtualinvoke r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: void trim()>()"->"$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>";
+    "$r37 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"->"$i9 = lengthof $r37";
+    "$i9 = lengthof $r37"->"$d0 = (double) $i9";
+    "$d0 = (double) $i9"->"$d2 = 8.0 * $d0";
+    "$d2 = 8.0 * $d0"->"$i10 = lengthof r25";
+    "$i10 = lengthof r25"->"$d1 = (double) $i10";
+    "$d1 = (double) $i10"->"d13 = $d2 / $d1";
+    "d13 = $d2 / $d1"->"$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>";
+    "$r39 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"->"$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>";
+    "$r38 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"->"$i11 = lengthof $r38";
+    "$i11 = lengthof $r38"->"$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)";
+    "$r40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i11)"->"$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13)";
+    "$r41 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d13)"->"interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41)";
+    "interfaceinvoke $r39.<org.slf4j.Logger: void info(java.lang.String,java.lang.Object,java.lang.Object)>(\"Overall vector bit streams: {} bytes, {} bps\", $r40, $r41)"->"$r42 = <java.lang.System: java.io.PrintStream out>";
+    "$r42 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13)";
+    "virtualinvoke $r42.<java.io.PrintStream: void println(double)>(d13)"->"$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList";
+    "$r43 = new it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList"->"specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78)";
+    "specialinvoke $r43.<it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList: void <init>(it.unimi.dsi.fastutil.longs.LongIterable)>(r78)"->"r79 = $r43";
+    "r79 = $r43"->"$r44 = new it.cnr.isti.hpc.Word2VecCompress";
+    "$r44 = new it.cnr.isti.hpc.Word2VecCompress"->"$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>";
+    "$r45 = r76.<it.unimi.dsi.fastutil.io.FastByteArrayOutputStream: byte[] array>"->"specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73)";
+    "specialinvoke $r44.<it.cnr.isti.hpc.Word2VecCompress: void <init>(int,int,float,byte[],it.unimi.dsi.sux4j.util.EliasFanoMonotoneLongBigList,it.unimi.dsi.fastutil.objects.Object2LongFunction,int[])>(i0, i1, f0, $r45, r79, r74, r73)"->"r80 = $r44";
+    "r80 = $r44"->"if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")";
+    "if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")"->"staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13)";
+    "if r13 == null goto $z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")"->"$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")";
+    "staticinvoke <it.unimi.dsi.fastutil.io.BinIO: void storeObject(java.lang.Object,java.lang.CharSequence)>(r80, r13)"->"$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")";
+    "$z1 = virtualinvoke r11.<com.martiansoftware.jsap.JSAPResult: boolean getBoolean(java.lang.String)>(\"check\")"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"$l12 = (long) i0";
+    "if $z1 == 0 goto return"->"return";
+    "$l12 = (long) i0"->"r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12";
+    "r16.<it.unimi.dsi.logging.ProgressLogger: long expectedUpdates> = $l12"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\")";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void start(java.lang.CharSequence)>(\"Checking the output\")"->"i46 = 0";
+    "i46 = 0"->"if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()";
+    "if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void lightUpdate()>()"->"$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46)";
+    "$r46 = interfaceinvoke r24.<java.util.List: java.lang.Object get(int)>(i46)"->"$r47 = (java.lang.String) $r46";
+    "$r47 = (java.lang.String) $r46"->"r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47)";
+    "r48 = virtualinvoke r80.<it.cnr.isti.hpc.Word2VecCompress: int[] getInt(java.lang.String)>($r47)"->"i47 = 0";
+    "i47 = 0"->"if i47 >= i1 goto i46 = i46 + 1";
+    "if i47 >= i1 goto i46 = i46 + 1"->"$i13 = i46 * i1";
+    "if i47 >= i1 goto i46 = i46 + 1"->"i46 = i46 + 1";
+    "$i13 = i46 * i1"->"$i14 = $i13 + i47";
+    "$i14 = $i13 + i47"->"i15 = r25[$i14]";
+    "i15 = r25[$i14]"->"i16 = r48[i47]";
+    "i16 = r48[i47]"->"if i15 == i16 goto i47 = i47 + 1";
+    "if i15 == i16 goto i47 = i47 + 1"->"$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>";
+    "if i15 == i16 goto i47 = i47 + 1"->"i47 = i47 + 1";
+    "$r50 = <it.cnr.isti.hpc.Word2VecCompress: org.slf4j.Logger logger>"->"$r49 = newarray (java.lang.Object)[4]";
+    "$r49 = newarray (java.lang.Object)[4]"->"$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46)";
+    "$r51 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i46)"->"$r49[0] = $r51";
+    "$r49[0] = $r51"->"$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47)";
+    "$r52 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i47)"->"$r49[1] = $r52";
+    "$r49[1] = $r52"->"$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15)";
+    "$r53 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i15)"->"$r49[2] = $r53";
+    "$r49[2] = $r53"->"$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16)";
+    "$r54 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i16)"->"$r49[3] = $r54";
+    "$r49[3] = $r54"->"interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49)";
+    "interfaceinvoke $r50.<org.slf4j.Logger: void error(java.lang.String,java.lang.Object[])>(\"Row {}, Column {}: Expected {}, got {}\", $r49)"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"i47 = i47 + 1";
+    "i47 = i47 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i47 >= i1 goto i46 = i46 + 1";
+    "i46 = i46 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i46 >= i0 goto virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()";
+    "virtualinvoke r16.<it.unimi.dsi.logging.ProgressLogger: void done()>()"->"return";
+}

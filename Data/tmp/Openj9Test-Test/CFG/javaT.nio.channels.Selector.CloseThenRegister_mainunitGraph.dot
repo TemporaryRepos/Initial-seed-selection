@@ -1,0 +1,62 @@
+digraph "unitGraph" {
+    "r11 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.nio.channels.Selector: java.nio.channels.Selector open()>()"
+    "virtualinvoke r0.<java.nio.channels.Selector: void close()>()"
+    "r1 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"
+    "$r2 = new java.net.InetSocketAddress"
+    "specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0)"
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel bind(java.net.SocketAddress)>($r2)"
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0)"
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r0, 16)"
+    "$r6 = new java.lang.RuntimeException"
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"register after close does not cause CSE!\")"
+    "throw $r6"
+    "$r9 := @caughtexception"
+    "r10 = $r9"
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: void close()>()"
+    "goto [?= return]"
+    "$r7 := @caughtexception"
+    "r8 = $r7"
+    "throw r8"
+    "return"
+    "r11 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.nio.channels.Selector: java.nio.channels.Selector open()>()";
+    "r0 = staticinvoke <java.nio.channels.Selector: java.nio.channels.Selector open()>()"->"virtualinvoke r0.<java.nio.channels.Selector: void close()>()";
+    "virtualinvoke r0.<java.nio.channels.Selector: void close()>()"->"r1 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()";
+    "r1 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"->"$r9 := @caughtexception";
+    "r1 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"->"$r7 := @caughtexception";
+    "r1 = staticinvoke <java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel open()>()"->"$r2 = new java.net.InetSocketAddress";
+    "$r2 = new java.net.InetSocketAddress"->"$r9 := @caughtexception";
+    "$r2 = new java.net.InetSocketAddress"->"$r7 := @caughtexception";
+    "$r2 = new java.net.InetSocketAddress"->"specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0)";
+    "specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0)"->"$r9 := @caughtexception";
+    "specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0)"->"$r7 := @caughtexception";
+    "specialinvoke $r2.<java.net.InetSocketAddress: void <init>(int)>(0)"->"virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel bind(java.net.SocketAddress)>($r2)";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel bind(java.net.SocketAddress)>($r2)"->"$r9 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel bind(java.net.SocketAddress)>($r2)"->"$r7 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.ServerSocketChannel bind(java.net.SocketAddress)>($r2)"->"virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0)";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0)"->"$r9 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0)"->"$r7 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(0)"->"virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r0, 16)";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r0, 16)"->"$r9 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r0, 16)"->"$r7 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: java.nio.channels.SelectionKey register(java.nio.channels.Selector,int)>(r0, 16)"->"$r6 = new java.lang.RuntimeException";
+    "$r6 = new java.lang.RuntimeException"->"$r9 := @caughtexception";
+    "$r6 = new java.lang.RuntimeException"->"$r7 := @caughtexception";
+    "$r6 = new java.lang.RuntimeException"->"specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"register after close does not cause CSE!\")";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"register after close does not cause CSE!\")"->"$r9 := @caughtexception";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"register after close does not cause CSE!\")"->"$r7 := @caughtexception";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"register after close does not cause CSE!\")"->"throw $r6";
+    "throw $r6"->"$r9 := @caughtexception";
+    "throw $r6"->"$r7 := @caughtexception";
+    "$r9 := @caughtexception"->"r10 = $r9";
+    "$r9 := @caughtexception"->"$r7 := @caughtexception";
+    "r10 = $r9"->"virtualinvoke r1.<java.nio.channels.ServerSocketChannel: void close()>()";
+    "r10 = $r9"->"$r7 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: void close()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r7 := @caughtexception"->"r8 = $r7";
+    "$r7 := @caughtexception"->"$r7 := @caughtexception";
+    "r8 = $r7"->"virtualinvoke r1.<java.nio.channels.ServerSocketChannel: void close()>()";
+    "r8 = $r7"->"$r7 := @caughtexception";
+    "virtualinvoke r1.<java.nio.channels.ServerSocketChannel: void close()>()"->"throw r8";
+}

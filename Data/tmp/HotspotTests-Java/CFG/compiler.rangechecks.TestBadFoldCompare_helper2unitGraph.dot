@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i2 := @parameter1: int"
+    "i1 := @parameter2: int"
+    "z0 := @parameter3: boolean"
+    "if z0 == 0 goto return"
+    "if i0 > i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1"
+    "if i0 > i2 goto return"
+    "<compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1"
+    "return"
+    "i0 := @parameter0: int"->"i2 := @parameter1: int";
+    "i2 := @parameter1: int"->"i1 := @parameter2: int";
+    "i1 := @parameter2: int"->"z0 := @parameter3: boolean";
+    "z0 := @parameter3: boolean"->"if z0 == 0 goto return";
+    "if z0 == 0 goto return"->"if i0 > i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1";
+    "if z0 == 0 goto return"->"return";
+    "if i0 > i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1"->"if i0 > i2 goto return";
+    "if i0 > i1 goto <compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1"->"<compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1";
+    "if i0 > i2 goto return"->"<compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1";
+    "if i0 > i2 goto return"->"return";
+    "<compiler.rangechecks.TestBadFoldCompare: boolean test2_taken> = 1"->"return";
+}

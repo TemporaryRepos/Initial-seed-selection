@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String[]"
+    "$r0 = new TestEliminatedCloneBadMemEdge"
+    "specialinvoke $r0.<TestEliminatedCloneBadMemEdge: void <init>()>()"
+    "r1 = $r0"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)"
+    "i0 = i0 + 1"
+    "if i0 < 20000 goto staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)"
+    "return"
+    "r2 := @parameter0: java.lang.String[]"->"$r0 = new TestEliminatedCloneBadMemEdge";
+    "$r0 = new TestEliminatedCloneBadMemEdge"->"specialinvoke $r0.<TestEliminatedCloneBadMemEdge: void <init>()>()";
+    "specialinvoke $r0.<TestEliminatedCloneBadMemEdge: void <init>()>()"->"r1 = $r0";
+    "r1 = $r0"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 20000 goto staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)";
+    "staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 20000 goto staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)";
+    "if i0 < 20000 goto staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)"->"return";
+    "if i0 < 20000 goto staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)"->"staticinvoke <TestEliminatedCloneBadMemEdge: void test(TestEliminatedCloneBadMemEdge)>(r1)";
+}

@@ -1,0 +1,597 @@
+digraph "unitGraph" {
+    "r5 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String getFilePathFromClasspath(java.lang.String)>(\"log4j.properties\")"
+    "if null == r0 goto $r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "staticinvoke <org.apache.log4j.PropertyConfigurator: void configureAndWatch(java.lang.String)>(r0)"
+    "goto [?= $r2 = new org.apache.commons.cli.PosixParser]"
+    "$r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "virtualinvoke $r1.<org.apache.log4j.Logger: void warn(java.lang.Object)>(\"log4j.properties not found on classpath!\")"
+    "$r2 = new org.apache.commons.cli.PosixParser"
+    "specialinvoke $r2.<org.apache.commons.cli.PosixParser: void <init>()>()"
+    "r3 = $r2"
+    "$r4 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"
+    "r87 = interfaceinvoke r3.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>($r4, r5)"
+    "$z0 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"help\")"
+    "if $z0 == 0 goto $r6 = new java.io.File"
+    "$r83 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"
+    "staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r83, null)"
+    "staticinvoke <java.lang.System: void exit(int)>(1)"
+    "$r6 = new java.io.File"
+    "$r7 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dir\")"
+    "specialinvoke $r6.<java.io.File: void <init>(java.lang.String)>($r7)"
+    "r8 = $r6"
+    "$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(7910)"
+    "$r10 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"port\", $r9)"
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r10)"
+    "$r11 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1)"
+    "$r12 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"boosts\", $r11)"
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r12)"
+    "$r13 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1000)"
+    "$r14 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"rti-size\", $r13)"
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14)"
+    "z1 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"load-state\")"
+    "$z2 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"suggest\")"
+    "if $z2 == 0 goto r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"
+    "r88 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"suggest\")"
+    "$z11 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"queries\")"
+    "if $z11 == 0 goto $z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues QUERIES>"
+    "goto [?= (branch)]"
+    "$z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"
+    "if $z12 == 0 goto $r82 = new java.lang.IllegalArgumentException"
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"
+    "$r82 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r82.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid value for suggest: can only be \\\"queries\\\" or \\\"documents\\\".\")"
+    "throw $r82"
+    "goto [?= r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>]"
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>"
+    "i6 = 0"
+    "$z3 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"storage\")"
+    "if $z3 == 0 goto r92 = null"
+    "r91 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"storage\")"
+    "$r71 = \"bdb\""
+    "$z8 = virtualinvoke $r71.<java.lang.String: boolean equals(java.lang.Object)>(r91)"
+    "if $z8 == 0 goto $r72 = \"cassandra\""
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues BDB>"
+    "$r80 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(100)"
+    "$r81 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"bdb-cache\", $r80)"
+    "i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r81)"
+    "goto [?= r92 = null]"
+    "$r72 = \"cassandra\""
+    "$z9 = virtualinvoke $r72.<java.lang.String: boolean equals(java.lang.Object)>(r91)"
+    "if $z9 == 0 goto $r73 = \"ram\""
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues CASSANDRA>"
+    "$r73 = \"ram\""
+    "$z10 = virtualinvoke $r73.<java.lang.String: boolean equals(java.lang.Object)>(r91)"
+    "if $z10 == 0 goto $r74 = new java.lang.IllegalArgumentException"
+    "$r74 = new java.lang.IllegalArgumentException"
+    "$r75 = new java.lang.StringBuilder"
+    "specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()"
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"storage has to be \'cassandra\', \'bdb\' or \'ram\'. \'\")"
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r91)"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' given.\")"
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r74.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r79)"
+    "throw $r74"
+    "r92 = null"
+    "$z13 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"functions\")"
+    "if $z13 == 0 goto r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"
+    "r92 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"functions\")"
+    "r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"
+    "if null == r15 goto r93 = \"\""
+    "r93 = r15"
+    "goto [?= $r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>]"
+    "r93 = \"\""
+    "$r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'environment-prefix\' set to \")"
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r93)"
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r17.<org.apache.log4j.Logger: void info(java.lang.Object)>($r20)"
+    "z4 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"facets\")"
+    "$r22 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "$r21 = new java.lang.StringBuilder"
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'facets\' set to \")"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z4)"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r22.<org.apache.log4j.Logger: void info(java.lang.Object)>($r25)"
+    "r26 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"index-code\")"
+    "$r28 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "$r27 = new java.lang.StringBuilder"
+    "specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()"
+    "$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'index-code\' set to \")"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r26)"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r28.<org.apache.log4j.Logger: void info(java.lang.Object)>($r31)"
+    "r94 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"
+    "r32 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"conf-file\", null)"
+    "$r34 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "$r33 = new java.lang.StringBuilder"
+    "specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()"
+    "$r35 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'conf-file\' set to \")"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32)"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r34.<org.apache.log4j.Logger: void info(java.lang.Object)>($r37)"
+    "if r32 == null goto $r38 = new com.flaptor.indextank.index.IndexEngine"
+    "$r68 = new java.io.File"
+    "specialinvoke $r68.<java.io.File: void <init>(java.lang.String)>(r32)"
+    "$r69 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String readFile(java.io.File)>($r68)"
+    "$r70 = staticinvoke <org.json.simple.JSONValue: java.lang.Object parse(java.lang.String)>($r69)"
+    "r94 = (java.util.Map) $r70"
+    "$r38 = new com.flaptor.indextank.index.IndexEngine"
+    "specialinvoke $r38.<com.flaptor.indextank.index.IndexEngine: void <init>(java.io.File,int,int,boolean,int,com.flaptor.indextank.index.IndexEngine$SuggestValues,com.flaptor.indextank.index.IndexEngine$StorageValues,int,java.lang.String,boolean,java.lang.String,java.lang.String,java.util.Map)>(r8, i0, i2, z1, i1, r89, r90, i6, r92, z4, r26, r93, r94)"
+    "r39 = $r38"
+    "r95 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.BoostingIndexer getIndexer()>()"
+    "r96 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.search.DocumentSearcher getSearcher()>()"
+    "r40 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"
+    "r41 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.storage.alternatives.DocumentStorage getStorage()>()"
+    "$z5 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"snippets\")"
+    "if $z5 == 0 goto $z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"
+    "$r65 = new com.flaptor.indextank.DocumentStoringIndexer"
+    "specialinvoke $r65.<com.flaptor.indextank.DocumentStoringIndexer: void <init>(com.flaptor.indextank.BoostingIndexer,com.flaptor.indextank.storage.alternatives.DocumentStorage)>(r95, r41)"
+    "r95 = $r65"
+    "virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: void setIndexer(com.flaptor.indextank.BoostingIndexer)>(r95)"
+    "$r66 = new com.flaptor.indextank.search.SnippetSearcher"
+    "$r67 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"
+    "specialinvoke $r66.<com.flaptor.indextank.search.SnippetSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.storage.alternatives.DocumentStorage,com.flaptor.indextank.query.IndexEngineParser)>(r96, r41, $r67)"
+    "r96 = $r66"
+    "$z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"
+    "if $z6 == 0 goto i7 = 100"
+    "$r59 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"
+    "if r89 == $r59 goto $r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"
+    "$r64 = new java.lang.IllegalArgumentException"
+    "specialinvoke $r64.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"didyoumean requires --suggest documents\")"
+    "throw $r64"
+    "$r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"
+    "$r61 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"
+    "$r62 = (com.flaptor.indextank.suggest.TermSuggestor) $r61"
+    "specialinvoke $r60.<com.flaptor.indextank.suggest.DidYouMeanSuggestor: void <init>(com.flaptor.indextank.suggest.TermSuggestor)>($r62)"
+    "r97 = $r60"
+    "$r63 = new com.flaptor.indextank.search.DidYouMeanSearcher"
+    "specialinvoke $r63.<com.flaptor.indextank.search.DidYouMeanSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.suggest.DidYouMeanSuggestor)>(r96, r97)"
+    "r96 = $r63"
+    "i7 = 100"
+    "$z7 = interfaceinvoke r94.<java.util.Map: boolean containsKey(java.lang.Object)>(\"max_search_queue\")"
+    "if $z7 == 0 goto $r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"
+    "$r52 = interfaceinvoke r94.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"max_search_queue\")"
+    "$r53 = (java.lang.Long) $r52"
+    "i7 = virtualinvoke $r53.<java.lang.Long: int intValue()>()"
+    "$r55 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"
+    "$r54 = new java.lang.StringBuilder"
+    "specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()"
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using max_search_queue length: \")"
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7)"
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r55.<org.apache.log4j.Logger: void info(java.lang.Object)>($r58)"
+    "$r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"
+    "specialinvoke $r42.<com.flaptor.indextank.search.TrafficLimitingSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,int)>(r96, i7)"
+    "r98 = $r42"
+    "$r43 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"
+    "$r44 = new com.flaptor.indextank.index.IndexEngine$ShutdownThread"
+    "specialinvoke $r44.<com.flaptor.indextank.index.IndexEngine$ShutdownThread: void <init>(com.flaptor.indextank.BoostingIndexer)>(r95)"
+    "virtualinvoke $r43.<java.lang.Runtime: void addShutdownHook(java.lang.Thread)>($r44)"
+    "$r45 = new com.flaptor.indextank.rpc.SearcherServer"
+    "$r46 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"
+    "$r48 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.DynamicDataManager boostsManager>"
+    "$r47 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.BoostsScorer scorer>"
+    "$i3 = i0 + 2"
+    "specialinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.query.IndexEngineParser,com.flaptor.indextank.index.scorer.DynamicDataManager,com.flaptor.indextank.index.scorer.Scorer,int)>(r98, $r46, $r48, $r47, $i3)"
+    "virtualinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void start()>()"
+    "$r49 = new com.flaptor.indextank.rpc.SuggestorServer"
+    "$i4 = i0 + 3"
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void <init>(com.flaptor.indextank.suggest.Suggestor,int)>(r40, $i4)"
+    "virtualinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void start()>()"
+    "$r50 = new com.flaptor.indextank.rpc.IndexerServer"
+    "$i5 = i0 + 1"
+    "specialinvoke $r50.<com.flaptor.indextank.rpc.IndexerServer: void <init>(com.flaptor.indextank.index.IndexEngine,com.flaptor.indextank.BoostingIndexer,int)>(r39, r95, $i5)"
+    "r51 = $r50"
+    "virtualinvoke r51.<com.flaptor.indextank.rpc.IndexerServer: void start()>()"
+    "goto [?= return]"
+    "$r84 := @caughtexception"
+    "r99 = $r84"
+    "$r85 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"
+    "$r86 = virtualinvoke r99.<org.apache.commons.cli.ParseException: java.lang.String getMessage()>()"
+    "staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r85, $r86)"
+    "return"
+    "r5 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String getFilePathFromClasspath(java.lang.String)>(\"log4j.properties\")";
+    "r0 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String getFilePathFromClasspath(java.lang.String)>(\"log4j.properties\")"->"if null == r0 goto $r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "if null == r0 goto $r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"staticinvoke <org.apache.log4j.PropertyConfigurator: void configureAndWatch(java.lang.String)>(r0)";
+    "if null == r0 goto $r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "staticinvoke <org.apache.log4j.PropertyConfigurator: void configureAndWatch(java.lang.String)>(r0)"->"goto [?= $r2 = new org.apache.commons.cli.PosixParser]";
+    "goto [?= $r2 = new org.apache.commons.cli.PosixParser]"->"$r2 = new org.apache.commons.cli.PosixParser";
+    "$r1 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"virtualinvoke $r1.<org.apache.log4j.Logger: void warn(java.lang.Object)>(\"log4j.properties not found on classpath!\")";
+    "virtualinvoke $r1.<org.apache.log4j.Logger: void warn(java.lang.Object)>(\"log4j.properties not found on classpath!\")"->"$r2 = new org.apache.commons.cli.PosixParser";
+    "$r2 = new org.apache.commons.cli.PosixParser"->"specialinvoke $r2.<org.apache.commons.cli.PosixParser: void <init>()>()";
+    "specialinvoke $r2.<org.apache.commons.cli.PosixParser: void <init>()>()"->"r3 = $r2";
+    "r3 = $r2"->"$r4 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()";
+    "r3 = $r2"->"$r84 := @caughtexception";
+    "$r4 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"->"r87 = interfaceinvoke r3.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>($r4, r5)";
+    "$r4 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"->"$r84 := @caughtexception";
+    "r87 = interfaceinvoke r3.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>($r4, r5)"->"$z0 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"help\")";
+    "r87 = interfaceinvoke r3.<org.apache.commons.cli.CommandLineParser: org.apache.commons.cli.CommandLine parse(org.apache.commons.cli.Options,java.lang.String[])>($r4, r5)"->"$r84 := @caughtexception";
+    "$z0 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"help\")"->"if $z0 == 0 goto $r6 = new java.io.File";
+    "$z0 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"help\")"->"$r84 := @caughtexception";
+    "if $z0 == 0 goto $r6 = new java.io.File"->"$r83 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()";
+    "if $z0 == 0 goto $r6 = new java.io.File"->"$r6 = new java.io.File";
+    "if $z0 == 0 goto $r6 = new java.io.File"->"$r84 := @caughtexception";
+    "$r83 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"->"staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r83, null)";
+    "$r83 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"->"$r84 := @caughtexception";
+    "staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r83, null)"->"staticinvoke <java.lang.System: void exit(int)>(1)";
+    "staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r83, null)"->"$r84 := @caughtexception";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"$r6 = new java.io.File";
+    "staticinvoke <java.lang.System: void exit(int)>(1)"->"$r84 := @caughtexception";
+    "$r6 = new java.io.File"->"$r7 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dir\")";
+    "$r6 = new java.io.File"->"$r84 := @caughtexception";
+    "$r7 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dir\")"->"specialinvoke $r6.<java.io.File: void <init>(java.lang.String)>($r7)";
+    "$r7 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"dir\")"->"$r84 := @caughtexception";
+    "specialinvoke $r6.<java.io.File: void <init>(java.lang.String)>($r7)"->"r8 = $r6";
+    "specialinvoke $r6.<java.io.File: void <init>(java.lang.String)>($r7)"->"$r84 := @caughtexception";
+    "r8 = $r6"->"$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(7910)";
+    "r8 = $r6"->"$r84 := @caughtexception";
+    "$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(7910)"->"$r10 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"port\", $r9)";
+    "$r9 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(7910)"->"$r84 := @caughtexception";
+    "$r10 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"port\", $r9)"->"i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r10)";
+    "$r10 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"port\", $r9)"->"$r84 := @caughtexception";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r10)"->"$r11 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1)";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r10)"->"$r84 := @caughtexception";
+    "$r11 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1)"->"$r12 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"boosts\", $r11)";
+    "$r11 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1)"->"$r84 := @caughtexception";
+    "$r12 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"boosts\", $r11)"->"i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r12)";
+    "$r12 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"boosts\", $r11)"->"$r84 := @caughtexception";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r12)"->"$r13 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1000)";
+    "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r12)"->"$r84 := @caughtexception";
+    "$r13 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1000)"->"$r14 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"rti-size\", $r13)";
+    "$r13 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(1000)"->"$r84 := @caughtexception";
+    "$r14 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"rti-size\", $r13)"->"i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14)";
+    "$r14 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"rti-size\", $r13)"->"$r84 := @caughtexception";
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14)"->"z1 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"load-state\")";
+    "i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14)"->"$r84 := @caughtexception";
+    "z1 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"load-state\")"->"$z2 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"suggest\")";
+    "z1 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"load-state\")"->"$r84 := @caughtexception";
+    "$z2 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"suggest\")"->"if $z2 == 0 goto r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>";
+    "$z2 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"suggest\")"->"$r84 := @caughtexception";
+    "if $z2 == 0 goto r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"->"r88 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"suggest\")";
+    "if $z2 == 0 goto r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"->"r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>";
+    "if $z2 == 0 goto r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"->"$r84 := @caughtexception";
+    "r88 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"suggest\")"->"$z11 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"queries\")";
+    "r88 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"suggest\")"->"$r84 := @caughtexception";
+    "$z11 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"queries\")"->"if $z11 == 0 goto $z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")";
+    "$z11 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"queries\")"->"$r84 := @caughtexception";
+    "if $z11 == 0 goto $z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"->"r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues QUERIES>";
+    "if $z11 == 0 goto $z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"->"$z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")";
+    "if $z11 == 0 goto $z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"->"$r84 := @caughtexception";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues QUERIES>"->"goto [?= (branch)]";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues QUERIES>"->"$r84 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>]";
+    "goto [?= (branch)]"->"$r84 := @caughtexception";
+    "$z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"->"if $z12 == 0 goto $r82 = new java.lang.IllegalArgumentException";
+    "$z12 = virtualinvoke r88.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>(\"documents\")"->"$r84 := @caughtexception";
+    "if $z12 == 0 goto $r82 = new java.lang.IllegalArgumentException"->"r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>";
+    "if $z12 == 0 goto $r82 = new java.lang.IllegalArgumentException"->"$r82 = new java.lang.IllegalArgumentException";
+    "if $z12 == 0 goto $r82 = new java.lang.IllegalArgumentException"->"$r84 := @caughtexception";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"->"goto [?= (branch)]";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"->"$r84 := @caughtexception";
+    "goto [?= (branch)]"->"goto [?= r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>]";
+    "goto [?= (branch)]"->"$r84 := @caughtexception";
+    "$r82 = new java.lang.IllegalArgumentException"->"specialinvoke $r82.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid value for suggest: can only be \\\"queries\\\" or \\\"documents\\\".\")";
+    "$r82 = new java.lang.IllegalArgumentException"->"$r84 := @caughtexception";
+    "specialinvoke $r82.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid value for suggest: can only be \\\"queries\\\" or \\\"documents\\\".\")"->"throw $r82";
+    "specialinvoke $r82.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"Invalid value for suggest: can only be \\\"queries\\\" or \\\"documents\\\".\")"->"$r84 := @caughtexception";
+    "throw $r82"->"$r84 := @caughtexception";
+    "goto [?= r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>]"->"r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>";
+    "goto [?= r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>]"->"$r84 := @caughtexception";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"->"r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>";
+    "r89 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues NO>"->"$r84 := @caughtexception";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>"->"i6 = 0";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>"->"$r84 := @caughtexception";
+    "i6 = 0"->"$z3 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"storage\")";
+    "i6 = 0"->"$r84 := @caughtexception";
+    "$z3 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"storage\")"->"if $z3 == 0 goto r92 = null";
+    "$z3 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"storage\")"->"$r84 := @caughtexception";
+    "if $z3 == 0 goto r92 = null"->"r91 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"storage\")";
+    "if $z3 == 0 goto r92 = null"->"r92 = null";
+    "if $z3 == 0 goto r92 = null"->"$r84 := @caughtexception";
+    "r91 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"storage\")"->"$r71 = \"bdb\"";
+    "r91 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"storage\")"->"$r84 := @caughtexception";
+    "$r71 = \"bdb\""->"$z8 = virtualinvoke $r71.<java.lang.String: boolean equals(java.lang.Object)>(r91)";
+    "$r71 = \"bdb\""->"$r84 := @caughtexception";
+    "$z8 = virtualinvoke $r71.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"if $z8 == 0 goto $r72 = \"cassandra\"";
+    "$z8 = virtualinvoke $r71.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"$r84 := @caughtexception";
+    "if $z8 == 0 goto $r72 = \"cassandra\""->"r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues BDB>";
+    "if $z8 == 0 goto $r72 = \"cassandra\""->"$r72 = \"cassandra\"";
+    "if $z8 == 0 goto $r72 = \"cassandra\""->"$r84 := @caughtexception";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues BDB>"->"$r80 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(100)";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues BDB>"->"$r84 := @caughtexception";
+    "$r80 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(100)"->"$r81 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"bdb-cache\", $r80)";
+    "$r80 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(100)"->"$r84 := @caughtexception";
+    "$r81 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"bdb-cache\", $r80)"->"i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r81)";
+    "$r81 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"bdb-cache\", $r80)"->"$r84 := @caughtexception";
+    "i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r81)"->"goto [?= r92 = null]";
+    "i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r81)"->"$r84 := @caughtexception";
+    "goto [?= r92 = null]"->"r92 = null";
+    "goto [?= r92 = null]"->"$r84 := @caughtexception";
+    "$r72 = \"cassandra\""->"$z9 = virtualinvoke $r72.<java.lang.String: boolean equals(java.lang.Object)>(r91)";
+    "$r72 = \"cassandra\""->"$r84 := @caughtexception";
+    "$z9 = virtualinvoke $r72.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"if $z9 == 0 goto $r73 = \"ram\"";
+    "$z9 = virtualinvoke $r72.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"$r84 := @caughtexception";
+    "if $z9 == 0 goto $r73 = \"ram\""->"r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues CASSANDRA>";
+    "if $z9 == 0 goto $r73 = \"ram\""->"$r73 = \"ram\"";
+    "if $z9 == 0 goto $r73 = \"ram\""->"$r84 := @caughtexception";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues CASSANDRA>"->"goto [?= r92 = null]";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues CASSANDRA>"->"$r84 := @caughtexception";
+    "goto [?= r92 = null]"->"r92 = null";
+    "goto [?= r92 = null]"->"$r84 := @caughtexception";
+    "$r73 = \"ram\""->"$z10 = virtualinvoke $r73.<java.lang.String: boolean equals(java.lang.Object)>(r91)";
+    "$r73 = \"ram\""->"$r84 := @caughtexception";
+    "$z10 = virtualinvoke $r73.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"if $z10 == 0 goto $r74 = new java.lang.IllegalArgumentException";
+    "$z10 = virtualinvoke $r73.<java.lang.String: boolean equals(java.lang.Object)>(r91)"->"$r84 := @caughtexception";
+    "if $z10 == 0 goto $r74 = new java.lang.IllegalArgumentException"->"r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>";
+    "if $z10 == 0 goto $r74 = new java.lang.IllegalArgumentException"->"$r74 = new java.lang.IllegalArgumentException";
+    "if $z10 == 0 goto $r74 = new java.lang.IllegalArgumentException"->"$r84 := @caughtexception";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>"->"goto [?= r92 = null]";
+    "r90 = <com.flaptor.indextank.index.IndexEngine$StorageValues: com.flaptor.indextank.index.IndexEngine$StorageValues RAM>"->"$r84 := @caughtexception";
+    "goto [?= r92 = null]"->"r92 = null";
+    "goto [?= r92 = null]"->"$r84 := @caughtexception";
+    "$r74 = new java.lang.IllegalArgumentException"->"$r75 = new java.lang.StringBuilder";
+    "$r74 = new java.lang.IllegalArgumentException"->"$r84 := @caughtexception";
+    "$r75 = new java.lang.StringBuilder"->"specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()";
+    "$r75 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()"->"$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"storage has to be \'cassandra\', \'bdb\' or \'ram\'. \'\")";
+    "specialinvoke $r75.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"storage has to be \'cassandra\', \'bdb\' or \'ram\'. \'\")"->"$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r91)";
+    "$r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"storage has to be \'cassandra\', \'bdb\' or \'ram\'. \'\")"->"$r84 := @caughtexception";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r91)"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' given.\")";
+    "$r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r91)"->"$r84 := @caughtexception";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' given.\")"->"$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' given.\")"->"$r84 := @caughtexception";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r74.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r79)";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "specialinvoke $r74.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r79)"->"throw $r74";
+    "specialinvoke $r74.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r79)"->"$r84 := @caughtexception";
+    "throw $r74"->"$r84 := @caughtexception";
+    "r92 = null"->"$z13 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"functions\")";
+    "r92 = null"->"$r84 := @caughtexception";
+    "$z13 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"functions\")"->"if $z13 == 0 goto r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)";
+    "$z13 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"functions\")"->"$r84 := @caughtexception";
+    "if $z13 == 0 goto r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"->"r92 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"functions\")";
+    "if $z13 == 0 goto r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"->"r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)";
+    "if $z13 == 0 goto r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"->"$r84 := @caughtexception";
+    "r92 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"functions\")"->"r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)";
+    "r92 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"functions\")"->"$r84 := @caughtexception";
+    "r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"->"if null == r15 goto r93 = \"\"";
+    "r15 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"environment-prefix\", null)"->"$r84 := @caughtexception";
+    "if null == r15 goto r93 = \"\""->"r93 = r15";
+    "if null == r15 goto r93 = \"\""->"r93 = \"\"";
+    "if null == r15 goto r93 = \"\""->"$r84 := @caughtexception";
+    "r93 = r15"->"goto [?= $r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>]";
+    "r93 = r15"->"$r84 := @caughtexception";
+    "goto [?= $r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>]"->"$r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "goto [?= $r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>]"->"$r84 := @caughtexception";
+    "r93 = \"\""->"$r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "r93 = \"\""->"$r84 := @caughtexception";
+    "$r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r16 = new java.lang.StringBuilder";
+    "$r17 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r84 := @caughtexception";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "$r16 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'environment-prefix\' set to \")";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'environment-prefix\' set to \")"->"$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r93)";
+    "$r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'environment-prefix\' set to \")"->"$r84 := @caughtexception";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r93)"->"$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r93)"->"$r84 := @caughtexception";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r17.<org.apache.log4j.Logger: void info(java.lang.Object)>($r20)";
+    "$r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "virtualinvoke $r17.<org.apache.log4j.Logger: void info(java.lang.Object)>($r20)"->"z4 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"facets\")";
+    "virtualinvoke $r17.<org.apache.log4j.Logger: void info(java.lang.Object)>($r20)"->"$r84 := @caughtexception";
+    "z4 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"facets\")"->"$r22 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "z4 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"facets\")"->"$r84 := @caughtexception";
+    "$r22 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r21 = new java.lang.StringBuilder";
+    "$r22 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r84 := @caughtexception";
+    "$r21 = new java.lang.StringBuilder"->"specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()";
+    "$r21 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'facets\' set to \")";
+    "specialinvoke $r21.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'facets\' set to \")"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z4)";
+    "$r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'facets\' set to \")"->"$r84 := @caughtexception";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z4)"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z4)"->"$r84 := @caughtexception";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r22.<org.apache.log4j.Logger: void info(java.lang.Object)>($r25)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "virtualinvoke $r22.<org.apache.log4j.Logger: void info(java.lang.Object)>($r25)"->"r26 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"index-code\")";
+    "virtualinvoke $r22.<org.apache.log4j.Logger: void info(java.lang.Object)>($r25)"->"$r84 := @caughtexception";
+    "r26 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"index-code\")"->"$r28 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "r26 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String)>(\"index-code\")"->"$r84 := @caughtexception";
+    "$r28 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r27 = new java.lang.StringBuilder";
+    "$r28 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r84 := @caughtexception";
+    "$r27 = new java.lang.StringBuilder"->"specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()";
+    "$r27 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()"->"$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'index-code\' set to \")";
+    "specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'index-code\' set to \")"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r26)";
+    "$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'index-code\' set to \")"->"$r84 := @caughtexception";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r26)"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r26)"->"$r84 := @caughtexception";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r28.<org.apache.log4j.Logger: void info(java.lang.Object)>($r31)";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "virtualinvoke $r28.<org.apache.log4j.Logger: void info(java.lang.Object)>($r31)"->"r94 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()";
+    "virtualinvoke $r28.<org.apache.log4j.Logger: void info(java.lang.Object)>($r31)"->"$r84 := @caughtexception";
+    "r94 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"->"r32 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"conf-file\", null)";
+    "r94 = staticinvoke <com.google.common.collect.Maps: java.util.HashMap newHashMap()>()"->"$r84 := @caughtexception";
+    "r32 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"conf-file\", null)"->"$r34 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "r32 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: java.lang.String getOptionValue(java.lang.String,java.lang.String)>(\"conf-file\", null)"->"$r84 := @caughtexception";
+    "$r34 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r33 = new java.lang.StringBuilder";
+    "$r34 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r84 := @caughtexception";
+    "$r33 = new java.lang.StringBuilder"->"specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()";
+    "$r33 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()"->"$r35 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'conf-file\' set to \")";
+    "specialinvoke $r33.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r35 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'conf-file\' set to \")"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32)";
+    "$r35 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Command line option \'conf-file\' set to \")"->"$r84 := @caughtexception";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32)"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32)"->"$r84 := @caughtexception";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r34.<org.apache.log4j.Logger: void info(java.lang.Object)>($r37)";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "virtualinvoke $r34.<org.apache.log4j.Logger: void info(java.lang.Object)>($r37)"->"if r32 == null goto $r38 = new com.flaptor.indextank.index.IndexEngine";
+    "virtualinvoke $r34.<org.apache.log4j.Logger: void info(java.lang.Object)>($r37)"->"$r84 := @caughtexception";
+    "if r32 == null goto $r38 = new com.flaptor.indextank.index.IndexEngine"->"$r68 = new java.io.File";
+    "if r32 == null goto $r38 = new com.flaptor.indextank.index.IndexEngine"->"$r38 = new com.flaptor.indextank.index.IndexEngine";
+    "if r32 == null goto $r38 = new com.flaptor.indextank.index.IndexEngine"->"$r84 := @caughtexception";
+    "$r68 = new java.io.File"->"specialinvoke $r68.<java.io.File: void <init>(java.lang.String)>(r32)";
+    "$r68 = new java.io.File"->"$r84 := @caughtexception";
+    "specialinvoke $r68.<java.io.File: void <init>(java.lang.String)>(r32)"->"$r69 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String readFile(java.io.File)>($r68)";
+    "specialinvoke $r68.<java.io.File: void <init>(java.lang.String)>(r32)"->"$r84 := @caughtexception";
+    "$r69 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String readFile(java.io.File)>($r68)"->"$r70 = staticinvoke <org.json.simple.JSONValue: java.lang.Object parse(java.lang.String)>($r69)";
+    "$r69 = staticinvoke <com.flaptor.util.FileUtil: java.lang.String readFile(java.io.File)>($r68)"->"$r84 := @caughtexception";
+    "$r70 = staticinvoke <org.json.simple.JSONValue: java.lang.Object parse(java.lang.String)>($r69)"->"r94 = (java.util.Map) $r70";
+    "$r70 = staticinvoke <org.json.simple.JSONValue: java.lang.Object parse(java.lang.String)>($r69)"->"$r84 := @caughtexception";
+    "r94 = (java.util.Map) $r70"->"$r38 = new com.flaptor.indextank.index.IndexEngine";
+    "r94 = (java.util.Map) $r70"->"$r84 := @caughtexception";
+    "$r38 = new com.flaptor.indextank.index.IndexEngine"->"specialinvoke $r38.<com.flaptor.indextank.index.IndexEngine: void <init>(java.io.File,int,int,boolean,int,com.flaptor.indextank.index.IndexEngine$SuggestValues,com.flaptor.indextank.index.IndexEngine$StorageValues,int,java.lang.String,boolean,java.lang.String,java.lang.String,java.util.Map)>(r8, i0, i2, z1, i1, r89, r90, i6, r92, z4, r26, r93, r94)";
+    "$r38 = new com.flaptor.indextank.index.IndexEngine"->"$r84 := @caughtexception";
+    "specialinvoke $r38.<com.flaptor.indextank.index.IndexEngine: void <init>(java.io.File,int,int,boolean,int,com.flaptor.indextank.index.IndexEngine$SuggestValues,com.flaptor.indextank.index.IndexEngine$StorageValues,int,java.lang.String,boolean,java.lang.String,java.lang.String,java.util.Map)>(r8, i0, i2, z1, i1, r89, r90, i6, r92, z4, r26, r93, r94)"->"r39 = $r38";
+    "specialinvoke $r38.<com.flaptor.indextank.index.IndexEngine: void <init>(java.io.File,int,int,boolean,int,com.flaptor.indextank.index.IndexEngine$SuggestValues,com.flaptor.indextank.index.IndexEngine$StorageValues,int,java.lang.String,boolean,java.lang.String,java.lang.String,java.util.Map)>(r8, i0, i2, z1, i1, r89, r90, i6, r92, z4, r26, r93, r94)"->"$r84 := @caughtexception";
+    "r39 = $r38"->"r95 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.BoostingIndexer getIndexer()>()";
+    "r39 = $r38"->"$r84 := @caughtexception";
+    "r95 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.BoostingIndexer getIndexer()>()"->"r96 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.search.DocumentSearcher getSearcher()>()";
+    "r95 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.BoostingIndexer getIndexer()>()"->"$r84 := @caughtexception";
+    "r96 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.search.DocumentSearcher getSearcher()>()"->"r40 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()";
+    "r96 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.search.DocumentSearcher getSearcher()>()"->"$r84 := @caughtexception";
+    "r40 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"->"r41 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.storage.alternatives.DocumentStorage getStorage()>()";
+    "r40 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"->"$r84 := @caughtexception";
+    "r41 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.storage.alternatives.DocumentStorage getStorage()>()"->"$z5 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"snippets\")";
+    "r41 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.storage.alternatives.DocumentStorage getStorage()>()"->"$r84 := @caughtexception";
+    "$z5 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"snippets\")"->"if $z5 == 0 goto $z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")";
+    "$z5 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"snippets\")"->"$r84 := @caughtexception";
+    "if $z5 == 0 goto $z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"->"$r65 = new com.flaptor.indextank.DocumentStoringIndexer";
+    "if $z5 == 0 goto $z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"->"$z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")";
+    "if $z5 == 0 goto $z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"->"$r84 := @caughtexception";
+    "$r65 = new com.flaptor.indextank.DocumentStoringIndexer"->"specialinvoke $r65.<com.flaptor.indextank.DocumentStoringIndexer: void <init>(com.flaptor.indextank.BoostingIndexer,com.flaptor.indextank.storage.alternatives.DocumentStorage)>(r95, r41)";
+    "$r65 = new com.flaptor.indextank.DocumentStoringIndexer"->"$r84 := @caughtexception";
+    "specialinvoke $r65.<com.flaptor.indextank.DocumentStoringIndexer: void <init>(com.flaptor.indextank.BoostingIndexer,com.flaptor.indextank.storage.alternatives.DocumentStorage)>(r95, r41)"->"r95 = $r65";
+    "specialinvoke $r65.<com.flaptor.indextank.DocumentStoringIndexer: void <init>(com.flaptor.indextank.BoostingIndexer,com.flaptor.indextank.storage.alternatives.DocumentStorage)>(r95, r41)"->"$r84 := @caughtexception";
+    "r95 = $r65"->"virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: void setIndexer(com.flaptor.indextank.BoostingIndexer)>(r95)";
+    "r95 = $r65"->"$r84 := @caughtexception";
+    "virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: void setIndexer(com.flaptor.indextank.BoostingIndexer)>(r95)"->"$r66 = new com.flaptor.indextank.search.SnippetSearcher";
+    "virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: void setIndexer(com.flaptor.indextank.BoostingIndexer)>(r95)"->"$r84 := @caughtexception";
+    "$r66 = new com.flaptor.indextank.search.SnippetSearcher"->"$r67 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()";
+    "$r66 = new com.flaptor.indextank.search.SnippetSearcher"->"$r84 := @caughtexception";
+    "$r67 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"->"specialinvoke $r66.<com.flaptor.indextank.search.SnippetSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.storage.alternatives.DocumentStorage,com.flaptor.indextank.query.IndexEngineParser)>(r96, r41, $r67)";
+    "$r67 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"->"$r84 := @caughtexception";
+    "specialinvoke $r66.<com.flaptor.indextank.search.SnippetSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.storage.alternatives.DocumentStorage,com.flaptor.indextank.query.IndexEngineParser)>(r96, r41, $r67)"->"r96 = $r66";
+    "specialinvoke $r66.<com.flaptor.indextank.search.SnippetSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.storage.alternatives.DocumentStorage,com.flaptor.indextank.query.IndexEngineParser)>(r96, r41, $r67)"->"$r84 := @caughtexception";
+    "r96 = $r66"->"$z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")";
+    "r96 = $r66"->"$r84 := @caughtexception";
+    "$z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"->"if $z6 == 0 goto i7 = 100";
+    "$z6 = virtualinvoke r87.<org.apache.commons.cli.CommandLine: boolean hasOption(java.lang.String)>(\"didyoumean\")"->"$r84 := @caughtexception";
+    "if $z6 == 0 goto i7 = 100"->"$r59 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>";
+    "if $z6 == 0 goto i7 = 100"->"i7 = 100";
+    "if $z6 == 0 goto i7 = 100"->"$r84 := @caughtexception";
+    "$r59 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"->"if r89 == $r59 goto $r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor";
+    "$r59 = <com.flaptor.indextank.index.IndexEngine$SuggestValues: com.flaptor.indextank.index.IndexEngine$SuggestValues DOCUMENTS>"->"$r84 := @caughtexception";
+    "if r89 == $r59 goto $r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"->"$r64 = new java.lang.IllegalArgumentException";
+    "if r89 == $r59 goto $r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"->"$r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor";
+    "if r89 == $r59 goto $r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"->"$r84 := @caughtexception";
+    "$r64 = new java.lang.IllegalArgumentException"->"specialinvoke $r64.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"didyoumean requires --suggest documents\")";
+    "$r64 = new java.lang.IllegalArgumentException"->"$r84 := @caughtexception";
+    "specialinvoke $r64.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"didyoumean requires --suggest documents\")"->"throw $r64";
+    "specialinvoke $r64.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>(\"didyoumean requires --suggest documents\")"->"$r84 := @caughtexception";
+    "throw $r64"->"$r84 := @caughtexception";
+    "$r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"->"$r61 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()";
+    "$r60 = new com.flaptor.indextank.suggest.DidYouMeanSuggestor"->"$r84 := @caughtexception";
+    "$r61 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"->"$r62 = (com.flaptor.indextank.suggest.TermSuggestor) $r61";
+    "$r61 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.suggest.Suggestor getSuggestor()>()"->"$r84 := @caughtexception";
+    "$r62 = (com.flaptor.indextank.suggest.TermSuggestor) $r61"->"specialinvoke $r60.<com.flaptor.indextank.suggest.DidYouMeanSuggestor: void <init>(com.flaptor.indextank.suggest.TermSuggestor)>($r62)";
+    "$r62 = (com.flaptor.indextank.suggest.TermSuggestor) $r61"->"$r84 := @caughtexception";
+    "specialinvoke $r60.<com.flaptor.indextank.suggest.DidYouMeanSuggestor: void <init>(com.flaptor.indextank.suggest.TermSuggestor)>($r62)"->"r97 = $r60";
+    "specialinvoke $r60.<com.flaptor.indextank.suggest.DidYouMeanSuggestor: void <init>(com.flaptor.indextank.suggest.TermSuggestor)>($r62)"->"$r84 := @caughtexception";
+    "r97 = $r60"->"$r63 = new com.flaptor.indextank.search.DidYouMeanSearcher";
+    "r97 = $r60"->"$r84 := @caughtexception";
+    "$r63 = new com.flaptor.indextank.search.DidYouMeanSearcher"->"specialinvoke $r63.<com.flaptor.indextank.search.DidYouMeanSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.suggest.DidYouMeanSuggestor)>(r96, r97)";
+    "$r63 = new com.flaptor.indextank.search.DidYouMeanSearcher"->"$r84 := @caughtexception";
+    "specialinvoke $r63.<com.flaptor.indextank.search.DidYouMeanSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.suggest.DidYouMeanSuggestor)>(r96, r97)"->"r96 = $r63";
+    "specialinvoke $r63.<com.flaptor.indextank.search.DidYouMeanSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.suggest.DidYouMeanSuggestor)>(r96, r97)"->"$r84 := @caughtexception";
+    "r96 = $r63"->"i7 = 100";
+    "r96 = $r63"->"$r84 := @caughtexception";
+    "i7 = 100"->"$z7 = interfaceinvoke r94.<java.util.Map: boolean containsKey(java.lang.Object)>(\"max_search_queue\")";
+    "i7 = 100"->"$r84 := @caughtexception";
+    "$z7 = interfaceinvoke r94.<java.util.Map: boolean containsKey(java.lang.Object)>(\"max_search_queue\")"->"if $z7 == 0 goto $r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher";
+    "$z7 = interfaceinvoke r94.<java.util.Map: boolean containsKey(java.lang.Object)>(\"max_search_queue\")"->"$r84 := @caughtexception";
+    "if $z7 == 0 goto $r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"->"$r52 = interfaceinvoke r94.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"max_search_queue\")";
+    "if $z7 == 0 goto $r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"->"$r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher";
+    "if $z7 == 0 goto $r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"->"$r84 := @caughtexception";
+    "$r52 = interfaceinvoke r94.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"max_search_queue\")"->"$r53 = (java.lang.Long) $r52";
+    "$r52 = interfaceinvoke r94.<java.util.Map: java.lang.Object get(java.lang.Object)>(\"max_search_queue\")"->"$r84 := @caughtexception";
+    "$r53 = (java.lang.Long) $r52"->"i7 = virtualinvoke $r53.<java.lang.Long: int intValue()>()";
+    "$r53 = (java.lang.Long) $r52"->"$r84 := @caughtexception";
+    "i7 = virtualinvoke $r53.<java.lang.Long: int intValue()>()"->"$r55 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>";
+    "i7 = virtualinvoke $r53.<java.lang.Long: int intValue()>()"->"$r84 := @caughtexception";
+    "$r55 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r54 = new java.lang.StringBuilder";
+    "$r55 = <com.flaptor.indextank.index.IndexEngine: org.apache.log4j.Logger logger>"->"$r84 := @caughtexception";
+    "$r54 = new java.lang.StringBuilder"->"specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()";
+    "$r54 = new java.lang.StringBuilder"->"$r84 := @caughtexception";
+    "specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()"->"$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using max_search_queue length: \")";
+    "specialinvoke $r54.<java.lang.StringBuilder: void <init>()>()"->"$r84 := @caughtexception";
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using max_search_queue length: \")"->"$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7)";
+    "$r56 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Using max_search_queue length: \")"->"$r84 := @caughtexception";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7)"->"$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7)"->"$r84 := @caughtexception";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r55.<org.apache.log4j.Logger: void info(java.lang.Object)>($r58)";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r84 := @caughtexception";
+    "virtualinvoke $r55.<org.apache.log4j.Logger: void info(java.lang.Object)>($r58)"->"$r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher";
+    "virtualinvoke $r55.<org.apache.log4j.Logger: void info(java.lang.Object)>($r58)"->"$r84 := @caughtexception";
+    "$r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"->"specialinvoke $r42.<com.flaptor.indextank.search.TrafficLimitingSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,int)>(r96, i7)";
+    "$r42 = new com.flaptor.indextank.search.TrafficLimitingSearcher"->"$r84 := @caughtexception";
+    "specialinvoke $r42.<com.flaptor.indextank.search.TrafficLimitingSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,int)>(r96, i7)"->"r98 = $r42";
+    "specialinvoke $r42.<com.flaptor.indextank.search.TrafficLimitingSearcher: void <init>(com.flaptor.indextank.search.DocumentSearcher,int)>(r96, i7)"->"$r84 := @caughtexception";
+    "r98 = $r42"->"$r43 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()";
+    "r98 = $r42"->"$r84 := @caughtexception";
+    "$r43 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"->"$r44 = new com.flaptor.indextank.index.IndexEngine$ShutdownThread";
+    "$r43 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()"->"$r84 := @caughtexception";
+    "$r44 = new com.flaptor.indextank.index.IndexEngine$ShutdownThread"->"specialinvoke $r44.<com.flaptor.indextank.index.IndexEngine$ShutdownThread: void <init>(com.flaptor.indextank.BoostingIndexer)>(r95)";
+    "$r44 = new com.flaptor.indextank.index.IndexEngine$ShutdownThread"->"$r84 := @caughtexception";
+    "specialinvoke $r44.<com.flaptor.indextank.index.IndexEngine$ShutdownThread: void <init>(com.flaptor.indextank.BoostingIndexer)>(r95)"->"virtualinvoke $r43.<java.lang.Runtime: void addShutdownHook(java.lang.Thread)>($r44)";
+    "specialinvoke $r44.<com.flaptor.indextank.index.IndexEngine$ShutdownThread: void <init>(com.flaptor.indextank.BoostingIndexer)>(r95)"->"$r84 := @caughtexception";
+    "virtualinvoke $r43.<java.lang.Runtime: void addShutdownHook(java.lang.Thread)>($r44)"->"$r45 = new com.flaptor.indextank.rpc.SearcherServer";
+    "virtualinvoke $r43.<java.lang.Runtime: void addShutdownHook(java.lang.Thread)>($r44)"->"$r84 := @caughtexception";
+    "$r45 = new com.flaptor.indextank.rpc.SearcherServer"->"$r46 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()";
+    "$r45 = new com.flaptor.indextank.rpc.SearcherServer"->"$r84 := @caughtexception";
+    "$r46 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"->"$r48 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.DynamicDataManager boostsManager>";
+    "$r46 = virtualinvoke r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.query.IndexEngineParser getParser()>()"->"$r84 := @caughtexception";
+    "$r48 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.DynamicDataManager boostsManager>"->"$r47 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.BoostsScorer scorer>";
+    "$r48 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.DynamicDataManager boostsManager>"->"$r84 := @caughtexception";
+    "$r47 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.BoostsScorer scorer>"->"$i3 = i0 + 2";
+    "$r47 = r39.<com.flaptor.indextank.index.IndexEngine: com.flaptor.indextank.index.scorer.BoostsScorer scorer>"->"$r84 := @caughtexception";
+    "$i3 = i0 + 2"->"specialinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.query.IndexEngineParser,com.flaptor.indextank.index.scorer.DynamicDataManager,com.flaptor.indextank.index.scorer.Scorer,int)>(r98, $r46, $r48, $r47, $i3)";
+    "$i3 = i0 + 2"->"$r84 := @caughtexception";
+    "specialinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.query.IndexEngineParser,com.flaptor.indextank.index.scorer.DynamicDataManager,com.flaptor.indextank.index.scorer.Scorer,int)>(r98, $r46, $r48, $r47, $i3)"->"virtualinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void start()>()";
+    "specialinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void <init>(com.flaptor.indextank.search.DocumentSearcher,com.flaptor.indextank.query.IndexEngineParser,com.flaptor.indextank.index.scorer.DynamicDataManager,com.flaptor.indextank.index.scorer.Scorer,int)>(r98, $r46, $r48, $r47, $i3)"->"$r84 := @caughtexception";
+    "virtualinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void start()>()"->"$r49 = new com.flaptor.indextank.rpc.SuggestorServer";
+    "virtualinvoke $r45.<com.flaptor.indextank.rpc.SearcherServer: void start()>()"->"$r84 := @caughtexception";
+    "$r49 = new com.flaptor.indextank.rpc.SuggestorServer"->"$i4 = i0 + 3";
+    "$r49 = new com.flaptor.indextank.rpc.SuggestorServer"->"$r84 := @caughtexception";
+    "$i4 = i0 + 3"->"specialinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void <init>(com.flaptor.indextank.suggest.Suggestor,int)>(r40, $i4)";
+    "$i4 = i0 + 3"->"$r84 := @caughtexception";
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void <init>(com.flaptor.indextank.suggest.Suggestor,int)>(r40, $i4)"->"virtualinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void start()>()";
+    "specialinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void <init>(com.flaptor.indextank.suggest.Suggestor,int)>(r40, $i4)"->"$r84 := @caughtexception";
+    "virtualinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void start()>()"->"$r50 = new com.flaptor.indextank.rpc.IndexerServer";
+    "virtualinvoke $r49.<com.flaptor.indextank.rpc.SuggestorServer: void start()>()"->"$r84 := @caughtexception";
+    "$r50 = new com.flaptor.indextank.rpc.IndexerServer"->"$i5 = i0 + 1";
+    "$r50 = new com.flaptor.indextank.rpc.IndexerServer"->"$r84 := @caughtexception";
+    "$i5 = i0 + 1"->"specialinvoke $r50.<com.flaptor.indextank.rpc.IndexerServer: void <init>(com.flaptor.indextank.index.IndexEngine,com.flaptor.indextank.BoostingIndexer,int)>(r39, r95, $i5)";
+    "$i5 = i0 + 1"->"$r84 := @caughtexception";
+    "specialinvoke $r50.<com.flaptor.indextank.rpc.IndexerServer: void <init>(com.flaptor.indextank.index.IndexEngine,com.flaptor.indextank.BoostingIndexer,int)>(r39, r95, $i5)"->"r51 = $r50";
+    "specialinvoke $r50.<com.flaptor.indextank.rpc.IndexerServer: void <init>(com.flaptor.indextank.index.IndexEngine,com.flaptor.indextank.BoostingIndexer,int)>(r39, r95, $i5)"->"$r84 := @caughtexception";
+    "r51 = $r50"->"virtualinvoke r51.<com.flaptor.indextank.rpc.IndexerServer: void start()>()";
+    "r51 = $r50"->"$r84 := @caughtexception";
+    "virtualinvoke r51.<com.flaptor.indextank.rpc.IndexerServer: void start()>()"->"goto [?= return]";
+    "virtualinvoke r51.<com.flaptor.indextank.rpc.IndexerServer: void start()>()"->"$r84 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r84 := @caughtexception"->"r99 = $r84";
+    "r99 = $r84"->"$r85 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()";
+    "$r85 = staticinvoke <com.flaptor.indextank.index.IndexEngine: org.apache.commons.cli.Options getOptions()>()"->"$r86 = virtualinvoke r99.<org.apache.commons.cli.ParseException: java.lang.String getMessage()>()";
+    "$r86 = virtualinvoke r99.<org.apache.commons.cli.ParseException: java.lang.String getMessage()>()"->"staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r85, $r86)";
+    "staticinvoke <com.flaptor.indextank.index.IndexEngine: void printHelp(org.apache.commons.cli.Options,java.lang.String)>($r85, $r86)"->"return";
+}

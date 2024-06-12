@@ -1,0 +1,73 @@
+digraph "unitGraph" {
+    "$r0 = new java.net.CookieManager"
+    "specialinvoke $r0.<java.net.CookieManager: void <init>()>()"
+    "r1 = virtualinvoke $r0.<java.net.CookieManager: java.net.CookieStore getCookieStore()>()"
+    "$z0 = interfaceinvoke r1.<java.net.CookieStore: boolean removeAll()>()"
+    "if $z0 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")"
+    "<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1"
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")"
+    "$r2 = new java.net.HttpCookie"
+    "specialinvoke $r2.<java.net.HttpCookie: void <init>(java.lang.String,java.lang.String)>(\"MY_COOKIE\", \"MY_COOKIE_VALUE\")"
+    "r3 = $r2"
+    "virtualinvoke r3.<java.net.HttpCookie: void setDomain(java.lang.String)>(\"foo.com\")"
+    "interfaceinvoke r1.<java.net.CookieStore: void add(java.net.URI,java.net.HttpCookie)>(null, r3)"
+    "$r4 = new java.net.URI"
+    "specialinvoke $r4.<java.net.URI: void <init>(java.lang.String)>(\"http://foo.com\")"
+    "r5 = $r4"
+    "r6 = interfaceinvoke r1.<java.net.CookieStore: java.util.List get(java.net.URI)>(r5)"
+    "$i0 = interfaceinvoke r6.<java.util.List: int size()>()"
+    "if $i0 == 1 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")"
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")"
+    "r9 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>()"
+    "$z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()"
+    "if $z2 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")"
+    "$r7 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>()"
+    "r8 = (java.net.HttpCookie) $r7"
+    "$z1 = virtualinvoke r8.<java.net.HttpCookie: boolean equals(java.lang.Object)>(r3)"
+    "if $z1 != 0 goto (branch)"
+    "goto [?= $z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()]"
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")"
+    "z3 = interfaceinvoke r1.<java.net.CookieStore: boolean remove(java.net.URI,java.net.HttpCookie)>(null, r3)"
+    "if z3 != 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")"
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")"
+    "return"
+    "$r0 = new java.net.CookieManager"->"specialinvoke $r0.<java.net.CookieManager: void <init>()>()";
+    "specialinvoke $r0.<java.net.CookieManager: void <init>()>()"->"r1 = virtualinvoke $r0.<java.net.CookieManager: java.net.CookieStore getCookieStore()>()";
+    "r1 = virtualinvoke $r0.<java.net.CookieManager: java.net.CookieStore getCookieStore()>()"->"$z0 = interfaceinvoke r1.<java.net.CookieStore: boolean removeAll()>()";
+    "$z0 = interfaceinvoke r1.<java.net.CookieStore: boolean removeAll()>()"->"if $z0 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")";
+    "if $z0 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")"->"<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1";
+    "if $z0 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")";
+    "<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")";
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"removeAll on empty store should return false\")"->"$r2 = new java.net.HttpCookie";
+    "$r2 = new java.net.HttpCookie"->"specialinvoke $r2.<java.net.HttpCookie: void <init>(java.lang.String,java.lang.String)>(\"MY_COOKIE\", \"MY_COOKIE_VALUE\")";
+    "specialinvoke $r2.<java.net.HttpCookie: void <init>(java.lang.String,java.lang.String)>(\"MY_COOKIE\", \"MY_COOKIE_VALUE\")"->"r3 = $r2";
+    "r3 = $r2"->"virtualinvoke r3.<java.net.HttpCookie: void setDomain(java.lang.String)>(\"foo.com\")";
+    "virtualinvoke r3.<java.net.HttpCookie: void setDomain(java.lang.String)>(\"foo.com\")"->"interfaceinvoke r1.<java.net.CookieStore: void add(java.net.URI,java.net.HttpCookie)>(null, r3)";
+    "interfaceinvoke r1.<java.net.CookieStore: void add(java.net.URI,java.net.HttpCookie)>(null, r3)"->"$r4 = new java.net.URI";
+    "$r4 = new java.net.URI"->"specialinvoke $r4.<java.net.URI: void <init>(java.lang.String)>(\"http://foo.com\")";
+    "specialinvoke $r4.<java.net.URI: void <init>(java.lang.String)>(\"http://foo.com\")"->"r5 = $r4";
+    "r5 = $r4"->"r6 = interfaceinvoke r1.<java.net.CookieStore: java.util.List get(java.net.URI)>(r5)";
+    "r6 = interfaceinvoke r1.<java.net.CookieStore: java.util.List get(java.net.URI)>(r5)"->"$i0 = interfaceinvoke r6.<java.util.List: int size()>()";
+    "$i0 = interfaceinvoke r6.<java.util.List: int size()>()"->"if $i0 == 1 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")";
+    "if $i0 == 1 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")"->"<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1";
+    "if $i0 == 1 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")";
+    "<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")";
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal size of cookie jar\")"->"r9 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>()";
+    "r9 = interfaceinvoke r6.<java.util.List: java.util.Iterator iterator()>()"->"$z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()";
+    "$z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()"->"if $z2 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")";
+    "if $z2 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")"->"$r7 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z2 == 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")";
+    "$r7 = interfaceinvoke r9.<java.util.Iterator: java.lang.Object next()>()"->"r8 = (java.net.HttpCookie) $r7";
+    "r8 = (java.net.HttpCookie) $r7"->"$z1 = virtualinvoke r8.<java.net.HttpCookie: boolean equals(java.lang.Object)>(r3)";
+    "$z1 = virtualinvoke r8.<java.net.HttpCookie: boolean equals(java.lang.Object)>(r3)"->"if $z1 != 0 goto (branch)";
+    "if $z1 != 0 goto (branch)"->"<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1";
+    "if $z1 != 0 goto (branch)"->"goto [?= $z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()]";
+    "<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1"->"goto [?= $z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()]"->"$z2 = interfaceinvoke r9.<java.util.Iterator: boolean hasNext()>()";
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Cookie not retrieved from Cookie Jar\")"->"z3 = interfaceinvoke r1.<java.net.CookieStore: boolean remove(java.net.URI,java.net.HttpCookie)>(null, r3)";
+    "z3 = interfaceinvoke r1.<java.net.CookieStore: boolean remove(java.net.URI,java.net.HttpCookie)>(null, r3)"->"if z3 != 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")";
+    "if z3 != 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")"->"<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1";
+    "if z3 != 0 goto staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")";
+    "<javaT.net.CookieHandler.NullUriCookieTest: boolean fail> = 1"->"staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")";
+    "staticinvoke <javaT.net.CookieHandler.NullUriCookieTest: void checkFail(java.lang.String)>(\"Abnormal removal behaviour from Cookie Jar\")"->"return";
+}

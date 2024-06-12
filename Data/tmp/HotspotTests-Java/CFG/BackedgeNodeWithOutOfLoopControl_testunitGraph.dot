@@ -1,0 +1,40 @@
+digraph "unitGraph" {
+    "r2 := @this: BackedgeNodeWithOutOfLoopControl"
+    "$r0 = newarray (int)[10]"
+    "$r0[0] = 1"
+    "$r0[1] = 2"
+    "$r0[2] = 3"
+    "$r0[3] = 4"
+    "$r0[4] = 5"
+    "$r0[5] = 6"
+    "$r0[6] = 7"
+    "$r0[7] = 8"
+    "$r0[8] = 9"
+    "$r0[9] = 10"
+    "r1 = $r0"
+    "i0 = 0"
+    "goto [?= (branch)]"
+    "staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)"
+    "i0 = i0 + 1"
+    "if i0 < 2000 goto staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)"
+    "return"
+    "r2 := @this: BackedgeNodeWithOutOfLoopControl"->"$r0 = newarray (int)[10]";
+    "$r0 = newarray (int)[10]"->"$r0[0] = 1";
+    "$r0[0] = 1"->"$r0[1] = 2";
+    "$r0[1] = 2"->"$r0[2] = 3";
+    "$r0[2] = 3"->"$r0[3] = 4";
+    "$r0[3] = 4"->"$r0[4] = 5";
+    "$r0[4] = 5"->"$r0[5] = 6";
+    "$r0[5] = 6"->"$r0[6] = 7";
+    "$r0[6] = 7"->"$r0[7] = 8";
+    "$r0[7] = 8"->"$r0[8] = 9";
+    "$r0[8] = 9"->"$r0[9] = 10";
+    "$r0[9] = 10"->"r1 = $r0";
+    "r1 = $r0"->"i0 = 0";
+    "i0 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i0 < 2000 goto staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)";
+    "staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)"->"i0 = i0 + 1";
+    "i0 = i0 + 1"->"if i0 < 2000 goto staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)";
+    "if i0 < 2000 goto staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)"->"return";
+    "if i0 < 2000 goto staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)"->"staticinvoke <BackedgeNodeWithOutOfLoopControl: void accessArrayVariables(int[],int)>(r1, 5)";
+}

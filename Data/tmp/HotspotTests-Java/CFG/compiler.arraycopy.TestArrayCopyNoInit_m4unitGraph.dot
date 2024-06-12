@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: int[]"
+    "i1 := @parameter1: int"
+    "$i0 = r0[0]"
+    "r1 = newarray (int)[10]"
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r1, 0, i1)"
+    "goto [?= return r1]"
+    "$r2 := @caughtexception"
+    "return r1"
+    "r0 := @parameter0: int[]"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"$i0 = r0[0]";
+    "$i0 = r0[0]"->"r1 = newarray (int)[10]";
+    "r1 = newarray (int)[10]"->"staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r1, 0, i1)";
+    "r1 = newarray (int)[10]"->"$r2 := @caughtexception";
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r1, 0, i1)"->"goto [?= return r1]";
+    "staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r0, 0, r1, 0, i1)"->"$r2 := @caughtexception";
+    "goto [?= return r1]"->"return r1";
+    "$r2 := @caughtexception"->"return r1";
+}

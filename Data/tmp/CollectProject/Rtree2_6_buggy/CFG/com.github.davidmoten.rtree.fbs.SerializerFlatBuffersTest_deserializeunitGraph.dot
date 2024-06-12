@@ -1,0 +1,96 @@
+digraph "unitGraph" {
+    "r4 := @parameter0: com.github.davidmoten.rtree.InternalStructure"
+    "r1 := @parameter1: java.io.File"
+    "r3 := @parameter2: com.github.davidmoten.rtree.Serializer"
+    "z0 := @parameter3: boolean"
+    "staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$r0 = new java.io.FileInputStream"
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)"
+    "r2 = $r0"
+    "l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l0 = virtualinvoke r1.<java.io.File: long length()>()"
+    "r5 = interfaceinvoke r3.<com.github.davidmoten.rtree.Serializer: com.github.davidmoten.rtree.RTree read(java.io.InputStream,long,com.github.davidmoten.rtree.InternalStructure)>(r2, $l0, r4)"
+    "$r6 = <java.lang.System: java.io.PrintStream out>"
+    "$r7 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.guavamini.Optional root()>()"
+    "$r8 = virtualinvoke $r7.<com.github.davidmoten.guavamini.Optional: java.lang.Object get()>()"
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.Object)>($r8)"
+    "$r10 = <java.lang.System: java.io.PrintStream out>"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"read in \")"
+    "$l1 = staticinvoke <java.lang.System: long currentTimeMillis()>()"
+    "$l2 = $l1 - l7"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2)"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ms\")"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)"
+    "$r15 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Rectangle rectangle(double,double,double,double)>(40.0, 27.0, 40.5, 27.5)"
+    "r26 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Rectangle)>($r15)"
+    "if z0 == 0 goto $r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()"
+    "r26 = virtualinvoke r26.<rx.Observable: rx.Observable take(int)>(10000)"
+    "$r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()"
+    "$r17 = virtualinvoke $r16.<rx.Observable: rx.observables.BlockingObservable toBlocking()>()"
+    "$r18 = virtualinvoke $r17.<rx.observables.BlockingObservable: java.lang.Object single()>()"
+    "$r19 = (java.lang.Integer) $r18"
+    "i3 = virtualinvoke $r19.<java.lang.Integer: int intValue()>()"
+    "$r21 = <java.lang.System: java.io.PrintStream out>"
+    "$r20 = new java.lang.StringBuilder"
+    "specialinvoke $r20.<java.lang.StringBuilder: void <init>()>()"
+    "$r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found=\")"
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)"
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r24)"
+    "$l4 = (long) i3"
+    "staticinvoke <org.junit.Assert: void assertEquals(long,long)>(22L, $l4)"
+    "$r25 = <java.lang.System: java.io.PrintStream out>"
+    "$i5 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: int size()>()"
+    "virtualinvoke $r25.<java.io.PrintStream: void println(int)>($i5)"
+    "return"
+    "r4 := @parameter0: com.github.davidmoten.rtree.InternalStructure"->"r1 := @parameter1: java.io.File";
+    "r1 := @parameter1: java.io.File"->"r3 := @parameter2: com.github.davidmoten.rtree.Serializer";
+    "r3 := @parameter2: com.github.davidmoten.rtree.Serializer"->"z0 := @parameter3: boolean";
+    "z0 := @parameter3: boolean"->"staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$r0 = new java.io.FileInputStream";
+    "$r0 = new java.io.FileInputStream"->"specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)";
+    "specialinvoke $r0.<java.io.FileInputStream: void <init>(java.io.File)>(r1)"->"r2 = $r0";
+    "r2 = $r0"->"l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "l7 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l0 = virtualinvoke r1.<java.io.File: long length()>()";
+    "$l0 = virtualinvoke r1.<java.io.File: long length()>()"->"r5 = interfaceinvoke r3.<com.github.davidmoten.rtree.Serializer: com.github.davidmoten.rtree.RTree read(java.io.InputStream,long,com.github.davidmoten.rtree.InternalStructure)>(r2, $l0, r4)";
+    "r5 = interfaceinvoke r3.<com.github.davidmoten.rtree.Serializer: com.github.davidmoten.rtree.RTree read(java.io.InputStream,long,com.github.davidmoten.rtree.InternalStructure)>(r2, $l0, r4)"->"$r6 = <java.lang.System: java.io.PrintStream out>";
+    "$r6 = <java.lang.System: java.io.PrintStream out>"->"$r7 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.guavamini.Optional root()>()";
+    "$r7 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: com.github.davidmoten.guavamini.Optional root()>()"->"$r8 = virtualinvoke $r7.<com.github.davidmoten.guavamini.Optional: java.lang.Object get()>()";
+    "$r8 = virtualinvoke $r7.<com.github.davidmoten.guavamini.Optional: java.lang.Object get()>()"->"virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.Object)>($r8)";
+    "virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.Object)>($r8)"->"$r10 = <java.lang.System: java.io.PrintStream out>";
+    "$r10 = <java.lang.System: java.io.PrintStream out>"->"$r9 = new java.lang.StringBuilder";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"read in \")";
+    "$r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"read in \")"->"$l1 = staticinvoke <java.lang.System: long currentTimeMillis()>()";
+    "$l1 = staticinvoke <java.lang.System: long currentTimeMillis()>()"->"$l2 = $l1 - l7";
+    "$l2 = $l1 - l7"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2)";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2)"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ms\")";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"ms\")"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)";
+    "virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14)"->"$r15 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Rectangle rectangle(double,double,double,double)>(40.0, 27.0, 40.5, 27.5)";
+    "$r15 = staticinvoke <com.github.davidmoten.rtree.geometry.Geometries: com.github.davidmoten.rtree.geometry.Rectangle rectangle(double,double,double,double)>(40.0, 27.0, 40.5, 27.5)"->"r26 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Rectangle)>($r15)";
+    "r26 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: rx.Observable search(com.github.davidmoten.rtree.geometry.Rectangle)>($r15)"->"if z0 == 0 goto $r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()";
+    "if z0 == 0 goto $r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()"->"r26 = virtualinvoke r26.<rx.Observable: rx.Observable take(int)>(10000)";
+    "if z0 == 0 goto $r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()"->"$r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()";
+    "r26 = virtualinvoke r26.<rx.Observable: rx.Observable take(int)>(10000)"->"$r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()";
+    "$r16 = virtualinvoke r26.<rx.Observable: rx.Observable count()>()"->"$r17 = virtualinvoke $r16.<rx.Observable: rx.observables.BlockingObservable toBlocking()>()";
+    "$r17 = virtualinvoke $r16.<rx.Observable: rx.observables.BlockingObservable toBlocking()>()"->"$r18 = virtualinvoke $r17.<rx.observables.BlockingObservable: java.lang.Object single()>()";
+    "$r18 = virtualinvoke $r17.<rx.observables.BlockingObservable: java.lang.Object single()>()"->"$r19 = (java.lang.Integer) $r18";
+    "$r19 = (java.lang.Integer) $r18"->"i3 = virtualinvoke $r19.<java.lang.Integer: int intValue()>()";
+    "i3 = virtualinvoke $r19.<java.lang.Integer: int intValue()>()"->"$r21 = <java.lang.System: java.io.PrintStream out>";
+    "$r21 = <java.lang.System: java.io.PrintStream out>"->"$r20 = new java.lang.StringBuilder";
+    "$r20 = new java.lang.StringBuilder"->"specialinvoke $r20.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r20.<java.lang.StringBuilder: void <init>()>()"->"$r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found=\")";
+    "$r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"found=\")"->"$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)";
+    "$r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3)"->"$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r24)";
+    "virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r24)"->"$l4 = (long) i3";
+    "$l4 = (long) i3"->"staticinvoke <org.junit.Assert: void assertEquals(long,long)>(22L, $l4)";
+    "staticinvoke <org.junit.Assert: void assertEquals(long,long)>(22L, $l4)"->"$r25 = <java.lang.System: java.io.PrintStream out>";
+    "$r25 = <java.lang.System: java.io.PrintStream out>"->"$i5 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: int size()>()";
+    "$i5 = virtualinvoke r5.<com.github.davidmoten.rtree.RTree: int size()>()"->"virtualinvoke $r25.<java.io.PrintStream: void println(int)>($i5)";
+    "virtualinvoke $r25.<java.io.PrintStream: void println(int)>($i5)"->"return";
+}

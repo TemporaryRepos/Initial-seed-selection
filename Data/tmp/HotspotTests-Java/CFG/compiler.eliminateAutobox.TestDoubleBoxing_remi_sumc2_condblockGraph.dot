@@ -1,0 +1,123 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 5 ]
+r1 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>;
+r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0);
+i1 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+"
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>();
+$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>;
+$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>();
+$d4 = $d2 + $d3;
+r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4);
+goto [?= i1 = i1 + 1];
+"
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d1 = $d0 + 2.0;
+r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1);
+"
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i1 = i1 + 1;
+"
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"
+    "Block 6:
+[preds: 5 ] [succs: ]
+$d5 = virtualinvoke r1.<java.lang.Double: double doubleValue()>();
+$d6 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d7 = $d5 + $d6;
+return $d7;
+"
+    "Block 0:
+[preds: ] [succs: 5 ]
+r1 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>;
+r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(1.0);
+i1 = 0;
+goto [?= (branch)];
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+";
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+"->"Block 2:
+[preds: 1 ] [succs: 4 ]
+$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>();
+$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>;
+$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>();
+$d4 = $d2 + $d3;
+r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4);
+goto [?= i1 = i1 + 1];
+";
+    "Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+"->"Block 3:
+[preds: 1 ] [succs: 4 ]
+$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d1 = $d0 + 2.0;
+r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1);
+";
+    "Block 2:
+[preds: 1 ] [succs: 4 ]
+$d2 = virtualinvoke r1.<java.lang.Double: double doubleValue()>();
+$r0 = <compiler.eliminateAutobox.TestDoubleBoxing: java.lang.Double ibc>;
+$d3 = virtualinvoke $r0.<java.lang.Double: double doubleValue()>();
+$d4 = $d2 + $d3;
+r1 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d4);
+goto [?= i1 = i1 + 1];
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i1 = i1 + 1;
+";
+    "Block 3:
+[preds: 1 ] [succs: 4 ]
+$d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d1 = $d0 + 2.0;
+r2 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d1);
+"->"Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i1 = i1 + 1;
+";
+    "Block 4:
+[preds: 2 3 ] [succs: 5 ]
+i1 = i1 + 1;
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"->"Block 6:
+[preds: 5 ] [succs: ]
+$d5 = virtualinvoke r1.<java.lang.Double: double doubleValue()>();
+$d6 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+$d7 = $d5 + $d6;
+return $d7;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i1 < 1000 goto $i0 = i1 & 1;
+"->"Block 1:
+[preds: 5 ] [succs: 2 3 ]
+$i0 = i1 & 1;
+if $i0 != 0 goto $d0 = virtualinvoke r2.<java.lang.Double: double doubleValue()>();
+";
+}

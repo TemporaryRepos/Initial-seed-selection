@@ -1,0 +1,469 @@
+digraph "unitGraph" {
+    "r5 := @this: org.joda.time.tz.ZoneInfoCompiler"
+    "r1 := @parameter0: java.io.File"
+    "r0 := @parameter1: java.io.File[]"
+    "if r0 == null goto (branch)"
+    "i5 = 0"
+    "$i4 = lengthof r0"
+    "if i5 >= $i4 goto (branch)"
+    "r95 = null"
+    "$r86 = new java.io.BufferedReader"
+    "$r87 = new java.io.FileReader"
+    "$r88 = r0[i5]"
+    "specialinvoke $r87.<java.io.FileReader: void <init>(java.io.File)>($r88)"
+    "specialinvoke $r86.<java.io.BufferedReader: void <init>(java.io.Reader)>($r87)"
+    "r95 = $r86"
+    "$r90 = \"backward\""
+    "$r89 = r0[i5]"
+    "$r91 = virtualinvoke $r89.<java.io.File: java.lang.String getName()>()"
+    "$z8 = virtualinvoke $r90.<java.lang.String: boolean equals(java.lang.Object)>($r91)"
+    "virtualinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void parseDataFile(java.io.BufferedReader,boolean)>(r95, $z8)"
+    "if r95 == null goto i5 = i5 + 1"
+    "virtualinvoke r95.<java.io.BufferedReader: void close()>()"
+    "goto [?= i5 = i5 + 1]"
+    "$r94 := @caughtexception"
+    "r96 = $r94"
+    "if r95 == null goto throw r96"
+    "throw r96"
+    "i5 = i5 + 1"
+    "goto [?= $i4 = lengthof r0]"
+    "if r1 == null goto $r2 = new java.util.TreeMap"
+    "$z5 = virtualinvoke r1.<java.io.File: boolean exists()>()"
+    "if $z5 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"
+    "$z7 = virtualinvoke r1.<java.io.File: boolean mkdirs()>()"
+    "if $z7 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"
+    "$r81 = new java.io.IOException"
+    "$r82 = new java.lang.StringBuilder"
+    "specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()"
+    "$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination directory doesn\'t exist and cannot be created: \")"
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r81.<java.io.IOException: void <init>(java.lang.String)>($r85)"
+    "throw $r81"
+    "$z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"
+    "if $z6 != 0 goto $r2 = new java.util.TreeMap"
+    "$r76 = new java.io.IOException"
+    "$r77 = new java.lang.StringBuilder"
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination is not a directory: \")"
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"
+    "$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r76.<java.io.IOException: void <init>(java.lang.String)>($r80)"
+    "throw $r76"
+    "$r2 = new java.util.TreeMap"
+    "specialinvoke $r2.<java.util.TreeMap: void <init>()>()"
+    "r97 = $r2"
+    "$r3 = new java.util.TreeMap"
+    "specialinvoke $r3.<java.util.TreeMap: void <init>()>()"
+    "r98 = $r3"
+    "$r4 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Writing zoneinfo files\")"
+    "i6 = 0"
+    "$r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>"
+    "$i7 = interfaceinvoke $r99.<java.util.List: int size()>()"
+    "if i6 >= $i7 goto i8 = 0"
+    "$r66 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>"
+    "$r67 = interfaceinvoke $r66.<java.util.List: java.lang.Object get(int)>(i6)"
+    "r100 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r67"
+    "$r68 = new org.joda.time.tz.DateTimeZoneBuilder"
+    "specialinvoke $r68.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()"
+    "r101 = $r68"
+    "$r69 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>"
+    "virtualinvoke r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r101, $r69)"
+    "$r70 = r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: java.lang.String iName>"
+    "r102 = virtualinvoke r101.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>($r70, 1)"
+    "$r71 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "$z4 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r71, r102)"
+    "if $z4 == 0 goto i6 = i6 + 1"
+    "$r72 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r72, r102)"
+    "$r74 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "interfaceinvoke r98.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r74, r100)"
+    "if r1 == null goto i6 = i6 + 1"
+    "specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r101, r102)"
+    "i6 = i6 + 1"
+    "goto [?= $r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>]"
+    "i8 = 0"
+    "$r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"
+    "$i0 = interfaceinvoke $r6.<java.util.List: int size()>()"
+    "if i8 >= $i0 goto i9 = 0"
+    "$r38 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"
+    "$r39 = interfaceinvoke $r38.<java.util.List: java.lang.Object get(int)>(i8)"
+    "r103 = (java.lang.String) $r39"
+    "$r40 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"
+    "$i3 = i8 + 1"
+    "$r41 = interfaceinvoke $r40.<java.util.List: java.lang.Object get(int)>($i3)"
+    "r104 = (java.lang.String) $r41"
+    "$r42 = interfaceinvoke r98.<java.util.Map: java.lang.Object get(java.lang.Object)>(r103)"
+    "r105 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r42"
+    "if r105 != null goto $r43 = new org.joda.time.tz.DateTimeZoneBuilder"
+    "$r59 = <java.lang.System: java.io.PrintStream out>"
+    "$r58 = new java.lang.StringBuilder"
+    "specialinvoke $r58.<java.lang.StringBuilder: void <init>()>()"
+    "$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find source zone \'\")"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)"
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")"
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)"
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")"
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r59.<java.io.PrintStream: void println(java.lang.String)>($r65)"
+    "goto [?= i8 = i8 + 2]"
+    "$r43 = new org.joda.time.tz.DateTimeZoneBuilder"
+    "specialinvoke $r43.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()"
+    "r106 = $r43"
+    "$r44 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>"
+    "virtualinvoke r105.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r106, $r44)"
+    "r45 = virtualinvoke r106.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>(r104, 1)"
+    "$r46 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "$z3 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r46, r45)"
+    "if $z3 == 0 goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "$r56 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r56, r45)"
+    "if r1 == null goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r106, r45)"
+    "$r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r107, r45)"
+    "$z9 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()"
+    "if $z9 == 0 goto i8 = i8 + 2"
+    "$r49 = <java.lang.System: java.io.PrintStream out>"
+    "$r48 = new java.lang.StringBuilder"
+    "specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()"
+    "$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Good link: \")"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)"
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")"
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)"
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" revived\")"
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r55)"
+    "i8 = i8 + 2"
+    "goto [?= $r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>]"
+    "i9 = 0"
+    "if i9 >= 2 goto (branch)"
+    "i10 = 0"
+    "$r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"
+    "$i1 = interfaceinvoke $r15.<java.util.List: int size()>()"
+    "if i10 >= $i1 goto i9 = i9 + 1"
+    "$r16 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"
+    "$r17 = interfaceinvoke $r16.<java.util.List: java.lang.Object get(int)>(i10)"
+    "r108 = (java.lang.String) $r17"
+    "$r18 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"
+    "$i2 = i10 + 1"
+    "$r19 = interfaceinvoke $r18.<java.util.List: java.lang.Object get(int)>($i2)"
+    "r109 = (java.lang.String) $r19"
+    "$r20 = interfaceinvoke r97.<java.util.Map: java.lang.Object get(java.lang.Object)>(r108)"
+    "r110 = (org.joda.time.DateTimeZone) $r20"
+    "if r110 != null goto interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)"
+    "if i9 <= 0 goto i10 = i10 + 2"
+    "$r31 = <java.lang.System: java.io.PrintStream out>"
+    "$r30 = new java.lang.StringBuilder"
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find time zone \'\")"
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r108)"
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")"
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)"
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37)"
+    "goto [?= i10 = i10 + 2]"
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)"
+    "$z2 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()"
+    "if $z2 == 0 goto i10 = i10 + 2"
+    "$r23 = <java.lang.System: java.io.PrintStream out>"
+    "$r22 = new java.lang.StringBuilder"
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"
+    "$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Back link: \")"
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)"
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")"
+    "$r27 = virtualinvoke r110.<org.joda.time.DateTimeZone: java.lang.String getID()>()"
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27)"
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r29)"
+    "i10 = i10 + 2"
+    "goto [?= $r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>]"
+    "i9 = i9 + 1"
+    "goto [?= (branch)]"
+    "if r1 == null goto return r97"
+    "$r7 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"Writing ZoneInfoMap\")"
+    "$r8 = new java.io.File"
+    "specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r1, \"ZoneInfoMap\")"
+    "r111 = $r8"
+    "$r9 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()"
+    "$z0 = virtualinvoke $r9.<java.io.File: boolean exists()>()"
+    "if $z0 != 0 goto $r10 = new java.io.FileOutputStream"
+    "$r14 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()"
+    "virtualinvoke $r14.<java.io.File: boolean mkdirs()>()"
+    "$r10 = new java.io.FileOutputStream"
+    "specialinvoke $r10.<java.io.FileOutputStream: void <init>(java.io.File)>(r111)"
+    "r112 = $r10"
+    "$r11 = new java.io.DataOutputStream"
+    "specialinvoke $r11.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>(r112)"
+    "r113 = $r11"
+    "$r12 = new java.util.TreeMap"
+    "$r13 = <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER>"
+    "specialinvoke $r12.<java.util.TreeMap: void <init>(java.util.Comparator)>($r13)"
+    "r114 = $r12"
+    "interfaceinvoke r114.<java.util.Map: void putAll(java.util.Map)>(r97)"
+    "staticinvoke <org.joda.time.tz.ZoneInfoCompiler: void writeZoneInfoMap(java.io.DataOutputStream,java.util.Map)>(r113, r114)"
+    "virtualinvoke r113.<java.io.DataOutputStream: void close()>()"
+    "goto [?= return r97]"
+    "$r92 := @caughtexception"
+    "r93 = $r92"
+    "throw r93"
+    "return r97"
+    "r5 := @this: org.joda.time.tz.ZoneInfoCompiler"->"r1 := @parameter0: java.io.File";
+    "r1 := @parameter0: java.io.File"->"r0 := @parameter1: java.io.File[]";
+    "r0 := @parameter1: java.io.File[]"->"if r0 == null goto (branch)";
+    "if r0 == null goto (branch)"->"i5 = 0";
+    "if r0 == null goto (branch)"->"if r1 == null goto $r2 = new java.util.TreeMap";
+    "i5 = 0"->"$i4 = lengthof r0";
+    "$i4 = lengthof r0"->"if i5 >= $i4 goto (branch)";
+    "if i5 >= $i4 goto (branch)"->"r95 = null";
+    "if i5 >= $i4 goto (branch)"->"if r1 == null goto $r2 = new java.util.TreeMap";
+    "r95 = null"->"$r86 = new java.io.BufferedReader";
+    "r95 = null"->"$r94 := @caughtexception";
+    "$r86 = new java.io.BufferedReader"->"$r87 = new java.io.FileReader";
+    "$r86 = new java.io.BufferedReader"->"$r94 := @caughtexception";
+    "$r87 = new java.io.FileReader"->"$r88 = r0[i5]";
+    "$r87 = new java.io.FileReader"->"$r94 := @caughtexception";
+    "$r88 = r0[i5]"->"specialinvoke $r87.<java.io.FileReader: void <init>(java.io.File)>($r88)";
+    "$r88 = r0[i5]"->"$r94 := @caughtexception";
+    "specialinvoke $r87.<java.io.FileReader: void <init>(java.io.File)>($r88)"->"specialinvoke $r86.<java.io.BufferedReader: void <init>(java.io.Reader)>($r87)";
+    "specialinvoke $r87.<java.io.FileReader: void <init>(java.io.File)>($r88)"->"$r94 := @caughtexception";
+    "specialinvoke $r86.<java.io.BufferedReader: void <init>(java.io.Reader)>($r87)"->"r95 = $r86";
+    "specialinvoke $r86.<java.io.BufferedReader: void <init>(java.io.Reader)>($r87)"->"$r94 := @caughtexception";
+    "r95 = $r86"->"$r90 = \"backward\"";
+    "r95 = $r86"->"$r94 := @caughtexception";
+    "$r90 = \"backward\""->"$r89 = r0[i5]";
+    "$r90 = \"backward\""->"$r94 := @caughtexception";
+    "$r89 = r0[i5]"->"$r91 = virtualinvoke $r89.<java.io.File: java.lang.String getName()>()";
+    "$r89 = r0[i5]"->"$r94 := @caughtexception";
+    "$r91 = virtualinvoke $r89.<java.io.File: java.lang.String getName()>()"->"$z8 = virtualinvoke $r90.<java.lang.String: boolean equals(java.lang.Object)>($r91)";
+    "$r91 = virtualinvoke $r89.<java.io.File: java.lang.String getName()>()"->"$r94 := @caughtexception";
+    "$z8 = virtualinvoke $r90.<java.lang.String: boolean equals(java.lang.Object)>($r91)"->"virtualinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void parseDataFile(java.io.BufferedReader,boolean)>(r95, $z8)";
+    "$z8 = virtualinvoke $r90.<java.lang.String: boolean equals(java.lang.Object)>($r91)"->"$r94 := @caughtexception";
+    "virtualinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void parseDataFile(java.io.BufferedReader,boolean)>(r95, $z8)"->"if r95 == null goto i5 = i5 + 1";
+    "virtualinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void parseDataFile(java.io.BufferedReader,boolean)>(r95, $z8)"->"$r94 := @caughtexception";
+    "if r95 == null goto i5 = i5 + 1"->"virtualinvoke r95.<java.io.BufferedReader: void close()>()";
+    "if r95 == null goto i5 = i5 + 1"->"i5 = i5 + 1";
+    "virtualinvoke r95.<java.io.BufferedReader: void close()>()"->"goto [?= i5 = i5 + 1]";
+    "goto [?= i5 = i5 + 1]"->"i5 = i5 + 1";
+    "$r94 := @caughtexception"->"r96 = $r94";
+    "$r94 := @caughtexception"->"$r94 := @caughtexception";
+    "r96 = $r94"->"if r95 == null goto throw r96";
+    "r96 = $r94"->"$r94 := @caughtexception";
+    "if r95 == null goto throw r96"->"virtualinvoke r95.<java.io.BufferedReader: void close()>()";
+    "if r95 == null goto throw r96"->"throw r96";
+    "virtualinvoke r95.<java.io.BufferedReader: void close()>()"->"throw r96";
+    "i5 = i5 + 1"->"goto [?= $i4 = lengthof r0]";
+    "goto [?= $i4 = lengthof r0]"->"$i4 = lengthof r0";
+    "if r1 == null goto $r2 = new java.util.TreeMap"->"$z5 = virtualinvoke r1.<java.io.File: boolean exists()>()";
+    "if r1 == null goto $r2 = new java.util.TreeMap"->"$r2 = new java.util.TreeMap";
+    "$z5 = virtualinvoke r1.<java.io.File: boolean exists()>()"->"if $z5 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()";
+    "if $z5 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"->"$z7 = virtualinvoke r1.<java.io.File: boolean mkdirs()>()";
+    "if $z5 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"->"$z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()";
+    "$z7 = virtualinvoke r1.<java.io.File: boolean mkdirs()>()"->"if $z7 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()";
+    "if $z7 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"->"$r81 = new java.io.IOException";
+    "if $z7 != 0 goto $z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"->"$z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()";
+    "$r81 = new java.io.IOException"->"$r82 = new java.lang.StringBuilder";
+    "$r82 = new java.lang.StringBuilder"->"specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r82.<java.lang.StringBuilder: void <init>()>()"->"$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination directory doesn\'t exist and cannot be created: \")";
+    "$r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination directory doesn\'t exist and cannot be created: \")"->"$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)";
+    "$r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"->"$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r81.<java.io.IOException: void <init>(java.lang.String)>($r85)";
+    "specialinvoke $r81.<java.io.IOException: void <init>(java.lang.String)>($r85)"->"throw $r81";
+    "$z6 = virtualinvoke r1.<java.io.File: boolean isDirectory()>()"->"if $z6 != 0 goto $r2 = new java.util.TreeMap";
+    "if $z6 != 0 goto $r2 = new java.util.TreeMap"->"$r76 = new java.io.IOException";
+    "if $z6 != 0 goto $r2 = new java.util.TreeMap"->"$r2 = new java.util.TreeMap";
+    "$r76 = new java.io.IOException"->"$r77 = new java.lang.StringBuilder";
+    "$r77 = new java.lang.StringBuilder"->"specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r77.<java.lang.StringBuilder: void <init>()>()"->"$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination is not a directory: \")";
+    "$r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Destination is not a directory: \")"->"$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)";
+    "$r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1)"->"$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r80 = virtualinvoke $r79.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r76.<java.io.IOException: void <init>(java.lang.String)>($r80)";
+    "specialinvoke $r76.<java.io.IOException: void <init>(java.lang.String)>($r80)"->"throw $r76";
+    "$r2 = new java.util.TreeMap"->"specialinvoke $r2.<java.util.TreeMap: void <init>()>()";
+    "specialinvoke $r2.<java.util.TreeMap: void <init>()>()"->"r97 = $r2";
+    "r97 = $r2"->"$r3 = new java.util.TreeMap";
+    "$r3 = new java.util.TreeMap"->"specialinvoke $r3.<java.util.TreeMap: void <init>()>()";
+    "specialinvoke $r3.<java.util.TreeMap: void <init>()>()"->"r98 = $r3";
+    "r98 = $r3"->"$r4 = <java.lang.System: java.io.PrintStream out>";
+    "$r4 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Writing zoneinfo files\")";
+    "virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>(\"Writing zoneinfo files\")"->"i6 = 0";
+    "i6 = 0"->"$r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>";
+    "$r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>"->"$i7 = interfaceinvoke $r99.<java.util.List: int size()>()";
+    "$i7 = interfaceinvoke $r99.<java.util.List: int size()>()"->"if i6 >= $i7 goto i8 = 0";
+    "if i6 >= $i7 goto i8 = 0"->"$r66 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>";
+    "if i6 >= $i7 goto i8 = 0"->"i8 = 0";
+    "$r66 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>"->"$r67 = interfaceinvoke $r66.<java.util.List: java.lang.Object get(int)>(i6)";
+    "$r67 = interfaceinvoke $r66.<java.util.List: java.lang.Object get(int)>(i6)"->"r100 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r67";
+    "r100 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r67"->"$r68 = new org.joda.time.tz.DateTimeZoneBuilder";
+    "$r68 = new org.joda.time.tz.DateTimeZoneBuilder"->"specialinvoke $r68.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()";
+    "specialinvoke $r68.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()"->"r101 = $r68";
+    "r101 = $r68"->"$r69 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>";
+    "$r69 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>"->"virtualinvoke r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r101, $r69)";
+    "virtualinvoke r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r101, $r69)"->"$r70 = r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: java.lang.String iName>";
+    "$r70 = r100.<org.joda.time.tz.ZoneInfoCompiler$Zone: java.lang.String iName>"->"r102 = virtualinvoke r101.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>($r70, 1)";
+    "r102 = virtualinvoke r101.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>($r70, 1)"->"$r71 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r71 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$z4 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r71, r102)";
+    "$z4 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r71, r102)"->"if $z4 == 0 goto i6 = i6 + 1";
+    "if $z4 == 0 goto i6 = i6 + 1"->"$r72 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "if $z4 == 0 goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "$r72 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r72, r102)";
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r72, r102)"->"$r74 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r74 = virtualinvoke r102.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"interfaceinvoke r98.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r74, r100)";
+    "interfaceinvoke r98.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r74, r100)"->"if r1 == null goto i6 = i6 + 1";
+    "if r1 == null goto i6 = i6 + 1"->"specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r101, r102)";
+    "if r1 == null goto i6 = i6 + 1"->"i6 = i6 + 1";
+    "specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r101, r102)"->"i6 = i6 + 1";
+    "i6 = i6 + 1"->"goto [?= $r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>]";
+    "goto [?= $r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>]"->"$r99 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iZones>";
+    "i8 = 0"->"$r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>";
+    "$r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"->"$i0 = interfaceinvoke $r6.<java.util.List: int size()>()";
+    "$i0 = interfaceinvoke $r6.<java.util.List: int size()>()"->"if i8 >= $i0 goto i9 = 0";
+    "if i8 >= $i0 goto i9 = 0"->"$r38 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>";
+    "if i8 >= $i0 goto i9 = 0"->"i9 = 0";
+    "$r38 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"->"$r39 = interfaceinvoke $r38.<java.util.List: java.lang.Object get(int)>(i8)";
+    "$r39 = interfaceinvoke $r38.<java.util.List: java.lang.Object get(int)>(i8)"->"r103 = (java.lang.String) $r39";
+    "r103 = (java.lang.String) $r39"->"$r40 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>";
+    "$r40 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>"->"$i3 = i8 + 1";
+    "$i3 = i8 + 1"->"$r41 = interfaceinvoke $r40.<java.util.List: java.lang.Object get(int)>($i3)";
+    "$r41 = interfaceinvoke $r40.<java.util.List: java.lang.Object get(int)>($i3)"->"r104 = (java.lang.String) $r41";
+    "r104 = (java.lang.String) $r41"->"$r42 = interfaceinvoke r98.<java.util.Map: java.lang.Object get(java.lang.Object)>(r103)";
+    "$r42 = interfaceinvoke r98.<java.util.Map: java.lang.Object get(java.lang.Object)>(r103)"->"r105 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r42";
+    "r105 = (org.joda.time.tz.ZoneInfoCompiler$Zone) $r42"->"if r105 != null goto $r43 = new org.joda.time.tz.DateTimeZoneBuilder";
+    "if r105 != null goto $r43 = new org.joda.time.tz.DateTimeZoneBuilder"->"$r59 = <java.lang.System: java.io.PrintStream out>";
+    "if r105 != null goto $r43 = new org.joda.time.tz.DateTimeZoneBuilder"->"$r43 = new org.joda.time.tz.DateTimeZoneBuilder";
+    "$r59 = <java.lang.System: java.io.PrintStream out>"->"$r58 = new java.lang.StringBuilder";
+    "$r58 = new java.lang.StringBuilder"->"specialinvoke $r58.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r58.<java.lang.StringBuilder: void <init>()>()"->"$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find source zone \'\")";
+    "$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find source zone \'\")"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)"->"$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")";
+    "$r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")"->"$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)";
+    "$r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)"->"$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")";
+    "$r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")"->"$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r59.<java.io.PrintStream: void println(java.lang.String)>($r65)";
+    "virtualinvoke $r59.<java.io.PrintStream: void println(java.lang.String)>($r65)"->"goto [?= i8 = i8 + 2]";
+    "goto [?= i8 = i8 + 2]"->"i8 = i8 + 2";
+    "$r43 = new org.joda.time.tz.DateTimeZoneBuilder"->"specialinvoke $r43.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()";
+    "specialinvoke $r43.<org.joda.time.tz.DateTimeZoneBuilder: void <init>()>()"->"r106 = $r43";
+    "r106 = $r43"->"$r44 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>";
+    "$r44 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.Map iRuleSets>"->"virtualinvoke r105.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r106, $r44)";
+    "virtualinvoke r105.<org.joda.time.tz.ZoneInfoCompiler$Zone: void addToBuilder(org.joda.time.tz.DateTimeZoneBuilder,java.util.Map)>(r106, $r44)"->"r45 = virtualinvoke r106.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>(r104, 1)";
+    "r45 = virtualinvoke r106.<org.joda.time.tz.DateTimeZoneBuilder: org.joda.time.DateTimeZone toDateTimeZone(java.lang.String,boolean)>(r104, 1)"->"$r46 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r46 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$z3 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r46, r45)";
+    "$z3 = staticinvoke <org.joda.time.tz.ZoneInfoCompiler: boolean test(java.lang.String,org.joda.time.DateTimeZone)>($r46, r45)"->"if $z3 == 0 goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "if $z3 == 0 goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$r56 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "if $z3 == 0 goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r56 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r56, r45)";
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r56, r45)"->"if r1 == null goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "if r1 == null goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r106, r45)";
+    "if r1 == null goto $r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "specialinvoke r5.<org.joda.time.tz.ZoneInfoCompiler: void writeZone(java.io.File,org.joda.time.tz.DateTimeZoneBuilder,org.joda.time.DateTimeZone)>(r1, r106, r45)"->"$r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r107 = virtualinvoke r45.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r107, r45)";
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r107, r45)"->"$z9 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()";
+    "$z9 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()"->"if $z9 == 0 goto i8 = i8 + 2";
+    "if $z9 == 0 goto i8 = i8 + 2"->"$r49 = <java.lang.System: java.io.PrintStream out>";
+    "if $z9 == 0 goto i8 = i8 + 2"->"i8 = i8 + 2";
+    "$r49 = <java.lang.System: java.io.PrintStream out>"->"$r48 = new java.lang.StringBuilder";
+    "$r48 = new java.lang.StringBuilder"->"specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r48.<java.lang.StringBuilder: void <init>()>()"->"$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Good link: \")";
+    "$r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Good link: \")"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r104)"->"$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")";
+    "$r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")"->"$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)";
+    "$r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r103)"->"$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" revived\")";
+    "$r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" revived\")"->"$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r55)";
+    "virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r55)"->"i8 = i8 + 2";
+    "i8 = i8 + 2"->"goto [?= $r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>]";
+    "goto [?= $r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>]"->"$r6 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iGoodLinks>";
+    "i9 = 0"->"if i9 >= 2 goto (branch)";
+    "if i9 >= 2 goto (branch)"->"i10 = 0";
+    "if i9 >= 2 goto (branch)"->"if r1 == null goto return r97";
+    "i10 = 0"->"$r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>";
+    "$r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"->"$i1 = interfaceinvoke $r15.<java.util.List: int size()>()";
+    "$i1 = interfaceinvoke $r15.<java.util.List: int size()>()"->"if i10 >= $i1 goto i9 = i9 + 1";
+    "if i10 >= $i1 goto i9 = i9 + 1"->"$r16 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>";
+    "if i10 >= $i1 goto i9 = i9 + 1"->"i9 = i9 + 1";
+    "$r16 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"->"$r17 = interfaceinvoke $r16.<java.util.List: java.lang.Object get(int)>(i10)";
+    "$r17 = interfaceinvoke $r16.<java.util.List: java.lang.Object get(int)>(i10)"->"r108 = (java.lang.String) $r17";
+    "r108 = (java.lang.String) $r17"->"$r18 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>";
+    "$r18 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>"->"$i2 = i10 + 1";
+    "$i2 = i10 + 1"->"$r19 = interfaceinvoke $r18.<java.util.List: java.lang.Object get(int)>($i2)";
+    "$r19 = interfaceinvoke $r18.<java.util.List: java.lang.Object get(int)>($i2)"->"r109 = (java.lang.String) $r19";
+    "r109 = (java.lang.String) $r19"->"$r20 = interfaceinvoke r97.<java.util.Map: java.lang.Object get(java.lang.Object)>(r108)";
+    "$r20 = interfaceinvoke r97.<java.util.Map: java.lang.Object get(java.lang.Object)>(r108)"->"r110 = (org.joda.time.DateTimeZone) $r20";
+    "r110 = (org.joda.time.DateTimeZone) $r20"->"if r110 != null goto interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)";
+    "if r110 != null goto interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)"->"if i9 <= 0 goto i10 = i10 + 2";
+    "if r110 != null goto interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)"->"interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)";
+    "if i9 <= 0 goto i10 = i10 + 2"->"$r31 = <java.lang.System: java.io.PrintStream out>";
+    "if i9 <= 0 goto i10 = i10 + 2"->"i10 = i10 + 2";
+    "$r31 = <java.lang.System: java.io.PrintStream out>"->"$r30 = new java.lang.StringBuilder";
+    "$r30 = new java.lang.StringBuilder"->"specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r30.<java.lang.StringBuilder: void <init>()>()"->"$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find time zone \'\")";
+    "$r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Cannot find time zone \'\")"->"$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r108)";
+    "$r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r108)"->"$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")";
+    "$r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to link alias \'\")"->"$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)";
+    "$r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)"->"$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")";
+    "$r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\' to\")"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37)";
+    "virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r37)"->"goto [?= i10 = i10 + 2]";
+    "goto [?= i10 = i10 + 2]"->"i10 = i10 + 2";
+    "interfaceinvoke r97.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r109, r110)"->"$z2 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()";
+    "$z2 = staticinvoke <org.joda.time.tz.ZoneInfoLogger: boolean verbose()>()"->"if $z2 == 0 goto i10 = i10 + 2";
+    "if $z2 == 0 goto i10 = i10 + 2"->"$r23 = <java.lang.System: java.io.PrintStream out>";
+    "if $z2 == 0 goto i10 = i10 + 2"->"i10 = i10 + 2";
+    "$r23 = <java.lang.System: java.io.PrintStream out>"->"$r22 = new java.lang.StringBuilder";
+    "$r22 = new java.lang.StringBuilder"->"specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r22.<java.lang.StringBuilder: void <init>()>()"->"$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Back link: \")";
+    "$r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Back link: \")"->"$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)";
+    "$r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r109)"->"$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")";
+    "$r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" -> \")"->"$r27 = virtualinvoke r110.<org.joda.time.DateTimeZone: java.lang.String getID()>()";
+    "$r27 = virtualinvoke r110.<org.joda.time.DateTimeZone: java.lang.String getID()>()"->"$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27)";
+    "$r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27)"->"$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>()"->"virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r29)";
+    "virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r29)"->"i10 = i10 + 2";
+    "i10 = i10 + 2"->"goto [?= $r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>]";
+    "goto [?= $r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>]"->"$r15 = r5.<org.joda.time.tz.ZoneInfoCompiler: java.util.List iBackLinks>";
+    "i9 = i9 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i9 >= 2 goto (branch)";
+    "if r1 == null goto return r97"->"$r7 = <java.lang.System: java.io.PrintStream out>";
+    "if r1 == null goto return r97"->"return r97";
+    "$r7 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"Writing ZoneInfoMap\")";
+    "virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>(\"Writing ZoneInfoMap\")"->"$r8 = new java.io.File";
+    "$r8 = new java.io.File"->"specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r1, \"ZoneInfoMap\")";
+    "specialinvoke $r8.<java.io.File: void <init>(java.io.File,java.lang.String)>(r1, \"ZoneInfoMap\")"->"r111 = $r8";
+    "r111 = $r8"->"$r9 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()";
+    "$r9 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()"->"$z0 = virtualinvoke $r9.<java.io.File: boolean exists()>()";
+    "$z0 = virtualinvoke $r9.<java.io.File: boolean exists()>()"->"if $z0 != 0 goto $r10 = new java.io.FileOutputStream";
+    "if $z0 != 0 goto $r10 = new java.io.FileOutputStream"->"$r14 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()";
+    "if $z0 != 0 goto $r10 = new java.io.FileOutputStream"->"$r10 = new java.io.FileOutputStream";
+    "$r14 = virtualinvoke r111.<java.io.File: java.io.File getParentFile()>()"->"virtualinvoke $r14.<java.io.File: boolean mkdirs()>()";
+    "virtualinvoke $r14.<java.io.File: boolean mkdirs()>()"->"$r10 = new java.io.FileOutputStream";
+    "$r10 = new java.io.FileOutputStream"->"specialinvoke $r10.<java.io.FileOutputStream: void <init>(java.io.File)>(r111)";
+    "specialinvoke $r10.<java.io.FileOutputStream: void <init>(java.io.File)>(r111)"->"r112 = $r10";
+    "r112 = $r10"->"$r11 = new java.io.DataOutputStream";
+    "$r11 = new java.io.DataOutputStream"->"specialinvoke $r11.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>(r112)";
+    "specialinvoke $r11.<java.io.DataOutputStream: void <init>(java.io.OutputStream)>(r112)"->"r113 = $r11";
+    "r113 = $r11"->"$r12 = new java.util.TreeMap";
+    "r113 = $r11"->"$r92 := @caughtexception";
+    "$r12 = new java.util.TreeMap"->"$r13 = <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER>";
+    "$r12 = new java.util.TreeMap"->"$r92 := @caughtexception";
+    "$r13 = <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER>"->"specialinvoke $r12.<java.util.TreeMap: void <init>(java.util.Comparator)>($r13)";
+    "$r13 = <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER>"->"$r92 := @caughtexception";
+    "specialinvoke $r12.<java.util.TreeMap: void <init>(java.util.Comparator)>($r13)"->"r114 = $r12";
+    "specialinvoke $r12.<java.util.TreeMap: void <init>(java.util.Comparator)>($r13)"->"$r92 := @caughtexception";
+    "r114 = $r12"->"interfaceinvoke r114.<java.util.Map: void putAll(java.util.Map)>(r97)";
+    "r114 = $r12"->"$r92 := @caughtexception";
+    "interfaceinvoke r114.<java.util.Map: void putAll(java.util.Map)>(r97)"->"staticinvoke <org.joda.time.tz.ZoneInfoCompiler: void writeZoneInfoMap(java.io.DataOutputStream,java.util.Map)>(r113, r114)";
+    "interfaceinvoke r114.<java.util.Map: void putAll(java.util.Map)>(r97)"->"$r92 := @caughtexception";
+    "staticinvoke <org.joda.time.tz.ZoneInfoCompiler: void writeZoneInfoMap(java.io.DataOutputStream,java.util.Map)>(r113, r114)"->"virtualinvoke r113.<java.io.DataOutputStream: void close()>()";
+    "staticinvoke <org.joda.time.tz.ZoneInfoCompiler: void writeZoneInfoMap(java.io.DataOutputStream,java.util.Map)>(r113, r114)"->"$r92 := @caughtexception";
+    "virtualinvoke r113.<java.io.DataOutputStream: void close()>()"->"goto [?= return r97]";
+    "goto [?= return r97]"->"return r97";
+    "$r92 := @caughtexception"->"r93 = $r92";
+    "$r92 := @caughtexception"->"$r92 := @caughtexception";
+    "r93 = $r92"->"virtualinvoke r113.<java.io.DataOutputStream: void close()>()";
+    "r93 = $r92"->"$r92 := @caughtexception";
+    "virtualinvoke r113.<java.io.DataOutputStream: void close()>()"->"throw r93";
+}

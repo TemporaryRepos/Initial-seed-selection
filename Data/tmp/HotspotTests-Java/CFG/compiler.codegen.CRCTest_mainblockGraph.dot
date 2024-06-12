@@ -1,0 +1,204 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 5 ]
+r9 := @parameter0: java.lang.String[];
+r0 = staticinvoke <compiler.codegen.CRCTest: byte[] initializedBytes(int)>(16777216);
+$r1 = new java.util.zip.CRC32;
+specialinvoke $r1.<java.util.zip.CRC32: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.zip.CRC32;
+specialinvoke $r3.<java.util.zip.CRC32: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.zip.CRC32;
+specialinvoke $r5.<java.util.zip.CRC32: void <init>()>();
+r6 = $r5;
+$r7 = new java.util.zip.CRC32;
+specialinvoke $r7.<java.util.zip.CRC32: void <init>()>();
+r8 = $r7;
+$i0 = lengthof r0;
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, 0, $i0);
+$i1 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, 0, $i1);
+$i2 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, 0, $i2);
+$i3 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, 0, $i3);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+virtualinvoke r2.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r4.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r6.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r8.<java.util.zip.CRC32: void update(int)>(17);
+$i4 = lengthof r0;
+$i5 = $i4 - 2;
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, 1, $i5);
+$i6 = lengthof r0;
+$i7 = $i6 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, 1, $i7);
+$i8 = lengthof r0;
+$i9 = $i8 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, 1, $i9);
+$i10 = lengthof r0;
+$i11 = $i10 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, 1, $i11);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+staticinvoke <compiler.codegen.CRCTest: void report(java.lang.String,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum)>(\"finished huge crc\", r2, r4, r6, r8);
+i12 = 0;
+goto [?= (branch)];
+"
+    "Block 1:
+[preds: 5 ] [succs: 3 ]
+i13 = 0;
+goto [?= (branch)];
+"
+    "Block 2:
+[preds: 3 ] [succs: 3 ]
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+i13 = i13 + 1;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i13 < 256 goto virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+"
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i12 = i12 + 1;
+"
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i12 < 256 goto i13 = 0;
+"
+    "Block 6:
+[preds: 5 ] [succs: ]
+staticinvoke <compiler.codegen.CRCTest: void report(java.lang.String,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum)>(\"finished small survey crc\", r2, r4, r6, r8);
+return;
+"
+    "Block 0:
+[preds: ] [succs: 5 ]
+r9 := @parameter0: java.lang.String[];
+r0 = staticinvoke <compiler.codegen.CRCTest: byte[] initializedBytes(int)>(16777216);
+$r1 = new java.util.zip.CRC32;
+specialinvoke $r1.<java.util.zip.CRC32: void <init>()>();
+r2 = $r1;
+$r3 = new java.util.zip.CRC32;
+specialinvoke $r3.<java.util.zip.CRC32: void <init>()>();
+r4 = $r3;
+$r5 = new java.util.zip.CRC32;
+specialinvoke $r5.<java.util.zip.CRC32: void <init>()>();
+r6 = $r5;
+$r7 = new java.util.zip.CRC32;
+specialinvoke $r7.<java.util.zip.CRC32: void <init>()>();
+r8 = $r7;
+$i0 = lengthof r0;
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, 0, $i0);
+$i1 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, 0, $i1);
+$i2 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, 0, $i2);
+$i3 = lengthof r0;
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, 0, $i3);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+virtualinvoke r2.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r4.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r6.<java.util.zip.CRC32: void update(int)>(17);
+virtualinvoke r8.<java.util.zip.CRC32: void update(int)>(17);
+$i4 = lengthof r0;
+$i5 = $i4 - 2;
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, 1, $i5);
+$i6 = lengthof r0;
+$i7 = $i6 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, 1, $i7);
+$i8 = lengthof r0;
+$i9 = $i8 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, 1, $i9);
+$i10 = lengthof r0;
+$i11 = $i10 - 2;
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, 1, $i11);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+staticinvoke <compiler.codegen.CRCTest: void report(java.lang.String,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum)>(\"finished huge crc\", r2, r4, r6, r8);
+i12 = 0;
+goto [?= (branch)];
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i12 < 256 goto i13 = 0;
+";
+    "Block 1:
+[preds: 5 ] [succs: 3 ]
+i13 = 0;
+goto [?= (branch)];
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i13 < 256 goto virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+";
+    "Block 2:
+[preds: 3 ] [succs: 3 ]
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+i13 = i13 + 1;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i13 < 256 goto virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i13 < 256 goto virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+"->"Block 4:
+[preds: 3 ] [succs: 5 ]
+i12 = i12 + 1;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 2 ]
+if i13 < 256 goto virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+"->"Block 2:
+[preds: 3 ] [succs: 3 ]
+virtualinvoke r2.<java.util.zip.CRC32: void update(byte[],int,int)>(r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerial(java.util.zip.Checksum,byte[],int,int)>(r4, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateDirect(java.util.zip.CRC32,byte[],int,int)>(r6, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void updateSerialSlow(java.util.zip.Checksum,byte[],int,int)>(r8, r0, i12, i13);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r4);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r6, r8);
+staticinvoke <compiler.codegen.CRCTest: void check(java.util.zip.Checksum,java.util.zip.Checksum)>(r2, r6);
+i13 = i13 + 1;
+";
+    "Block 4:
+[preds: 3 ] [succs: 5 ]
+i12 = i12 + 1;
+"->"Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i12 < 256 goto i13 = 0;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i12 < 256 goto i13 = 0;
+"->"Block 6:
+[preds: 5 ] [succs: ]
+staticinvoke <compiler.codegen.CRCTest: void report(java.lang.String,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum,java.util.zip.Checksum)>(\"finished small survey crc\", r2, r4, r6, r8);
+return;
+";
+    "Block 5:
+[preds: 0 4 ] [succs: 6 1 ]
+if i12 < 256 goto i13 = 0;
+"->"Block 1:
+[preds: 5 ] [succs: 3 ]
+i13 = 0;
+goto [?= (branch)];
+";
+}

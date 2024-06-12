@@ -1,0 +1,69 @@
+digraph "unitGraph" {
+    "r13 := @parameter0: java.lang.String[]"
+    "$r0 = new java.net.URI"
+    "specialinvoke $r0.<java.net.URI: void <init>(java.lang.String)>(\"Relative%20with%20spaces\")"
+    "r14 = $r0"
+    "$r1 = new java.io.File"
+    "specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(\"/tmp/dir with spaces/File with spaces\")"
+    "r2 = virtualinvoke $r1.<java.io.File: java.net.URI toURI()>()"
+    "r3 = virtualinvoke r2.<java.net.URI: java.net.URI resolve(java.net.URI)>(r14)"
+    "$r4 = virtualinvoke r3.<java.net.URI: java.lang.String getSchemeSpecificPart()>()"
+    "$r5 = virtualinvoke r3.<java.net.URI: java.lang.String getPath()>()"
+    "$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5)"
+    "if $z0 != 0 goto (branch)"
+    "$r6 = new java.lang.RuntimeException"
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Bad encoding on URI.resolve\")"
+    "throw $r6"
+    "goto [?= return]"
+    "$r7 := @caughtexception"
+    "r15 = $r7"
+    "$r8 = new java.lang.RuntimeException"
+    "$r9 = new java.lang.StringBuilder"
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception: \")"
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r15)"
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r12)"
+    "throw $r8"
+    "return"
+    "r13 := @parameter0: java.lang.String[]"->"$r0 = new java.net.URI";
+    "r13 := @parameter0: java.lang.String[]"->"$r7 := @caughtexception";
+    "$r0 = new java.net.URI"->"specialinvoke $r0.<java.net.URI: void <init>(java.lang.String)>(\"Relative%20with%20spaces\")";
+    "$r0 = new java.net.URI"->"$r7 := @caughtexception";
+    "specialinvoke $r0.<java.net.URI: void <init>(java.lang.String)>(\"Relative%20with%20spaces\")"->"r14 = $r0";
+    "specialinvoke $r0.<java.net.URI: void <init>(java.lang.String)>(\"Relative%20with%20spaces\")"->"$r7 := @caughtexception";
+    "r14 = $r0"->"$r1 = new java.io.File";
+    "r14 = $r0"->"$r7 := @caughtexception";
+    "$r1 = new java.io.File"->"specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(\"/tmp/dir with spaces/File with spaces\")";
+    "$r1 = new java.io.File"->"$r7 := @caughtexception";
+    "specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(\"/tmp/dir with spaces/File with spaces\")"->"r2 = virtualinvoke $r1.<java.io.File: java.net.URI toURI()>()";
+    "specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(\"/tmp/dir with spaces/File with spaces\")"->"$r7 := @caughtexception";
+    "r2 = virtualinvoke $r1.<java.io.File: java.net.URI toURI()>()"->"r3 = virtualinvoke r2.<java.net.URI: java.net.URI resolve(java.net.URI)>(r14)";
+    "r2 = virtualinvoke $r1.<java.io.File: java.net.URI toURI()>()"->"$r7 := @caughtexception";
+    "r3 = virtualinvoke r2.<java.net.URI: java.net.URI resolve(java.net.URI)>(r14)"->"$r4 = virtualinvoke r3.<java.net.URI: java.lang.String getSchemeSpecificPart()>()";
+    "r3 = virtualinvoke r2.<java.net.URI: java.net.URI resolve(java.net.URI)>(r14)"->"$r7 := @caughtexception";
+    "$r4 = virtualinvoke r3.<java.net.URI: java.lang.String getSchemeSpecificPart()>()"->"$r5 = virtualinvoke r3.<java.net.URI: java.lang.String getPath()>()";
+    "$r4 = virtualinvoke r3.<java.net.URI: java.lang.String getSchemeSpecificPart()>()"->"$r7 := @caughtexception";
+    "$r5 = virtualinvoke r3.<java.net.URI: java.lang.String getPath()>()"->"$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5)";
+    "$r5 = virtualinvoke r3.<java.net.URI: java.lang.String getPath()>()"->"$r7 := @caughtexception";
+    "$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5)"->"if $z0 != 0 goto (branch)";
+    "$z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5)"->"$r7 := @caughtexception";
+    "if $z0 != 0 goto (branch)"->"$r6 = new java.lang.RuntimeException";
+    "if $z0 != 0 goto (branch)"->"goto [?= return]";
+    "if $z0 != 0 goto (branch)"->"$r7 := @caughtexception";
+    "$r6 = new java.lang.RuntimeException"->"specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Bad encoding on URI.resolve\")";
+    "$r6 = new java.lang.RuntimeException"->"$r7 := @caughtexception";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Bad encoding on URI.resolve\")"->"throw $r6";
+    "specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Bad encoding on URI.resolve\")"->"$r7 := @caughtexception";
+    "throw $r6"->"$r7 := @caughtexception";
+    "goto [?= return]"->"return";
+    "$r7 := @caughtexception"->"r15 = $r7";
+    "r15 = $r7"->"$r8 = new java.lang.RuntimeException";
+    "$r8 = new java.lang.RuntimeException"->"$r9 = new java.lang.StringBuilder";
+    "$r9 = new java.lang.StringBuilder"->"specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r9.<java.lang.StringBuilder: void <init>()>()"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception: \")";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Unexpected exception: \")"->"$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r15)";
+    "$r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r15)"->"$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r12)";
+    "specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>($r12)"->"throw $r8";
+}

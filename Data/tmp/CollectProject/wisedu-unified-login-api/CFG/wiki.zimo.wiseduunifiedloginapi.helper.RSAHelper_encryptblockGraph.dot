@@ -1,0 +1,22 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: ]
+r9 := @parameter0: java.lang.String;
+r0 = \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCxKVG9heYiIhkJ1phCgbrFgUnhVFb96uG1pfDZ8OxskJo1gc6c1LXrr2ALZt9Remllvmoak36drc/SjkibHAWJFvxiZfmBKzpYgBHHKTgsZgIMSGxJEL77ELEccOxkqC4lIMqjSEirOcqUXlx8MmyklDtwbhd0ZJ5TFlBgvFIqhwIDAQAB\";
+$r1 = \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCxKVG9heYiIhkJ1phCgbrFgUnhVFb96uG1pfDZ8OxskJo1gc6c1LXrr2ALZt9Remllvmoak36drc/SjkibHAWJFvxiZfmBKzpYgBHHKTgsZgIMSGxJEL77ELEccOxkqC4lIMqjSEirOcqUXlx8MmyklDtwbhd0ZJ5TFlBgvFIqhwIDAQAB\";
+$r2 = virtualinvoke $r1.<java.lang.String: byte[] getBytes(java.lang.String)>(\"UTF-8\");
+r3 = staticinvoke <org.apache.tomcat.util.codec.binary.Base64: byte[] decodeBase64(byte[])>($r2);
+$r4 = staticinvoke <java.security.KeyFactory: java.security.KeyFactory getInstance(java.lang.String)>(\"RSA\");
+$r5 = new java.security.spec.X509EncodedKeySpec;
+specialinvoke $r5.<java.security.spec.X509EncodedKeySpec: void <init>(byte[])>(r3);
+$r6 = virtualinvoke $r4.<java.security.KeyFactory: java.security.PublicKey generatePublic(java.security.spec.KeySpec)>($r5);
+r7 = (java.security.interfaces.RSAPublicKey) $r6;
+r8 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>(\"RSA\");
+virtualinvoke r8.<javax.crypto.Cipher: void init(int,java.security.Key)>(1, r7);
+$r10 = virtualinvoke r9.<java.lang.String: byte[] getBytes(java.lang.String)>(\"UTF-8\");
+$r11 = staticinvoke <org.apache.tomcat.util.codec.binary.Base64: byte[] encodeBase64(byte[])>($r10);
+$r12 = virtualinvoke r8.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r11);
+$r13 = staticinvoke <org.apache.tomcat.util.codec.binary.Base64: java.lang.String encodeBase64URLSafeString(byte[])>($r12);
+return $r13;
+"
+}

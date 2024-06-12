@@ -1,0 +1,19 @@
+digraph "unitGraph" {
+    "$l0 = <compiler.arraycopy.TestLoadBypassArrayCopy: long i>"
+    "$l1 = $l0 + 1L"
+    "<compiler.arraycopy.TestLoadBypassArrayCopy: long i> = $l1"
+    "$l2 = <compiler.arraycopy.TestLoadBypassArrayCopy: long i>"
+    "$l3 = $l2 % 10L"
+    "$b4 = $l3 cmp 0L"
+    "if $b4 != 0 goto return 1"
+    "return 0"
+    "return 1"
+    "$l0 = <compiler.arraycopy.TestLoadBypassArrayCopy: long i>"->"$l1 = $l0 + 1L";
+    "$l1 = $l0 + 1L"->"<compiler.arraycopy.TestLoadBypassArrayCopy: long i> = $l1";
+    "<compiler.arraycopy.TestLoadBypassArrayCopy: long i> = $l1"->"$l2 = <compiler.arraycopy.TestLoadBypassArrayCopy: long i>";
+    "$l2 = <compiler.arraycopy.TestLoadBypassArrayCopy: long i>"->"$l3 = $l2 % 10L";
+    "$l3 = $l2 % 10L"->"$b4 = $l3 cmp 0L";
+    "$b4 = $l3 cmp 0L"->"if $b4 != 0 goto return 1";
+    "if $b4 != 0 goto return 1"->"return 0";
+    "if $b4 != 0 goto return 1"->"return 1";
+}

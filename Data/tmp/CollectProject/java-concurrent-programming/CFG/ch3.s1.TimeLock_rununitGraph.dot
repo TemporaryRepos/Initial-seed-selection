@@ -1,0 +1,90 @@
+digraph "unitGraph" {
+    "r13 := @this: ch3.s1.TimeLock"
+    "$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"
+    "$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0)"
+    "if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>"
+    "staticinvoke <java.lang.Thread: void sleep(long)>(6000L)"
+    "goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>]"
+    "$r2 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\")"
+    "$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"
+    "if $z1 == 0 goto return"
+    "$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"
+    "goto [?= return]"
+    "$r9 := @caughtexception"
+    "r10 = $r9"
+    "virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>()"
+    "$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"
+    "if $z3 == 0 goto return"
+    "$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"
+    "$r5 := @caughtexception"
+    "r6 = $r5"
+    "$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"
+    "if $z2 == 0 goto throw r6"
+    "$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"
+    "virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"
+    "throw r6"
+    "return"
+    "r13 := @this: ch3.s1.TimeLock"->"$r9 := @caughtexception";
+    "r13 := @this: ch3.s1.TimeLock"->"$r5 := @caughtexception";
+    "r13 := @this: ch3.s1.TimeLock"->"$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$r9 := @caughtexception";
+    "$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$r5 := @caughtexception";
+    "$r1 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>";
+    "$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"$r9 := @caughtexception";
+    "$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"$r5 := @caughtexception";
+    "$r0 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>"->"$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0)";
+    "$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0)"->"$r9 := @caughtexception";
+    "$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0)"->"$r5 := @caughtexception";
+    "$z0 = virtualinvoke $r1.<java.util.concurrent.locks.ReentrantLock: boolean tryLock(long,java.util.concurrent.TimeUnit)>(5L, $r0)"->"if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>"->"staticinvoke <java.lang.Thread: void sleep(long)>(6000L)";
+    "if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$r2 = <java.lang.System: java.io.PrintStream out>";
+    "if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$r9 := @caughtexception";
+    "if $z0 == 0 goto $r2 = <java.lang.System: java.io.PrintStream out>"->"$r5 := @caughtexception";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(6000L)"->"$r9 := @caughtexception";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(6000L)"->"$r5 := @caughtexception";
+    "staticinvoke <java.lang.Thread: void sleep(long)>(6000L)"->"goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>]";
+    "goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>]"->"$r9 := @caughtexception";
+    "goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>]"->"$r5 := @caughtexception";
+    "goto [?= $r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>]"->"$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r9 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"$r5 := @caughtexception";
+    "$r2 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\")";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\")"->"$r9 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\")"->"$r5 := @caughtexception";
+    "virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>(\"Get lock failed\")"->"$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "$r3 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()";
+    "$z1 = virtualinvoke $r3.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"->"if $z1 == 0 goto return";
+    "if $z1 == 0 goto return"->"$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "if $z1 == 0 goto return"->"return";
+    "$r4 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>()";
+    "virtualinvoke $r4.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r9 := @caughtexception"->"r10 = $r9";
+    "$r9 := @caughtexception"->"$r5 := @caughtexception";
+    "r10 = $r9"->"virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>()";
+    "r10 = $r9"->"$r5 := @caughtexception";
+    "virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>()"->"$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "virtualinvoke r10.<java.lang.InterruptedException: void printStackTrace()>()"->"$r5 := @caughtexception";
+    "$r11 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()";
+    "$z3 = virtualinvoke $r11.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"->"if $z3 == 0 goto return";
+    "if $z3 == 0 goto return"->"$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "if $z3 == 0 goto return"->"return";
+    "$r12 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>()";
+    "virtualinvoke $r12.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r5 := @caughtexception"->"r6 = $r5";
+    "r6 = $r5"->"$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "$r7 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()";
+    "$z2 = virtualinvoke $r7.<java.util.concurrent.locks.ReentrantLock: boolean isHeldByCurrentThread()>()"->"if $z2 == 0 goto throw r6";
+    "if $z2 == 0 goto throw r6"->"$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>";
+    "if $z2 == 0 goto throw r6"->"throw r6";
+    "$r8 = <ch3.s1.TimeLock: java.util.concurrent.locks.ReentrantLock lock>"->"virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>()";
+    "virtualinvoke $r8.<java.util.concurrent.locks.ReentrantLock: void unlock()>()"->"throw r6";
+}

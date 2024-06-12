@@ -1,0 +1,72 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.nio.channels.SelectionKey;
+$z0 = virtualinvoke r0.<java.nio.channels.SelectionKey: boolean isValid()>();
+if $z0 == 0 goto $r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"
+    "Block 1:
+[preds: 0 ] [succs: ]
+$r3 = new java.lang.RuntimeException;
+specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Key still valid\");
+throw $r3;
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+$z1 = virtualinvoke $r1.<java.nio.channels.SelectableChannel: boolean isOpen()>();
+if $z1 == 0 goto return;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$r2 = new java.lang.RuntimeException;
+specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Channel still open\");
+throw $r2;
+"
+    "Block 4:
+[preds: 2 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.nio.channels.SelectionKey;
+$z0 = virtualinvoke r0.<java.nio.channels.SelectionKey: boolean isValid()>();
+if $z0 == 0 goto $r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"->"Block 1:
+[preds: 0 ] [succs: ]
+$r3 = new java.lang.RuntimeException;
+specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Key still valid\");
+throw $r3;
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r0 := @parameter0: java.nio.channels.SelectionKey;
+$z0 = virtualinvoke r0.<java.nio.channels.SelectionKey: boolean isValid()>();
+if $z0 == 0 goto $r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+"->"Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+$z1 = virtualinvoke $r1.<java.nio.channels.SelectableChannel: boolean isOpen()>();
+if $z1 == 0 goto return;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+$z1 = virtualinvoke $r1.<java.nio.channels.SelectableChannel: boolean isOpen()>();
+if $z1 == 0 goto return;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$r2 = new java.lang.RuntimeException;
+specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Channel still open\");
+throw $r2;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 4 ]
+$r1 = virtualinvoke r0.<java.nio.channels.SelectionKey: java.nio.channels.SelectableChannel channel()>();
+$z1 = virtualinvoke $r1.<java.nio.channels.SelectableChannel: boolean isOpen()>();
+if $z1 == 0 goto return;
+"->"Block 4:
+[preds: 2 ] [succs: ]
+return;
+";
+}

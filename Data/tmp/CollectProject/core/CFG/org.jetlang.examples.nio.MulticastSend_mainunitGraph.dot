@@ -1,0 +1,62 @@
+digraph "unitGraph" {
+    "r19 := @parameter0: java.lang.String[]"
+    "$r0 = <java.net.StandardProtocolFamily: java.net.StandardProtocolFamily INET>"
+    "r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open(java.net.ProtocolFamily)>($r0)"
+    "$r2 = <java.net.StandardSocketOptions: java.net.SocketOption SO_REUSEADDR>"
+    "$r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1)"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r2, $r3)"
+    "$r5 = <java.net.StandardSocketOptions: java.net.SocketOption SO_SNDBUF>"
+    "$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(2097152)"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r5, $r6)"
+    "$r8 = <java.net.StandardSocketOptions: java.net.SocketOption IP_MULTICAST_IF>"
+    "$r9 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(\"lo\")"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r8, $r9)"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)"
+    "r12 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(8)"
+    "$r13 = new java.net.InetSocketAddress"
+    "specialinvoke $r13.<java.net.InetSocketAddress: void <init>(java.lang.String,int)>(\"239.8.128.3\", 9999)"
+    "r14 = $r13"
+    "i2 = 0"
+    "if i2 >= 5000000 goto virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()"
+    "$l0 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>($l0)"
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer flip()>()"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: int send(java.nio.ByteBuffer,java.net.SocketAddress)>(r12, r14)"
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer clear()>()"
+    "i2 = i2 + 1"
+    "goto [?= (branch)]"
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()"
+    "$r15 = <java.lang.System: java.io.PrintStream out>"
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"done\")"
+    "return"
+    "r19 := @parameter0: java.lang.String[]"->"$r0 = <java.net.StandardProtocolFamily: java.net.StandardProtocolFamily INET>";
+    "$r0 = <java.net.StandardProtocolFamily: java.net.StandardProtocolFamily INET>"->"r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open(java.net.ProtocolFamily)>($r0)";
+    "r1 = staticinvoke <java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel open(java.net.ProtocolFamily)>($r0)"->"$r2 = <java.net.StandardSocketOptions: java.net.SocketOption SO_REUSEADDR>";
+    "$r2 = <java.net.StandardSocketOptions: java.net.SocketOption SO_REUSEADDR>"->"$r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1)";
+    "$r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1)"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r2, $r3)";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r2, $r3)"->"$r5 = <java.net.StandardSocketOptions: java.net.SocketOption SO_SNDBUF>";
+    "$r5 = <java.net.StandardSocketOptions: java.net.SocketOption SO_SNDBUF>"->"$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(2097152)";
+    "$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(2097152)"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r5, $r6)";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r5, $r6)"->"$r8 = <java.net.StandardSocketOptions: java.net.SocketOption IP_MULTICAST_IF>";
+    "$r8 = <java.net.StandardSocketOptions: java.net.SocketOption IP_MULTICAST_IF>"->"$r9 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(\"lo\")";
+    "$r9 = staticinvoke <java.net.NetworkInterface: java.net.NetworkInterface getByName(java.lang.String)>(\"lo\")"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r8, $r9)";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.DatagramChannel setOption(java.net.SocketOption,java.lang.Object)>($r8, $r9)"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: java.nio.channels.SelectableChannel configureBlocking(boolean)>(1)"->"r12 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(8)";
+    "r12 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(8)"->"$r13 = new java.net.InetSocketAddress";
+    "$r13 = new java.net.InetSocketAddress"->"specialinvoke $r13.<java.net.InetSocketAddress: void <init>(java.lang.String,int)>(\"239.8.128.3\", 9999)";
+    "specialinvoke $r13.<java.net.InetSocketAddress: void <init>(java.lang.String,int)>(\"239.8.128.3\", 9999)"->"r14 = $r13";
+    "r14 = $r13"->"i2 = 0";
+    "i2 = 0"->"if i2 >= 5000000 goto virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()";
+    "if i2 >= 5000000 goto virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()"->"$l0 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "if i2 >= 5000000 goto virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()";
+    "$l0 = staticinvoke <java.lang.System: long nanoTime()>()"->"virtualinvoke r12.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>($l0)";
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.ByteBuffer putLong(long)>($l0)"->"virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer flip()>()";
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer flip()>()"->"virtualinvoke r1.<java.nio.channels.DatagramChannel: int send(java.nio.ByteBuffer,java.net.SocketAddress)>(r12, r14)";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: int send(java.nio.ByteBuffer,java.net.SocketAddress)>(r12, r14)"->"virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer clear()>()";
+    "virtualinvoke r12.<java.nio.ByteBuffer: java.nio.Buffer clear()>()"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 >= 5000000 goto virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()";
+    "virtualinvoke r1.<java.nio.channels.DatagramChannel: void close()>()"->"$r15 = <java.lang.System: java.io.PrintStream out>";
+    "$r15 = <java.lang.System: java.io.PrintStream out>"->"virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"done\")";
+    "virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>(\"done\")"->"return";
+}

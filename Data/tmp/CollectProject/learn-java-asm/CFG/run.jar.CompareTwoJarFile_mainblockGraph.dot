@@ -1,0 +1,313 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 ]
+r21 := @parameter0: java.lang.String[];
+r0 = \"D:/git-repo/learn-java-asm/first.jar\";
+r1 = \"D:/git-repo/learn-java-asm/second.jar\";
+r2 = staticinvoke <lsieun.utils.JarUtils: java.util.List getAllEntries(java.lang.String)>(r0);
+r3 = staticinvoke <lsieun.utils.JarUtils: java.util.List getAllEntries(java.lang.String)>(r1);
+$r4 = new java.util.HashSet;
+specialinvoke $r4.<java.util.HashSet: void <init>()>();
+r5 = $r4;
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r2);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+$r6 = newarray (java.lang.Object)[3];
+$i0 = interfaceinvoke r5.<java.util.Set: int size()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+$r6[0] = $r7;
+$i1 = interfaceinvoke r2.<java.util.List: int size()>();
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r6[1] = $r8;
+$i2 = interfaceinvoke r3.<java.util.List: int size()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r6[2] = $r9;
+r10 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"total: %s, list1=%s, list2=%s\", $r6);
+$r11 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>(r10);
+r12 = staticinvoke <lsieun.utils.JarUtils: java.util.Map getAllEntryMap(java.lang.String,java.util.List)>(r0, r2);
+r13 = staticinvoke <lsieun.utils.JarUtils: java.util.Map getAllEntryMap(java.lang.String,java.util.List)>(r1, r3);
+r14 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"
+    "Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r15 = interfaceinvoke r14.<java.util.Iterator: java.lang.Object next()>();
+r16 = (java.lang.String) $r15;
+$z2 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\"/\");
+if $z2 == 0 goto r22 = null;
+"
+    "Block 3:
+[preds: 2 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r22 = null;
+r23 = null;
+$r17 = interfaceinvoke r12.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r18 = (java.io.ByteArrayOutputStream) $r17;
+$r19 = interfaceinvoke r13.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r20 = (java.io.ByteArrayOutputStream) $r19;
+if r18 == null goto (branch);
+"
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+r22 = virtualinvoke r18.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+"
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if r20 == null goto z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+"
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+r23 = virtualinvoke r20.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+"
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+if z3 == 0 goto $z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+"
+    "Block 9:
+[preds: 8 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+if $z4 != 0 goto staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+"
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r22, r16, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r23, r16, \"b\");
+goto [?= (branch)];
+"
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r23, \"b\");
+"
+    "Block 13:
+[preds: 11 12 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"
+    "Block 14:
+[preds: 1 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 ]
+r21 := @parameter0: java.lang.String[];
+r0 = \"D:/git-repo/learn-java-asm/first.jar\";
+r1 = \"D:/git-repo/learn-java-asm/second.jar\";
+r2 = staticinvoke <lsieun.utils.JarUtils: java.util.List getAllEntries(java.lang.String)>(r0);
+r3 = staticinvoke <lsieun.utils.JarUtils: java.util.List getAllEntries(java.lang.String)>(r1);
+$r4 = new java.util.HashSet;
+specialinvoke $r4.<java.util.HashSet: void <init>()>();
+r5 = $r4;
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r2);
+interfaceinvoke r5.<java.util.Set: boolean addAll(java.util.Collection)>(r3);
+$r6 = newarray (java.lang.Object)[3];
+$i0 = interfaceinvoke r5.<java.util.Set: int size()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+$r6[0] = $r7;
+$i1 = interfaceinvoke r2.<java.util.List: int size()>();
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r6[1] = $r8;
+$i2 = interfaceinvoke r3.<java.util.List: int size()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r6[2] = $r9;
+r10 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>(\"total: %s, list1=%s, list2=%s\", $r6);
+$r11 = <java.lang.System: java.io.PrintStream out>;
+virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>(r10);
+r12 = staticinvoke <lsieun.utils.JarUtils: java.util.Map getAllEntryMap(java.lang.String,java.util.List)>(r0, r2);
+r13 = staticinvoke <lsieun.utils.JarUtils: java.util.Map getAllEntryMap(java.lang.String,java.util.List)>(r1, r3);
+r14 = interfaceinvoke r5.<java.util.Set: java.util.Iterator iterator()>();
+"->"Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+";
+    "Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r15 = interfaceinvoke r14.<java.util.Iterator: java.lang.Object next()>();
+r16 = (java.lang.String) $r15;
+$z2 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\"/\");
+if $z2 == 0 goto r22 = null;
+";
+    "Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+"->"Block 14:
+[preds: 1 ] [succs: ]
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r15 = interfaceinvoke r14.<java.util.Iterator: java.lang.Object next()>();
+r16 = (java.lang.String) $r15;
+$z2 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\"/\");
+if $z2 == 0 goto r22 = null;
+"->"Block 3:
+[preds: 2 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+$r15 = interfaceinvoke r14.<java.util.Iterator: java.lang.Object next()>();
+r16 = (java.lang.String) $r15;
+$z2 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\"/\");
+if $z2 == 0 goto r22 = null;
+"->"Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r22 = null;
+r23 = null;
+$r17 = interfaceinvoke r12.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r18 = (java.io.ByteArrayOutputStream) $r17;
+$r19 = interfaceinvoke r13.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r20 = (java.io.ByteArrayOutputStream) $r19;
+if r18 == null goto (branch);
+";
+    "Block 3:
+[preds: 2 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r22 = null;
+r23 = null;
+$r17 = interfaceinvoke r12.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r18 = (java.io.ByteArrayOutputStream) $r17;
+$r19 = interfaceinvoke r13.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r20 = (java.io.ByteArrayOutputStream) $r19;
+if r18 == null goto (branch);
+"->"Block 5:
+[preds: 4 ] [succs: 6 ]
+r22 = virtualinvoke r18.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+";
+    "Block 4:
+[preds: 2 ] [succs: 5 6 ]
+r22 = null;
+r23 = null;
+$r17 = interfaceinvoke r12.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r18 = (java.io.ByteArrayOutputStream) $r17;
+$r19 = interfaceinvoke r13.<java.util.Map: java.lang.Object get(java.lang.Object)>(r16);
+r20 = (java.io.ByteArrayOutputStream) $r19;
+if r18 == null goto (branch);
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if r20 == null goto z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+";
+    "Block 5:
+[preds: 4 ] [succs: 6 ]
+r22 = virtualinvoke r18.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+"->"Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if r20 == null goto z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if r20 == null goto z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+"->"Block 7:
+[preds: 6 ] [succs: 8 ]
+r23 = virtualinvoke r20.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+";
+    "Block 6:
+[preds: 4 5 ] [succs: 7 8 ]
+if r20 == null goto z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+if z3 == 0 goto $z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+";
+    "Block 7:
+[preds: 6 ] [succs: 8 ]
+r23 = virtualinvoke r20.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+"->"Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+if z3 == 0 goto $z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+if z3 == 0 goto $z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+"->"Block 9:
+[preds: 8 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 8:
+[preds: 6 7 ] [succs: 9 10 ]
+z3 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>(r22, r23);
+if z3 == 0 goto $z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+"->"Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+if $z4 != 0 goto staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+";
+    "Block 9:
+[preds: 8 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+if $z4 != 0 goto staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+"->"Block 11:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r22, r16, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r23, r16, \"b\");
+goto [?= (branch)];
+";
+    "Block 10:
+[preds: 8 ] [succs: 11 12 ]
+$z4 = virtualinvoke r16.<java.lang.String: boolean endsWith(java.lang.String)>(\".class\");
+if $z4 != 0 goto staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+"->"Block 12:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r23, \"b\");
+";
+    "Block 11:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r22, r16, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateOtherFile(byte[],java.lang.String,java.lang.String)>(r23, r16, \"b\");
+goto [?= (branch)];
+"->"Block 13:
+[preds: 11 12 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 12:
+[preds: 10 ] [succs: 13 ]
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r22, \"a\");
+staticinvoke <run.jar.CompareTwoJarFile: void generateClassText(byte[],java.lang.String)>(r23, \"b\");
+"->"Block 13:
+[preds: 11 12 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+";
+    "Block 13:
+[preds: 11 12 ] [succs: 1 ]
+goto [?= $z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>()];
+"->"Block 1:
+[preds: 0 3 9 13 ] [succs: 2 14 ]
+$z5 = interfaceinvoke r14.<java.util.Iterator: boolean hasNext()>();
+if $z5 == 0 goto return;
+";
+}

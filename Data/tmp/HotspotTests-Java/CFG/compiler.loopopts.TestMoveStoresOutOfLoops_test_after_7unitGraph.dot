@@ -1,0 +1,26 @@
+digraph "unitGraph" {
+    "i0 := @parameter0: int"
+    "i1 = 0"
+    "goto [?= (branch)]"
+    "i2 = 0"
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>"
+    "$r0[i1] = i2"
+    "i2 = i2 + 1"
+    "if i2 <= 42 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>"
+    "i1 = i1 + 1"
+    "if i1 < 1000 goto i2 = 0"
+    "return"
+    "i0 := @parameter0: int"->"i1 = 0";
+    "i1 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 < 1000 goto i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 <= 42 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>";
+    "$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>"->"$r0[i1] = i2";
+    "$r0[i1] = i2"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 <= 42 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>";
+    "if i2 <= 42 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>"->"i1 = i1 + 1";
+    "if i2 <= 42 goto $r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>"->"$r0 = <compiler.loopopts.TestMoveStoresOutOfLoops: int[] array4>";
+    "i1 = i1 + 1"->"if i1 < 1000 goto i2 = 0";
+    "if i1 < 1000 goto i2 = 0"->"return";
+    "if i1 < 1000 goto i2 = 0"->"i2 = 0";
+}

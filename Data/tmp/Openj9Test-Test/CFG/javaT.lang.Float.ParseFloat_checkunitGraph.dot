@@ -1,0 +1,18 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "f1 := @parameter1: float"
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>(r0)"
+    "$b0 = f0 cmpl f1"
+    "if $b0 == 0 goto staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)"
+    "staticinvoke <javaT.lang.Float.ParseFloat: void fail(java.lang.String,float)>(r0, f0)"
+    "staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)"
+    "return"
+    "r0 := @parameter0: java.lang.String"->"f1 := @parameter1: float";
+    "f1 := @parameter1: float"->"f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>(r0)";
+    "f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>(r0)"->"$b0 = f0 cmpl f1";
+    "$b0 = f0 cmpl f1"->"if $b0 == 0 goto staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)";
+    "if $b0 == 0 goto staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)"->"staticinvoke <javaT.lang.Float.ParseFloat: void fail(java.lang.String,float)>(r0, f0)";
+    "if $b0 == 0 goto staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)"->"staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)";
+    "staticinvoke <javaT.lang.Float.ParseFloat: void fail(java.lang.String,float)>(r0, f0)"->"staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)";
+    "staticinvoke <javaT.lang.Float.ParseFloat: void check(java.lang.String)>(r0)"->"return";
+}

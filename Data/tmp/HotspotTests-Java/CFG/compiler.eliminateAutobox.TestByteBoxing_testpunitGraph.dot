@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "b0 := @parameter0: byte"
+    "r1 := @parameter1: java.lang.Byte"
+    "$i1 = b0 & 1"
+    "if $i1 != 0 goto $b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"
+    "$r0 = new java.lang.Byte"
+    "$i3 = b0 + 1"
+    "$b4 = (byte) $i3"
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b4)"
+    "r1 = $r0"
+    "$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"
+    "return $b2"
+    "b0 := @parameter0: byte"->"r1 := @parameter1: java.lang.Byte";
+    "r1 := @parameter1: java.lang.Byte"->"$i1 = b0 & 1";
+    "$i1 = b0 & 1"->"if $i1 != 0 goto $b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()";
+    "if $i1 != 0 goto $b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"->"$r0 = new java.lang.Byte";
+    "if $i1 != 0 goto $b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"->"$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()";
+    "$r0 = new java.lang.Byte"->"$i3 = b0 + 1";
+    "$i3 = b0 + 1"->"$b4 = (byte) $i3";
+    "$b4 = (byte) $i3"->"specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b4)";
+    "specialinvoke $r0.<java.lang.Byte: void <init>(byte)>($b4)"->"r1 = $r0";
+    "r1 = $r0"->"$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()";
+    "$b2 = virtualinvoke r1.<java.lang.Byte: byte byteValue()>()"->"return $b2";
+}

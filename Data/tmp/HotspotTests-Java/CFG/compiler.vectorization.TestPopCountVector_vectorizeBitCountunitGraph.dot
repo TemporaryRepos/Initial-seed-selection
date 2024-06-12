@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "r0 := @this: compiler.vectorization.TestPopCountVector"
+    "i2 = 0"
+    "goto [?= (branch)]"
+    "$r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>"
+    "$r1 = r0.<compiler.vectorization.TestPopCountVector: int[] input>"
+    "$i0 = $r1[i2]"
+    "$i1 = staticinvoke <java.lang.Integer: int bitCount(int)>($i0)"
+    "$r2[i2] = $i1"
+    "i2 = i2 + 1"
+    "if i2 < 1024 goto $r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>"
+    "return"
+    "r0 := @this: compiler.vectorization.TestPopCountVector"->"i2 = 0";
+    "i2 = 0"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 < 1024 goto $r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>";
+    "$r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>"->"$r1 = r0.<compiler.vectorization.TestPopCountVector: int[] input>";
+    "$r1 = r0.<compiler.vectorization.TestPopCountVector: int[] input>"->"$i0 = $r1[i2]";
+    "$i0 = $r1[i2]"->"$i1 = staticinvoke <java.lang.Integer: int bitCount(int)>($i0)";
+    "$i1 = staticinvoke <java.lang.Integer: int bitCount(int)>($i0)"->"$r2[i2] = $i1";
+    "$r2[i2] = $i1"->"i2 = i2 + 1";
+    "i2 = i2 + 1"->"if i2 < 1024 goto $r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>";
+    "if i2 < 1024 goto $r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>"->"return";
+    "if i2 < 1024 goto $r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>"->"$r2 = r0.<compiler.vectorization.TestPopCountVector: int[] output>";
+}

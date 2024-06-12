@@ -1,0 +1,31 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "i1 := @parameter1: int"
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r0)"
+    "if i0 == i1 goto return"
+    "$r1 = new java.lang.RuntimeException"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Integer.parsedInt failed. String:\")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"
+    "throw $r1"
+    "return"
+    "r0 := @parameter0: java.lang.String"->"i1 := @parameter1: int";
+    "i1 := @parameter1: int"->"i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r0)";
+    "i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r0)"->"if i0 == i1 goto return";
+    "if i0 == i1 goto return"->"$r1 = new java.lang.RuntimeException";
+    "if i0 == i1 goto return"->"return";
+    "$r1 = new java.lang.RuntimeException"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Integer.parsedInt failed. String:\")";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Integer.parsedInt failed. String:\")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"->"throw $r1";
+}

@@ -1,0 +1,33 @@
+digraph "unitGraph" {
+    "r0 := @parameter0: java.lang.String"
+    "l1 := @parameter1: long"
+    "l0 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>(r0)"
+    "$b2 = l0 cmp l1"
+    "if $b2 == 0 goto return"
+    "$r1 = new java.lang.RuntimeException"
+    "$r2 = new java.lang.StringBuilder"
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Long.parsedLong failed. String:\")"
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")"
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0)"
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"
+    "throw $r1"
+    "return"
+    "r0 := @parameter0: java.lang.String"->"l1 := @parameter1: long";
+    "l1 := @parameter1: long"->"l0 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>(r0)";
+    "l0 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>(r0)"->"$b2 = l0 cmp l1";
+    "$b2 = l0 cmp l1"->"if $b2 == 0 goto return";
+    "if $b2 == 0 goto return"->"$r1 = new java.lang.RuntimeException";
+    "if $b2 == 0 goto return"->"return";
+    "$r1 = new java.lang.RuntimeException"->"$r2 = new java.lang.StringBuilder";
+    "$r2 = new java.lang.StringBuilder"->"specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r2.<java.lang.StringBuilder: void <init>()>()"->"$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Long.parsedLong failed. String:\")";
+    "$r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Long.parsedLong failed. String:\")"->"$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)";
+    "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" Result:\")"->"$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0)";
+    "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0)"->"$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()"->"specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)";
+    "specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7)"->"throw $r1";
+}

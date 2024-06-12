@@ -1,0 +1,152 @@
+digraph "unitGraph" {
+    "r2 := @parameter0: java.lang.String"
+    "r0 := @parameter1: java.lang.String[]"
+    "r8 := @parameter2: java.io.OutputStream"
+    "r10 := @parameter3: java.io.OutputStream"
+    "r12 := @parameter4: java.io.OutputStream"
+    "r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0)"
+    "$r3 = staticinvoke <org.yinwang.pysonar.JSONDump: java.lang.String dirname(java.lang.String)>(r2)"
+    "interfaceinvoke r1.<java.util.List: boolean add(java.lang.Object)>($r3)"
+    "$r4 = new org.yinwang.pysonar.JSONDump$1"
+    "specialinvoke $r4.<org.yinwang.pysonar.JSONDump$1: void <init>()>()"
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r1, $r4)"
+    "r5 = staticinvoke <org.yinwang.pysonar.JSONDump: org.yinwang.pysonar.Analyzer newAnalyzer(java.lang.String,java.lang.String[])>(r2, r0)"
+    "r5.<org.yinwang.pysonar.Analyzer: boolean multilineFunType> = 1"
+    "$r6 = new com.fasterxml.jackson.core.JsonFactory"
+    "specialinvoke $r6.<com.fasterxml.jackson.core.JsonFactory: void <init>()>()"
+    "r7 = $r6"
+    "r9 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r8)"
+    "r11 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r10)"
+    "r13 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r12)"
+    "$r14 = newarray (com.fasterxml.jackson.core.JsonGenerator)[3]"
+    "$r14[0] = r9"
+    "$r14[1] = r11"
+    "$r14[2] = r13"
+    "r15 = $r14"
+    "r26 = r15"
+    "i0 = lengthof r26"
+    "i1 = 0"
+    "if i1 >= i0 goto $r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()"
+    "r27 = r26[i1]"
+    "virtualinvoke r27.<com.fasterxml.jackson.core.JsonGenerator: void writeStartArray()>()"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "$r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()"
+    "r28 = interfaceinvoke $r16.<java.util.List: java.util.Iterator iterator()>()"
+    "$z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()"
+    "if $z1 == 0 goto r33 = r15"
+    "$r17 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>()"
+    "r29 = (org.yinwang.pysonar.Binding) $r17"
+    "$r18 = r29.<org.yinwang.pysonar.Binding: java.lang.String qname>"
+    "$r19 = virtualinvoke $r18.<java.lang.String: java.lang.String replace(char,char)>(46, 47)"
+    "virtualinvoke $r19.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"%20\", \".\")"
+    "$r20 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()"
+    "if $r20 == null goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"
+    "$r25 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()"
+    "$z3 = virtualinvoke $r25.<java.lang.String: boolean startsWith(java.lang.String)>(r2)"
+    "if $z3 == 0 goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeSymJson(org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r29, r9)"
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeDocJson(org.yinwang.pysonar.Binding,org.yinwang.pysonar.Analyzer,com.fasterxml.jackson.core.JsonGenerator)>(r29, r5, r13)"
+    "$r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"
+    "r32 = interfaceinvoke $r31.<java.util.Set: java.util.Iterator iterator()>()"
+    "$z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()"
+    "if $z4 == 0 goto (branch)"
+    "$r21 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>()"
+    "r22 = (org.yinwang.pysonar.ast.Node) $r21"
+    "$r23 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>"
+    "if $r23 == null goto (branch)"
+    "$r24 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>"
+    "$z2 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(r2)"
+    "if $z2 == 0 goto (branch)"
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeRefJson(org.yinwang.pysonar.ast.Node,org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r22, r29, r11)"
+    "goto [?= $z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()]"
+    "goto [?= $z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()]"
+    "r33 = r15"
+    "i2 = lengthof r33"
+    "i3 = 0"
+    "if i3 >= i2 goto return"
+    "r34 = r33[i3]"
+    "virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void writeEndArray()>()"
+    "virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void close()>()"
+    "i3 = i3 + 1"
+    "return"
+    "r2 := @parameter0: java.lang.String"->"r0 := @parameter1: java.lang.String[]";
+    "r0 := @parameter1: java.lang.String[]"->"r8 := @parameter2: java.io.OutputStream";
+    "r8 := @parameter2: java.io.OutputStream"->"r10 := @parameter3: java.io.OutputStream";
+    "r10 := @parameter3: java.io.OutputStream"->"r12 := @parameter4: java.io.OutputStream";
+    "r12 := @parameter4: java.io.OutputStream"->"r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0)";
+    "r1 = staticinvoke <com.google.common.collect.Lists: java.util.ArrayList newArrayList(java.lang.Object[])>(r0)"->"$r3 = staticinvoke <org.yinwang.pysonar.JSONDump: java.lang.String dirname(java.lang.String)>(r2)";
+    "$r3 = staticinvoke <org.yinwang.pysonar.JSONDump: java.lang.String dirname(java.lang.String)>(r2)"->"interfaceinvoke r1.<java.util.List: boolean add(java.lang.Object)>($r3)";
+    "interfaceinvoke r1.<java.util.List: boolean add(java.lang.Object)>($r3)"->"$r4 = new org.yinwang.pysonar.JSONDump$1";
+    "$r4 = new org.yinwang.pysonar.JSONDump$1"->"specialinvoke $r4.<org.yinwang.pysonar.JSONDump$1: void <init>()>()";
+    "specialinvoke $r4.<org.yinwang.pysonar.JSONDump$1: void <init>()>()"->"staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r1, $r4)";
+    "staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r1, $r4)"->"r5 = staticinvoke <org.yinwang.pysonar.JSONDump: org.yinwang.pysonar.Analyzer newAnalyzer(java.lang.String,java.lang.String[])>(r2, r0)";
+    "r5 = staticinvoke <org.yinwang.pysonar.JSONDump: org.yinwang.pysonar.Analyzer newAnalyzer(java.lang.String,java.lang.String[])>(r2, r0)"->"r5.<org.yinwang.pysonar.Analyzer: boolean multilineFunType> = 1";
+    "r5.<org.yinwang.pysonar.Analyzer: boolean multilineFunType> = 1"->"$r6 = new com.fasterxml.jackson.core.JsonFactory";
+    "$r6 = new com.fasterxml.jackson.core.JsonFactory"->"specialinvoke $r6.<com.fasterxml.jackson.core.JsonFactory: void <init>()>()";
+    "specialinvoke $r6.<com.fasterxml.jackson.core.JsonFactory: void <init>()>()"->"r7 = $r6";
+    "r7 = $r6"->"r9 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r8)";
+    "r9 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r8)"->"r11 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r10)";
+    "r11 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r10)"->"r13 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r12)";
+    "r13 = virtualinvoke r7.<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonGenerator createGenerator(java.io.OutputStream)>(r12)"->"$r14 = newarray (com.fasterxml.jackson.core.JsonGenerator)[3]";
+    "$r14 = newarray (com.fasterxml.jackson.core.JsonGenerator)[3]"->"$r14[0] = r9";
+    "$r14[0] = r9"->"$r14[1] = r11";
+    "$r14[1] = r11"->"$r14[2] = r13";
+    "$r14[2] = r13"->"r15 = $r14";
+    "r15 = $r14"->"r26 = r15";
+    "r26 = r15"->"i0 = lengthof r26";
+    "i0 = lengthof r26"->"i1 = 0";
+    "i1 = 0"->"if i1 >= i0 goto $r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()";
+    "if i1 >= i0 goto $r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()"->"r27 = r26[i1]";
+    "if i1 >= i0 goto $r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()"->"$r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()";
+    "r27 = r26[i1]"->"virtualinvoke r27.<com.fasterxml.jackson.core.JsonGenerator: void writeStartArray()>()";
+    "virtualinvoke r27.<com.fasterxml.jackson.core.JsonGenerator: void writeStartArray()>()"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= i0 goto $r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()";
+    "$r16 = virtualinvoke r5.<org.yinwang.pysonar.Analyzer: java.util.List getAllBindings()>()"->"r28 = interfaceinvoke $r16.<java.util.List: java.util.Iterator iterator()>()";
+    "r28 = interfaceinvoke $r16.<java.util.List: java.util.Iterator iterator()>()"->"$z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()";
+    "$z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()"->"if $z1 == 0 goto r33 = r15";
+    "if $z1 == 0 goto r33 = r15"->"$r17 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z1 == 0 goto r33 = r15"->"r33 = r15";
+    "$r17 = interfaceinvoke r28.<java.util.Iterator: java.lang.Object next()>()"->"r29 = (org.yinwang.pysonar.Binding) $r17";
+    "r29 = (org.yinwang.pysonar.Binding) $r17"->"$r18 = r29.<org.yinwang.pysonar.Binding: java.lang.String qname>";
+    "$r18 = r29.<org.yinwang.pysonar.Binding: java.lang.String qname>"->"$r19 = virtualinvoke $r18.<java.lang.String: java.lang.String replace(char,char)>(46, 47)";
+    "$r19 = virtualinvoke $r18.<java.lang.String: java.lang.String replace(char,char)>(46, 47)"->"virtualinvoke $r19.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"%20\", \".\")";
+    "virtualinvoke $r19.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(\"%20\", \".\")"->"$r20 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()";
+    "$r20 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()"->"if $r20 == null goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>";
+    "if $r20 == null goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"->"$r25 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()";
+    "if $r20 == null goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"->"$r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>";
+    "$r25 = virtualinvoke r29.<org.yinwang.pysonar.Binding: java.lang.String getFile()>()"->"$z3 = virtualinvoke $r25.<java.lang.String: boolean startsWith(java.lang.String)>(r2)";
+    "$z3 = virtualinvoke $r25.<java.lang.String: boolean startsWith(java.lang.String)>(r2)"->"if $z3 == 0 goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>";
+    "if $z3 == 0 goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"->"staticinvoke <org.yinwang.pysonar.JSONDump: void writeSymJson(org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r29, r9)";
+    "if $z3 == 0 goto $r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"->"$r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>";
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeSymJson(org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r29, r9)"->"staticinvoke <org.yinwang.pysonar.JSONDump: void writeDocJson(org.yinwang.pysonar.Binding,org.yinwang.pysonar.Analyzer,com.fasterxml.jackson.core.JsonGenerator)>(r29, r5, r13)";
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeDocJson(org.yinwang.pysonar.Binding,org.yinwang.pysonar.Analyzer,com.fasterxml.jackson.core.JsonGenerator)>(r29, r5, r13)"->"$r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>";
+    "$r31 = r29.<org.yinwang.pysonar.Binding: java.util.Set refs>"->"r32 = interfaceinvoke $r31.<java.util.Set: java.util.Iterator iterator()>()";
+    "r32 = interfaceinvoke $r31.<java.util.Set: java.util.Iterator iterator()>()"->"$z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()";
+    "$z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()"->"if $z4 == 0 goto (branch)";
+    "if $z4 == 0 goto (branch)"->"$r21 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>()";
+    "if $z4 == 0 goto (branch)"->"goto [?= $z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()]";
+    "$r21 = interfaceinvoke r32.<java.util.Iterator: java.lang.Object next()>()"->"r22 = (org.yinwang.pysonar.ast.Node) $r21";
+    "r22 = (org.yinwang.pysonar.ast.Node) $r21"->"$r23 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>";
+    "$r23 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>"->"if $r23 == null goto (branch)";
+    "if $r23 == null goto (branch)"->"$r24 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>";
+    "if $r23 == null goto (branch)"->"goto [?= $z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()]";
+    "$r24 = r22.<org.yinwang.pysonar.ast.Node: java.lang.String file>"->"$z2 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(r2)";
+    "$z2 = virtualinvoke $r24.<java.lang.String: boolean startsWith(java.lang.String)>(r2)"->"if $z2 == 0 goto (branch)";
+    "if $z2 == 0 goto (branch)"->"staticinvoke <org.yinwang.pysonar.JSONDump: void writeRefJson(org.yinwang.pysonar.ast.Node,org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r22, r29, r11)";
+    "if $z2 == 0 goto (branch)"->"goto [?= $z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()]";
+    "staticinvoke <org.yinwang.pysonar.JSONDump: void writeRefJson(org.yinwang.pysonar.ast.Node,org.yinwang.pysonar.Binding,com.fasterxml.jackson.core.JsonGenerator)>(r22, r29, r11)"->"goto [?= $z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()]";
+    "goto [?= $z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()]"->"$z4 = interfaceinvoke r32.<java.util.Iterator: boolean hasNext()>()";
+    "goto [?= $z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()]"->"$z1 = interfaceinvoke r28.<java.util.Iterator: boolean hasNext()>()";
+    "r33 = r15"->"i2 = lengthof r33";
+    "i2 = lengthof r33"->"i3 = 0";
+    "i3 = 0"->"if i3 >= i2 goto return";
+    "if i3 >= i2 goto return"->"r34 = r33[i3]";
+    "if i3 >= i2 goto return"->"return";
+    "r34 = r33[i3]"->"virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void writeEndArray()>()";
+    "virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void writeEndArray()>()"->"virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void close()>()";
+    "virtualinvoke r34.<com.fasterxml.jackson.core.JsonGenerator: void close()>()"->"i3 = i3 + 1";
+    "i3 = i3 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i3 >= i2 goto return";
+}

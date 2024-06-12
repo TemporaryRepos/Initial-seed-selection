@@ -1,0 +1,44 @@
+digraph "unitGraph" {
+    "z0 := @parameter0: boolean"
+    "z1 := @parameter1: boolean"
+    "z2 := @parameter2: boolean"
+    "z3 := @parameter3: boolean"
+    "z4 := @parameter4: boolean"
+    "$r0 = staticinvoke <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A not_inlined()>()"
+    "<compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field> = $r0"
+    "$r1 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r1)"
+    "if z0 == 0 goto return"
+    "if z1 == 0 goto return"
+    "if z2 == 0 goto return"
+    "$r2 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r2)"
+    "if z3 == 0 goto return"
+    "if z4 == 0 goto return"
+    "$r3 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r3)"
+    "return"
+    "z0 := @parameter0: boolean"->"z1 := @parameter1: boolean";
+    "z1 := @parameter1: boolean"->"z2 := @parameter2: boolean";
+    "z2 := @parameter2: boolean"->"z3 := @parameter3: boolean";
+    "z3 := @parameter3: boolean"->"z4 := @parameter4: boolean";
+    "z4 := @parameter4: boolean"->"$r0 = staticinvoke <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A not_inlined()>()";
+    "$r0 = staticinvoke <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A not_inlined()>()"->"<compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field> = $r0";
+    "<compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field> = $r0"->"$r1 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>";
+    "$r1 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"->"staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r1)";
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r1)"->"if z0 == 0 goto return";
+    "if z0 == 0 goto return"->"if z1 == 0 goto return";
+    "if z0 == 0 goto return"->"return";
+    "if z1 == 0 goto return"->"if z2 == 0 goto return";
+    "if z1 == 0 goto return"->"return";
+    "if z2 == 0 goto return"->"$r2 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>";
+    "if z2 == 0 goto return"->"return";
+    "$r2 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"->"staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r2)";
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r2)"->"if z3 == 0 goto return";
+    "if z3 == 0 goto return"->"if z4 == 0 goto return";
+    "if z3 == 0 goto return"->"return";
+    "if z4 == 0 goto return"->"$r3 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>";
+    "if z4 == 0 goto return"->"return";
+    "$r3 = <compiler.c2.TestDominatingDeadCheckCast: compiler.c2.TestDominatingDeadCheckCast$A field>"->"staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r3)";
+    "staticinvoke <compiler.c2.TestDominatingDeadCheckCast: void inlined(compiler.c2.TestDominatingDeadCheckCast$A)>($r3)"->"return";
+}

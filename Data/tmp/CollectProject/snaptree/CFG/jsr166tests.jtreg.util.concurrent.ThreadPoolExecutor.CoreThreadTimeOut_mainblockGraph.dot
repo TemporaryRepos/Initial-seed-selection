@@ -1,0 +1,289 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r21 := @parameter0: java.lang.String[];
+b0 = 10;
+$r0 = new java.util.concurrent.ArrayBlockingQueue;
+specialinvoke $r0.<java.util.concurrent.ArrayBlockingQueue: void <init>(int)>(20);
+r1 = $r0;
+$r2 = new java.util.concurrent.ThreadPoolExecutor;
+$r3 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit MILLISECONDS>;
+specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(10, 10, 30L, $r3, r1);
+r4 = $r2;
+$i1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: int getCorePoolSize()>();
+$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r5, $r6);
+$z0 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+if $z0 != 0 goto $z3 = 0;
+"
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$z3 = 1;
+goto [?= staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3)];
+"
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$z3 = 0;
+"
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void allowCoreThreadTimeOut(boolean)>(1);
+$z1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z1);
+$i2 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r7, $r8);
+i8 = 0;
+"
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i8 >= 10 goto $i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+"
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r19 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1;
+specialinvoke $r19.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1: void <init>()>();
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: java.util.concurrent.Future submit(java.lang.Runnable)>($r19);
+i8 = i8 + 1;
+goto [?= (branch)];
+"
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+$r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r9, $r10);
+staticinvoke <java.lang.Thread: void sleep(long)>(500L);
+$i4 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+$r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r11, $r12);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>();
+$z2 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z2);
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = newarray (java.lang.Object)[2];
+$i5 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int passed>;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+$r13[0] = $r15;
+$i6 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+$r13[1] = $r16;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%nPassed = %d, failed = %d%n%n\", $r13);
+$i7 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+if $i7 <= 0 goto return;
+"
+    "Block 7:
+[preds: 6 ] [succs: ]
+$r18 = new java.lang.Exception;
+specialinvoke $r18.<java.lang.Exception: void <init>(java.lang.String)>(\"Some tests failed\");
+throw $r18;
+"
+    "Block 8:
+[preds: 6 ] [succs: ]
+return;
+"
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r21 := @parameter0: java.lang.String[];
+b0 = 10;
+$r0 = new java.util.concurrent.ArrayBlockingQueue;
+specialinvoke $r0.<java.util.concurrent.ArrayBlockingQueue: void <init>(int)>(20);
+r1 = $r0;
+$r2 = new java.util.concurrent.ThreadPoolExecutor;
+$r3 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit MILLISECONDS>;
+specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(10, 10, 30L, $r3, r1);
+r4 = $r2;
+$i1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: int getCorePoolSize()>();
+$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r5, $r6);
+$z0 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+if $z0 != 0 goto $z3 = 0;
+"->"Block 1:
+[preds: 0 ] [succs: 3 ]
+$z3 = 1;
+goto [?= staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3)];
+";
+    "Block 0:
+[preds: ] [succs: 1 2 ]
+r21 := @parameter0: java.lang.String[];
+b0 = 10;
+$r0 = new java.util.concurrent.ArrayBlockingQueue;
+specialinvoke $r0.<java.util.concurrent.ArrayBlockingQueue: void <init>(int)>(20);
+r1 = $r0;
+$r2 = new java.util.concurrent.ThreadPoolExecutor;
+$r3 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit MILLISECONDS>;
+specialinvoke $r2.<java.util.concurrent.ThreadPoolExecutor: void <init>(int,int,long,java.util.concurrent.TimeUnit,java.util.concurrent.BlockingQueue)>(10, 10, 30L, $r3, r1);
+r4 = $r2;
+$i1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: int getCorePoolSize()>();
+$r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+$r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r5, $r6);
+$z0 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+if $z0 != 0 goto $z3 = 0;
+"->"Block 2:
+[preds: 0 ] [succs: 3 ]
+$z3 = 0;
+";
+    "Block 1:
+[preds: 0 ] [succs: 3 ]
+$z3 = 1;
+goto [?= staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3)];
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void allowCoreThreadTimeOut(boolean)>(1);
+$z1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z1);
+$i2 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r7, $r8);
+i8 = 0;
+";
+    "Block 2:
+[preds: 0 ] [succs: 3 ]
+$z3 = 0;
+"->"Block 3:
+[preds: 1 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void allowCoreThreadTimeOut(boolean)>(1);
+$z1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z1);
+$i2 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r7, $r8);
+i8 = 0;
+";
+    "Block 3:
+[preds: 1 2 ] [succs: 4 ]
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z3);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void allowCoreThreadTimeOut(boolean)>(1);
+$z1 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z1);
+$i2 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+$r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r7, $r8);
+i8 = 0;
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i8 >= 10 goto $i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i8 >= 10 goto $i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+"->"Block 5:
+[preds: 4 ] [succs: 4 ]
+$r19 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1;
+specialinvoke $r19.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1: void <init>()>();
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: java.util.concurrent.Future submit(java.lang.Runnable)>($r19);
+i8 = i8 + 1;
+goto [?= (branch)];
+";
+    "Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i8 >= 10 goto $i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+"->"Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+$r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r9, $r10);
+staticinvoke <java.lang.Thread: void sleep(long)>(500L);
+$i4 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+$r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r11, $r12);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>();
+$z2 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z2);
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = newarray (java.lang.Object)[2];
+$i5 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int passed>;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+$r13[0] = $r15;
+$i6 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+$r13[1] = $r16;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%nPassed = %d, failed = %d%n%n\", $r13);
+$i7 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+if $i7 <= 0 goto return;
+";
+    "Block 5:
+[preds: 4 ] [succs: 4 ]
+$r19 = new jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1;
+specialinvoke $r19.<jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut$1: void <init>()>();
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: java.util.concurrent.Future submit(java.lang.Runnable)>($r19);
+i8 = i8 + 1;
+goto [?= (branch)];
+"->"Block 4:
+[preds: 3 5 ] [succs: 5 6 ]
+if i8 >= 10 goto $i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+$r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r9, $r10);
+staticinvoke <java.lang.Thread: void sleep(long)>(500L);
+$i4 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+$r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r11, $r12);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>();
+$z2 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z2);
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = newarray (java.lang.Object)[2];
+$i5 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int passed>;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+$r13[0] = $r15;
+$i6 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+$r13[1] = $r16;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%nPassed = %d, failed = %d%n%n\", $r13);
+$i7 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+if $i7 <= 0 goto return;
+"->"Block 7:
+[preds: 6 ] [succs: ]
+$r18 = new java.lang.Exception;
+specialinvoke $r18.<java.lang.Exception: void <init>(java.lang.String)>(\"Some tests failed\");
+throw $r18;
+";
+    "Block 6:
+[preds: 4 ] [succs: 7 8 ]
+$i3 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+$r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(10);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r9, $r10);
+staticinvoke <java.lang.Thread: void sleep(long)>(500L);
+$i4 = staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int countExecutorThreads()>();
+$r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+$r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void equal(java.lang.Object,java.lang.Object)>($r11, $r12);
+virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: void shutdown()>();
+$z2 = virtualinvoke r4.<java.util.concurrent.ThreadPoolExecutor: boolean allowsCoreThreadTimeOut()>();
+staticinvoke <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: void check(boolean)>($z2);
+$r14 = <java.lang.System: java.io.PrintStream out>;
+$r13 = newarray (java.lang.Object)[2];
+$i5 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int passed>;
+$r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+$r13[0] = $r15;
+$i6 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+$r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+$r13[1] = $r16;
+virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>(\"%nPassed = %d, failed = %d%n%n\", $r13);
+$i7 = <jsr166tests.jtreg.util.concurrent.ThreadPoolExecutor.CoreThreadTimeOut: int failed>;
+if $i7 <= 0 goto return;
+"->"Block 8:
+[preds: 6 ] [succs: ]
+return;
+";
+}

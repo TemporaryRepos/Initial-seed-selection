@@ -1,0 +1,210 @@
+digraph "unitGraph" {
+    "r0 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String pdfFileType(boolean)>(1)"
+    "$r1 = new java.lang.StringBuilder"
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>()>()"
+    "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"
+    "$r3 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String exePath()>()"
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"
+    "r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "r7 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String editCmdShellKey(java.lang.String)>(r0)"
+    "$r8 = new java.lang.StringBuilder"
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")"
+    "r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r12 = new java.lang.StringBuilder"
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")"
+    "r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r16 = new java.lang.StringBuilder"
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r15)"
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")"
+    "r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r11)"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r15)"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r19)"
+    "$r20 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r20, r7, \"\", \"Pdf metadata editor\")"
+    "$r21 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r21, r11, \"\", r6)"
+    "$r22 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r22, r15, \"\", \"\\\"%1\\\"\")"
+    "$r23 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r24 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r23, r19, \"\", $r24)"
+    "r25 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchMenuShellKey(java.lang.String)>(r0)"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r25)"
+    "$r26 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r26, r25, \"MUIVerb\", \"Pdf metadata batch\")"
+    "$r28 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r27 = new java.lang.StringBuilder"
+    "specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()"
+    "$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\Batch.Menu\")"
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r28, r25, \"ExtendedSubCommandsKey\", $r31)"
+    "r32 = <pmedit.CommandDescription: pmedit.CommandDescription[] batchCommands>"
+    "i0 = lengthof r32"
+    "i1 = 0"
+    "if i1 >= i0 goto return"
+    "r33 = r32[i1]"
+    "$r34 = new java.lang.StringBuilder"
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"
+    "$r35 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchCmdShellKey(java.lang.String)>(r0)"
+    "$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)"
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\\")"
+    "$r38 = r33.<pmedit.CommandDescription: java.lang.String regKey>"
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"
+    "r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r41 = new java.lang.StringBuilder"
+    "specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()"
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")"
+    "r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r45 = new java.lang.StringBuilder"
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")"
+    "r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "$r49 = new java.lang.StringBuilder"
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")"
+    "r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r44)"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r48)"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r52)"
+    "$r54 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r53 = r33.<pmedit.CommandDescription: java.lang.String description>"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r54, r40, \"MUIVerb\", $r53)"
+    "$r56 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r55 = new java.lang.StringBuilder"
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)"
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"
+    "$r59 = r33.<pmedit.CommandDescription: java.lang.String name>"
+    "$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)"
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r56, r44, \"\", $r61)"
+    "$r63 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r62 = new java.lang.StringBuilder"
+    "specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()"
+    "$r64 = r33.<pmedit.CommandDescription: java.lang.String name>"
+    "$r65 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r64)"
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \\\"%1\\\"\")"
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r63, r48, \"\", $r67)"
+    "$r68 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"
+    "$r69 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()"
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r68, r52, \"\", $r69)"
+    "i1 = i1 + 1"
+    "goto [?= (branch)]"
+    "return"
+    "r0 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String pdfFileType(boolean)>(1)"->"$r1 = new java.lang.StringBuilder";
+    "$r1 = new java.lang.StringBuilder"->"specialinvoke $r1.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r1.<java.lang.StringBuilder: void <init>()>()"->"$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")";
+    "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"->"$r3 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String exePath()>()";
+    "$r3 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String exePath()>()"->"$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)";
+    "$r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)"->"$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")";
+    "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")"->"r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()"->"r7 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String editCmdShellKey(java.lang.String)>(r0)";
+    "r7 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String editCmdShellKey(java.lang.String)>(r0)"->"$r8 = new java.lang.StringBuilder";
+    "$r8 = new java.lang.StringBuilder"->"specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r8.<java.lang.StringBuilder: void <init>()>()"->"$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)";
+    "$r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"->"$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")";
+    "$r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")"->"r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r12 = new java.lang.StringBuilder";
+    "$r12 = new java.lang.StringBuilder"->"specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r12.<java.lang.StringBuilder: void <init>()>()"->"$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)";
+    "$r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7)"->"$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")";
+    "$r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")"->"r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r16 = new java.lang.StringBuilder";
+    "$r16 = new java.lang.StringBuilder"->"specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r16.<java.lang.StringBuilder: void <init>()>()"->"$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r15)";
+    "$r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r15)"->"$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")";
+    "$r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")"->"r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r11)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r11)"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r15)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r15)"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r19)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r19)"->"$r20 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r20 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r20, r7, \"\", \"Pdf metadata editor\")";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r20, r7, \"\", \"Pdf metadata editor\")"->"$r21 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r21 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r21, r11, \"\", r6)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r21, r11, \"\", r6)"->"$r22 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r22 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r22, r15, \"\", \"\\\"%1\\\"\")";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r22, r15, \"\", \"\\\"%1\\\"\")"->"$r23 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r23 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r24 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()";
+    "$r24 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r23, r19, \"\", $r24)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r23, r19, \"\", $r24)"->"r25 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchMenuShellKey(java.lang.String)>(r0)";
+    "r25 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchMenuShellKey(java.lang.String)>(r0)"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r25)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r25)"->"$r26 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r26 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r26, r25, \"MUIVerb\", \"Pdf metadata batch\")";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r26, r25, \"MUIVerb\", \"Pdf metadata batch\")"->"$r28 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r28 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r27 = new java.lang.StringBuilder";
+    "$r27 = new java.lang.StringBuilder"->"specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r27.<java.lang.StringBuilder: void <init>()>()"->"$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)";
+    "$r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0)"->"$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\Batch.Menu\")";
+    "$r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\Batch.Menu\")"->"$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r28, r25, \"ExtendedSubCommandsKey\", $r31)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r28, r25, \"ExtendedSubCommandsKey\", $r31)"->"r32 = <pmedit.CommandDescription: pmedit.CommandDescription[] batchCommands>";
+    "r32 = <pmedit.CommandDescription: pmedit.CommandDescription[] batchCommands>"->"i0 = lengthof r32";
+    "i0 = lengthof r32"->"i1 = 0";
+    "i1 = 0"->"if i1 >= i0 goto return";
+    "if i1 >= i0 goto return"->"r33 = r32[i1]";
+    "if i1 >= i0 goto return"->"return";
+    "r33 = r32[i1]"->"$r34 = new java.lang.StringBuilder";
+    "$r34 = new java.lang.StringBuilder"->"specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r34.<java.lang.StringBuilder: void <init>()>()"->"$r35 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchCmdShellKey(java.lang.String)>(r0)";
+    "$r35 = staticinvoke <pmedit.WindowsRegisterContextMenu: java.lang.String batchCmdShellKey(java.lang.String)>(r0)"->"$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)";
+    "$r36 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35)"->"$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\\")";
+    "$r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\\")"->"$r38 = r33.<pmedit.CommandDescription: java.lang.String regKey>";
+    "$r38 = r33.<pmedit.CommandDescription: java.lang.String regKey>"->"$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)";
+    "$r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38)"->"r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r41 = new java.lang.StringBuilder";
+    "$r41 = new java.lang.StringBuilder"->"specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r41.<java.lang.StringBuilder: void <init>()>()"->"$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)";
+    "$r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"->"$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")";
+    "$r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\command\")"->"r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r45 = new java.lang.StringBuilder";
+    "$r45 = new java.lang.StringBuilder"->"specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r45.<java.lang.StringBuilder: void <init>()>()"->"$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)";
+    "$r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"->"$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")";
+    "$r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\ddeexec\")"->"r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>()"->"$r49 = new java.lang.StringBuilder";
+    "$r49 = new java.lang.StringBuilder"->"specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r49.<java.lang.StringBuilder: void <init>()>()"->"$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)";
+    "$r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r40)"->"$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")";
+    "$r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\application\")"->"r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r44)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r44)"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r48)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r48)"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r52)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void createRegistryKey(java.lang.String)>(r52)"->"$r54 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r54 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r53 = r33.<pmedit.CommandDescription: java.lang.String description>";
+    "$r53 = r33.<pmedit.CommandDescription: java.lang.String description>"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r54, r40, \"MUIVerb\", $r53)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r54, r40, \"MUIVerb\", $r53)"->"$r56 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r56 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r55 = new java.lang.StringBuilder";
+    "$r55 = new java.lang.StringBuilder"->"specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r55.<java.lang.StringBuilder: void <init>()>()"->"$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)";
+    "$r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)"->"$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")";
+    "$r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")"->"$r59 = r33.<pmedit.CommandDescription: java.lang.String name>";
+    "$r59 = r33.<pmedit.CommandDescription: java.lang.String name>"->"$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)";
+    "$r60 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59)"->"$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r56, r44, \"\", $r61)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r56, r44, \"\", $r61)"->"$r63 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r63 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r62 = new java.lang.StringBuilder";
+    "$r62 = new java.lang.StringBuilder"->"specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()";
+    "specialinvoke $r62.<java.lang.StringBuilder: void <init>()>()"->"$r64 = r33.<pmedit.CommandDescription: java.lang.String name>";
+    "$r64 = r33.<pmedit.CommandDescription: java.lang.String name>"->"$r65 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r64)";
+    "$r65 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r64)"->"$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \\\"%1\\\"\")";
+    "$r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \\\"%1\\\"\")"->"$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()";
+    "$r67 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r63, r48, \"\", $r67)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r63, r48, \"\", $r67)"->"$r68 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>";
+    "$r68 = <com.sun.jna.platform.win32.WinReg: com.sun.jna.platform.win32.WinReg$HKEY HKEY_CURRENT_USER>"->"$r69 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()";
+    "$r69 = staticinvoke <pmedit.Version: java.lang.String getAppName()>()"->"staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r68, r52, \"\", $r69)";
+    "staticinvoke <pmedit.WindowsRegisterContextMenu: void setRegistryKey(com.sun.jna.platform.win32.WinReg$HKEY,java.lang.String,java.lang.String,java.lang.String)>($r68, r52, \"\", $r69)"->"i1 = i1 + 1";
+    "i1 = i1 + 1"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i1 >= i0 goto return";
+}

@@ -1,0 +1,93 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.Class;
+r2 := @parameter1: java.lang.Enum;
+r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0);
+"
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r3 = staticinvoke <java.util.Collections: java.util.Set singleton(java.lang.Object)>(r2);
+"
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+virtualinvoke r1.<java.util.EnumSet: boolean addAll(java.util.Collection)>($r3);
+"
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $r4 = new java.lang.RuntimeException];
+"
+    "Block 4:
+[preds: 0 1 2 ] [succs: ]
+$r5 := @caughtexception;
+r6 = $r5;
+return;
+"
+    "Block 5:
+[preds: 3 ] [succs: ]
+$r4 = new java.lang.RuntimeException;
+specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Incorrectly typed addAll succeeded\");
+throw $r4;
+"
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.Class;
+r2 := @parameter1: java.lang.Enum;
+r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0);
+"->"Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r3 = staticinvoke <java.util.Collections: java.util.Set singleton(java.lang.Object)>(r2);
+";
+    "Block 0:
+[preds: ] [succs: 1 4 ]
+r0 := @parameter0: java.lang.Class;
+r2 := @parameter1: java.lang.Enum;
+r1 = staticinvoke <java.util.EnumSet: java.util.EnumSet noneOf(java.lang.Class)>(r0);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: ]
+$r5 := @caughtexception;
+r6 = $r5;
+return;
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r3 = staticinvoke <java.util.Collections: java.util.Set singleton(java.lang.Object)>(r2);
+"->"Block 2:
+[preds: 1 ] [succs: 3 4 ]
+virtualinvoke r1.<java.util.EnumSet: boolean addAll(java.util.Collection)>($r3);
+";
+    "Block 1:
+[preds: 0 ] [succs: 2 4 ]
+$r3 = staticinvoke <java.util.Collections: java.util.Set singleton(java.lang.Object)>(r2);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: ]
+$r5 := @caughtexception;
+r6 = $r5;
+return;
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+virtualinvoke r1.<java.util.EnumSet: boolean addAll(java.util.Collection)>($r3);
+"->"Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $r4 = new java.lang.RuntimeException];
+";
+    "Block 2:
+[preds: 1 ] [succs: 3 4 ]
+virtualinvoke r1.<java.util.EnumSet: boolean addAll(java.util.Collection)>($r3);
+"->"Block 4:
+[preds: 0 1 2 ] [succs: ]
+$r5 := @caughtexception;
+r6 = $r5;
+return;
+";
+    "Block 3:
+[preds: 2 ] [succs: 5 ]
+goto [?= $r4 = new java.lang.RuntimeException];
+"->"Block 5:
+[preds: 3 ] [succs: ]
+$r4 = new java.lang.RuntimeException;
+specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Incorrectly typed addAll succeeded\");
+throw $r4;
+";
+}

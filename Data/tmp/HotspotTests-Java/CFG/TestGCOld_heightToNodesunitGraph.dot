@@ -1,0 +1,24 @@
+digraph "unitGraph" {
+    "i2 := @parameter0: int"
+    "if i2 != 0 goto l3 = 1L"
+    "return 0L"
+    "l3 = 1L"
+    "goto [?= (branch)]"
+    "l3 = l3 + l3"
+    "i2 = i2 + -1"
+    "if i2 > 1 goto l3 = l3 + l3"
+    "$l0 = l3 + l3"
+    "$l1 = $l0 - 1L"
+    "return $l1"
+    "i2 := @parameter0: int"->"if i2 != 0 goto l3 = 1L";
+    "if i2 != 0 goto l3 = 1L"->"return 0L";
+    "if i2 != 0 goto l3 = 1L"->"l3 = 1L";
+    "l3 = 1L"->"goto [?= (branch)]";
+    "goto [?= (branch)]"->"if i2 > 1 goto l3 = l3 + l3";
+    "l3 = l3 + l3"->"i2 = i2 + -1";
+    "i2 = i2 + -1"->"if i2 > 1 goto l3 = l3 + l3";
+    "if i2 > 1 goto l3 = l3 + l3"->"$l0 = l3 + l3";
+    "if i2 > 1 goto l3 = l3 + l3"->"l3 = l3 + l3";
+    "$l0 = l3 + l3"->"$l1 = $l0 - 1L";
+    "$l1 = $l0 - 1L"->"return $l1";
+}

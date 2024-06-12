@@ -1,0 +1,14 @@
+digraph "unitGraph" {
+    "l0 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "$l1 = staticinvoke <java.lang.System: long nanoTime()>()"
+    "$b2 = l0 cmp $l1"
+    "if $b2 != 0 goto return"
+    "goto [?= $l1 = staticinvoke <java.lang.System: long nanoTime()>()]"
+    "return"
+    "l0 = staticinvoke <java.lang.System: long nanoTime()>()"->"$l1 = staticinvoke <java.lang.System: long nanoTime()>()";
+    "$l1 = staticinvoke <java.lang.System: long nanoTime()>()"->"$b2 = l0 cmp $l1";
+    "$b2 = l0 cmp $l1"->"if $b2 != 0 goto return";
+    "if $b2 != 0 goto return"->"goto [?= $l1 = staticinvoke <java.lang.System: long nanoTime()>()]";
+    "if $b2 != 0 goto return"->"return";
+    "goto [?= $l1 = staticinvoke <java.lang.System: long nanoTime()>()]"->"$l1 = staticinvoke <java.lang.System: long nanoTime()>()";
+}

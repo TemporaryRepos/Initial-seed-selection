@@ -1,0 +1,55 @@
+digraph "unitGraph" {
+    "r9 := @parameter0: java.lang.String[]"
+    "r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null)"
+    "virtualinvoke r0.<java.io.File: void deleteOnExit()>()"
+    "$r1 = new java.io.FileInputStream"
+    "specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(r0)"
+    "r2 = $r1"
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"
+    "virtualinvoke r3.<java.nio.channels.FileChannel: long transferTo(long,long,java.nio.channels.WritableByteChannel)>(0L, 2L, r3)"
+    "$r4 = new java.lang.RuntimeException"
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"
+    "throw $r4"
+    "$r7 := @caughtexception"
+    "r8 = $r7"
+    "virtualinvoke r3.<java.nio.channels.FileChannel: void close()>()"
+    "virtualinvoke r0.<java.io.File: boolean delete()>()"
+    "goto [?= return]"
+    "$r5 := @caughtexception"
+    "r6 = $r5"
+    "throw r6"
+    "return"
+    "r9 := @parameter0: java.lang.String[]"->"r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null)";
+    "r0 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String)>(\"blah\", null)"->"virtualinvoke r0.<java.io.File: void deleteOnExit()>()";
+    "virtualinvoke r0.<java.io.File: void deleteOnExit()>()"->"$r1 = new java.io.FileInputStream";
+    "$r1 = new java.io.FileInputStream"->"specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(r0)";
+    "specialinvoke $r1.<java.io.FileInputStream: void <init>(java.io.File)>(r0)"->"r2 = $r1";
+    "r2 = $r1"->"r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()";
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"->"$r7 := @caughtexception";
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"->"$r5 := @caughtexception";
+    "r3 = virtualinvoke r2.<java.io.FileInputStream: java.nio.channels.FileChannel getChannel()>()"->"virtualinvoke r3.<java.nio.channels.FileChannel: long transferTo(long,long,java.nio.channels.WritableByteChannel)>(0L, 2L, r3)";
+    "virtualinvoke r3.<java.nio.channels.FileChannel: long transferTo(long,long,java.nio.channels.WritableByteChannel)>(0L, 2L, r3)"->"$r7 := @caughtexception";
+    "virtualinvoke r3.<java.nio.channels.FileChannel: long transferTo(long,long,java.nio.channels.WritableByteChannel)>(0L, 2L, r3)"->"$r5 := @caughtexception";
+    "virtualinvoke r3.<java.nio.channels.FileChannel: long transferTo(long,long,java.nio.channels.WritableByteChannel)>(0L, 2L, r3)"->"$r4 = new java.lang.RuntimeException";
+    "$r4 = new java.lang.RuntimeException"->"$r7 := @caughtexception";
+    "$r4 = new java.lang.RuntimeException"->"$r5 := @caughtexception";
+    "$r4 = new java.lang.RuntimeException"->"specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")";
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"->"$r7 := @caughtexception";
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"->"$r5 := @caughtexception";
+    "specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>(\"Test failed\")"->"throw $r4";
+    "throw $r4"->"$r7 := @caughtexception";
+    "throw $r4"->"$r5 := @caughtexception";
+    "$r7 := @caughtexception"->"r8 = $r7";
+    "$r7 := @caughtexception"->"$r5 := @caughtexception";
+    "r8 = $r7"->"virtualinvoke r3.<java.nio.channels.FileChannel: void close()>()";
+    "r8 = $r7"->"$r5 := @caughtexception";
+    "virtualinvoke r3.<java.nio.channels.FileChannel: void close()>()"->"virtualinvoke r0.<java.io.File: boolean delete()>()";
+    "virtualinvoke r0.<java.io.File: boolean delete()>()"->"goto [?= return]";
+    "goto [?= return]"->"return";
+    "$r5 := @caughtexception"->"r6 = $r5";
+    "$r5 := @caughtexception"->"$r5 := @caughtexception";
+    "r6 = $r5"->"virtualinvoke r3.<java.nio.channels.FileChannel: void close()>()";
+    "r6 = $r5"->"$r5 := @caughtexception";
+    "virtualinvoke r3.<java.nio.channels.FileChannel: void close()>()"->"virtualinvoke r0.<java.io.File: boolean delete()>()";
+    "virtualinvoke r0.<java.io.File: boolean delete()>()"->"throw r6";
+}

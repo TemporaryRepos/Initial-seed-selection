@@ -1,0 +1,76 @@
+digraph "unitGraph" {
+    "Block 0:
+[preds: ] [succs: 2 ]
+l1 := @parameter0: long;
+i9 = 0;
+$i0 = <TestGCOld: int workUnits>;
+$l2 = (long) $i0;
+$l3 = $l2 * l1;
+l4 = $l3 / 10L;
+l10 = 0L;
+goto [?= $b5 = l10 cmp l4];
+"
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i9 = i9 + 1;
+l10 = l10 + 1L;
+"
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$b5 = l10 cmp l4;
+if $b5 < 0 goto i9 = i9 + 1;
+"
+    "Block 3:
+[preds: 2 ] [succs: ]
+$l7 = <TestGCOld: long mutatorSum>;
+$l6 = (long) i9;
+$l8 = $l7 + $l6;
+<TestGCOld: long mutatorSum> = $l8;
+return;
+"
+    "Block 0:
+[preds: ] [succs: 2 ]
+l1 := @parameter0: long;
+i9 = 0;
+$i0 = <TestGCOld: int workUnits>;
+$l2 = (long) $i0;
+$l3 = $l2 * l1;
+l4 = $l3 / 10L;
+l10 = 0L;
+goto [?= $b5 = l10 cmp l4];
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$b5 = l10 cmp l4;
+if $b5 < 0 goto i9 = i9 + 1;
+";
+    "Block 1:
+[preds: 2 ] [succs: 2 ]
+i9 = i9 + 1;
+l10 = l10 + 1L;
+"->"Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$b5 = l10 cmp l4;
+if $b5 < 0 goto i9 = i9 + 1;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$b5 = l10 cmp l4;
+if $b5 < 0 goto i9 = i9 + 1;
+"->"Block 3:
+[preds: 2 ] [succs: ]
+$l7 = <TestGCOld: long mutatorSum>;
+$l6 = (long) i9;
+$l8 = $l7 + $l6;
+<TestGCOld: long mutatorSum> = $l8;
+return;
+";
+    "Block 2:
+[preds: 0 1 ] [succs: 3 1 ]
+$b5 = l10 cmp l4;
+if $b5 < 0 goto i9 = i9 + 1;
+"->"Block 1:
+[preds: 2 ] [succs: 2 ]
+i9 = i9 + 1;
+l10 = l10 + 1L;
+";
+}
