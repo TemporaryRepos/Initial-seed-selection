@@ -6,12 +6,12 @@ import ilog.concert.IloException;
 
 import java.util.List;
 
-public abstract class CoverageSubSet extends SubSet {
+public abstract class CISS extends SubSet {
     protected BitMap allBitMap;
     protected List<BitMap> bitMapList;
 
 
-    public CoverageSubSet(double budget, double originSize) {
+    public CISS(double budget, double originSize) {
         super(budget, originSize);
     }
 

@@ -1,7 +1,7 @@
-import seedSelection.coverage.MinSet;
-import seedSelection.coverage.PeachSet;
-import seedSelection.programFeature.FPSSet;
-import seedSelection.uniqueBug.HotSet;
+import seedSelection.coverage.CISS_M;
+import seedSelection.coverage.CISS_P;
+import seedSelection.feature.FISS;
+import seedSelection.prefuzz.PISS;
 import utils.BitMap;
 import utils.DTPlatform;
 import ilog.concert.IloException;
@@ -115,7 +115,7 @@ public class SeedSelection {
             allBitMap = BitMap.add(allBitMap,bitMap,"allBitMap",0);
         }
 
-        HotSet subset = new HotSet(bitMapList,maxBudget,originSize);
+        PISS subset = new PISS(bitMapList,maxBudget,originSize);
         subset.reduce();
 
         assert allBitMap != null;
@@ -142,7 +142,7 @@ public class SeedSelection {
             }
             allBitMap = BitMap.add(allBitMap,bitMap,"allBitMap",0);
         }
-        MinSet subset = new MinSet(bitMapList,maxBudget,originSize);
+        CISS_M subset = new CISS_M(bitMapList,maxBudget,originSize);
         subset.reduce();
         assert allBitMap != null;
         System.out.println(allBitMap.hitCount());
@@ -168,7 +168,7 @@ public class SeedSelection {
             }
             allBitMap = BitMap.add(allBitMap,bitMap,"allBitMap",0);
         }
-        PeachSet subset = new PeachSet(bitMapList, maxBudget, originSize);
+        CISS_P subset = new CISS_P(bitMapList, maxBudget, originSize);
         subset.reduce();
 
         assert allBitMap != null;
@@ -179,7 +179,7 @@ public class SeedSelection {
         return subset.getFileNameList();
     }
     public static List<String> FISS(String modelName, double originSize, double maxBudget) throws IOException, ClassNotFoundException, IloException {
-        FPSSet subset = new FPSSet("",featureRootPath+DTPlatform.FILE_SEPARATOR+modelName+"Vectors.csv", maxBudget, originSize );
+        FISS subset = new FISS("",featureRootPath+DTPlatform.FILE_SEPARATOR+modelName+"Vectors.csv", maxBudget, originSize );
         subset.reduce();
         return subset.getFileNameList();
     }

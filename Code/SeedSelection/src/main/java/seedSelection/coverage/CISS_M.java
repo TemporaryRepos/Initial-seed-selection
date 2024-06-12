@@ -4,10 +4,10 @@ import utils.BitMap;
 
 import java.util.*;
 
-public class MinSet  extends CoverageSubSet {
+public class CISS_M extends CISS {
 
 
-    public MinSet(List<BitMap> bitMapList, double budget, double originSize) {
+    public CISS_M(List<BitMap> bitMapList, double budget, double originSize) {
         super(budget, originSize);
         this.bitMapList = bitMapList;
         allBitMap = new BitMap(bitMapList.get(0).getBits().size(),"allBitMap",0);

@@ -20,6 +20,13 @@ Table 1 shows the comparison results of each method in terms of unique inconsist
 ├── Code
 │   ├── dataProcessing  
 │   ├── seedSelection 
+│   │   ├── coverage
+│   │   |   ├── CISS_M
+│   │   |   └── CISS_P
+│   │   ├── feature
+│   │   |   └── FISS
+│   │   └── prefuzz
+│   │       └── PISS
 │   ├── utils
 │   ├── pythonCode               // Preprocessing implemented in python
 │   ├── DataProcessing.java      // Preprocessing for three types of methods

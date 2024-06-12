@@ -1,4 +1,4 @@
-package seedSelection.programFeature;
+package seedSelection.feature;
 
 import java.util.Arrays;
 

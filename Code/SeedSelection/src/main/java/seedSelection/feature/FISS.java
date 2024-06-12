@@ -1,4 +1,4 @@
-package seedSelection.programFeature;
+package seedSelection.feature;
 
 import seedSelection.SubSet;
 
@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class FPSSet extends SubSet {
+public class FISS extends SubSet {
 
     protected String featureFilePath = "";
     protected String clusterFilePath = "";
@@ -16,7 +16,7 @@ public class FPSSet extends SubSet {
     protected List<String> nameList = new ArrayList<>();
     protected List<Integer> clusterList = new ArrayList<>();
     protected List<Double[]> featureList= new ArrayList<>();
-    public FPSSet(String clusterFilePath, String featureFilePath, double budget, double originSize){
+    public FISS(String clusterFilePath, String featureFilePath, double budget, double originSize){
         super(budget, originSize);
         this.clusterFilePath = clusterFilePath;
         this.featureFilePath = featureFilePath;
