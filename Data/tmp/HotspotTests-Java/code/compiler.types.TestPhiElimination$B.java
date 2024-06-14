@@ -1,1 +1,0 @@
-static class B extends compiler.types.TestPhiElimination.A {}

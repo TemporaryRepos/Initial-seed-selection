@@ -33,6 +33,9 @@ Table 1 shows the comparison results of each method in terms of unique inconsist
 │   └── SeedSelection.java       // Entry for initial seed selection
 ├── Data
 │   ├── benchmarks
+│   |   ├── HotspotTests-Java
+│   |   ├── Openj9Test-Test
+│   |   └── CollectProject
 │   ├── covInfo
 │   |   └── ProjeactName
 │   │       └── info             // Coverage files folder, seed.info
@@ -43,6 +46,8 @@ Table 1 shows the comparison results of each method in terms of unique inconsist
 │   └── featureInfo
 └── Result
 ```
+
+To facilitate use by developers, we have uploaded the relevant data to [zenodo](https://zenodo.org/records/11636361) for download.
 
 
 

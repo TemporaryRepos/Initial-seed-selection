@@ -1,1 +1,0 @@
-static class A extends compiler.intrinsics.object.TestClone {}
