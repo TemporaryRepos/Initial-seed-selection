@@ -24,7 +24,7 @@ The common characteristics of these seed programs include features such as neste
 
 * jit.FloatingPoint.gen_math.Matrix_3d.Matrix_3d
 
-  ```
+  ```java
   for(i = 0; i < N; ++i) {
       for(j = 0; j < N; ++j) {
           for(k = 0; k < N; ++k) {
@@ -50,7 +50,7 @@ The common characteristics of these seed programs include features such as neste
 
 * vm.compiler.jbe.dead.dead10.dead10
 
-  ```
+  ```java
   int fopt() {
       this.i1 = this.j + 1;
       this.i2 = this.j - 1;
