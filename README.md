@@ -18,24 +18,24 @@ Table 1 shows the comparison results of each method in terms of unique inconsist
 
 ```
 ├── Code
-│   ├── dataProcessing  
-│   ├── seedSelection 
+│   ├── dataProcessing           // Data processing module
+│   ├── seedSelection            // Seed Selection module
 │   │   ├── coverage
-│   │   |   ├── CISS_M
-│   │   |   └── CISS_P
+│   │   |   ├── CISS_M           // Coverage-based Seed Selection Method
+│   │   |   └── CISS_P           // Coverage-Increment-based Seed Selection Method
 │   │   ├── feature
-│   │   |   └── FISS
+│   │   |   └── FISS             // Prefuzz-based Seed Selection Method
 │   │   └── prefuzz
-│   │       └── PISS
+│   │       └── PISS             // Program-Feature-based Seed Selection Method
 │   ├── utils
 │   ├── pythonCode               // Preprocessing implemented in python
 │   ├── DataProcessing.java      // Preprocessing for three types of methods
 │   └── SeedSelection.java       // Entry for initial seed selection
 ├── Data
 │   ├── benchmarks
-│   |   ├── HotspotTests-Java
-│   |   ├── Openj9Test-Test
-│   |   └── CollectProject
+│   |   ├── HotspotTests-Java    // Benchmark P1
+│   |   ├── Openj9Test-Test      // Benchmark P2
+│   |   └── CollectProject       // Open-source Benchmark P3 collected from Github
 │   ├── covInfo
 │   |   └── ProjeactName
 │   │       └── info             // Coverage files folder, seed.info
@@ -97,6 +97,8 @@ The rest of the methods are implemented using python:
 * $FISS_{PLBART}$
 
 You can do data processing by calling the `python CodeBERTVector.py projectname`.
+
+
 
 ##### 4. Seed Selection
 
